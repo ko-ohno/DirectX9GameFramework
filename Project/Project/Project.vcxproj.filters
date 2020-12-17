@@ -30,7 +30,7 @@
     <ClInclude Include="SourceFiles\Manager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Generic\Math\Math.h">
+    <ClInclude Include="SourceFiles\Generic\Math.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClCompile Include="SourceFiles\Manager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Generic\Math\Math.cpp">
+    <ClCompile Include="SourceFiles\Generic\Math.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -96,6 +96,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>StdAfx.h</ForcedIncludeFiles>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -114,6 +115,7 @@
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>StdAfx.h</ForcedIncludeFiles>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="SourceFiles\Generic\Math\Math.h" />
+    <ClInclude Include="SourceFiles\Generic\Math.h" />
     <ClInclude Include="SourceFiles\DebugSystem.h" />
     <ClInclude Include="SourceFiles\MainProcess.h" />
     <ClInclude Include="SourceFiles\Manager.h" />
@@ -159,7 +161,7 @@
     <ClInclude Include="SourceFiles\Main.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceFiles\Generic\Math\Math.cpp" />
+    <ClCompile Include="SourceFiles\Generic\Math.cpp" />
     <ClCompile Include="SourceFiles\DebugSystem.cpp" />
     <ClCompile Include="SourceFiles\MainProcess.cpp" />
     <ClCompile Include="SourceFiles\Manager.cpp" />
