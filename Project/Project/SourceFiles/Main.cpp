@@ -29,7 +29,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #if defined(_DEBUG) || defined(DEBUG) //下記の関数はリリースビルド時に実行されないらしいけれど、一応設定しておく
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-	MainProcess* main_process_ = NEW MainProcess();
 
 	/*----------------------------------------------
 	/* メインの実行命令
