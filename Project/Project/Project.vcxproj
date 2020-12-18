@@ -154,15 +154,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="SourceFiles\Generic\Math.h" />
-    <ClInclude Include="SourceFiles\DebugSystem.h" />
+    <ClInclude Include="SourceFiles\Generic\DebugFunction.h" />
     <ClInclude Include="SourceFiles\MainProcess.h" />
     <ClInclude Include="SourceFiles\Manager.h" />
     <ClInclude Include="SourceFiles\StdAfx.h" />
     <ClInclude Include="SourceFiles\Main.h" />
+    <ClInclude Include="SourceFiles\Window\Win32APIWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\Generic\Math.cpp" />
-    <ClCompile Include="SourceFiles\DebugSystem.cpp" />
+    <ClCompile Include="SourceFiles\Generic\DebugFunction.cpp" />
     <ClCompile Include="SourceFiles\MainProcess.cpp" />
     <ClCompile Include="SourceFiles\Manager.cpp" />
     <ClCompile Include="SourceFiles\StdAfx.cpp">
@@ -170,6 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SourceFiles\Main.cpp" />
+    <ClCompile Include="SourceFiles\Window\Win32APIWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cpp_CommentTemplate\Header.txt" />

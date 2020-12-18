@@ -7,13 +7,13 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
-#include "DebugSystem.h"
+#include "../StdAfx.h"
+#include "DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* デバッグ用の文字列データ出力処理
 -----------------------------------------------------------------------------*/
-std::string DebugSystem::OutputErrorString(std::string inErrorMsg, std::string inFileName, int inLineNumber, std::string inFunctionName)
+std::string DebugFunction::OutputErrorString(std::string inErrorMsg, std::string inFileName, int inLineNumber, std::string inFunctionName)
 {
 	//ファイル名をだけを取り出す
 	std::string file_name = inFileName;
@@ -31,6 +31,16 @@ std::string DebugSystem::OutputErrorString(std::string inErrorMsg, std::string i
 	std::string error_msg				= "エラー内容：" + inErrorMsg     + "\n";
 
 	return std::string(file_name_and_line_num + function_name + error_msg);
+}
+
+void DebugFunction::DebugOutputFormatString(const char* format, ...)
+{
+#if defined(_DEBUG) || defined(DEBUG)
+	va_list valist;
+	va_start(valist, format);
+	printf(format, valist);
+	va_end(valist);
+#endif // !_DEBUG
 }
 
 /*=============================================================================
