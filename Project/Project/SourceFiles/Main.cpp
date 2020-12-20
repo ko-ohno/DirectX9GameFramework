@@ -8,22 +8,15 @@
 
 /*--- インクルードファイル ---*/
 #include "StdAfx.h"
-#include "MainProcess.h"
+#include "Application.h"
 
 /*-----------------------------------------------------------------------------
 /* メイン処理
 -----------------------------------------------------------------------------*/
-//ビルドの設定によってコンソール画面を表示するかを決定する
-
-#if defined(_DEBUG) || defined(DEBUG)
-int main(void)
-{
-#else
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
-#endif
 
 	//メモリリーク検知用
 #if defined(_DEBUG) || defined(DEBUG) //下記の関数はリリースビルド時に実行されないらしいけれど、一応設定しておく
@@ -34,14 +27,13 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	/* メインの実行命令
 	----------------------------------------------*/
 	{
-		MainProcess main_process;
-
-		bool is_success = main_process.StartUp();	//起動処理
+		Application app;
+		bool is_success = app.StartUp(hInstance, nShowCmd);
 		if (is_success)
 		{
-			main_process.Run();						//実行処理
+			app.Run();				
 		}
-		main_process.ShutDown();					//停止処理
+		app.ShutDown();					
 	}
 	return 0;
 }
