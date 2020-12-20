@@ -1,199 +1,76 @@
-#pragma once
+/*=============================================================================
+/*-----------------------------------------------------------------------------
+/*	[Win32APIWindow.h] ウィンドウ生成管理クラス
+/*	Author：Kousuke,Ohno.
+/*-----------------------------------------------------------------------------
+/*	説明：ウィンドウ生成管理クラス
+=============================================================================*/
+#ifndef WIN32API_WINDOW_H_
+#define	WIN32API_WINDOW_H_
 
+/*--- インクルードファイル ---*/
+#include "../StdAfx.h"
+#include "../Generic/Math.h"
+
+/*-------------------------------------
+/* ウィンドウデータ構造体
+-------------------------------------*/
 struct WindowStyle
 {
+public:
+	WindowStyle(void)
+		: hInstance(nullptr)
+		, nCmdShow(1)
+		, dwWindowStyle(0UL)
+		, hIcon(nullptr)
+		, windowTitle("")
+		, windowSize(Math::Vector2())
+		, isWindowed(TRUE)
+	{}
 
+	~WindowStyle(void) {}
+
+public:
+	HINSTANCE	  hInstance;		//インスタンスハンドル
+	int			  nCmdShow;			//ウィンドウの表示状態
+	DWORD		  dwWindowStyle;		//ウィンドウの表示書式
+	HICON		  hIcon;			//アイコンへのインスタンス
+	std::string   windowTitle;		//ウィンドウタイトル
+	Math::Vector2 windowSize;		//ウィンドウサイズ
+	BOOL		  isWindowed;		//ウィンドウ表示するか？
 };
 
+
+/*-------------------------------------
+/* ウィンドウ生成管理クラス
+-------------------------------------*/
 class Win32APIWindow
 {
 public:
+	Win32APIWindow(void);
+	~Win32APIWindow(void);
+
+	static Win32APIWindow* Create();
+	HWND CreateAppWindow(WindowStyle windowStyle);
+
+public:
+	Math::Vector2 CalculateWindowSize(const DWORD& dwWindowStyle
+								     , const Math::Vector2& windowSize
+								     , const BOOL isCreateSysMenu) const;
+
+	Math::Vector2 CalculateWindowCreatePos(const Math::Vector2& windowSize) const;
+
+	void SetWindowSize(const Math::Vector2& windowSize);
+	void SetWindowSize(const float windowWidth, const float windowHeight);
+
+	Math::Vector2 GetWindowSize(void) const;
+	Math::Vector2 GetWindowClientSize(const HWND& wndHandle) const;
 
 private:
+	Math::Vector2 window_size_;
 };
 
-
-/**********************/
-/* ファイルヘッダの例 */
-/**********************/
-
-/******************************************************************************/
-/*! @addtogroup モジュール名_サブモジュール名
-    @file       comment.c
-    @brief      ファイルの概要
-*******************************************************************************
-    ファイルの詳細な説明
-*******************************************************************************
-    @date       作成日(YYYY/MM/DD)
-    @author     作成者名
-    @par        Revision
-    $Id$
-    @par        Copyright
-    20XX-20XX ABC Company Co., Ltd. All rights reserved.
-*******************************************************************************
-    @par        History
-    - 20XX/01/01 更新者名1
-      -# Initial Version
-    - 20XX/01/02 更新者名2
-      -# Add xxx function
-      -# Delete yyy function
-******************************************************************************/
-
-/*! @ingroup モジュール名_サブモジュール名 */
-/* @{ */
-
-#include <stdio.h>
-
-/************/
-/* 定義の例 */
-/************/
-
-/*! @brief 簡単な定義の説明 */
-#define AAA 123
-
-/*! @brief 定義の概要
-
-    定義の詳細
-*/
-#define BBB 456
-
-#define CCC 758 /*!< 定義の説明を横につける */
-
-/*! @name 定義グループX
-    グループ化した定義の説明
-*/
-/* @{ */
-#define DDD 9AB /*!< 定義の説明を横につける1 */
-#define EEE CDE /*!< 定義の説明を横につける2 */
-/* @} */
-
-/**********************/
-/* グローバル変数の例 */
-/**********************/
-
-/*! @var   global_var1
-    @brief グローバル変数の説明
-*/
-int global_var1;
-
-/*! @var   global_var2
-    @brief グローバル変数の説明
-
-    グローバル変数の詳細
-*/
-int global_var2;
-
-/**************/
-/* 構造体の例 */
-/**************/
-
-/*! @struct tStruct1
-    @brief  構造体の説明
-*/
-typedef struct {
-    /*! メンバ1の説明 */
-    int member1;
-
-    int member2; /*!< メンバ2の説明を横につける */
-} tStruct1;
-
-/*! @struct tStruct2
-    @brief  構造体の説明
-
-    構造体の詳細な説明
-*/
-typedef struct {
-} tStruct2;
-
-/**************/
-/* 列挙型の例 */
-/**************/
-/*! @enum eEnum1
-    @brief  列挙型の説明
-*/
-typedef enum {
-    aaa,
-
-    /*! 列挙型の値の説明 */
-    bbb,
-
-    ccc, /*!< 列挙型の値の説明を横につける例 */
-} eEnum1;
-
-/*! @enum eEnum2
-    @brief  列挙型の説明
-
-    列挙型の詳細な説明
-*/
-typedef enum {
-} eEnum2;
-
-/**************/
-/* クラスの例 */
-/**************/
-
-/*! @class Class1
-    @brief  クラスの説明
-*/
-class Class1 {
-public:
-    /*! メンバ1の説明 */
-    int member1;
-
-    int member2; /*!< メンバ2の説明を横につける */
-
-    /*! メソッド1の説明 */
-    int method1(int var1, int var2);
-
-    /*! メソッド2の説明。詳細説明
-        @param[out]     var1    var1の説明
-        @param[in]      var2    var2の説明
-        @param[in,out]  var3    var3の説明
-        @par            Refer
-        - 参照するグローバル変数 global_var1
-        - 参照するグローバル変数 global_var2
-        @par            Modify
-        - 変更するグローバル変数 global_var3
-        - 変更するグローバル変数 global_var4
-        @return         成功 0, 失敗 0 以外 など
-        @exception      例外。不要であればnoneを記述
-    */
-    int method2(int var1, int var2, int var3) {
-
-    }
-};
-
-/*! @class Class2
-    @brief  クラスの説明
-
-    クラスの詳細
-*/
-class Class2 : public Class1{
-};
-
-/************/
-/* 関数の例 */
-/************/
-
-/******************************************************************************/
-/*! @brief 関数の概要
-
-    必要であれば詳細な説明
-    @param[out]     var1    var1の説明
-    @param[in]      var2    var2の説明
-    @param[in,out]  var3    var3の説明
-    @par            Refer
-    - 参照するグローバル変数 global_var1
-    - 参照するグローバル変数 global_var2
-    @par            Modify
-    - 変更するグローバル変数 global_var3
-    - 変更するグローバル変数 global_var4
-    @return         成功 0, 失敗 0 以外 など
-    @exception      例外。不要であればnoneを記述
-******************************************************************************/
-int func(int var1, char* var2, char* var3[])
-{
-    return 0;
-}
-
-/* @} */
+#endif //WIN32API_WINDOW_H_
+/*=============================================================================
+/*		End of File
+=============================================================================*/

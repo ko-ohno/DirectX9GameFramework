@@ -58,6 +58,15 @@ bool Application::StartUp(const HINSTANCE& hinstance, const int& nCmdShow)
 	{
 		window_style.hInstance	 = hinstance;
 		window_style.nCmdShow	 = nCmdShow;
+		if (true) {
+			//ウィンドウ表示モードなら
+			window_style.dwWindowStyle = WS_OVERLAPPEDWINDOW ^ (WS_MAXIMIZEBOX | WS_THICKFRAME);
+		}
+		else
+		{
+			//フルスクリーン表示モードなら
+			window_style.dwWindowStyle = WS_POPUPWINDOW;
+		}
 		window_style.windowTitle = "test";
 		window_style.hIcon;
 		window_style.windowSize  = {1280.f, 720.f};
