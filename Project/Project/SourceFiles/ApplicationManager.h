@@ -1,42 +1,45 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Manager.h] 全体の処理の管理クラス
+/*	[ApplicationManager.h] アプリ全体の処理の管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
 /*	説明：全体の処理の管理クラス
 =============================================================================*/
-#ifndef MANAGER_H_
-#define	MANAGER_H_
+#ifndef APPLICATION_MANAGER_H_
+#define	APPLICATION_MANAGER_H_
 
 /*--- インクルードファイル ---*/
 
-/*--- 構造体定義 ---*/
+/*-------------------------------------
+/* 構造体
+-------------------------------------*/
 
-/*--- クラスの前方宣言 ---*/
+
 
 
 /*-------------------------------------
-/* 全体の処理の管理クラス
+/* アプリ全体の処理の管理クラス
 -------------------------------------*/
-class Manager
+class ApplicationManager
 {
+private:
+	ApplicationManager(void);
+
 public:
-	Manager(void);
-	~Manager(void);
+	~ApplicationManager(void);
 
-	static Manager* Create(void);
+	static ApplicationManager* Create(void);
 
-	void InitAll(void);
-	void UninitAll(void);
-	void InputAll(void);
-	void UpdateAll(float deltaTime);
-	void GenerateOutputAll(void);
+	static bool Init(void);
+	static void Uninit(void);
+	static void Input(void);
+	static void Update(float deltaTime);
+	static void GenerateOutput(void);
 
 private:
 };
 
-
-#endif //MANAGER_H_
+#endif //APPLICATION_MANAGER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

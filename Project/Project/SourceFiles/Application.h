@@ -1,47 +1,46 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[MainProcess.h] メインの実行処理
+/*	[Application.h] メインの実行処理
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
 /*	説明：メインの実行処理
 =============================================================================*/
-#ifndef MAIN_PROCESS_H_
-#define	MAIN_PROCESS_H_
+#ifndef APPLICATION_H_
+#define	APPLICATION_H_
 
 /*--- インクルードファイル ---*/
 
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+/*-------------------------------------
+/* 構造体
+-------------------------------------*/
 
 /*-------------------------------------
 /* メインの実行処理クラス
 -------------------------------------*/
-class MainProcess
+class Application
 {
 public:
-	MainProcess(void);
-	~MainProcess(void);
+	Application(void);
+	~Application(void);
 
 public:
-	bool StartUp(void);
+	bool StartUp(const HINSTANCE& hinstance, const int& nCmdShow);
 	void Run(void);
 	void ShutDown(void);
 
 private:
 	bool Init(void);
 	void Uninit(void);
-	void Input(void);
-	void Update(float deltaTime);
-	void GenerateOutput(void);
 
 private:
-	class Manager* manager_;
+	class ApplicationManager* app_manager_;
+
+	std::string				window_title_;
+	class Win32APIWindow*	app_window_;
 };
 
 
-#endif //MAIN_PROCESS_H_
+#endif //APPLICATION_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

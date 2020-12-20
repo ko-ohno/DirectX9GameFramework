@@ -33,6 +33,20 @@ std::string DebugFunction::OutputErrorString(std::string inErrorMsg, std::string
 	return std::string(file_name_and_line_num + function_name + error_msg);
 }
 
+//void DebugFunction::RuntimeOutputDebugString(const char* format, ...)
+//{
+//#if defined(_DEBUG) || defined(DEBUG)
+//	va_list valist;
+//	va_start(valist, format);
+//	sprintf(format, );	//文字列を連結して表示
+//	OutputDebugString(str(format, valist));
+//	va_end(valist);
+//#endif // !_DEBUG
+//}
+
+/*-----------------------------------------------------------------------------
+/* デバッグ用に文字列データ出力処理
+-----------------------------------------------------------------------------*/
 void DebugFunction::DebugOutputFormatString(const char* format, ...)
 {
 #if defined(_DEBUG) || defined(DEBUG)
