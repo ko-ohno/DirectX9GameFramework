@@ -37,6 +37,7 @@ private:
 
 	std::string				window_title_;
 	class Win32APIWindow*	app_window_;
+	class DX9Graphics*		dx9_graphics_;
 };
 
 

@@ -93,6 +93,8 @@ HWND Win32APIWindow::CreateAppWindow(WindowStyle windowStyle)
 									   , windowStyle.hInstance					//ウインドウなどを作成するモジュールのインスタンスのハンドル
 									   , NULL);									//WM_CREATEでLPARAMに渡したい値
 	
+	//現在の指定したウィンドウサイズで表示
+	//SW_SHOW
 
 	//ウィンドウ生成
 	ShowWindow(window_handle, windowStyle.nCmdShow);

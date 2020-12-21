@@ -11,6 +11,7 @@
 #include "Application.h"
 #include "ApplicationManager.h"
 #include "Window/Win32APIWindow.h"
+#include "Graphics/DX9Graphics.h"
 #include "Generic/Math.h"
 
 /*-----------------------------------------------------------------------------
@@ -72,7 +73,12 @@ bool Application::StartUp(const HINSTANCE& hinstance, const int& nCmdShow)
 		window_style.windowSize  = {1280.f, 720.f};
 		window_style.isWindowed  = TRUE;
 	}
-	app_window_->CreateAppWindow(window_style);
+
+	HWND app_window_handle = app_window_->CreateAppWindow(window_style);
+
+
+	dx9_graphics_ = dx9_graphics_->Create();
+	dx9_graphics_->CreateDX9Graphics(app_window_handle, window_style.windowSize);
 
 	////成功したかどうか
 	//Application::Init();
@@ -130,9 +136,17 @@ void Application::Run(void)
 					delta_time = maximum_delta_time;
 				}
 
-				ApplicationManager::Input();
-				ApplicationManager::Update(delta_time);
-				ApplicationManager::GenerateOutput();
+				//ApplicationManager::Input();
+				//ApplicationManager::Update(delta_time);
+				//ApplicationManager::GenerateOutput();
+
+				//レンダリング開始
+				dx9_graphics_->RenderingBegin();
+
+
+
+				dx9_graphics_->RenderingEnd();
+				//レンダリング終了
 
 				//現在のフレームの実行前時間に実行後時間を代入。
 				execute_last_time = current_time;

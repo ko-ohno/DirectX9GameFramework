@@ -153,6 +153,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Graphics\DX9Graphics.h" />
+    <ClInclude Include="SourceFiles\Graphics\DX9GraphicsDevice.h" />
+    <ClInclude Include="SourceFiles\Graphics\DX9GraphicsRenderer.h" />
     <ClInclude Include="SourceFiles\Generic\Math.h" />
     <ClInclude Include="SourceFiles\Generic\DebugFunction.h" />
     <ClInclude Include="SourceFiles\Application.h" />
@@ -163,6 +166,9 @@
     <ClInclude Include="SourceFiles\SplashScreen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Graphics\DX9Graphics.cpp" />
+    <ClCompile Include="SourceFiles\Graphics\DX9GraphicsDevice.cpp" />
+    <ClCompile Include="SourceFiles\Graphics\DX9GraphicsRenderer.cpp" />
     <ClCompile Include="SourceFiles\Generic\Math.cpp" />
     <ClCompile Include="SourceFiles\Generic\DebugFunction.cpp" />
     <ClCompile Include="SourceFiles\Application.cpp" />
