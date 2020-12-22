@@ -1,19 +1,19 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[DebugSystem.h] デバッグシステム
+/*	[DebugFunction.h] デバッグ関数
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：デバッグシステム
+/*	説明：デバッグ関数
 =============================================================================*/
-#ifndef DEBUG_SYSTEM_H_
-#define	DEBUG_SYSTEM_H_
+#ifndef DEBUG_FUNCTION_H_
+#define	DEBUG_FUNCTION_H_
+
 
 /*--- インクルードファイル ---*/
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
-
 
 
 /*--- マクロ定義 ---*/
@@ -32,7 +32,7 @@
 //#define OUTPUT_ERROR_MSG(errorMsg, ...) (DebugFunction::OutputErrorString(errorMsg, __FILE__, __LINE__, __FUNCTION__));
 
 /*-------------------------------------
-/* デバッグシステム
+/* デバッグ関数
 -------------------------------------*/
 namespace DebugFunction
 {
@@ -47,23 +47,23 @@ namespace DebugFunction
 						         , int inLineNumber
 						         , std::string inFunctionName);
 
-	//あとで実装する
-	//マクロは￥で改行できる
-
-	//void RuntimeOutputDebugString(const char* format, ...);
-
+	// @brief VisualStudioの出力ウィンドウにフォーマット付き文字列を表示
+	// @param format フォーマット  (%dとか%fとかの)
+	// @param 可変長変数
+	// @remarks この関数はデバッグ用です、デバッグ時にしか動作しません
+	void OutputDebugFormatString(const char* format, ...);
 
 
 	// @brief コンソール画面にフォーマット付き文字列を表示
 	// @param format フォーマット  (%dとか%fとかの)
 	// @param 可変長変数
 	// @remarks この関数はデバッグ用です、デバッグ時にしか動作しません
-	void DebugOutputFormatString(const char* format, ...);
+	void OutputDebugConsoleFormatString(const char* format, ...);
 
 };
 
 
-#endif //DEBUG_SYSTEM_H_
+#endif //DEBUG_FUNCTION_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

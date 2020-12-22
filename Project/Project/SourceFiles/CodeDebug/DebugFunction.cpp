@@ -1,14 +1,15 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[DebugSystem.cpp] デバッグシステム
+/*	[DebugFunction.cpp] デバッグ関数
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：デバッグシステム
+/*	説明：デバッグ関数
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../StdAfx.h"
 #include "DebugFunction.h"
+
 
 /*-----------------------------------------------------------------------------
 /* デバッグ用の文字列データ出力処理
@@ -33,26 +34,30 @@ std::string DebugFunction::OutputErrorString(std::string inErrorMsg, std::string
 	return std::string(file_name_and_line_num + function_name + error_msg);
 }
 
-//void DebugFunction::RuntimeOutputDebugString(const char* format, ...)
-//{
-//#if defined(_DEBUG) || defined(DEBUG)
-//	va_list valist;
-//	va_start(valist, format);
-//	sprintf(format, );	//文字列を連結して表示
-//	OutputDebugString(str(format, valist));
-//	va_end(valist);
-//#endif // !_DEBUG
-//}
+/*-----------------------------------------------------------------------------
+/* VisualStudioの出力ウィンドウに文字列データを出力処理
+-----------------------------------------------------------------------------*/
+void DebugFunction::OutputDebugFormatString(const char* format, ...)
+{
+#if defined(_DEBUG) || defined(DEBUG)
+	char buf[1024];
+	va_list valist;
+	va_start(valist, format);
+	vsprintf(buf, format, valist);
+	OutputDebugString(buf);
+	va_end(valist);
+#endif // !_DEBUG
+}
 
 /*-----------------------------------------------------------------------------
-/* デバッグ用に文字列データ出力処理
+/* デバッグ用のコンソールウィンドウに文字列データ出力処理
 -----------------------------------------------------------------------------*/
-void DebugFunction::DebugOutputFormatString(const char* format, ...)
+void DebugFunction::OutputDebugConsoleFormatString(const char* format, ...)
 {
 #if defined(_DEBUG) || defined(DEBUG)
 	va_list valist;
 	va_start(valist, format);
-	printf(format, valist);
+	vprintf(format, valist);
 	va_end(valist);
 #endif // !_DEBUG
 }
