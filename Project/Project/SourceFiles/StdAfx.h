@@ -53,7 +53,7 @@
 /*--- ライブラリのリンク ---*/
 #pragma comment(lib,"winmm.lib")	//WindowsAPIのライブラリをリンク
 #pragma comment(lib,"d3d9.lib")		//DirectX9の機能を使うためにライブラリをリンク
-#if defined(_DEBUG)||(DEBUG)
+#if defined(_DEBUG)||defined(DEBUG)
 #pragma comment(lib,"d3dx9d.lib")	//デバッグ時	
 #else
 #pragma comment(lib,"d3dx9.lib")	//リリース時
