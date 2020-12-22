@@ -1,40 +1,45 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[SplashScreen.h] スプラッシュスクリーン
+/*	[SplashScreenManager.h] アプリ全体の処理の管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：
+/*	説明：全体の処理の管理クラス
 =============================================================================*/
-#ifndef SPLASH_SCREEN_H_
-#define	SPLASH_SCREEN_H_
+#ifndef SPLASHSCREEN_MANAGER_H_
+#define	SPLASHSCREEN_MANAGER_H_
 
 /*--- インクルードファイル ---*/
+#include "../IManager.h"
+#include "../Win32APIWindow.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/* スプラッシュスクリーンクラス
+/* アプリ全体の処理の管理クラス
 -------------------------------------*/
-class SplashScreen
+class SplashScreenManager : public IManager
 {
 public:
-	SplashScreen(void);
-	~SplashScreen(void);
+	SplashScreenManager(const WindowStyle& windowStyle);
+	~SplashScreenManager(void);
 
-	bool StartUp(void);
-	void Run(void);
-	void ShutDown(void);
-
-private:
-	bool Init(void);
-	void Uinit(void);
+	bool Init(void) override;
+	void Uninit(void) override;
+	void Input(void) override;
+	void Update(float deltaTime) override;
+	void GenerateOutput(void) override;
 
 private:
+	HWND					window_handle_;
+	class Win32APIWindow*	splash_window_;
+	class DX9Graphics*		dx9_graphics_;
+	class ImGuiManager*		imgui_manager_;
+
 };
 
-#endif //SPLASH_SCREEN_H_
+#endif //SPLASHSCREEN_MANAGER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

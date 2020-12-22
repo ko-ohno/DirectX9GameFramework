@@ -7,15 +7,23 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../../StdAfx.h"
 #include "ApplicationManager.h"
+#include "../Win32APIWindow.h"
+#include "../DX9Graphics.h"
+#include "../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-ApplicationManager::ApplicationManager(void)
+ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
+	: app_window_(nullptr)
+	, window_handle_(nullptr)
+	, dx9_graphics_(nullptr)
+	, imgui_manager_(nullptr)
 {
-	this->Init();
+	app_window_	   = app_window_->Create();
+	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
 }
 
 /*-----------------------------------------------------------------------------
@@ -23,15 +31,6 @@ ApplicationManager::ApplicationManager(void)
 -----------------------------------------------------------------------------*/
 ApplicationManager::~ApplicationManager(void)
 {
-	this->Uninit();
-}
-
-/*-----------------------------------------------------------------------------
-/* ファクトリメソッド
------------------------------------------------------------------------------*/
-ApplicationManager* ApplicationManager::Create(void)
-{
-	return NEW ApplicationManager();
 }
 
 /*-----------------------------------------------------------------------------
@@ -39,6 +38,13 @@ ApplicationManager* ApplicationManager::Create(void)
 -----------------------------------------------------------------------------*/
 bool ApplicationManager::Init(void)
 {
+	//グラフィックスオブジェクトの生成。
+	dx9_graphics_ = dx9_graphics_->Create();
+	dx9_graphics_->CreateDX9Graphics(window_handle_, app_window_->GetWindowClientSize(window_handle_));
+
+
+	imgui_manager_->Create();
+	imgui_manager_->StartUp(dx9_graphics_, window_handle_);
 
 	return true;
 }
@@ -48,6 +54,11 @@ bool ApplicationManager::Init(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Uninit(void)
 {
+
+	imgui_manager_->ShutDown();
+	SAFE_DELETE_(app_window_);
+	SAFE_DELETE_(dx9_graphics_);
+	SAFE_DELETE_(imgui_manager_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -62,6 +73,11 @@ void ApplicationManager::Input(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Update(float deltaTime)
 {
+	imgui_manager_->UpdateBegin();
+
+	imgui_manager_->ShowFramerate(deltaTime);
+
+	imgui_manager_->UpdateEnd();
 }
 
 /*-----------------------------------------------------------------------------
@@ -69,6 +85,13 @@ void ApplicationManager::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::GenerateOutput(void)
 {
+	dx9_graphics_->RenderingBegin();
+
+
+
+	imgui_manager_->ImGuiRender();
+
+	dx9_graphics_->RenderingEnd();
 }
 
 /*=============================================================================

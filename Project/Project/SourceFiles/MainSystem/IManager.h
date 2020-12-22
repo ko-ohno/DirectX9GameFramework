@@ -1,48 +1,39 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Application.h] アプリケーションクラス
+/*	[IManager.h] 管理クラスのインターフェースクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アプリケーションクラス
+/*	説明：管理クラスのインターフェースクラス
 =============================================================================*/
-#ifndef APPLICATION_H_
-#define	APPLICATION_H_
+#ifndef IMANAGER_H_
+#define	IMANAGER_H_
 
 /*--- インクルードファイル ---*/
-#include "MainSystem/Win32APIWindow.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/* メアプリケーションクラス
+/*  管理クラスのインターフェース
 -------------------------------------*/
-class Application
+class IManager
 {
 public:
-	Application(void);
-	~Application(void);
+	IManager(void){}
+	virtual ~IManager(void){}
 
-public:
-	bool StartUp(const HINSTANCE& hInstance, const int& nShowCmd);
-	void Run(void);
-	void ShutDown(void);
-
-private:
-	//初期化と終了化
-	bool Init(void);
-	void Uninit(void);
-
-	HICON LoadAppIcon(const HINSTANCE& hInstance);
+	virtual bool Init(void) = 0;
+	virtual void Uninit(void) = 0;
+	virtual void Input(void) = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void GenerateOutput(void) = 0;
 
 private:
-	std::string			app_title_name_;
-	WindowStyle			window_style_;
-	class MessageLoop*	message_loop_;
 };
 
-#endif //APPLICATION_H_
+
+#endif //IMANAGER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

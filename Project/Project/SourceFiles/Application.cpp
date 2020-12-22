@@ -1,24 +1,25 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[MainProcess.cpp] メインの実行処理
+/*	[Application.cpp] アプリケーションクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：メインの実行処理
+/*	説明：アプリケーションクラス
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "StdAfx.h"
 #include "Application.h"
-#include "ApplicationManager.h"
-#include "Window/Win32APIWindow.h"
-#include "Graphics/DX9Graphics.h"
+#include "MainSystem/SplashScreen.h"
+#include "MainSystem/MessageLoop.h"
 #include "Generic/Math.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Application::Application(void)
-	:app_manager_(nullptr)
+	: app_title_name_("")
+	, window_style_(WindowStyle())
+	, message_loop_(nullptr)
 {
 }
 
@@ -32,58 +33,38 @@ Application::~Application(void)
 /*-----------------------------------------------------------------------------
 /* 起動処理
 -----------------------------------------------------------------------------*/
-bool Application::StartUp(const HINSTANCE& hinstance, const int& nCmdShow)
+bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 {
-#if defined(_DEBUG) || defined(DEBUG)
-	OutputDebugString("アプリケーションを起動します。\n");
-#endif
+	bool is_success;
+	app_title_name_ = "ゲームタイトル";
 
-	//以下のコードとリソースを組み込むことでアイコンを変更する
-	//HICON hIcon = (HICON)LoadImage(hInstance_
-	//	, MAKEINTRESOURCE(IDI_ICON1)
-	//	, IMAGE_ICON
-	//	, 64
-	//	, 64
-	//	, 0);
-
-	//Math::Vector2 screen_size(0.f, 0.f);
-	//BOOL is_windowed = TRUE;
-	//bool is_init_success = false;
-
-	//ウィンドウのインスタンス作成
-	app_window_ = Win32APIWindow::Create();
-
-
-	//ウィンドウスタイルの指定
-	WindowStyle window_style;
+	//ゲーム用ウィンドウの設定
 	{
-		window_style.hInstance	 = hinstance;
-		window_style.nCmdShow	 = nCmdShow;
-		if (true) {
-			//ウィンドウ表示モードなら
-			window_style.dwWindowStyle = WS_OVERLAPPEDWINDOW ^ (WS_MAXIMIZEBOX | WS_THICKFRAME);
-		}
-		else
-		{
-			//フルスクリーン表示モードなら
-			window_style.dwWindowStyle = WS_POPUPWINDOW;
-		}
-		window_style.windowTitle = "test";
-		window_style.hIcon;
-		window_style.windowSize  = {1280.f, 720.f};
-		window_style.isWindowed  = TRUE;
+		window_style_.hInstance		= hInstance;
+		window_style_.nShowCmd		= nShowCmd;
+		window_style_.dwWindowStyle = WS_OVERLAPPEDWINDOW ^ (WS_MAXIMIZEBOX | WS_THICKFRAME);
+		window_style_.windowTitle	= app_title_name_;
+		window_style_.hIcon			= LoadAppIcon(hInstance);
+		//window_style_.windowSize	= Vector2(100.f, 100.f);
+		window_style_.windowSize	= Vector2(1280.f, 720.f);
 	}
 
-	HWND app_window_handle = app_window_->CreateAppWindow(window_style);
+	//自身の初期化
+	is_success = this->Init();
+	if (is_success == false)
+	{
+		return false;	//初期化の失敗
+	}
 
-
-	dx9_graphics_ = dx9_graphics_->Create();
-	dx9_graphics_->CreateDX9Graphics(app_window_handle, window_style.windowSize);
-
-	////成功したかどうか
-	//Application::Init();
-	//ApplicationManager::Init();
-
+	//メッセージループに、アプリケーションのマネージャを登録
+	{
+		message_loop_ = MessageLoop::Create(MessageLoopType::ApplicationWindow, window_style_);
+		is_success = message_loop_->StartUp();
+		if (is_success == false)
+		{
+			return false;	//メッセージループの起動に失敗
+		}
+	}
 	return true;
 }
 
@@ -92,70 +73,7 @@ bool Application::StartUp(const HINSTANCE& hinstance, const int& nCmdShow)
 -----------------------------------------------------------------------------*/
 void Application::Run(void)
 { 
-#if defined(_DEBUG) || defined(DEBUG)
-	OutputDebugString("アプリケーションを実行します。\n");
-#endif
-
-	MSG msg;
-	DWORD execute_last_time			= 0UL;		//1フレーム前の終了時間
-	DWORD current_time				= 0UL;		//現在の時間
-	DWORD ticks_counts				= 0UL;		//1フレームの経過時間
-	float delta_time				= 0.f;		//1フレーム前との差分の秒数		
-	const float maximum_delta_time	= 0.05f;	//deltaTimeの最大制限値
-
-	timeBeginPeriod(1); //分解能を設定
-
-	for(;;)
-	{
-		if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
-		{
-			//ウィンドウメッセージ処理 
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		else
-		{
-			//60fps化
-			current_time = timeGetTime(); //実行時間を取得
-
-			//1フレーム前との差分を取得
-			ticks_counts = (current_time - execute_last_time);
-
-			//秒数に変換
-			delta_time = ((float)ticks_counts / 1000.f);
-
-			if (delta_time >= (1 / 60))
-			{
-				//delta_time >= (1 / 60)
-				//1フレーム前との差分が0.016...ミリ秒以上だったら実行する
-
-				//delta_timeの制限
-				//実行中やブレークポイント発行時等の予防措置
-				if (delta_time >= maximum_delta_time)
-				{
-					delta_time = maximum_delta_time;
-				}
-
-				//ApplicationManager::Input();
-				//ApplicationManager::Update(delta_time);
-				//ApplicationManager::GenerateOutput();
-
-				//レンダリング開始
-				dx9_graphics_->RenderingBegin();
-
-
-
-				dx9_graphics_->RenderingEnd();
-				//レンダリング終了
-
-				//現在のフレームの実行前時間に実行後時間を代入。
-				execute_last_time = current_time;
-			}
-		}
-		if (msg.message == WM_QUIT) { break; }
-	}
-
-	timeEndPeriod(1); //分解能を解除
+	message_loop_->Run();
 }
 
 /*-----------------------------------------------------------------------------
@@ -163,12 +81,8 @@ void Application::Run(void)
 -----------------------------------------------------------------------------*/
 void Application::ShutDown(void)
 {
-#if defined(_DEBUG) || defined(DEBUG)
-	OutputDebugString("アプリケーションを終了します。\n");
-#endif
-
-	ApplicationManager::Uninit();
-	Application::Uninit();
+	message_loop_->ShutDown();
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -176,8 +90,20 @@ void Application::ShutDown(void)
 -----------------------------------------------------------------------------*/
 bool Application::Init(void)
 {
-	app_manager_ = app_manager_->Create();
-	if (app_manager_ == nullptr) { return false; }
+	//スプラッシュスクリーンの実行
+	{
+		SplashScreen splash_screen;
+		const bool is_success = splash_screen.StartUp(window_style_);
+		if (is_success)
+		{
+			splash_screen.Run();
+		}
+		else
+		{
+			return false;	//スプラッシュスクリーンの起動に失敗
+		}
+		splash_screen.ShutDown();
+	}
 	return true;
 }
 
@@ -186,7 +112,23 @@ bool Application::Init(void)
 -----------------------------------------------------------------------------*/
 void Application::Uninit(void)
 {
-	delete app_manager_;
+	SAFE_DELETE_(message_loop_);
+}
+
+/*-----------------------------------------------------------------------------
+/* アイコンの読み込み処理処理
+-----------------------------------------------------------------------------*/
+HICON Application::LoadAppIcon(const HINSTANCE& hInstance)
+{
+	//以下のコードとリソースを組み込むことでアイコンを変更する
+	//HICON hIcon = (HICON)LoadImage(hInstance_
+	//								, MAKEINTRESOURCE(IDI_ICON1)
+	//								, IMAGE_ICON
+	//								, 64
+	//								, 64
+	//								, 0);
+
+	return HICON();
 }
 
 /*=============================================================================

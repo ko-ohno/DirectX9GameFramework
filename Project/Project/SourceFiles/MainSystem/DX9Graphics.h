@@ -25,7 +25,7 @@ public:
 
 	static DX9Graphics* Create();
 
-	void CreateDX9Graphics(const HWND& wndHandle, const Math::Vector2& screenSize);
+	void CreateDX9Graphics(const HWND& windowHandle, const Vector2& screenSize);
 
 	static LPDIRECT3DDEVICE9* GetLPD3DDevice(void);
 
@@ -36,13 +36,14 @@ private:
 	void Init(void);
 	void Uninit(void);
 
-	LPDIRECT3DDEVICE9 CreateDevice(const HWND& wndHandle, const Math::Vector2& screenSize);
+	LPDIRECT3DDEVICE9 CreateDevice(const HWND& windowHandle, const Vector2& screenSize);
 	void CreateRenderer(const LPDIRECT3DDEVICE9& lpd3dDevice);
 
 private:
-	static LPDIRECT3DDEVICE9		  lpd3d_device_;		//Direct3Dデバイス
-	static class DX9GraphicsDevice*	  graphics_device_;		//デバイスクラス
-	static class DX9GraphicsRenderer* graphics_renderer_;	//レンダラークラス
+	static LPDIRECT3DDEVICE9		   lpd3d_device_;		//Direct3Dデバイス
+	static class DX9GraphicsDevice*	   graphics_device_;	//デバイスクラス
+	static class DX9GraphicsRenderer*  graphics_renderer_;	//レンダラークラス
+
 };
 
 #endif //DX9GRAPHICS_H_

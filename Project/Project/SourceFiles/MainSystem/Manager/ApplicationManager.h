@@ -9,34 +9,33 @@
 #define	APPLICATION_MANAGER_H_
 
 /*--- インクルードファイル ---*/
+#include "../IManager.h"
+#include "../Win32APIWindow.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
-
-
-
 /*-------------------------------------
 /* アプリ全体の処理の管理クラス
 -------------------------------------*/
-class ApplicationManager
+class ApplicationManager : public IManager
 {
-private:
-	ApplicationManager(void);
-
 public:
+	ApplicationManager(const WindowStyle& windowStyle);
 	~ApplicationManager(void);
 
-	static ApplicationManager* Create(void);
-
-	static bool Init(void);
-	static void Uninit(void);
-	static void Input(void);
-	static void Update(float deltaTime);
-	static void GenerateOutput(void);
+	bool Init(void) override;
+	void Uninit(void) override;
+	void Input(void) override;
+	void Update(float deltaTime) override;
+	void GenerateOutput(void) override;
 
 private:
+	HWND					window_handle_;
+	class Win32APIWindow*	app_window_;
+	class DX9Graphics*		dx9_graphics_;
+	class ImGuiManager*		imgui_manager_;
 };
 
 #endif //APPLICATION_MANAGER_H_

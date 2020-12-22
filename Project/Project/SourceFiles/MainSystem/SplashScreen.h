@@ -1,48 +1,40 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Application.h] アプリケーションクラス
+/*	[SplashScreen.h] スプラッシュスクリーンクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アプリケーションクラス
+/*	説明：スプラッシュスクリーンクラス
 =============================================================================*/
-#ifndef APPLICATION_H_
-#define	APPLICATION_H_
+#ifndef SPLASHSCREEN_H_
+#define	SPLASHSCREEN_H_
 
 /*--- インクルードファイル ---*/
-#include "MainSystem/Win32APIWindow.h"
+#include "Win32APIWindow.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/* メアプリケーションクラス
+/* スプラッシュスクリーンクラス
 -------------------------------------*/
-class Application
+class SplashScreen
 {
 public:
-	Application(void);
-	~Application(void);
+	SplashScreen(void);
+	~SplashScreen(void);
 
 public:
-	bool StartUp(const HINSTANCE& hInstance, const int& nShowCmd);
+	bool StartUp(const WindowStyle& windowStyle);
 	void Run(void);
 	void ShutDown(void);
 
 private:
-	//初期化と終了化
-	bool Init(void);
-	void Uninit(void);
-
-	HICON LoadAppIcon(const HINSTANCE& hInstance);
-
-private:
-	std::string			app_title_name_;
-	WindowStyle			window_style_;
-	class MessageLoop*	message_loop_;
+	WindowStyle			  window_style_;
+	class MessageLoop*	  message_loop_;
 };
 
-#endif //APPLICATION_H_
+#endif //SPLASHSCREEN_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

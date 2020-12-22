@@ -9,8 +9,8 @@
 #define DX9GRAPHICS_DEVICE_H_
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
-#include "../Generic/Math.h"
+#include "../../StdAfx.h"
+#include "../../Generic/Math.h"
 
 /*--- 構造体定義 ---*/
 
@@ -26,10 +26,10 @@ public:
 	~DX9GraphicsDevice(void);
 
 	//Direct3Dデバイスの生成処理
-	LPDIRECT3DDEVICE9 CreateGraphicsDevice(const HWND& wndHandle, const Math::Vector2& screenSize);
+	LPDIRECT3DDEVICE9 CreateGraphicsDevice(const HWND& windowHandle, const Vector2& screenSize);
 
 	//プレゼントパラメータ生成処理
-	D3DPRESENT_PARAMETERS CreatePresentParam(const Math::Vector2& screenSize, const HWND& wndHandle, const BOOL& isWindowed);
+	D3DPRESENT_PARAMETERS CreatePresentParam(const Vector2& screenSize, const HWND& windowHandle, const BOOL& isWindowed);
 
 private:
 	void Init(void);
@@ -41,11 +41,11 @@ private:
 	HRESULT GetDisplayMode(void);
 
 	//デバイス生成処理
-	LPDIRECT3DDEVICE9 CreateLPD3DDevice(const HWND& wndHandle, const D3DPRESENT_PARAMETERS& d3dpp);
-	LPDIRECT3DDEVICE9 CreateLPD3DDeviceHALMode(const HWND& wndHandle, D3DPRESENT_PARAMETERS& d3dpp);
-	LPDIRECT3DDEVICE9 CreateLPD3DDeviceLeastHALMode(const HWND& wndHandle, D3DPRESENT_PARAMETERS& d3dpp);
-	LPDIRECT3DDEVICE9 CreateLPD3DDeviceREFMode(const HWND& wndHandle, D3DPRESENT_PARAMETERS& d3dpp);
-	LPDIRECT3DDEVICE9 CreateLPD3DDeviceLeastREFMode(const HWND& wndHandle, D3DPRESENT_PARAMETERS& d3dpp);
+	LPDIRECT3DDEVICE9 CreateLPD3DDevice(const HWND& windowHandle, const D3DPRESENT_PARAMETERS& d3dpp);
+	LPDIRECT3DDEVICE9 CreateLPD3DDeviceHALMode(const HWND& windowHandle, D3DPRESENT_PARAMETERS& d3dpp);
+	LPDIRECT3DDEVICE9 CreateLPD3DDeviceLeastHALMode(const HWND& windowHandle, D3DPRESENT_PARAMETERS& d3dpp);
+	LPDIRECT3DDEVICE9 CreateLPD3DDeviceREFMode(const HWND& windowHandle, D3DPRESENT_PARAMETERS& d3dpp);
+	LPDIRECT3DDEVICE9 CreateLPD3DDeviceLeastREFMode(const HWND& windowHandle, D3DPRESENT_PARAMETERS& d3dpp);
 
 private:
 	LPDIRECT3D9					lpd3d_interface_;	//DIRECT3Dインターフェイス

@@ -1,48 +1,47 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Application.h] アプリケーションクラス
+/*	[MessageLoop.h] メッセージループクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アプリケーションクラス
+/*	説明：メッセージループクラス
 =============================================================================*/
-#ifndef APPLICATION_H_
-#define	APPLICATION_H_
+#ifndef MESSAGE_LOOP_H_
+#define	MESSAGE_LOOP_H_
 
 /*--- インクルードファイル ---*/
-#include "MainSystem/Win32APIWindow.h"
+#include "Win32APIWindow.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
+enum class MessageLoopType
+{
+	None = -1
+	, SplashScreenWindow
+	, ApplicationWindow
+	, Max
+};
 
 /*-------------------------------------
-/* メアプリケーションクラス
+/* メッセージループクラス
 -------------------------------------*/
-class Application
+class MessageLoop
 {
 public:
-	Application(void);
-	~Application(void);
+	MessageLoop(class IManager* iManager);
+	~MessageLoop(void);
 
-public:
-	bool StartUp(const HINSTANCE& hInstance, const int& nShowCmd);
+	static MessageLoop* Create(MessageLoopType msgLoopTyep, const WindowStyle& windowStyle);
+
+	bool StartUp(void);
 	void Run(void);
 	void ShutDown(void);
 
 private:
-	//初期化と終了化
-	bool Init(void);
-	void Uninit(void);
-
-	HICON LoadAppIcon(const HINSTANCE& hInstance);
-
-private:
-	std::string			app_title_name_;
-	WindowStyle			window_style_;
-	class MessageLoop*	message_loop_;
+	class IManager* i_manager_;
 };
 
-#endif //APPLICATION_H_
+#endif //MESSAGE_LOOP_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

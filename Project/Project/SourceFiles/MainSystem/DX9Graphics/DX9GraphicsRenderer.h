@@ -9,7 +9,7 @@
 #define	DX9GRAPHICS_RENDERER_H_
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
+#include "../../StdAfx.h"
 
 /*--- 構造体定義 ---*/
 

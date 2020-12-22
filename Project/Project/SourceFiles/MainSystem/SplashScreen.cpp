@@ -7,13 +7,18 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "SplashScreen.h"
+#include "MessageLoop.h"
+#include "Win32APIWindow.h"
+#include "../Generic/Math.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 SplashScreen::SplashScreen(void)
+    : window_style_(WindowStyle())
+    , message_loop_(nullptr)
 {
 }
 
@@ -27,9 +32,30 @@ SplashScreen::~SplashScreen(void)
 /*-----------------------------------------------------------------------------
 /* 起動処理
 -----------------------------------------------------------------------------*/
-bool SplashScreen::StartUp(void)
+bool SplashScreen::StartUp(const WindowStyle& windowStyle)
 {
-	return false;
+    std::string window_name     =  windowStyle.windowTitle;
+    std::string window_sub_name = ":スプラッシュスクリーン";
+
+    //ローカル変数に、スプラッシュスクリーンのウィンドウの設定書き込む
+    window_style_ = windowStyle;
+    {
+        //window_style.hInstance    = hinstance;    //Application.cppでの設定を引き継ぐ
+        //window_style.nCmdShow     = nShowCmd;     //Application.cppでの設定を引き継ぐ
+        window_style_.dwWindowStyle = WS_POPUPWINDOW;
+        window_style_.windowTitle   = window_name + window_sub_name;
+        //window_style.hIcon;                       //Application.cppでの設定を引き継ぐ
+        window_style_.windowSize    = Vector2(500.f, 600.f);
+    }
+
+    //メッセージループに、スプラッシュスクリーンのマネージャを登録
+    message_loop_ = MessageLoop::Create(MessageLoopType::SplashScreenWindow, window_style_);
+    const bool is_success = message_loop_->StartUp();
+    if (is_success == false)
+    {
+        return false;
+    }
+    return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -37,6 +63,7 @@ bool SplashScreen::StartUp(void)
 -----------------------------------------------------------------------------*/
 void SplashScreen::Run(void)
 {
+    message_loop_->Run();
 }
 
 /*-----------------------------------------------------------------------------
@@ -44,21 +71,8 @@ void SplashScreen::Run(void)
 -----------------------------------------------------------------------------*/
 void SplashScreen::ShutDown(void)
 {
-}
-
-/*-----------------------------------------------------------------------------
-/* 初期化処理
------------------------------------------------------------------------------*/
-bool SplashScreen::Init(void)
-{
-	return false;
-}
-
-/*-----------------------------------------------------------------------------
-/* 終了化処理
------------------------------------------------------------------------------*/
-void SplashScreen::Uinit(void)
-{
+    message_loop_->ShutDown();
+    SAFE_DELETE_(message_loop_);
 }
 
 /*=============================================================================

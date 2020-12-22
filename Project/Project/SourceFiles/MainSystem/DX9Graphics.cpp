@@ -8,15 +8,15 @@
 
 /*--- インクルードファイル ---*/
 #include "DX9Graphics.h"
-#include "DX9GraphicsDevice.h"
-#include "DX9GraphicsRenderer.h"
+#include "DX9Graphics/DX9GraphicsDevice.h"
+#include "DX9Graphics/DX9GraphicsRenderer.h"
 #include "../Generic/Math.h"
 
 
 //静的変数宣言
-LPDIRECT3DDEVICE9		DX9Graphics::lpd3d_device_;			//Direct3Dデバイス
-DX9GraphicsDevice* DX9Graphics::graphics_device_;		//デバイスクラス
-DX9GraphicsRenderer* DX9Graphics::graphics_renderer_;	//レンダラークラス
+LPDIRECT3DDEVICE9	  DX9Graphics::lpd3d_device_;		//Direct3Dデバイス
+DX9GraphicsDevice*	  DX9Graphics::graphics_device_;	//デバイスクラス
+DX9GraphicsRenderer*  DX9Graphics::graphics_renderer_;	//レンダラークラス
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -45,11 +45,12 @@ DX9Graphics* DX9Graphics::Create()
 /*-----------------------------------------------------------------------------
 /* DirectX9グラフィックスの生成
 -----------------------------------------------------------------------------*/
-void DX9Graphics::CreateDX9Graphics(const HWND& wndHandle, const Math::Vector2& screenSize)
+void DX9Graphics::CreateDX9Graphics(const HWND& windowHandle, const Vector2& screenSize)
 {
 	//デバイスとレンダラーの生成
-	lpd3d_device_ = CreateDevice(wndHandle, screenSize);
+	lpd3d_device_ = CreateDevice(windowHandle, screenSize);
 	CreateRenderer(lpd3d_device_);
+	//Create
 }
 
 /*-----------------------------------------------------------------------------
@@ -97,10 +98,10 @@ void DX9Graphics::RenderingEnd(void)
 /*-----------------------------------------------------------------------------
 /* グラフィックデバイスの生成処理
 -----------------------------------------------------------------------------*/
-LPDIRECT3DDEVICE9 DX9Graphics::CreateDevice(const HWND& wndHandle, const Math::Vector2& screenSize)
+LPDIRECT3DDEVICE9 DX9Graphics::CreateDevice(const HWND& windowHandle, const Vector2& screenSize)
 {
 	graphics_device_ = NEW DX9GraphicsDevice();
-	return graphics_device_->CreateGraphicsDevice(wndHandle, screenSize);
+	return graphics_device_->CreateGraphicsDevice(windowHandle, screenSize);
 }
 
 /*-----------------------------------------------------------------------------

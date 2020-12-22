@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Win32APIWindow.h] ウィンドウ生成管理クラス
+/*	[Win32APIWindow.h] Win32APIウィンドウ管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ウィンドウ生成管理クラス
+/*	説明：Win32APIウィンドウ管理クラス
 =============================================================================*/
 #ifndef WIN32API_WINDOW_H_
 #define	WIN32API_WINDOW_H_
@@ -20,24 +20,36 @@ struct WindowStyle
 public:
 	WindowStyle(void)
 		: hInstance(nullptr)
-		, nCmdShow(1)
+		, nShowCmd(1)
 		, dwWindowStyle(0UL)
 		, hIcon(nullptr)
 		, windowTitle("")
-		, windowSize(Math::Vector2())
-		, isWindowed(TRUE)
+		, windowSize(Vector2())
 	{}
 
 	~WindowStyle(void) {}
 
 public:
 	HINSTANCE	  hInstance;		//インスタンスハンドル
-	int			  nCmdShow;			//ウィンドウの表示状態
-	DWORD		  dwWindowStyle;		//ウィンドウの表示書式
+	int			  nShowCmd;			//ウィンドウの表示状態
+	DWORD		  dwWindowStyle;	//ウィンドウの表示書式
 	HICON		  hIcon;			//アイコンへのインスタンス
 	std::string   windowTitle;		//ウィンドウタイトル
-	Math::Vector2 windowSize;		//ウィンドウサイズ
-	BOOL		  isWindowed;		//ウィンドウ表示するか？
+	Vector2		  windowSize;		//ウィンドウサイズ
+};
+
+
+/*-------------------------------------
+/* ウィンドウサイズのID
+-------------------------------------*/
+enum class window_size_id
+{
+	None = -1
+	, SPLASH_SCREEN_500x600
+	, _1280x_720 
+	, _1920x1080
+	, FULL_SCREEN
+	, MAX
 };
 
 
@@ -51,23 +63,29 @@ public:
 	~Win32APIWindow(void);
 
 	static Win32APIWindow* Create();
-	HWND CreateAppWindow(WindowStyle windowStyle);
+
+	HWND CreateNewWindow(WindowStyle windowStyle, bool isAppWindow = false);
 
 public:
-	Math::Vector2 CalculateWindowSize(const DWORD& dwWindowStyle
-								     , const Math::Vector2& windowSize
-								     , const BOOL isCreateSysMenu) const;
+	Vector2 CalculateWindowSize(const DWORD& dwWindowStyle
+							   , const Vector2& windowSize
+							   , const BOOL isCreateSysMenu) const;
 
-	Math::Vector2 CalculateWindowCreatePos(const Math::Vector2& windowSize) const;
+	Vector2 CalculateFullScreenWindowSize(const DWORD& dwWindowStyle, const BOOL isCreateSysMenu) const;
 
-	void SetWindowSize(const Math::Vector2& windowSize);
+	Vector2 CalculateWindowCreatePos(const Vector2& windowSize) const;
+
+	Vector2 FindWindowSize(window_size_id id) const;
+
+	void SetWindowSize(const Vector2& windowSize);
 	void SetWindowSize(const float windowWidth, const float windowHeight);
 
-	Math::Vector2 GetWindowSize(void) const;
-	Math::Vector2 GetWindowClientSize(const HWND& wndHandle) const;
+	Vector2 GetWindowSize(void) const;
+	Vector2 GetWindowClientSize(const HWND& windowHandle) const;
 
 private:
-	Math::Vector2 window_size_;
+	Vector2 window_size_;
+	HWND	window_handle_;
 };
 
 #endif //WIN32API_WINDOW_H_

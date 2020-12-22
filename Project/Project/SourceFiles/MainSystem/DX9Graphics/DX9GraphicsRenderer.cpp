@@ -8,12 +8,13 @@
 
 /*--- インクルードファイル ---*/
 #include "DX9GraphicsRenderer.h"
-#include "../Generic/Math.h"
+#include "../../Generic/Math.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 DX9GraphicsRenderer::DX9GraphicsRenderer(void)
+	: lpd3d_device_(nullptr)
 {
 }
 
@@ -39,29 +40,30 @@ void DX9GraphicsRenderer::CreateRenderer(const LPDIRECT3DDEVICE9& lpd3dDevice)
 bool DX9GraphicsRenderer::RenderingBegin()
 {
 
-	// ビューポートパラメータ
-	D3DVIEWPORT9 view_port;
-	Math::Vector2 screen_split_size = Math::Vector2(500.f, 600.f);
-	Math::Vector2 offset = Math::Vector2(100.f, 100.f);
+	//// ビューポートパラメータ(画面クリアする範囲)
+	//D3DVIEWPORT9 view_port;
+	////Vector2 screen_split_size = Vector2(500.f, 600.f);
+	//Vector2 screen_split_size = Vector2((1980.f), (1080.f));
+	//Vector2 offset = Vector2(0.f, 0.f);
 
-	// ビューポートの左上座標
-	view_port.X = offset.x_;
-	view_port.Y = offset.y_;
+	//// ビューポートの左上座標
+	//view_port.X = offset.x_;
+	//view_port.Y = offset.y_;
 
-	// ビューポートの幅
-	view_port.Width = screen_split_size.x_;
-	// ビューポートの高さ
-	view_port.Height = screen_split_size.y_;
+	//// ビューポートの幅
+	//view_port.Width = screen_split_size.x_;
+	//// ビューポートの高さ
+	//view_port.Height = screen_split_size.y_;
 
-	// ビューポート深度設定
-	view_port.MinZ = 0.0f;
-	view_port.MaxZ = 1.0f;
+	//// ビューポート深度設定
+	//view_port.MinZ = 0.0f;
+	//view_port.MaxZ = 1.0f;
 
-	// ビューポート設定
-	if (FAILED(lpd3d_device_->SetViewport(&view_port)))
-	{
-		return false;
-	}
+	//// ビューポート設定
+	//if (FAILED(lpd3d_device_->SetViewport(&view_port)))
+	//{
+	//	return false;
+	//}
 
 
 	/*--- 画面のクリア ---*/
@@ -165,7 +167,7 @@ void DX9GraphicsRenderer::InitRenderer()
 void DX9GraphicsRenderer::InitRenderState()
 {
 	//レンダーステートパラメーターの設定
-	lpd3d_device_->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	lpd3d_device_->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW); //背面カリングにする
 
 	//αブレンドを行う
 	//SRC...今から描くもの。つまりポリゴンにテクスチャを貼ったもの
@@ -181,8 +183,7 @@ void DX9GraphicsRenderer::InitRenderState()
 -----------------------------------------------------------------------------*/
 void DX9GraphicsRenderer::InitRenderTarget()
 {
-
-
+	return;	//なんもしない
 }
 
 /*-----------------------------------------------------------------------------
