@@ -19,7 +19,9 @@
 Application::Application(void)
 	: app_title_name_("")
 	, window_style_(WindowStyle())
+	, selected_screen_aspect_ratio_(nullptr)
 	, message_loop_(nullptr)
+	, is_shutdown_(false)
 {
 }
 
@@ -38,24 +40,39 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	bool is_success;
 	app_title_name_ = "ゲームタイトル";
 
-	//ゲーム用ウィンドウの設定
+	//アプリケーション用ウィンドウの設定
 	{
 		window_style_.hInstance		= hInstance;
 		window_style_.nShowCmd		= nShowCmd;
-		window_style_.dwWindowStyle = WS_OVERLAPPEDWINDOW ^ (WS_MAXIMIZEBOX | WS_THICKFRAME);
+		window_style_.dwWindowStyle = WS_POPUPWINDOW;
+		window_style_.hIcon			= this->LoadAppIcon(hInstance);
 		window_style_.windowTitle	= app_title_name_;
-		window_style_.hIcon			= LoadAppIcon(hInstance);
-		//window_style_.windowSize	= Vector2(100.f, 100.f);
-		window_style_.windowSize	= Vector2(1280.f, 720.f);
+		window_style_.windowSize	= Vector2(200.f,200.f);
 	}
 
-	//自身の初期化
-	is_success = this->Init();
-	if (is_success == false)
+	//スプラッシュスクリーンの実行
+	const bool is_shutdown = this->RunSplashScreen();
+	if (is_shutdown)
 	{
-		return false;	//初期化の失敗
+		return false;
 	}
 
+	//アスペクト比率がモニターの比率と一致してるかチェック
+	Win32APIWindow window;
+	const bool is_full_screen = (*selected_screen_aspect_ratio_ == window.GetFullScreenSize());
+	if (is_full_screen)
+	{
+		window_style_.dwWindowStyle = WS_POPUPWINDOW;
+	}
+	else
+	{
+		window_style_.dwWindowStyle = WS_OVERLAPPEDWINDOW ^ (WS_MAXIMIZEBOX | WS_THICKFRAME);
+	}
+
+	//ウィンドウサイズの確定
+	window_style_.windowSize = *selected_screen_aspect_ratio_;
+
+	//初期化に失敗したか
 	//メッセージループに、アプリケーションのマネージャを登録
 	{
 		message_loop_ = MessageLoop::Create(MessageLoopType::ApplicationWindow, window_style_);
@@ -81,38 +98,37 @@ void Application::Run(void)
 -----------------------------------------------------------------------------*/
 void Application::ShutDown(void)
 {
-	message_loop_->ShutDown();
-	this->Uninit();
-}
-
-/*-----------------------------------------------------------------------------
-/* 初期化処理
------------------------------------------------------------------------------*/
-bool Application::Init(void)
-{
-	//スプラッシュスクリーンの実行
+	if (message_loop_ != nullptr)
 	{
-		SplashScreen splash_screen;
-		const bool is_success = splash_screen.StartUp(window_style_);
-		if (is_success)
-		{
-			splash_screen.Run();
-		}
-		else
-		{
-			return false;	//スプラッシュスクリーンの起動に失敗
-		}
-		splash_screen.ShutDown();
+		message_loop_->ShutDown();
+		SAFE_DELETE_(message_loop_);
 	}
-	return true;
+
+	if (selected_screen_aspect_ratio_ != nullptr)
+	{
+		SAFE_DELETE_(selected_screen_aspect_ratio_)
+	}
 }
 
 /*-----------------------------------------------------------------------------
-/* 終了化処理
+/* スプラッシュスクリーンの実行処理
 -----------------------------------------------------------------------------*/
-void Application::Uninit(void)
+bool Application::RunSplashScreen(void)
 {
-	SAFE_DELETE_(message_loop_);
+	SplashScreen splash_screen;
+	bool		 is_shutdown = false;
+
+	const bool   is_success	 = splash_screen.StartUp(window_style_);
+	if (is_success)
+	{
+		splash_screen.Run();
+
+		selected_screen_aspect_ratio_ = splash_screen.GetSelectedAspectRatio();
+
+		is_shutdown = splash_screen.IsApplicationShutDown();
+	}
+	splash_screen.ShutDown();
+	return is_shutdown;
 }
 
 /*-----------------------------------------------------------------------------

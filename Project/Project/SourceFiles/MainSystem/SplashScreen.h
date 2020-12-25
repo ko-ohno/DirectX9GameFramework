@@ -29,6 +29,9 @@ public:
 	void Run(void);
 	void ShutDown(void);
 
+	class Vector2* GetSelectedAspectRatio(void);
+	bool IsApplicationShutDown(void);
+	
 private:
 	WindowStyle			  window_style_;
 	class MessageLoop*	  message_loop_;

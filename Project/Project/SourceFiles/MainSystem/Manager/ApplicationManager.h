@@ -23,13 +23,19 @@ class ApplicationManager : public IManager
 {
 public:
 	ApplicationManager(const WindowStyle& windowStyle);
-	~ApplicationManager(void);
+	~ApplicationManager(void) override;
 
 	bool Init(void) override;
 	void Uninit(void) override;
 	void Input(void) override;
 	void Update(float deltaTime) override;
 	void GenerateOutput(void) override;
+
+	// Application‘¤‚Í override ‚µ‚È‚¢
+	// class Vector2* GetSelectedAspectRatio(void) override;
+	// bool IsLoopBreak(void) override;
+	// bool IsShutDown(void) override;
+
 
 private:
 	HWND					window_handle_;

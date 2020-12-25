@@ -84,6 +84,9 @@
     <ClInclude Include="SourceFiles\MainSystem\IManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFiles\MainSystem\AspectRatio.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\Main.cpp">
@@ -147,6 +150,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\MainSystem\Manager\SplashScreenManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\MainSystem\AspectRatio.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

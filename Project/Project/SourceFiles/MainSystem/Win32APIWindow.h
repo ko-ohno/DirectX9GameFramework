@@ -38,21 +38,6 @@ public:
 	Vector2		  windowSize;		//ウィンドウサイズ
 };
 
-
-/*-------------------------------------
-/* ウィンドウサイズのID
--------------------------------------*/
-enum class window_size_id
-{
-	None = -1
-	, SPLASH_SCREEN_500x600
-	, _1280x_720 
-	, _1920x1080
-	, FULL_SCREEN
-	, MAX
-};
-
-
 /*-------------------------------------
 /* ウィンドウ生成管理クラス
 -------------------------------------*/
@@ -75,17 +60,18 @@ public:
 
 	Vector2 CalculateWindowCreatePos(const Vector2& windowSize) const;
 
-	Vector2 FindWindowSize(window_size_id id) const;
-
 	void SetWindowSize(const Vector2& windowSize);
 	void SetWindowSize(const float windowWidth, const float windowHeight);
 
 	Vector2 GetWindowSize(void) const;
 	Vector2 GetWindowClientSize(const HWND& windowHandle) const;
+	Vector2 GetFullScreenSize(void) const;
 
 private:
-	Vector2 window_size_;
-	HWND	window_handle_;
+	WNDCLASSEX  wcex_;
+	std::string window_class_name_;
+	Vector2	    window_size_;
+	HWND	    window_handle_;
 };
 
 #endif //WIN32API_WINDOW_H_

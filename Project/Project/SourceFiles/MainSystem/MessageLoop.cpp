@@ -65,12 +65,13 @@ bool MessageLoop::StartUp(void)
 -----------------------------------------------------------------------------*/
 void MessageLoop::Run(void)
 {
-	MSG msg;
+	MSG	  msg;								//ウィンドウプロシージャへのハンドラ
 	DWORD execute_last_time = 0UL;			//1フレーム前の終了時間
 	DWORD current_time		= 0UL;			//現在の時間
 	DWORD ticks_counts		= 0UL;			//1フレームの経過時間
-	float delta_time		= 0.f;			//1フレーム前との差分の秒数		
+
 	const float maximum_delta_time = 0.05f;	//deltaTimeの最大制限値
+	float		delta_time		   = 0.f;	//1フレーム前との差分の秒数		
 
 	timeBeginPeriod(1); //分解能を設定
 
@@ -105,15 +106,22 @@ void MessageLoop::Run(void)
 					delta_time = maximum_delta_time;
 				}
 
-				i_manager_->Input();
-				i_manager_->Update(delta_time);
-				i_manager_->GenerateOutput();
+				//nullチェック
+				if (i_manager_ != nullptr)
+				{
+					i_manager_->Input();
+					i_manager_->Update(delta_time);
+					i_manager_->GenerateOutput();
+				}
 
 				//現在のフレームの実行前時間に実行後時間を代入。
 				execute_last_time = current_time;
 			}
 		}
-		if (msg.message == WM_QUIT) { break; }
+		const bool  lb = i_manager_->IsLoopBreak();
+		const bool  sd = i_manager_->IsShutDown();
+
+		if ((msg.message == WM_QUIT)|| lb || sd) { break; }
 	}
 
 	timeEndPeriod(1); //分解能を解除
@@ -125,6 +133,33 @@ void MessageLoop::Run(void)
 void MessageLoop::ShutDown(void)
 {
 	i_manager_->Uninit();
+}
+
+/*-----------------------------------------------------------------------------
+/* 停止処理
+-----------------------------------------------------------------------------*/
+Vector2* MessageLoop::GetSelectedAspectRatio(void)
+{
+	if (i_manager_ == nullptr) { return nullptr; }
+	return i_manager_->GetSelectedAspectRatio();
+}
+
+/*-----------------------------------------------------------------------------
+/* シャットダウンをするか
+-----------------------------------------------------------------------------*/
+bool MessageLoop::IsShutDown(void)
+{
+	if (i_manager_ == nullptr) { return false; }
+	return i_manager_->IsShutDown();
+}
+
+/*-----------------------------------------------------------------------------
+/* ループを脱出するか
+-----------------------------------------------------------------------------*/
+bool MessageLoop::IsLoopBreak(void)
+{
+	if (i_manager_ == nullptr) { return false; }
+	return i_manager_->IsLoopBreak();
 }
 
 /*=============================================================================

@@ -1,46 +1,57 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[IManager.h] 管理クラスのインターフェースクラス
+/*	[AspectRatio.h] アスペクト比率クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：管理クラスのインターフェースクラス
+/*	説明：アスペクト比率クラス
 =============================================================================*/
-#ifndef IMANAGER_H_
-#define	IMANAGER_H_
+#ifndef ASPECT_RATIO_H_
+#define	ASPECT_RATIO_H_
 
 /*--- インクルードファイル ---*/
 #include "../StdAfx.h"
-#include "../Generic/Math.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/*  管理クラスのインターフェース
+/* ウィンドウサイズのID
 -------------------------------------*/
-class IManager
+enum class window_size_id
 {
-public:
-	IManager(void){}
-	virtual ~IManager(void){}
-
-	virtual bool Init(void) = 0;
-	virtual void Uninit(void) = 0;
-	virtual void Input(void) = 0;
-	virtual void Update(float deltaTime) = 0;
-	virtual void GenerateOutput(void) = 0;
-
-	//　継承先のクラスでoverrideできるように
-	virtual class Vector2* GetSelectedAspectRatio(void) { return NEW Vector2(100.f, 100.f); }
-	virtual bool IsLoopBreak(void) { return false; }
-	virtual bool IsShutDown(void) { return false; }
-
-private:
+	None = -1
+	, SPLASH_SCREEN_500x600
+	, _1280x_720
+	, _1920x1080
+	, FULL_SCREEN
+	, MAX
 };
 
 
-#endif //IMANAGER_H_
+/*-------------------------------------
+/* アスペクト比率クラス
+-------------------------------------*/
+class AspectRatio
+{
+public:
+	AspectRatio(void);
+	~AspectRatio(void);
+
+	class Vector2* CaiculationAspectRatio(const DWORD& dwWindowStyle);
+
+private:
+	class Vector2* GetFullScreenWindowSize(const DWORD& dwWindowStyle);
+	
+
+private:
+	std::map<std::string, class Vector2*> aspect_ratio_list_;
+};
+
+static AspectRatio ar;
+
+
+#endif //ASPECT_RATIO_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

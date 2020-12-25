@@ -16,7 +16,7 @@
 -------------------------------------*/
 
 /*-------------------------------------
-/* メアプリケーションクラス
+/* アプリケーションクラス
 -------------------------------------*/
 class Application
 {
@@ -30,16 +30,17 @@ public:
 	void ShutDown(void);
 
 private:
-	//初期化と終了化
-	bool Init(void);
-	void Uninit(void);
+	//スプラッシュスクリーンの実行
+	bool RunSplashScreen(void);
 
 	HICON LoadAppIcon(const HINSTANCE& hInstance);
 
 private:
 	std::string			app_title_name_;
 	WindowStyle			window_style_;
+	class Vector2*		selected_screen_aspect_ratio_;
 	class MessageLoop*	message_loop_;
+	bool				is_shutdown_;
 };
 
 #endif //APPLICATION_H_

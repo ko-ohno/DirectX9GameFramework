@@ -37,6 +37,15 @@ public:
 	void Run(void);
 	void ShutDown(void);
 
+
+	class Vector2* GetSelectedAspectRatio(void);
+
+	//シャットダウンをするか
+	bool IsShutDown(void);
+
+private:
+	bool IsLoopBreak(void);	//ループを抜けるか
+
 private:
 	class IManager* i_manager_;
 };

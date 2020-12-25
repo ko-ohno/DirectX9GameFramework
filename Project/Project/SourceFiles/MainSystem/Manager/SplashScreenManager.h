@@ -23,7 +23,7 @@ class SplashScreenManager : public IManager
 {
 public:
 	SplashScreenManager(const WindowStyle& windowStyle);
-	~SplashScreenManager(void);
+	~SplashScreenManager(void) override;
 
 	bool Init(void) override;
 	void Uninit(void) override;
@@ -31,12 +31,20 @@ public:
 	void Update(float deltaTime) override;
 	void GenerateOutput(void) override;
 
+	//スプラッシュスクリーン側からアプリケーション側に、アスペクト比率を渡す
+	class Vector2* GetSelectedAspectRatio(void) override;
+
+	// メッセージループの状態をマネージャ側から制御
+	bool IsLoopBreak(void) override;
+	bool IsShutDown(void) override;
+
 private:
 	HWND					window_handle_;
 	class Win32APIWindow*	splash_window_;
 	class DX9Graphics*		dx9_graphics_;
 	class ImGuiManager*		imgui_manager_;
-
+	bool					is_loop_break_;
+	bool					is_shutdown_;
 };
 
 #endif //SPLASHSCREEN_MANAGER_H_

@@ -42,8 +42,8 @@ bool ApplicationManager::Init(void)
 	dx9_graphics_ = dx9_graphics_->Create();
 	dx9_graphics_->CreateDX9Graphics(window_handle_, app_window_->GetWindowClientSize(window_handle_));
 
-
-	imgui_manager_->Create();
+	//ImGui‚Ì‹N“®
+	imgui_manager_ = imgui_manager_->Create();
 	imgui_manager_->StartUp(dx9_graphics_, window_handle_);
 
 	return true;
@@ -54,11 +54,11 @@ bool ApplicationManager::Init(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Uninit(void)
 {
-
 	imgui_manager_->ShutDown();
+
 	SAFE_DELETE_(app_window_);
-	SAFE_DELETE_(dx9_graphics_);
 	SAFE_DELETE_(imgui_manager_);
+	SAFE_DELETE_(dx9_graphics_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -86,8 +86,6 @@ void ApplicationManager::Update(float deltaTime)
 void ApplicationManager::GenerateOutput(void)
 {
 	dx9_graphics_->RenderingBegin();
-
-
 
 	imgui_manager_->ImGuiRender();
 

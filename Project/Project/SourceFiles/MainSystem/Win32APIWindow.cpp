@@ -20,7 +20,9 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Win32APIWindow::Win32APIWindow(void)
-	: window_size_(0.f, 0.f)
+	: wcex_(WNDCLASSEX())
+	, window_class_name_("")
+	, window_size_(0.f, 0.f)
 	, window_handle_(nullptr)
 {
 }
@@ -30,6 +32,8 @@ Win32APIWindow::Win32APIWindow(void)
 -----------------------------------------------------------------------------*/
 Win32APIWindow::~Win32APIWindow(void)
 {
+	//登録したウィンドウクラスの登録解除
+	UnregisterClass(wcex_.lpszClassName, wcex_.hInstance);
 }
 
 /*-----------------------------------------------------------------------------
@@ -45,22 +49,21 @@ Win32APIWindow* Win32APIWindow::Create(void)
 -----------------------------------------------------------------------------*/
 HWND Win32APIWindow::CreateNewWindow(WindowStyle windowStyle, bool isAppWindow)
 {
-	//ウィンドウクラスの名前定義
-	std::string window_class_name = "";
-
+	//ウィンドウクラスの名前定義				
 	if (isAppWindow)
 	{
-		window_class_name = "AppWindow";
+		window_class_name_ = "AppWindow";
 	}
 	else
 	{
-		window_class_name = "SplashScreenWindow";
+		window_class_name_ = "SplashScreenWindow";
 	}
-				
+
+
 	/*------------------------------------
 	// ウィンドウクラス登録
 	------------------------------------*/
-	WNDCLASSEX wcex = {
+	wcex_ = {
 		sizeof(WNDCLASSEX)						//構造体に必要なバイト数を定義
 		, (CS_VREDRAW | CS_HREDRAW)				//ウィンドウのスタイル
 		, WindowProcedure						//コールバック関数へのポインタ
@@ -71,20 +74,37 @@ HWND Win32APIWindow::CreateNewWindow(WindowStyle windowStyle, bool isAppWindow)
 		, LoadCursor(nullptr, IDC_ARROW)		//標準のカーソルを読み込む。
 		, (HBRUSH)(COLOR_WINDOW + 1)			//クライアント領域にデフォルトの色を書き込む。
 		, nullptr								//メニューハンドルを非表示にする。
-		, window_class_name.c_str()				//ウィンドウクラス名。
+		, window_class_name_.c_str()			//ウィンドウクラス名。
 		, nullptr								//アイコンハンドル。
 	};	
 
 	//ウィンドウクラスの最終的な登録
-	if (!RegisterClassEx(&wcex))
+	if (!RegisterClassEx(&wcex_))
 	{
 		assert(!"ウィンドウクラスの登録に失敗！！");
 		return nullptr;
 	}
 
 	/*--- ウィンドウサイズの計算 ---*/
-	//ウィンドウのスタイルと指定したサイズとメニューの生成の有無を計算。
-	const Vector2 true_window_size = CalculateWindowSize(windowStyle.dwWindowStyle, windowStyle.windowSize, FALSE);
+	Vector2 true_window_size;
+
+	//フルスクリーンであるか
+	const bool is_full_screen = ((windowStyle.dwWindowStyle == WS_POPUPWINDOW)
+								 && (windowStyle.windowSize == this->GetFullScreenSize()));
+
+	if (is_full_screen)
+	{	
+		//フルスクリーンとしてそのままサイズを代入
+		true_window_size = windowStyle.windowSize;
+	}
+	else
+	{
+		//ウィンドウのスタイルと指定したサイズとメニューの生成の有無を計算。
+		true_window_size = CalculateWindowSize(windowStyle.dwWindowStyle, windowStyle.windowSize, FALSE);
+	}
+
+	//ウィンドウサイズの登録
+	this->SetWindowSize(true_window_size);
 
 	//ウィンドウの中心座標がデスクトップの中心座標になるように、デスクトップ上でのウィンドウの左上生成座標を計算。
 	const Vector2 window_create_pos = CalculateWindowCreatePos(true_window_size);
@@ -93,7 +113,7 @@ HWND Win32APIWindow::CreateNewWindow(WindowStyle windowStyle, bool isAppWindow)
 	// ウィンドウハンドルの作成
 	------------------------------------*/
 	window_handle_ = CreateWindowEx(0										//ウィンドウ拡張スタイル
-								   , window_class_name.c_str()				//RegisterClassEx()で登録したクラスの名前
+								   , window_class_name_.c_str()				//RegisterClassEx()で登録したクラスの名前
 								   , windowStyle.windowTitle.c_str()		//タイトルバーに表示する文字列
 								   , windowStyle.dwWindowStyle				//ウインドウスタイル
 								   , (int)window_create_pos.x_				//ウインドウ左上x座標
@@ -212,22 +232,11 @@ Vector2 Win32APIWindow::GetWindowClientSize(const HWND& windowHandle) const
 /*-----------------------------------------------------------------------------
 /* ウィンドウのIDごとのクライアント領域サイズの取得
 -----------------------------------------------------------------------------*/
-Vector2 Win32APIWindow::FindWindowSize(window_size_id id) const
+Vector2 Win32APIWindow::GetFullScreenSize(void) const
 {
-	switch (id)
-	{
-	case window_size_id::None:
-		break;
-
-	case window_size_id::FULL_SCREEN:
-		break;
-	case window_size_id::MAX:
-		break;
-	default:
-		break;
-	}
-
-	return Vector2();
+	int desktop_width = GetSystemMetrics(SM_CXSCREEN);
+	int desktop_height = GetSystemMetrics(SM_CYSCREEN);
+	return Vector2(desktop_width, desktop_height);
 }
 
 //ImGuiのメッセージハンドラー

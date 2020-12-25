@@ -35,16 +35,16 @@ SplashScreen::~SplashScreen(void)
 bool SplashScreen::StartUp(const WindowStyle& windowStyle)
 {
     std::string window_name     =  windowStyle.windowTitle;
-    std::string window_sub_name = ":スプラッシュスクリーン";
+    std::string window_sub_name = "：スプラッシュスクリーン";
 
     //ローカル変数に、スプラッシュスクリーンのウィンドウの設定書き込む
     window_style_ = windowStyle;
     {
         //window_style.hInstance    = hinstance;    //Application.cppでの設定を引き継ぐ
-        //window_style.nCmdShow     = nShowCmd;     //Application.cppでの設定を引き継ぐ
+        //window_style.nShowCmd     = nShowCmd;     //Application.cppでの設定を引き継ぐ
+        //window_style.hIcon;                      //Application.cppでの設定を引き継ぐ
         window_style_.dwWindowStyle = WS_POPUPWINDOW;
         window_style_.windowTitle   = window_name + window_sub_name;
-        //window_style.hIcon;                       //Application.cppでの設定を引き継ぐ
         window_style_.windowSize    = Vector2(500.f, 600.f);
     }
 
@@ -73,6 +73,24 @@ void SplashScreen::ShutDown(void)
 {
     message_loop_->ShutDown();
     SAFE_DELETE_(message_loop_);
+}
+
+/*-----------------------------------------------------------------------------
+/* 選択したアスペクト比率の取得処理
+-----------------------------------------------------------------------------*/
+Vector2* SplashScreen::GetSelectedAspectRatio(void)
+{
+    if (message_loop_ == nullptr) { return nullptr; }
+    return message_loop_->GetSelectedAspectRatio();
+}
+
+/*-----------------------------------------------------------------------------
+/*  アプリケーションを終了するか
+-----------------------------------------------------------------------------*/
+bool SplashScreen::IsApplicationShutDown(void)
+{
+    if (message_loop_ == nullptr) { return false; }
+    return message_loop_->IsShutDown();
 }
 
 /*=============================================================================
