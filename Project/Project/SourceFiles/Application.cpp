@@ -12,6 +12,8 @@
 #include "MainSystem/SplashScreen.h"
 #include "MainSystem/MessageLoop.h"
 #include "Generic/Math.h"
+#include "Icon/resource.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -45,7 +47,7 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 		window_style_.hInstance		= hInstance;
 		window_style_.nShowCmd		= nShowCmd;
 		window_style_.dwWindowStyle = WS_POPUPWINDOW;
-		window_style_.hIcon			= this->LoadAppIcon(hInstance);
+		window_style_.hIcon			= this->LoadAppIcon(hInstance, Vector2(256.f, 256.f));
 		window_style_.windowTitle	= app_title_name_;
 		window_style_.windowSize	= Vector2(200.f,200.f);
 	}
@@ -58,8 +60,7 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	}
 
 	//アスペクト比率がモニターの比率と一致してるかチェック
-	Win32APIWindow window;
-	const bool is_full_screen = (*selected_screen_aspect_ratio_ == window.GetFullScreenSize());
+	const bool is_full_screen = (*selected_screen_aspect_ratio_ == Win32APIWindow().GetFullScreenSize());
 	if (is_full_screen)
 	{
 		window_style_.dwWindowStyle = WS_POPUPWINDOW;
@@ -134,17 +135,16 @@ bool Application::RunSplashScreen(void)
 /*-----------------------------------------------------------------------------
 /* アイコンの読み込み処理処理
 -----------------------------------------------------------------------------*/
-HICON Application::LoadAppIcon(const HINSTANCE& hInstance)
+HICON Application::LoadAppIcon(const HINSTANCE& hInstance, const Vector2& iconSize)
 {
 	//以下のコードとリソースを組み込むことでアイコンを変更する
-	//HICON hIcon = (HICON)LoadImage(hInstance_
-	//								, MAKEINTRESOURCE(IDI_ICON1)
-	//								, IMAGE_ICON
-	//								, 64
-	//								, 64
-	//								, 0);
-
-	return HICON();
+	HICON hIcon = (HICON)LoadImage(hInstance
+								  , MAKEINTRESOURCE(IDI_ICON1)
+								  , IMAGE_ICON
+								  , iconSize.x_
+								  , iconSize.y_
+								  , 0);
+	return hIcon;
 }
 
 /*=============================================================================
