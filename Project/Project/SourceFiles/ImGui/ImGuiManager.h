@@ -10,7 +10,6 @@
 
 /*--- インクルードファイル ---*/
 #include "../StdAfx.h"
-#include "../Generic/Math.h"
 
 /*--- ImGuiのライブラリをインクルード ---*/
 #include "../External/ImGui/include/imgui.h"
@@ -63,7 +62,7 @@ public:
 	//ImGui用のテクスチャ読み込み関数
 	bool ImGuiLoadTexture(const char* fileName
 						 , LPDIRECT3DTEXTURE9* srcTexture
-						 , const Vector2* textureSize);
+						 , const class Vector2& textureSize);
 
 private:
 };

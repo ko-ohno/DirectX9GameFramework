@@ -149,7 +149,7 @@ void ImGuiManager::ShowFramerate(float deltaTime)
 /*-----------------------------------------------------------------------------
 /* ImGuiのウィンドウ用のテクスチャ読み込み
 -----------------------------------------------------------------------------*/
-bool ImGuiManager::ImGuiLoadTexture(const char* fileName, LPDIRECT3DTEXTURE9* srcTexture, const Vector2* textureSize)
+bool ImGuiManager::ImGuiLoadTexture(const char* fileName, LPDIRECT3DTEXTURE9* srcTexture, const Vector2& textureSize)
 {
 	////テクスチャ情報の取得
 	//LPDIRECT3DTEXTURE9	lpd3d_texture;

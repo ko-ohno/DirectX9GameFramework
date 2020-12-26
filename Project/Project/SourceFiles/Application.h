@@ -33,7 +33,7 @@ private:
 	//スプラッシュスクリーンの実行
 	bool RunSplashScreen(void);
 
-	HICON LoadAppIcon(const HINSTANCE& hInstance);
+	HICON LoadAppIcon(const HINSTANCE& hInstance, const Vector2& iconSize);
 
 private:
 	std::string			app_title_name_;

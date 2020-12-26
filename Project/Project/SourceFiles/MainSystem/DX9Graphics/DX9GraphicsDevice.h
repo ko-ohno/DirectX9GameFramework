@@ -10,7 +10,6 @@
 
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
-#include "../../Generic/Math.h"
 
 /*--- 構造体定義 ---*/
 
@@ -26,10 +25,10 @@ public:
 	~DX9GraphicsDevice(void);
 
 	//Direct3Dデバイスの生成処理
-	LPDIRECT3DDEVICE9 CreateGraphicsDevice(const HWND& windowHandle, const Vector2& screenSize);
+	LPDIRECT3DDEVICE9 CreateGraphicsDevice(const HWND& windowHandle, const class Vector2& screenSize);
 
 	//プレゼントパラメータ生成処理
-	D3DPRESENT_PARAMETERS CreatePresentParam(const Vector2& screenSize, const HWND& windowHandle, const BOOL& isWindowed);
+	D3DPRESENT_PARAMETERS CreatePresentParam(const class Vector2& screenSize, const HWND& windowHandle, const BOOL& isWindowed);
 
 private:
 	void Init(void);

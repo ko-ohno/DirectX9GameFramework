@@ -118,10 +118,7 @@ void MessageLoop::Run(void)
 				execute_last_time = current_time;
 			}
 		}
-		const bool  lb = i_manager_->IsLoopBreak();
-		const bool  sd = i_manager_->IsShutDown();
-
-		if ((msg.message == WM_QUIT)|| lb || sd) { break; }
+		if ((msg.message == WM_QUIT)|| IsLoopBreak() || IsShutDown()) { break; }
 	}
 
 	timeEndPeriod(1); //•ª‰ğ”\‚ğ‰ğœ

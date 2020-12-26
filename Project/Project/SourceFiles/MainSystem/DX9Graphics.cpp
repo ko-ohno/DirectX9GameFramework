@@ -50,7 +50,6 @@ void DX9Graphics::CreateDX9Graphics(const HWND& windowHandle, const Vector2& scr
 	//デバイスとレンダラーの生成
 	lpd3d_device_ = CreateDevice(windowHandle, screenSize);
 	CreateRenderer(lpd3d_device_);
-	//Create
 }
 
 /*-----------------------------------------------------------------------------
