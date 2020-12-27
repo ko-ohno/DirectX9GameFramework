@@ -11,6 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../IManager.h"
 #include "../Win32APIWindow.h"
+#include "../../Generic/Math.h"
 
 /*-------------------------------------
 /* 構造体
@@ -39,12 +40,20 @@ public:
 	bool IsShutDown(void) override;
 
 private:
-	HWND					window_handle_;
-	class Win32APIWindow*	splash_window_;
-	class DX9Graphics*		dx9_graphics_;
-	class ImGuiManager*		imgui_manager_;
-	bool					is_loop_break_;
-	bool					is_shutdown_;
+	//アスペクト比率の作成
+	void MakeListAspectRatio(void);
+
+private:
+	std::vector<std::string>	aspact_ratio_string_array_;
+	std::vector<class Vector2>  aspect_ratio_size_array_;
+	class Vector2				aspect_ratio_size_;
+
+	HWND					 window_handle_;
+	class Win32APIWindow*	 splash_window_;
+	class DX9Graphics*		 dx9_graphics_;
+	class ImGuiManager*		 imgui_manager_;
+	bool					 is_loop_break_;
+	bool					 is_shutdown_;
 };
 
 #endif //SPLASHSCREEN_MANAGER_H_

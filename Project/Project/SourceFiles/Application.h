@@ -10,6 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "MainSystem/Win32APIWindow.h"
+#include "Generic/Math.h"
 
 /*-------------------------------------
 /* 構造体
@@ -38,7 +39,7 @@ private:
 private:
 	std::string			app_title_name_;
 	WindowStyle			window_style_;
-	class Vector2*		selected_screen_aspect_ratio_;
+	class Vector2		selected_screen_aspect_ratio_;
 	class MessageLoop*	message_loop_;
 	bool				is_shutdown_;
 };

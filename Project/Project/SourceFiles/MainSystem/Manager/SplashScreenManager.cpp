@@ -19,7 +19,8 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 SplashScreenManager::SplashScreenManager(const WindowStyle& windowStyle)
-	: splash_window_(nullptr)
+	: aspect_ratio_size_(Vector2())
+	, splash_window_(nullptr)
 	, window_handle_(nullptr)
 	, dx9_graphics_(nullptr)
 	, imgui_manager_(nullptr)
@@ -51,6 +52,9 @@ bool SplashScreenManager::Init(void)
 	imgui_manager_ = imgui_manager_->Create();
 	imgui_manager_->StartUp(dx9_graphics_, window_handle_);
 
+
+	this->MakeListAspectRatio();
+
 	return true;
 }
 
@@ -60,6 +64,11 @@ bool SplashScreenManager::Init(void)
 void SplashScreenManager::Uninit(void)
 {
 	imgui_manager_->ShutDown();
+
+	while (!aspect_ratio_size_array_.empty())
+	{
+		aspect_ratio_size_array_.pop_back();
+	}
 
 	SAFE_DELETE_(splash_window_);
 	SAFE_DELETE_(imgui_manager_);
@@ -93,16 +102,6 @@ void SplashScreenManager::Update(float deltaTime)
 												| ImGuiWindowFlags_NoCollapse
 												| ImGuiWindowFlags_NoScrollbar);
 
-		//コンボボックスで選択中の要素
-		static int combo_item_current = 2; //初期化値
-		const char* combo_items[] = { "FullScreen(1920*1080)"
-									, "1360*768"
-									, "1280*720"
-									, "720*480" };
-
-		//コンボボックスが選択中の文字列をもとに画面画面サイズの定義を変更する
-		//ScreenSize::UpdateScreenSizeSelect(combo_items[combo_item_current]);
-
 		//オフセットした画面サイズとそのほかの設定
 		{
 			ImGui::SetNextWindowSize(offset_screen_size);
@@ -117,34 +116,56 @@ void SplashScreenManager::Update(float deltaTime)
 					//画像サイズの縮小して貼り付け
 					//ImGui::Image((void*)texture_, ImVec2( texture_size_.x_ - offset_size.x
 					//									, texture_size_.y_ - offset_size.y));
-					ImGui::Text("0");
-					ImGui::Text("1");
-					ImGui::Text("2");
-					ImGui::Text("3");
-					ImGui::Text("4");
-					ImGui::Text("5");
-					ImGui::Text("6");
-					ImGui::Text("7");
-					ImGui::Text("8");
-					ImGui::Text("9");
-					ImGui::Text("1");
-					ImGui::Text("2");
-					ImGui::Text("3");
-					ImGui::Text("4");
-					ImGui::Text("5");
-					ImGui::Text("6");
-					ImGui::Text("7");
-					ImGui::Text("8");
-					ImGui::Text("9");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Text("||123456789012345678901234567890||");
 				}
 				ImGui::EndGroup();
+
+				//スプラッシュスクリーン起動直後のコンボボックスの選択値
+				static int combo_item_current = 2;
+
+				//選択中の比率の更新
+				aspect_ratio_size_ = aspect_ratio_size_array_.at(combo_item_current);
+
+				//配列の中に格納
+				std::vector<const char*> combo_items_;
+				auto iter = aspact_ratio_string_array_.begin();
+				for (iter; iter != aspact_ratio_string_array_.end(); ++iter)
+				{
+					combo_items_.push_back((*iter).c_str());
+				}
 
 				//コンボボックス描画
 				ImGui::BeginGroup();
 				{
 					ImGui::Text("ScreenSize:");
 					ImGui::SameLine();
-					ImGui::Combo("", &combo_item_current, combo_items, IM_ARRAYSIZE(combo_items));
+					ImGui::Combo(""
+								, &combo_item_current
+								, combo_items_.data()
+								, aspact_ratio_string_array_.size());
 					//ImGui::Text("combo_item_current:%d", combo_item_current);
 				}
 				ImGui::EndGroup();
@@ -192,12 +213,29 @@ void SplashScreenManager::GenerateOutput(void)
 }
 
 /*-----------------------------------------------------------------------------
+/* アスペクト比率のリストの作成
+-----------------------------------------------------------------------------*/
+void SplashScreenManager::MakeListAspectRatio(void)
+{
+	auto aspect_ratio		= AspectRatio::Create(); 
+	auto aspect_ratio_list  = aspect_ratio->GetAspectRatioList();
+
+	auto iter = aspect_ratio_list.begin();
+	for (iter; iter != aspect_ratio_list.end(); ++iter)
+	{
+		//リストの文字列を格納
+		aspact_ratio_string_array_.push_back((*iter).first);
+
+		aspect_ratio_size_array_.push_back((*iter).second);
+	}
+}
+
+/*-----------------------------------------------------------------------------
 /* アスペクト比率の取得
 -----------------------------------------------------------------------------*/
 Vector2* SplashScreenManager::GetSelectedAspectRatio(void)
 {
-	//return NEW Vector2(1920.f, 1080.f);
-	return NEW Vector2(200.f, 200.f);
+	return &aspect_ratio_size_;
 }
 
 /*-----------------------------------------------------------------------------

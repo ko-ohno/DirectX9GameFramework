@@ -21,7 +21,7 @@
 Application::Application(void)
 	: app_title_name_("")
 	, window_style_(WindowStyle())
-	, selected_screen_aspect_ratio_(nullptr)
+	, selected_screen_aspect_ratio_(Vector2())
 	, message_loop_(nullptr)
 	, is_shutdown_(false)
 {
@@ -60,7 +60,7 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	}
 
 	//アスペクト比率がモニターの比率と一致してるかチェック
-	const bool is_full_screen = (*selected_screen_aspect_ratio_ == Win32APIWindow().GetFullScreenSize());
+	const bool is_full_screen = (selected_screen_aspect_ratio_ == Win32APIWindow().GetFullScreenSize());
 	if (is_full_screen)
 	{
 		window_style_.dwWindowStyle = WS_POPUPWINDOW;
@@ -71,7 +71,7 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	}
 
 	//ウィンドウサイズの確定
-	window_style_.windowSize = *selected_screen_aspect_ratio_;
+	window_style_.windowSize = selected_screen_aspect_ratio_;
 
 	//初期化に失敗したか
 	//メッセージループに、アプリケーションのマネージャを登録
@@ -104,11 +104,6 @@ void Application::ShutDown(void)
 		message_loop_->ShutDown();
 		SAFE_DELETE_(message_loop_);
 	}
-
-	if (selected_screen_aspect_ratio_ != nullptr)
-	{
-		SAFE_DELETE_(selected_screen_aspect_ratio_)
-	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -124,7 +119,7 @@ bool Application::RunSplashScreen(void)
 	{
 		splash_screen.Run();
 
-		selected_screen_aspect_ratio_ = splash_screen.GetSelectedAspectRatio();
+		selected_screen_aspect_ratio_ = *splash_screen.GetSelectedAspectRatio();
 
 		is_shutdown = splash_screen.IsApplicationShutDown();
 	}
@@ -141,8 +136,8 @@ HICON Application::LoadAppIcon(const HINSTANCE& hInstance, const Vector2& iconSi
 	HICON hIcon = (HICON)LoadImage(hInstance
 								  , MAKEINTRESOURCE(IDI_ICON1)
 								  , IMAGE_ICON
-								  , iconSize.x_
-								  , iconSize.y_
+								  , static_cast<int>(iconSize.x_)
+								  , static_cast<int>(iconSize.y_)
 								  , 0);
 	return hIcon;
 }

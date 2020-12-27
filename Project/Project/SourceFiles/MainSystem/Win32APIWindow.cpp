@@ -230,13 +230,14 @@ Vector2 Win32APIWindow::GetWindowClientSize(const HWND& windowHandle) const
 }
 
 /*-----------------------------------------------------------------------------
-/* ウィンドウのIDごとのクライアント領域サイズの取得
+/* フルスクリーンの画面サイズを取得
 -----------------------------------------------------------------------------*/
 Vector2 Win32APIWindow::GetFullScreenSize(void) const
 {
-	int desktop_width = GetSystemMetrics(SM_CXSCREEN);
+	int desktop_width  = GetSystemMetrics(SM_CXSCREEN);
 	int desktop_height = GetSystemMetrics(SM_CYSCREEN);
-	return Vector2(desktop_width, desktop_height);
+	return Vector2(static_cast<const float>(desktop_width)
+				  , static_cast<const float>(desktop_height));
 }
 
 //ImGuiのメッセージハンドラー
