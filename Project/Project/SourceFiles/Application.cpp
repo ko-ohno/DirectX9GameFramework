@@ -13,6 +13,7 @@
 #include "MainSystem/MessageLoop.h"
 #include "Generic/Math.h"
 #include "CodeDebug/DebugFunction.h"
+#include "DevelopSystemDefine.h"
 #include "Icon/resource.h"
 
 
@@ -53,6 +54,14 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 		window_style_.windowSize	= Vector2(200.f,200.f);
 	}
 
+#if defined(IN_DEVELOPMENT_)
+	//開発用の設定
+	{
+		window_style_.windowSize = Win32APIWindow().GetFullScreenSize();
+	}
+#else
+	//リリース用の設定
+
 	//スプラッシュスクリーンの実行
 	const bool is_failed_startup  = (this->RunSplashScreen() == false);
 	if (is_failed_startup)
@@ -70,6 +79,7 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	}
 
 
+
 	//アスペクト比率がモニターの比率と一致してるかチェック
 	const bool is_full_screen = (selected_screen_aspect_ratio_ == Win32APIWindow().GetFullScreenSize());
 	if (is_full_screen)
@@ -83,6 +93,8 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 
 	//ウィンドウサイズの確定
 	window_style_.windowSize = selected_screen_aspect_ratio_;
+
+#endif // IN_DEVELOPMENT_ is not define
 
 	//初期化に失敗したか
 	//メッセージループに、アプリケーションのマネージャを登録

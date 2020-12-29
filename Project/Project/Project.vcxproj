@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\DevelopSystemDefine.h" />
     <ClInclude Include="SourceFiles\Icon\resource.h" />
     <ClInclude Include="SourceFiles\MainSystem\AspectRatio.h" />
     <ClInclude Include="SourceFiles\MainSystem\Manager\SplashScreenManager.h" />
