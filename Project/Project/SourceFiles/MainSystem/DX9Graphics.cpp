@@ -11,6 +11,7 @@
 #include "DX9Graphics/DX9GraphicsDevice.h"
 #include "DX9Graphics/DX9GraphicsRenderer.h"
 #include "../Generic/Math.h"
+#include "../CodeDebug/DebugFunction.h"
 
 
 //静的変数宣言
@@ -35,7 +36,7 @@ DX9Graphics::~DX9Graphics(void)
 }
 
 /*-----------------------------------------------------------------------------
-/* fデストラクタファクトリメソッド
+/* ファクトリメソッド
 -----------------------------------------------------------------------------*/
 DX9Graphics* DX9Graphics::Create()
 {
@@ -45,11 +46,20 @@ DX9Graphics* DX9Graphics::Create()
 /*-----------------------------------------------------------------------------
 /* DirectX9グラフィックスの生成
 -----------------------------------------------------------------------------*/
-void DX9Graphics::CreateDX9Graphics(const HWND& windowHandle, const Vector2& screenSize)
+bool DX9Graphics::CreateDX9Graphics(const HWND& windowHandle, const Vector2& screenSize)
 {
 	//デバイスとレンダラーの生成
-	lpd3d_device_ = CreateDevice(windowHandle, screenSize);
-	CreateRenderer(lpd3d_device_);
+	lpd3d_device_ = CreateGraphicsDevice(windowHandle, screenSize);
+	if (lpd3d_device_ == nullptr)
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("グラフィックスのデバイスを作成できませんでした！");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+		return false;
+	}
+
+	//レンダラーを作成
+	CreateDX9Renderer(lpd3d_device_);
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -65,6 +75,7 @@ LPDIRECT3DDEVICE9* DX9Graphics::GetLPD3DDevice(void)
 /*---------------------------------------------------------------------------*/
 void DX9Graphics::Init(void)
 {
+	lpd3d_device_ = nullptr;
 	graphics_device_ = nullptr;
 	graphics_renderer_ = nullptr;
 }
@@ -74,6 +85,7 @@ void DX9Graphics::Init(void)
 -----------------------------------------------------------------------------*/
 void DX9Graphics::Uninit(void)
 {
+	SAFE_RELEASE_(lpd3d_device_);
 	SAFE_DELETE_(graphics_device_);
 	SAFE_DELETE_(graphics_renderer_);
 }
@@ -97,18 +109,18 @@ void DX9Graphics::RenderingEnd(void)
 /*-----------------------------------------------------------------------------
 /* グラフィックデバイスの生成処理
 -----------------------------------------------------------------------------*/
-LPDIRECT3DDEVICE9 DX9Graphics::CreateDevice(const HWND& windowHandle, const Vector2& screenSize)
+LPDIRECT3DDEVICE9 DX9Graphics::CreateGraphicsDevice(const HWND& windowHandle, const Vector2& screenSize)
 {
-	graphics_device_ = NEW DX9GraphicsDevice();
+	graphics_device_ = graphics_device_->Create();
 	return graphics_device_->CreateGraphicsDevice(windowHandle, screenSize);
 }
 
 /*-----------------------------------------------------------------------------
 /* レンダラーの生成処理
 -----------------------------------------------------------------------------*/
-void DX9Graphics::CreateRenderer(const LPDIRECT3DDEVICE9& lpd3d_device)
+void DX9Graphics::CreateDX9Renderer(const LPDIRECT3DDEVICE9& lpd3d_device)
 {
-	graphics_renderer_ = NEW DX9GraphicsRenderer();
+	graphics_renderer_ = graphics_renderer_->Create();
 	graphics_renderer_->CreateRenderer(lpd3d_device);
 }
 

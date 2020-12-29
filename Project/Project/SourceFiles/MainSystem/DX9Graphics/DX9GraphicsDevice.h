@@ -24,6 +24,8 @@ public:
 	DX9GraphicsDevice(void);
 	~DX9GraphicsDevice(void);
 
+	static DX9GraphicsDevice* Create();
+
 	//Direct3Dデバイスの生成処理
 	LPDIRECT3DDEVICE9 CreateGraphicsDevice(const HWND& windowHandle, const class Vector2& screenSize);
 

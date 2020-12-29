@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[DX9GraphicsRenderer.h] DirectX9レンダラークラス定義
+/*	[DX9GraphicsRenderer.h] DirectX9レンダラークラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：DirectX9グラフィックスによるレンダラーの動作クラスを定義。
+/*	説明：DirectX9グラフィックスによるレンダラークラス
 =============================================================================*/
 #ifndef DX9GRAPHICS_RENDERER_H_
 #define	DX9GRAPHICS_RENDERER_H_
@@ -24,26 +24,17 @@ public:
 	DX9GraphicsRenderer(void);
 	~DX9GraphicsRenderer(void);
 
+	DX9GraphicsRenderer* Create();
+
 	void CreateRenderer(const LPDIRECT3DDEVICE9& lpd3dDevice);
+
+	//レンダリングの開始と終了
 	bool RenderingBegin(void);
 	void RenderingEnd(void);
 
-	void SetRenderEnable(void);
-
-	void SetRenderStateDisable(void);
-
-	void SetRenderAlphaBlendEnable(void);
-	void SetRenderAlphaBlendDisable(void);
-
 private:
-	void Init(void);
+	bool Init(void);
 	void Uninit(void);
-
-	void InitRenderer();
-	void InitRenderState();
-	void InitRenderTarget();
-	void InitTextureStageState();
-	void InitSumplerState();
 
 private:
 	LPDIRECT3DDEVICE9 lpd3d_device_;

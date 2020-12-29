@@ -12,6 +12,7 @@
 #include "MainSystem/SplashScreen.h"
 #include "MainSystem/MessageLoop.h"
 #include "Generic/Math.h"
+#include "CodeDebug/DebugFunction.h"
 #include "Icon/resource.h"
 
 
@@ -53,11 +54,21 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 	}
 
 	//スプラッシュスクリーンの実行
-	const bool is_shutdown = this->RunSplashScreen();
-	if (is_shutdown)
+	const bool is_failed_startup  = (this->RunSplashScreen() == false);
+	if (is_failed_startup)
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("スプラッシュスクリーンの起動に失敗しました。ゲームを終了します。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+		return false;
+	}
+
+	//シャットダウンの実行
+	const bool is_active_shutdown = (is_shutdown_ == true);
+	if (is_active_shutdown)
 	{
 		return false;
 	}
+
 
 	//アスペクト比率がモニターの比率と一致してるかチェック
 	const bool is_full_screen = (selected_screen_aspect_ratio_ == Win32APIWindow().GetFullScreenSize());
@@ -80,6 +91,8 @@ bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 		is_success = message_loop_->StartUp();
 		if (is_success == false)
 		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("アプリケーションの起動に失敗しました。ゲームを終了します。");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
 			return false;	//メッセージループの起動に失敗
 		}
 	}
@@ -112,8 +125,6 @@ void Application::ShutDown(void)
 bool Application::RunSplashScreen(void)
 {
 	SplashScreen splash_screen;
-	bool		 is_shutdown = false;
-
 	const bool   is_success	 = splash_screen.StartUp(window_style_);
 	if (is_success)
 	{
@@ -121,10 +132,10 @@ bool Application::RunSplashScreen(void)
 
 		selected_screen_aspect_ratio_ = *splash_screen.GetSelectedAspectRatio();
 
-		is_shutdown = splash_screen.IsApplicationShutDown();
+		is_shutdown_ = splash_screen.IsApplicationShutDown();
 	}
 	splash_screen.ShutDown();
-	return is_shutdown;
+	return is_success;
 }
 
 /*-----------------------------------------------------------------------------

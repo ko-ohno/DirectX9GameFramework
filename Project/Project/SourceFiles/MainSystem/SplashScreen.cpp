@@ -12,6 +12,7 @@
 #include "MessageLoop.h"
 #include "Win32APIWindow.h"
 #include "../Generic/Math.h"
+#include "../CodeDebug/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -53,6 +54,8 @@ bool SplashScreen::StartUp(const WindowStyle& windowStyle)
     const bool is_success = message_loop_->StartUp();
     if (is_success == false)
     {
+        std::string msg_str = OUTPUT_FORMAT_STRING("スプラッシュスクリーンの初期化ができませんでした！");
+        DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
         return false;
     }
     return true;

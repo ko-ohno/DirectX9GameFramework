@@ -43,7 +43,7 @@ public:
 	static ImGuiManager* Create(void);
 
 	//ImGUIの管理
-	void StartUp(class DX9Graphics* dx9Graphics, const HWND& windowHandle);	//ImGuiの起動
+	bool StartUp(class DX9Graphics* dx9Graphics, const HWND& windowHandle);	//ImGuiの起動
 	void ShutDown(void);													//ImGuiの停止								
 
 	//デフォルト色を指定
@@ -62,7 +62,7 @@ public:
 	//ImGui用のテクスチャ読み込み関数
 	bool ImGuiLoadTexture(const char* fileName
 						 , LPDIRECT3DTEXTURE9* srcTexture
-						 , const class Vector2& textureSize);
+						 , class Vector2& textureSize);
 
 private:
 };

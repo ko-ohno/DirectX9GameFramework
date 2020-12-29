@@ -13,6 +13,7 @@
 #include "../DX9Graphics.h"
 #include "../../ImGui/ImGuiManager.h"
 #include "../AspectRatio.h"
+#include "../../CodeDebug/DebugFunction.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -45,15 +46,35 @@ SplashScreenManager::~SplashScreenManager(void)
 bool SplashScreenManager::Init(void)
 {
 	//グラフィックスオブジェクトの生成。
-	dx9_graphics_ = dx9_graphics_->Create();
-	dx9_graphics_->CreateDX9Graphics(window_handle_, splash_window_->GetWindowClientSize(window_handle_));
+	{
+		dx9_graphics_ = dx9_graphics_->Create();
+		const bool directx9_init = dx9_graphics_->CreateDX9Graphics(window_handle_, splash_window_->GetWindowClientSize(window_handle_));
+		if (directx9_init == false)
+		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("directx9の初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+			return false;
+		}
+	}
 
 	//ImGuiの起動
-	imgui_manager_ = imgui_manager_->Create();
-	imgui_manager_->StartUp(dx9_graphics_, window_handle_);
+	{
+		imgui_manager_ = imgui_manager_->Create();
+		const bool imgui_init = imgui_manager_->StartUp(dx9_graphics_, window_handle_);
+		if (imgui_init == false)
+		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("ImGuiの初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+			return false;
+		}
+	}
 
-
+	//アスペクト比率のリストの作成
 	this->MakeListAspectRatio();
+
+	const char* filename = { "Assets/PackageImage/QR_code_to_my_github.png" };
+	bool is_load_sucess = imgui_manager_->ImGuiLoadTexture(filename, &texture_, texture_size_);
+	if (!is_load_sucess) { return false; }
 
 	return true;
 }
@@ -114,32 +135,9 @@ void SplashScreenManager::Update(float deltaTime)
 				ImGui::BeginGroup();
 				{
 					//画像サイズの縮小して貼り付け
-					//ImGui::Image((void*)texture_, ImVec2( texture_size_.x_ - offset_size.x
-					//									, texture_size_.y_ - offset_size.y));
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
-					ImGui::Text("||123456789012345678901234567890||");
+					ImGui::Image((void*)texture_
+								, ImVec2( texture_size_.x_ - offset_size.x
+										, texture_size_.y_ - offset_size.y));
 				}
 				ImGui::EndGroup();
 
@@ -184,7 +182,7 @@ void SplashScreenManager::Update(float deltaTime)
 					ImGui::SameLine();
 					if (ImGui::Button("START", ImVec2(200.f, 20.f)))
 					{
-						is_loop_break_ = true;
+						is_loop_break_ = true; //Applicationのウィンドウ生成命令を発行
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("QUIT", ImVec2(200.f, 20.f)))
@@ -228,6 +226,8 @@ void SplashScreenManager::MakeListAspectRatio(void)
 
 		aspect_ratio_size_array_.push_back((*iter).second);
 	}
+
+	delete aspect_ratio;
 }
 
 /*-----------------------------------------------------------------------------

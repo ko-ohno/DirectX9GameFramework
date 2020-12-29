@@ -44,9 +44,14 @@ private:
 	void MakeListAspectRatio(void);
 
 private:
-	std::vector<std::string>	aspact_ratio_string_array_;
-	std::vector<class Vector2>  aspect_ratio_size_array_;
-	class Vector2				aspect_ratio_size_;
+	//アスペクト比率の計算
+	std::vector<std::string> aspact_ratio_string_array_;
+	std::vector<Vector2>	 aspect_ratio_size_array_;
+	Vector2					 aspect_ratio_size_;
+
+	//スプラッシュスクリーン用の画像データ
+	LPDIRECT3DTEXTURE9		 texture_;
+	Vector2					 texture_size_;
 
 	HWND					 window_handle_;
 	class Win32APIWindow*	 splash_window_;

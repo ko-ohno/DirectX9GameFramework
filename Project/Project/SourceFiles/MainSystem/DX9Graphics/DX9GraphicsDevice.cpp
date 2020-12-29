@@ -10,6 +10,7 @@
 #include "../../StdAfx.h"
 #include "DX9GraphicsDevice.h"
 #include "../../Generic/Math.h"
+#include "../../CodeDebug/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -27,6 +28,14 @@ DX9GraphicsDevice::~DX9GraphicsDevice(void)
 }
 
 /*-----------------------------------------------------------------------------
+/* ファクトリメソッド
+-----------------------------------------------------------------------------*/
+DX9GraphicsDevice* DX9GraphicsDevice::Create()
+{
+	return NEW DX9GraphicsDevice();
+}
+
+/*-----------------------------------------------------------------------------
 /* DirectX9レンダラーデバイスの生成処理
 -----------------------------------------------------------------------------*/
 LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateGraphicsDevice(const HWND& windowHandle, const Vector2& screenSize)
@@ -35,10 +44,20 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateGraphicsDevice(const HWND& windowHand
 	D3DPRESENT_PARAMETERS	d3dpp;
 
 	lpd3d_interface_ = CreateD3DInterface();
-	if (lpd3d_interface_ == nullptr) { return nullptr; }
+	if (FAILED(lpd3d_interface_))
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("Direct3Dインターフェースの生成に失敗しました！");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+		return nullptr;
+	}
 
 	//ディスプレイモードの取得
-	if (FAILED(GetDisplayMode())) { return nullptr; }
+	if (FAILED(GetDisplayMode()))
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("ディスプレイモードの取得に失敗しました！");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+		return nullptr;
+	}
 
 	//レンダリングデバイスのプレゼントパラメータの生成
 	d3dpp = CreatePresentParam(screenSize, windowHandle, TRUE);
@@ -143,10 +162,11 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateLPD3DDevice(const HWND& windowHandle,
 	lpd3d_device = CreateLPD3DDeviceLeastREFMode(windowHandle, d3dpp);
 	if (lpd3d_device != nullptr) { return lpd3d_device; }
 
-	MessageBox(windowHandle,
-		"すべてのDirect3Dデバイスの作成制御に失敗しました。\nゲームの実行を終了いたします。",
-		"警告",
-		(MB_OK | MB_ICONWARNING));
+	//メッセージの表示
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("すべてのDirect3Dデバイスの作成に失敗しました。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+	}
 
 	return nullptr;
 }
@@ -171,11 +191,10 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateLPD3DDeviceHALMode(const HWND& window
 	}
 
 	//上記の処理が失敗した場合に、下記のメッセージボックスを表示。
-	MessageBox(windowHandle,
-		"HALモードによるDirect3Dデバイスが作成できませんでした。\nHALモードによる最低限のデバイス作成制御で再試行します。",
-		"警告",
-		(MB_OK | MB_ICONWARNING));
-
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("HALモードによるDirect3Dデバイスが作成できませんでした。\nHALモードによる最低限のデバイス作成制御で再試行します。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+	}
 	return nullptr;
 }
 
@@ -199,11 +218,10 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateLPD3DDeviceLeastHALMode(const HWND& w
 	}
 
 	//上記の処理が失敗した場合に、下記のメッセージボックスを表示。
-	MessageBox(windowHandle,
-		"HALモードによる最低限のデバイス作成制御でDirect3Dデバイスが作成できませんでした。\nをREFモードによるデバイス作成制御で再試行します。",
-		"警告",
-		(MB_OK | MB_ICONWARNING));
-
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("HALモードによる最低限のデバイス作成制御でDirect3Dデバイスが作成できませんでした。\nをREFモードによるデバイス作成制御で再試行します。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+	}
 	return nullptr;
 }
 
@@ -227,11 +245,10 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateLPD3DDeviceREFMode(const HWND& window
 	}
 
 	//上記の処理が失敗した場合に、下記のメッセージボックスを表示。
-	MessageBox(windowHandle,
-		"REFモードによるデバイス作成制御でDirect3Dデバイスが作成できませんでした。\nREFモードによる最低限のデバイス作成制御で再試行します。",
-		"警告",
-		(MB_OK | MB_ICONWARNING));
-
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("REFモードによるデバイス作成制御でDirect3Dデバイスが作成できませんでした。REFモードによる最低限のデバイス作成制御で再試行します。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+	}
 	return nullptr;
 }
 
@@ -255,11 +272,10 @@ LPDIRECT3DDEVICE9 DX9GraphicsDevice::CreateLPD3DDeviceLeastREFMode(const HWND& w
 	}
 
 	//上記の処理が失敗した場合に、下記のメッセージボックスを表示。
-	MessageBox(windowHandle,
-		"REFモードによる最低限のデバイス作成制御でDirect3Dデバイスが作成できませんでした。",
-		"警告",
-		(MB_OK | MB_ICONWARNING));
-
+	{
+		std::string msg_str = OUTPUT_FORMAT_STRING("REFモードによる最低限のデバイス作成制御でDirect3Dデバイスが作成できませんでした。");
+		DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+	}
 	return nullptr;
 }
 

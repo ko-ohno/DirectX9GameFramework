@@ -12,6 +12,7 @@
 #include "../Win32APIWindow.h"
 #include "../DX9Graphics.h"
 #include "../../ImGui/ImGuiManager.h"
+#include "../../CodeDebug/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -39,13 +40,28 @@ ApplicationManager::~ApplicationManager(void)
 bool ApplicationManager::Init(void)
 {
 	//グラフィックスオブジェクトの生成。
-	dx9_graphics_ = dx9_graphics_->Create();
-	dx9_graphics_->CreateDX9Graphics(window_handle_, app_window_->GetWindowClientSize(window_handle_));
+	{
+		dx9_graphics_ = dx9_graphics_->Create();
+		const bool directx9_init = dx9_graphics_->CreateDX9Graphics(window_handle_, app_window_->GetWindowClientSize(window_handle_));
+		if (directx9_init == false)
+		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("directx9の初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+			return false;
+		}
+	}
 
 	//ImGuiの起動
-	imgui_manager_ = imgui_manager_->Create();
-	imgui_manager_->StartUp(dx9_graphics_, window_handle_);
-
+	{
+		imgui_manager_ = imgui_manager_->Create();
+		const bool imgui_init = imgui_manager_->StartUp(dx9_graphics_, window_handle_);
+		if (imgui_init == false)
+		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("ImGuiの初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+			return false;
+		}
+	}
 	return true;
 }
 

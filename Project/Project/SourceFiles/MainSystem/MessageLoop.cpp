@@ -57,7 +57,7 @@ MessageLoop* MessageLoop::Create(MessageLoopType msgLoopTyep, const WindowStyle&
 bool MessageLoop::StartUp(void)
 {
 	if (i_manager_ == nullptr) { return false; }
-	return i_manager_->Init();;
+	return i_manager_->Init();
 }
 
 /*-----------------------------------------------------------------------------
