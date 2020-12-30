@@ -12,9 +12,9 @@
 #include "../StdAfx.h"
 
 /*--- ImGuiのライブラリをインクルード ---*/
-#include "../External/ImGui/include/imgui.h"
-#include "../External/ImGui/include/imgui_impl_dx9.h"
-#include "../External/ImGui/include/imgui_impl_win32.h"
+#include "../../External/ImGui/include/imgui.h"
+#include "../../External/ImGui/include/imgui_impl_dx9.h"
+#include "../../External/ImGui/include/imgui_impl_win32.h"
 
 
 /*-------------------------------------

@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SourceFiles\Main.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceFiles\StdAfx.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceFiles\Generic\Math.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFiles\External\ImGui\include\imconfig.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -39,9 +30,6 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\ImGui\ImGuiManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_truetype.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -51,59 +39,62 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_textedit.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\CodeDebug\DebugFunction.h">
+    <ClInclude Include="SourceFiles\Develop\Generic\Math.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\Win32APIWindow.h">
+    <ClInclude Include="SourceFiles\Develop\StdAfx.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsDevice.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsDevice.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsRenderer.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Manager\ApplicationManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\MessageLoop.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Manager\SplashScreenManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Application.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\AspectRatio.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\SplashScreen.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\Manager\ApplicationManager.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\IManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\Manager\SplashScreenManager.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\MessageLoop.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\IManager.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\SplashScreen.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\MainSystem\AspectRatio.h">
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Win32APIWindow.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Icon\resource.h">
+    <ClInclude Include="SourceFiles\Develop\Application.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\DevelopSystemDefine.h">
+    <ClInclude Include="SourceFiles\Develop\DevelopSystemDefine.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\CodeDebug\DebugFunction.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\ImGui\ImGuiManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Icon\resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceFiles\Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFiles\StdAfx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFiles\Generic\Math.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -116,49 +107,58 @@
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\ImGui\ImGuiManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_tables.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_widgets.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\CodeDebug\DebugFunction.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_demo.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\Win32APIWindow.cpp">
+    <ClCompile Include="SourceFiles\Develop\Generic\Math.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsDevice.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsDevice.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsRenderer.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Manager\ApplicationManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\MessageLoop.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Manager\SplashScreenManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Application.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\AspectRatio.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\SplashScreen.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\Manager\ApplicationManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\MessageLoop.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\Manager\SplashScreenManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\SplashScreen.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\MainSystem\AspectRatio.cpp">
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Win32APIWindow.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\StdAfx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\CodeDebug\DebugFunction.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\ImGui\ImGuiManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,7 +168,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SourceFiles\Icon\Resource.rc">
+    <ResourceCompile Include="SourceFiles\Develop\Icon\Resource.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>

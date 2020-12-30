@@ -153,65 +153,65 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="SourceFiles\DevelopSystemDefine.h" />
-    <ClInclude Include="SourceFiles\Icon\resource.h" />
-    <ClInclude Include="SourceFiles\MainSystem\AspectRatio.h" />
-    <ClInclude Include="SourceFiles\MainSystem\Manager\SplashScreenManager.h" />
-    <ClInclude Include="SourceFiles\MainSystem\MessageLoop.h" />
-    <ClInclude Include="SourceFiles\MainSystem\IManager.h" />
+    <ClInclude Include="SourceFiles\Develop\DevelopSystemDefine.h" />
+    <ClInclude Include="SourceFiles\Develop\Icon\resource.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\AspectRatio.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Manager\SplashScreenManager.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\MessageLoop.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\IManager.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_rectpack.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_textedit.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_truetype.h" />
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics.h" />
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsDevice.h" />
-    <ClInclude Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsRenderer.h" />
-    <ClInclude Include="SourceFiles\ImGui\ImGuiManager.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsDevice.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsRenderer.h" />
+    <ClInclude Include="SourceFiles\Develop\ImGui\ImGuiManager.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imconfig.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_win32.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
-    <ClInclude Include="SourceFiles\Generic\Math.h" />
-    <ClInclude Include="SourceFiles\CodeDebug\DebugFunction.h" />
-    <ClInclude Include="SourceFiles\Application.h" />
-    <ClInclude Include="SourceFiles\MainSystem\Manager\ApplicationManager.h" />
-    <ClInclude Include="SourceFiles\StdAfx.h" />
-    <ClInclude Include="SourceFiles\Main.h" />
-    <ClInclude Include="SourceFiles\MainSystem\Win32APIWindow.h" />
-    <ClInclude Include="SourceFiles\MainSystem\SplashScreen.h" />
+    <ClInclude Include="SourceFiles\Develop\Generic\Math.h" />
+    <ClInclude Include="SourceFiles\Develop\CodeDebug\DebugFunction.h" />
+    <ClInclude Include="SourceFiles\Develop\Application.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Manager\ApplicationManager.h" />
+    <ClInclude Include="SourceFiles\Develop\StdAfx.h" />
+    <ClInclude Include="SourceFiles\Develop\Main.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\Win32APIWindow.h" />
+    <ClInclude Include="SourceFiles\Develop\MainSystem\SplashScreen.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceFiles\MainSystem\AspectRatio.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\Manager\SplashScreenManager.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\MessageLoop.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\AspectRatio.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Manager\SplashScreenManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\MessageLoop.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_demo.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_tables.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_widgets.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsDevice.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\DX9Graphics\DX9GraphicsRenderer.cpp" />
-    <ClCompile Include="SourceFiles\ImGui\ImGuiManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsDevice.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\DX9Graphics\DX9GraphicsRenderer.cpp" />
+    <ClCompile Include="SourceFiles\Develop\ImGui\ImGuiManager.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_draw.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp" />
-    <ClCompile Include="SourceFiles\Generic\Math.cpp" />
-    <ClCompile Include="SourceFiles\CodeDebug\DebugFunction.cpp" />
-    <ClCompile Include="SourceFiles\Application.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\Manager\ApplicationManager.cpp" />
-    <ClCompile Include="SourceFiles\StdAfx.cpp">
+    <ClCompile Include="SourceFiles\Develop\Generic\Math.cpp" />
+    <ClCompile Include="SourceFiles\Develop\CodeDebug\DebugFunction.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Manager\ApplicationManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Main.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\Win32APIWindow.cpp" />
-    <ClCompile Include="SourceFiles\MainSystem\SplashScreen.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Main.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\Win32APIWindow.cpp" />
+    <ClCompile Include="SourceFiles\Develop\MainSystem\SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SourceFiles\Icon\Resource.rc" />
+    <ResourceCompile Include="SourceFiles\Develop\Icon\Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
