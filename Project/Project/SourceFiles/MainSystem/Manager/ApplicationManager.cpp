@@ -22,9 +22,11 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	, window_handle_(nullptr)
 	, dx9_graphics_(nullptr)
 	, imgui_manager_(nullptr)
+	, screen_scaler_(0.0f)
 {
 	app_window_	   = app_window_->Create();
 	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
+	screen_scaler_ = windowStyle.screen_scaler;	// ‰æ–Ê‚ÌŠgk”{—¦‚ğæ“¾‚Å‚«‚é‚æ‚¤‚É
 }
 
 /*-----------------------------------------------------------------------------

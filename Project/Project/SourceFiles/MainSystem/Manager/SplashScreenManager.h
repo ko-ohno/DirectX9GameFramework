@@ -34,6 +34,7 @@ public:
 
 	//スプラッシュスクリーン側からアプリケーション側に、アスペクト比率を渡す
 	class Vector2* GetSelectedAspectRatio(void) override;
+	float		   GetScreenScaler(void) override;
 
 	// メッセージループの状態をマネージャ側から制御
 	bool IsLoopBreak(void) override;
@@ -45,9 +46,11 @@ private:
 
 private:
 	//アスペクト比率の計算
+	Vector2					 aspect_ratio_size_;
 	std::vector<std::string> aspact_ratio_string_array_;
 	std::vector<Vector2>	 aspect_ratio_size_array_;
-	Vector2					 aspect_ratio_size_;
+	std::vector<float>		 screen_scaler_array_;
+	float					 screen_scaler_;
 
 	//スプラッシュスクリーン用の画像データ
 	LPDIRECT3DTEXTURE9		 texture_;

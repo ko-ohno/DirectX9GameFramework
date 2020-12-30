@@ -33,6 +33,7 @@ public:
 
 	//@Œp³æ‚ÌƒNƒ‰ƒX‚Åoverride‚Å‚«‚é‚æ‚¤‚É
 	virtual class Vector2* GetSelectedAspectRatio(void) { return NEW Vector2(100.f, 100.f); }
+	virtual float GetScreenScaler(void) { return 1.0f; }
 	virtual bool IsLoopBreak(void) { return false; }
 	virtual bool IsShutDown(void) { return false; }
 

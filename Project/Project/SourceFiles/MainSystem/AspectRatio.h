@@ -27,12 +27,14 @@ public:
 	static AspectRatio* Create(void);
 
 	std::vector<std::pair<std::string, class Vector2>> GetAspectRatioList(void);
+	std::vector<float> GetScreenScalerList(void);
 
 private:
 	std::string OutputAspectRatioString(const class Vector2& screenSize);
 
 private:
 	std::vector<std::pair<std::string, class Vector2>> aspect_ratio_list_;
+	std::vector<float> screen_scaler_;
 };
 
 #endif //ASPECT_RATIO_H_

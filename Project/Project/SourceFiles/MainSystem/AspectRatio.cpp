@@ -19,10 +19,7 @@ AspectRatio::AspectRatio(void)
 {	
 	//初期化
 	aspect_ratio_list_.clear();
-
-	//拡大率のリスト
-	std::vector<float> screen_scaler;
-	screen_scaler.clear();
+	screen_scaler_.clear();
 
 	//アスペクト比率は16：9の比率を何倍にしたかの値
 	//例):1920:1080は16：9を120倍にした値
@@ -34,7 +31,7 @@ AspectRatio::AspectRatio(void)
 	float scaler = 0.5f;
 	for (;;)
 	{
-		screen_scaler.push_back(scaler);
+		screen_scaler_.push_back(scaler);
 		scaler += scaler_add_value;
 		if (scaler >= maximize_scaler) { break; }
 
@@ -48,7 +45,7 @@ AspectRatio::AspectRatio(void)
 	Vector2 full_screen_window_size = Win32APIWindow().GetFullScreenSize();
 
 	//画面サイズのリストの生成
-	for (auto screen_scale : screen_scaler)
+	for (auto screen_scale : screen_scaler_)
 	{
 		//計算後のアスペクト比率を格納
 		const Vector2 calculated_aspect_ratio = full_screen_window_size * screen_scale;
@@ -90,7 +87,7 @@ AspectRatio* AspectRatio::Create(void)
 }
 
 /*-----------------------------------------------------------------------------
-/* アスペクトサイズの取得関数
+/* アスペクト比率のリスト取得関数
 -----------------------------------------------------------------------------*/
 std::vector<std::pair<std::string, class Vector2>> AspectRatio::GetAspectRatioList(void)
 {
@@ -98,7 +95,15 @@ std::vector<std::pair<std::string, class Vector2>> AspectRatio::GetAspectRatioLi
 }
 
 /*-----------------------------------------------------------------------------
-/* アスペクト比率の文字列計算
+/* アスペクト比率の拡縮値
+-----------------------------------------------------------------------------*/
+std::vector<float> AspectRatio::GetScreenScalerList(void)
+{
+	return screen_scaler_;
+}
+
+/*-----------------------------------------------------------------------------
+/* アスペクト比率の文字列生成
 -----------------------------------------------------------------------------*/
 std::string AspectRatio::OutputAspectRatioString(const Vector2& screenSize)
 {

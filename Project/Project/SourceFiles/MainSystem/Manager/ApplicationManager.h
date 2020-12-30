@@ -33,6 +33,7 @@ public:
 
 	// Application‘¤‚Í override ‚µ‚È‚¢
 	// class Vector2* GetSelectedAspectRatio(void) override;
+	// float GetScreenScaler(void) override;
 	// bool IsLoopBreak(void) override;
 	// bool IsShutDown(void) override;
 
@@ -42,6 +43,7 @@ private:
 	class Win32APIWindow*	app_window_;
 	class DX9Graphics*		dx9_graphics_;
 	class ImGuiManager*		imgui_manager_;
+	float					screen_scaler_;
 };
 
 #endif //APPLICATION_MANAGER_H_

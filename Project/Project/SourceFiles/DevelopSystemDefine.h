@@ -11,7 +11,7 @@
 /*--- インクルードファイル ---*/
 
 //この定義をコメント化するかしないかで処理を省くように指定する。
-#define IN_DEVELOPMENT_ 
+//#define IN_DEVELOPMENT_ 
 
 //テストコード
 #if defined(IN_DEVELOPMENT_)

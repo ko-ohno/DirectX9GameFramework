@@ -30,6 +30,7 @@ public:
 	void ShutDown(void);
 
 	class Vector2* GetSelectedAspectRatio(void);
+	float GetScreenScaler(void);
 	bool IsApplicationShutDown(void);
 	
 private:

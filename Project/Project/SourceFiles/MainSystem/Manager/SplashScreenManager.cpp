@@ -20,7 +20,9 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 SplashScreenManager::SplashScreenManager(const WindowStyle& windowStyle)
-	: aspect_ratio_size_(Vector2())
+	: screen_scaler_(1.0f)
+	, aspect_ratio_size_(Vector2())
+	, texture_(nullptr)
 	, splash_window_(nullptr)
 	, window_handle_(nullptr)
 	, dx9_graphics_(nullptr)
@@ -141,32 +143,36 @@ void SplashScreenManager::Update(float deltaTime)
 				}
 				ImGui::EndGroup();
 
-				//スプラッシュスクリーン起動直後のコンボボックスの選択値
-				static int combo_item_current = 2;
-
-				//選択中の比率の更新
-				aspect_ratio_size_ = aspect_ratio_size_array_.at(combo_item_current);
-
-				//配列の中に格納
-				std::vector<const char*> combo_items_;
-				auto iter = aspact_ratio_string_array_.begin();
-				for (iter; iter != aspact_ratio_string_array_.end(); ++iter)
+				//コンボボックス
 				{
-					combo_items_.push_back((*iter).c_str());
-				}
+					//スプラッシュスクリーン起動直後のコンボボックスの選択値
+					static int combo_item_current = 2;
 
-				//コンボボックス描画
-				ImGui::BeginGroup();
-				{
-					ImGui::Text("ScreenSize:");
-					ImGui::SameLine();
-					ImGui::Combo(""
-								, &combo_item_current
-								, combo_items_.data()
-								, aspact_ratio_string_array_.size());
-					//ImGui::Text("combo_item_current:%d", combo_item_current);
+					//選択中の比率の更新
+					aspect_ratio_size_ = aspect_ratio_size_array_.at(combo_item_current);
+					screen_scaler_ = screen_scaler_array_.at(combo_item_current);
+
+					//配列の中に格納
+					std::vector<const char*> combo_items_;
+					auto iter = aspact_ratio_string_array_.begin();
+					for (iter; iter != aspact_ratio_string_array_.end(); ++iter)
+					{
+						combo_items_.push_back((*iter).c_str());
+					}
+
+					//コンボボックス描画
+					ImGui::BeginGroup();
+					{
+						ImGui::Text("ScreenSize:");
+						ImGui::SameLine();
+						ImGui::Combo(""
+									, &combo_item_current
+									, combo_items_.data()
+									, aspact_ratio_string_array_.size());
+						//ImGui::Text("combo_item_current:%d", combo_item_current);
+					}
+					ImGui::EndGroup();
 				}
-				ImGui::EndGroup();
 
 				//改行
 				ImGui::BeginGroup();
@@ -227,6 +233,8 @@ void SplashScreenManager::MakeListAspectRatio(void)
 		aspect_ratio_size_array_.push_back((*iter).second);
 	}
 
+	screen_scaler_array_ = aspect_ratio->GetScreenScalerList();
+
 	delete aspect_ratio;
 }
 
@@ -236,6 +244,14 @@ void SplashScreenManager::MakeListAspectRatio(void)
 Vector2* SplashScreenManager::GetSelectedAspectRatio(void)
 {
 	return &aspect_ratio_size_;
+}
+
+/*-----------------------------------------------------------------------------
+/* 画面の拡縮倍率の取得関数
+-----------------------------------------------------------------------------*/
+float SplashScreenManager::GetScreenScaler(void)
+{
+	return screen_scaler_;
 }
 
 /*-----------------------------------------------------------------------------

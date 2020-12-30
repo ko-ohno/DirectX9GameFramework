@@ -145,6 +145,8 @@ bool Application::RunSplashScreen(void)
 		selected_screen_aspect_ratio_ = *splash_screen.GetSelectedAspectRatio();
 
 		is_shutdown_ = splash_screen.IsApplicationShutDown();
+
+		window_style_.screen_scaler = splash_screen.GetScreenScaler();
 	}
 	splash_screen.ShutDown();
 	return is_success;

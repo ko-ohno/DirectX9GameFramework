@@ -36,6 +36,7 @@ public:
 	HICON		  hIcon;			//アイコンへのインスタンス
 	std::string   windowTitle;		//ウィンドウタイトル
 	Vector2		  windowSize;		//ウィンドウサイズ
+	float		  screen_scaler;	//画面の拡縮倍率
 };
 
 /*-------------------------------------

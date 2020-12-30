@@ -88,6 +88,15 @@ Vector2* SplashScreen::GetSelectedAspectRatio(void)
 }
 
 /*-----------------------------------------------------------------------------
+/* 画面比率
+-----------------------------------------------------------------------------*/
+float SplashScreen::GetScreenScaler(void)
+{
+    if (message_loop_ == nullptr) { return 1.0f; }
+    return message_loop_->GetScreenScaler();
+}
+
+/*-----------------------------------------------------------------------------
 /*  アプリケーションを終了するか
 -----------------------------------------------------------------------------*/
 bool SplashScreen::IsApplicationShutDown(void)
