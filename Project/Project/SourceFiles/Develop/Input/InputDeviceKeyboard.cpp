@@ -93,7 +93,7 @@ void InputDeviceKeyboard::Uninit(void)
 	{
 		// キーボードへのアクセス権を開放
 		lpdinput_device_keyboard_->Unacquire();
-		AFX_SAFE_RELEASE_(lpdinput_device_keyboard_);
+		SAFE_RELEASE_(lpdinput_device_keyboard_);
 	}
 }
 

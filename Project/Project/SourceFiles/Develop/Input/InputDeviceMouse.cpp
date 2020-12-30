@@ -8,7 +8,7 @@
 
 /*--- インクルードファイル ---*/
 #include "InputDeviceMouse.h"
-#include "Vector2.h"
+#include "../Generic/Math.h"
 
 //静的変数宣言
 LPDIRECTINPUTDEVICE8	InputDeviceMouse::lpdinput_device_mouse_;
@@ -179,7 +179,7 @@ void InputDeviceMouse::Uninit(void)
 {
 	if (lpdinput_device_mouse_ != nullptr)
 	{
-		AFX_SAFE_RELEASE_(lpdinput_device_mouse_);
+		SAFE_RELEASE_(lpdinput_device_mouse_);
 	}
 }
 

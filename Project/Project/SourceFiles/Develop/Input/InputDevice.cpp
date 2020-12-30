@@ -64,12 +64,12 @@ void InputDevice::Init(void)
 void InputDevice::Uninit(void)
 {	
 	// lpdinput_object_ptr_オブジェクトの開放
-	if (lpdinput_object_ != nullptr) { AFX_SAFE_RELEASE_(lpdinput_object_); }
+	if (lpdinput_object_ != nullptr) { SAFE_RELEASE_(lpdinput_object_); }
 
 	//各デバイスの破棄
-	if (input_device_keyboard_) { AFX_SAFE_DELETE_(input_device_keyboard_); }
-	if (input_device_mouce_)	{ AFX_SAFE_DELETE_(input_device_mouce_); }
-	if (input_device_xinput_)	{ AFX_SAFE_DELETE_(input_device_xinput_); }
+	if (input_device_keyboard_) { SAFE_DELETE_(input_device_keyboard_); }
+	if (input_device_mouce_)	{ SAFE_DELETE_(input_device_mouce_); }
+	if (input_device_xinput_)	{ SAFE_DELETE_(input_device_xinput_); }
 }
 
 /*-----------------------------------------------------------------------------

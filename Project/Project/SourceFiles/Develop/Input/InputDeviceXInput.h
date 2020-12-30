@@ -9,7 +9,7 @@
 #define	INPUT_DEVICE_XINPUT_H_
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include <Xinput.h>
 
 //XINPUTコントローラのためのライブラリをリンク

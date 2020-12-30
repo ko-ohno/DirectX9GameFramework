@@ -11,7 +11,7 @@
 #include "InputDevice.h"
 #include "InputDeviceKeyboard.h"
 #include "InputDeviceMouse.h"
-#include "Vector2.h"
+#include "../Generic/Math.h"
 
 //Ã“I•Ï”éŒ¾
 InputDevice *InputCheck::input_device_;

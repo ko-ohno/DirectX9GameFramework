@@ -9,7 +9,7 @@
 #define	INPUT_CHECK_H_
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "InputDeviceXInput.h"
 
 /*--- 構造体定義 ---*/
