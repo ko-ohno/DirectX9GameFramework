@@ -22,7 +22,7 @@ typedef struct
 }CUSTOM_VERTEX;
 
 // 2Dの頂点フォーマットの設定
-#define FVF_VERTEX2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
+#define FVF_CUSTOM_VERTEX (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1)
 
 /*-------------------------------------
 /* スプライトシェーダクラス
@@ -35,16 +35,20 @@ public:
 
 	static SpriteShader* Create(void);
 
-	void Init(void);
+	bool Init(class Camera* camera);
 	void Uninit(void);
 
-	bool ShaderCompile(LPDIRECT3DDEVICE9 device);
+	bool ShaderCompile(LPDIRECT3DDEVICE9 lpd3d_device);
+	bool LoadCompiledShader(LPDIRECT3DDEVICE9 lpd3d_device);
 
-	void Draw();
+	void Draw(LPDIRECT3DDEVICE9 lpd3d_device);
 
 private:
-	static constexpr int MAX_VERTEX_NUM = 4;
-	CUSTOM_VERTEX vertex_array_[MAX_VERTEX_NUM];
+	static constexpr int MAX_VERTEX_COUNT = 4;
+	CUSTOM_VERTEX vertex_array_[MAX_VERTEX_COUNT];
+
+	//LPDIRECT3DVERTEXBUFFER9* vertex_buffer_;
+	//LPDIRECT3DINDEXBUFFER9*  index_buffer_;
 
 	LPDIRECT3DVERTEXSHADER9 vertex_shader_;		// 頂点シェーダー
 	LPD3DXCONSTANTTABLE		vs_constant_table_;	// 定数テーブル
