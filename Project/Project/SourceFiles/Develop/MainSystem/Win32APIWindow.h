@@ -25,6 +25,7 @@ public:
 		, hIcon(nullptr)
 		, windowTitle("")
 		, windowSize(Vector2())
+		, screen_scaler(1.f)
 	{}
 
 	~WindowStyle(void) {}

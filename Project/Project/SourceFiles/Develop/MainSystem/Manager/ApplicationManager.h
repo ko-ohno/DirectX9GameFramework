@@ -43,7 +43,12 @@ private:
 	class Win32APIWindow*	app_window_;
 	class DX9Graphics*		dx9_graphics_;
 	class ImGuiManager*		imgui_manager_;
+	WindowStyle				window_style_;
 	float					screen_scaler_;
+
+	//テスト用
+	class SpriteShader*		sprite_shader_;
+	class Camera*			camera_;
 };
 
 #endif //APPLICATION_MANAGER_H_

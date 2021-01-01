@@ -14,6 +14,10 @@
 #include "../../ImGui/ImGuiManager.h"
 #include "../../CodeDebug/DebugFunction.h"
 
+//シェーダテスト
+#include "../Shader/SpriteShader.h"
+#include "../../GameObjects/Camera.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -22,11 +26,18 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	, window_handle_(nullptr)
 	, dx9_graphics_(nullptr)
 	, imgui_manager_(nullptr)
+	, window_style_(WindowStyle())
 	, screen_scaler_(0.0f)
+
+	, sprite_shader_(nullptr)
+	, camera_(nullptr)
 {
 	app_window_	   = app_window_->Create();
 	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
-	screen_scaler_ = windowStyle.screen_scaler;	// 画面の拡縮倍率を取得できるように
+
+	// ウィンドウについての情報を取得できるように
+	window_style_  = windowStyle;
+	screen_scaler_ = window_style_.screen_scaler;	// 画面の拡縮倍率を取得できるように
 }
 
 /*-----------------------------------------------------------------------------
@@ -64,6 +75,28 @@ bool ApplicationManager::Init(void)
 			return false;
 		}
 	}
+
+	//カメラの生成
+	{
+		camera_ = camera_->Create();
+		camera_->SetAspectSize(window_style_.windowSize);
+		const bool camera_init = camera_->Init();
+		if (camera_init == false)
+		{
+			return false;
+		}
+	}
+
+	//スプライトシェーダ
+	{
+		sprite_shader_ = sprite_shader_->Create();
+		const bool is_success_compiled = sprite_shader_->Init(camera_);
+		if (is_success_compiled == false)
+		{
+			return false;
+		}
+
+	}
 	return true;
 }
 
@@ -72,6 +105,10 @@ bool ApplicationManager::Init(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Uninit(void)
 {
+	sprite_shader_->Uninit();
+	SAFE_DELETE_(sprite_shader_);
+	SAFE_DELETE_(camera_);
+
 	imgui_manager_->ShutDown();
 
 	SAFE_DELETE_(app_window_);
@@ -104,6 +141,8 @@ void ApplicationManager::Update(float deltaTime)
 void ApplicationManager::GenerateOutput(void)
 {
 	dx9_graphics_->RenderingBegin();
+
+	sprite_shader_->Draw(*dx9_graphics_->GetLPD3DDevice());
 
 	imgui_manager_->ImGuiRender();
 
