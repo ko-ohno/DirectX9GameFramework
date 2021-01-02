@@ -72,7 +72,7 @@
 #endif
 
 //メモリ解放マクロ関数
-#define SAFE_RELEASE_(x) if((x) != NULL){ (x)->Release(); x = nullptr; }
+#define SAFE_RELEASE_(x) if((x) != nullptr){ (x)->Release(); x = nullptr; }
 
 //中身をdeleteするマクロ関数
 #define SAFE_DELETE_(p) { if(p) { delete p; p = nullptr; } }

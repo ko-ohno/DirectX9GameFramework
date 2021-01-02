@@ -1,50 +1,36 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Application.h] アプリケーションクラス
+/*	[Shader.h] シェーダークラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アプリケーションクラス
+/*	説明：シェーダークラス
 =============================================================================*/
-#ifndef APPLICATION_H_
-#define	APPLICATION_H_
+#ifndef SHADER_H_
+#define	SHADER_H_
 
 /*--- インクルードファイル ---*/
-#include "Application/Win32APIWindow.h"
-#include "Math/Math.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/* アプリケーションクラス
+/* シェーダークラス
 -------------------------------------*/
-class Application
+class Shader
 {
 public:
-	Application(void);
-	~Application(void);
+	Shader(void);
+	virtual ~Shader(void);
 
-public:
-	bool StartUp(const HINSTANCE& hInstance, const int& nShowCmd);
-	void Run(void);
-	void ShutDown(void);
+	static Shader* Create(void);
 
 private:
-	//スプラッシュスクリーンの実行
-	bool RunSplashScreen(void);
 
-	HICON LoadAppIcon(const HINSTANCE& hInstance, const Vector2& iconSize);
-
-private:
-	std::string			app_title_name_;
-	WindowStyle			window_style_;
-	class Vector2		selected_screen_aspect_ratio_;
-	class MessageLoop*	message_loop_;
-	bool				is_shutdown_;
 };
 
-#endif //APPLICATION_H_
+
+#endif //RENDERER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

@@ -9,9 +9,9 @@
 /*--- インクルードファイル ---*/
 #include "../StdAfx.h"
 #include "ImGuiManager.h"
-#include "../MainSystem/DX9Graphics.h"
-#include "../Generic/Math.h"
-#include "../CodeDebug/DebugFunction.h"
+#include "../Application/DX9Graphics.h"
+#include "../Math/Math.h"
+#include "../DebugCode/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

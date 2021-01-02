@@ -12,9 +12,9 @@
 /*-----------------------------------------------------------------------------
 /* グローバル変数宣言ブロック
 -----------------------------------------------------------------------------*/
-float4x4 	g_world_matrix;					// ワールド行列
-float4x4	g_view_matrix;					// カメラ変換行列
-float4x4	g_projectionmatrix;				// プロジェクション変換行列
+float4x4 	g_MatWorld;					// ワールド行列
+float4x4	g_MatView;					// カメラ変換行列
+float4x4	g_MatProjection;				// プロジェクション変換行列
 
 /*-----------------------------------------------------------------------------
 /* テクスチャーサンプラーブロック
@@ -30,9 +30,9 @@ void VS( float3 in_pos : POSITION0
 	   , out float2 out_tex : TEXCOORD0)
 {
 	// 座標変換
-	out_pos = mul(float4(in_pos, 1.0f), g_world_matrix);	// 頂点座標（ローカル座標系）をワールド座標系に変換	
-	out_pos = mul(out_pos, g_view_matrix);					// 頂点座標（ワールド座標系）をカメラ座標系に変換
-	out_pos = mul(out_pos, g_projectionmatrix);				// 頂点座標（カメラ座標系）をスクリーン座標系に変換
+	out_pos = mul(float4(in_pos, 1.0f), g_MatWorld);	// 頂点座標（ローカル座標系）をワールド座標系に変換	
+	out_pos = mul(out_pos, g_MatView);					// 頂点座標（ワールド座標系）をカメラ座標系に変換
+	out_pos = mul(out_pos, g_MatProjection);			// 頂点座標（カメラ座標系）をスクリーン座標系に変換
 	out_tex = in_tex;
 }
 
@@ -52,33 +52,19 @@ void PS( float4	in_color  : COLOR0
    out_color = texcol;		//RGBA
 }
 
-//void PS(float2 in_tex : TEXCOORD0,
-//	out float4 out_color : COLOR0)
-//{
-//	float4 texcol = tex2D(Sampler1, in_tex);
-//	float gray = texcol.r * 0.299 + texcol.g * 0.587 + texcol.b * 0.114;
-//	/*
-//		out_color.r = gray;
-//		out_color.g = gray;
-//		out_color.b = gray;
-//	*/
-//	/*
-//		out_color.r = gray * 240.0f/255.0f;
-//		out_color.g = gray * 200.0f/255.0f;
-//		out_color.b = gray * 148.0f/255.0f;
-//	*/
-//
-//	out_color.r = gray * 250.0f / 255.0f;
-//	out_color.g = gray * 130.0f / 255.0f;
-//	out_color.b = gray * 30.0f / 255.0f;
-//
-//	out_color.a = 0.5;
-//}
-
 /*-----------------------------------------------------------------------------
 /* テクニック宣言ブロック
 -----------------------------------------------------------------------------*/
+technique Tech {
+	pass p0 {
+		VertexShader = compile vs_3_0 VS();
+		PixelShader = compile ps_3_0 PS();
 
+		AlphaBlendEnable = true;
+		SrcBlend = SRCALPHA;
+		DestBlend = INVSRCALPHA;
+	}
+}
 
 /*=============================================================================
 /*		End of File

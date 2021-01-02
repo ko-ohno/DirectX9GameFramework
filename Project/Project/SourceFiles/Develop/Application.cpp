@@ -9,12 +9,12 @@
 /*--- インクルードファイル ---*/
 #include "StdAfx.h"
 #include "Application.h"
-#include "MainSystem/SplashScreen.h"
-#include "MainSystem/MessageLoop.h"
-#include "Generic/Math.h"
-#include "CodeDebug/DebugFunction.h"
+#include "Application/SplashScreen.h"
+#include "Application/MessageLoop.h"
+#include "Math/Math.h"
+#include "DebugCode/DebugFunction.h"
 #include "DevelopSystemDefine.h"
-#include "Icon/resource.h"
+#include "Application/Icon/resource.h"
 
 
 /*-----------------------------------------------------------------------------
