@@ -7,7 +7,7 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../StdAfx.h"
+#include "StdAfx.h"
 #include "ApplicationManager.h"
 #include "../Win32APIWindow.h"
 #include "../DX9Graphics.h"
@@ -15,8 +15,8 @@
 #include "../../DebugCode/DebugFunction.h"
 
 //シェーダテスト
-#include "../Shader/SpriteShader.h"
-#include "../GameObjects/Camera.h"
+#include "Game/Shader/SpriteShader.h"
+#include "Game/GameObjects/GameObject/Camera.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -90,7 +90,8 @@ bool ApplicationManager::Init(void)
 	//スプライトシェーダ
 	{
 		sprite_shader_ = sprite_shader_->Create();
-		const bool is_success_compiled = sprite_shader_->Init(camera_);
+		sprite_shader_->SetCamera(camera_);
+		const bool is_success_compiled = sprite_shader_->Init(*DX9Graphics::GetLPD3DDevice());
 		if (is_success_compiled == false)
 		{
 			return false;

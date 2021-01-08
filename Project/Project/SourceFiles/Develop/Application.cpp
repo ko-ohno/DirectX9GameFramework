@@ -11,7 +11,7 @@
 #include "Application.h"
 #include "Application/SplashScreen.h"
 #include "Application/MessageLoop.h"
-#include "Math/Math.h"
+#include "Application/Math.h"
 #include "DebugCode/DebugFunction.h"
 #include "DevelopSystemDefine.h"
 #include "Application/Icon/resource.h"

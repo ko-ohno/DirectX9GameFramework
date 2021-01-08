@@ -11,7 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../IManager.h"
 #include "../Win32APIWindow.h"
-#include "../../Math/Math.h"
+#include "../Math.h"
 
 /*-------------------------------------
 /* 構造体

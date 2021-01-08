@@ -11,7 +11,7 @@
 #include "SplashScreenManager.h"
 #include "../Win32APIWindow.h"
 #include "../DX9Graphics.h"
-#include "../../ImGui/ImGuiManager.h"
+#include "../ImGui/ImGuiManager.h"
 #include "../AspectRatio.h"
 #include "../../DebugCode/DebugFunction.h"
 

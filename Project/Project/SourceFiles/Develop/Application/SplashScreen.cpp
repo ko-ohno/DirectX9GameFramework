@@ -7,7 +7,7 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
+#include "StdAfx.h"
 #include "SplashScreen.h"
 #include "MessageLoop.h"
 #include "Win32APIWindow.h"

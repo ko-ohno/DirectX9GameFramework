@@ -7,7 +7,7 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
+#include "StdAfx.h"
 #include "DebugFunction.h"
 
 #pragma warning(disable:4996)

@@ -10,7 +10,7 @@
 #include "DX9Graphics.h"
 #include "DX9Graphics/DX9GraphicsDevice.h"
 #include "DX9Graphics/DX9GraphicsRenderer.h"
-#include "../Math/Math.h"
+#include "Math.h"
 #include "../DebugCode/DebugFunction.h"
 
 

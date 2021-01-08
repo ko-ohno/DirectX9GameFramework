@@ -1,50 +1,63 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Application.h] アプリケーションクラス
+/*	[Camera.h] カメラクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アプリケーションクラス
+/*	説明：カメラクラス
 =============================================================================*/
-#ifndef APPLICATION_H_
-#define	APPLICATION_H_
+#ifndef CAMERA_H_
+#define	CAMERA_H_
 
 /*--- インクルードファイル ---*/
-#include "Application/Win32APIWindow.h"
-#include "Application/Math.h"
+#include "../../../../StdAfx.h"
+#include "../../../Math.h"
 
 /*-------------------------------------
 /* 構造体
 -------------------------------------*/
 
 /*-------------------------------------
-/* アプリケーションクラス
+/* カメラクラス
 -------------------------------------*/
-class Application
+class Camera
 {
 public:
-	Application(void);
-	~Application(void);
+	Camera(void);
+	~Camera(void);
 
-public:
-	bool StartUp(const HINSTANCE& hInstance, const int& nShowCmd);
-	void Run(void);
-	void ShutDown(void);
+	static Camera* Create(void);
+
+	bool Init(void);
+	void Uninit(void);
+	void Input(void);
+	void Update(float deltaTime);
+	void Draw(void);
+
+	void SetAspectSize(class Vector2& aspectSize)
+	{
+		aspect_size_ = aspectSize;
+	}
+
+	D3DXMATRIX GetViewMatrix(void)
+	{
+		return view_matrix_;
+	}
+
+	D3DXMATRIX GetProjectionMatrix(void)
+	{
+		return projection_matrix_;
+	}
 
 private:
-	//スプラッシュスクリーンの実行
-	bool RunSplashScreen(void);
+	D3DXMATRIX view_matrix_;
+	D3DXMATRIX projection_matrix_;
+	Vector2	   aspect_size_;
 
-	HICON LoadAppIcon(const HINSTANCE& hInstance, const Vector2& iconSize);
 
-private:
-	std::string			app_title_name_;
-	WindowStyle			window_style_;
-	class Vector2		selected_screen_aspect_ratio_;
-	class MessageLoop*	message_loop_;
-	bool				is_shutdown_;
 };
 
-#endif //APPLICATION_H_
+
+#endif //CAMERA_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

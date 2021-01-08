@@ -9,7 +9,7 @@
 #define DX9GRAPHICS_DEVICE_H_
 
 /*--- インクルードファイル ---*/
-#include "../../StdAfx.h"
+#include "../DX9Graphics.h"
 
 /*--- 構造体定義 ---*/
 
