@@ -10,11 +10,11 @@
 
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
+#include "../Math.h"
 
 /*--- 構造体定義 ---*/
 
 /*--- クラスの前方宣言 ---*/
-class Vector2;
 
 /*-------------------------------------
 /* マウス入力クラス
@@ -34,7 +34,7 @@ public:
 	bool GetMBRepeat (int mibNum);
 	bool GetMBRelease(int mibNum);
 
-	Vector2 GetMCursorPos(void) const;
+	class Vector2 GetMCursorPos(void) const;
 
 private:
 	void Init(void);

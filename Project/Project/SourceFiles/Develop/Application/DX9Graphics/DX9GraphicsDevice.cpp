@@ -7,10 +7,10 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../../StdAfx.h"
 #include "DX9GraphicsDevice.h"
-#include "Math/Math.h"
-#include "DebugCode/DebugFunction.h"
+#include "../Math.h"
+#include "../../DebugCode/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

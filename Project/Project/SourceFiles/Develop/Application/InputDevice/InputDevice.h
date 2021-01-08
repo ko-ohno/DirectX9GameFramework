@@ -13,10 +13,7 @@
 
 /*--- 構造体定義 ---*/
 
-/*--- クラスの前方宣言 ---*/
-class InputDeviceKeyboard;
-class InputDeviceMouse;
-class InputDeviceXInput;
+
 
 /*-------------------------------------
 /* 入力デバイス管理クラス
@@ -29,13 +26,13 @@ public:
 
 	static InputDevice * Create(void);
 
-	void CreateInputDevice(const HINSTANCE &hInstance, const HWND &wndHandle);
+	bool CreateInputDevice(const HINSTANCE &hInstance, const HWND &wndHandle);
 
 	void Update(const HWND &wndHandle);
 
-	static InputDeviceKeyboard	*GetDeviceInstanceKeyboard(void);
-	static InputDeviceMouse		*GetDeviceInstanceMouse(void);
-	static InputDeviceXInput	*GetDeviceInstanceXInput(void);
+	static class InputDeviceKeyboard* GetDeviceInstanceKeyboard(void);
+	static class InputDeviceMouse*	  GetDeviceInstanceMouse(void);
+	static class InputDeviceXInput*	  GetDeviceInstanceXInput(void);
 
 private:
 	void Init(void);
@@ -43,16 +40,16 @@ private:
 
 	HRESULT CreateDirectInputObject(const HINSTANCE &hInstance);
 
-	void CreateDeviceKyeboard(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle);
-	void CreateDeviceMouse(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle);
-	void CreateDeviceXInput(void);
+	bool CreateDeviceKyeboard(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle);
+	bool CreateDeviceMouse(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle);
+	bool CreateDeviceXInput(void);
 
 private:
-	static InputDeviceKeyboard	* input_device_keyboard_;
-	static InputDeviceMouse		* input_device_mouce_;
-	static InputDeviceXInput	* input_device_xinput_;
+	static class InputDeviceKeyboard* input_device_keyboard_;
+	static class InputDeviceMouse*	  input_device_mouce_;
+	static class InputDeviceXInput*	  input_device_xinput_;
 
-	static LPDIRECTINPUT8		lpdinput_object_;		// DirectInputオブジェクトへのポインタ
+	static LPDIRECTINPUT8 lpdinput_object_;		// DirectInputオブジェクトへのポインタ
 };
 
 

@@ -7,16 +7,18 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../../StdAfx.h"
 #include "ApplicationManager.h"
 #include "../Win32APIWindow.h"
 #include "../DX9Graphics.h"
-#include "../../ImGui/ImGuiManager.h"
+#include "../InputDevice/InputDevice.h"
+#include "../Game/Input/InputCheck.h"
+#include "../ImGui/ImGuiManager.h"
 #include "../../DebugCode/DebugFunction.h"
 
 //シェーダテスト
-#include "Game/Shader/SpriteShader.h"
-#include "Game/GameObjects/GameObject/Camera.h"
+#include "../Game/Shader/SpriteShader.h"
+#include "../Game/GameObjects/GameObject/Camera.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -25,6 +27,7 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	: app_window_(nullptr)
 	, window_handle_(nullptr)
 	, dx9_graphics_(nullptr)
+	, input_device_(nullptr)
 	, imgui_manager_(nullptr)
 	, window_style_(WindowStyle())
 	, screen_scaler_(0.0f)
@@ -61,6 +64,18 @@ bool ApplicationManager::Init(void)
 			std::string msg_str = OUTPUT_FORMAT_STRING("directx9の初期化ができませんでした！");
 			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
 			return false;
+		}
+	}
+
+	//入力デバイスの生成
+	{
+		input_device_ = input_device_->Create();
+		const bool input_device_init = input_device_->CreateInputDevice(window_style_.hInstance, window_handle_);
+		if (input_device_init == false)
+		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("InputDeviceの初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
+
 		}
 	}
 
@@ -114,6 +129,7 @@ void ApplicationManager::Uninit(void)
 
 	SAFE_DELETE_(app_window_);
 	SAFE_DELETE_(imgui_manager_);
+	SAFE_DELETE_(input_device_);
 	SAFE_DELETE_(dx9_graphics_);
 }
 
@@ -122,6 +138,15 @@ void ApplicationManager::Uninit(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Input(void)
 {
+	//入力デバイス更新処理
+	if (input_device_ != nullptr)
+	{
+		//デバイスの更新
+		input_device_->Update(window_handle_);
+
+		//デバイス入力検知クラスの更新
+		InputCheck::SetInputDeviceState(input_device_);
+	}
 }
 
 /*-----------------------------------------------------------------------------

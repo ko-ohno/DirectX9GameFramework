@@ -41,7 +41,7 @@ InputDevice::~InputDevice()
 -----------------------------------------------------------------------------*/
 InputDevice * InputDevice::Create(void)
 {
-	return new InputDevice();
+	return NEW InputDevice();
 }
 
 /*-----------------------------------------------------------------------------
@@ -64,12 +64,12 @@ void InputDevice::Init(void)
 void InputDevice::Uninit(void)
 {	
 	// lpdinput_object_ptr_オブジェクトの開放
-	if (lpdinput_object_ != nullptr) { SAFE_RELEASE_(lpdinput_object_); }
+	SAFE_RELEASE_(lpdinput_object_);
 
 	//各デバイスの破棄
-	if (input_device_keyboard_) { SAFE_DELETE_(input_device_keyboard_); }
-	if (input_device_mouce_)	{ SAFE_DELETE_(input_device_mouce_); }
-	if (input_device_xinput_)	{ SAFE_DELETE_(input_device_xinput_); }
+	SAFE_DELETE_(input_device_keyboard_); 
+	SAFE_DELETE_(input_device_mouce_); 
+	SAFE_DELETE_(input_device_xinput_); 
 }
 
 /*-----------------------------------------------------------------------------
@@ -110,14 +110,35 @@ InputDeviceXInput * InputDevice::GetDeviceInstanceXInput(void)
 /*-----------------------------------------------------------------------------
 /* 入力デバイスの生成
 -----------------------------------------------------------------------------*/
-void InputDevice::CreateInputDevice(const HINSTANCE &hInstance, const HWND &wndHandle)
+bool InputDevice::CreateInputDevice(const HINSTANCE &hInstance, const HWND &wndHandle)
 {
-	//DirectInputインターフェースオブジェクトの生成
-	CreateDirectInputObject(hInstance);
+	//入力デバイスの生成
+	{
+		//DirectInputインターフェースオブジェクトの生成
+		if (FAILED(CreateDirectInputObject(hInstance)))
+		{
+			return false;
+		}
 
-	CreateDeviceKyeboard(lpdinput_object_, wndHandle);
-	CreateDeviceMouse(lpdinput_object_, wndHandle);
-	CreateDeviceXInput();
+		//キーボードの生成
+		if (CreateDeviceKyeboard(lpdinput_object_, wndHandle) == false)
+		{
+			return false;
+		}
+
+		//マウスの入力生成
+		if (CreateDeviceMouse(lpdinput_object_, wndHandle) == false)
+		{
+			return false;
+		}
+
+		//パッドの入力生成
+		if (CreateDeviceXInput() == false)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -140,28 +161,39 @@ HRESULT InputDevice::CreateDirectInputObject(const HINSTANCE &hInstance)
 /*-----------------------------------------------------------------------------
 /* キーボード用入力デバイスの生成
 -----------------------------------------------------------------------------*/
-void InputDevice::CreateDeviceKyeboard(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle)
+bool InputDevice::CreateDeviceKyeboard(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle)
 {
-	this->input_device_keyboard_ = new InputDeviceKeyboard();
-	input_device_keyboard_->CreateDeviceKeyboard(lpdinputObject, wndHandle);
+	this->input_device_keyboard_ = NEW InputDeviceKeyboard();
+	if (FAILED(input_device_keyboard_->CreateDeviceKeyboard(lpdinputObject, wndHandle)))
+	{
+		return false;
+	}
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* マウス用入力デバイスの生成
 -----------------------------------------------------------------------------*/
-void InputDevice::CreateDeviceMouse(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle)
+bool InputDevice::CreateDeviceMouse(const LPDIRECTINPUT8 &lpdinputObject, const HWND &wndHandle)
 {
-	this->input_device_mouce_ = new InputDeviceMouse();
-	input_device_mouce_->CrateInputDeviceMouse(lpdinputObject, wndHandle);
+	this->input_device_mouce_ = NEW InputDeviceMouse();
+	if (FAILED(input_device_mouce_->CrateInputDeviceMouse(lpdinputObject, wndHandle)))
+	{
+		return false;
+	}
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* XInputタイプのコントローラ用入力デバイスの生成
 -----------------------------------------------------------------------------*/
-void InputDevice::CreateDeviceXInput(void)
+bool InputDevice::CreateDeviceXInput(void)
 {
-	this->input_device_xinput_ = new InputDeviceXInput();
-	input_device_xinput_->Update();
+	this->input_device_xinput_ = NEW InputDeviceXInput();
+	{
+		input_device_xinput_->Update();
+	}
+	return true;
 }
 
 /*==============================================================================

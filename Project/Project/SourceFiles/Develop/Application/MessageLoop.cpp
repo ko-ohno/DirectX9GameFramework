@@ -7,7 +7,7 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "MessageLoop.h"
 #include "IManager.h"
 #include "Manager/ApplicationManager.h"

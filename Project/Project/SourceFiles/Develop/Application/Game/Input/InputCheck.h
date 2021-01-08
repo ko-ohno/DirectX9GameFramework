@@ -9,14 +9,10 @@
 #define	INPUT_CHECK_H_
 
 /*--- インクルードファイル ---*/
-#include "../../StdAfx.h"
-#include "InputDeviceXInput.h"
+#include "../../../StdAfx.h"
+#include "../../InputDevice/InputDeviceXInput.h"
 
 /*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-class InputDevice;
-class Vector2;
 
 
 /*-------------------------------------
@@ -53,7 +49,7 @@ public:
 	//Repeat	//ボタンを押し続けていたら
 	//Release	//ボタンを放した瞬間
 
-	static void SetInputDeviceInstance(InputDevice * inputDevice);
+	static void SetInputDeviceState(class InputDevice * inputDevice);
 
 	static bool KeyPress(int dikKeynum);
 	static bool KeyTrigger(int dikKeynum);
@@ -64,17 +60,17 @@ public:
 	static bool MButtonTrigger(MibNum mibNum);
 	static bool MButtonRepeat(MibNum mibNum);
 	static bool MButtonRelease(MibNum mibNum);
-	static Vector2 MouseCursorPos(void);
+	static class Vector2 MouseCursorPos(void);
 
 	static bool XInputPress(PadIndex padIndex, XInputButton xibIndex);
 	static bool XInputTrigger(PadIndex padIndex, XInputButton xibIndex);
 	static bool XInputRepeat(PadIndex padIndex, XInputButton xibIndex);
 	static bool XInputRelease(PadIndex padIndex, XInputButton xibIndex);
-	static Vector2 XInputThumbLeft(PadIndex padIndex);
-	static Vector2 XInputThumbRight(PadIndex padIndex);
+	static class Vector2 XInputThumbLeft(PadIndex padIndex);
+	static class Vector2 XInputThumbRight(PadIndex padIndex);
 
 private:
-	static InputDevice *input_device_;
+	static class InputDevice *input_device_;
 };
 
 #endif //INPUT_CHECK_H_

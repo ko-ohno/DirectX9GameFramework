@@ -7,11 +7,11 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "SplashScreen.h"
 #include "MessageLoop.h"
 #include "Win32APIWindow.h"
-#include "../Math/Math.h"
+#include "Math.h"
 #include "../DebugCode/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------

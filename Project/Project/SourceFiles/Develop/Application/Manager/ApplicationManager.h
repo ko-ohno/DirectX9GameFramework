@@ -42,6 +42,7 @@ private:
 	HWND					window_handle_;
 	class Win32APIWindow*	app_window_;
 	class DX9Graphics*		dx9_graphics_;
+	class InputDevice*		input_device_;	
 	class ImGuiManager*		imgui_manager_;
 	WindowStyle				window_style_;
 	float					screen_scaler_;

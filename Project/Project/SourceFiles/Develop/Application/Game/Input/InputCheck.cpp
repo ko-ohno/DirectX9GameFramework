@@ -8,10 +8,10 @@
 
 /*--- インクルードファイル ---*/
 #include "InputCheck.h"
-#include "InputDevice.h"
-#include "InputDeviceKeyboard.h"
-#include "InputDeviceMouse.h"
-#include "../Math.h"
+#include "../../InputDevice/InputDevice.h"
+#include "../../InputDevice/InputDeviceKeyboard.h"
+#include "../../InputDevice/InputDeviceMouse.h"
+#include "../../Math.h"
 
 //静的変数宣言
 InputDevice *InputCheck::input_device_;
@@ -33,7 +33,7 @@ InputCheck::~InputCheck(void)
 /*-----------------------------------------------------------------------------
 /* デバイスの状態を更新
 -----------------------------------------------------------------------------*/
-void InputCheck::SetInputDeviceInstance(InputDevice * inputDevice)
+void InputCheck::SetInputDeviceState(InputDevice * inputDevice)
 {
 	input_device_ = inputDevice;
 }

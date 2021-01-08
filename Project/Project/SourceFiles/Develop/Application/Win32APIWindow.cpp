@@ -7,10 +7,10 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "Win32APIWindow.h"
 #include "ImGui/ImGuiManager.h"
-#include "Math/Math.h"
+#include "Math.h"
 
 /*--- 関数プロトタイプ ---*/
 //Win32アプリケーションのメッセージハンドラー
