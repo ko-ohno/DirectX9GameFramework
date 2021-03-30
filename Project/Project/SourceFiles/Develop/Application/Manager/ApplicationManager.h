@@ -47,9 +47,12 @@ private:
 	WindowStyle				window_style_;
 	float					screen_scaler_;
 
+	//ゲーム用の環境
+	class Game*				game_;
+
 	//テスト用
 	class SpriteShader*		sprite_shader_;
-	class Camera*			camera_;
+	class TestCamera*		test_camera_;
 };
 
 #endif //APPLICATION_MANAGER_H_

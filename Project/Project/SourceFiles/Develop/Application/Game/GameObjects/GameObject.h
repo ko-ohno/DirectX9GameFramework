@@ -9,7 +9,8 @@
 #define	GAME_OBJECT_H_
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
+#include "../../../StdAfx.h"
+#include "Component/RendererComponent.h"
 
 /*--- 構造体定義 ---*/
 
@@ -33,6 +34,17 @@ public:
 		, Enemy
 		, Player
 
+		, TestMesh
+		, TestSprite
+		, TestBillboard
+
+		//UI
+		, UI
+
+		, HUD
+		, PauseMenu
+		, Result
+		, Title
 
 		, MAX		//ゲームオブジェクトのIDの最大値
 	};
@@ -45,16 +57,16 @@ public:
 		None = -1
 		, Active	//活動するゲームオブジェクトか？
 		, Paused	//停止するゲームオブジェクトか？
-		, Dead		//死ぬゲームオブジェクトか？
+		, Dead		//破棄するゲームオブジェクトか？
 
 		, MAX		//状態の最大値
 	};
 
 public:
-	GameObject(class GameManager* gameManager);
+	GameObject(class Game* game);
 	virtual ~GameObject(void);
 
-	void Init(void);
+	bool Init(void);
 	void Uninit(void);
 	void Input(void); 
 	virtual void InputGameObject(void);	//後でoverrideできるように
@@ -65,25 +77,67 @@ public:
 	//姿勢情報の更新
 	void ComputeWorldTransform();
 
+	//
+	// コンポーネントの操作
+	//
+
 	void AddComponent(class Component* component);
 	void RemoveComponent(class Component* component);
 
+	//
+	// ゲームオブジェクトの所有者の取得
+	//
+	
+	class Game* GetGame(void) const { return game_; }
+
+	//
+	// ゲームオブジェクトの状態
+	//
+
 	void SetState(State state) { state_ = state; };
 	State GetState(void) { return state_; }
+	
+	//ゲームオブジェクトのレイヤーについて
 
-	virtual TypeID GetType(void) const { return TypeID::GameObject; } //後でoverrideできるように
+	void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
+	RendererLayerType GetRendererLayerType(void) { return renderer_layer_type_; }
 
+	//シェーダーのセット
+	void SetShader(class Shader* shader) { shader_ = shader; } 
+
+
+	//
+	//　ゲームオブジェクトがカメラだった場合の処理　
+	//	：後でサブクラスがoverrideできるようにvirutal
+	//
+
+	virtual D3DXMATRIX* GetViewMatrix(void) { return nullptr; }
+	virtual D3DXMATRIX* GetViewInverseMatrix(void) { return nullptr; }
+	virtual D3DXMATRIX* GetProjection2DMatrix(void) { return nullptr; }
+	virtual D3DXMATRIX* GetProjection3DMatrix(void) { return nullptr; }
+
+
+	//ゲームオブジェクトの姿勢情報の取得
+	class TransformComponent* GetTransform(void) const { return transform_component_; }
+
+	//ゲームオブジェクトのコンポーネントのコンテナを取得
 	const std::vector<class Component*>& GetComponents() const { return components_; }
 
-	class GameManager* GetGameManager(void) { return game_manager_; }
+	//ゲームオブジェクトのIDの取得
+	virtual TypeID GetType(void) const { return TypeID::GameObject; } //後でoverrideできるように
 
-
-private:
+protected:
 	//GameObjectの所有者
-	class GameManager*				game_manager_;
+	class Game*						game_;
 
 	//GameObjectの状態
 	State							state_;
+
+	//レンダラーのレイヤー型情報　
+	RendererLayerType				renderer_layer_type_;
+
+	//所有するシェーダーオブジェクト
+	class Shader*					shader_;
 
 	//姿勢制御コンポーネント
 	class TransformComponent*		transform_component_;

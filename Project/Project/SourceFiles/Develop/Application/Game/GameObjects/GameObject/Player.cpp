@@ -7,21 +7,18 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../StdAfx.h"
+#include "../../../../StdAfx.h"
 #include "Player.h"
-#include "../Component/RenderComponent/SpriteComponent.h"
+#include "../Component/RendererComponent/SpriteRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Player::Player(GameManager* gameManager)
-	:GameObject(gameManager)
+Player::Player(Game* game)
+	: GameObject(game)
+	, sprite_(nullptr)
 {
-	std::cout << "プレイヤーのゲームオブジェクトの作成\n";
-
-	sprite_ = new SpriteComponent(this);
-	sprite_->SetObjectName("プレイヤーオブジェクト");
-
+	//sprite_ = NEW SpriteRendererComponent(this, 100);
 }
 
 /*-----------------------------------------------------------------------------
@@ -29,7 +26,10 @@ Player::Player(GameManager* gameManager)
 -----------------------------------------------------------------------------*/
 Player::~Player(void)
 {
-	std::cout << "プレイヤーのゲームオブジェクトの破棄\n";
+}
+
+void Player::InputGameObject(void)
+{
 }
 
 /*-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Player::~Player(void)
 -----------------------------------------------------------------------------*/
 void Player::UpdateGameObject(float deltaTime)
 {
-	std::cout << "プレイヤーのゲームオブジェクトが更新された\n";
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

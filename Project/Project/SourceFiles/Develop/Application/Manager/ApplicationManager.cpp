@@ -16,9 +16,12 @@
 #include "../ImGui/ImGuiManager.h"
 #include "../../DebugCode/DebugFunction.h"
 
+//ゲームの実行環境
+#include "../Game/Game.h"
+
 //シェーダテスト
-#include "../Game/Shader/SpriteShader.h"
-#include "../Game/GameObjects/GameObject/Camera.h"
+//#include "..Test/Shader/SpriteShader.h"
+//#include "Test/GameObject/TestCamera.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -31,9 +34,9 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	, imgui_manager_(nullptr)
 	, window_style_(WindowStyle())
 	, screen_scaler_(0.0f)
-
+	, game_(nullptr)
 	, sprite_shader_(nullptr)
-	, camera_(nullptr)
+	, test_camera_(nullptr)
 {
 	app_window_	   = app_window_->Create();
 	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
@@ -91,27 +94,16 @@ bool ApplicationManager::Init(void)
 		}
 	}
 
-	//カメラの生成
+	//ゲームの起動
 	{
-		camera_ = camera_->Create();
-		camera_->SetAspectSize(window_style_.windowSize);
-		const bool camera_init = camera_->Init();
-		if (camera_init == false)
+		game_ = game_->Create();
+		const bool game_init = game_->StartUp(dx9_graphics_);
+		if (game_init == false)
 		{
+			std::string msg_str = OUTPUT_FORMAT_STRING("ゲームの初期化ができませんでした！");
+			DebugFunction::PrintfToWarningMessageBox(msg_str.c_str());
 			return false;
 		}
-	}
-
-	//スプライトシェーダ
-	{
-		sprite_shader_ = sprite_shader_->Create();
-		sprite_shader_->SetCamera(camera_);
-		const bool is_success_compiled = sprite_shader_->Init(*DX9Graphics::GetLPD3DDevice());
-		if (is_success_compiled == false)
-		{
-			return false;
-		}
-
 	}
 	return true;
 }
@@ -121,14 +113,19 @@ bool ApplicationManager::Init(void)
 -----------------------------------------------------------------------------*/
 void ApplicationManager::Uninit(void)
 {
-	sprite_shader_->Uninit();
-	SAFE_DELETE_(sprite_shader_);
-	SAFE_DELETE_(camera_);
+	//ImGuiの終了
+	{
+		imgui_manager_->ShutDown();
+		SAFE_DELETE_(imgui_manager_);
+	}
 
-	imgui_manager_->ShutDown();
+	//ゲームの終了
+	{
+		game_->ShutDown();
+		SAFE_DELETE_(game_);
+	}
 
 	SAFE_DELETE_(app_window_);
-	SAFE_DELETE_(imgui_manager_);
 	SAFE_DELETE_(input_device_);
 	SAFE_DELETE_(dx9_graphics_);
 }
@@ -146,6 +143,8 @@ void ApplicationManager::Input(void)
 
 		//デバイス入力検知クラスの更新
 		InputCheck::SetInputDeviceState(input_device_);
+
+		game_->Input();
 	}
 }
 
@@ -156,7 +155,7 @@ void ApplicationManager::Update(float deltaTime)
 {
 	imgui_manager_->UpdateBegin();
 
-	camera_->Update(deltaTime);
+	game_->Update(deltaTime);
 
 	imgui_manager_->ShowFramerate(deltaTime);
 
@@ -170,7 +169,7 @@ void ApplicationManager::GenerateOutput(void)
 {
 	dx9_graphics_->RenderingBegin();
 
-	sprite_shader_->Draw(*dx9_graphics_->GetLPD3DDevice());
+	game_->GenerateOutput();
 
 	imgui_manager_->ImGuiRender();
 

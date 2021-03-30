@@ -7,7 +7,7 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../StdAfx.h"
+#include "../../../../../StdAfx.h"
 #include "AutomaticInputComponent.h"
 
 /*-----------------------------------------------------------------------------
@@ -28,8 +28,9 @@ AutomaticInputComponent::~AutomaticInputComponent(void)
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-void AutomaticInputComponent::Init(void)
+bool AutomaticInputComponent::Init(void)
 {
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -51,6 +52,7 @@ void AutomaticInputComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void AutomaticInputComponent::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

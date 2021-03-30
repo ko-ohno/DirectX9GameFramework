@@ -7,14 +7,12 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../StdAfx.h"
-#include "../GameManager.h"
+#include "../../../StdAfx.h"
+#include "../game.h"
 #include "GameObject.h"
 #include "Component.h"
-#include "Component/TransformComponent.h"
 
-
-//ゲームオブジェクトのリスト
+//ゲームオブジェクトのリスト(セーブ用の種別  テキストデータ)
 const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	//自分自身
 	"GameObject"
@@ -23,21 +21,26 @@ const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	, "Camera"
 	, "Enemy"
 	, "Player"
+
+	//テスト
+	, "TestMesh"
+	, "TestSprite"
+	, "TestBillboard"
+
 };
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-GameObject::GameObject(class GameManager* gameManager)
-	: game_manager_(gameManager)
+GameObject::GameObject(class Game* game)
+	: game_(game)
 	, state_(State::Active)
+	, renderer_layer_type_(RendererLayerType::None)
+	, transform_component_(nullptr)
 	, re_compute_transform_(true)
 {
 	//ゲームオブジェクトを管理先へ追加
-	game_manager_->AddGameObject(this);
-
-	//姿勢制御コンポーネントの追加
-	transform_component_ = new TransformComponent(this);
+	game_->AddGameObject(this);
 
 	//ゲームオブジェクトの初期化
 	this->Init();
@@ -50,15 +53,15 @@ GameObject::~GameObject(void)
 {
 	this->Uninit();
 
-	game_manager_->RemoveGameObject(this);
+	game_->RemoveGameObject(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-void GameObject::Init(void)
+bool GameObject::Init(void)
 {
-	
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -79,14 +82,13 @@ void GameObject::Uninit(void)
 void GameObject::Input(void)
 {
 	//コンポーネントの入力処理
-
 	if (state_ == State::Active)
 	{
 		for (auto component : components_)
 		{
 			component->Input();
 		}
-		InputGameObject(); //サブクラスが、挙動をoverrideできるように
+		this->InputGameObject(); //サブクラスが、挙動をoverrideできるように
 	}
 }
 
@@ -104,12 +106,17 @@ void GameObject::Update(float deltaTime)
 {
 	if (state_ == State::Active)
 	{
+		if (this->GetRendererLayerType() == RendererLayerType::None)
+		{
+			assert(!"ゲームオブジェクトのレンダラーのレイヤーが選択されていません！");
+		}
+
 		if (re_compute_transform_)
 		{
-			ComputeWorldTransform();
+			this->ComputeWorldTransform();
 		}
-		UpdateComponents(deltaTime);
-		UpdateGameObject(deltaTime);	//サブクラスが、挙動をoverrideできるように
+		this->UpdateComponents(deltaTime);
+		this->UpdateGameObject(deltaTime);	//サブクラスが、挙動をoverrideできるように
 	}
 }
 
@@ -129,6 +136,7 @@ void GameObject::UpdateComponents(float deltaTime)
 -----------------------------------------------------------------------------*/
 void GameObject::UpdateGameObject(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------
@@ -175,8 +183,8 @@ void GameObject::AddComponent(Component* component)
 void GameObject::RemoveComponent(Component* component)
 {
 	auto iter = std::find(components_.begin()
-						, components_.end()
-						, component);	//探す対象
+						 , components_.end()
+						 , component);	//探す対象
 
 	if (iter != components_.end())
 	{

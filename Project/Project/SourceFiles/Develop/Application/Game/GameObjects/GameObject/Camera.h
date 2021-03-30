@@ -10,6 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../../StdAfx.h"
+#include "../GameObject.h"
 #include "../../../Math.h"
 
 /*-------------------------------------
@@ -19,41 +20,41 @@
 /*-------------------------------------
 /* カメラクラス
 -------------------------------------*/
-class Camera
+class Camera : public GameObject
 {
 public:
-	Camera(void);
+	Camera(class Game* game);
 	~Camera(void);
 
-	static Camera* Create(void);
+	static Camera* Create(class Game* game);
 
 	bool Init(void);
 	void Uninit(void);
-	void Input(void);
-	void Update(float deltaTime);
-	void Draw(void);
 
-	void SetAspectSize(class Vector2& aspectSize)
-	{
-		aspect_size_ = aspectSize;
-	}
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
-	D3DXMATRIX GetViewMatrix(void)
-	{
-		return view_matrix_;
-	}
+	//位置情報の取得
 
-	D3DXMATRIX GetProjectionMatrix(void)
-	{
-		return projection_matrix_;
-	}
+	//行列関係
+	D3DXMATRIX* GetViewMatrix(void);		
+	D3DXMATRIX* GetViewInverseMatrix(void);
+	D3DXMATRIX* GetProjection2DMatrix(void);
+	D3DXMATRIX* GetProjection3DMatrix(void);
+
+	bool IsGetCameraMoved(void) const;
+	void IsSetCameraMoved(bool isCameraMoved);
+
+	virtual TypeID GetType(void) const { return TypeID::Camera; }
 
 private:
-	D3DXMATRIX view_matrix_;
-	D3DXMATRIX projection_matrix_;
-	Vector2	   aspect_size_;
+	class CameraComponent* camera_component_;
 
+	//カメラが動いたか
+	bool is_moved_;
 
+	D3DXVECTOR3 position_
+			  , old_position_;
 };
 
 

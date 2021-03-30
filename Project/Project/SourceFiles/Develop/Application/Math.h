@@ -20,25 +20,65 @@
 namespace Math
 {
 	//円周率の定義
-	constexpr float PI = 3.14159265359f;
-	constexpr float TwoPI = PI * 2.0f;
+	static constexpr float PI = 3.14159265359f;
+	static constexpr float TwoPI = PI * 2.0f;
+
+	static constexpr float MaxAngle = 360.f; //角度360で一周
+	static constexpr float MinAngle = 0.01f; //限りなく0に近い1にしておく
+
 
 	//もう一度同じ方向を向くには、360度分回転が必要
 	//ラジアン = 角度 * (π(3.14f) / 角度(180))
 	//ラジアンに回転値(円周)を代入
-	///角度への円周へ
-	inline float ToRadian(int degree)
+	///小数点第１位まで、角度への円周へ変換
+	inline float ToRadian(float degree)
 	{
-		return (float)(degree * (PI / 180));
+		return (degree * (PI / 180.f));
 	}
 
 	//もう一度同じ方向を向くには、6.28f分回転が必要
 	//角度  = ラジアン * (角度(180) / π(3.14f))
 	//ラジアンに回転値(円周)を代入
-	///円周から角度へ
-	inline int ToDegree(float radian)
+	///小数点第１位まで、円周から角度へ変換
+	inline float ToDegree(float radian)
 	{
-		return (int)(radian * (180 / PI));
+		return (radian * (180.f / PI));
+	}
+
+	//角度の正規化
+	inline float NormalizeDegree(float degree)
+	{
+		float point_under	//小数点より下
+			, point_over;	//小数点より上
+
+		//小数点より上と小数点より下をそれぞれ一時保存
+		point_under = std::modff(degree, &point_over);
+
+		//小数点より上
+		int angle = static_cast<int>(point_over); 
+
+		//degreeの角度を360で割った余剰の値が本当の角度
+		angle = angle %= static_cast<int>(MaxAngle);
+
+		//角度を入力
+		degree = (angle + point_under);
+
+		//マイナスだったら360を足す
+		if (degree <= 0.f)
+		{
+			degree += 360.f;
+		}
+
+		return degree;
+	}
+
+	//四捨五入
+	inline float Round(float value, int exponentValue = 2)
+	{
+		value = value * powf(10.f, exponentValue - 1.f);		//10のn-1乗でかける
+		value = round(value);							//小数点以下を四捨五入
+		value = value /= powf(10.f, exponentValue - 1.f);	//10のn-1乗で割る
+		return value;
 	}
 
 	//0の絶対値をとる

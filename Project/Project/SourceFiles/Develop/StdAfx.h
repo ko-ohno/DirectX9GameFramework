@@ -22,12 +22,16 @@
 
 /*--- ゲームに必要なライブラリの呼び出し ---*/
 //グラフィックス系
+
+#if defined(_DEBUG)||defined(DEBUG)
+#define D3D_DEBUG_INFO
+#endif
 #include <d3d9.h>		//DirectX9のインターフェース
 #include <d3dx9.h>		//DirectX9の機能を利用するためのヘッダ
 
 //入力系
 #define DIRECTINPUT_VERSION (0x0800) //DirectInputのバージョンを指定。
-#include<dinput.h>		//入力用ライブラリ
+#include<dinput.h>					 //入力用ライブラリ
 
 /*--- Cランタイムヘッダーファイル ---*/
 #include <cstdio>	

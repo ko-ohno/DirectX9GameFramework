@@ -22,15 +22,16 @@
 class Player : public GameObject
 {
 public:
-	Player(class GameManager* gameManager);
+	Player(class Game* game);
 	~Player(void);
 
-	void UpdateGameObject(float deltaTime) override;
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
-	class SpriteComponent* sprite_;
+	class SpriteRendererComponent* sprite_;
 };
 
 #endif //PLAYER_H_

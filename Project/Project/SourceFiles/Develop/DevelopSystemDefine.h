@@ -15,9 +15,9 @@
 
 //テストコード
 #if defined(IN_DEVELOPMENT_)
-	//int Enable = 0;
+	//Enable;
 #else
-	//int Disable = 0;
+	//Disable;
 #endif // defined(IN_DEVELOPMENT_)
 
 

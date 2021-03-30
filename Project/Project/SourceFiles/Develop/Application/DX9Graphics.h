@@ -10,6 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../StdAfx.h"
+#include "Math.h"
 
 /*--- 構造体定義 ---*/
 
@@ -31,6 +32,9 @@ public:
 	bool RenderingBegin(void);
 	void RenderingEnd(void);
 
+	//画面サイズの取得
+	Vector2 GetScreenSize(void) { return screen_size_; }
+
 private:
 	void Init(void);
 	void Uninit(void);
@@ -43,6 +47,8 @@ private:
 	static class DX9GraphicsDevice*	   graphics_device_;	//デバイスクラス
 	static class DX9GraphicsRenderer*  graphics_renderer_;	//レンダラークラス
 
+private:
+	Vector2 screen_size_;
 };
 
 #endif //DX9GRAPHICS_H_

@@ -22,15 +22,19 @@
 class Enemy : public GameObject
 {
 public:
-	Enemy(class GameManager* gameManager);
+	Enemy(class Game* game);
 	~Enemy(void);
 
-	void UpdateGameObject(float deltaTime) override;
+	bool Init(void);
+	void Uninit(void);
+
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
 private:
-	class SpriteComponent* sprite_;
+	class SpriteRendererComponent* sprite_;
 };
 
 #endif //ENEMY_H_

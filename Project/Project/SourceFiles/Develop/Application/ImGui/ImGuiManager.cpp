@@ -145,14 +145,11 @@ void ImGuiManager::ImGuiRender(void)
 -----------------------------------------------------------------------------*/
 void ImGuiManager::ShowFramerate(float deltaTime)
 {
-	ImGuiWindowFlags gui_window_style = (ImGuiWindowFlags_NoTitleBar
-										| ImGuiWindowFlags_NoMove
-										| ImGuiWindowFlags_NoResize
-										| ImGuiWindowFlags_NoCollapse);
-	static bool is_open = true;
+	ImGuiWindowFlags gui_window_style = (ImGuiWindowFlags_NoMove);
+	static bool is_open = false;
 	ImGui::SetNextWindowPos(ImVec2(-5.f, -5.f));
 	ImGui::SetNextWindowSize(ImVec2(400.f, 100.f));
-	ImGui::Begin("Framerate", &is_open, gui_window_style);
+	ImGui::Begin("DebugWindow", &is_open, gui_window_style);
 	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 	ImGui::Text("deltaTime is : %.3f ms", deltaTime);
 	ImGui::End();

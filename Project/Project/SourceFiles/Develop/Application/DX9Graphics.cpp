@@ -48,6 +48,9 @@ DX9Graphics* DX9Graphics::Create()
 -----------------------------------------------------------------------------*/
 bool DX9Graphics::CreateDX9Graphics(const HWND& windowHandle, const Vector2& screenSize)
 {
+	//画面サイズを取得
+	screen_size_ = screenSize;
+
 	//デバイスとレンダラーの生成
 	lpd3d_device_ = CreateGraphicsDevice(windowHandle, screenSize);
 	if (lpd3d_device_ == nullptr)

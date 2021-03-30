@@ -44,10 +44,14 @@ public:
 		, PlayerInputComponent
 		, AutomaticInputComponent
 		//レンダリング(形として出力)するオブジェクト
-		, RenderComponent
-		, SpriteComponent
+		, RendererComponent
+		, SpriteRendererComponent
+		, BillboardRendererComponent
+		, MeshRendererComponent
 		//姿勢制御と移動
 		, TransformComponent
+		, Transform2DComponent
+		, Transform3DComponent
 		, MoveComponent 
 		
 		//コンポーネントの最大値
@@ -58,19 +62,14 @@ public:
 
 public:
 	Component(class GameObject* gameObject, int updateOrder = 100);
-	Component(class UIObject* uiObject, int updateOrder = 100);
 	virtual~Component(void);
 
-	virtual void Init(void);
+	virtual bool Init(void);
 	virtual void Uninit(void);
 	virtual void Input(void);
 	virtual void Update(float deltaTime);
 
 	virtual void OnUpdateWorldTransform();
-
-	//後でサブクラスが挙動を上書きできるように　
-	virtual void CallComponent(void) {};
-
 
 	class GameObject* GetOwner(void) { return owner_; }
 	int GetUpdateOrder(void) const	 { return update_order_; }

@@ -10,13 +10,20 @@
 #include "../../../../StdAfx.h"
 #include "Camera.h"
 #include "../../../Math.h"
+#include "../Component/CameraComponent.h"
+#include "../../Renderer.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Camera::Camera(void)
-	: aspect_size_(Vector2())
+Camera::Camera(class Game* game)
+	: GameObject(game)
 {
+	this->renderer_layer_type_ = RendererLayerType::Game;
+
+	camera_component_ = NEW CameraComponent(this);
+
+	game->GetRenderer()->AddCameraGameObject(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -24,14 +31,15 @@ Camera::Camera(void)
 -----------------------------------------------------------------------------*/
 Camera::~Camera(void)
 {
+	SAFE_DELETE_(camera_component_);
 }
 
 /*-----------------------------------------------------------------------------
 /* ファクトリメソッド
 -----------------------------------------------------------------------------*/
-Camera* Camera::Create(void)
+Camera* Camera::Create(class Game* game)
 {
-	return NEW Camera();
+	return NEW Camera(game);
 }
 
 /*-----------------------------------------------------------------------------
@@ -39,26 +47,6 @@ Camera* Camera::Create(void)
 -----------------------------------------------------------------------------*/
 bool Camera::Init(void)
 {
-	D3DXVECTOR3 eye		= D3DXVECTOR3(0.0f, 0.0f, -1.0f)
-			  , lookat	= D3DXVECTOR3(0.0f, 0.0f,  0.0f)
-			  , up		= D3DXVECTOR3(0.0f, 1.0f,  0.0f);
-
-
-
-	// カメラ変換行列作成
-	D3DXMatrixLookAtLH(&view_matrix_
-					  , &eye	 	// 視点
-					  , &lookat	// 注視点
-					  , &up);// 上向き	
-
-
-	// プロジェクション変換行列作成
-	D3DXMatrixPerspectiveFovLH(&projection_matrix_
-							   , D3DX_PI / 3											// 視野角
-							   , static_cast<FLOAT>(aspect_size_.x_) / aspect_size_.y_	// アスペクト比
-							   , static_cast<FLOAT>(1.f)							    // ニアプレーン
-							   , static_cast<FLOAT>(1000.f));						    // ファープレーン
-
 	return true;
 }
 
@@ -70,26 +58,74 @@ void Camera::Uninit(void)
 }
 
 /*-----------------------------------------------------------------------------
-/* 入力処理
+/* ゲームオブジェクトの入力処理
 -----------------------------------------------------------------------------*/
-void Camera::Input(void)
+void Camera::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 更新処理
+/* ゲームオブジェクトの更新処理
 -----------------------------------------------------------------------------*/
-void Camera::Update(float deltaTime)
+void Camera::UpdateGameObject(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	//if (false)
+	//{
+	//	Vector2 screen_aspect_size_ = { 0.f, 0.f };
+	//	camera_component_->SetScreenAspectSize(screen_aspect_size_);
+	//}
+
 }
 
 /*-----------------------------------------------------------------------------
-/* 描画処理
+/* ビュー行列の取得
 -----------------------------------------------------------------------------*/
-void Camera::Draw(void)
+D3DXMATRIX* Camera::GetViewMatrix(void)
 {
+	return camera_component_->GetViewMatrix();
 }
 
+/*-----------------------------------------------------------------------------
+/* 逆ビュー行列の取得
+-----------------------------------------------------------------------------*/
+D3DXMATRIX* Camera::GetViewInverseMatrix(void)
+{
+	return camera_component_->GetViewInverseMatrix();
+}
+
+/*-----------------------------------------------------------------------------
+/* 2Dプロジェクション行列の取得
+-----------------------------------------------------------------------------*/
+D3DXMATRIX* Camera::GetProjection2DMatrix(void)
+{
+	return camera_component_->GetProjection2DMatrix();
+}
+
+/*-----------------------------------------------------------------------------
+/* 3Dプロジェクション行列の取得
+-----------------------------------------------------------------------------*/
+D3DXMATRIX* Camera::GetProjection3DMatrix(void)
+{
+	return camera_component_->GetProjection3DMatrix();
+}
+
+/*-----------------------------------------------------------------------------
+/* カメラが移動したかのフラグ
+-----------------------------------------------------------------------------*/
+bool Camera::IsGetCameraMoved(void) const
+{
+	return camera_component_->IsGetCameraMoved();
+}
+
+/*-----------------------------------------------------------------------------
+/* カメラが移動したかのフラグ
+-----------------------------------------------------------------------------*/
+void Camera::IsSetCameraMoved(bool isCameraMoved)
+{
+	camera_component_->IsSetCameraMoved(isCameraMoved);
+}
 
 /*=============================================================================
 /*		End of File

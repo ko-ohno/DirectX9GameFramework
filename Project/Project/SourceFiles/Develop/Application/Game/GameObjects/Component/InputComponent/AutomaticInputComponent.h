@@ -25,7 +25,7 @@ public:
 	AutomaticInputComponent(class GameObject* owner, int updateOrder = 100);
 	~AutomaticInputComponent(void);
 
-	void Init(void) override;
+	bool Init(void) override;
 	void Uninit(void) override;
 	void Input(void) override;
 	void Update(float deltaTime) override;

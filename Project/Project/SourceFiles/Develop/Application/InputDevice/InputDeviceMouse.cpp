@@ -10,6 +10,8 @@
 #include "InputDeviceMouse.h"
 #include "../Math.h"
 
+#define DIRECTINPUT_VERSION (0x0800) //DirectInputのバージョンを指定。
+
 //静的変数宣言
 LPDIRECTINPUTDEVICE8	InputDeviceMouse::lpdinput_device_mouse_;
 POINT					InputDeviceMouse::mouse_cursor_pos_;
