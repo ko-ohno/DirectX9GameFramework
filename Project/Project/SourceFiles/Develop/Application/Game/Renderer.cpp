@@ -154,7 +154,6 @@ void Renderer::Draw(void)
 					//レンダラーコンポーネントとカメラの距離を計測
 					auto dir = rc_pos - camera_position;
 					auto vec_length = D3DXVec3Length(&dir);
-					vec_length;
 					{
 						//カメラまでの距離を設定　
 						renderer_component->SetCameraDistance(vec_length);

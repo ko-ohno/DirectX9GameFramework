@@ -15,8 +15,8 @@
 -----------------------------------------------------------------------------*/
 Shader::Shader(class ShaderManager* manager)
 	: manager_(manager)
-	, lpd3d_vertex_declaration_(LPDIRECT3DVERTEXDECLARATION9())
-	, shader_(LPD3DXEFFECT())
+	, lpd3d_vertex_declaration_(nullptr)
+	, shader_(nullptr)
 {
 }
 

@@ -81,11 +81,11 @@ void BillboardTest::UpdateGameObject(float deltaTime)
 	
 	static float val = 0;
 	val += deltaTime * 100;
-	billboard_->SetUVAnimation(wid + val, het + val, wid, het);
+	billboard_->SetUVAnimation(int(wid + val), int(het + val), wid, het);
 	
 
 	billboard_a_->SetTranslationX(3.f);
-	billboard_a_->SetUVAnimation(wid - val, het - val, wid, het);
+	billboard_a_->SetUVAnimation(int(wid - val), int(het - val), wid, het);
 
 }
 

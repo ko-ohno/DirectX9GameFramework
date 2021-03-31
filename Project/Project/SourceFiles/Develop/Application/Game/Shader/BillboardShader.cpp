@@ -103,7 +103,7 @@ bool BillboardShader::Init(const LPDIRECT3DDEVICE9& lpd3d_device)
 bool BillboardShader::ShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device)
 {
 	//シェーダーの初期化
-	bool is_init_shader;
+	bool is_init_shader = false;
 
 #if defined(_DEBUG) || defined(DEBUG) 
 	is_init_shader = this->NewShaderCompile(lpd3d_device);
@@ -128,10 +128,10 @@ bool BillboardShader::NewShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device)
 	HRESULT hr;
 	hr = D3DXCreateEffectFromFile(lpd3d_device
 								 , "SourceFiles/Develop/HLSL/BillboardShader.hlsl" //exeからの相対パス
-								 , 0
-								 , 0
-								 , 0
-								 , 0
+								 , NULL
+								 , NULL
+								 , NULL
+								 , NULL
 								 , &shader_   // コンパイルしたシェーダー格納先
 								 , &error);   // エラー内容の抽出	
 
@@ -141,12 +141,12 @@ bool BillboardShader::NewShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device)
 		if (error)
 		{
 			// コンパイルエラーあり
-			MessageBox(nullptr, (LPSTR)error->GetBufferPointer(), "Failed to compile SpriteShader", MB_OK);
+			MessageBox(nullptr, (LPSTR)error->GetBufferPointer(), "Failed to compile BillboardShader", MB_OK);
 		}
 		else
 		{
 			// その他のエラー
-			MessageBox(nullptr, "シェーダーファイルが読見み込めません", "Failed to compile SpriteShader", MB_OK);
+			MessageBox(nullptr, "BillboardShader::LoadCompiledShader():シェーダーファイルが読見み込めません", "Failed to compile BillboardShader", MB_OK);
 		}
 		//バッファの解放
 		SAFE_RELEASE_(error);
@@ -163,19 +163,34 @@ bool BillboardShader::NewShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device)
 bool BillboardShader::LoadCompiledShader(const LPDIRECT3DDEVICE9& lpd3d_device)
 {
 	// コンパイル済みシェーダの読み込み
+	LPD3DXBUFFER error = nullptr;
 	HRESULT hr;
 	hr = D3DXCreateEffectFromFile(lpd3d_device
 								 , "Assets/CompiledShaderObjects/BillboardShader.cso" //exeからの相対パス
-								 , 0
-								 , 0
-								 , 0
-								 , 0
+								 , NULL
+								 , NULL
+								 , D3DXSHADER_SKIPVALIDATION
+								 , NULL
 								 , &shader_
-								 , 0);
+								 , &error);
+	// エラー発生
 	if (FAILED(hr))
 	{
+		if (error)
+		{
+			// コンパイルエラーあり
+			MessageBox(nullptr, (LPSTR)error->GetBufferPointer(), "Failed to compile BillboardShader", MB_OK);
+		}
+		else
+		{
+			// その他のエラー
+			MessageBox(nullptr, "BillboardShader::LoadCompiledShader():シェーダーファイルが読見み込めません", "Failed to compile BillboardShader", MB_OK);
+		}
+		SAFE_RELEASE_(error);
 		return false;
 	}
+	//バッファの解放
+	SAFE_RELEASE_(error);
 	return true;
 }
 

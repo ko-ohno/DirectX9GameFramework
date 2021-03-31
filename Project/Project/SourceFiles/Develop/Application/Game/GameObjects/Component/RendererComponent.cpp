@@ -67,14 +67,6 @@ void RendererComponent::Uninit(void)
 void RendererComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-
-	//自分自身とカメラまでの距離を計測する
-	D3DXVECTOR3 camera_pos;
-	D3DXVECTOR3 vector_length;
-	
-	//長さベクトルの
-	vector_length = this->position_ - camera_pos;
-	camera_distance_ = D3DXVec3Length(&vector_length);
 }
 
 /*-----------------------------------------------------------------------------
@@ -83,6 +75,7 @@ void RendererComponent::Update(float deltaTime)
 void RendererComponent::Draw(class Shader* shader, class Camera* camera)
 {
 	UNREFERENCED_PARAMETER(shader);
+	UNREFERENCED_PARAMETER(camera);
 }
 
 /*=============================================================================
