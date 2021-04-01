@@ -84,7 +84,7 @@ public:
 	inline void AddTranslationY(float addValueY) { position_.y = addValueY; }
 	inline void AddTranslationZ(float addValueZ) { position_.z = addValueZ; }
 
-	inline D3DXVECTOR3 GetPositon(void) const { return position_; }
+	inline D3DXVECTOR3* GetPosition(void) { return &position_; }
 
 	//拡縮成分の操作
 
@@ -100,7 +100,7 @@ public:
 	inline void AddScaleY(float addValueY) { scale_.y = addValueY; }
 	inline void AddScaleZ(float addValueZ) { scale_.z = addValueZ; }
 
-	inline D3DXVECTOR3 GetScale(void) const { return scale_; }
+	inline D3DXVECTOR3* GetScale(void) { return &scale_; }
 
 public:
 
@@ -112,6 +112,7 @@ public:
 
 	// このコンポーネントがレンダリングされるシェーダーの種類
 	inline ShaderType GetShaderType(void) const { return shader_type_; }
+	inline void GetShaderType(ShaderType shaderType) { shader_type_ = shaderType; }
 
 	// 描画命令順位:数値が大きいほど描画順位が高い
 	inline int GetDrawOrder(void) const   { return draw_order_; }

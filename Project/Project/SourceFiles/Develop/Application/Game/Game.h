@@ -57,6 +57,9 @@ public:
 	class Renderer*		  GetRenderer(void) { return renderer_; }
 	class ShaderManager*  GetShaderManager(void) { return shader_manager_; }
 	class TextureManager* GetTextureManager(void) { return texture_manager_; }
+	class MeshManager*	  GetMeshManager(void) { return mesh_manager_; }
+	class LightManager*	  GetLightManager(void) { return light_manager_; }
+
 
 private:
 	//ŠeXVˆ—
@@ -79,6 +82,9 @@ private:
 	class Renderer*			 renderer_;
 	class ShaderManager*	 shader_manager_;
 	class TextureManager*	 texture_manager_;
+	class MeshManager*		 mesh_manager_;
+	class LightManager*		 light_manager_;
+
 };
 
 

@@ -35,6 +35,7 @@ public:
 
 
 private:
+	class StdMeshRendererComponent* std_mesh_renderer_component_;
 
 };
 

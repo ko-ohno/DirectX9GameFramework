@@ -119,14 +119,6 @@ bool Camera::IsGetCameraMoved(void) const
 	return camera_component_->IsGetCameraMoved();
 }
 
-/*-----------------------------------------------------------------------------
-/* ƒJƒƒ‰‚ªˆÚ“®‚µ‚½‚©‚Ìƒtƒ‰ƒO
------------------------------------------------------------------------------*/
-void Camera::IsSetCameraMoved(bool isCameraMoved)
-{
-	camera_component_->IsSetCameraMoved(isCameraMoved);
-}
-
 /*=============================================================================
 /*		End of File
 =============================================================================*/

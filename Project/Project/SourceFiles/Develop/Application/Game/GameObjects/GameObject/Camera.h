@@ -43,7 +43,6 @@ public:
 	D3DXMATRIX* GetProjection3DMatrix(void);
 
 	bool IsGetCameraMoved(void) const;
-	void IsSetCameraMoved(bool isCameraMoved);
 
 	virtual TypeID GetType(void) const { return TypeID::Camera; }
 

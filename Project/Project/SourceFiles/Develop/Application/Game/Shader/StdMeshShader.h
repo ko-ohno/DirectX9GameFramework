@@ -1,6 +1,6 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[StdMeshShader.h] 標準メッシュシェーダー
+/*	[StdMeshShader.h] 標準メッシュシェーダクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
 /*	説明：標準メッシュシェーダクラス
@@ -21,8 +21,8 @@ public:
 	StdMeshShader(class ShaderManager* manager);
 	~StdMeshShader(void);
 
+	//初期化
 	bool Init(const LPDIRECT3DDEVICE9& lpd3d_device) override;
-	void Uninit(void) override;
 
 	//シェーダのコンパイル
 	bool ShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device);
@@ -37,6 +37,12 @@ public:
 private:
 	D3DXHANDLE d3dxhandle_technique_;	//テクニックへのハンドル
 	D3DXHANDLE d3dxhandle_texture_;		//テクスチャーへのハンドル
+
+	D3DXHANDLE d3dxhandle_pos_;			//位置情報へのハンドル
+	D3DXHANDLE d3dxhandle_scale_;		//拡縮情報へのハンドル
+	D3DXHANDLE d3dxhandle_view_;		//ビュー行列へのハンドル
+	D3DXHANDLE d3dxhandle_projection_;	//プロジェクション情報へのハンドル
+
 };
 
 #endif //STD_MESH_SHADER_H_

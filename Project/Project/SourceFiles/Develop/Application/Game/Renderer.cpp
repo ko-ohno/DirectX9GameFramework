@@ -88,16 +88,7 @@ void Renderer::ShutDown(void)
 -----------------------------------------------------------------------------*/
 void Renderer::Update(void)
 {
-	//Vector3 new_camera_pos;
-	//now_camera_pos_ = new_camera_pos;
- 
-	//if (now_camera_pos_ != old_camera_pos_)
-	if(false)
-	{
-		this->SortByRendererComponent();
-	}
 
-	//old_camera_pos_ = now_camera_pos_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -149,7 +140,7 @@ void Renderer::Draw(void)
 
 				for (auto renderer_component : renderer_components_)
 				{
-					auto rc_pos = renderer_component->GetPositon();
+					auto rc_pos = *renderer_component->GetPosition();
 
 					//レンダラーコンポーネントとカメラの距離を計測
 					auto dir = rc_pos - camera_position;

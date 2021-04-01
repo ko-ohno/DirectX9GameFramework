@@ -34,14 +34,14 @@ public:
 	void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture) override;
 
 private:
-	D3DXHANDLE d3dxhandle_technique_;	//テクニックへのハンドル
-	D3DXHANDLE d3dxhandle_texture_;		//テクスチャーへのハンドル
+	D3DXHANDLE d3dxhandle_technique_;	 //テクニックへのハンドル
+	D3DXHANDLE d3dxhandle_texture_;		 //テクスチャーへのハンドル
 
-	D3DXHANDLE d3dxhandle_pos_;				//位置情報へのハンドル
-	D3DXHANDLE d3dxhandle_scale_;			//拡縮情報へのハンドル
-	D3DXHANDLE d3dxhandle_view_inverse_;	//逆ビュー行列へのハンドル
-	D3DXHANDLE d3dxhandle_view_;			//ビュー行列へのハンドル
-	D3DXHANDLE d3dxhandle_projection_;		//へのハンドル
+	D3DXHANDLE d3dxhandle_pos_;			 //位置情報へのハンドル
+	D3DXHANDLE d3dxhandle_scale_;		 //拡縮情報へのハンドル
+	D3DXHANDLE d3dxhandle_view_inverse_; //逆ビュー行列へのハンドル
+	D3DXHANDLE d3dxhandle_view_;		 //ビュー行列へのハンドル
+	D3DXHANDLE d3dxhandle_projection_;	 //プロジェクション情報へのハンドル
 
 };
 

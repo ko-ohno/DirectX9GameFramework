@@ -22,7 +22,7 @@
 class SpriteRendererComponent : public RendererComponent
 {
 public:
-	SpriteRendererComponent(class GameObject* owner, int drawOrder = 100);
+	SpriteRendererComponent(class GameObject* owner, int drawOrder = 200);
 	~SpriteRendererComponent(void);
 
 	bool Init(void) override;

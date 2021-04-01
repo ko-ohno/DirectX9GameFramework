@@ -18,9 +18,7 @@ struct VS_INPUT
 /*-----------------------------------------------------------------------------
 /* グローバル変数宣言ブロック
 -----------------------------------------------------------------------------*/
-float4x4	g_MatTranslation;
-float4x4	g_MatScale;
-float4x4	g_MatInverseView;
+float4x4	g_MatWorld;
 float4x4	g_MatView;
 float4x4	g_MatProjection;
 
@@ -59,12 +57,7 @@ void VS(float3 in_pos : POSITION0
 	   , out float4 out_color : COLOR0
 	   , out float2 out_tex : TEXCOORD0)
 {
-	float4x4 world_matrix = g_Identity;
-	world_matrix = mul(world_matrix, g_MatInverseView);
-	world_matrix = mul(world_matrix, g_MatScale);
-	world_matrix = mul(world_matrix, g_MatTranslation);
-
-	out_pos = mul(float4(in_pos, 1.0f), world_matrix);	// ワールド座標
+	out_pos = mul(float4(in_pos, 1.0f), g_MatWorld);	// ワールド座標
 	out_pos = mul(out_pos, g_MatView);					// ビュー座標
 	out_pos = mul(out_pos, g_MatProjection);			// 頂点座標（カメラ座標系）をスクリーン座標系に変換
 	out_color = in_color;

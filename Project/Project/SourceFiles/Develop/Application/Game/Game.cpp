@@ -14,6 +14,7 @@
 
 #include "Manager/ShaderManager.h"
 #include "Manager/TextureManager.h"
+#include "Manager/MeshManager.h"
 
 
 #include "GameObjectFactory.h"
@@ -76,9 +77,17 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			return false;
 		}
 
-		//シェーダーマネージャの起動
+		//テクスチャマネージャの起動
 		texture_manager_ = texture_manager_->Create(this);
 		const bool texture_manager_init = texture_manager_->StartUp();
+		if (texture_manager_init == false)
+		{
+			return false;
+		}
+	
+		//メッシュマネージャの起動
+		mesh_manager_ = mesh_manager_->Create(this);
+		const bool mesh_manager_init = mesh_manager_->StartUp();
 		if (texture_manager_init == false)
 		{
 			return false;
@@ -120,11 +129,26 @@ void Game::ShutDown(void)
 		game_object_fuctory_->ShutDown();
 		SAFE_DELETE_(game_object_fuctory_);
 	}
-
-	//シェーダーマネージャの破棄
+	
+	//マネージャーのファクトリの使用
 	{
-		shader_manager_->Shutdown();
-		SAFE_DELETE_(shader_manager_);
+		//シェーダーマネージャの起動
+		{
+			shader_manager_->Shutdown();
+			SAFE_DELETE_(shader_manager_);
+		}
+
+		//テクスチャマネージャの起動
+		{
+			texture_manager_->Shutdown();
+			SAFE_DELETE_(texture_manager_);
+		}
+
+		//メッシュマネージャの起動
+		{
+			mesh_manager_->Shutdown();
+			SAFE_DELETE_(mesh_manager_);
+		}
 	}
 	 
 	//レンダラーの破棄

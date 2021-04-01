@@ -1,71 +1,106 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[MeshTest.cpp] メッシュをテストするためのゲームオブジェクト
+/*	[LightManager.cpp] ライト管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：メッシュをテストするためのゲームオブジェクト
+/*	説明：ライト管理クラス
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "_MeshTest.h"
-#include "../Component/RendererComponent/StdMeshRendererComponent.h"
+#include "../../../StdAfx.h"
+#include "LightManager.h"
+#include "../Resource/Light/DirectionalLight.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-MeshTest::MeshTest(Game* game)
-	: GameObject(game)
+LightManager::LightManager(Game* game)
+    : game_(game)
 {
-	//ゲームレイヤーで描画
-	this->renderer_layer_type_ = RendererLayerType::Game;
-
-	std_mesh_renderer_component_ = new StdMeshRendererComponent(this, 100);
-	std_mesh_renderer_component_->SetMesh(XFileMeshType::Box);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-MeshTest::~MeshTest(void)
+LightManager::~LightManager(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* ファクトリメソッド
 -----------------------------------------------------------------------------*/
-MeshTest* MeshTest::Create(Game* game)
+LightManager* LightManager::Create(Game* game)
 {
-	return NEW MeshTest(game);
+    return NEW LightManager(game);
+}
+
+/*-----------------------------------------------------------------------------
+/* 起動処理
+-----------------------------------------------------------------------------*/
+bool LightManager::StartUp(void)
+{
+	//自身の初期化
+	const bool light_manager_init = this->Init();
+	if (light_manager_init == false)
+	{
+		return false;
+	}
+
+    return true;
+}
+
+/*-----------------------------------------------------------------------------
+/* 停止処理
+-----------------------------------------------------------------------------*/
+void LightManager::ShutDown(void)
+{
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool MeshTest::Init(void)
+bool LightManager::Init(void)
 {
-	return true;
+	//ライトの読み込み
+	{
+		this->AddLight(NEW DirectionalLight(this));
+	}
+    return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void MeshTest::Uninit(void)
+void LightManager::Uninit(void)
 {
+	while (!light_list_.empty())
+	{
+		delete light_list_.back();
+	}
 }
 
 /*-----------------------------------------------------------------------------
-/* 入力処理
+/* 終了化処理
 -----------------------------------------------------------------------------*/
-void MeshTest::InputGameObject(void)
+void LightManager::AddLight(Light* light)
 {
+	light_list_.emplace_back(light);
 }
 
 /*-----------------------------------------------------------------------------
-/* 更新処理
+/* 終了化処理
 -----------------------------------------------------------------------------*/
-void MeshTest::UpdateGameObject(float deltaTime)
+void LightManager::RemoveLight(Light* light)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
+	auto iter = std::find(light_list_.begin()	//範囲0～
+						 , light_list_.end()	//範囲最大まで
+						 , light);				//探す対象
+
+	if (iter != light_list_.end())
+	{
+		light_list_.erase(iter);
+	}
 }
 
 /*=============================================================================

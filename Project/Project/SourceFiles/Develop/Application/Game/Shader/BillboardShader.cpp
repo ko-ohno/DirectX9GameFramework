@@ -209,28 +209,53 @@ void BillboardShader::ShaderSet(Camera* camera, RendererComponent* rendererCompo
 	shader_->SetTechnique(d3dxhandle_technique_);
 
 	//
-	// 平行移動・拡縮情報の作成
+	// ワールド行列への合成
 	//
+	D3DXMATRIX world_matrix;
 	{
-		D3DXMATRIX translation_matrix, scale_matrix;
-		D3DXVECTOR3 position, scale;
+		//
+		// 平行移動・拡縮情報の作成
+		//
 
-		position = rendererComponent->GetPositon();
-		scale = rendererComponent->GetScale();
-		
-		
-		D3DXMatrixTranslation(&translation_matrix, position.x, position.y, position.z);
-		D3DXMatrixScaling(&scale_matrix, scale.x, scale.y, scale.z);
+		//位置情報、拡縮情報
+		D3DXVECTOR3 position = *rendererComponent->GetPosition();
+		D3DXVECTOR3 scale	 = *rendererComponent->GetScale();
 
-		//シェーダーに平行移動行列を渡す。
-		shader_->SetMatrix("g_MatTranslation", &translation_matrix);
+		D3DXMATRIX rotation_matrix = *camera->GetViewInverseMatrix();
 
-		//シェーダーに拡縮行列を渡す。
-		shader_->SetMatrix("g_MatScale", &scale_matrix);
+
+		//拡縮のベクトル値に、回転行列の値をくわえて計算
+
+		//X軸
+		world_matrix._11 = scale.x * rotation_matrix._11;
+		world_matrix._12 = scale.x * rotation_matrix._12;
+		world_matrix._13 = scale.x * rotation_matrix._13;
+
+		//Y軸
+		world_matrix._21 = scale.y * rotation_matrix._21;
+		world_matrix._22 = scale.y * rotation_matrix._22;
+		world_matrix._23 = scale.y * rotation_matrix._23;
+
+		//Z軸
+		world_matrix._31 = scale.z * rotation_matrix._31;
+		world_matrix._32 = scale.z * rotation_matrix._32;
+		world_matrix._33 = scale.z * rotation_matrix._33;
+
+		//平行移動
+		world_matrix._41 = position.x;
+		world_matrix._42 = position.y;
+		world_matrix._43 = position.z;
+
+		//W成分
+		world_matrix._14 = world_matrix._24 = world_matrix._34 = 0.0f;
+
+		//1.0fに設定することでworld_matrix_._4*をベクトル化
+		world_matrix._44 = 1.0f;
 	}
 
-	//シェーダーに逆ビュー行列を渡す。
-	shader_->SetMatrix("g_MatInverseView", camera->GetViewInverseMatrix());
+
+	//シェーダーにワールド行列を渡す。
+	shader_->SetMatrix("g_MatWorld", &world_matrix);
 
 	//シェーダーにビュー行列を渡す。
 	shader_->SetMatrix("g_MatView", camera->GetViewMatrix());
@@ -238,8 +263,16 @@ void BillboardShader::ShaderSet(Camera* camera, RendererComponent* rendererCompo
 	//シェーダーにプロジェクション行列を渡す。
 	shader_->SetMatrix("g_MatProjection", camera->GetProjection3DMatrix());
 
-	//シェーダーにテクスチャを転送
-	shader_->SetTexture("g_Texture", texture->GetTexture());
+	if (texture == nullptr)
+	{
+		//nullのテクスチャとして転送
+		shader_->SetTexture("g_Texture", nullptr);
+	}
+	else
+	{
+		//シェーダーにテクスチャを転送
+		shader_->SetTexture("g_Texture", texture->GetTexture());
+	}
 
 	//定数バッファをシェーダに転送
 	shader_->CommitChanges();
