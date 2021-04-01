@@ -105,18 +105,6 @@ public:
 	//シェーダーのセット
 	void SetShader(class Shader* shader) { shader_ = shader; } 
 
-
-	//
-	//　ゲームオブジェクトがカメラだった場合の処理　
-	//	：後でサブクラスがoverrideできるようにvirutal
-	//
-
-	virtual D3DXMATRIX* GetViewMatrix(void) { return nullptr; }
-	virtual D3DXMATRIX* GetViewInverseMatrix(void) { return nullptr; }
-	virtual D3DXMATRIX* GetProjection2DMatrix(void) { return nullptr; }
-	virtual D3DXMATRIX* GetProjection3DMatrix(void) { return nullptr; }
-
-
 	//ゲームオブジェクトの姿勢情報の取得
 	class TransformComponent* GetTransform(void) const { return transform_component_; }
 

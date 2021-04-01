@@ -404,7 +404,7 @@ Texture* SpriteRendererComponent::GetTexture(void)
 	//テクスチャ情報の取得
 	if (this->texture_ == nullptr)
 	{
-		assert(!"GetTexture():SpriteRendererComponentにテクスチャ情報が設定されていません！");
+		assert(!"SpriteRendererComponent::GetTexture():テクスチャ情報が設定されていません！");
 	}
 	return texture_;
 }
@@ -417,7 +417,7 @@ D3DXIMAGE_INFO* SpriteRendererComponent::GetTextureImageInfo(void)
 	//テクスチャ構成情報の取得
 	if (this->texture_ == nullptr)
 	{
-		assert(!"GetTextureImageInfo():SpriteRendererComponentに情報の取得ができませんでした！");
+		assert(!"SpriteRendererComponent::GetTextureImageInfo():テクスチャ構成情報の取得ができませんでした！");
 	}
 	return texture_->GetTextureImageInfo();
 }

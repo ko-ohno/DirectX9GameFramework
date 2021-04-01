@@ -9,7 +9,6 @@
 /*--- インクルードファイル ---*/
 #include "../../../../StdAfx.h"
 #include "_BillboardTest.h"
-
 #include "../Component/RendererComponent/BillboardRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
@@ -18,6 +17,7 @@
 BillboardTest::BillboardTest(Game* game)
 	: GameObject(game)
 	, billboard_(nullptr)
+	, billboard_a_(nullptr)
 {
 	//ゲームレイヤーで描画
 	this->renderer_layer_type_ = RendererLayerType::Game;

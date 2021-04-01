@@ -16,7 +16,7 @@
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Texture::Texture(class TextureManager* manager, TextureType textureType)
+Texture::Texture(TextureManager* manager, TextureType textureType)
 	: texture_manager_(manager)
 	, texture_type_id_(TextureType::None)
 	, is_loading_complete_(false)
@@ -32,7 +32,7 @@ Texture::Texture(class TextureManager* manager, TextureType textureType)
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Texture::~Texture()
+Texture::~Texture(void)
 {
 	//テクスチャの解放
 	SAFE_RELEASE_(lpd3d_texture_);
@@ -45,8 +45,13 @@ bool Texture::LoadTexture(const TextureType textureType)
 {
 	auto lpd3d_device = *texture_manager_->GetGame()->GetGraphics()->GetLPD3DDevice();
 	{
-		auto texture_filepath = texture_manager_->GetTextureFilepathList().at(textureType);
+		// テクスチャのルートパスを取得
+		auto texture_filepath = texture_manager_->GetTextureRootpath();
 
+		// ルートパスとファイルパスを合成
+		texture_filepath = texture_filepath + texture_manager_->GetTextureFilepathList().at(textureType);
+
+		// テクスチャの作成
 		HRESULT hr = D3DXCreateTextureFromFile(lpd3d_device, texture_filepath.c_str(), &lpd3d_texture_);
 		if (FAILED(hr))
 		{
@@ -54,6 +59,7 @@ bool Texture::LoadTexture(const TextureType textureType)
 			return false;
 		}
 
+		// テクスチャ情報の作成
 		hr = D3DXGetImageInfoFromFile(texture_filepath.c_str(), &d3dximage_info_);
 		if (FAILED(hr))
 		{

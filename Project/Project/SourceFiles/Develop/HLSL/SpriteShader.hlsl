@@ -25,13 +25,16 @@ texture		g_Texture;
 /* テクスチャーサンプラーブロック
 -----------------------------------------------------------------------------*/
 sampler Sampler = sampler_state {
-	texture = <g_Texture>;
 
-	MinFilter = LINEAR;		// リニアフィルタ（縮小時）
-	MagFilter = LINEAR;		// リニアフィルタ（拡大時）
+	texture = <g_Texture>;
 
 	AddressU = WRAP;		// UVの設定,繰り返し
 	AddressV = WRAP;		// UVの設定,繰り返し
+
+	MinFilter = LINEAR;		// リニアフィルタ（縮小時）
+	MagFilter = LINEAR;		// リニアフィルタ（拡大時）
+	MipFilter = LINEAR;
+
 };
 
 /*-----------------------------------------------------------------------------

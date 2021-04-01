@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BillboardRendererComponent.h] モジュールヘッダ
+/*	[BillboardRendererComponent.h] ビルボードレンダラーコンポネントクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：
+/*	説明：ビルボードレンダラーコンポネントクラス
 =============================================================================*/
 #ifndef BILLBOARD_RENDERER_H_
 #define	BILLBOARD_RENDERER_H_
@@ -16,9 +16,9 @@
 /* 構造体
 -------------------------------------*/
 
-/*-------------------------------------
-/* クラス
--------------------------------------*/
+/*----------------------------------------
+/* ビルボードレンダラーコンポネントクラス
+----------------------------------------*/
 class BillboardRendererComponent : public RendererComponent
 {
 public:
@@ -64,13 +64,14 @@ public:
 
 public:
 	//回転成分の操作
+	//ビルボードなので必要なし
 
-	inline void SetRotate(float degree) { radian_ = Math::ToRadian(degree); }
+	//inline void SetRotate(float degree) { radian_ = Math::ToRadian(degree); }
 
-	inline void AddRotate(float addValueDegree) { radian_ += Math::ToRadian(addValueDegree); }
+	//inline void AddRotate(float addValueDegree) { radian_ += Math::ToRadian(addValueDegree); }
 
-	inline float GetRadian(void) const { return radian_; }
-	inline float GetDegree(void) const { return degree_; }
+	//inline float GetRadian(void) const { return radian_; }
+	//inline float GetDegree(void) const { return degree_; }
 
 private:
 	//全ビルボード共通の頂点用のデータ
@@ -117,12 +118,8 @@ private:
 	//親クラスRendererComponenで定義ずみ
 
 	//回転角度
-	float degree_;
-	float radian_;
-
-private:
-	//プロジェクション行列
-	D3DXMATRIX projection_matrix_;
+	//float degree_;
+	//float radian_;
 };
 
 #endif //BILLBOARD_RENDERER_H_

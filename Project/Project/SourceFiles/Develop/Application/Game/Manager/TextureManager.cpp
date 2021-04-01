@@ -69,15 +69,17 @@ void TextureManager::Shutdown(void)
 -----------------------------------------------------------------------------*/
 bool TextureManager::Init(void)
 {
-	//リストの初期化
+	// テクスチャのルートパスを設定
+	texture_root_path_ = "Assets/Textures/";
+
+	// リストの初期化
 	unmap_texture_path_list_.clear();
 	{
-		unmap_texture_path_list_[TextureType::Sample]    = "Assets/Textures/tex1.bmp";
-		unmap_texture_path_list_[TextureType::Prototype] = "Assets/Textures/PrototypingTextures/texture_01.png";
-		unmap_texture_path_list_[TextureType::Planet]	 = "Assets/Textures/Planet.png";
+		unmap_texture_path_list_[TextureType::Sample]    = "tex1.bmp";
+		unmap_texture_path_list_[TextureType::Prototype] = "PrototypingTextures/texture_01.png";
+		unmap_texture_path_list_[TextureType::Planet]	 = "Planet.png";
 
 	}
-
 	return true;
 }
 
@@ -89,6 +91,8 @@ void TextureManager::Uninit(void)
 	while (!texture_list_.empty())
 	{
 		delete texture_list_.back();
+		texture_list_.back() = nullptr;
+		texture_list_.pop_back();
 	}
 }
 
@@ -106,9 +110,9 @@ Texture* TextureManager::LoadTexture(TextureType textureTypeID)
 	else
 	{
 		//テクスチャがなかったら
-		const bool is_texture_out_of_range = ((textureTypeID == TextureType::None)
-											 || (textureTypeID == TextureType::Max));
-		if (is_texture_out_of_range)
+		const bool is_texture_list_out_of_range = ((textureTypeID == TextureType::None)
+											      || (textureTypeID == TextureType::Max));
+		if (is_texture_list_out_of_range)
 		{
 			assert(!"範囲外のテクスチャIDを参照しようとしています！");
 			return nullptr;
@@ -135,6 +139,26 @@ void TextureManager::ReleaseTexture(TextureType textureTypeID)
 }
 
 /*-----------------------------------------------------------------------------
+/* テクスチャ検索処理
+-----------------------------------------------------------------------------*/
+Texture* TextureManager::FindTexture(TextureType textureTypeID)
+{
+	//テクスチャリストの検索
+	for (auto texture : texture_list_)
+	{
+		//現在の調査対象からIDを取得
+		auto id = texture->GetTextureTypeID();
+
+		//取得したIDとtextureType
+		if (id == textureTypeID)
+		{
+			return texture;
+		}
+	}
+	return nullptr;
+}
+
+/*-----------------------------------------------------------------------------
 /* テクスチャの追加処理
 -----------------------------------------------------------------------------*/
 void TextureManager::AddTexture(Texture* texture)
@@ -155,26 +179,6 @@ void TextureManager::RemoveTexture(Texture* texture)
 	{
 		texture_list_.erase(iter);
 	}
-}
-
-/*-----------------------------------------------------------------------------
-/* テクスチャの処理
------------------------------------------------------------------------------*/
-Texture* TextureManager::FindTexture(TextureType textureTypeID)
-{
-	//テクスチャリストの検索
-	for (auto texture : texture_list_)
-	{
-		//現在の調査対象からIDを取得
-		auto id = texture->GetTextureTypeID();
-
-		//取得したIDとtextureType
-		if (id == textureTypeID)
-		{
-			return texture;
-		}
-	}
-	return nullptr;
 }
 
 /*=============================================================================

@@ -62,7 +62,7 @@ bool GameObjectFactory::StartUp(void)
 
 		this->AddGameObject(NEW SpriteTest(game_));
 		this->AddGameObject(NEW BillboardTest(game_));
-		//this->AddGameObject(NEW MeshTest(game_));
+		this->AddGameObject(NEW MeshTest(game_));
 	}
 	return true;
 }

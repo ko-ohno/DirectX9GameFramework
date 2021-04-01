@@ -143,11 +143,6 @@ private:
 	//‰ñ“]Šp“x
 	float degree_;
 	float radian_;
-
-
-private:
-
-	D3DXMATRIX projection_matrix_;
 };
 
 #endif //SPRITE_RENDERER_H_

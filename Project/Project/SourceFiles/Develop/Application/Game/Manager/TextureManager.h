@@ -45,14 +45,21 @@ private:
 	void Uninit(void);	//終了化
 
 public:
+	//テクスチャのルートパスの取得
+	std::string GetTextureRootpath(void) const { return texture_root_path_; }
+
 	//テクスチャの読み込み
 	class Texture* LoadTexture(TextureType textureTypeID);
 
 	//テクスチャの解放
-	void	 ReleaseTexture(TextureType textureTypeID);
+	void ReleaseTexture(TextureType textureTypeID);
 
 	//テクスチャを検索する
 	class Texture* FindTexture(TextureType textureTypeID);
+
+	//
+	// テクスチャの追加と削除
+	//
 
 	void AddTexture(class Texture* texture);
 	void RemoveTexture(class Texture* texture);
@@ -65,10 +72,13 @@ private:
 	//マネージャの所有者
 	class Game* game_;
 
+	//テクスチャのルートパス
+	std::string texture_root_path_;
+
 	//テクスチャーのリスト
 	std::unordered_map<TextureType, std::string> unmap_texture_path_list_;
 
-	//テクスチャーのリスト削除と追加
+	//テクスチャーのコンテナ
 	std::vector<class Texture*> texture_list_;
 };
 

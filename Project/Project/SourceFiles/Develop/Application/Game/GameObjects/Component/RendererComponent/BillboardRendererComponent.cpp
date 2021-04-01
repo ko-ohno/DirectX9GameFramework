@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BillboardRendererComponent.cpp] モジュール
+/*	[BillboardRendererComponent.cpp] ビルボードレンダラーコンポネントクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：
+/*	説明：ビルボードレンダラーコンポネントクラス
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
@@ -34,10 +34,6 @@ LPWORD*		BillboardRendererComponent::index_buffer_address_ = nullptr;
 -----------------------------------------------------------------------------*/
 BillboardRendererComponent::BillboardRendererComponent(GameObject* owner, int drawOrder)
 	: RendererComponent(owner, drawOrder)
-	//, is_offset_scale_(false)
-	//, is_affine_(false)
-	, degree_(0.f)
-	, radian_(0.f)
 	, texture_(nullptr)
 	, is_compute_texcord_(false)
 	, texture_cut_x_(0)
@@ -86,8 +82,6 @@ bool BillboardRendererComponent::Init(void)
 	//バッファの初期化
 	this->ComputeVertexBuffer();
 
-	D3DXMatrixIdentity(&world_matrix_);
-
 	return true;
 }
 
@@ -110,9 +104,6 @@ void BillboardRendererComponent::Draw(Shader* shader, Camera* camera)
 	//頂点バッファの再構成
 	this->ComputeVertexBuffer();
 
-	//ビルボード用の姿勢情報を作成
-	//this->ComputeBillboardTransform();
-
 	//頂点バッファの登録
 	lpd3d_device->SetStreamSource(0, vertex_buffer_, 0, sizeof(VERTEX_STD));
 
@@ -121,18 +112,6 @@ void BillboardRendererComponent::Draw(Shader* shader, Camera* camera)
 
 	//描画処理
 	{
-		
-		
-		lpd3d_device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-
-		static float ang = 0;
-		ang += 100;
-
-		D3DXMatrixRotationY(&world_matrix_, ang);
-
-		//ワールド座標への変換を指定
-		//lpd3d_device->SetTransform(D3DTS_WORLD, &world_matrix_);
-
 		//シェーダーのセット
 		shader->ShaderSet(camera, this, texture_);
 

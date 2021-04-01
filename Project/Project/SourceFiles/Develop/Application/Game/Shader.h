@@ -31,7 +31,7 @@ public:
 	virtual void Uninit(void);	//終了化
 
 	//シェーダーのセット
-	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture);
+	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture = nullptr);
 
 	//シェーダーの開始
 	virtual void ShaderPassBegin(int shaderPassNumber = 0);

@@ -39,7 +39,7 @@ SpriteTest::SpriteTest(Game* game)
 
 	//スプライトコンポーネントを所有
 	sprite_b_ = NEW SpriteRendererComponent(this, 120);
-	sprite_b_->SetDrawingPositionToCenter(true);
+	sprite_b_->SetDrawingPositionToCenter(true); 
 	sprite_b_->SetTexture(TextureType::Planet);
 
 }

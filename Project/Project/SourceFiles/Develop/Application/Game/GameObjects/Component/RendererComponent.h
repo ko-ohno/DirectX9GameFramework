@@ -13,6 +13,7 @@
 #include "../../Game.h"
 #include "../../Manager/ShaderManager.h"
 #include "../../Manager/TextureManager.h"
+#include "../../Manager/MeshManager.h"
 #include "../../../DX9Graphics.h"
 #include "../../VertexData.h"
 
@@ -52,9 +53,6 @@ public:
 
 	//•`‰æˆ—
 	virtual void Draw(class Shader* shader, class Camera* camera);
-
-	//ƒJƒƒ‰‹——£‚ÌZo
-	float CalculationCameraDistance(class Camera* camera);
 
 public:
 

@@ -36,8 +36,6 @@ public:
 private:
 	class BillboardRendererComponent* billboard_;
 	class BillboardRendererComponent* billboard_a_;
-
-	
 };
 
 
