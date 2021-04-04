@@ -23,10 +23,10 @@ BillboardTest::BillboardTest(Game* game)
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
 	//スプライトコンポーネントを所有
-	billboard_ = NEW BillboardRendererComponent(this, 30);
+	billboard_ = NEW BillboardRendererComponent(this);
 	billboard_->SetTexture(TextureType::Sample);
 
-	billboard_a_ = NEW BillboardRendererComponent(this, 30);
+	billboard_a_ = NEW BillboardRendererComponent(this);
 	billboard_a_->SetTexture(TextureType::Sample);
 }
 

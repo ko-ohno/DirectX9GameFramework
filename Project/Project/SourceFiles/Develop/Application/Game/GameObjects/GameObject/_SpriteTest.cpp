@@ -27,18 +27,18 @@ SpriteTest::SpriteTest(Game* game)
 	this->renderer_layer_type_ = RendererLayerType::Game; 
 
 	//スプライトコンポーネントを所有
-	sprite_ = NEW SpriteRendererComponent(this, 50);
+	sprite_ = NEW SpriteRendererComponent(this);
 	sprite_->SetDrawingPositionToCenter(true);
 	sprite_->SetTexture(TextureType::Sample);
 
 
 	//スプライトコンポーネントを所有
-	sprite_a_ = NEW SpriteRendererComponent(this, 100);
+	sprite_a_ = NEW SpriteRendererComponent(this);
 	sprite_a_->SetDrawingPositionToCenter(true);
 	sprite_a_->SetTexture(TextureType::Planet);
 
 	//スプライトコンポーネントを所有
-	sprite_b_ = NEW SpriteRendererComponent(this, 120);
+	sprite_b_ = NEW SpriteRendererComponent(this);
 	sprite_b_->SetDrawingPositionToCenter(true); 
 	sprite_b_->SetTexture(TextureType::Planet);
 
