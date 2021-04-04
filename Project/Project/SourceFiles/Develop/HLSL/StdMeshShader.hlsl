@@ -18,8 +18,21 @@ struct VS_INPUT
 /*-----------------------------------------------------------------------------
 /* グローバル変数宣言ブロック
 -----------------------------------------------------------------------------*/
-float4x4	g_MatProjection;			// プロジェクション変換行列
+float4x4	g_MatWorld;				// ワールド変換行列
+float4x4	g_MatView;				// ビュー変換行列
+float4x4	g_MatProjection;		// プロジェクション変換行列
+
+float4		g_LightDir;				// ライトの向き
+
+float		g_LightStrength;		// ライトの強さ
+
+float4		g_Diffuse;				// 拡散反射光
+float4		g_Ambient;				// 環境光
+float4		g_Specular;				// 鏡面反射光
+float4		g_Emissive;				// 自己発光色
+
 texture		g_Texture;
+
 
 /*-----------------------------------------------------------------------------
 /* テクスチャーサンプラーブロック
@@ -48,7 +61,8 @@ void VS(float3 in_pos : POSITION0
 	, out float2 out_tex : TEXCOORD0)
 {
 	// 座標変換
-	out_pos = float4(in_pos, 1.0f);
+	out_pos = mul(float4(in_pos, 1.0f), g_MatWorld);	// 頂点座標（カメラ座標系）をスクリーン座標系に変換
+	out_pos = mul(out_pos, g_MatView);					// 頂点座標（カメラ座標系）をスクリーン座標系に変換
 	out_pos = mul(out_pos, g_MatProjection);			// 頂点座標（カメラ座標系）をスクリーン座標系に変換
 	out_color = in_color;
 	out_tex = in_tex;
@@ -65,7 +79,9 @@ void PS(float4	in_color : COLOR0
 	float4 texcol = tex2D(Sampler, in_uv) * in_color;	// R G B A
 
 	//すべての要素を合成したテクスチャをカラーとして出力
-	out_color = texcol;
+	//out_color = texcol;
+
+	out_color = float4(0.5f, 1.0f, 0.5f, 1.0f);
 }
 
 /*-----------------------------------------------------------------------------
@@ -78,7 +94,7 @@ technique Tech {
 		PixelShader = compile ps_3_0 PS();
 
 		AlphaBlendEnable = true;
-		SrcBlend = SRCALPHA;
+		SrcBlend  = SRCALPHA;
 		DestBlend = INVSRCALPHA;
 	}
 }
