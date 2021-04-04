@@ -171,6 +171,9 @@ void CameraComponent::Update(float deltaTime)
 		this->AddLookAtRotationPitch(-30 * deltaTime);
 	}
 
+	//
+	// ƒJƒƒ‰‚ªƒKƒ^‚Â‚­Œ»Û‚ª‚¨‚«‚Ä‚é‚Ì‚Å‚Ç‚¤‚É‚©‚µ‚½‚¢
+	//
 
 
 	ImGui::Begin("camera");
