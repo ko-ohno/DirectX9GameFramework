@@ -64,6 +64,17 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 {
 	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
+	lpd3d_device->SetRenderState(D3DRS_LIGHTING, false);
+
+	//lpd3d_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+	//void Scene::onWireFrame() {
+	//	device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	//}
+
+	//void Scene::offWireFrame() {
+	//	device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	//}
 	//メッシュ情報の確認
 	if (xfile_mesh_ == nullptr)
 	{
@@ -78,18 +89,15 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 		//シェーダーパスの開始
 		shader->ShaderPassBegin();
 
-		//描画中のメッシュがプリミティブのメッシュか？
-		const bool is_drawing_primitive_mesh = xfile_mesh_->IsGetLoadedPrimitiveMesh();
-		if (is_drawing_primitive_mesh)
+		// メッシュからマテリアル情報の取得
+		auto materials = (LPD3DXMATERIAL)xfile_mesh_->GetMaterialBuffer();
+		if (materials == nullptr)
 		{
-			//プリミティブのメッシュならこれで描画できる
+			//マテリアルのないメッシュならこれで描画できる
 			xfile_mesh_->GetMesh()->DrawSubset(0);
 		}
 		else
 		{
-			// メッシュからマテリアル情報の取得
-			auto materials = (LPD3DXMATERIAL)xfile_mesh_->GetMaterialBuffer()->GetBufferPointer();
-
 			//マテリアルの数の取得
 			auto material_counts = xfile_mesh_->GetMaterialCounts();
 
@@ -112,6 +120,9 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 		//シェーダーパスの終了
 		shader->ShaderPassEnd();
 	}
+
+	//lpd3d_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+
 }
 
 /*-----------------------------------------------------------------------------

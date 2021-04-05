@@ -37,9 +37,6 @@ XFileMesh::XFileMesh(MeshManager* manager, XFileMeshType meshType)
 	{
 		//プリミティブメッシュの読み込み
 		is_loading_complete_ = this->LoadD3DXPrimitiveMesh(meshType);
-		
-		//読み込んだメッシュがプリミティブのメッシュか
-		is_loaded_primitive_mesh_ = true;
 	}
 	else
 	{
@@ -79,6 +76,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 	mesh_filepath = mesh_filepath + mesh_manager_->GetMeshFilepathList().at(meshType);
 	{
 		HRESULT hr;
+		LPD3DXBUFFER material_buffer = nullptr;
 		LPD3DXBUFFER adjacensy = nullptr;
 
 		//
@@ -89,7 +87,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 								  , D3DXMESH_SYSTEMMEM
 								  , lpd3d_device
 								  , &adjacensy
-								  , &material_buffer_
+								  , &material_buffer
 								  , nullptr
 								  , &material_count_
 								  , &lpd3dx_mesh_);
@@ -166,7 +164,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 			LPDIRECT3DTEXTURE9 texture;
 
 			// マテリアルのバッファから、メッシュのテクスチャ情報を取得
-			LPD3DXMATERIAL materials = (LPD3DXMATERIAL)material_buffer_->GetBufferPointer();
+			LPD3DXMATERIAL materials = (LPD3DXMATERIAL)material_buffer->GetBufferPointer();
 
 			// メッシュファイルに”貼り付けられたマテリアルの数”だけテクスチャを作成
 			for (unsigned int i = 0; i < material_count_; i++)
@@ -217,7 +215,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 -----------------------------------------------------------------------------*/
 void XFileMesh::AddTexture(LPDIRECT3DTEXTURE9 texture)
 {
-	mesh_texture_list_.push_back(texture);
+	mesh_texture_list_.emplace_back(texture);
 }
 
 /*-----------------------------------------------------------------------------
@@ -245,7 +243,6 @@ bool XFileMesh::LoadD3DXPrimitiveMesh(XFileMeshType meshType)
 		assert(!"XFileMesh::LoadD3DXMeshCreate():不正なメッシュを読み込もうとしています。");
 		break;
 	}
-
 	return is_loading_complete;
 }
 

@@ -209,19 +209,16 @@ void BillboardShader::ShaderSet(Camera* camera, RendererComponent* rendererCompo
 	shader_->SetTechnique(d3dxhandle_technique_);
 
 	//
-	// ワールド行列への合成
+	// ワールド座標の情報の作成
 	//
 	D3DXMATRIX world_matrix;
 	{
-		//
-		// 平行移動・拡縮情報の作成
-		//
+		//回転情報
+		D3DXMATRIX rotation_matrix = *camera->GetViewInverseMatrix();
 
 		//位置情報、拡縮情報
 		D3DXVECTOR3 position = *rendererComponent->GetPosition();
 		D3DXVECTOR3 scale	 = *rendererComponent->GetScale();
-
-		D3DXMATRIX rotation_matrix = *camera->GetViewInverseMatrix();
 
 
 		//拡縮のベクトル値に、回転行列の値をくわえて計算
@@ -252,7 +249,6 @@ void BillboardShader::ShaderSet(Camera* camera, RendererComponent* rendererCompo
 		//1.0fに設定することでworld_matrix_._4*をベクトル化
 		world_matrix._44 = 1.0f;
 	}
-
 
 	//シェーダーにワールド行列を渡す。
 	shader_->SetMatrix("g_MatWorld", &world_matrix);

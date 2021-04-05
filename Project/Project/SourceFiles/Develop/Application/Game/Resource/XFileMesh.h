@@ -28,9 +28,6 @@ public:
 	// テクスチャの読み込みができているか
 	bool IsGetLoadCompleted(void) { return is_loading_complete_; }
 
-	// 所有するメッシュがプリミティブのメッシュか
-	bool IsGetLoadedPrimitiveMesh(void) { return is_loaded_primitive_mesh_; }
-
 	// テクスチャの追加
 	void AddTexture(LPDIRECT3DTEXTURE9 texture);
 	
@@ -74,7 +71,6 @@ private:
 	//
 
 	bool				is_loading_complete_;
-	bool				is_loaded_primitive_mesh_;
 
 	XFileMeshType		mesh_type_id_;
 	LPD3DXMESH			lpd3dx_mesh_;
