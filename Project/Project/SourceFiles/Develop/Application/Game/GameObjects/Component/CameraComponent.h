@@ -52,25 +52,10 @@ private:
 	// カメラ座標の更新
 	//
 
-	void UpdateCameraPosition(void);
-	void UpdateLookatPosition(void);
-
-private:
-	//
-	// カメラの回転
-	//
-
-	void ComputeRotationYaw(void);
-	void ComputeRotationPitch(void);
-	void ComputeRotationRoll(void);
-
-	//
-	// カメラの回転
-	//
-
-	void ComputeRotationLookatYaw(void);
-	void ComputeRotationLookatPitch(void);
-	void ComputeRotationLookatRoll(void);
+	void UpdateTransform(float deltaTime);
+	void ComputeCameraMovement(float deltaTime);
+	void ComputeRotationCameraPosition(float deltaTime);
+	void ComputeRotationLookatPosition(float deltaTime);
 
 private:
 	void ComputeViewMatrix(void);
@@ -80,38 +65,11 @@ private:
 
 public:
 	//
-	//　位置情報への加算
+	//　速度の設定
 	//
 
-	inline void AddTranslation(float addValueX, float addValueY, float addValueZ)
-	{
-		eye_point_	  += { addValueX, addValueY, addValueZ };
-		lookat_point_ += { addValueX, addValueY, addValueZ };
-	}
-
-	inline void AddTranslation(const D3DXVECTOR3& addValue)
-	{
-		eye_point_	  += addValue;
-		lookat_point_ += addValue;
-	}
-
-	inline void AddTranslationX(float addValueX)
-	{
-		eye_point_.x	+= addValueX;
-		lookat_point_.x += addValueX;
-	}
-	
-	inline void AddTranslationY(float addValueY)
-	{
-		eye_point_.y	+= addValueY;
-		lookat_point_.y += addValueY;
-	}
-	
-	inline void AddTranslationZ(float addValueZ)
-	{
-		eye_point_.z	+= addValueZ;
-		lookat_point_.z += addValueZ;
-	}
+	void SetMoveSpeed(float speed) { move_speed_ = speed; }
+	void SetRotationDegree(float degree) { rotation_degree_ = degree; }
 
 public:
 
@@ -119,55 +77,19 @@ public:
 	// カメラ座標：位置情報の設定
 	//
 
-	inline void SetCameraTranslation(float posX, float posY, float posZ) { eye_point_ = { posX, posY, posZ }; }
-	inline void SetCameraTranslation(const D3DXVECTOR3& position) { eye_point_ = position; }
-	inline void SetCameraTranslationX(float posX) { eye_point_.x = posX; }
-	inline void SetCameraTranslationY(float posY) { eye_point_.y = posY; }
-	inline void SetCameraTranslationZ(float posZ) { eye_point_.z = posZ; }
+	inline void SetCameraTranslation(float posX, float posY, float posZ) { position_ = { posX, posY, posZ }; }
+	inline void SetCameraTranslation(const D3DXVECTOR3& position) { position_ = position; }
+	inline void SetCameraTranslationX(float posX) { position_.x = posX; }
+	inline void SetCameraTranslationY(float posY) { position_.y = posY; }
+	inline void SetCameraTranslationZ(float posZ) { position_.z = posZ; }
 
 	// カメラ座標：位置情報への加算
 
-	inline void AddCameraTranslation(float addValueX, float addValueY, float addValueZ) { eye_point_ += { addValueX, addValueY, addValueZ }; }
-	inline void AddCameraTranslation(const D3DXVECTOR3& addValue) { eye_point_ += addValue; }
-	inline void AddCameraTranslationX(float addValueX) { eye_point_.x += addValueX; }
-	inline void AddCameraTranslationY(float addValueY) { eye_point_.y += addValueY; }
-	inline void AddCameraTranslationZ(float addValueZ) { eye_point_.z += addValueZ; }
-
-	//
-	// カメラ座標：回転情報の設定
-	//
-
-	inline void SetCameraRotation(float degreeYaw, float degreePitch, float degreeRoll)
-	{
-		degree_yaw_ = degreeYaw;
-		degree_pitch_ = degreePitch;
-		degree_roll_ = degreeRoll;
-	}
-
-	inline void SetCameraRotationYaw(float degreeYaw) { degree_yaw_ = degreeYaw; }
-	inline void SetCameraRotationPitch(float degreePitch) { degree_pitch_ = degreePitch; }
-	inline void SetCameraRotationRoll(float degreeRoll) { degree_roll_ = degreeRoll; }
-
-	// カメラ座標：回転情報への加算
-
-	inline void AddCameraRotation(float addDegreeYaw, float addDegreePitch, float addDegreeRoll)
-	{
-		degree_yaw_ += addDegreeYaw;
-		degree_pitch_ += addDegreePitch;
-		degree_roll_ += addDegreeRoll;
-	}
-
-	inline void AddCameraRotationYaw(float addDegreeYaw) { degree_yaw_ += addDegreeYaw; }
-	inline void AddCameraRotationPitch(float addDegreePitch) { degree_pitch_ += addDegreePitch; }
-	inline void AddCameraRotationRoll(float addDegreeRoll) { degree_roll_ += addDegreeRoll; }
-
-	//
-	// カメラ：回転情報の取得
-	//
-
-	inline float GetAngleCameraYaw(void) const { return degree_yaw_; }
-	inline float GetAngleCameraPitch(void) const { return degree_pitch_; }
-	inline float GetAngleCameraRoll(void) const { return degree_roll_; }
+	inline void AddCameraTranslation(float addValueX, float addValueY, float addValueZ) { position_ += { addValueX, addValueY, addValueZ }; }
+	inline void AddCameraTranslation(const D3DXVECTOR3& addValue) { position_ += addValue; }
+	inline void AddCameraTranslationX(float addValueX) { position_.x += addValueX; }
+	inline void AddCameraTranslationY(float addValueY) { position_.y += addValueY; }
+	inline void AddCameraTranslationZ(float addValueZ) { position_.z += addValueZ; }
 
 public:
 
@@ -175,62 +97,26 @@ public:
 	// 注視点座標：位置情報の設定
 	//
 
-	inline void SetLookAtTranslation(float posX, float posY, float posZ) { lookat_point_ = { posX, posY, posZ }; }
-	inline void SetLookAtTranslation(const D3DXVECTOR3& position) { lookat_point_ = position; }
-	inline void SetLookAtTranslationX(float posX) { lookat_point_.x = posX; }
-	inline void SetLookAtTranslationY(float posY) { lookat_point_.y = posY; }
-	inline void SetLookAtTranslationZ(float posZ) { lookat_point_.z = posZ; }
+	inline void SetLookAtTranslation(float posX, float posY, float posZ) { lookat_position_ = { posX, posY, posZ }; }
+	inline void SetLookAtTranslation(const D3DXVECTOR3& position) { lookat_position_ = position; }
+	inline void SetLookAtTranslationX(float posX) { lookat_position_.x = posX; }
+	inline void SetLookAtTranslationY(float posY) { lookat_position_.y = posY; }
+	inline void SetLookAtTranslationZ(float posZ) { lookat_position_.z = posZ; }
 
 	// 注視点座標：位置情報への加算
 
-	inline void AddLookAtTranslation(float addValueX, float addValueY, float addValueZ) { lookat_point_ += { addValueX, addValueY, addValueZ }; }
-	inline void AddLookAtTranslation(const D3DXVECTOR3& addValue) { lookat_point_ += addValue; }
-	inline void AddLookAtTranslationX(float addValueX) { lookat_point_.x += addValueX; }
-	inline void AddLookAtTranslationY(float addValueY) { lookat_point_.y += addValueY; }
-	inline void AddLookAtTranslationZ(float addValueZ) { lookat_point_.z += addValueZ; }
-
-	//
-	// 注視点座標：回転情報の設定
-	//
-
-	inline void SetLookAtRotation(float degreeYaw, float degreePitch, float degreeRoll)
-	{
-		degree_lookat_yaw_ = degreeYaw;
-		degree_lookat_pitch_ = degreePitch;
-		degree_lookat_roll_ = degreeRoll;
-	}
-
-	inline void SetLookAtRotationYaw(float degreeYaw) { degree_lookat_yaw_ = degreeYaw; }
-	inline void SetLookAtRotationPitch(float degreePitch) { degree_lookat_pitch_ = degreePitch; }
-	inline void SetLookAtRotationRoll(float degreeRoll) { degree_lookat_roll_ = degreeRoll; }
-
-	// 注視点座標：回転情報への加算
-
-	inline void AddLookAtRotation(float addDegreeYaw, float addDegreePitch, float addDegreeRoll)
-	{
-		degree_lookat_yaw_ += addDegreeYaw;
-		degree_lookat_pitch_ += addDegreePitch;
-		degree_lookat_roll_ += addDegreeRoll;
-	}
-
-	inline void AddLookAtRotationYaw(float addDegreeYaw) { degree_lookat_yaw_ += addDegreeYaw; }
-	inline void AddLookAtRotationPitch(float addDegreePitch) { degree_lookat_pitch_ += addDegreePitch; }
-	inline void AddLookAtRotationRoll(float addDegreeRoll) { degree_lookat_roll_ += addDegreeRoll; }
-
-	//
-	// 注視点：回転情報の取得
-	//
-
-	inline float GetAngleLookAtYaw(void) const { return degree_lookat_yaw_; }
-	inline float GetAngleLookAtPitch(void) const { return degree_lookat_pitch_; }
-	inline float GetAngleLookAtRoll(void) const { return degree_lookat_roll_; }
+	inline void AddLookAtTranslation(float addValueX, float addValueY, float addValueZ) { lookat_position_ += { addValueX, addValueY, addValueZ }; }
+	inline void AddLookAtTranslation(const D3DXVECTOR3& addValue) { lookat_position_ += addValue; }
+	inline void AddLookAtTranslationX(float addValueX) { lookat_position_.x += addValueX; }
+	inline void AddLookAtTranslationY(float addValueY) { lookat_position_.y += addValueY; }
+	inline void AddLookAtTranslationZ(float addValueZ) { lookat_position_.z += addValueZ; }
 
 	//
 	// カメラ・注視点座標：位置情報の取得
 	//
 
-	inline D3DXVECTOR3* GetPositon(void) { return &eye_point_; }
-	inline D3DXVECTOR3* GetLookAtPositon(void) { return &lookat_point_; }
+	inline D3DXVECTOR3* GetPositon(void) { return &position_; }
+	inline D3DXVECTOR3* GetLookAtPositon(void) { return &lookat_position_; }
 
 	//
 	// 姿勢方向ベクトル情報
@@ -259,6 +145,10 @@ public:
 	//アスペクト比率の設定
 	void SetScreenAspectSize(Vector2& aspectSize) { screen_aspect_size_ = aspectSize; }
 
+	//カメラをコントロールするか
+	bool IsGetCameraControlling(void) { return is_camera_controlling_; }
+	void IsSetCameraControlling(bool isCameraControlling) { is_camera_controlling_ = isCameraControlling; }
+
 	//カメラが移動したかのフラグ
 	bool IsGetCameraMoved(void) const { return is_camera_moved_; }
 
@@ -267,17 +157,14 @@ public:
 private:
 protected:
 
+	//更新が必要かどうかのフラグ
+	bool is_need_update_;
+
 	//前フレームと比べてカメラが移動したかのフラグ
 	bool is_camera_moved_;
 
-	//注視点座標を回転によって更新するかのフラグ
-	bool is_rotation_lookat_;
-
-	//各回転軸に対するフラグ
-
-	bool is_rotation_yaw_
-	   , is_rotation_pitch_
-	   , is_rotation_roll_;
+	// カメラを操作するか
+	bool is_camera_controlling_;
 
 	//
 	// 姿勢情報
@@ -285,9 +172,9 @@ protected:
 
 	// カメラ・注視点の座標
 
-	D3DXVECTOR3 eye_point_			//視点
-			  , old_eye_point_		//1フレーム前のカメラ座標
-			  , lookat_point_;		//注視点
+	D3DXVECTOR3 position_			//視点
+			  , old_position_		//1フレーム前のカメラ座標
+			  , lookat_position_;	//注視点
 
 	// カメラの姿勢ベクトル
 
@@ -295,25 +182,26 @@ protected:
 			  , up_vector_		//頭の向き(上ベクトル)
 			  , right_vector_;	//頭の向き(右ベクトル)
 
-	float viewing_vector_length_; //視線ベクトルの長さ
+	// カメラの移動向きベクトル
+	D3DXVECTOR3 move_direction_;
 
-	// カメラの角度
-	
-	float degree_yaw_
-		, degree_pitch_
-		, degree_roll_;
+	//移動倍率
+	float movement_scale_;
 
-	// 注視点中心のカメラの角度
-	
-	float degree_lookat_yaw_
-		, degree_lookat_pitch_
-		, degree_lookat_roll_;
+	// 移動の速度
+	float move_speed_;
+
+	// 回転の速度
+	float rotation_degree_;
+
+	// 視線ベクトルの長さ
+	float viewing_vector_length_;   
 
 	//
 	// 座標変換情報
 	//
 
-	//画面サイズ
+	// 画面サイズ
 	Vector2 screen_aspect_size_;
 
 	// ビュー変換行列
@@ -325,8 +213,6 @@ protected:
 
 	D3DXMATRIX projection_matrix_2d_
 			 , projection_matrix_3d_;
-
-	static constexpr float DEGREE_NORMALIZE_OFFSET = 180.f;
 };
 
 #endif //CAMERA_COMPONENT_H_

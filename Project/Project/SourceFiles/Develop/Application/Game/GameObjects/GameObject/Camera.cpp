@@ -13,6 +13,9 @@
 #include "../Component/CameraComponent.h"
 #include "../../Renderer.h"
 
+#include "../../Input/InputCheck.h"
+#include "../../../ImGui/ImGuiManager.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -71,12 +74,30 @@ void Camera::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	//if (false)
-	//{
-	//	Vector2 screen_aspect_size_ = { 0.f, 0.f };
-	//	camera_component_->SetScreenAspectSize(screen_aspect_size_);
-	//}
+	//カメラを操作するか
+	const bool is_camera_controlling = camera_component_->IsGetCameraControlling();
 
+	ImGui::Begin("camera");
+	ImGui::SetNextTreeNodeOpen(true);
+	if (ImGui::TreeNode("CameraControll"))
+	{
+		if (is_camera_controlling)
+		{
+			if (ImGui::Button("OFF"))
+			{
+				camera_component_->IsSetCameraControlling(false);
+			}
+		}
+		else
+		{
+			if (ImGui::Button("ON"))
+			{
+				camera_component_->IsSetCameraControlling(true);
+			}
+		}
+		ImGui::TreePop();
+	}
+	ImGui::End();
 }
 
 /*-----------------------------------------------------------------------------

@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imconfig.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imgui.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_win32.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imstb_truetype.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imstb_rectpack.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\External\ImGui\include\imstb_textedit.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\DX9Graphics\DX9GraphicsDevice.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\DX9Graphics\DX9GraphicsRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Icon\resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Manager\ApplicationManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Manager\SplashScreenManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\AspectRatio.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\DX9Graphics.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\IManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\MessageLoop.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\SplashScreen.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Win32APIWindow.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\DebugCode\DebugFunction.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\DevelopSystemDefine.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\StdAfx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\InputDevice\InputDevice.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\InputDevice\InputDeviceKeyboard.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\InputDevice\InputDeviceMouse.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\InputDevice\InputDeviceXInput.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Math.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\ImGui\ImGuiManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\CameraComponent\FallowCameraComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CapsuleColliderComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\SphereColliderComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent\AutomaticInputComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent\PlayerInputComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AudioComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\CameraComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Input\InputCheck.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Texture.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Game.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Renderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjectFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\VertexData.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\GridGizmoRendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\BillboardRendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteRendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\PauseMenu.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Result.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\SpriteShader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\SkinMeshShader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Effect.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\StdMeshShader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Sound.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\LightManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_draw.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_tables.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_widgets.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\External\ImGui\include\imgui_demo.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\DX9Graphics\DX9GraphicsDevice.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\DX9Graphics\DX9GraphicsRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Manager\ApplicationManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Manager\SplashScreenManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\AspectRatio.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\DX9Graphics.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\MessageLoop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\SplashScreen.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Win32APIWindow.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\DebugCode\DebugFunction.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\StdAfx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\InputDevice\InputDevice.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\InputDevice\InputDeviceKeyboard.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\InputDevice\InputDeviceMouse.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\InputDevice\InputDeviceXInput.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Math.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\ImGui\ImGuiManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\CameraComponent\FallowCameraComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CapsuleColliderComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\SphereColliderComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent\AutomaticInputComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent\PlayerInputComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AudioComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\CameraComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\InputComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Input\InputCheck.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Texture.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Game.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Renderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjectFactory.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\GridGizmoRendererComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\BillboardRendererComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteRendererComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\PauseMenu.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Result.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\SpriteShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\SkinMeshShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Effect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\StdMeshShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Sound.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\LightManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Icon\icon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SourceFiles\Develop\Application\Icon\Resource.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="SourceFiles\Develop\HLSL\SpriteShader.hlsl" />
+    <FxCompile Include="SourceFiles\Develop\HLSL\BillboardShader.hlsl" />
+    <FxCompile Include="SourceFiles\Develop\HLSL\StdMeshShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CommentTemplate\Cpp\_Cpp_Header.txt" />
+    <Text Include="CommentTemplate\HLSL\_HLSL_Source.txt" />
+    <Text Include="CommentTemplate\Cpp\_Cpp_Source.txt" />
+    <Text Include="CommentTemplate\Cpp\_Cpp_GameObjectHeader.txt" />
+    <Text Include="CommentTemplate\Cpp\_Cpp_GameObjectSource.txt" />
+    <Text Include="CommentTemplate\Cpp\_Cpp_ComponentSource.txt" />
+    <Text Include="CommentTemplate\Cpp\_Cpp_ComponentHeader.txt" />
+  </ItemGroup>
+</Project>

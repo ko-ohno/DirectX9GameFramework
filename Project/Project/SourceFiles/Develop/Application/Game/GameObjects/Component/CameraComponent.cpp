@@ -12,9 +12,7 @@
 #include "../../../Math.h"
 #include "../GameObject.h"
 
-//入力操作
 #include "../../Input/InputCheck.h"
-
 #include "../../../ImGui/ImGuiManager.h"
 
 
@@ -23,23 +21,19 @@
 -----------------------------------------------------------------------------*/
 CameraComponent::CameraComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
+	, is_need_update_(false)
 	, is_camera_moved_(false)
-	, is_rotation_lookat_(false)
-	, is_rotation_yaw_(false)
-	, is_rotation_pitch_(false)
-	, is_rotation_roll_(false)
-	, eye_point_(0.f, 0.f, 0.f)
-	, old_eye_point_(0.f, 0.f, 0.f)
-	, lookat_point_(0.f, 0.f, 0.f)
+	, is_camera_controlling_(false)
+	, position_(0.f, 0.f, 0.f)
+	, old_position_(0.f, 0.f, 0.f)
+	, lookat_position_(0.f, 0.f, 0.f)
+	, move_direction_(0.f, 0.f, 0.f)
 	, front_vector_(0.f, 0.f, 1.f)
 	, up_vector_(0.f, 1.f, 0.f)
 	, right_vector_(1.f, 0.f, 0.f)
-	, degree_yaw_(0.f)
-	, degree_pitch_(0.f)
-	, degree_roll_(0.f)
-	, degree_lookat_yaw_(0.f)
-	, degree_lookat_pitch_(0.f)
-	, degree_lookat_roll_(0.f)
+	, move_speed_(10.f)
+	, rotation_degree_(30.f)
+	, viewing_vector_length_(0.f)
 	, screen_aspect_size_(Vector2())
 	, view_matrix_(D3DXMATRIX())
 	, view_inverse_matrix_(D3DXMATRIX())
@@ -72,30 +66,16 @@ bool CameraComponent::Init(void)
 	//	カメラ座標と注視点
 	//
 
-	eye_point_	   = { 0.f, 0.f, -10.f };
-	old_eye_point_ = eye_point_;
-	lookat_point_  = { 0.f, 0.f,   0.f };
-	old_eye_point_ = lookat_point_;
-
-	//
-	// カメラの回転情報
-	//
-
-	degree_yaw_   =
-	degree_pitch_ =
-	degree_roll_  = 0.f;
-
-	degree_lookat_yaw_	 =
-	degree_lookat_pitch_ =
-	degree_lookat_roll_  = 0.f;
+	position_	   = { 0.f, 0.f, -10.f };
+	old_position_ = position_;
+	lookat_position_  = { 0.f, 0.f,   0.f };
 
 	//
 	//	カメラの姿勢ベクトル
 	//
 
-
 	//前ベクトルを求める
-	front_vector_ = lookat_point_ - eye_point_;
+	front_vector_ = lookat_position_ - position_;
 	D3DXVec3Normalize(&front_vector_, &front_vector_);
 
 	up_vector_ = { 0.f, 1.f,  0.f };
@@ -138,46 +118,8 @@ void CameraComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::Update(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
-	if (InputCheck::KeyPress(DIK_LEFTARROW))
-	{
-		is_rotation_lookat_ = true;
-		is_rotation_yaw_ = true;
-		this->AddLookAtRotationYaw(30 * deltaTime);
-	} 
-
-
-	if (InputCheck::KeyPress(DIK_RIGHTARROW))
-	{
-		is_rotation_lookat_ = true;
-		is_rotation_yaw_ = true;
-		this->AddLookAtRotationYaw(-30 * deltaTime);
-	}
-
-
-	if (InputCheck::KeyPress(DIK_UP))
-	{
-		is_rotation_lookat_ = true;
-		is_rotation_pitch_  = true;
-		this->AddLookAtRotationPitch(30 * deltaTime);
-	}
-
-
-	if (InputCheck::KeyPress(DIK_DOWN))
-	{
-		is_rotation_lookat_ = true;
-		is_rotation_pitch_	= true;
-		this->AddLookAtRotationPitch(-30 * deltaTime);
-	}
-
-	//
-	// カメラがガタつく現象がおきてるのでどうにかしたい
-	//
-
-
 	ImGui::Begin("camera");
-	{	
+	{
 		ImGui::Text("is_camera_moved_:%s", is_camera_moved_ ? "true" : "false");
 
 		if (ImGui::TreeNode("transform_vector_"))
@@ -193,7 +135,7 @@ void CameraComponent::Update(float deltaTime)
 
 			ImGui::SetNextTreeNodeOpen(true);
 			if (ImGui::TreeNode("up_vector_"))
-		
+
 			{
 				ImGui::Text("%0f:up_vector_.x\n", up_vector_.x);
 				ImGui::Text("%0f:up_vector_.y\n", up_vector_.y);
@@ -217,67 +159,34 @@ void CameraComponent::Update(float deltaTime)
 			ImGui::SetNextTreeNodeOpen(true);
 			if (ImGui::TreeNode("lookat_point"))
 			{
-				ImGui::Text("%f:lookat.x\n", lookat_point_.x);
-				ImGui::Text("%f:lookat.y\n", lookat_point_.y);
-				ImGui::Text("%f:lookat.z\n", lookat_point_.z);
+				ImGui::Text("%f:lookat.x\n", lookat_position_.x);
+				ImGui::Text("%f:lookat.y\n", lookat_position_.y);
+				ImGui::Text("%f:lookat.z\n", lookat_position_.z);
 				ImGui::TreePop();
 			}
 
 			ImGui::SetNextTreeNodeOpen(true);
 			if (ImGui::TreeNode("eye_point"))
 			{
-				ImGui::Text("%f:eye.x\n", eye_point_.x);
-				ImGui::Text("%f:eye.y\n", eye_point_.y);
-				ImGui::Text("%f:eye.z\n", eye_point_.z);
+				ImGui::Text("%f:eye.x\n", position_.x);
+				ImGui::Text("%f:eye.y\n", position_.y);
+				ImGui::Text("%f:eye.z\n", position_.z);
 				ImGui::TreePop();
 			}
 			ImGui::TreePop();
 		}
 
-		if (ImGui::TreeNode("camera_deg"))
-		{
-			ImGui::SetNextTreeNodeOpen(true);
-			if (ImGui::TreeNode("deg"))
-			{
-				ImGui::Text("%f:deg_yaw_\n", degree_yaw_);
-				ImGui::Text("%f:deg_pitch_\n", degree_pitch_);
-				ImGui::Text("%f:deg_roll_\n", degree_roll_);
-				ImGui::TreePop();
-			}
-
-			ImGui::SetNextTreeNodeOpen(true);
-			if (ImGui::TreeNode("deg_lookat")) {
-				ImGui::Text("%f:deg_lookat_yaw_\n", degree_lookat_yaw_);
-				ImGui::Text("%f:deg_lookat_pitch_\n", degree_lookat_pitch_);
-				ImGui::Text("%f:deg_lookat_roll_\n", degree_lookat_roll_);
-				ImGui::TreePop();
-			}
-			ImGui::TreePop();
-		}
 	}
 	ImGui::End();
-
-
-	//is_rotation_lookat_	= true;
-	//is_rotation_yaw_	= true;
-	//is_rotation_pitch_	= true;
-	//is_rotation_roll_		= true;
 
 	//視線ベクトルの長さの更新
 	{
 		this->UpdateViewingVectorLength();
 	}
 
-	//カメラの姿勢情報を更新
+	//姿勢ベクトルの更新
 	{
-		if (is_rotation_lookat_)
-		{
-			this->UpdateLookatPosition();
-		}
-		else
-		{
-			this->UpdateCameraPosition();
-		}
+		this->UpdateTransform(deltaTime);
 	}
 
 	//カメラが移動したかの状態を更新
@@ -294,7 +203,7 @@ void CameraComponent::Update(float deltaTime)
 	}
 
 	//1フレーム前の情報を更新
-	old_eye_point_ = eye_point_;
+	old_position_ = position_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -303,7 +212,7 @@ void CameraComponent::Update(float deltaTime)
 void CameraComponent::UpdateCameraState(void)
 {
 	//カメラが移動したか？
-	if (old_eye_point_ != eye_point_)
+	if (old_position_ != position_)
 	{
 		is_camera_moved_ = true;
 	}
@@ -311,12 +220,6 @@ void CameraComponent::UpdateCameraState(void)
 	{
 		is_camera_moved_ = false;
 	}
-
-	//フラグをもとに戻す
-	is_rotation_lookat_ = false;
-	is_rotation_yaw_	= false;
-	is_rotation_pitch_  = false;
-	is_rotation_roll_	= false;
 }
 
 /*-----------------------------------------------------------------------------
@@ -324,206 +227,187 @@ void CameraComponent::UpdateCameraState(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::UpdateViewingVectorLength(void)
 {
-	D3DXVECTOR3 direction = eye_point_ - lookat_point_;
-	viewing_vector_length_ = D3DXVec3Length(&direction);
+	D3DXVECTOR3 viewing_vector = position_ - lookat_position_;
+	viewing_vector_length_ = D3DXVec3Length(&viewing_vector);
 }
 
 /*-----------------------------------------------------------------------------
-/*　カメラ座標の更新
+/*　移動方向ベクトルの更新
 -----------------------------------------------------------------------------*/
-void CameraComponent::UpdateCameraPosition(void)
+void CameraComponent::UpdateTransform(float deltaTime)
 {
-	if (is_rotation_yaw_)   { this->ComputeRotationYaw(); }
-	if (is_rotation_pitch_) { this->ComputeRotationPitch(); }
-	if (is_rotation_roll_)	{ this->ComputeRotationRoll(); }
-}
+	//前ベクトルを算出。注視点からカメラの位置分を引く
+	front_vector_ = lookat_position_ - position_;
 
-/*-----------------------------------------------------------------------------
-/*　注視点座標の更新
------------------------------------------------------------------------------*/
-void CameraComponent::UpdateLookatPosition(void)
-{
-	if (is_rotation_yaw_)   { this->ComputeRotationLookatYaw(); }
-	if (is_rotation_pitch_) { this->ComputeRotationLookatPitch(); }
-	if (is_rotation_roll_)	{ this->ComputeRotationLookatRoll(); }
-}
-
-/*-----------------------------------------------------------------------------
-/*　カメラ座標中心の回転：Yaw
------------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationYaw(void)
-{
-	// 正規化視線ベクトルの作成
-	D3DXVECTOR3 viewing_vector = lookat_point_ - eye_point_;
-	D3DXVec3Normalize(&viewing_vector, &viewing_vector);
-
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_yaw_ - DEGREE_NORMALIZE_OFFSET);
+	//姿勢ベクトルの更新
 	{
-		viewing_vector.x = Math::Sin(radian);
-		viewing_vector.y = 0.f;
-		viewing_vector.z = Math::Cos(radian);
+		//前ベクトルを正規化
+		D3DXVec3Normalize(&front_vector_, &front_vector_);
+
+		//外積で右ベクトルを求める
+		D3DXVec3Cross(&right_vector_, &up_vector_, &front_vector_);
+		D3DXVec3Normalize(&right_vector_, &right_vector_);
+
+		//外積で上ベクトルを求める
+		D3DXVec3Cross(&up_vector_, &front_vector_, &right_vector_);
+		D3DXVec3Normalize(&up_vector_, &up_vector_);
 	}
 
-	// 視線ベクトルを前ベクトルとして保存
-	front_vector_ = viewing_vector;
-
-	// Yaw軸回転のため、右ベクトルの算出：前ベクトルと上ベクトルの外積
-	D3DXVec3Cross(&right_vector_, &front_vector_, &up_vector_);
-	D3DXVec3Normalize(&right_vector_, &right_vector_);
-	
-	// カメラ座標：注視点に視線ベクトルを加算することで、カメラ座標を更新する
-	eye_point_ = lookat_point_ + (viewing_vector * viewing_vector_length_); //視線ベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Yawの正規化
-	degree_yaw_ = Math::NormalizeDegree(degree_yaw_);
-}
-
-/*-----------------------------------------------------------------------------
-/*　カメラ座標中心の回転：Pitch
------------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationPitch(void)
-{
-	// 正規化視線ベクトルの作成
-	D3DXVECTOR3 viewing_vector = eye_point_ - lookat_point_;
-	D3DXVec3Normalize(&viewing_vector, &viewing_vector);
-
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_pitch_ - DEGREE_NORMALIZE_OFFSET);
+	//カメラを操作するか
+	if (is_camera_controlling_)
 	{
-		viewing_vector.x = 0.f;
-		viewing_vector.y = Math::Sin(radian);
-		viewing_vector.z = Math::Cos(radian);
+		this->ComputeCameraMovement(deltaTime);
+		this->ComputeRotationCameraPosition(deltaTime);
+		this->ComputeRotationLookatPosition(deltaTime);
 	}
-
-	// 視線ベクトルを前ベクトルとして保存
-	front_vector_ = viewing_vector;
-
-	// Pitch軸回転のため、上ベクトルの算出：右ベクトルと上ベクトルの外積
-	D3DXVec3Cross(&up_vector_, &front_vector_, &right_vector_);
-	D3DXVec3Normalize(&up_vector_, &up_vector_);
-
-	// カメラ座標：注視点に視線ベクトルを加算することで、カメラ座標を更新する
-	eye_point_ = lookat_point_ + (viewing_vector * viewing_vector_length_); //向きベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Pitchの正規化
-	degree_pitch_ = Math::NormalizeDegree(degree_pitch_);
 }
 
 /*-----------------------------------------------------------------------------
-/*　カメラ座標中心の回転：Roll
+/*　カメラの移動コントロール
 -----------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationRoll(void)
+void CameraComponent::ComputeCameraMovement(float deltaTime)
 {
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_roll_ + degree_lookat_roll_);
+	const bool is_move_front = InputCheck::KeyPress(DIK_W);
+	const bool is_move_back  = InputCheck::KeyPress(DIK_S);
+	const bool is_move_left	 = InputCheck::KeyPress(DIK_A);
+	const bool is_move_right = InputCheck::KeyPress(DIK_D);
+	const bool is_move_up	 = InputCheck::KeyPress(DIK_Q);
+	const bool is_move_down  = InputCheck::KeyPress(DIK_E);
+
+	const bool is_moving = (is_move_front || is_move_back || is_move_left || is_move_right || is_move_up || is_move_down);
+
+	if (is_moving)
 	{
+		//
+		// 前後移動
+		//
+
+		if (is_move_front)
+		{
+			position_		 += (front_vector_ * move_speed_) * deltaTime;
+			lookat_position_ += (front_vector_ * move_speed_) * deltaTime;
+		}
+		
+		if (is_move_back) 
+		{
+			position_		 -= (front_vector_ * move_speed_) * deltaTime;
+			lookat_position_ -= (front_vector_ * move_speed_) * deltaTime;
+		}
+		
+		//
+		// 左右移動
+		//
+
+		if (is_move_left)
+		{
+			position_		 += (right_vector_ * move_speed_) * deltaTime;
+			lookat_position_ += (right_vector_ * move_speed_) * deltaTime;
+		}
+		
+		if (is_move_right)
+		{
+			position_		 -= (right_vector_ * move_speed_) * deltaTime;
+			lookat_position_ -= (right_vector_ * move_speed_) * deltaTime;
+		}
+		
+		//
+		// 上下移動
+		//
+
+		if (is_move_up)
+		{
+			position_		 += (up_vector_ * move_speed_) * deltaTime;
+			lookat_position_ += (up_vector_ * move_speed_) * deltaTime;
+		}
+		
+		if (is_move_down)
+		{
+			position_		 -= (up_vector_ * move_speed_) * deltaTime;
+			lookat_position_ -= (up_vector_ * move_speed_) * deltaTime;
+		}
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　カメラ座標のコントロール
+-----------------------------------------------------------------------------*/
+void CameraComponent::ComputeRotationCameraPosition(float deltaTime)
+{
+	const bool is_rotation_up    = InputCheck::KeyPress(DIK_UPARROW);
+	const bool is_rotation_down  = InputCheck::KeyPress(DIK_DOWNARROW);
+	const bool is_rotation_right = InputCheck::KeyPress(DIK_RIGHTARROW);
+	const bool is_rotation_left  = InputCheck::KeyPress(DIK_LEFTARROW);
+	const bool is_rotation  = (is_rotation_up || is_rotation_down || is_rotation_right || is_rotation_left);
+
+	if (is_rotation)
+	{
+		//回転の速度をラジアンに変換
+		float radian = Math::ToRadian(rotation_degree_ * deltaTime);
+
+		//回転情報
 		D3DXMATRIX rotation_matrix;
-		D3DXMatrixRotationAxis(&rotation_matrix, &front_vector_, radian);
+		D3DXMatrixIdentity(&rotation_matrix);
 
-		right_vector_.x	= rotation_matrix._11;
-		right_vector_.y	= rotation_matrix._12;
-		right_vector_.z	= rotation_matrix._13;
+		//向きベクトル
+		D3DXVECTOR3 direction;
 
-		up_vector_.x = rotation_matrix._21;
-		up_vector_.y = rotation_matrix._22;
-		up_vector_.z = rotation_matrix._23;
+		/*--- カメラのワールド座標中心に回転 ---*/
+		if (is_rotation_up)	   { D3DXMatrixRotationAxis(&rotation_matrix, &right_vector_,  radian); }
+		if (is_rotation_down)  { D3DXMatrixRotationAxis(&rotation_matrix, &right_vector_, -radian); }
+		if (is_rotation_right) { D3DXMatrixRotationAxis(&rotation_matrix, &up_vector_,	   radian); }
+		if (is_rotation_left)  { D3DXMatrixRotationAxis(&rotation_matrix, &up_vector_,	  -radian); }
+
+		//向きベクトルを作成
+		direction = position_ - lookat_position_;
+		D3DXVec3Normalize(&direction, &direction);
+
+		//向きベクトルを回転
+		D3DXVec3TransformNormal(&direction, &direction, &rotation_matrix);
+
+		//カメラ座標の更新
+		position_ = lookat_position_ + (direction * viewing_vector_length_);
 	}
-
-	// カメラ座標：注視点に向きベクトルを加算することで、カメラ座標を更新する
-	eye_point_ = lookat_point_ + (front_vector_ * viewing_vector_length_); //視線ベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Rollの正規化
-	degree_roll_ = Math::NormalizeDegree(degree_roll_);
 }
 
 /*-----------------------------------------------------------------------------
-/*　注視点座標中心の回転：Yaw
+/*　注視点座標のコントロール
 -----------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationLookatYaw(void)
+void CameraComponent::ComputeRotationLookatPosition(float deltaTime)
 {
-	// 正規化視線ベクトルの作成
-	D3DXVECTOR3 viewing_vector = eye_point_ - lookat_point_;
-	D3DXVec3Normalize(&viewing_vector, &viewing_vector);
+	const bool is_rotation_up    = InputCheck::KeyPress(DIK_T);
+	const bool is_rotation_down  = InputCheck::KeyPress(DIK_G);
+	const bool is_rotation_right = InputCheck::KeyPress(DIK_F);
+	const bool is_rotation_left  = InputCheck::KeyPress(DIK_H);
+	const bool is_rotation = (is_rotation_up || is_rotation_down || is_rotation_right || is_rotation_left);
 
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_lookat_yaw_);
+	if (is_rotation)
 	{
-		viewing_vector.x = Math::Sin(radian);
-		viewing_vector.y = 0.f;
-		viewing_vector.z = Math::Cos(radian);
-	}
+		//回転の速度をラジアンに変換
+		float radian = Math::ToRadian(rotation_degree_ * deltaTime);
 
-	// 視線ベクトルを前ベクトルとして保存
-	front_vector_ = viewing_vector;
-
-	// Yaw軸回転のため、右ベクトルの算出：前ベクトルと上ベクトルの外積
-	D3DXVec3Cross(&right_vector_, &front_vector_, &up_vector_);
-	D3DXVec3Normalize(&right_vector_, &right_vector_);
-
-	// 注視点座標：カメラ座標に視線ベクトルを加算することで、注視点座標を更新する
-	lookat_point_ = eye_point_  + (viewing_vector * viewing_vector_length_); //視線ベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Yawの正規化
-	degree_lookat_yaw_ = Math::NormalizeDegree(degree_lookat_yaw_);
-}
-
-/*-----------------------------------------------------------------------------
-/*　注視点座標中心の回転：Pitch
------------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationLookatPitch(void)
-{
-	// 正規化視線ベクトルの作成
-	D3DXVECTOR3 viewing_vector = eye_point_ - lookat_point_;
-	D3DXVec3Normalize(&viewing_vector, &viewing_vector);
-
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_lookat_pitch_);
-	{
-		viewing_vector.x = 0.f;
-		viewing_vector.y = Math::Sin(radian);
-		viewing_vector.z = Math::Cos(radian);
-	}
-
-	// 視線ベクトルを前ベクトルとして保存
-	front_vector_ = viewing_vector;
-
-	// Pitch軸回転のため、上ベクトルの算出：右ベクトルと上ベクトルの外積
-	D3DXVec3Cross(&up_vector_, &right_vector_, &front_vector_);
-	D3DXVec3Normalize(&up_vector_, &up_vector_);
-
-	// 注視点座標：カメラ座標に視線ベクトルを加算することで、注視点座標を更新する
-	lookat_point_ = eye_point_ + (viewing_vector * viewing_vector_length_); //視線ベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Pitchの正規化
-	degree_lookat_pitch_ = Math::NormalizeDegree(degree_lookat_pitch_);
-}
-
-/*-----------------------------------------------------------------------------
-/*　注視点座標中心の回転：Roll
------------------------------------------------------------------------------*/
-void CameraComponent::ComputeRotationLookatRoll(void)
-{
-	// 視線ベクトルの回転
-	const float radian = Math::ToRadian(degree_roll_ + degree_lookat_roll_);
-	{
+		//回転情報
 		D3DXMATRIX rotation_matrix;
-		D3DXMatrixRotationAxis(&rotation_matrix, &front_vector_, radian);
+		D3DXMatrixIdentity(&rotation_matrix);
 
-		right_vector_.x = rotation_matrix._11;
-		right_vector_.y = rotation_matrix._12;
-		right_vector_.z = rotation_matrix._13;
+		//向きベクトル
+		D3DXVECTOR3 direction;
 
-		up_vector_.x = rotation_matrix._21;
-		up_vector_.y = rotation_matrix._22;
-		up_vector_.z = rotation_matrix._23;
+		/*--- カメラのワールド座標中心に回転 ---*/
+		if (is_rotation_up)		{ D3DXMatrixRotationAxis(&rotation_matrix, &right_vector_,  radian); }
+		if (is_rotation_down)	{ D3DXMatrixRotationAxis(&rotation_matrix, &right_vector_, -radian); }
+		if (is_rotation_right)	{ D3DXMatrixRotationAxis(&rotation_matrix, &up_vector_,		radian); }
+		if (is_rotation_left)	{ D3DXMatrixRotationAxis(&rotation_matrix, &up_vector_,	   -radian); }
+
+		//向きベクトルを作成
+		direction = lookat_position_ - position_;
+		D3DXVec3Normalize(&direction, &direction);
+
+		//向きベクトルを回転
+		D3DXVec3TransformNormal(&direction, &direction, &rotation_matrix);
+
+		//カメラ座標の更新
+		lookat_position_ = position_ + (direction * viewing_vector_length_);
 	}
-
-	// カメラ座標：注視点に向きベクトルを加算することで、カメラ座標を更新する
-	eye_point_ = lookat_point_ + (front_vector_ * viewing_vector_length_); //視線ベクトルの長さ1 * 視線の長さN
-
-	// カメラ座標中心の回転角度:Rollの正規化
-	degree_roll_ = Math::NormalizeDegree(degree_roll_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -541,8 +425,8 @@ void CameraComponent::ComputeViewMatrix(void)
 
 
 		D3DXMatrixLookAtLH(&view_matrix_
-						  , &eye_point_	 	// 視点
-						  , &lookat_point_	// 注視点
+						  , &position_	 	// 視点
+						  , &lookat_position_	// 注視点
 						  , &up_vector_);	// カメラの頭の向き	
 	}
 }
