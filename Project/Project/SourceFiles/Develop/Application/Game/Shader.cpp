@@ -33,6 +33,7 @@ Shader::~Shader(void)
 -----------------------------------------------------------------------------*/
 bool Shader::Init(const LPDIRECT3DDEVICE9& lpd3d_device)
 {
+	UNREFERENCED_PARAMETER(lpd3d_device);
 	return true;
 }
 

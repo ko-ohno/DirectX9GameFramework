@@ -207,7 +207,7 @@ void TransformComponent::ComputeRotationMatrixQuaternion(float deltaTime)
 		D3DXVec3Normalize(&front_vector, &front_vector);
 		D3DXVec3Normalize(&direction, &direction);
 		{
-			if (front_vector_ != direction_);
+			if (front_vector_ != direction_)
 			{
 				slerp_runtime_ = 0.f;
 			}
