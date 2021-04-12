@@ -11,9 +11,8 @@
 /*--- インクルードファイル ---*/
 
 /*-------------------------------------
-/* 構造体
+/* テクスチャの種類
 -------------------------------------*/
-
 enum class TextureType
 {
 	None = -1
@@ -30,6 +29,9 @@ enum class TextureType
 -------------------------------------*/
 class TextureManager
 {
+public:
+	static const char* TextureTypeNames[static_cast<int>(TextureType::Max)];
+
 public:
 	TextureManager(class Game* game);
 	~TextureManager(void);

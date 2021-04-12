@@ -10,6 +10,9 @@
 
 /*--- インクルードファイル ---*/
 
+/*-------------------------------------
+/* メッシュメッシュの種類
+-------------------------------------*/
 enum class XFileMeshType
 {
 	None = -1
@@ -24,7 +27,6 @@ enum class XFileMeshType
 	, BlueBullet
 	, RedBullet
 
-
 	, Max
 };
 
@@ -33,6 +35,9 @@ enum class XFileMeshType
 -------------------------------------*/
 class MeshManager
 {
+public:
+	static const char* XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)];
+
 public:
 	MeshManager(class Game* game);
 	~MeshManager(void);

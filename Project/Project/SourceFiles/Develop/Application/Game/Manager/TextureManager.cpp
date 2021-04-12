@@ -12,6 +12,15 @@
 #include "../Resource/Texture.h"
 #include "../../../DebugCode/DebugFunction.h"
 
+//コンポーネントのリスト
+const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)] = {
+	//自分自身
+	"Sample"
+	, "Prototype"
+	, "Planet"
+};
+
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/

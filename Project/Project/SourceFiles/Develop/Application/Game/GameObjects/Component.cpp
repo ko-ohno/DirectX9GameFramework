@@ -11,7 +11,7 @@
 #include "GameObject.h"
 
 //コンポーネントのリスト
-const char* Component::ComponentTypeNames[static_cast<int>(TypeID::MAX)] = {
+const char* Component::ComponentTypeNames[static_cast<int>(TypeID::Max)] = {
 	//自分自身
 	"Component"
 	//AI

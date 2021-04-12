@@ -13,6 +13,22 @@
 #include "../../DX9Graphics.h"
 #include "../Resource/XFileMesh.h"
 
+//コンポーネントのリスト
+const char* MeshManager::XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)] = {
+	//自分自身
+	"Polygon"
+	, "Box"
+	, "Cylinder"
+	, "Sphere"
+
+	, "AirPlane"
+
+	, "GreenBullet"
+	, "BlueBullet"
+	, "RedBullet"
+};
+
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/

@@ -55,10 +55,10 @@ public:
 		, MoveComponent 
 		
 		//コンポーネントの最大値
-		, MAX
+		, Max
 	};
 
-	static const char* ComponentTypeNames[static_cast<int>(TypeID::MAX)];
+	static const char* ComponentTypeNames[static_cast<int>(TypeID::Max)];
 
 public:
 	Component(class GameObject* gameObject, int updateOrder = 100);

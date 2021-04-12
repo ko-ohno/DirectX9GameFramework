@@ -70,11 +70,13 @@ bool Texture::LoadTexture(const TextureType textureType)
 		// ルートパスとファイルパスを合成
 		texture_filepath = texture_filepath + texture_manager_->GetTextureFilepathList().at(textureType);
 
+		std::string texture_type_name = TextureManager::TextureTypeNames[static_cast<int>(textureType)];
+
 		// テクスチャの作成
 		HRESULT hr = D3DXCreateTextureFromFile(lpd3d_device, texture_filepath.c_str(), &lpd3d_texture_);
 		if (FAILED(hr))
 		{
-			assert(!"テクスチャーの作成に失敗しました！");
+			assert(!texture_type_name.c_str() + ":テクスチャーの作成に失敗しました！");
 			return false;
 		}
 
@@ -82,7 +84,7 @@ bool Texture::LoadTexture(const TextureType textureType)
 		hr = D3DXGetImageInfoFromFile(texture_filepath.c_str(), &d3dximage_info_);
 		if (FAILED(hr))
 		{
-			assert(!"テクスチャーの画像情報の取得に失敗しました！");
+			assert(!texture_type_name.c_str() + ":テクスチャーの画像情報の取得に失敗しました！");
 			return false;
 		}
 	}
