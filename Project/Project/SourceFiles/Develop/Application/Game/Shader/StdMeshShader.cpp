@@ -287,18 +287,17 @@ void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererCompone
 
 	if (texture == nullptr)
 	{
-		//nullのテクスチャとして転送
-		shader_->SetTexture("g_Texture", nullptr);
-
-		//
-		shader_->SetBool("g_IsDrawingPrimitiveMesh", true);
+		//シェーダーにパラメータを転送
+		shader_->SetBool("g_IsDrawTextureColor", false);
 	}
 	else
 	{
+		//シェーダーにパラメータを転送
+		shader_->SetBool("g_IsDrawTextureColor", true);
+
 		//シェーダーにテクスチャを転送
 		shader_->SetTexture("g_Texture", texture->GetTexture());
-
-		shader_->SetBool("g_IsDrawingPrimitiveMesh", false);
+		//shader_->SetTexture("g_Texture", nullptr);
 	}
 
 	//定数バッファをシェーダに転送

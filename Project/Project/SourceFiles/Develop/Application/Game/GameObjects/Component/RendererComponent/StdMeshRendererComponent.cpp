@@ -105,14 +105,14 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 			for (unsigned int i = 0; i < static_cast<int>(material_counts); i++)
 			{
 				lpd3d_device->SetMaterial(&materials[i].MatD3D);
-				if (materials[i].pTextureFilename != nullptr)
-				{
-					lpd3d_device->SetTexture(0, xfile_mesh_->GetMeshTextureList().at(i));
-				}
-				else
-				{
-					lpd3d_device->SetTexture(0, nullptr);
-				}
+				//if (materials[i].pTextureFilename != nullptr)
+				//{
+				//	lpd3d_device->SetTexture(0, xfile_mesh_->GetMeshTextureList().at(i));
+				//}
+				//else
+				//{
+				//	lpd3d_device->SetTexture(0, nullptr);
+				//}
 				xfile_mesh_->GetMesh()->DrawSubset(i);
 			}
 		}

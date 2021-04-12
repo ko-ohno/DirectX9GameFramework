@@ -30,6 +30,25 @@ Texture::Texture(TextureManager* manager, TextureType textureType)
 }
 
 /*-----------------------------------------------------------------------------
+/* コンストラクタ
+-----------------------------------------------------------------------------*/
+Texture::Texture(const LPDIRECT3DTEXTURE9& texture)
+	: texture_manager_(nullptr)
+	, texture_type_id_(TextureType::None)
+	, is_loading_complete_(false)
+	, lpd3d_texture_(nullptr)
+	, d3dximage_info_(D3DXIMAGE_INFO())
+{
+	if (lpd3d_texture_ != nullptr)
+	{
+		is_loading_complete_ = true;
+	}
+
+	lpd3d_texture_ = texture;
+	lpd3d_texture_ = lpd3d_texture_;
+}
+
+/*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
 Texture::~Texture(void)

@@ -12,6 +12,7 @@
 #include "../Manager/MeshManager.h"
 #include "../Game.h"
 #include "../../DX9Graphics.h"
+#include "../Resource/Texture.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -26,6 +27,9 @@ XFileMesh::XFileMesh(MeshManager* manager, XFileMeshType meshType)
 {
 	//メッシュIDの設定
 	mesh_type_id_ = meshType;
+
+	//リストの初期化
+	mesh_texture_list_.clear();
 
 	//プリミティブメッシュの読み込みをするか
 	const bool is_load_primitive_mesh = ((meshType == XFileMeshType::Polygon)
@@ -56,7 +60,7 @@ XFileMesh::~XFileMesh(void)
 	//メッシュのテクスチャの解放
 	while (!mesh_texture_list_.empty())
 	{
-		mesh_texture_list_.back()->Release();
+		delete mesh_texture_list_.back();
 		mesh_texture_list_.pop_back();
 	}
 }
@@ -76,7 +80,6 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 	mesh_filepath = mesh_filepath + mesh_manager_->GetMeshFilepathList().at(meshType);
 	{
 		HRESULT hr;
-		LPD3DXBUFFER material_buffer = nullptr;
 		LPD3DXBUFFER adjacensy = nullptr;
 
 		//
@@ -87,7 +90,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 								  , D3DXMESH_SYSTEMMEM
 								  , lpd3d_device
 								  , &adjacensy
-								  , &material_buffer
+								  , &material_buffer_
 								  , nullptr
 								  , &material_count_
 								  , &lpd3dx_mesh_);
@@ -159,53 +162,62 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 		//
 		// メッシュファイルからテクスチャ情報取得、メッシュのテクスチャを作成
 		//
+
+		// マテリアルのバッファから、メッシュのテクスチャ情報を取得
+		LPD3DXMATERIAL materials = (LPD3DXMATERIAL)material_buffer_->GetBufferPointer();
+
+		// メッシュファイルに”貼り付けられたマテリアルの数”だけテクスチャを作成
+		for (unsigned int i = 0; i < material_count_; i++)
 		{
-			// 作成したテクスチャの一時格納先
-			LPDIRECT3DTEXTURE9 texture;
-
-			// マテリアルのバッファから、メッシュのテクスチャ情報を取得
-			LPD3DXMATERIAL materials = (LPD3DXMATERIAL)material_buffer->GetBufferPointer();
-
-			// メッシュファイルに”貼り付けられたマテリアルの数”だけテクスチャを作成
-			for (unsigned int i = 0; i < material_count_; i++)
+			// メッシュファイルの情報の中のテクスチャを情報を確認
+			if (materials[i].pTextureFilename != nullptr)
 			{
-				// メッシュファイルの情報の中のテクスチャを情報を確認
-				if (materials[i].pTextureFilename != nullptr)
-				{
-					// テクスチャのファイル名用変数を初期化
-					texture_filepath_.clear();
+				// 作成したテクスチャの一時格納先
+				LPDIRECT3DTEXTURE9 texture = nullptr;
 
-					// マテリアルのバッファから"テクスチャ名"を取得
-					std::string material_buffer_texture_name = materials[i].pTextureFilename;
+				// テクスチャのファイル名用変数を初期化
+				texture_filepath_.clear();
 
-					//ファイルパスを合成
-					texture_filepath_ = mesh_manager_->GetMeshRootpath() + material_buffer_texture_name;
+				// マテリアルのバッファから"テクスチャ名"を取得
+				std::string material_buffer_texture_name = materials[i].pTextureFilename;
+
+				//ファイルパスを合成
+				texture_filepath_ = mesh_manager_->GetMeshRootpath() + material_buffer_texture_name;
 					
-					// テクスチャの作成
-					hr = D3DXCreateTextureFromFile(lpd3d_device, texture_filepath_.c_str(), &texture);
-						
-					// 失敗判定
-					if (FAILED(hr))
-					{
-						MessageBox(nullptr
-								  , "XFileMesh::LoadMesh():マテリアルのバッファからのテクスチャの作成に失敗しました。"
-								  , "警告"
-								  , (MB_OK | MB_ICONWARNING));
-
-						// メッシュの面の隣接情報を解放
-						SAFE_RELEASE_(adjacensy);
-						SAFE_RELEASE_(texture);
-						return false;
-					}
-					// メッシュが所有するテクスチャのリストへ追加
-					this->AddTexture(texture);
-
-					// テクスチャのリストへ追加したので解放
-					SAFE_RELEASE_(texture);
+				//メッシュファイルにテクスチャのパスがなかったら？
+				if (texture_filepath_.size() == mesh_manager_->GetMeshRootpath().size())
+				{
+					continue;
 				}
+
+				// テクスチャの作成
+				hr = D3DXCreateTextureFromFile(lpd3d_device, texture_filepath_.c_str(), &texture);
+						
+				// 失敗判定
+				if (FAILED(hr))
+				{
+					MessageBox(nullptr
+								, "XFileMesh::LoadMesh():マテリアルのバッファからのテクスチャの作成に失敗しました。"
+								, "警告"
+								, (MB_OK | MB_ICONWARNING));
+
+					// メッシュの面の隣接情報を解放
+					SAFE_RELEASE_(adjacensy);
+
+					// テクスチャの作成に失敗したので解放
+					SAFE_RELEASE_(texture);
+					return false;
+				}
+				auto texture_A = NEW Texture(texture);
+
+				// メッシュが所有するテクスチャのリストへ追加
+				this->AddTexture(texture_A);
+
+				// メッシュの面の隣接情報を解放
+				SAFE_RELEASE_(adjacensy);
 			}
-			SAFE_RELEASE_(adjacensy);
 		}
+		SAFE_RELEASE_(adjacensy);
 	}
 	return true;
 }
@@ -213,7 +225,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 /*-----------------------------------------------------------------------------
 /* メッシュのテクスチャのリストへテクスチャを追加
 -----------------------------------------------------------------------------*/
-void XFileMesh::AddTexture(LPDIRECT3DTEXTURE9 texture)
+void XFileMesh::AddTexture(Texture* texture)
 {
 	mesh_texture_list_.emplace_back(texture);
 }
@@ -316,8 +328,8 @@ bool XFileMesh::LoadD3DXMeshCylinder(void)
 		hr = D3DXCreateCylinder(lpd3d_device	// 描画デバイス
 							   , 0.5F			// 円筒の+Z軸の円盤の半径
 							   , 0.5F			// 円筒の-Z軸の円盤の半径
-							   , 1.F			// 円筒の長さ：Z軸に沿う
-							   , 16U			// 主軸を中心としたスライスの数：縦割りの数
+							   , 0.5F			// 円筒の長さ：Z軸に沿う
+							   , 8U			// 主軸を中心としたスライスの数：縦割りの数
 							   , 8U				// 主軸を中心としたスタックの数：横割りの数
 							   , &lpd3dx_mesh_	// メッシュの格納先
 							   , nullptr);

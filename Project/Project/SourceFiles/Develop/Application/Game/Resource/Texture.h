@@ -24,6 +24,7 @@ class Texture
 {
 public:
 	Texture(TextureManager* manager, TextureType textureType);
+	Texture(const LPDIRECT3DTEXTURE9& texture);
 	~Texture(void);
 
 	//テクスチャの読み込み

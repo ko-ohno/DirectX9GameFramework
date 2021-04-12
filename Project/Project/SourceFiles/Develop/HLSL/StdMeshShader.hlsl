@@ -10,8 +10,9 @@
 
 struct VS_OUTPUT
 {
-	float3 vtx_pos : POSITION0;
-	float2 vtx_uv  : TEXCOORD0;
+	float3 pos  : POSITION0;
+	float2 texcoord : TEXCOORD0;
+	float3 normal   : TEXCOORD1;
 };
 
 /*-----------------------------------------------------------------------------
@@ -30,10 +31,10 @@ float4		g_Ambient;					// 環境光
 float4		g_Specular;					// 鏡面反射光
 float4		g_Emissive;					// 自己発光色
 
-bool		g_IsDrawingPrimitiveMesh;	//
-//bool		g_IsDrawing
+bool		g_IsDrawTextureColor;		// テクスチャカラーの描画をするか？
+bool		g_IsDrawVertexColor;		// 頂点カラーの描画をするか？
 
-					//テクスチャ情報
+texture		g_Texture;					//テクスチャ情報
 
 
 
@@ -41,6 +42,8 @@ bool		g_IsDrawingPrimitiveMesh;	//
 /* テクスチャーサンプラーブロック
 -----------------------------------------------------------------------------*/
 sampler Sampler = sampler_state {
+
+	texture = <g_Texture>;
 
 	AddressU = WRAP;		// UVの設定,繰り返し
 	AddressV = WRAP;		// UVの設定,繰り返し
@@ -55,7 +58,7 @@ sampler Sampler = sampler_state {
 /* 頂点シェーダープログラムブロック
 -----------------------------------------------------------------------------*/
 void VS( float3 in_pos	  : POSITION0
-	   , float3 in_normal : NORMAL
+	   , float3 in_normal : NORMAL0
 	   , float4 in_color  : COLOR0
 	   , float2 in_tex	  : TEXCOORD0
 	   , out float4 out_pos    : POSITION0
@@ -70,7 +73,6 @@ void VS( float3 in_pos	  : POSITION0
 	// テクスチャ座標をそのまま出力する
 	out_tex = in_tex;
 
-
 	float3	N;		// ワールド空間上の法線ベクトル
 	float3	L;		// 光の差し込む方向
 
@@ -83,11 +85,7 @@ void VS( float3 in_pos	  : POSITION0
 	// 平行光の差し込む方向	単位ベクトル化
 	L = normalize(-light_dir);
 
-	// 出力カラーを決める
-	//out_color = max(0.0, dot(L, N));
-
-	out_color = float4(1.0f,1.0f,1.0f,1.0f);
-
+	out_color = max(0.f, dot(L, N)) * in_color;
 }
 
 /*-----------------------------------------------------------------------------
@@ -97,8 +95,9 @@ void PS( float4	in_color : COLOR0
 	   , float2	in_uv	 : TEXCOORD0
 	   , out float4 out_color : COLOR0)
 {
+
 	//boolで描画切り替えを行う
-	if (false)
+	if (g_IsDrawTextureColor)
 	{
 		//テクスチャの色とUV座標の合成
 		float4 tex_color = tex2D(Sampler, in_uv);

@@ -29,7 +29,7 @@ public:
 	bool IsGetLoadCompleted(void) { return is_loading_complete_; }
 
 	// テクスチャの追加
-	void AddTexture(LPDIRECT3DTEXTURE9 texture);
+	void AddTexture(class Texture* texture);
 	
 	//
 	// メッシュのデータ取得関数
@@ -47,7 +47,7 @@ public:
 	// マテリアルバッファの取得
 	LPD3DXBUFFER GetMaterialBuffer(void) { return material_buffer_; }
 
-	std::vector<LPDIRECT3DTEXTURE9> GetMeshTextureList(void) { return mesh_texture_list_; }
+	std::vector<class Texture*> GetMeshTextureList(void) { return mesh_texture_list_; }
 
 private:
 	//
@@ -81,7 +81,7 @@ private:
 	std::string texture_filepath_;
 
 	//メッシュが所有するテクスチャのリスト
-	std::vector<LPDIRECT3DTEXTURE9> mesh_texture_list_;
+	std::vector<class Texture*> mesh_texture_list_;
 };
 
 #endif //XFILE_MESH_H_
