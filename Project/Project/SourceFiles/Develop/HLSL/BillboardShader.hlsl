@@ -44,7 +44,7 @@ sampler Sampler = sampler_state {
 
 	MinFilter = LINEAR;		// リニアフィルタ（縮小時）
 	MagFilter = LINEAR;		// リニアフィルタ（拡大時）
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;		// リニアフィルタ（補間時）
 };
 
 /*-----------------------------------------------------------------------------
