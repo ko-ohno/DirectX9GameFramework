@@ -17,7 +17,9 @@ enum class XFileMeshType
 	, Box
 	, Cylinder
 	, Sphere
-	
+
+	, AirPlane
+
 	, GreenBullet
 	, BlueBullet
 	, RedBullet

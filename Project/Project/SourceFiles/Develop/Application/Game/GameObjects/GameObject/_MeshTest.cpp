@@ -19,18 +19,21 @@ MeshTest::MeshTest(Game* game)
 	//ƒQ[ƒ€ƒŒƒCƒ„[‚Å•`‰æ
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
-	std_mesh_renderer_component_ = new StdMeshRendererComponent(this);
+	std_mesh_renderer_component_ = NEW StdMeshRendererComponent(this);
 	std_mesh_renderer_component_->SetMesh(XFileMeshType::Box);
 
-	std_mesh_renderer_component_a = new StdMeshRendererComponent(this);
+	std_mesh_renderer_component_a = NEW StdMeshRendererComponent(this);
 	std_mesh_renderer_component_a->SetMesh(XFileMeshType::BlueBullet);
 	std_mesh_renderer_component_a->SetTranslationX(-5.f);
 
 
-	std_mesh_renderer_component_b = new StdMeshRendererComponent(this);
+	std_mesh_renderer_component_b = NEW StdMeshRendererComponent(this);
 	std_mesh_renderer_component_b->SetMesh(XFileMeshType::Cylinder);
 	std_mesh_renderer_component_b->SetTranslationX(5.f);
 
+	std_mesh_renderer_component_c = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_c->SetMesh(XFileMeshType::AirPlane);
+	std_mesh_renderer_component_c->SetTranslationY(-2.f);
 }
 
 /*-----------------------------------------------------------------------------

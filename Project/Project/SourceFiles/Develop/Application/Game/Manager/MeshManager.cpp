@@ -50,12 +50,12 @@ bool MeshManager::StartUp(void)
 
 	//メッシュの読み込み
 	{
-		this->LoadMesh(XFileMeshType::Polygon);
-		this->LoadMesh(XFileMeshType::Box);
-		this->LoadMesh(XFileMeshType::Cylinder);
-		this->LoadMesh(XFileMeshType::Sphere);
+		//this->LoadMesh(XFileMeshType::Polygon);
+		//this->LoadMesh(XFileMeshType::Box);
+		//this->LoadMesh(XFileMeshType::Cylinder);
+		//this->LoadMesh(XFileMeshType::Sphere);
 
-		this->LoadMesh(XFileMeshType::GreenBullet);
+		//this->LoadMesh(XFileMeshType::GreenBullet);
 
 
 	}
@@ -103,7 +103,7 @@ bool MeshManager::Init(void)
 			unmap_mesh_path_list_[XFileMeshType::BlueBullet]	= "Bullet/BlueBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::GreenBullet]	= "Bullet/GreenBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::RedBullet]		= "Bullet/RedBullet.x";
-
+			unmap_mesh_path_list_[XFileMeshType::AirPlane]		= "AirPlane/f1.x";
 		}
 	}
 	return true;
@@ -149,7 +149,7 @@ XFileMesh* MeshManager::LoadMesh(XFileMeshType xfileMeshTypeID)
 }
 
 /*-----------------------------------------------------------------------------
-/* メッシュの読み込み処理
+/* メッシュの解放処理
 -----------------------------------------------------------------------------*/
 void MeshManager::ReleaseMesh(XFileMeshType xfileMeshTypeID)
 {
@@ -165,7 +165,7 @@ void MeshManager::ReleaseMesh(XFileMeshType xfileMeshTypeID)
 }
 
 /*-----------------------------------------------------------------------------
-/* メッシュの読み込み処理
+/* メッシュの検索処理
 -----------------------------------------------------------------------------*/
 XFileMesh* MeshManager::FindMesh(XFileMeshType xfileMeshTypeID)
 {

@@ -49,9 +49,9 @@ bool TextureManager::StartUp(void)
 
 	//テクスチャーの読み込み
 	{
-		this->LoadTexture(TextureType::Sample);
-		this->LoadTexture(TextureType::Prototype);
-		this->LoadTexture(TextureType::Planet);
+		//this->LoadTexture(TextureType::Sample);
+		//this->LoadTexture(TextureType::Prototype);
+		//this->LoadTexture(TextureType::Planet);
 	}
 	return true;
 }
@@ -91,7 +91,6 @@ void TextureManager::Uninit(void)
 	while (!texture_list_.empty())
 	{
 		delete texture_list_.back();
-		texture_list_.back() = nullptr;
 		texture_list_.pop_back();
 	}
 }
