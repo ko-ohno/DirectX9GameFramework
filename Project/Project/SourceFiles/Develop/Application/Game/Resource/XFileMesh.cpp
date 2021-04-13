@@ -21,6 +21,7 @@
 XFileMesh::XFileMesh(MeshManager* manager, XFileMeshType meshType)
 	: mesh_manager_(manager)
 	, mesh_type_id_(XFileMeshType::None)
+	, is_primitive_mesh_(false)
 	, is_loading_complete_(false)
 	, lpd3dx_mesh_(nullptr)
 	, material_count_(0UL)
@@ -42,6 +43,8 @@ XFileMesh::XFileMesh(MeshManager* manager, XFileMeshType meshType)
 	{
 		//プリミティブメッシュの読み込み
 		is_loading_complete_ = this->LoadD3DXPrimitiveMesh(meshType);
+
+		is_primitive_mesh_ = true;
 	}
 	else
 	{
@@ -340,8 +343,8 @@ bool XFileMesh::LoadD3DXMeshCylinder(void)
 		hr = D3DXCreateCylinder(lpd3d_device	// 描画デバイス
 							   , 0.5F			// 円筒の+Z軸の円盤の半径
 							   , 0.5F			// 円筒の-Z軸の円盤の半径
-							   , 0.5F			// 円筒の長さ：Z軸に沿う
-							   , 8U			// 主軸を中心としたスライスの数：縦割りの数
+							   , 1.F			// 円筒の長さ：Z軸に沿う
+							   , 16U			// 主軸を中心としたスライスの数：縦割りの数
 							   , 8U				// 主軸を中心としたスタックの数：横割りの数
 							   , &lpd3dx_mesh_	// メッシュの格納先
 							   , nullptr);

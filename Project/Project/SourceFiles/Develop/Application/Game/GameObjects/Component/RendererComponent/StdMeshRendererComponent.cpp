@@ -62,8 +62,6 @@ void StdMeshRendererComponent::Uninit(void)
 -----------------------------------------------------------------------------*/
 void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 {
-	//auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
-
 	//メッシュ情報の確認
 	if (xfile_mesh_ == nullptr)
 	{
@@ -78,23 +76,55 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 		// マテリアルリストの取得
 		auto material_list = xfile_mesh_->GetMeshMaterialList();
 
-		// マテリアル数分だけ描画
-		for (int i = 0; i < static_cast<int>(material_count); i++)
+		//マテリアルの一時格納先
+		class Material* material_buffers = nullptr;
+
+		//描画するメッシュがプリミティブのメッシュか
+		const bool is_primitive_mesh = xfile_mesh_->IsGetPrimitiveMesh();
+		if (is_primitive_mesh)
 		{
-			//マテリアルの一時格納先
-			class Material* material_buffers = nullptr;
+			shader->SetTechnique("Tech2");
+		}
+		else
+		{
+			shader->SetTechnique("Tech");
+		}
 
-			// 作成されたマテリアルのリストが空ではない時
-			if(!material_list.empty())
+		//マテリアルがあるか？
+		if (material_count > 0)
+		{
+			// マテリアル数分だけ描画
+			for (int i = 0; i < static_cast<int>(material_count); i++)
 			{
-				// 作成されたマテリアルリストとマテリアル数が食い違うとき
-				const bool is_list_out_of_range = (i < material_list.size());
-				if (is_list_out_of_range)
-				{
-					material_buffers = xfile_mesh_->GetMeshMaterialList().at(i);
-				}
-			}
+				//マテリアルの初期化
+				material_buffers = nullptr;
 
+				// 作成されたマテリアルのリストが空ではない時
+				if (!material_list.empty())
+				{
+					// 作成されたマテリアルリストとマテリアル数が食い違うとき
+					const bool is_list_out_of_range = (static_cast<unsigned int>(i) < material_list.size());
+					if (is_list_out_of_range)
+					{
+						material_buffers = xfile_mesh_->GetMeshMaterialList().at(i);
+					}
+				}
+
+				// シェーダーのセット
+				shader->ShaderSet(camera, this, material_buffers);
+
+				//シェーダーパスの開始
+				shader->ShaderPassBegin();
+
+				// メッシュの描画
+				xfile_mesh_->GetMesh()->DrawSubset(i);
+
+				//シェーダーパスの終了
+				shader->ShaderPassEnd();
+			}
+		}
+		else
+		{
 			// シェーダーのセット
 			shader->ShaderSet(camera, this, material_buffers);
 
@@ -102,7 +132,7 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 			shader->ShaderPassBegin();
 
 			// メッシュの描画
-			xfile_mesh_->GetMesh()->DrawSubset(i);
+			xfile_mesh_->GetMesh()->DrawSubset(0);
 
 			//シェーダーパスの終了
 			shader->ShaderPassEnd();

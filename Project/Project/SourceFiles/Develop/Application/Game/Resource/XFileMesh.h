@@ -25,6 +25,9 @@ public:
 	// メッシュの読み込み
 	bool LoadMeshFile(XFileMeshType meshType);
 
+	// プリミティブのメッシュか
+	bool IsGetPrimitiveMesh(void) { return is_primitive_mesh_; }
+
 	// テクスチャの読み込みができているか
 	bool IsGetLoadCompleted(void) { return is_loading_complete_; }
 	
@@ -74,6 +77,7 @@ private:
 	// メッシュのデータ
 	//
 
+	bool				is_primitive_mesh_;
 	bool				is_loading_complete_;
 
 	XFileMeshType		mesh_type_id_;

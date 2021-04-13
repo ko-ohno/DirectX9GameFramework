@@ -14,7 +14,7 @@
 #include "../Manager/ShaderManager.h"
 #include "../Game.h"
 #include "../GameObjects/GameObject/Camera.h"
-#include "../Resource/Texture.h"
+#include "../Resource/Material.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -195,7 +195,7 @@ bool StdMeshShader::LoadCompiledShader(const LPDIRECT3DDEVICE9& lpd3d_device)
 /*-----------------------------------------------------------------------------
 /* シェーダーへのセット
 -----------------------------------------------------------------------------*/
-void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererComponent, Texture* texture)
+void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererComponent, Material* material)
 {
 	//使用しない値のワーニング回避
 	UNREFERENCED_PARAMETER(rendererComponent);
@@ -209,34 +209,43 @@ void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererCompone
 	//シェーダー内の描画方法をプログラム側へ指定
 	shader_->SetTechnique(d3dxhandle_technique_);
 
-
 	// 光の設定情報
-	D3DXVECTOR4		light_dir(1.0f, -1.0f, 0.0f, 0.0f);		// 光の方向
+	D3DXVECTOR4		light_dir(0.f, -1.0f, -1.0f, 0.0f);		// 光の方向
 
-	FLOAT			light_strength(1.0f);
+	FLOAT			light_power(1.0f);
 
 	D3DXVECTOR4		diffuse(1.0f, 1.0f, 1.0f, 1.0f);		// 平行光源の色
-	D3DXVECTOR4		ambient(0.2f, 0.2f, 0.2f, 0.2f);		// 環境光
-	D3DXVECTOR4		specular(0.2f, 0.2f, 0.2f, 0.2f);		// スペキュラ光
+	D3DXVECTOR4		ambient(0.3f, 0.3f, 0.3f, 1.0f);		// 環境光
+	D3DXVECTOR4		specular(0.3f, 0.3f, 0.3f, 0.2f);		// 鏡面反射光
 	D3DXVECTOR4		emissive(0.5f, 0.5f, 0.5f, 0.5f);		// 自己発光色
-
-	//D3DXVECTOR4		cameraPos(0.0f, 0.0f, -10.0f, 0.0f);	// カメラの位置
-
 
 	//シェーダーにライトの向きを渡す。
 	shader_->SetVector("g_LightDir",	&light_dir);	// 光の方向
 
-	shader_->SetFloat("g_LightStrength", light_strength); //ライトの強さ
+	if (material != nullptr)
+	{
+		shader_->SetFloat("g_LightPower", material->GetLightPower()); //ライトの強さ
 
-	shader_->SetVector("g_Diffuse",		&diffuse);		// 拡散反射光
-	shader_->SetVector("g_Ambient",		&ambient);		// 環境光
-	shader_->SetVector("g_Specular",	&specular);		// 鏡面反射光光
-	shader_->SetVector("g_Emissive",	&emissive);		// 自己発光
+		shader_->SetVector("g_Diffuse",  material->GetDiffuse());		// 拡散反射光
+		shader_->SetVector("g_Ambient",  material->GetAmbient());		// 環境光
+		shader_->SetVector("g_Specular", material->GetSpecular());		// 鏡面反射光
+		shader_->SetVector("g_Emissive", material->GetEmissive());		// 自己発光
+	}
+	else
+	{
+		shader_->SetFloat("g_LightPower", light_power); //ライトの強さ
+
+		shader_->SetVector("g_Diffuse",  &diffuse);		// 拡散反射光
+		shader_->SetVector("g_Ambient",  &ambient);		// 環境光
+		shader_->SetVector("g_Specular", &specular);	// 鏡面反射光
+		shader_->SetVector("g_Emissive", &emissive);	// 自己発光
+	}
 
 	//
 	// ワールド座標の情報の作成
 	//
-	D3DXMATRIX world_matrix;			
+	D3DXMATRIX world_matrix;
+	D3DXMatrixIdentity(&world_matrix);
 	{
 		//回転情報
 		D3DXMATRIX rotation_matrix;
@@ -285,7 +294,7 @@ void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererCompone
 	//シェーダーにプロジェクション行列を渡す。
 	shader_->SetMatrix("g_MatProjection", camera->GetProjection3DMatrix());
 
-	if (texture == nullptr)
+	if (material == nullptr)
 	{
 		//シェーダーにパラメータを転送
 		shader_->SetBool("g_IsDrawTextureColor", false);
@@ -296,12 +305,20 @@ void StdMeshShader::ShaderSet(Camera* camera, RendererComponent* rendererCompone
 		shader_->SetBool("g_IsDrawTextureColor", true);
 
 		//シェーダーにテクスチャを転送
-		shader_->SetTexture("g_Texture", texture->GetTexture());
-		//shader_->SetTexture("g_Texture", nullptr);
+		shader_->SetTexture("g_Texture", *material->GetTexture());
 	}
 
 	//定数バッファをシェーダに転送
 	shader_->CommitChanges();
+}
+
+/*-----------------------------------------------------------------------------
+/* テクニックのセット
+-----------------------------------------------------------------------------*/
+void StdMeshShader::SetTechnique(const std::string& techniqueName)
+{
+	// シェーダ内のテクニックのハンドル(ポインタ)取得
+	d3dxhandle_technique_ = shader_->GetTechniqueByName(techniqueName.c_str());
 }
 
 /*=============================================================================

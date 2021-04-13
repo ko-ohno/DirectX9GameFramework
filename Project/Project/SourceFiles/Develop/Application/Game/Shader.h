@@ -34,6 +34,9 @@ public:
 	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture);
 	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Material* material);
 
+	//テクニックのセット
+	virtual void SetTechnique(const std::string& techniqueName) { UNREFERENCED_PARAMETER(techniqueName);}
+
 	//シェーダーの開始
 	virtual void ShaderPassBegin(int shaderPassNumber = 0);
 

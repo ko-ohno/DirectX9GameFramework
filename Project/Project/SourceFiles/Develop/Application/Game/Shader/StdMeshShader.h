@@ -32,7 +32,9 @@ private:
 	bool LoadCompiledShader(const LPDIRECT3DDEVICE9& lpd3d_device);
 
 public:
-	void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture) override;
+	void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Material* material) override;
+
+	void SetTechnique(const std::string& techniqueName) override;
 
 private:
 	D3DXHANDLE d3dxhandle_technique_;	//テクニックへのハンドル
