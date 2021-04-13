@@ -13,6 +13,7 @@
 #include "../Game.h"
 #include "../../DX9Graphics.h"
 #include "../Resource/Texture.h"
+#include "../Resource/Material.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -29,7 +30,7 @@ XFileMesh::XFileMesh(MeshManager* manager, XFileMeshType meshType)
 	mesh_type_id_ = meshType;
 
 	//リストの初期化
-	mesh_texture_list_.clear();
+	mesh_material_list_.clear();
 
 	//プリミティブメッシュの読み込みをするか
 	const bool is_load_primitive_mesh = ((meshType == XFileMeshType::Polygon)
@@ -58,10 +59,10 @@ XFileMesh::~XFileMesh(void)
 	SAFE_RELEASE_(material_buffer_);
 
 	//メッシュのテクスチャの解放
-	while (!mesh_texture_list_.empty())
+	while (!mesh_material_list_.empty())
 	{
-		delete mesh_texture_list_.back();
-		mesh_texture_list_.pop_back();
+		delete mesh_material_list_.back();
+		mesh_material_list_.pop_back();
 	}
 }
 
@@ -73,14 +74,14 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 	// 描画デバイスの取得
 	auto lpd3d_device = *mesh_manager_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
-	// ルートパスの取得
-	auto mesh_filepath = mesh_manager_->GetMeshRootpath();
-
 	// ルートパスとファイルパスを合成
-	mesh_filepath = mesh_filepath + mesh_manager_->GetMeshFilepathList().at(meshType);
+	auto mesh_filepath = mesh_manager_->GetMeshRootpath() + mesh_manager_->GetMeshFilepathList().at(meshType);
 	{
 		HRESULT hr;
 		LPD3DXBUFFER adjacensy = nullptr;
+		
+		//メッシュの種類名を取得
+		std::string xfile_mesh_name = MeshManager::XFileMeshTypeNames[static_cast<int>(meshType)];
 
 		//
 		// メッシュの読み込み
@@ -98,136 +99,147 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 			// 読み込みの失敗判定
 			if (FAILED(hr)) 
 			{
+				std::string err_msg = "XFileMesh::LoadMesh():メッシュが読み込めませんでした。\n";
+				err_msg = err_msg + xfile_mesh_name + "：(拡張子[.X]ファイルの破損、あるいは日本語が内包されていないか確認して下さい。)";
 				MessageBox(nullptr
-						  , "XFileMesh::LoadMesh():メッシュが読み込めませんでした。\n(拡張子[.X]ファイルの破損、あるいは日本語が内包されていないか確認して下さい。)"
+						  , err_msg.c_str()
 						  , "警告"
 						  , (MB_OK | MB_ICONWARNING));
 				return false;
 			}
 		}
-		
-		//
+
 		// メッシュの最適化
-		//
+		if (this->MeshOptimization(xfile_mesh_name, adjacensy))
 		{
-			hr = lpd3dx_mesh_->OptimizeInplace(D3DXMESHOPT_COMPACT			//どの三角形にも属していない頂点を取り除く
-											  | D3DXMESHOPT_ATTRSORT		//パフォーマンス向上
-											  | D3DXMESHOPT_VERTEXCACHE		//キャッシュのヒット率向上
-											  , (DWORD*)adjacensy->GetBufferPointer()
-											  , nullptr
-											  , nullptr
-											  , nullptr);
+			return false;
+		}
 
-			// 失敗判定
-			if (FAILED(hr))
-			{
-				MessageBox(nullptr
-						  , "XFileMesh::LoadMesh():メッシュの最適化に失敗しました。"
-						  , "警告"
-						  , (MB_OK | MB_ICONWARNING));
-				return false;
-			}
+		// メッシュの面の隣接情報を解放(もう使わないので)
+		{
+			SAFE_RELEASE_(adjacensy);
+		}
+
+
+		// メッシュの頂点データレイアウトを変更
+		if (this->MeshClone(xfile_mesh_name, lpd3d_device))
+		{
+			return false;
 		}
 
 		//
-		// クローンメッシュによるメッシュの最適化
+		// メッシュファイルから情報取得、テクスチャとマテリアルを作成
 		//
-		{
-			LPD3DXMESH clone_mesh;
-			D3DVERTEXELEMENT9 elements[MAXD3DDECLLENGTH + 1];
 
-			lpd3dx_mesh_->GetDeclaration(elements);
-
-			//作成処理
-			hr = lpd3dx_mesh_->CloneMesh(D3DXMESH_MANAGED
-										| D3DXMESH_WRITEONLY
-										, elements
-										, lpd3d_device
-										, &clone_mesh);
-
-			//失敗判定
-			if (FAILED(hr))
-			{
-				MessageBox(nullptr
-						  , "XFileMesh::LoadMesh():メッシュのクローン化に失敗しました。"
-						  , "警告"
-						  , (MB_OK | MB_ICONWARNING));
-				return false;
-			}
-
-			if (lpd3dx_mesh_ != nullptr) { lpd3dx_mesh_->Release(); }
-			lpd3dx_mesh_ = clone_mesh; //クローンしたメッシュのコピー
-		}
-
-		//
-		// メッシュファイルからテクスチャ情報取得、メッシュのテクスチャを作成
-		//
+		// メッシュのルートパス取得
+		std::string texture_rootpath = mesh_manager_->GetMeshRootpath();
 
 		// マテリアルのバッファから、メッシュのテクスチャ情報を取得
-		LPD3DXMATERIAL materials = (LPD3DXMATERIAL)material_buffer_->GetBufferPointer();
+		auto lpd3dx_materials = (LPD3DXMATERIAL)material_buffer_->GetBufferPointer();
 
-		// メッシュファイルに”貼り付けられたマテリアルの数”だけテクスチャを作成
-		for (unsigned int i = 0; i < material_count_; i++)
+		for(int i = 0; i < static_cast<int>(material_count_); i++)
 		{
-			// メッシュファイルの情報の中のテクスチャを情報を確認
-			if (materials[i].pTextureFilename != nullptr)
+			if (lpd3dx_materials[i].pTextureFilename != nullptr)
 			{
-				// 作成したテクスチャの一時格納先
-				LPDIRECT3DTEXTURE9 texture = nullptr;
+				// テクスチャのファイルパス取得
+				std::string texture_filepath = lpd3dx_materials[i].pTextureFilename;
 
-				// テクスチャのファイル名用変数を初期化
-				texture_filepath_.clear();
+				// ルートパスとファイル名で完全なファイルパスを作成
+				std::string filepath = texture_rootpath + texture_filepath;
 
-				// マテリアルのバッファから"テクスチャ名"を取得
-				std::string material_buffer_texture_name = materials[i].pTextureFilename;
-
-				//ファイルパスを合成
-				texture_filepath_ = mesh_manager_->GetMeshRootpath() + material_buffer_texture_name;
-					
-				//メッシュファイルにテクスチャのパスがなかったら？
-				if (texture_filepath_.size() == mesh_manager_->GetMeshRootpath().size())
+				// テクスチャファイル名の有無を確認
+				if (filepath.size() == mesh_manager_->GetMeshRootpath().size())
 				{
 					continue;
 				}
 
-				// テクスチャの作成
-				hr = D3DXCreateTextureFromFile(lpd3d_device, texture_filepath_.c_str(), &texture);
-						
-				// 失敗判定
-				if (FAILED(hr))
-				{
-					MessageBox(nullptr
-								, "XFileMesh::LoadMesh():マテリアルのバッファからのテクスチャの作成に失敗しました。"
-								, "警告"
-								, (MB_OK | MB_ICONWARNING));
-
-					// メッシュの面の隣接情報を解放
-					SAFE_RELEASE_(adjacensy);
-
-					// テクスチャの作成に失敗したので解放
-					SAFE_RELEASE_(texture);
-					return false;
-				}
-				auto texture_A = NEW Texture(texture);
-
-				// メッシュが所有するテクスチャのリストへ追加
-				this->AddTexture(texture_A);
-
-				// メッシュの面の隣接情報を解放
-				SAFE_RELEASE_(adjacensy);
+				// マテリアルの作成
+				this->AddMaterial(NEW Material(lpd3d_device, filepath, lpd3dx_materials[i].MatD3D));
 			}
 		}
-		SAFE_RELEASE_(adjacensy);
 	}
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
-/* メッシュのテクスチャのリストへテクスチャを追加
+/* メッシュのマテリアルのリストへマテリアルを追加
 -----------------------------------------------------------------------------*/
-void XFileMesh::AddTexture(Texture* texture)
+void XFileMesh::AddMaterial(Material* material)
 {
-	mesh_texture_list_.emplace_back(texture);
+	mesh_material_list_.emplace_back(material);
+}
+
+/*-----------------------------------------------------------------------------
+/* メッシュの最適化
+-----------------------------------------------------------------------------*/
+bool XFileMesh::MeshOptimization(const std::string& xfileMeshName, const LPD3DXBUFFER& adjacensy)
+{
+	HRESULT hr;
+	hr = lpd3dx_mesh_->OptimizeInplace(D3DXMESHOPT_COMPACT			//どの三角形にも属していない頂点を取り除く
+									  | D3DXMESHOPT_ATTRSORT		//パフォーマンス向上
+									  | D3DXMESHOPT_VERTEXCACHE		//キャッシュのヒット率向上
+									  , (DWORD*)adjacensy->GetBufferPointer()
+									  , nullptr
+									  , nullptr
+									  , nullptr);
+
+	// 失敗判定
+	if (FAILED(hr))
+	{
+		std::string err_msg = "XFileMesh::MeshOptimization():メッシュの最適化に失敗しました。\n";
+		err_msg = err_msg + "最適化したメッシュ：" + xfileMeshName;
+
+		MessageBox(nullptr
+				  , err_msg.c_str()
+				  , "警告"
+				  , (MB_OK | MB_ICONWARNING));
+		return true;
+	}
+	return false;
+}
+
+/*-----------------------------------------------------------------------------
+/* メッシュのクローン
+-----------------------------------------------------------------------------*/
+bool XFileMesh::MeshClone(const std::string& xfileMeshName, const LPDIRECT3DDEVICE9& lpd3dDevice)
+{
+	//
+	// 頂点データのレイアウトを再フォーマット
+	//
+	LPD3DXMESH clone_mesh;
+	D3DVERTEXELEMENT9 elements[MAXD3DDECLLENGTH + 1];
+
+	lpd3dx_mesh_->GetDeclaration(elements);
+
+	HRESULT hr;
+	hr = lpd3dx_mesh_->CloneMesh(D3DXMESH_MANAGED
+								| D3DXMESH_WRITEONLY
+								, elements
+								, lpd3dDevice
+								, &clone_mesh);
+
+	//失敗判定
+	if (FAILED(hr))
+	{
+		std::string err_msg = "XFileMesh::MeshClone():メッシュのクローン化に失敗しました。\n";
+		err_msg = err_msg + "クローンしたメッシュ：" + xfileMeshName;
+
+		MessageBox(nullptr
+				  , err_msg.c_str()
+				  , "警告"
+				  , (MB_OK | MB_ICONWARNING));
+		return true;
+	}
+
+	//クローンしたメッシュのコピー
+	{
+		if (lpd3dx_mesh_ != nullptr)
+		{
+			lpd3dx_mesh_->Release();
+		}
+		lpd3dx_mesh_ = clone_mesh; 
+	}
+	return false;
 }
 
 /*-----------------------------------------------------------------------------

@@ -16,6 +16,7 @@
 #include "../../../../Math.h"
 #include "../../../Resource/XFileMesh.h"
 #include "../../GameObject/Camera.h"
+#include "../../../Resource/Material.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -37,7 +38,6 @@ StdMeshRendererComponent::~StdMeshRendererComponent(void)
 	// 終了化
 	this->Uninit();
 }
-
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
@@ -62,19 +62,8 @@ void StdMeshRendererComponent::Uninit(void)
 -----------------------------------------------------------------------------*/
 void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 {
-	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
+	//auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
-	lpd3d_device->SetRenderState(D3DRS_LIGHTING, false);
-
-	//lpd3d_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-
-	//void Scene::onWireFrame() {
-	//	device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	//}
-
-	//void Scene::offWireFrame() {
-	//	device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-	//}
 	//メッシュ情報の確認
 	if (xfile_mesh_ == nullptr)
 	{
@@ -83,46 +72,42 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 
 	//描画処理
 	{
-		//シェーダーのセット
-		shader->ShaderSet(camera, this);
+		// マテリアル数の取得
+		auto material_count = xfile_mesh_->GetMaterialCounts();
 
-		//シェーダーパスの開始
-		shader->ShaderPassBegin();
+		// マテリアルリストの取得
+		auto material_list = xfile_mesh_->GetMeshMaterialList();
 
-		// メッシュからマテリアル情報の取得
-		auto materials = (LPD3DXMATERIAL)xfile_mesh_->GetMaterialBuffer();
-		if (materials == nullptr)
+		// マテリアル数分だけ描画
+		for (int i = 0; i < static_cast<int>(material_count); i++)
 		{
-			//マテリアルのないメッシュならこれで描画できる
-			xfile_mesh_->GetMesh()->DrawSubset(0);
-		}
-		else
-		{
-			//マテリアルの数の取得
-			auto material_counts = xfile_mesh_->GetMaterialCounts();
+			//マテリアルの一時格納先
+			class Material* material_buffers = nullptr;
 
-			//メッシュの保有する面の数だけ描画
-			for (unsigned int i = 0; i < static_cast<int>(material_counts); i++)
+			// 作成されたマテリアルのリストが空ではない時
+			if(!material_list.empty())
 			{
-				lpd3d_device->SetMaterial(&materials[i].MatD3D);
-				//if (materials[i].pTextureFilename != nullptr)
-				//{
-				//	lpd3d_device->SetTexture(0, xfile_mesh_->GetMeshTextureList().at(i));
-				//}
-				//else
-				//{
-				//	lpd3d_device->SetTexture(0, nullptr);
-				//}
-				xfile_mesh_->GetMesh()->DrawSubset(i);
+				// 作成されたマテリアルリストとマテリアル数が食い違うとき
+				const bool is_list_out_of_range = (i < material_list.size());
+				if (is_list_out_of_range)
+				{
+					material_buffers = xfile_mesh_->GetMeshMaterialList().at(i);
+				}
 			}
+
+			// シェーダーのセット
+			shader->ShaderSet(camera, this, material_buffers);
+
+			//シェーダーパスの開始
+			shader->ShaderPassBegin();
+
+			// メッシュの描画
+			xfile_mesh_->GetMesh()->DrawSubset(i);
+
+			//シェーダーパスの終了
+			shader->ShaderPassEnd();
 		}
-
-		//シェーダーパスの終了
-		shader->ShaderPassEnd();
 	}
-
-	//lpd3d_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-
 }
 
 /*-----------------------------------------------------------------------------

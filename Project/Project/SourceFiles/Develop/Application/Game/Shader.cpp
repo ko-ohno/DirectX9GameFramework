@@ -64,6 +64,16 @@ void Shader::ShaderSet(class Camera* camera , RendererComponent* rendererCompone
 }
 
 /*-----------------------------------------------------------------------------
+/* シェーダーのセット
+-----------------------------------------------------------------------------*/
+void Shader::ShaderSet(Camera* camera, RendererComponent* rendererComponent, Material* material)
+{
+	UNREFERENCED_PARAMETER(camera);
+	UNREFERENCED_PARAMETER(rendererComponent);
+	UNREFERENCED_PARAMETER(material);
+}
+
+/*-----------------------------------------------------------------------------
 /* シェーダーパスの開始処理
 -----------------------------------------------------------------------------*/
 void Shader::ShaderPassBegin(int shaderPassNumber)

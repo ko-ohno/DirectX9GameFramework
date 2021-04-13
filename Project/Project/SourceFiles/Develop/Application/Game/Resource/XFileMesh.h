@@ -27,10 +27,10 @@ public:
 
 	// テクスチャの読み込みができているか
 	bool IsGetLoadCompleted(void) { return is_loading_complete_; }
-
-	// テクスチャの追加
-	void AddTexture(class Texture* texture);
 	
+	// マテリアルの追加
+	void AddMaterial(class Material* material);
+
 	//
 	// メッシュのデータ取得関数
 	//
@@ -47,7 +47,11 @@ public:
 	// マテリアルバッファの取得
 	LPD3DXBUFFER GetMaterialBuffer(void) { return material_buffer_; }
 
-	std::vector<class Texture*> GetMeshTextureList(void) { return mesh_texture_list_; }
+	std::vector<class Material*> GetMeshMaterialList(void) { return mesh_material_list_; }
+
+private:
+	bool MeshOptimization(const std::string& xfileMeshName, const LPD3DXBUFFER& adjacensy);
+	bool MeshClone(const std::string& xfileMeshName, const LPDIRECT3DDEVICE9& lpd3dDevice);
 
 private:
 	//
@@ -77,11 +81,9 @@ private:
 	DWORD				material_count_;
 	LPD3DXBUFFER		material_buffer_;
 
-	//テクスチャのファイルパス
-	std::string texture_filepath_;
+	//メッシュが所有するマテリアルのリスト
+	std::vector<class Material*> mesh_material_list_;
 
-	//メッシュが所有するテクスチャのリスト
-	std::vector<class Texture*> mesh_texture_list_;
 };
 
 #endif //XFILE_MESH_H_

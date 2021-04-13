@@ -181,6 +181,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Effect.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Material.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Sound.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.h" />
@@ -268,6 +269,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Effect.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Material.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Sound.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.cpp" />
