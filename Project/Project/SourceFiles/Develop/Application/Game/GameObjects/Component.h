@@ -47,11 +47,10 @@ public:
 		, RendererComponent
 		, SpriteRendererComponent
 		, BillboardRendererComponent
-		, MeshRendererComponent
+		, StdMeshRendererComponent
+		, EffectRendererComponent
 		//姿勢制御と移動
 		, TransformComponent
-		, Transform2DComponent
-		, Transform3DComponent
 		, MoveComponent 
 		
 		//コンポーネントの最大値

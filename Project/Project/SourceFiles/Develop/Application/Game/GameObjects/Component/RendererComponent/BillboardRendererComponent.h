@@ -30,6 +30,8 @@ public:
 
 	void Draw(class Shader* shader, class Camera* camera) override;
 
+	virtual TypeID GetComponentType() const override { return TypeID::BillboardRendererComponent; };
+
 private:
 	//頂点用バッファ作成関数群
 

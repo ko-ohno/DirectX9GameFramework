@@ -33,6 +33,8 @@ public:
 	// メッシュ情報の取得
 	class XFileMesh* GetMesh(void);
 
+	virtual TypeID GetComponentType() const override { return TypeID::StdMeshRendererComponent; };
+
 private:
 	// メッシュのデータ
 	class XFileMesh* xfile_mesh_;
