@@ -381,7 +381,13 @@ MigrationBackup/
 *.lai
 *.la
 *.a
-*.lib
+#*.lib
+#一度、rootのgitignoreからディレクトリをたどり、LibraryフォルダをGit追跡除外してから、再度Git追跡するように設定する。
+#Git追跡一時解除
+/Project/Project/Library/Effekseer/*
+#Git追跡を再開
+!/Project/Project/Library/Effekseer/Debug/
+!/Project/Project/Library/Effekseer/Release/
 
 # Executables
 *.exe
@@ -413,7 +419,7 @@ MigrationBackup/
 *.lai
 *.la
 *.a
-*.lib
+#*.lib
 
 # Executables
 *.exe
