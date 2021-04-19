@@ -16,6 +16,8 @@
 #include "GameObjects/GameObject/_SpriteTest.h"
 #include "GameObjects/GameObject/_MeshTest.h"
 #include "GameObjects/GameObject/_BillboardTest.h"
+#include "GameObjects/GameObject/_EffectTest.h"
+
 
 //ゲームオブジェクト
 #include "GameObjects/GameObject/Camera.h"
@@ -63,6 +65,7 @@ bool GameObjectFactory::StartUp(void)
 		this->AddGameObject(NEW SpriteTest(game_));
 		this->AddGameObject(NEW BillboardTest(game_));
 		this->AddGameObject(NEW MeshTest(game_));
+		this->AddGameObject(NEW EffectTest(game_));
 	}
 	return true;
 }

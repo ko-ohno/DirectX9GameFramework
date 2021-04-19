@@ -104,11 +104,12 @@ void ShaderManager::Uninit(void)
 void ShaderManager::LoadShaders(void)
 {	
 	//シェーダー
-	unmap_shader_list_[ShaderType::Sprite]		 = NEW SpriteShader(this);
-	unmap_shader_list_[ShaderType::DissolveFade] = NEW DissolveFadeShader(this);
-	unmap_shader_list_[ShaderType::Billboard]	 = NEW BillboardShader(this);
-	unmap_shader_list_[ShaderType::StandardMesh] = NEW StdMeshShader(this);
-	unmap_shader_list_[ShaderType::SkinMesh]	 = NEW SkinMeshShader(this);
+	unmap_shader_list_[ShaderType::Sprite]			= NEW SpriteShader(this);
+	unmap_shader_list_[ShaderType::DissolveFade]	= NEW DissolveFadeShader(this);
+	unmap_shader_list_[ShaderType::Billboard]		= NEW BillboardShader(this);
+	unmap_shader_list_[ShaderType::StandardMesh]	= NEW StdMeshShader(this);
+	unmap_shader_list_[ShaderType::SkinMesh]		= NEW SkinMeshShader(this);
+	unmap_shader_list_[ShaderType::ParticleEffect]  = nullptr; //Effecseerの描画ライブラリ使用のため
 }
 
 /*-----------------------------------------------------------------------------

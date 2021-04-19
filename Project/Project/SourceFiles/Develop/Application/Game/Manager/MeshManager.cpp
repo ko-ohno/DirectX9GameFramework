@@ -13,9 +13,8 @@
 #include "../../DX9Graphics.h"
 #include "../Resource/XFileMesh.h"
 
-//コンポーネントのリスト
+//メッシュの名前リスト
 const char* MeshManager::XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)] = {
-	//自分自身
 	"Polygon"
 	, "Box"
 	, "Cylinder"
@@ -101,7 +100,7 @@ bool MeshManager::Init(void)
 	unmap_mesh_path_list_.clear();
 	{
 		//
-		// プリミティブメッシュの読み込みと作成  
+		// プリミティブメッシュの読み込み用ファイルパスリストの作成  
 		//
 		{
 			// すでにXFileMeshのなかで定義済み
@@ -113,7 +112,7 @@ bool MeshManager::Init(void)
 		}
 
 		//
-		// メッシュファイルからの読み込み  
+		// メッシュファイルの読み込み用ファイルパスリストの作成  
 		//
 		{
 			unmap_mesh_path_list_[XFileMeshType::BlueBullet]	= "Bullet/BlueBullet.x";
@@ -143,7 +142,7 @@ void MeshManager::Uninit(void)
 -----------------------------------------------------------------------------*/
 XFileMesh* MeshManager::LoadMesh(XFileMeshType xfileMeshTypeID)
 {
-	//テクスチャがあったら
+	//メッシュがあったら
 	auto mesh = this->FindMesh(xfileMeshTypeID);
 	if (mesh != nullptr)
 	{
@@ -151,7 +150,7 @@ XFileMesh* MeshManager::LoadMesh(XFileMeshType xfileMeshTypeID)
 	}
 	else
 	{
-		//テクスチャがなかったら
+		//メッシュがなかったら
 		const bool is_mesh_list_out_of_range = ((xfileMeshTypeID == XFileMeshType::None)
 											   || (xfileMeshTypeID == XFileMeshType::Max));
 		if (is_mesh_list_out_of_range)
@@ -185,13 +184,13 @@ void MeshManager::ReleaseMesh(XFileMeshType xfileMeshTypeID)
 -----------------------------------------------------------------------------*/
 XFileMesh* MeshManager::FindMesh(XFileMeshType xfileMeshTypeID)
 {
-	//テクスチャリストの検索
+	//メッシュリストの検索
 	for (auto mesh : mesh_list_)
 	{
 		//現在の調査対象からIDを取得
 		auto id = mesh->GetMeshTypeID();
 
-		//取得したIDとtextureType
+		//取得したIDとxfileMeshTypeIDが一致するか
 		if (id == xfileMeshTypeID)
 		{
 			return mesh;

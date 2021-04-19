@@ -77,7 +77,7 @@ private:
 	//テクスチャのルートパス
 	std::string texture_root_path_;
 
-	//テクスチャーのリスト
+	//テクスチャーのパスリスト
 	std::unordered_map<TextureType, std::string> unmap_texture_path_list_;
 
 	//テクスチャーのコンテナ

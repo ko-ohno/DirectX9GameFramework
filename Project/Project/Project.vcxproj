@@ -97,11 +97,12 @@
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>StdAfx.h</ForcedIncludeFiles>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SourceFiles\External\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)Library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <FxCompile>
       <ObjectFileOutput>$(ProjectDir)Assets\CompiledShaderObjects\%(Filename).cso</ObjectFileOutput>
@@ -121,13 +122,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>StdAfx.h</ForcedIncludeFiles>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SourceFiles\External\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)Library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <FxCompile>
       <ObjectFileOutput>$(ProjectDir)Assets\CompiledShaderObjects\%(Filename).cso</ObjectFileOutput>
@@ -175,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\EffectRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\LightManager.h" />
@@ -252,6 +255,9 @@
     <ClInclude Include="SourceFiles\Develop\Main.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Math.h" />
     <ClInclude Include="SourceFiles\Develop\StdAfx.h" />
+    <ClInclude Include="SourceFiles\External\Effekseer\include\Effekseer.h" />
+    <ClInclude Include="SourceFiles\External\Effekseer\include\EffekseerRendererDX9.h" />
+    <ClInclude Include="SourceFiles\External\Effekseer\include\EffekseerSoundXAudio2.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_rectpack.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_textedit.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imstb_truetype.h" />
@@ -261,8 +267,11 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_win32.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\EffectRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\LightManager.cpp" />
@@ -347,6 +356,8 @@
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />

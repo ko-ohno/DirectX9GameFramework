@@ -15,6 +15,7 @@
 #include "Manager/ShaderManager.h"
 #include "Manager/TextureManager.h"
 #include "Manager/MeshManager.h"
+#include "Manager/EffectManager.h"
 
 
 #include "GameObjectFactory.h"
@@ -74,6 +75,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		const bool shader_manager_init = shader_manager_->StartUp();
 		if (shader_manager_init == false)
 		{
+			assert(!"Game::StartUp()：シェーダーマネージャの起動に失敗しました。");
 			return false;
 		}
 
@@ -82,6 +84,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		const bool texture_manager_init = texture_manager_->StartUp();
 		if (texture_manager_init == false)
 		{
+			assert(!"Game::StartUp()：テクスチャマネージャの起動に失敗しました。");
 			return false;
 		}
 	
@@ -90,6 +93,16 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		const bool mesh_manager_init = mesh_manager_->StartUp();
 		if (texture_manager_init == false)
 		{
+			assert(!"Game::StartUp()：メッシュマネージャの起動に失敗しました。");
+			return false;
+		}
+
+		//エフェクトマネージャの起動
+		effect_manager_ = effect_manager_->Create(this);
+		const bool effect_manager_init = effect_manager_->StartUp();
+		if (effect_manager_init == false)
+		{
+			assert(!"Game::StartUp()：エフェクトマネージャの起動に失敗しました。");
 			return false;
 		}
 	}
@@ -99,6 +112,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	const bool renderer_init = renderer_->StartUp();
 	if (renderer_init == false)
 	{
+		assert(!"Game::StartUp()：レンダラーの起動に失敗しました。");
 		return false;	//レンダラの起動に失敗したら
 	}
 
@@ -107,9 +121,9 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	const bool game_object_fuctory_init = game_object_fuctory_->StartUp();
 	if(game_object_fuctory_init == false)
 	{
+		assert(!"Game::StartUp()：ゲームオブジェクトのファクトリの起動に失敗しました。");
 		return false;
 	}
-
 	return true;
 }
 
@@ -132,10 +146,16 @@ void Game::ShutDown(void)
 	
 	//マネージャーのファクトリの使用
 	{
-		//シェーダーマネージャの起動
+		//エフェクトマネージャの起動
 		{
-			shader_manager_->Shutdown();
-			SAFE_DELETE_(shader_manager_);
+			effect_manager_->Shutdown();
+			SAFE_DELETE_(effect_manager_);
+		}
+
+		//メッシュマネージャの起動
+		{
+			mesh_manager_->Shutdown();
+			SAFE_DELETE_(mesh_manager_);
 		}
 
 		//テクスチャマネージャの起動
@@ -144,10 +164,10 @@ void Game::ShutDown(void)
 			SAFE_DELETE_(texture_manager_);
 		}
 
-		//メッシュマネージャの起動
+		//シェーダーマネージャの起動
 		{
-			mesh_manager_->Shutdown();
-			SAFE_DELETE_(mesh_manager_);
+			shader_manager_->Shutdown();
+			SAFE_DELETE_(shader_manager_);
 		}
 	}
 	 
@@ -282,13 +302,22 @@ void Game::RemoveGameObject(GameObject* gameObject)
 -----------------------------------------------------------------------------*/
 void Game::UpdateGameObjects(float deltaTime)
 {
-	//すべてのゲームオブジェクトの更新
-	updating_game_objects_ = true;
-	for (auto game_object : game_objects_)
+	//ゲームオブジェクトとエフェクトの総更新処理
 	{
-		game_object->Update(deltaTime);
+		//エフェクトマネージャの更新開始
+		effect_manager_->GetEffekseerManager()->BeginUpdate();
+
+		//すべてのゲームオブジェクトの更新
+		updating_game_objects_ = true;
+		for (auto game_object : game_objects_)
+		{
+			game_object->Update(deltaTime);
+		}
+		updating_game_objects_ = false;
+
+		//エフェクトマネージャの更新終了
+		effect_manager_->GetEffekseerManager()->EndUpdate();
 	}
-	updating_game_objects_ = false;
 
 	//待機リストのゲームオブジェクトの操作
 	for (auto pending_game_object : pending_game_objects_)

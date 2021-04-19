@@ -58,6 +58,17 @@ ApplicationManager::~ApplicationManager(void)
 -----------------------------------------------------------------------------*/
 bool ApplicationManager::Init(void)
 {
+	// COMコンポーネントの初期化
+	{
+		HRESULT hr;
+		hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+		if (FAILED(hr))
+		{
+			assert(!"EffectManager::Init()：COMコンポーネントの初期化に失敗しました！");
+			return false;
+		}
+	}
+
 	//グラフィックスオブジェクトの生成。
 	{
 		dx9_graphics_ = dx9_graphics_->Create();
@@ -128,6 +139,9 @@ void ApplicationManager::Uninit(void)
 	SAFE_DELETE_(app_window_);
 	SAFE_DELETE_(input_device_);
 	SAFE_DELETE_(dx9_graphics_);
+
+	//COMコンポーネントの終了化
+	CoUninitialize();
 }
 
 /*-----------------------------------------------------------------------------

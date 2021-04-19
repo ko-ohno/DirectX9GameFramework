@@ -68,6 +68,7 @@ bool BillboardRendererComponent::Init(void)
 		bool vtx_buffer_init = this->CreateVertexBuffer();
 		if (vtx_buffer_init == false)
 		{
+			assert(!"BillboardRendererComponent::Init()：頂点バッファの作成に失敗しました。");
 			return false;
 		}
 
@@ -75,6 +76,7 @@ bool BillboardRendererComponent::Init(void)
 		bool idx_buffer_init = this->CreateIndexBuffer();
 		if (idx_buffer_init == false)
 		{
+			assert(!"BillboardRendererComponent::Init()：インデックスバッファの作成に失敗しました。");
 			return false;
 		}
 	}

@@ -11,7 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
 #include "../Math.h"
-
+#include "Manager/EffectManager.h"
 
 /*-------------------------------------
 /* レンダラークラス
@@ -51,6 +51,12 @@ private:
 
 	//シェーダの管理者
 	class ShaderManager* shader_manager_;
+
+	//エフェクトの管理者
+	class EffectManager* effect_manager_;
+
+	//Effekseerのエフェクト描画用レンダラー
+	class EffekseerRendererDX9::Renderer* effekseer_renderer_;
 
 	//画面の高さ、幅、画面倍率
 	int	  screen_width_;

@@ -22,7 +22,7 @@ enum class  ShaderType
 	, Billboard			//ビルボード
 	, StandardMesh		//メッシュ(ボーンなし)
 	, SkinMesh			//スキンメッシュ
-
+	, ParticleEffect    //エフェクト
 	, Max
 };
 

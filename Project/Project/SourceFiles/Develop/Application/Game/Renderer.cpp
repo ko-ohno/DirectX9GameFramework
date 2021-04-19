@@ -11,6 +11,7 @@
 #include "Renderer.h"
 #include "GameObjects/GameObject/Camera.h"
 #include "GameObjects/Component/RendererComponent.h"
+#include "Manager/EffectManager.h"
 
 #include "Shader/DissolveShader.h"
 
@@ -28,13 +29,14 @@
 Renderer::Renderer(Game* game)
 	: game_(game)
 	, shader_manager_(nullptr)
+	, effect_manager_(nullptr)
+	, effekseer_renderer_(nullptr)
 	, screen_width_(100)
 	, screen_height_(100)
 	, screen_scaler_(0.f)
 	, now_camera_pos_(0.f, 0.f, 0.f)
 	, old_camera_pos_(now_camera_pos_)
 {
-
 }
 
 /*-----------------------------------------------------------------------------
@@ -64,10 +66,34 @@ bool Renderer::StartUp(void)
 	//レンダラーコンポーネントのコンテナを初期化
 	renderer_components_.clear();
 	
-	//マネージャー
+	//マネージャーの取得
 	{
 		//シェーダーのマネージャーの取得
-		shader_manager_ = game_->GetShaderManager();
+		this->shader_manager_ = game_->GetShaderManager();
+		const bool shader_manager_init_failed = (shader_manager_ == nullptr);
+		if (shader_manager_init_failed)
+		{
+			assert(!"Renderer::StartUp()：シェーダーのマネージャーの取得に失敗しました！");
+			return false;
+		}
+
+		//エフェクトのマネージャーの取得
+		this->effect_manager_ = game_->GetEffectManager();
+		const bool effect_manager_init_failed = (effect_manager_ == nullptr);
+		if (effect_manager_init_failed)
+		{
+			assert(!"Renderer::StartUp()：エフェクトのマネージャーの取得に失敗しました！");
+			return false;
+		}
+
+		//Effekseerの描画レンダラーを取得
+		this->effekseer_renderer_ = effect_manager_->GetEffekseerRenderer();
+		const bool effekseer_renderer_init_failed = (effekseer_renderer_ == nullptr);
+		if (effekseer_renderer_init_failed)
+		{
+			assert(!"Renderer::StartUp()：Effekseerの描画レンダラーの取得に失敗しました！");
+			return false;
+		}
 	}
 	return true;
 }
@@ -126,11 +152,12 @@ void Renderer::Draw(void)
 			if (is_camera_moved == true)
 			{
 				D3DXVECTOR3 camera_position;
-				D3DXMATRIX  view_matrix;
+				D3DXMATRIX  view_matrix = *camera_game_object->GetViewMatrix();
+				D3DXMATRIX  projection_matrix = *camera_game_object->GetProjection3DMatrix();
 
 				//ビュー行列を逆行列にしてカメラ座標を取り出す
 				{
-					view_matrix = *camera_game_object->GetViewMatrix();;
+					//view_matrix = 
 					D3DXMatrixInverse(&view_matrix, nullptr, &view_matrix);
 
 					camera_position.x = view_matrix._41;
@@ -138,12 +165,13 @@ void Renderer::Draw(void)
 					camera_position.z = view_matrix._43;
 				}
 
+				//カメラ座標と描画オブジェクトの座標の距離を計算
 				for (auto renderer_component : renderer_components_)
 				{
-					auto rc_pos = *renderer_component->GetPosition();
+					auto rc_position = *renderer_component->GetPosition();
 
 					//レンダラーコンポーネントとカメラの距離を計測
-					auto dir = rc_pos - camera_position;
+					auto dir = rc_position - camera_position;
 					auto vec_length = D3DXVec3Length(&dir);
 					{
 						//カメラまでの距離を設定　
@@ -155,8 +183,30 @@ void Renderer::Draw(void)
 				this->SortByRendererComponent();
 			}
 
-			//レンダラーコンポーネントの描画処理
-			this->DrawUpRendererComponents(camera_game_object, now_draw_layer_order);
+			//エフェクトの描画レイヤーの時に描画
+			if (now_draw_layer_order == static_cast<int>(RendererLayerType::ParticleEffect))
+			{
+				auto camera_matrix		= effect_manager_->Convert44Matrix(*camera_game_object->GetViewMatrix());
+				auto projection_matrix	= effect_manager_->Convert44Matrix(*camera_game_object->GetProjection3DMatrix());
+				{
+					//	カメラ行列と射影行列を変換して渡す
+					effekseer_renderer_->SetCameraMatrix(camera_matrix);
+					effekseer_renderer_->SetProjectionMatrix(projection_matrix);
+
+					//Effekseerの描画レンダラーによるEffectRendererComponentの描画
+					effekseer_renderer_->BeginRendering();
+					{
+						//レンダラーコンポーネントの描画処理
+						this->DrawUpRendererComponents(camera_game_object, now_draw_layer_order);
+					}
+					effekseer_renderer_->EndRendering();
+				}
+			}
+			else
+			{
+				//レンダラーコンポーネントの描画処理
+				this->DrawUpRendererComponents(camera_game_object, now_draw_layer_order);
+			}
 
 			//何個目のカメラか？
 			camera_counter_++;

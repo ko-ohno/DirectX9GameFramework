@@ -14,6 +14,7 @@
 #include "../../Manager/ShaderManager.h"
 #include "../../Manager/TextureManager.h"
 #include "../../Manager/MeshManager.h"
+#include "../../Manager/EffectManager.h"
 #include "../../../DX9Graphics.h"
 #include "../../VertexData.h"
 
