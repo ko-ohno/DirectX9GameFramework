@@ -1,44 +1,43 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[AudioComponent.h] 音声コンポーネントのベースクラス
+/*	[AudioTest.h] ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：音声コンポーネントの共有のクラス定義
+/*	説明：ゲームオブジェクト
 =============================================================================*/
-#ifndef AUDIO_COMPONENT_H_
-#define	AUDIO_COMPONENT_H_
+#ifndef AUDIO_TEST_H_
+#define	AUDIO_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../Component.h"
-
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+#include "../GameObject.h"
 
 /*-------------------------------------
-/* 音声コンポーネントのベースクラス
+/* 構造体
 -------------------------------------*/
-class AudioComponent : public Component
+
+/*-------------------------------------
+/* クラス
+-------------------------------------*/
+class AudioTest : public GameObject
 {
 public:
-	AudioComponent(class GameObject* owner, int updateOrder = 100);
-	~AudioComponent(void);
+	AudioTest(class Game* game);
+	~AudioTest(void);
+
+	static AudioTest* Create(class Game* game);
+
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
+
+	//GameObjectの関数overrideして、自身の挙動として定義する
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
-	bool Init(void) override;
-	void Uninit(void) override;
-
-public:
-	void Input(void) override;
-	void Update(float deltaTime) override;
-
-private:
-
 };
 
 
-#endif //AUDIO_COMPONENT_H_
+#endif //AUDIO_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/
