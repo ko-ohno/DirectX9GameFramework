@@ -78,11 +78,52 @@ void EffectRendererComponent::Uninit(void)
 -----------------------------------------------------------------------------*/
 void EffectRendererComponent::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	// エフェクトへのインスタンスがなかったら描画しない
 	if (effect_ == nullptr)
 	{
 		assert(!"EffectRendererComponent::Update()：エフェクト情報が設定されていません。");
 		return;
+	}
+
+	// 姿勢情報の更新
+	{
+		//回転情報
+		D3DXMATRIX rotation_matrix = this->rotation_matrix_;
+
+		//位置情報、拡縮情報
+		D3DXVECTOR3 position = this->position_;
+		D3DXVECTOR3 scale = this->scale_;
+
+
+		//拡縮のベクトル値に、回転行列の値をくわえて計算
+
+		//X軸
+		world_matrix_._11 = scale.x * rotation_matrix._11;
+		world_matrix_._12 = scale.x * rotation_matrix._12;
+		world_matrix_._13 = scale.x * rotation_matrix._13;
+
+		//Y軸
+		world_matrix_._21 = scale.y * rotation_matrix._21;
+		world_matrix_._22 = scale.y * rotation_matrix._22;
+		world_matrix_._23 = scale.y * rotation_matrix._23;
+
+		//Z軸
+		world_matrix_._31 = scale.z * rotation_matrix._31;
+		world_matrix_._32 = scale.z * rotation_matrix._32;
+		world_matrix_._33 = scale.z * rotation_matrix._33;
+
+		//平行移動
+		world_matrix_._41 = position.x;
+		world_matrix_._42 = position.y;
+		world_matrix_._43 = position.z;
+
+		//W成分
+		world_matrix_._14 = world_matrix_._24 = world_matrix_._34 = 0.0f;
+
+		//1.0fに設定することでworld_matrix_._4*をベクトル化
+		world_matrix_._44 = 1.0f;
 	}
 
 	//エフェクトの表示座標を更新
@@ -97,9 +138,6 @@ void EffectRendererComponent::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void EffectRendererComponent::Draw(Shader* shader, Camera* camera)
 {
-	// エフェクトへのインスタンスがなかったら描画しない
-	if (effect_ == nullptr) { return; }
-
 	UNREFERENCED_PARAMETER(shader);
 	UNREFERENCED_PARAMETER(camera);
 	
@@ -172,15 +210,6 @@ void EffectRendererComponent::Stop(void)
 {
 	//エフェクトのハンドル書き換え
 	effekseer_manager_->StopEffect(*effect_->GetEffectHandle());
-}
-
-/*-----------------------------------------------------------------------------
-/* エフェクトの姿勢情報の更新
------------------------------------------------------------------------------*/
-void EffectRendererComponent::SetBaseMatirx(const D3DXMATRIX& matrix)
-{
-	//エフェクトの姿勢情報の更新
-	effekseer_manager_->SetBaseMatrix(*effect_->GetEffectHandle(), effect_manager_->Convert43Matrix(matrix));
 }
 
 /*=============================================================================

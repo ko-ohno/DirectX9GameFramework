@@ -53,12 +53,6 @@ public:
 
 	void Stop(void);
 
-	//
-	// エフェクトのs姿勢情報の更新
-	//
-
-	void SetBaseMatirx(const D3DXMATRIX& matrix);
-
 private:
 	// エフェクトの管理者
 	class EffectManager* effect_manager_;

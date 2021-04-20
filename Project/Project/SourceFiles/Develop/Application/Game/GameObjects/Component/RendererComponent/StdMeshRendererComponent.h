@@ -27,13 +27,13 @@ public:
 
 	void Draw(class Shader* shader, class Camera* camera) override;
 
+	virtual TypeID GetComponentType() const override { return TypeID::StdMeshRendererComponent; };
+
 	// メッシュの設定
 	void SetMesh(XFileMeshType xfileMeshTypeID);
 
 	// メッシュ情報の取得
 	class XFileMesh* GetMesh(void);
-
-	virtual TypeID GetComponentType() const override { return TypeID::StdMeshRendererComponent; };
 
 private:
 	// メッシュのデータ

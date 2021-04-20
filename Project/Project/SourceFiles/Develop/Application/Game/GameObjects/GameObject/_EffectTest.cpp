@@ -30,9 +30,9 @@ EffectTest::EffectTest(Game* game)
 	effect_renderer_comp_a->SetEffect(EffectType::YellowDust);
 	effect_renderer_comp_a->Play();
 
-	effect_renderer_comp_b = NEW EffectRendererComponent(this);
-	effect_renderer_comp_b->SetEffect(EffectType::RedDust);
-	effect_renderer_comp_b->Play();
+	//effect_renderer_comp_b = NEW EffectRendererComponent(this);
+	//effect_renderer_comp_b->SetEffect(EffectType::RedDust);
+	//effect_renderer_comp_b->Play();
 
 
 }
@@ -83,13 +83,12 @@ void EffectTest::UpdateGameObject(float deltaTime)
 
 	static float time = 0;
 
-	time += deltaTime;
-	if (time >= 3.0f)
-	{
-		effect_renderer_comp_a->Stop();
-		time = 0.f;
-	}
-
+	//time += deltaTime;
+	//if (time >= 3.0f)
+	//{
+	//	effect_renderer_comp_a->Stop();
+	//	time = 0.f;
+	//}
 }
 
 /*=============================================================================

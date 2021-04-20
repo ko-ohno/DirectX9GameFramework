@@ -43,16 +43,9 @@ public:
 	RendererComponent(class GameObject* owner, int drawOrder = 100);
 	~RendererComponent(void);
 
-	//初期化
 	bool Init(void) override;
-
-	//終了化
 	void Uninit(void) override;
-	
-	//更新処理
 	void Update(float deltaTime) override;
-
-	//描画処理
 	virtual void Draw(class Shader* shader, class Camera* camera);
 
 public:
@@ -104,6 +97,12 @@ public:
 	inline D3DXVECTOR3* GetScale(void) { return &scale_; }
 
 public:
+	// このコンポーネントの回転を取得
+	inline void SetRotationMatrix(const D3DXMATRIX& rotationMatrix) { rotation_matrix_ = rotationMatrix; }
+	inline D3DXMATRIX* GetRotationMatrix(void) { return &rotation_matrix_; }
+
+	// このコンポーネントのワールド座標情報を取得
+	inline D3DXMATRIX* GetWorldMatrix(void) { return &world_matrix_; }
 
 	// このコンポーネントの型
 	inline TypeID GetComponentType(void) const override { return TypeID::RendererComponent; }

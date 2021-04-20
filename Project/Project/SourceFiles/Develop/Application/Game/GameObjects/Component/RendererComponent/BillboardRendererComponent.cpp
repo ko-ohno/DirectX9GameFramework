@@ -103,6 +103,9 @@ void BillboardRendererComponent::Draw(Shader* shader, Camera* camera)
 {
 	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
+	//回転情報に逆ビュー行列渡す
+	this->rotation_matrix_ = *camera->GetViewInverseMatrix();
+
 	//頂点バッファの再構成
 	this->ComputeVertexBuffer();
 

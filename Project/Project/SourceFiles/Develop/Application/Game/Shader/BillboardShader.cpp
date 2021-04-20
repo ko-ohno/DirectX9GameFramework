@@ -208,50 +208,8 @@ void BillboardShader::ShaderSet(Camera* camera, RendererComponent* rendererCompo
 	//シェーダー内の描画方法をプログラム側へ指定
 	shader_->SetTechnique(d3dxhandle_technique_);
 
-	//
-	// ワールド座標の情報の作成
-	//
-	D3DXMATRIX world_matrix;
-	{
-		//回転情報
-		D3DXMATRIX rotation_matrix = *camera->GetViewInverseMatrix();
-
-		//位置情報、拡縮情報
-		D3DXVECTOR3 position = *rendererComponent->GetPosition();
-		D3DXVECTOR3 scale	 = *rendererComponent->GetScale();
-
-
-		//拡縮のベクトル値に、回転行列の値をくわえて計算
-
-		//X軸
-		world_matrix._11 = scale.x * rotation_matrix._11;
-		world_matrix._12 = scale.x * rotation_matrix._12;
-		world_matrix._13 = scale.x * rotation_matrix._13;
-
-		//Y軸
-		world_matrix._21 = scale.y * rotation_matrix._21;
-		world_matrix._22 = scale.y * rotation_matrix._22;
-		world_matrix._23 = scale.y * rotation_matrix._23;
-
-		//Z軸
-		world_matrix._31 = scale.z * rotation_matrix._31;
-		world_matrix._32 = scale.z * rotation_matrix._32;
-		world_matrix._33 = scale.z * rotation_matrix._33;
-
-		//平行移動
-		world_matrix._41 = position.x;
-		world_matrix._42 = position.y;
-		world_matrix._43 = position.z;
-
-		//W成分
-		world_matrix._14 = world_matrix._24 = world_matrix._34 = 0.0f;
-
-		//1.0fに設定することでworld_matrix_._4*をベクトル化
-		world_matrix._44 = 1.0f;
-	}
-
 	//シェーダーにワールド行列を渡す。
-	shader_->SetMatrix("g_MatWorld", &world_matrix);
+	shader_->SetMatrix("g_MatWorld", rendererComponent->GetWorldMatrix());
 
 	//シェーダーにビュー行列を渡す。
 	shader_->SetMatrix("g_MatView", camera->GetViewMatrix());
