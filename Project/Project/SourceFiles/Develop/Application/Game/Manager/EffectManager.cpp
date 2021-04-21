@@ -63,6 +63,7 @@ bool EffectManager::StartUp(void)
 	const bool effect_manager_init = this->Init();
 	if (effect_manager_init == false)
 	{
+		assert(!"EffectManager::StartUp()：エフェクトマネージャの初期化に失敗しました。");
 		return false;
 	}
 

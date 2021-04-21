@@ -49,9 +49,10 @@ ShaderManager* ShaderManager::Create(Game* game)
 bool ShaderManager::StartUp(void)
 {
 	//マネージャの初期化
-	const bool is_init = this->Init();
-	if(is_init == false)
+	const bool shader_manager_init = this->Init();
+	if(shader_manager_init == false)
 	{
+		assert(!"ShaderManager::StartUp()：シェーダーマネージャの初期化に失敗しました。");
 		return false;
 	}
 

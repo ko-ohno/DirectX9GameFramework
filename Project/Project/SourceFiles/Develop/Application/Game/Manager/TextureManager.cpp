@@ -10,16 +10,14 @@
 #include "../../../StdAfx.h"
 #include "TextureManager.h"
 #include "../Resource/Texture.h"
-#include "../../../DebugCode/DebugFunction.h"
 
-//コンポーネントのリスト
+//テクスチャーのリスト
 const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)] = {
 	//自分自身
 	"Sample"
 	, "Prototype"
 	, "Planet"
 };
-
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -50,9 +48,10 @@ TextureManager* TextureManager::Create(Game* game)
 bool TextureManager::StartUp(void)
 {
 	//自身の初期化
-	const bool tex_manager_init =  this->Init();
-	if (tex_manager_init == false)
+	const bool texture_manager_init =  this->Init();
+	if (texture_manager_init == false)
 	{
+		assert(!"TextureManager::StartUp()：テクスチャーマネージャの初期化に失敗しました。");
 		return false;
 	}
 
@@ -105,7 +104,7 @@ void TextureManager::Uninit(void)
 }
 
 /*-----------------------------------------------------------------------------
-/* テクスチャの追加処理
+/* テクスチャの読み込み処理
 -----------------------------------------------------------------------------*/
 Texture* TextureManager::LoadTexture(TextureType textureTypeID)
 {

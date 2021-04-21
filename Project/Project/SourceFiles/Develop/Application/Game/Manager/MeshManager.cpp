@@ -60,6 +60,7 @@ bool MeshManager::StartUp(void)
 	const bool mesh_manager_init = this->Init();
 	if (mesh_manager_init == false)
 	{
+		assert(!"MeshManager::StartUp()：メッシュマネージャの初期化に失敗しました。");
 		return false;
 	}
 
