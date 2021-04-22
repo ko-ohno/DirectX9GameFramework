@@ -14,6 +14,8 @@
 
 #include "../../../ImGui/ImGuiManager.h"
 
+#pragma warning(disable:4996)
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -111,6 +113,41 @@ void SpriteTest::UpdateGameObject(float deltaTime)
 	ImGui::Begin("DebugSprite");
 	ImGui::Text(" DEGREE :%f", sprite_->GetDegree());
 	ImGui::Text(" RADIAN :%f", sprite_->GetRadian());
+	ImGui::End();
+
+
+	ImGui::Begin("Progress Indicators");
+
+	const ImU32 col = ImGui::GetColorU32(ImGuiCol_ButtonHovered);
+	const ImU32 bg = ImGui::GetColorU32(ImGuiCol_Button);
+
+	ImGui::Spinner("##spinner", 15, 6, col);
+	ImGui::BufferingBar("##buffer_bar", 0.7f, ImVec2(400, 6), bg, col);
+
+	ImGui::End();
+
+
+	ImGui::Begin("Progress bar");
+
+	// Animate a simple progress bar
+	static float progress = 0.0f, progress_dir = 1.0f;
+	if (true)
+	{
+		progress += progress_dir * 0.4f * ImGui::GetIO().DeltaTime;
+		if (progress >= +1.1f) { progress = +1.1f; progress_dir *= -1.0f; }
+		if (progress <= -0.1f) { progress = -0.1f; progress_dir *= -1.0f; }
+	}
+
+	// Typically we would use ImVec2(-1.0f,0.0f) to use all available width, or ImVec2(width,0.0f) for a specified width. ImVec2(0.0f,0.0f) uses ItemWidth.
+	ImGui::ProgressBar(progress, ImVec2(0.0f, 0.0f));
+	ImGui::SameLine(0.0f, ImGui::GetStyle().ItemInnerSpacing.x);
+	ImGui::Text("Progress Bar");
+
+	float progress_saturated = (progress < 0.0f) ? 0.0f : (progress > 1.0f) ? 1.0f : progress;
+	char buf[32];
+	sprintf(buf, "%d/%d", (int)(progress_saturated * 1753), 1753);
+	ImGui::ProgressBar(progress, ImVec2(0.f, 0.f), buf);
+
 	ImGui::End();
 }
 
