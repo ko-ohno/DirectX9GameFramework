@@ -10,6 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../Component.h"
+#include "../../Manager/SoundManager.h"
 
 /*--- 構造体定義 ---*/
 
@@ -25,16 +26,32 @@ public:
 	AudioComponent(class GameObject* owner, int updateOrder = 100);
 	~AudioComponent(void);
 
+<<<<<<< Updated upstream
 private:
+=======
 	bool Init(void) override;
 	void Uninit(void) override;
 
-public:
-	void Input(void) override;
-	void Update(float deltaTime) override;
+	virtual TypeID GetComponentType() const override { return TypeID::AudioComponent; };
+
+	//サウンドの設定
+	void SetSound(SoundType soundType);
+	
+	//サウンドの取得
+	class Sound* GetSound(void);
+
+	void Play(void);
+	void PlayLoop(void);
+	void Stop(void);
+
+	void SetAudioVolume(float volume = 1.f) { audio_volume_ = volume; }
+	float GetAudioVolume(void) { return audio_volume_; }
 
 private:
+	class Sound* sound_;
+>>>>>>> Stashed changes
 
+	float audio_volume_;
 };
 
 
