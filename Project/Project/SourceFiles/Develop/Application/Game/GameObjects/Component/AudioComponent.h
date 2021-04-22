@@ -26,9 +26,6 @@ public:
 	AudioComponent(class GameObject* owner, int updateOrder = 100);
 	~AudioComponent(void);
 
-<<<<<<< Updated upstream
-private:
-=======
 	bool Init(void) override;
 	void Uninit(void) override;
 
@@ -49,7 +46,6 @@ private:
 
 private:
 	class Sound* sound_;
->>>>>>> Stashed changes
 
 	float audio_volume_;
 };
