@@ -152,8 +152,8 @@ XFileMesh* MeshManager::LoadMesh(XFileMeshType xfileMeshTypeID)
 	else
 	{
 		//メッシュがなかったら
-		const bool is_mesh_list_out_of_range = ((xfileMeshTypeID == XFileMeshType::None)
-											   || (xfileMeshTypeID == XFileMeshType::Max));
+		const bool is_mesh_list_out_of_range = ((xfileMeshTypeID <= XFileMeshType::None)
+											   || (xfileMeshTypeID >= XFileMeshType::Max));
 		if (is_mesh_list_out_of_range)
 		{
 			assert(!"範囲外のメッシュIDを参照しようとしています！");

@@ -13,7 +13,6 @@
 #include "../../DX9Graphics.h"
 #include "../Resource/Effect.h"
 
-
 //エフェクトの名前リスト
 const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = {
 	"Sample"
@@ -22,7 +21,6 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "RedDust"
 
 	, "AfterBurner"
-
 
 };
 
@@ -303,11 +301,12 @@ Effect* EffectManager::LoadEffect(EffectType effectTypeID)
 	else
 	{
 		//メッシュがなかったら
-		const bool is_mesh_list_out_of_range = ((effectTypeID == EffectType::None)
-											   || (effectTypeID == EffectType::Max));
+		const bool is_mesh_list_out_of_range = ((effectTypeID <= EffectType::None)
+											   || (effectTypeID >= EffectType::Max));
 		if (is_mesh_list_out_of_range)
 		{
 			assert("範囲外のエフェクトIDを参照しようとしています！");
+			return nullptr;
 		}
 		this->AddEffect(NEW Effect(this, effectTypeID));
 	}

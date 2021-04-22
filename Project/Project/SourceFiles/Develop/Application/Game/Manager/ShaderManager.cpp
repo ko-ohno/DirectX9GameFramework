@@ -128,16 +128,16 @@ void ShaderManager::UnloadShaders(void)
 /*-----------------------------------------------------------------------------
 /* シェーダの切り替え
 -----------------------------------------------------------------------------*/
-Shader* ShaderManager::ShaderDispatch(ShaderType shader)
+Shader* ShaderManager::ShaderDispatch(ShaderType shaderTypeID)
 {
-	const bool shader_error = (shader == ShaderType::None
-							  || shader == ShaderType::Max);
+	const bool shader_error = (shaderTypeID <= ShaderType::None
+							  || shaderTypeID >= ShaderType::Max);
 	if (shader_error)
 	{
 		assert(!"不正なシェーダーの設定が割り当てられようとしています。");
 	}
 
-	return unmap_shader_list_.at(shader);
+	return unmap_shader_list_.at(shaderTypeID);
 }
 
 /*=============================================================================

@@ -117,8 +117,8 @@ Texture* TextureManager::LoadTexture(TextureType textureTypeID)
 	else
 	{
 		//テクスチャがなかったら
-		const bool is_texture_list_out_of_range = ((textureTypeID == TextureType::None)
-											      || (textureTypeID == TextureType::Max));
+		const bool is_texture_list_out_of_range = ((textureTypeID <= TextureType::None)
+											      || (textureTypeID >= TextureType::Max));
 		if (is_texture_list_out_of_range)
 		{
 			assert(!"範囲外のテクスチャIDを参照しようとしています！");
