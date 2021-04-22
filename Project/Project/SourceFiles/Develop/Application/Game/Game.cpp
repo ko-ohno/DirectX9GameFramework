@@ -11,15 +11,16 @@
 #include "Game.h"
 #include "Renderer.h"
 
-
 #include "Manager/ShaderManager.h"
 #include "Manager/TextureManager.h"
 #include "Manager/MeshManager.h"
 #include "Manager/EffectManager.h"
-
+#include "Manager/SoundManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
+
+#include "../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -105,6 +106,15 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			assert(!"Game::StartUp()：エフェクトマネージャの起動に失敗しました。");
 			return false;
 		}
+
+		//エフェクトマネージャの起動
+		sound_manager_ = sound_manager_->Create(this);
+		const bool sound_manager_init = sound_manager_->StartUp();
+		if (sound_manager_init == false)
+		{
+			assert(!"Game::StartUp()：サウンドマネージャの起動に失敗しました。");
+			return false;
+		}
 	}
 
 	//レンダラーの起動
@@ -146,28 +156,34 @@ void Game::ShutDown(void)
 	
 	//マネージャーのファクトリの使用
 	{
-		//エフェクトマネージャの起動
+		//エフェクトマネージャの破棄
 		{
 			effect_manager_->Shutdown();
 			SAFE_DELETE_(effect_manager_);
 		}
 
-		//メッシュマネージャの起動
+		//メッシュマネージャの破棄
 		{
 			mesh_manager_->Shutdown();
 			SAFE_DELETE_(mesh_manager_);
 		}
 
-		//テクスチャマネージャの起動
+		//テクスチャマネージャの破棄
 		{
 			texture_manager_->Shutdown();
 			SAFE_DELETE_(texture_manager_);
 		}
 
-		//シェーダーマネージャの起動
+		//シェーダーマネージャの破棄
 		{
 			shader_manager_->Shutdown();
 			SAFE_DELETE_(shader_manager_);
+		}
+
+		//サウンドマネージャの破棄
+		{
+			sound_manager_->Shutdown();
+			SAFE_DELETE_(sound_manager_);
 		}
 	}
 	 
@@ -198,6 +214,9 @@ void Game::Input(void)
 -----------------------------------------------------------------------------*/
 void Game::Update(float deltaTime)
 {
+	ImGui::ShowFramerate(deltaTime);
+
+
 	if (game_state_ == GameState::Gameplay)
 	{
 		//ゲームオブジェクトの更新

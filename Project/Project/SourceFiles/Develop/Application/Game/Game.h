@@ -60,7 +60,7 @@ public:
 	class MeshManager*	  GetMeshManager(void) { return mesh_manager_; }
 	class LightManager*	  GetLightManager(void) { return light_manager_; }
 	class EffectManager*  GetEffectManager(void) { return effect_manager_; }
-
+	class SoundManager*   GetSoundManager(void) { return sound_manager_; }
 
 private:
 	//ŠeXVˆ—
@@ -86,6 +86,7 @@ private:
 	class MeshManager*		 mesh_manager_;
 	class LightManager*		 light_manager_;
 	class EffectManager*	 effect_manager_;
+	class SoundManager*		 sound_manager_;
 };
 
 
