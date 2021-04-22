@@ -10,6 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
+#include "../Math.h"
 
 /*--- ImGuiのライブラリをインクルード ---*/
 #include "../../../External/ImGui/include/imgui.h"
@@ -56,18 +57,25 @@ public:
 	//ImGuiの出力管理
 	void ImGuiRender(void);		//描画開始処理(描画命令の一番最後に呼び出す)
 
+private:
+};
+
+namespace ImGui
+{
 	//フレームレートの表示
 	void ShowFramerate(float deltaTime);
 
 	//ImGui用のテクスチャ読み込み関数
-	bool ImGuiLoadTexture(const char* fileName
-						 , LPDIRECT3DTEXTURE9* srcTexture
-						 , class Vector2& textureSize);
+	bool LoadTexture(const char* fileName
+					, LPDIRECT3DTEXTURE9* srcTexture
+					, class Vector2& textureSize);
 
-private:
+	//ダウンロードのプログレスバーみたいなヤツ
+    bool BufferingBar(const char* label, float value, const ImVec2& size_arg, const ImU32& bg_col, const ImU32& fg_col);
+
+	//ダウンロードのクルクル回るやつ
+	bool Spinner(const char* label, float radius, int thickness, const ImU32& color);
 };
-
-
 
 #endif //IMGUI_MANAGER_H_
 /*=============================================================================

@@ -75,7 +75,7 @@ bool SplashScreenManager::Init(void)
 	this->MakeListAspectRatio();
 
 	const char* filename = { "Assets/PackageImage/QR_code_to_my_github.png" };
-	bool is_load_sucess = imgui_manager_->ImGuiLoadTexture(filename, &texture_, texture_size_);
+	bool is_load_sucess = ImGui::LoadTexture(filename, &texture_, texture_size_);
 	if (!is_load_sucess) { return false; }
 
 	return true;

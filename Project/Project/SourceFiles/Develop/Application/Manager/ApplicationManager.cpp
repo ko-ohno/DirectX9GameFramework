@@ -171,8 +171,6 @@ void ApplicationManager::Update(float deltaTime)
 
 	game_->Update(deltaTime);
 
-	imgui_manager_->ShowFramerate(deltaTime);
-
 	imgui_manager_->UpdateEnd();
 }
 
