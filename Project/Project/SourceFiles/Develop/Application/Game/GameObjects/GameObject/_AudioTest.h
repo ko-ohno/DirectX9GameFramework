@@ -34,6 +34,7 @@ public:
 	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
+	class AudioComponent* audio_component_;
 };
 
 

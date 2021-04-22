@@ -9,6 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../StdAfx.h"
 #include "_AudioTest.h"
+#include "../Component/AudioComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -16,6 +17,9 @@
 AudioTest::AudioTest(Game* game)
 	: GameObject(game)
 {
+	audio_component_ = NEW AudioComponent(this);
+	audio_component_->SetSound(SoundType::WonderLand);
+	audio_component_->Play();
 }
 
 /*-----------------------------------------------------------------------------
