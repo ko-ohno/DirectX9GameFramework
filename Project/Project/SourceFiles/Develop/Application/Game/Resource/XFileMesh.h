@@ -23,7 +23,7 @@ public:
 	~XFileMesh(void);
 
 	// メッシュの読み込み
-	bool LoadMeshFile(XFileMeshType meshType);
+	bool LoadMeshFile(const XFileMeshType meshType);
 
 	// プリミティブのメッシュか
 	bool IsGetPrimitiveMesh(void) { return is_primitive_mesh_; }

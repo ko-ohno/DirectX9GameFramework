@@ -29,7 +29,7 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::StdMeshRendererComponent; };
 
-	// メッシュの設定
+	// メッシュ情報の設定
 	void SetMesh(XFileMeshType xfileMeshTypeID);
 
 	// メッシュ情報の取得

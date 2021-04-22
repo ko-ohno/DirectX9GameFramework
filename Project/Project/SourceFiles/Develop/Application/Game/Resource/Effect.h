@@ -23,7 +23,7 @@ public:
 	~Effect(void);
 
 	// エフェクトの読み込み
-	bool LoadEffect(EffectType effectType);
+	bool LoadEffect(const EffectType effectType);
 
 	// テクスチャの読み込みができているか
 	bool IsGetLoadCompleted(void) { return is_loading_complete_; }

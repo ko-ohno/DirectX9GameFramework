@@ -10,7 +10,6 @@
 #include "../../../../../StdAfx.h"
 #include "EffectRendererComponent.h"
 #include "../../GameObject.h"
-#include "../../../../Math.h"
 #include "../../../Resource/Effect.h"
 #include "../../GameObject/Camera.h"
 

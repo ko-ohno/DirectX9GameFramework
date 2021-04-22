@@ -72,7 +72,7 @@ XFileMesh::~XFileMesh(void)
 /*-----------------------------------------------------------------------------
 /* メッシュの読み込み処理
 -----------------------------------------------------------------------------*/
-bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
+bool XFileMesh::LoadMeshFile(const XFileMeshType meshType)
 {
 	// 描画デバイスの取得
 	auto lpd3d_device = *mesh_manager_->GetGame()->GetGraphics()->GetLPD3DDevice();
@@ -102,7 +102,7 @@ bool XFileMesh::LoadMeshFile(XFileMeshType meshType)
 			// 読み込みの失敗判定
 			if (FAILED(hr)) 
 			{
-				std::string err_msg = "XFileMesh::LoadMesh():メッシュが読み込めませんでした。\n";
+				std::string err_msg = "XFileMesh::LoadMesh():メッシュファイルが読み込めませんでした。\n";
 				err_msg = err_msg + xfile_mesh_name + "：(拡張子[.X]ファイルの破損、あるいは日本語が内包されていないか確認して下さい。)";
 				MessageBox(nullptr
 						  , err_msg.c_str()

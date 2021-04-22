@@ -10,10 +10,7 @@
 #include "../../../../../StdAfx.h"
 #include "StdMeshRendererComponent.h"
 #include "../../GameObject.h"
-#include "../TransformComponent.h"
-#include "../../../VertexData.h"
 #include "../../../Shader.h"
-#include "../../../../Math.h"
 #include "../../../Resource/XFileMesh.h"
 #include "../../GameObject/Camera.h"
 #include "../../../Resource/Material.h"
@@ -141,7 +138,7 @@ void StdMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 }
 
 /*-----------------------------------------------------------------------------
-/* メッシュの設定
+/* メッシュ情報の設定
 -----------------------------------------------------------------------------*/
 void StdMeshRendererComponent::SetMesh(XFileMeshType xfileMeshTypeID)
 {

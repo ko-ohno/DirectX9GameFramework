@@ -41,7 +41,7 @@ Effect::~Effect(void)
 /*-----------------------------------------------------------------------------
 /* 読み込み処理
 -----------------------------------------------------------------------------*/
-bool Effect::LoadEffect(EffectType effectType)
+bool Effect::LoadEffect(const EffectType effectType)
 {
 	// エフェクシアのマネージャの取得
 	auto effekseer_manager_ = effect_manager_->GetEffekseerManager();
