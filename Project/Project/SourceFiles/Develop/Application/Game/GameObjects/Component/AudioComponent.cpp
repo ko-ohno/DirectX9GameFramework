@@ -20,7 +20,7 @@
 AudioComponent::AudioComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
 	, sound_(nullptr)
-	, audio_volume_(1.f)
+	, audio_volume_(0.5f)
 {
 	// 自身の初期化
 	this->Init();
@@ -39,7 +39,7 @@ AudioComponent::~AudioComponent(void)
 -----------------------------------------------------------------------------*/
 bool AudioComponent::Init(void)
 {
-	return false;
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -47,6 +47,26 @@ bool AudioComponent::Init(void)
 -----------------------------------------------------------------------------*/
 void AudioComponent::Uninit(void)
 {
+}
+
+/*-----------------------------------------------------------------------------
+/* 更新処理処理
+-----------------------------------------------------------------------------*/
+void AudioComponent::Update(float deltaTime)
+{	
+	const bool is_out_of_range = (audio_volume_ >= 1.001f || audio_volume_ <= -0.001f);
+	if (is_out_of_range)
+	{
+		assert(!"AudioComponent::Update()：音量が範囲外の設定をされています。範囲：最小:0.f/最大1.f)");
+		return;
+	}
+
+	if (sound_->GetXAudio2SourceVoice() == nullptr)
+	{
+		assert(!"AudioComponent::Update()：ソースボイスが無効な値です");
+		return;
+	}
+	sound_->GetXAudio2SourceVoice()->SetVolume(audio_volume_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -88,6 +108,15 @@ void AudioComponent::Play(void)
 
 	// ソースボイスの取得
 	auto source_voice = sound_->GetXAudio2SourceVoice();
+
+	if (source_voice == nullptr)
+	{
+		MessageBox(nullptr
+				  , "AudioComponent::Play()：ソースボイスが無効な値です。"
+				  , "警告"
+				  , (MB_OK | MB_ICONWARNING));
+		return;
+	}
 
 	// 状態取得
 	source_voice->GetState(&voice_state);
@@ -154,7 +183,7 @@ void AudioComponent::Stop(void)
 {
 	XAUDIO2_VOICE_STATE voice_state;
 
-	//ソースボイスの取得
+	// ソースボイスの取得
 	auto source_voice = sound_->GetXAudio2SourceVoice();
 
 	// 状態取得

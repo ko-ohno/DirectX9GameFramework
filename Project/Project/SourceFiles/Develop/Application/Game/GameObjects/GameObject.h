@@ -34,9 +34,11 @@ public:
 		, Enemy
 		, Player
 
-		, TestMesh
 		, TestSprite
 		, TestBillboard
+		, TestMesh
+		, TestEffect
+		, TestAudio
 
 		//UI
 		, UI

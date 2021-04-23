@@ -28,6 +28,7 @@ public:
 
 	bool Init(void) override;
 	void Uninit(void) override;
+	void Update(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::AudioComponent; };
 
@@ -45,9 +46,9 @@ public:
 	float GetAudioVolume(void) { return audio_volume_; }
 
 private:
-	class Sound* sound_;
+	class Sound*		 sound_;
 
-	float audio_volume_;
+	float				 audio_volume_;
 };
 
 

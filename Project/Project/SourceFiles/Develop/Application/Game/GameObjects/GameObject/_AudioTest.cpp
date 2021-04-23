@@ -11,15 +11,18 @@
 #include "_AudioTest.h"
 #include "../Component/AudioComponent.h"
 
+#include "../../../ImGui/ImGuiManager.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 AudioTest::AudioTest(Game* game)
 	: GameObject(game)
 {
+	this->renderer_layer_type_ = RendererLayerType::Game;
+
 	audio_component_ = NEW AudioComponent(this);
 	audio_component_->SetSound(SoundType::WonderLand);
-	audio_component_->Play();
 }
 
 /*-----------------------------------------------------------------------------
@@ -65,6 +68,23 @@ void AudioTest::InputGameObject(void)
 void AudioTest::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	static float time = 0;
+	time += deltaTime;
+	static bool a = false;
+	if (a == false)
+	{
+		audio_component_->PlayLoop();
+		a = true;
+	}
+
+	static float volume = 0.2f;
+
+	ImGui::Begin("SoundTest");
+	ImGui::SliderFloat("volume", &volume, 0.000f, 1.000f);
+	ImGui::End();
+
+	audio_component_->SetAudioVolume(volume);
 }
 
 /*=============================================================================
