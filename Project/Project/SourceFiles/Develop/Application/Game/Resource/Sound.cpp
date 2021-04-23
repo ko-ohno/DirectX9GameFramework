@@ -60,18 +60,23 @@ bool Sound::LoadSound(const SoundType soundType)
 			memset(&wfx, 0, sizeof(WAVEFORMATEXTENSIBLE));
 			memset(&buffer, 0, sizeof(XAUDIO2_BUFFER));
 
+			//エラーメッセージの格納先
+			std::string err_msg = "音声ファイルの情報の読み込みに失敗しました\nError：";
+
 			// サウンドデータファイルの生成
 			file_handle = CreateFile(sound_filepath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
 			if (file_handle == INVALID_HANDLE_VALUE)
 			{
-				MessageBox(nullptr, "サウンドデータファイルの生成に失敗！(1)", "警告！", MB_ICONWARNING);
+				err_msg =  err_msg  + "音声ファイルの読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
 			// ファイルポインタを先頭に移動
 			if (SetFilePointer(file_handle, 0, NULL, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
 			{
-				MessageBox(nullptr, "サウンドデータファイルの生成に失敗！(2)", "警告！", MB_ICONWARNING);
+				err_msg =  err_msg  + "音声データの先頭アドレスの取得に失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
@@ -80,20 +85,23 @@ bool Sound::LoadSound(const SoundType soundType)
 			hr = CheckChunk(file_handle, 'FFIR', &dwChunkSize, &dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(1)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "RIFFヘッダの情報の読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
 			hr = ReadChunkData(file_handle, &dwFiletype, sizeof(DWORD), dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(2)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "RIFFヘッダの本体情報の読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
 			if (dwFiletype != 'EVAW')
 			{
-				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(3)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "WAVEファイルではないため、音声ファイルの読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
@@ -101,13 +109,15 @@ bool Sound::LoadSound(const SoundType soundType)
 			hr = CheckChunk(file_handle, ' tmf', &dwChunkSize, &dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "フォーマットチェックに失敗！(1)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "フォーマットデータの読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 			hr = ReadChunkData(file_handle, &wfx, dwChunkSize, dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "フォーマットチェックに失敗！(2)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "フォーマットデータの本体情報の読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
@@ -115,7 +125,8 @@ bool Sound::LoadSound(const SoundType soundType)
 			hr = CheckChunk(file_handle, 'atad', &audio_data_size_, &dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "オーディオデータ読み込みに失敗！(1)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "オーディオデータ読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
@@ -123,7 +134,8 @@ bool Sound::LoadSound(const SoundType soundType)
 			hr = ReadChunkData(file_handle, audio_data_, audio_data_size_, dwChunkPosition);
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "オーディオデータ読み込みに失敗！(2)", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "オーディオデータの波形情報の読み込みに失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
@@ -131,7 +143,8 @@ bool Sound::LoadSound(const SoundType soundType)
 			hr = sound_manager_->GetXAudio2Interface()->CreateSourceVoice(&source_voice_, &(wfx.Format));
 			if (FAILED(hr))
 			{
-				MessageBox(nullptr, "ソースボイスの生成に失敗！", "警告！", MB_ICONWARNING);
+				err_msg = err_msg + "ソースボイスの生成に失敗しました";
+				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
 
