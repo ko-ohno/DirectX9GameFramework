@@ -37,7 +37,10 @@ public:
 		, FollowCameraComponent
 		//Õ“Ë”»’è
 		, ColliderComponent
+		, CircleColliderComponent
+		, RectangleColliderComponent
 		, SphereColliderComponent
+		, OBBColliderComponent
 		, CapsuleColliderComponent
 		//“ü—Í
 		, InputComponent

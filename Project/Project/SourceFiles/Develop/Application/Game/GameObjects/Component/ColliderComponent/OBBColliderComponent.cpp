@@ -1,33 +1,34 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[ColliderComponent.cpp] コライダコンポーネントのベースコンポーネント
+/*	[OBBColliderComponent.cpp] OBBコライダコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：コライダコンポーネントに共通する処理の定義
+/*	説明：OBBコライダコンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "ColliderComponent.h"
-#include "../GameObject.h"
-#include "../../Game.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../../../../StdAfx.h"
+#include "OBBColliderComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
-	: Component(owner, updateOrder)
+OBBColliderComponent::OBBColliderComponent(GameObject* owner, int updateOrder)
+	: ColliderComponent(owner, updateOrder)
+	, axis_element_{
+		{ 1.f, 0.f, 0.f}
+		, { 0.f, 1.f, 0.f}
+		, { 0.f, 0.f, 1.f}
+	  }
+	, axis_length_{ 0.5f, 0.5f, 0.5f }
 {
-	owner_->GetGame()->GetColliderManager()->AddColliderComponentAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::~ColliderComponent(void)
+OBBColliderComponent::~OBBColliderComponent(void)
 {
-	owner_->GetGame()->GetColliderManager()->RemoveColliderComponentAddress(this);
 }
 
 /*=============================================================================

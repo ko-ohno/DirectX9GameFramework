@@ -53,14 +53,16 @@ public:
 	//ゲームオブジェクトのコンポーネントのコンテナを取得
 	const std::vector<class GameObject*>& GetGameObjects() const { return game_objects_; }
 
-	class DX9Graphics*	  GetGraphics(void) { return dx9_graphics_; }
-	class Renderer*		  GetRenderer(void) { return renderer_; }
-	class ShaderManager*  GetShaderManager(void) { return shader_manager_; }
-	class TextureManager* GetTextureManager(void) { return texture_manager_; }
-	class MeshManager*	  GetMeshManager(void) { return mesh_manager_; }
-	class LightManager*	  GetLightManager(void) { return light_manager_; }
-	class EffectManager*  GetEffectManager(void) { return effect_manager_; }
-	class SoundManager*   GetSoundManager(void) { return sound_manager_; }
+	class DX9Graphics*		GetGraphics(void) { return dx9_graphics_; }
+	class Renderer*			GetRenderer(void) { return renderer_; }
+	class ShaderManager*	GetShaderManager(void) { return shader_manager_; }
+	class TextureManager*	GetTextureManager(void) { return texture_manager_; }
+	class MeshManager*		GetMeshManager(void) { return mesh_manager_; }
+	class LightManager*		GetLightManager(void) { return light_manager_; }
+	class EffectManager*	GetEffectManager(void) { return effect_manager_; }
+	class SoundManager*		GetSoundManager(void) { return sound_manager_; }
+	class ColliderManager*	GetColliderManager(void) { return collider_manager_; }
+
 
 private:
 	//各更新処理
@@ -87,6 +89,7 @@ private:
 	class LightManager*		 light_manager_;
 	class EffectManager*	 effect_manager_;
 	class SoundManager*		 sound_manager_;
+	class ColliderManager*	 collider_manager_;
 };
 
 

@@ -1,33 +1,30 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[ColliderComponent.cpp] コライダコンポーネントのベースコンポーネント
+/*	[CircleColliderComponent.cpp] サークルコライダのコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：コライダコンポーネントに共通する処理の定義
+/*	説明：サークルコライダのコンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "ColliderComponent.h"
-#include "../GameObject.h"
-#include "../../Game.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../../../../StdAfx.h"
+#include "CircleColliderComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
-	: Component(owner, updateOrder)
+CircleColliderComponent::CircleColliderComponent(GameObject* owner, int updateOrder)
+	: ColliderComponent(owner, updateOrder)
+	, position_(0.f, 0.f)
+	, radius_(0.5f)
 {
-	owner_->GetGame()->GetColliderManager()->AddColliderComponentAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::~ColliderComponent(void)
+CircleColliderComponent::~CircleColliderComponent(void)
 {
-	owner_->GetGame()->GetColliderManager()->RemoveColliderComponentAddress(this);
 }
 
 /*=============================================================================

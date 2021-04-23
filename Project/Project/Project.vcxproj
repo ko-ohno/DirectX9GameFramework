@@ -177,6 +177,12 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CircleColliderComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\CheckCollision.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\GizmoMeshShader.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\EffectRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h" />
@@ -271,6 +277,12 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CircleColliderComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\CheckCollision.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\GizmoMeshShader.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\EffectRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp" />

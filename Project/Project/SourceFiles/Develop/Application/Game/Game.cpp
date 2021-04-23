@@ -16,6 +16,7 @@
 #include "Manager/MeshManager.h"
 #include "Manager/EffectManager.h"
 #include "Manager/SoundManager.h"
+#include "Manager/ColliderManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
@@ -32,6 +33,11 @@ Game::Game(void)
 	, renderer_(nullptr)
 
 	, shader_manager_(nullptr)
+	, texture_manager_(nullptr)
+	, mesh_manager_(nullptr)
+	, effect_manager_(nullptr)
+	, sound_manager_(nullptr)
+	, collider_manager_(nullptr)
 
 	, game_object_fuctory_(nullptr)
 {
@@ -115,6 +121,15 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			assert(!"Game::StartUp()：サウンドマネージャの起動に失敗しました。");
 			return false;
 		}
+	
+		//コライダマネージャの起動
+		collider_manager_ = collider_manager_->Create(this);
+		const bool collider_manager_init = collider_manager_->StartUp();
+		if (collider_manager_init == false)
+		{
+			assert(!"Game::StartUp()：コライダマネージャの起動に失敗しました。");
+			return false;
+		}
 	}
 
 	//レンダラーの起動
@@ -184,6 +199,12 @@ void Game::ShutDown(void)
 		{
 			sound_manager_->Shutdown();
 			SAFE_DELETE_(sound_manager_);
+		}
+
+		//コライダマネージャの破棄
+		{
+			collider_manager_->Shutdown();
+			SAFE_DELETE_(collider_manager_);
 		}
 	}
 	 

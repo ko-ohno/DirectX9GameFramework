@@ -1,33 +1,31 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[ColliderComponent.cpp] コライダコンポーネントのベースコンポーネント
+/*	[RectangleColliderComponent.cpp] レクタングルコライダのコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：コライダコンポーネントに共通する処理の定義
+/*	説明：レクタングルコライダのコンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "ColliderComponent.h"
-#include "../GameObject.h"
-#include "../../Game.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../../../../StdAfx.h"
+#include "RectangleColliderComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
-	: Component(owner, updateOrder)
+RectangleColliderComponent::RectangleColliderComponent(GameObject* owner, int updateOrder)
+	: ColliderComponent(owner, updateOrder)
+	, position_(0.f, 0.f)
+	, width_(0.5f)
+	, height_(0.5f)
 {
-	owner_->GetGame()->GetColliderManager()->AddColliderComponentAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-ColliderComponent::~ColliderComponent(void)
+RectangleColliderComponent::~RectangleColliderComponent(void)
 {
-	owner_->GetGame()->GetColliderManager()->RemoveColliderComponentAddress(this);
 }
 
 /*=============================================================================
