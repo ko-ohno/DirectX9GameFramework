@@ -15,8 +15,11 @@
 -----------------------------------------------------------------------------*/
 Sound::Sound(SoundManager* manager, SoundType soundType)
 	: sound_manager_(manager)
-	, sound_type_id_(SoundType::None)
 	, is_loading_complete_(false)
+	, sound_type_id_(SoundType::None)
+	, source_voice_(nullptr)
+	, audio_data_(nullptr)
+	, audio_data_size_(0UL)
 {
 	//テクスチャIDの設定
 	sound_type_id_ = soundType;
@@ -40,170 +43,107 @@ bool Sound::LoadSound(const SoundType soundType)
 	// ルートパスとファイルパスを合成
 	auto sound_filepath = sound_manager_->GetSoundRootpath() + sound_manager_->GetSoundFilepathList().at(soundType);
 	{
-		HANDLE file_handle;
-		DWORD  dwChunkSize		= 0UL;
-		DWORD  dwChunkPosition	= 0UL;
-		DWORD  dwFileType		= 0UL;
-
-		WAVEFORMATEXTENSIBLE wave_format_extensible;
-		XAUDIO2_BUFFER		 xaudio2_buffer;
-
-		// バッファのクリア
-		memset(&wave_format_extensible, 0, sizeof(WAVEFORMATEXTENSIBLE));
-		memset(&xaudio2_buffer, 0, sizeof(XAUDIO2_BUFFER));
-
 		// 音声ファイル名を取得
 		std::string sound_filename = SoundManager::SoundTypeNames[static_cast<int>(soundType)];
 
-		// サウンドデータの作成
+		// サウンドデータの確認
 		{
-			// ファイルへのハンドルを取得
+			HANDLE file_handle	  = nullptr;
+			DWORD dwChunkSize	  = 0UL;
+			DWORD dwChunkPosition = 0UL;
+			DWORD dwFiletype	  = 0UL;
+
+			WAVEFORMATEXTENSIBLE wfx;
+			XAUDIO2_BUFFER buffer;
+
+			// バッファのクリア
+			memset(&wfx, 0, sizeof(WAVEFORMATEXTENSIBLE));
+			memset(&buffer, 0, sizeof(XAUDIO2_BUFFER));
+
+			// サウンドデータファイルの生成
 			file_handle = CreateFile(sound_filepath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
 			if (file_handle == INVALID_HANDLE_VALUE)
 			{
-				std::string err_msg = "Sound::LoadSound()：サウンドファイルが読み込めませんでした。\n";
-				err_msg = err_msg + sound_filename + "：サウンドファイルへのハンドルが無効な値でした。";
-				MessageBox(nullptr
-						  , err_msg.c_str()
-						  , "警告"
-						  , (MB_OK | MB_ICONWARNING));
+				MessageBox(nullptr, "サウンドデータファイルの生成に失敗！(1)", "警告！", MB_ICONWARNING);
 				return false;
 			}
 
-			// ファイルの先頭アドレスへ移動
+			// ファイルポインタを先頭に移動
 			if (SetFilePointer(file_handle, 0, NULL, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
 			{
-				std::string err_msg = "Sound::LoadSound()：サウンドファイルが読み込めませんでした。\n";
-				err_msg = err_msg + sound_filename + "：サウンドファイルの先頭アドレスが無効な値でした。";
-				MessageBox(nullptr
-						  , err_msg.c_str()
-						  , "警告"
-						  , (MB_OK | MB_ICONWARNING));
+				MessageBox(nullptr, "サウンドデータファイルの生成に失敗！(2)", "警告！", MB_ICONWARNING);
 				return false;
 			}
 
-		}
-
-		// サウンドデータの確認
-		HRESULT hr;
-		{
-			// RIFFヘッダの読み込み
+			// WAVEファイルのチェック
+			HRESULT hr;
+			hr = CheckChunk(file_handle, 'FFIR', &dwChunkSize, &dwChunkPosition);
+			if (FAILED(hr))
 			{
-				hr = CheckChunk(file_handle, 'FFIR', &dwChunkSize, &dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのデータが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：RIFFヘッダのチャンクデータの確認に失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
-
-				hr = ReadChunkData(file_handle, &dwFileType, sizeof(DWORD), dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのデータが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：RIFFヘッダのチャンクデータの読み込みに失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
-
-				if (dwFileType != 'EVAW')
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのデータが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：拡張子(.wav)のみ対応。フォーマットされたデータ構造がWAVEフォーマットと一致しません。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
+				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(1)", "警告！", MB_ICONWARNING);
+				return false;
 			}
 
-			// フォーマットチャンクの読み込み
+			hr = ReadChunkData(file_handle, &dwFiletype, sizeof(DWORD), dwChunkPosition);
+			if (FAILED(hr))
 			{
-				hr = CheckChunk(file_handle, ' tmf', &dwChunkSize, &dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのフォーマットチャンクデータが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：fmtチャンクデータの確認に失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
-
-				hr = ReadChunkData(file_handle, &wave_format_extensible, dwChunkSize, dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのフォーマットチャンクデータが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：fmtチャンクデータの読み込みに失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
-
+				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(2)", "警告！", MB_ICONWARNING);
+				return false;
 			}
 
-			// データチャンクの読み込み
+			if (dwFiletype != 'EVAW')
 			{
-				hr = CheckChunk(file_handle, 'atad', &audio_data_size_, &dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのデータチャンクが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：データチャンクの読み込みに失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
+				MessageBox(nullptr, "WAVEファイルのチェックに失敗！(3)", "警告！", MB_ICONWARNING);
+				return false;
+			}
 
-				//波形データの読み込み
-				audio_data_ = (BYTE*)malloc(audio_data_size_);
-				hr = ReadChunkData(file_handle, audio_data_, audio_data_size_, dwChunkPosition);
-				if (FAILED(hr))
-				{
-					std::string err_msg = "Sound::LoadSound()：サウンドファイルのデータチャンクが読み込めませんでした。\n";
-					err_msg = err_msg + sound_filename + "：波形データの読み込みに失敗しました。";
-					MessageBox(nullptr
-							  , err_msg.c_str()
-							  , "警告"
-							  , (MB_OK | MB_ICONWARNING));
-					return false;
-				}
+			// フォーマットチェック
+			hr = CheckChunk(file_handle, ' tmf', &dwChunkSize, &dwChunkPosition);
+			if (FAILED(hr))
+			{
+				MessageBox(nullptr, "フォーマットチェックに失敗！(1)", "警告！", MB_ICONWARNING);
+				return false;
+			}
+			hr = ReadChunkData(file_handle, &wfx, dwChunkSize, dwChunkPosition);
+			if (FAILED(hr))
+			{
+				MessageBox(nullptr, "フォーマットチェックに失敗！(2)", "警告！", MB_ICONWARNING);
+				return false;
+			}
+
+			// オーディオデータ読み込み
+			hr = CheckChunk(file_handle, 'atad', &audio_data_size_, &dwChunkPosition);
+			if (FAILED(hr))
+			{
+				MessageBox(nullptr, "オーディオデータ読み込みに失敗！(1)", "警告！", MB_ICONWARNING);
+				return false;
+			}
+
+			audio_data_ = (BYTE*)malloc(audio_data_size_);
+			hr = ReadChunkData(file_handle, audio_data_, audio_data_size_, dwChunkPosition);
+			if (FAILED(hr))
+			{
+				MessageBox(nullptr, "オーディオデータ読み込みに失敗！(2)", "警告！", MB_ICONWARNING);
+				return false;
 			}
 
 			// ソースボイスの生成
-			hr = sound_manager_->GetXAudio2Interface()->CreateSourceVoice(&source_voice_, &(wave_format_extensible.Format));
+			hr = sound_manager_->GetXAudio2Interface()->CreateSourceVoice(&source_voice_, &(wfx.Format));
 			if (FAILED(hr))
 			{
-				std::string err_msg = "Sound::LoadSound()：ソースボイスの生成に失敗しました。\n";
-				err_msg = err_msg + "SoundTypeID：" + sound_filename;
-				MessageBox(nullptr
-						  , err_msg.c_str()
-						  , "警告"
-						  , (MB_OK | MB_ICONWARNING));
+				MessageBox(nullptr, "ソースボイスの生成に失敗！", "警告！", MB_ICONWARNING);
 				return false;
 			}
 
 			// バッファの値設定
-			memset(&xaudio2_buffer, 0, sizeof(XAUDIO2_BUFFER));
-			xaudio2_buffer.AudioBytes	= audio_data_size_;
-			xaudio2_buffer.pAudioData	= audio_data_;
-			xaudio2_buffer.Flags		= XAUDIO2_END_OF_STREAM;
-			xaudio2_buffer.LoopCount	= 0U;
+			memset(&buffer, 0, sizeof(XAUDIO2_BUFFER));
+			buffer.AudioBytes	= audio_data_size_;
+			buffer.pAudioData	= audio_data_;
+			buffer.Flags		= XAUDIO2_END_OF_STREAM;
+			buffer.LoopCount	= 0;
 
 			// オーディオバッファの登録
-			source_voice_->SubmitSourceBuffer(&xaudio2_buffer);
+			source_voice_->SubmitSourceBuffer(&buffer);
 		}
 	}
 	return true;
@@ -212,9 +152,9 @@ bool Sound::LoadSound(const SoundType soundType)
 /*-----------------------------------------------------------------------------
 /* チャンクデータの確認
 -----------------------------------------------------------------------------*/
-HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWORD* chunkDataPosition)
+HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* pChunkSize, DWORD* pChunkDataPosition)
 {
-	HRESULT hr				= E_FAIL;
+	HRESULT hr = S_OK;
 	DWORD	dwRead			= 0UL;
 	DWORD	dwChunkType		= 0UL;
 	DWORD	dwChunkDataSize	= 0UL;
@@ -223,9 +163,8 @@ HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWO
 	DWORD	dwBytesRead		= 0UL;
 	DWORD	dwOffset		= 0UL;
 
-	// ファイルポインタを先頭に移動
 	if (SetFilePointer(fileHandle, 0, NULL, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
-	{
+	{// ファイルポインタを先頭に移動
 		return HRESULT_FROM_WIN32(GetLastError());
 	}
 
@@ -262,8 +201,8 @@ HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWO
 		dwOffset += sizeof(DWORD) * 2;
 		if (dwChunkType == format)
 		{
-			*chunkSize = dwChunkDataSize;
-			*chunkDataPosition = dwOffset;
+			*pChunkSize = dwChunkDataSize;
+			*pChunkDataPosition = dwOffset;
 
 			return S_OK;
 		}
@@ -271,7 +210,7 @@ HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWO
 		dwOffset += dwChunkDataSize;
 		if (dwBytesRead >= dwRIFFDataSize)
 		{
-			return E_FAIL;
+			return S_FALSE;
 		}
 	}
 	return S_OK;
@@ -280,7 +219,7 @@ HRESULT Sound::CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWO
 /*-----------------------------------------------------------------------------
 /* チャンクデータの読み込み
 -----------------------------------------------------------------------------*/
-HRESULT Sound::ReadChunkData(HANDLE fileHandle, void* buffer, DWORD dwBufferSize, DWORD dwBufferOffset)
+HRESULT Sound::ReadChunkData(HANDLE fileHandle, void* pBuffer, DWORD dwBufferSize, DWORD dwBufferOffset)
 {
 	DWORD dwRead;
 	{
@@ -291,7 +230,7 @@ HRESULT Sound::ReadChunkData(HANDLE fileHandle, void* buffer, DWORD dwBufferSize
 		}
 
 		// データの読み込み
-		if (ReadFile(fileHandle, buffer, dwBufferSize, &dwRead, NULL) == 0)
+		if (ReadFile(fileHandle, pBuffer, dwBufferSize, &dwRead, NULL) == 0)
 		{
 			return HRESULT_FROM_WIN32(GetLastError());
 		}

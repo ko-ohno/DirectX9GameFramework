@@ -85,7 +85,8 @@ bool SoundManager::Init(void)
 
 		//unmap_sound_path_list_[SoundType::Sample] = "SE/samaple.wav";
 
-		unmap_sound_path_list_[SoundType::WonderLand] = "BGM/wonderland.wav";
+		unmap_sound_path_list_[SoundType::Sample]		= "BGM/GameOver.wav";
+		unmap_sound_path_list_[SoundType::WonderLand]	= "BGM/wonderland.wav";
 	}
 
 	HRESULT hr;

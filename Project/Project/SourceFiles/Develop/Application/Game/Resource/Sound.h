@@ -28,8 +28,8 @@ public:
 	bool IsLoadCompleted(void) { return is_loading_complete_; }
 
 private:
-	HRESULT CheckChunk(HANDLE fileHandle, DWORD format, DWORD* chunkSize, DWORD* chunkDataPosition);
-	HRESULT ReadChunkData(HANDLE fileHandle, void* buffer, DWORD dwBufferSize, DWORD dwBufferOffset);
+	HRESULT CheckChunk(HANDLE fileHandle, DWORD format, DWORD* pChunkSize, DWORD* pChunkDataPosition);
+	HRESULT ReadChunkData(HANDLE fileHandle, void* pBuffer, DWORD dwBufferSize, DWORD dwBufferOffset);
 
 public:
 
@@ -48,7 +48,7 @@ public:
 
 private:
 	// サウンドの所有者
-	class SoundManager* sound_manager_;
+	class SoundManager*  sound_manager_;
 
 	//
 	// サウンドのデータ
