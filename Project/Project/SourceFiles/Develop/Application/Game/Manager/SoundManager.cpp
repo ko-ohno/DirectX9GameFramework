@@ -138,14 +138,39 @@ void SoundManager::Uninit(void)
 -----------------------------------------------------------------------------*/
 void SoundManager::SetPausedToAllSound(bool isPaused)
 {
-	for (auto sound : sound_list_)
+	if (isPaused)
 	{
-		//ソースボイスの取得
-		auto source_voice = sound->GetXAudio2SourceVoice();
-		if (source_voice)
+		for (auto sound : sound_list_)
 		{
-			//一時停止
-			source_voice->Stop(0);
+			//ソースボイスの取得
+			auto source_voice = sound->GetXAudio2SourceVoice();
+			if (source_voice)
+			{
+				//一時停止
+				source_voice->Stop(0);
+			}
+		}
+	}
+	else
+	{
+		XAUDIO2_VOICE_STATE voice_state;
+
+		for (auto sound : sound_list_)
+		{
+			//ソースボイスの取得
+			auto source_voice = sound->GetXAudio2SourceVoice();
+
+			// 状態取得
+			source_voice->GetState(&voice_state);
+			if (source_voice)
+			{
+				//再生中だったら
+				if (voice_state.BuffersQueued != 0)
+				{
+					// 再生
+					source_voice->Start(0);
+				}
+			}
 		}
 	}
 }

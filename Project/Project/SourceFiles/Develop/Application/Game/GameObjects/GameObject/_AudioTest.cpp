@@ -12,6 +12,7 @@
 #include "../Component/AudioComponent.h"
 
 #include "../../../ImGui/ImGuiManager.h"
+#include "../../Input/InputCheck.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -85,6 +86,18 @@ void AudioTest::UpdateGameObject(float deltaTime)
 	ImGui::End();
 
 	audio_component_->SetAudioVolume(volume);
+
+
+	if (InputCheck::KeyTrigger(DIK_J))
+	{
+		this->GetGame()->GetSoundManager()->SetPausedToAllSound(true);
+	}
+
+	if (InputCheck::KeyTrigger(DIK_K))
+	{
+		this->GetGame()->GetSoundManager()->SetPausedToAllSound(false);
+	}
+
 }
 
 /*=============================================================================

@@ -54,6 +54,8 @@ void AudioComponent::Uninit(void)
 -----------------------------------------------------------------------------*/
 void AudioComponent::Update(float deltaTime)
 {	
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	const bool is_out_of_range = (audio_volume_ >= 1.001f || audio_volume_ <= -0.001f);
 	if (is_out_of_range)
 	{
