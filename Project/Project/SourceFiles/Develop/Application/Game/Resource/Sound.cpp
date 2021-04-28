@@ -33,6 +33,12 @@ Sound::Sound(SoundManager* manager, SoundType soundType)
 -----------------------------------------------------------------------------*/
 Sound::~Sound(void)
 {
+	//ソースボイスの削除
+	source_voice_->DestroyVoice();
+	source_voice_ = nullptr;
+
+	//音声データの削除
+	SAFE_DELETE_(audio_data_);
 }
 
 /*-----------------------------------------------------------------------------

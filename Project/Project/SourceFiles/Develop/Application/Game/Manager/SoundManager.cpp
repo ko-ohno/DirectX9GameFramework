@@ -23,6 +23,8 @@ const char* SoundManager::SoundTypeNames[static_cast<int>(SoundType::Max)] = {
 -----------------------------------------------------------------------------*/
 SoundManager::SoundManager(Game* game)
 	: game_(game)
+	, xaudio2_mastering_voice_(nullptr)
+	, xaudio2_(nullptr)
 {
 }
 
