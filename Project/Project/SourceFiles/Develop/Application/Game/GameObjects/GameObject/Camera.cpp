@@ -21,12 +21,14 @@
 -----------------------------------------------------------------------------*/
 Camera::Camera(class Game* game)
 	: GameObject(game)
+	, game_(game)
+	, is_moved_(false)
 {
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
 	camera_component_ = NEW CameraComponent(this);
 
-	game->GetRenderer()->AddCameraGameObject(this);
+	game_->GetRenderer()->AddCameraGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -34,7 +36,7 @@ Camera::Camera(class Game* game)
 -----------------------------------------------------------------------------*/
 Camera::~Camera(void)
 {
-	SAFE_DELETE_(camera_component_);
+	game_->GetRenderer()->AddCameraGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------

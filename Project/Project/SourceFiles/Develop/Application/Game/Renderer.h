@@ -34,11 +34,20 @@ private:
 	void DrawUpRendererComponents(class Camera* camera, int nowDrawLayerOrder);
 
 public:
-	//レンダラーコンポーネントのポインタを追加
-	void AddRendererComponent(class RendererComponent* rendererComponent);
+	//
+	// レンダラーコンポーネントのポインタの追加と削除
+	//
 
-	//カメラのゲームオブジェクトのポインタを追加
-	void AddCameraGameObject(class Camera* camera);
+	void AddRendererComponentAddress(class RendererComponent* rendererComponent);
+	void RemoveRendererComponentAddress(class RendererComponent* rendererComponent);
+
+	//
+	// レンダラーコンポーネントのポインタの追加と削除
+	//
+
+	void AddCameraGameObjectAddress(class Camera* cameraGameObject);
+	void RemoveCameraGameObjectAddress(class Camera* cameraGameObject);
+
 
 	//レンダラーコンポーネントのソート
 	void SortByRendererComponent(void);

@@ -40,7 +40,7 @@ RendererComponent::RendererComponent(GameObject* owner, int drawOrder)
 		assert(!"ゲームオブジェクトのレイヤーが選択されていません！");
 	}
 
-	owner_->GetGame()->GetRenderer()->AddRendererComponent(this);
+	owner_->GetGame()->GetRenderer()->AddRendererComponentAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -48,6 +48,7 @@ RendererComponent::RendererComponent(GameObject* owner, int drawOrder)
 -----------------------------------------------------------------------------*/
 RendererComponent::~RendererComponent(void)
 {
+	owner_->GetGame()->GetRenderer()->RemoveRendererComponentAddress(this);
 }
 
 /*-----------------------------------------------------------------------------

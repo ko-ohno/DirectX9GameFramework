@@ -35,7 +35,7 @@ public:
 
 private:
 	class SpriteRendererComponent* sprite_;
-
+	 
 	class SpriteRendererComponent* sprite_a_;
 
 	class SpriteRendererComponent* sprite_b_;

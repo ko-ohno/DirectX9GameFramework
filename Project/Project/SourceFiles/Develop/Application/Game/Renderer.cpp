@@ -1,4 +1,4 @@
-/*=============================================================================
+ /*=============================================================================
 /*-----------------------------------------------------------------------------
 /*	[Renderer.cpp] レンダラークラス
 /*	Author：Kousuke,Ohno.
@@ -245,9 +245,9 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 }
 
 /*-----------------------------------------------------------------------------
-/* レンダラーコンポーネントの追加処理
+/* レンダラーコンポーネントのアドレスの追加処理
 -----------------------------------------------------------------------------*/
-void Renderer::AddRendererComponent(RendererComponent* rendererComponent)
+void Renderer::AddRendererComponentAddress(RendererComponent* rendererComponent)
 {
 	//描画優先順位
 	RendererLayerType my_layer_type = rendererComponent->GetRendererLayerType();
@@ -271,11 +271,41 @@ void Renderer::AddRendererComponent(RendererComponent* rendererComponent)
 }
 
 /*-----------------------------------------------------------------------------
-/* レンダラーにカメラのゲームオブジェクトのポインタを追加
+/* レンダラーコンポーネントのアドレスの削除処理
 -----------------------------------------------------------------------------*/
-void Renderer::AddCameraGameObject(Camera* camera)
+void Renderer::RemoveRendererComponentAddress(RendererComponent* rendererComponent)
 {
-	camera_game_objects_.emplace_back(camera);
+	auto iter = std::find(renderer_components_.begin()	//範囲0～
+						 , renderer_components_.end()	//範囲最大まで
+						 , rendererComponent);			//探す対象
+
+	if (iter != renderer_components_.end())
+	{
+		renderer_components_.erase(iter);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* レンダラーにカメラのアドレス追加処理
+-----------------------------------------------------------------------------*/
+void Renderer::AddCameraGameObjectAddress(Camera* cameraGameObject)
+{
+	camera_game_objects_.emplace_back(cameraGameObject);
+}
+
+/*-----------------------------------------------------------------------------
+/* レンダラーのカメラのアドレス削除処理
+-----------------------------------------------------------------------------*/
+void Renderer::RemoveCameraGameObjectAddress(Camera* cameraGameObject)
+{
+	auto iter = std::find(camera_game_objects_.begin()	//範囲0～
+						 , camera_game_objects_.end()	//範囲最大まで
+						 , cameraGameObject);			//探す対象
+
+	if (iter != camera_game_objects_.end())
+	{
+		camera_game_objects_.erase(iter);
+	}
 }
 
 //

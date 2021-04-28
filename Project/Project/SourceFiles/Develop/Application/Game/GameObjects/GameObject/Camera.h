@@ -47,6 +47,8 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Camera; }
 
 private:
+	class Game* game_;
+
 	class CameraComponent* camera_component_;
 
 	//ƒJƒƒ‰‚ª“®‚¢‚½‚©

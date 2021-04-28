@@ -87,7 +87,7 @@ std::wstring Effect::StringToWString(const std::string& str)
 									  , NULL);
 
 	// バッファの取得
-	wchar_t* wchar_buf = new wchar_t[buf_size];
+	wchar_t* wchar_buf = NEW wchar_t[buf_size];
 
 	// SJIS → wstring
 	MultiByteToWideChar(CP_ACP
