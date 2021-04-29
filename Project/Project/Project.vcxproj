@@ -177,6 +177,8 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\BoxGizmoRendererComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CircleColliderComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\CheckCollision.h" />
@@ -276,8 +278,11 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\BoxGizmoRendererComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\CircleColliderComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\CheckCollision.cpp" />
@@ -372,6 +377,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />
