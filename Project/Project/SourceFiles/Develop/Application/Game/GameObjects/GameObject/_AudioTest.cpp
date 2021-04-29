@@ -83,10 +83,11 @@ void AudioTest::UpdateGameObject(float deltaTime)
 
 	ImGui::Begin("SoundTest");
 	ImGui::SliderFloat("volume", &volume, 0.000f, 1.000f);
+	ImGui::Text("Stop   :J");
+	ImGui::Text("Replay :K");
 	ImGui::End();
 
 	audio_component_->SetAudioVolume(volume);
-
 
 	if (InputCheck::KeyTrigger(DIK_J))
 	{

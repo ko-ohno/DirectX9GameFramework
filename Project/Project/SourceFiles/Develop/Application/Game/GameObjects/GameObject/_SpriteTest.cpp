@@ -156,10 +156,6 @@ void SpriteTest::UpdateGameObject(float deltaTime)
 		char buf[32];
 		sprintf(buf, "%d/%d", (int)(progress_saturated * 1753), 1753);
 		ImGui::ProgressBar(progress, ImVec2(0.f, 0.f), buf);
-
-		const bool a = InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A);
-
-		ImGui::Text("XInputPadPushed::A :%s", a ? "true" : "false");
 	}
 	ImGui::End();
 
