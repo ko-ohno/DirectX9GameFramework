@@ -53,13 +53,19 @@ public:
 	void SetVertexColor(int red = 255, int green = 255, int blue = 255, int alpha = 255)
 	{
 		vertex_color_ = D3DCOLOR_RGBA(red, green, blue, alpha);
+
+		vector_vertex_color_.x = DIVIDE_COLOR_VALUE * red;
+		vector_vertex_color_.y = DIVIDE_COLOR_VALUE * green;
+		vector_vertex_color_.z = DIVIDE_COLOR_VALUE * blue;
+		vector_vertex_color_.w = DIVIDE_COLOR_VALUE * alpha;
+
+		vector_vertex_color_.x = Math::Clamp(vector_vertex_color_.x, 0.f, 1.f);
+		vector_vertex_color_.y = Math::Clamp(vector_vertex_color_.y, 0.f, 1.f);
+		vector_vertex_color_.z = Math::Clamp(vector_vertex_color_.z, 0.f, 1.f);
+		vector_vertex_color_.w = Math::Clamp(vector_vertex_color_.w, 0.f, 1.f);
 	}
 
-	void SetVertexColor(D3DCOLOR color = D3DCOLOR_RGBA(255, 255, 255, 255))
-	{
-		vertex_color_ = color;
-	}
-
+	inline D3DXVECTOR4 GetVertexColor(void) { return vector_vertex_color_; }
 
 public:
 	//épê®êßå‰ÇÃä÷êîåQ
@@ -140,9 +146,12 @@ protected:
 	float camera_distance_;
 
 protected:
+	static constexpr float DIVIDE_COLOR_VALUE = 1.f / 255.f;
 
 	//í∏ì_ÉJÉâÅ[
-	D3DCOLOR vertex_color_;
+	D3DCOLOR	vertex_color_;
+
+	D3DXVECTOR4 vector_vertex_color_;
 
 	//
 	// RendererComponentÇÃépê®èÓïÒ

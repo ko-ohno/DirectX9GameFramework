@@ -83,6 +83,8 @@ void EffectTest::UpdateGameObject(float deltaTime)
 
 	static float time = 0;
 
+	effect_renderer_comp_->SetTranslationZ(3.f);
+
 	//time += deltaTime;
 	//if (time >= 3.0f)
 	//{

@@ -10,7 +10,6 @@
 #include "../../../../../StdAfx.h"
 #include "SpriteRendererComponent.h"
 #include "../../GameObject.h"
-#include "../TransformComponent.h"
 #include "../../../VertexData.h"
 #include "../../../Shader.h"
 #include "../../../../Math.h"

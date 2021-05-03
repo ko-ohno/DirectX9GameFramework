@@ -30,6 +30,11 @@ public:
 	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
+	class GridGizmoRendererComponent* grid_gizmo_renderer_component_;
+
+	class BoxGizmoRendererComponent* box_gizmo_renderer_component_;
+
+	class SphereGizmoRendererComponent* sphere_gizmo_renderer_component_;
 };
 
 

@@ -31,8 +31,8 @@ public:
 	virtual void Uninit(void);	//終了化
 
 	//シェーダーのセット
-	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture);
-	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Material* material);
+	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Texture* texture = nullptr);
+	virtual void ShaderSet(class Camera* camera, class RendererComponent* rendererComponent, class Material* material = nullptr);
 
 	//テクニックのセット
 	virtual void SetTechnique(const std::string& techniqueName) { UNREFERENCED_PARAMETER(techniqueName);}

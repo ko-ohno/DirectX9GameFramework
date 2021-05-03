@@ -23,6 +23,7 @@ enum class  ShaderType
 	, StandardMesh		//メッシュ(ボーンなし)
 	, SkinMesh			//スキンメッシュ
 	, ParticleEffect    //エフェクト
+	, Gizmo				//ギズモ
 	, Max
 };
 

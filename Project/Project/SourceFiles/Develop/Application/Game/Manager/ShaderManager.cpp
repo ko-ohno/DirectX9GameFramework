@@ -19,6 +19,8 @@
 #include "../Shader/StdMeshShader.h"
 #include "../Shader/SkinMeshShader.h"
 
+#include "../Shader/GizmoShader.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -110,7 +112,8 @@ void ShaderManager::LoadShaders(void)
 	unmap_shader_list_[ShaderType::Billboard]		= NEW BillboardShader(this);
 	unmap_shader_list_[ShaderType::StandardMesh]	= NEW StdMeshShader(this);
 	unmap_shader_list_[ShaderType::SkinMesh]		= NEW SkinMeshShader(this);
-	unmap_shader_list_[ShaderType::ParticleEffect]  = nullptr; //Effecseerの描画ライブラリ使用のため
+	unmap_shader_list_[ShaderType::Gizmo]			= NEW GizmoShader(this); 
+	unmap_shader_list_[ShaderType::ParticleEffect] = nullptr; //Effecseerの描画ライブラリ使用のため
 }
 
 /*-----------------------------------------------------------------------------

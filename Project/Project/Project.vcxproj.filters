@@ -294,9 +294,6 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\GizmoMeshShader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -319,6 +316,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\GizmoShader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -578,9 +578,6 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\GizmoMeshShader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -605,6 +602,9 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\GizmoShader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico">
@@ -620,6 +620,7 @@
     <FxCompile Include="SourceFiles\Develop\HLSL\SpriteShader.hlsl" />
     <FxCompile Include="SourceFiles\Develop\HLSL\BillboardShader.hlsl" />
     <FxCompile Include="SourceFiles\Develop\HLSL\StdMeshShader.hlsl" />
+    <FxCompile Include="SourceFiles\Develop\HLSL\GizmoShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CommentTemplate\Cpp\_Cpp_Header.txt" />

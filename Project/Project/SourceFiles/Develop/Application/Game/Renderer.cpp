@@ -236,6 +236,11 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 				assert(!"DrawUpRendererComponents():不正なシェーダーが設定されています。");
 			}
 
+			if (shader_type == ShaderType::Gizmo)
+			{
+				shader_type = shader_type;
+			}
+
 			auto shader = shader_manager_->ShaderDispatch(shader_type); //定数キーからシェーダを取得
 
 			//シェーダを使用したコンポーネントの描画

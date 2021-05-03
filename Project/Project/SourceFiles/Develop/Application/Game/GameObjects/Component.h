@@ -52,6 +52,11 @@ public:
 		, BillboardRendererComponent
 		, StdMeshRendererComponent
 		, EffectRendererComponent
+		//ギズモとしてレンダリング(形として出力)するオブジェクト
+		, GizmoRendererComponent
+		, GridGizmoRendererComponent
+		, SphereGizmoRendererComponent
+		, BoxGizmoRendererComponent
 		//姿勢制御と移動
 		, TransformComponent
 		, MoveComponent 

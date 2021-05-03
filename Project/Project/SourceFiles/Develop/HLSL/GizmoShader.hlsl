@@ -1,59 +1,76 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[GizmoRendererComponent.cpp] ギズモ描画コンポーネント
+/*	[GizmoShader.hlsl] ギズモシェーダー
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：描画コンポーネント
+/*	説明：ギズモシェーダー用HLSLファイル
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
-#include "GizmoRendererComponent.h"
+
+struct VS_OUTPUT
+{
+	float4 pos		: POSITION0;
+	float4 color    : COLOR0;
+};
 
 /*-----------------------------------------------------------------------------
-/*　コンストラクタ
+/* グローバル変数宣言ブロック
 -----------------------------------------------------------------------------*/
-GizmoRendererComponent::GizmoRendererComponent(GameObject* owner, int drawOrder)
-	: RendererComponent(owner, drawOrder)
+float4x4	g_MatWorld;					// ワールド変換行列
+float4x4	g_MatView;					// ビュー変換行列
+float4x4	g_MatProjection;			// プロジェクション変換行列
+
+float4		g_Color;					// ギズモの色
+
+/*-----------------------------------------------------------------------------
+/* テクスチャーサンプラーブロック
+-----------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------
+/* 頂点シェーダープログラムブロック
+-----------------------------------------------------------------------------*/
+VS_OUTPUT VS(float4 in_pos		: POSITION0
+			, float4 in_color	: COLOR0)
 {
-	// 初期化
-	this->Init();
+	VS_OUTPUT Out = (VS_OUTPUT)0;
+	float4 pos = float4(1.0f, 1.0f, 1.0f, 1.0f);
+
+	// 座標変換
+	pos = mul(in_pos, g_MatWorld);
+	pos = mul(pos, g_MatView);
+	pos = mul(pos, g_MatProjection);
+
+	// 頂点座標をそのまま　　
+	Out.pos = pos;
+
+	//設定した色にする
+	Out.color = g_Color;
+
+	return Out;
 }
 
 /*-----------------------------------------------------------------------------
-/*　デストラクタ
+/* ピクセルシェーダープログラムブロック
 -----------------------------------------------------------------------------*/
-GizmoRendererComponent::~GizmoRendererComponent(void)
+float4 PS(VS_OUTPUT In) : COLOR0
 {
-	// 終了化
-	this->Uninit();
+	return In.color;
 }
 
 /*-----------------------------------------------------------------------------
-/*　初期化処理
+/* テクニック宣言ブロック
 -----------------------------------------------------------------------------*/
-bool GizmoRendererComponent::Init(void)
-{
-	//描画シェーダーの指定
-	this->shader_type_ = ShaderType::Gizmo;
+technique Tech {
+	pass p0 {
+		VertexShader = compile vs_3_0 VS();
+		PixelShader = compile ps_3_0 PS();
 
-	return true;
-}
-
-/*-----------------------------------------------------------------------------
-/*　終了化処理
------------------------------------------------------------------------------*/
-void GizmoRendererComponent::Uninit(void)
-{
-}
-
-/*-----------------------------------------------------------------------------
-/*　描画処理
------------------------------------------------------------------------------*/
-void GizmoRendererComponent::Draw(Shader* shader, Camera* camera)
-{
-	UNREFERENCED_PARAMETER(shader);
-	UNREFERENCED_PARAMETER(camera); 
+		ZEnable = true;
+		ZWriteEnable = true;
+		FillMode = WIREFRAME;
+	}
 }
 
 /*=============================================================================
