@@ -66,9 +66,9 @@ bool CameraComponent::Init(void)
 	//	カメラ座標と注視点
 	//
 
-	position_	   = { 0.f, 0.f, -10.f };
+	position_	   = { 0.f, 3.f, -10.f };
 	old_position_ = position_;
-	lookat_position_  = { 0.f, 0.f,   0.f };
+	lookat_position_  = { 0.f, 1.5f,   0.f };
 
 	//
 	//	カメラの姿勢ベクトル

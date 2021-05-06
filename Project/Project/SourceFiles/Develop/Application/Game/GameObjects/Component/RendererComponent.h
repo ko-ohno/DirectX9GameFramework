@@ -65,7 +65,7 @@ public:
 		vector_vertex_color_.w = Math::Clamp(vector_vertex_color_.w, 0.f, 1.f);
 	}
 
-	inline D3DXVECTOR4 GetVertexColor(void) { return vector_vertex_color_; }
+	inline D3DXVECTOR4* GetVertexColor(void) { return &vector_vertex_color_; }
 
 public:
 	//p¨§Œä‚ÌŠÖ”ŒQ

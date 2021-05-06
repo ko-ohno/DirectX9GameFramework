@@ -5,8 +5,8 @@
 /*-----------------------------------------------------------------------------
 /*	説明：テスト用ゲームオブジェクト
 =============================================================================*/
-#ifndef ColliderTest_H_
-#define	ColliderTest_H_
+#ifndef COLLIDER_TEST_H_
+#define	COLLIDER_TEST_H_
 
 /*--- インクルードファイル ---*/
 #include "../GameObject.h"
@@ -33,12 +33,21 @@ private:
 	class GridGizmoRendererComponent* grid_gizmo_renderer_component_;
 
 	class BoxGizmoRendererComponent* box_gizmo_renderer_component_;
+	class BoxGizmoRendererComponent* box_gizmo_renderer_component_a_;
+
+	class OBBColliderComponent* obb_collider_component_;
+	class OBBColliderComponent* obb_collider_component_a_;
 
 	class SphereGizmoRendererComponent* sphere_gizmo_renderer_component_;
+	class SphereGizmoRendererComponent* sphere_gizmo_renderer_component_a_;
+
+	class SphereColliderComponent* sphere_collider_component_;
+	class SphereColliderComponent* sphere_collider_component_a_;
+
 };
 
 
-#endif //ColliderTest_H_
+#endif //COLLIDER_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

@@ -197,10 +197,8 @@ void GizmoShader::ShaderSet(Camera* camera, RendererComponent* rendererComponent
 	//シェーダー内の描画方法をプログラム側へ指定
 	shader_->SetTechnique(d3dxhandle_technique_);
 
-	auto vertex_color = rendererComponent->GetVertexColor();
-
 	//シェーダーにワールド行列を渡す。
-	shader_->SetVector("g_Color", &vertex_color);
+	shader_->SetVector("g_Color", rendererComponent->GetVertexColor());
 
 	//シェーダーにワールド行列を渡す。
 	shader_->SetMatrix("g_MatWorld", rendererComponent->GetWorldMatrix());

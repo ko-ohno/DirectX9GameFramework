@@ -24,6 +24,7 @@ RendererComponent::RendererComponent(GameObject* owner, int drawOrder)
 	, shader_type_(ShaderType::None)
 	, camera_distance_(0.f)
 	, vertex_color_(D3DCOLOR_RGBA(255, 255, 255, 255))
+	, vector_vertex_color_(1.f, 1.f, 1.f, 1.f)
 	, position_(0.f, 0.f, 0.f)
 	, scale_(1.f, 1.f, 1.f)
 {

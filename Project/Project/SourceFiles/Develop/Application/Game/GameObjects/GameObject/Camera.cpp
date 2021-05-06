@@ -74,6 +74,10 @@ void Camera::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Camera::UpdateGameObject(float deltaTime)
 {
+	//camera_component_->SetLookAtTranslationY(3.f);
+	//camera_component_->SetCameraTranslationY(3.f);
+
+
 	UNREFERENCED_PARAMETER(deltaTime);
 
 	//ƒJƒƒ‰‚ğ‘€ì‚·‚é‚©

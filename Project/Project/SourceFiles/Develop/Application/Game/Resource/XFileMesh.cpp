@@ -312,9 +312,9 @@ bool XFileMesh::LoadD3DXMeshBox(void)
 	HRESULT hr;
 	{
 		hr = D3DXCreateBox(lpd3d_device		// 描画デバイス
-						  , 0.5F			// X軸:原点からの幅
-						  , 0.5F			// Y軸:原点からの高さ
-						  , 0.5F			// Z軸:原点からの奥行き
+						  , 1.0F			// X軸:原点からの幅
+						  , 1.0F			// Y軸:原点からの高さ
+						  , 1.0F			// Z軸:原点からの奥行き
 						  , &lpd3dx_mesh_	// メッシュの格納先
 						  , nullptr);
 

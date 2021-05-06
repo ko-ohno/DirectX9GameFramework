@@ -25,14 +25,10 @@
 -------------------------------------*/
 namespace CheckCollision
 {
-	D3DXVECTOR3 directx_vec3;
+	static D3DXVECTOR3 directx_vec3;
 
 	// DirectX‚ÌŒ`®‚É•ÏŠ·
-	D3DXVECTOR3* ConvertDirectXVec3(Vector3* vec3)
-	{
-		directx_vec3 = { vec3->x_, vec3->y_, vec3->z_ };
-		return &directx_vec3;
-	}
+	D3DXVECTOR3* ConvertDirectXVec3(Vector3* vec3);
 
 	//
 	// 2D‚ÌÕ“Ë”»’è
