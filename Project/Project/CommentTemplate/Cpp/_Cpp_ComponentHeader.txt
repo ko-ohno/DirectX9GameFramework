@@ -1,0 +1,43 @@
+/*=============================================================================
+/*-----------------------------------------------------------------------------
+/*	[Hoge.h]  コンポーネント
+/*	Author：Kousuke,Ohno.
+/*-----------------------------------------------------------------------------
+/*	説明：コンポーネント
+=============================================================================*/
+#ifndef COMPONENT_H_
+#define	COMPONENT_H_
+
+/*--- インクルードファイル ---*/
+#include "../Component.h"
+
+/*--- 構造体定義 ---*/
+
+/*--- クラスの前方宣言 ---*/
+
+
+/*-------------------------------------
+/* コンポーネント
+-------------------------------------*/
+class Hoge : public Component
+{
+public:
+	Hoge(class GameObject* owner, int updateOrder = 100);
+	~Hoge(void);
+
+private:
+	bool Init(void) override;
+	void Uninit(void) override;
+
+public:
+	void Input(void) override;
+	void Update(float deltaTime) override;
+
+	virtual TypeID GetComponentType() const override { return TypeID::Hoge; };
+private:
+};
+
+#endif //COMPONENT_H_
+/*=============================================================================
+/*		End of File
+=============================================================================*/

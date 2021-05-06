@@ -27,7 +27,7 @@
 
 // DirectX
 #include <d3d9.h>
-#define DIRECTINPUT_VERSION 0x0800
+//#define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 
 // DirectX data
