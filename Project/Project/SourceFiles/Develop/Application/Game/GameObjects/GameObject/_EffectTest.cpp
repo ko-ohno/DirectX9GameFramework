@@ -12,6 +12,8 @@
 #include "../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Resource/Effect.h"
 
+#include "../../../ImGui/ImGuiManager.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -84,6 +86,25 @@ void EffectTest::UpdateGameObject(float deltaTime)
 	static float time = 0;
 
 	effect_renderer_comp_->SetTranslationZ(3.f);
+
+	static bool isPaused = false;
+
+	ImGui::Begin("EffectTest");
+	ImGui::Text("Paused : ");
+	if (ImGui::Button("EffectPaused"))
+	{
+		if (isPaused == false)
+		{
+			game_->GetEffectManager()->SetPausedToAllEffect(true);
+			isPaused = true;
+		}
+		else
+		{
+			game_->GetEffectManager()->SetPausedToAllEffect(false);
+			isPaused = false;
+		}
+	}
+	ImGui::End();
 
 	//time += deltaTime;
 	//if (time >= 3.0f)
