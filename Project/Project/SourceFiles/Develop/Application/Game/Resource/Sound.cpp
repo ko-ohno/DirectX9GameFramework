@@ -153,16 +153,6 @@ bool Sound::LoadSound(const SoundType soundType)
 				MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK|MB_ICONWARNING));
 				return false;
 			}
-
-			// バッファの値設定
-			memset(&buffer, 0, sizeof(XAUDIO2_BUFFER));
-			buffer.AudioBytes	= audio_data_size_;
-			buffer.pAudioData	= audio_data_;
-			buffer.Flags		= XAUDIO2_END_OF_STREAM;
-			buffer.LoopCount	= 0;
-
-			// オーディオバッファの登録
-			source_voice_->SubmitSourceBuffer(&buffer);
 		}
 	}
 	return true;
