@@ -90,8 +90,9 @@ void EffectTest::UpdateGameObject(float deltaTime)
 	static bool isPaused = false;
 
 	ImGui::Begin("EffectTest");
-	ImGui::Text("Paused : ");
-	if (ImGui::Button("EffectPaused"))
+	ImGui::Text("Paused:");
+	ImGui::SameLine();
+	if (ImGui::Button("EffectPaused or Replay"))
 	{
 		if (isPaused == false)
 		{
