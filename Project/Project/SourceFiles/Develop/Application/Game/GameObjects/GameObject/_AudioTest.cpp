@@ -24,6 +24,9 @@ AudioTest::AudioTest(Game* game)
 
 	audio_component_ = NEW AudioComponent(this);
 	audio_component_->SetSound(SoundType::WonderLand);
+
+	audio_component_a_ = NEW AudioComponent(this);
+	audio_component_a_->SetSound(SoundType::Sample);
 }
 
 /*-----------------------------------------------------------------------------
@@ -82,23 +85,29 @@ void AudioTest::UpdateGameObject(float deltaTime)
 	static float volume = 0.2f;
 
 	ImGui::Begin("SoundTest");
-	ImGui::SliderFloat("volume", &volume, 0.000f, 1.000f);
-	ImGui::Text("Stop   :J");
-	ImGui::Text("Replay :K");
-	ImGui::End();
-
-	audio_component_->SetAudioVolume(volume);
-
-	if (InputCheck::KeyTrigger(DIK_J))
+	ImGui::SliderFloat("BGM_volume", &volume, 0.000f, 1.000f);
+	
+	
+	if (ImGui::Button("Stop"))
 	{
 		this->GetGame()->GetSoundManager()->SetPausedToAllSound(true);
 	}
 
-	if (InputCheck::KeyTrigger(DIK_K))
+	if (ImGui::Button("Replay"))
 	{
 		this->GetGame()->GetSoundManager()->SetPausedToAllSound(false);
 	}
 
+	ImGui::Text("Play : SampleSound");
+
+	if (ImGui::Button("PlaySound"))
+	{
+		audio_component_a_->Play();
+	}
+
+	ImGui::End();
+
+	audio_component_->SetAudioVolume(volume);
 }
 
 /*=============================================================================

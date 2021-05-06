@@ -35,6 +35,8 @@ public:
 
 private:
 	class AudioComponent* audio_component_;
+
+	class AudioComponent* audio_component_a_;
 };
 
 
