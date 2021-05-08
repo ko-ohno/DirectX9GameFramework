@@ -67,7 +67,7 @@ bool Sound::LoadSound(const SoundType soundType)
 			memset(&buffer, 0, sizeof(XAUDIO2_BUFFER));
 
 			//エラーメッセージの格納先
-			std::string err_msg = "音声ファイルの情報の読み込みに失敗しました\nError：";
+			std::string err_msg = "Sound::LoadSound():音声ファイルの情報の読み込みに失敗しました\nError：";
 
 			// サウンドデータファイルの生成
 			file_handle = CreateFile(sound_filepath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);

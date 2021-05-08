@@ -54,6 +54,24 @@
 #include <map>
 #include <unordered_map>
 
+
+/*--- RapidJSONのインクルード ---*/
+
+//RapidJSONそのもの
+#include "../External/RapidJSON/include/document.h"
+//書き込み
+#include "../External/RapidJSON/include/writer.h"
+#include "../External/RapidJSON/include/filewritestream.h"	//インデント・改行なし
+#include "../External/RapidJSON/include/prettywriter.h"	//インデント・改行あり
+//読み込み
+#include "../External/RapidJSON/include/reader.h"
+#include "../External/RapidJSON/include/filereadstream.h"
+//エラーハンドル
+#include "../External/RapidJSON/include/error/error.h"
+#include "../External/RapidJSON/include/error/en.h"		//英語専用
+
+
+
 /*--- ライブラリのリンク ---*/
 #pragma comment(lib,"winmm.lib")	//WindowsAPIのライブラリをリンク
 #pragma comment(lib,"d3d9.lib")		//DirectX9の機能を使うためにライブラリをリンク

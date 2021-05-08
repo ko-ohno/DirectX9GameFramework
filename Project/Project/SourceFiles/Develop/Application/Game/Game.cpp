@@ -17,6 +17,7 @@
 #include "Manager/EffectManager.h"
 #include "Manager/SoundManager.h"
 #include "Manager/ColliderManager.h"
+#include "Manager/SaveDataManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
@@ -38,6 +39,7 @@ Game::Game(void)
 	, effect_manager_(nullptr)
 	, sound_manager_(nullptr)
 	, collider_manager_(nullptr)
+	, save_data_manager_(nullptr)
 
 	, game_object_fuctory_(nullptr)
 {
@@ -130,6 +132,15 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			assert(!"Game::StartUp()：コライダマネージャの起動に失敗しました。");
 			return false;
 		}
+
+		//セーブデータマネージャの起動
+		save_data_manager_ = save_data_manager_->Create(this);
+		const bool save_data_manager_init = save_data_manager_->StartUp();
+		if (save_data_manager_init == false)
+		{
+			assert(!"Game::StartUp()：セーブデータマネージャの起動に失敗しました。");
+			return false;
+		}
 	}
 
 	//レンダラーの起動
@@ -205,6 +216,12 @@ void Game::ShutDown(void)
 		{
 			collider_manager_->Shutdown();
 			SAFE_DELETE_(collider_manager_);
+		}
+
+		//セーブデータマネージャの破棄
+		{
+			save_data_manager_->Shutdown();
+			SAFE_DELETE_(save_data_manager_);
 		}
 	}
 	 

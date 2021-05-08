@@ -177,6 +177,10 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\GizmoShader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\BoxGizmoRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.h" />
@@ -279,8 +283,13 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\GizmoShader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\BoxGizmoRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.cpp" />
@@ -378,6 +387,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />
