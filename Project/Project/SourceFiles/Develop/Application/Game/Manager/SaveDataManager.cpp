@@ -103,6 +103,12 @@ void SaveDataManager::Uninit(void)
     {
         this->SaveJSON(file_path);
     }
+
+    while (!save_data_list_.empty())
+    {
+        delete save_data_list_.back();
+        save_data_list_.pop_back();
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -111,16 +117,16 @@ void SaveDataManager::Uninit(void)
 void SaveDataManager::CreateNewJSONDataFile(const std::string& inFileName)
 {
     // セーブデータの初期化データ
-    SaveData init_save_data[MAX_SAVE_DATA_COUNT] = 
+    SaveData init_save_data[MAX_SAVE_DATA_COUNT] =
     {
-        { 1, 4000, ScoreRank::S},
-        { 2, 3000, ScoreRank::A},
-        { 3, 2000, ScoreRank::B},
-        { 4, 1000, ScoreRank::C},
-        { 5,  500, ScoreRank::D}
+        { static_cast<int>(ScoreRankLimits::S), ScoreRank::S },
+        { static_cast<int>(ScoreRankLimits::A), ScoreRank::A },
+        { static_cast<int>(ScoreRankLimits::B), ScoreRank::B },
+        { static_cast<int>(ScoreRankLimits::C), ScoreRank::C },
+        { static_cast<int>(ScoreRankLimits::D), ScoreRank::D }
     };
 
-    //JSONファイルの出力
+    // JSONファイルの出力
     {
         // JSONドキュメントのRootを宣言
         rapidjson::Document doc(rapidjson::kObjectType);
@@ -140,17 +146,14 @@ void SaveDataManager::CreateNewJSONDataFile(const std::string& inFileName)
                 // セーブデータオブジェクトのバッファの作成
                 rapidjson::Value save_data(rapidjson::kObjectType);
                 {     
-                    // ランキングの入力
-                    JSONHelper::AddInt(doc.GetAllocator(), save_data, "ranking", init_save_data[i].ranking_);
-
                     // スコアの入力
-                    JSONHelper::AddInt(doc.GetAllocator(), save_data, "score", init_save_data[i].score_);
+                    JSONHelper::AddInt(doc.GetAllocator(), save_data, "score", init_save_data[i].GetScore());
 
                     // スコアランクの入力
                     {
                         std::string score_rank;
 
-                        switch (init_save_data[i].score_rank_)
+                        switch (init_save_data[i].GetScoreRank())
                         {
                         case ScoreRank::S:
                             score_rank = "S";
@@ -219,7 +222,11 @@ void SaveDataManager::CreateNewJSONDataFile(const std::string& inFileName)
 bool SaveDataManager::LoadJSON(const std::string& inFileName)
 {
     // セーブデータのリストをクリア
-    save_data_list_.clear();
+    while (!save_data_list_.empty())
+    {
+        delete save_data_list_.back();
+        save_data_list_.pop_back();
+    }
 
     //JSONドキュメントオブジェクトのRootを生成
     rapidjson::Document doc(rapidjson::kObjectType);
@@ -235,7 +242,7 @@ bool SaveDataManager::LoadJSON(const std::string& inFileName)
 
             //セーブデータファイルの新規作成
             {
-                this->CreateNewJSONDataFile(inFileName);              
+                this->CreateNewJSONDataFile(inFileName);               
             }
             // 作成されたJSONファイルの読み込み
             JSONManager::LoadJSON(inFileName, doc);
@@ -268,62 +275,43 @@ bool SaveDataManager::LoadJSON(const std::string& inFileName)
                 }
 
                 // セーブデータ取得用バッファ
-                SaveData save_data_buffer;
+                int       score_data       = save_data["score"].GetInt();
+                char      score_rank_data  = save_data["score_rank"].GetString()[0];
 
-                // ランキングの読み込み
-                save_data_buffer.ranking_ = save_data["ranking"].GetInt();
-
-                // スコアの読み込み
-                save_data_buffer.score_ = save_data["score"].GetInt();
-
-                // スコアランクの読み込み
-                std::string score_rank = save_data["score_rank"].GetString();
-
-                // 文字を数値へ変換。ScoreRankと一致する文字を適用
-                save_data_buffer.score_rank_ = static_cast<ScoreRank>(score_rank.at(0));
-
-                //セーブデータにエラーが含まれているか
-                bool is_error = false;
+                //セーブデータにスコアランクの入力を行う
+                ScoreRank input_score_rank = ScoreRank::None;
                 {
-                    switch (save_data_buffer.score_rank_)
+                    switch (score_rank_data)
                     {
-                    case ScoreRank::None:
-                        is_error = true;
+                    case 'S':
+                        input_score_rank = ScoreRank::S;
                         break;
 
-                    case ScoreRank::S:
+                    case 'A':
+                        input_score_rank = ScoreRank::A;
                         break;
 
-                    case ScoreRank::A:
+                    case 'B':
+                        input_score_rank = ScoreRank::B;
                         break;
 
-                    case ScoreRank::B:
+                    case 'C':
+                        input_score_rank = ScoreRank::C;
                         break;
 
-                    case ScoreRank::C:
-                        break;
-
-                    case ScoreRank::D:
-                        break;
-
-                    case ScoreRank::Max:
-                        is_error = true;
+                    case 'D':
+                        input_score_rank = ScoreRank::D;
                         break;
 
                     default:
-                        is_error = true;
-                        break;
-                    }
-
-                    if (is_error)
-                    {
                         std::string err_msg = "セーブデータのスコアランク情報に、不正な値が組み込まれています。\n";
                         MessageBox(nullptr, err_msg.c_str(), "警告", (MB_OK | MB_ICONWARNING));
+                        break;
                     }
                 }
 
                 // セーブデータをリストに保存
-                save_data_list_.emplace_back(save_data_buffer);
+                this->AddSaveData(NEW SaveData(score_data, input_score_rank));
             }
         }
     }
@@ -335,45 +323,237 @@ bool SaveDataManager::LoadJSON(const std::string& inFileName)
 -----------------------------------------------------------------------------*/
 void SaveDataManager::SaveJSON(const std::string& inFileName)
 {
-    //// JSONドキュメントのRootを宣言
-    //rapidjson::Document doc(rapidjson::kObjectType);
-    //{
-    //    //Versionの記録
-    //    const float version = data_version;
-    //    {
-    //        //バージョンのデータを先頭へ登録
-    //        JSONHelper::AddFloat(doc.GetAllocator(), doc, "version", version);
-    //    }
+    // JSONドキュメントオブジェクトのRootを宣言
+    rapidjson::Document doc(rapidjson::kObjectType);
+    {
+        //Versionの記録
+        const float version = data_version;
+        {
+            //バージョンのデータを先頭へ登録
+            JSONHelper::AddFloat(doc.GetAllocator(), doc, "version", version);
+        }
 
-    //    //プロパティオブジェクトのバッファの作成
-    //    rapidjson::Value property(rapidjson::kObjectType);
-    //    {
-    //        //プロパティオブジェクトの生成
-    //        this->SaveProperties(doc.GetAllocator(), property);
+        //セーブデータのソート
+        this->SortBySaveData();
 
-    //        //プロパティオブジェクトをメンバとして追加
-    //        doc.AddMember("Properties", property, doc.GetAllocator());
-    //    }
-    //}
+        // セーブデータの作成
+        int i = 0;
+        for (auto save_data : save_data_list_)
+        {
+            i++;
+            auto save_data_name = "save_data_" + std::to_string(i);
 
-    //// JSON用の文字列バッファを作成
-    //rapidjson::StringBuffer buffer;
+            // セーブデータオブジェクトのバッファの作成
+            rapidjson::Value save_data_object(rapidjson::kObjectType);
+            {
+                // スコアの入力
+                JSONHelper::AddInt(doc.GetAllocator(), save_data_object, "score", save_data->GetScore());
 
-    //// 純粋な文字列バッファのアドレスを登録。文字列バッファをインデントされた状態へ変換できるように
-    //rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
+                // スコアランクの入力
+                {
+                    std::string score_rank;
 
-    //// ドキュメントの文字列バッファを構文解析。PrettyWriterによってインデントされた状態へ。
-    //doc.Accept(writer);
+                    switch (save_data->GetScoreRank())
+                    {
+                    case ScoreRank::S:
+                        score_rank = "S";
+                        break;
 
-    //// 変換された文字列バッファからデータを取得
-    //const char* output = buffer.GetString();
+                    case ScoreRank::A:
+                        score_rank = "A";
+                        break;
 
-    //// JSONファイルとして出力
-    //std::ofstream outFile(inFileName);
-    //if (outFile.is_open())
-    //{
-    //    outFile << output;
-    //}
+                    case ScoreRank::B:
+                        score_rank = "B";
+                        break;
+
+                    case ScoreRank::C:
+                        score_rank = "C";
+                        break;
+
+                    case ScoreRank::D:
+                        score_rank = "D";
+                        break;
+
+                    default:
+                        assert(!"SaveDataManager::CreateNewJSONDataFile()：不正なスコアランクが指定されています！");
+                        break;
+                    }
+
+                    JSONHelper::AddString(doc.GetAllocator(), save_data_object, "score_rank", score_rank);
+                }
+
+                // rapidjsonでのオブジェクト名の生成
+                rapidjson::Value rapidjson_object_data_name_;
+                {
+                    rapidjson_object_data_name_.SetString(save_data_name.c_str(), doc.GetAllocator());
+                }
+
+                //セーブデータオブジェクトをメンバとして追加
+                doc.AddMember(rapidjson_object_data_name_, save_data_object, doc.GetAllocator());
+            }
+        }
+    }
+
+    // ファイル出力
+    {
+        // JSON用の文字列バッファを作成
+        rapidjson::StringBuffer buffer;
+
+        // 純粋な文字列バッファのアドレスを登録。文字列バッファをインデントされた状態へ変換できるように
+        rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
+
+        // ドキュメントの文字列バッファを構文解析。PrettyWriterによってインデントされた状態へ。
+        doc.Accept(writer);
+
+        // 変換された文字列バッファからデータを取得
+        const char* output = buffer.GetString();
+
+        // JSONファイルとして出力
+        std::ofstream outFile(inFileName);
+        if (outFile.is_open())
+        {
+            outFile << output;
+        }
+    }
+}
+
+/*-----------------------------------------------------------------------------
+/* スコアランクを文字へ変換する処理
+-----------------------------------------------------------------------------*/
+char SaveDataManager::ConvertToChar(ScoreRank scoreRank)
+{
+    char score_rank = '\0';
+
+    switch (scoreRank)
+    {
+    case ScoreRank::S:
+        score_rank = 'S';
+        break;
+
+    case ScoreRank::A:
+        score_rank = 'A';
+        break;
+
+    case ScoreRank::B:
+        score_rank = 'B';
+        break;
+
+    case ScoreRank::C:
+        score_rank = 'C';
+        break;
+
+    case ScoreRank::D:
+        score_rank = 'D';
+        break;
+
+    default:
+        assert(!"SaveDataManager::ConvertToChar()：不正なスコアランクが指定されています！");
+        break;
+    }
+
+    return score_rank;
+}
+
+/*-----------------------------------------------------------------------------
+/* セーブデータの作成処理
+-----------------------------------------------------------------------------*/
+void SaveDataManager::CreateSaveData(int score)
+{
+    //セーブデータのパラメータ
+    ScoreRank score_rank = ScoreRank::None;
+
+    // ランクのスコア上限ランク
+    int score_rank_limits[static_cast<int>(ScoreRankLimits::Max)] =
+    {
+        static_cast<int>(ScoreRankLimits::D),
+        static_cast<int>(ScoreRankLimits::C),
+        static_cast<int>(ScoreRankLimits::B),
+        static_cast<int>(ScoreRankLimits::A),
+        static_cast<int>(ScoreRankLimits::S)
+    };
+
+    // スコアランク配列
+    ScoreRank score_rank_list[static_cast<int>(ScoreRank::Max)] =
+    {
+        ScoreRank::D,
+        ScoreRank::C,
+        ScoreRank::B,
+        ScoreRank::A,
+        ScoreRank::S
+    };
+
+    // スコアのランクを計算
+    for (int i = 0; i < MAX_SAVE_DATA_COUNT; i++)
+    {
+        if (score <= static_cast<int>(score_rank_limits[i]))
+        {
+            score_rank = score_rank_list[i];
+        }
+    }
+
+    // セーブデータの追加処理
+    this->AddSaveData(NEW SaveData(score, score_rank));
+}
+
+/*-----------------------------------------------------------------------------
+/* セーブデータの追加処理
+-----------------------------------------------------------------------------*/
+void SaveDataManager::AddSaveData(SaveData* data)
+{
+    //描画優先順位
+    int	score = data->GetScore();
+
+    //挿入できるまでコンポーネントの検索
+    auto iter = save_data_list_.begin();
+    for (;
+        iter != save_data_list_.end();
+        ++iter)
+    {
+        if (score > (*iter)->GetScore())
+        {
+            break;
+        }
+    }
+    save_data_list_.insert(iter, data);	//挿入
+}
+
+/*-----------------------------------------------------------------------------
+/* セーブデータの削除処理
+-----------------------------------------------------------------------------*/
+void SaveDataManager::RemoveSaveData(SaveData* data)
+{
+    auto iter = std::find(save_data_list_.begin()	//範囲0～
+                         , save_data_list_.end()	//範囲最大まで
+                         , data);			        //探す対象
+
+    if (iter != save_data_list_.end())
+    {
+        save_data_list_.erase(iter);
+    }
+}
+
+/*-----------------------------------------------------------------------------
+/* JSONファイルへのセーブ処理
+-----------------------------------------------------------------------------*/
+void SaveDataManager::SortBySaveData(void)
+{
+    std::stable_sort(
+        save_data_list_.begin()
+        , save_data_list_.end()
+        , [](const SaveData* left, const SaveData* right)
+        {
+            if (left->GetScore() == right->GetScore())
+            {
+
+                return left->GetScore() < right->GetScore();
+            }
+            else
+            {
+                return left->GetScore() > right->GetScore();
+            }
+        }
+    );
 }
 
 /*=============================================================================

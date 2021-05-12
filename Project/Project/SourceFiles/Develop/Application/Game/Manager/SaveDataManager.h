@@ -15,18 +15,55 @@
 enum class ScoreRank
 {
 	None = -1
-	, S = 'S'
-	, A = 'A'
-	, B = 'B'
-	, C = 'C'
-	, D = 'D'
+	, S
+	, A
+	, B
+	, C
+	, D
 	, Max
 };
 
-// セーブデータ構造体
-struct SaveData
+// スコアランクの上限値
+enum class ScoreRankLimits
 {
-	int		  ranking_;
+	None = -1
+	, S = 4000
+	, A = 3000
+	, B = 2000
+	, C = 1000
+	, D =  500
+	, Max
+};
+
+// セーブデータクラス　
+class SaveData
+{
+public:
+	SaveData(void)
+		: score_(0)
+		, score_rank_(ScoreRank::None)
+	{}
+
+	SaveData(int score, ScoreRank socreRank)
+		: score_(score)
+		, score_rank_(socreRank)
+	{}
+
+	SaveData(SaveData& data)
+		: score_(data.score_)
+		, score_rank_(data.score_rank_)
+	{}
+
+	~SaveData(void)
+	{}
+
+	inline int GetScore(void) const { return score_; }
+	inline void SetScore(int score) { score_ = score; }
+
+	inline ScoreRank GetScoreRank(void) const { return score_rank_; }
+	inline void SetScoreRank(ScoreRank scoreRank) { score_rank_ = scoreRank; }
+
+private:
 	int		  score_;
 	ScoreRank score_rank_;
 };
@@ -54,8 +91,8 @@ private:
 	// JSONファイルの作成
 	void CreateNewJSONDataFile(const std::string& inFileName);
 
-	// JSONファイルの読み込みとセーブ
 public:
+	// JSONファイルの読み込みとセーブ
 	bool LoadJSON(const std::string& inFileName);
 	void SaveJSON(const std::string& inFileName);
 
@@ -63,7 +100,15 @@ public:
 public:
 	class Game* GetGame(void) { return game_; }
 
-	std::vector<SaveData> GetSaveDataList(void) { return save_data_list_; }
+	const std::vector<SaveData*>& GetSaveDataList(void) { return save_data_list_; }
+
+	char ConvertToChar(ScoreRank scoreRank);
+
+	// セーブデータの処理
+	void CreateSaveData(int score);
+	void AddSaveData(class SaveData* data);
+	void RemoveSaveData(class SaveData* data);
+	void SortBySaveData(void);
 
 private:
 	// マネージャーの所有者
@@ -79,7 +124,7 @@ private:
 	static constexpr int MAX_SAVE_DATA_COUNT = 5;
 
 	// セーブデータのコンテナ
-	std::vector<SaveData> save_data_list_;
+	std::vector<SaveData*> save_data_list_;
 };
 
 

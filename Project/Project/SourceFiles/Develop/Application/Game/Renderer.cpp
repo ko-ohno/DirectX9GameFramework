@@ -258,7 +258,7 @@ void Renderer::AddRendererComponentAddress(RendererComponent* rendererComponent)
 	RendererLayerType my_layer_type = rendererComponent->GetRendererLayerType();
 	int				  my_draw_order = rendererComponent->GetDrawOrder();
 
-	//コンテナが空かどうか
+	//挿入できるまでコンポーネントの検索
 	auto iter = renderer_components_.begin();
 	for (;
 		iter != renderer_components_.end();

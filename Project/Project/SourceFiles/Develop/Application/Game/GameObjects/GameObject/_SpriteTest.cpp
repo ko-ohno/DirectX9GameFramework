@@ -112,7 +112,7 @@ void SpriteTest::UpdateGameObject(float deltaTime)
 	sprite_b_->SetScale(128, 128);
 
 
-	ImGui::Begin("DebugSprite");
+	ImGui::Begin("SpriteTest");
 	ImGui::Text(" DEGREE :%f", sprite_->GetDegree());
 	ImGui::Text(" RADIAN :%f", sprite_->GetRadian());
 	ImGui::End();
