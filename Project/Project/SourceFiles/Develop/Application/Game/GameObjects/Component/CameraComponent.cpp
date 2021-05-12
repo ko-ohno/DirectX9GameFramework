@@ -276,6 +276,16 @@ void CameraComponent::ComputeCameraMovement(float deltaTime)
 
 	const bool is_moving = (is_move_front || is_move_back || is_move_left || is_move_right || is_move_up || is_move_down);
 
+	ImGui::Begin("camera");
+	ImGui::Text("");
+	ImGui::Text("MoveFront:W");
+	ImGui::Text("MoveBack :S");
+	ImGui::Text("MoveLeft :A");
+	ImGui::Text("MoveRight:D");
+	ImGui::Text("MoveUp   :Q");
+	ImGui::Text("MoveDown :E");
+	ImGui::End();
+
 	if (is_moving)
 	{
 		//
@@ -339,6 +349,15 @@ void CameraComponent::ComputeRotationCameraPosition(float deltaTime)
 	const bool is_rotation_left  = InputCheck::KeyPress(DIK_LEFTARROW);
 	const bool is_rotation  = (is_rotation_up || is_rotation_down || is_rotation_right || is_rotation_left);
 
+	ImGui::Begin("camera");
+	ImGui::Text("");
+	ImGui::Text("RotationCameraPos:UPARROW");
+	ImGui::Text("RotationCameraPos:DOWNARROW");
+	ImGui::Text("RotationCameraPos:RIGHTARROW");
+	ImGui::Text("RotationCameraPos:LEFTARROW");
+	ImGui::End();
+
+
 	if (is_rotation)
 	{
 		//‰ñ“]‚Ì‘¬“x‚ðƒ‰ƒWƒAƒ“‚É•ÏŠ·
@@ -379,6 +398,15 @@ void CameraComponent::ComputeRotationLookatPosition(float deltaTime)
 	const bool is_rotation_right = InputCheck::KeyPress(DIK_F);
 	const bool is_rotation_left  = InputCheck::KeyPress(DIK_H);
 	const bool is_rotation = (is_rotation_up || is_rotation_down || is_rotation_right || is_rotation_left);
+
+	ImGui::Begin("camera");
+	ImGui::Text("");
+	ImGui::Text("RotationLookatPos:T");
+	ImGui::Text("RotationLookatPos:G");
+	ImGui::Text("RotationLookatPos:F");
+	ImGui::Text("RotationLookatPos:H");
+	ImGui::End();
+
 
 	if (is_rotation)
 	{
