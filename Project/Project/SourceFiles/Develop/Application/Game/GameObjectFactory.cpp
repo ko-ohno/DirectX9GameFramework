@@ -19,6 +19,8 @@
 #include "GameObjects/GameObject/_EffectTest.h"
 #include "GameObjects/GameObject/_AudioTest.h"
 #include "GameObjects/GameObject/_ColliderTest.h"
+#include "GameObjects/GameObject/_SaveDataTest.h"
+
 
 
 //ゲームオブジェクト
@@ -70,7 +72,7 @@ bool GameObjectFactory::StartUp(void)
 		this->AddGameObject(NEW EffectTest(game_));
 		this->AddGameObject(NEW AudioTest(game_));
 		this->AddGameObject(NEW ColliderTest(game_));
-
+		this->AddGameObject(NEW SaveDataTest(game_));
 
 	}
 	return true;

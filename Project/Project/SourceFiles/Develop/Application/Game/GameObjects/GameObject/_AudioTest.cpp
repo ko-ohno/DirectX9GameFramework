@@ -85,22 +85,27 @@ void AudioTest::UpdateGameObject(float deltaTime)
 	static float volume = 0.2f;
 
 	ImGui::Begin("SoundTest");
-	ImGui::SliderFloat("BGM_volume", &volume, 0.000f, 1.000f);
+	ImGui::Text("BGM_Volume:");
+	ImGui::SameLine();
+	ImGui::SliderFloat("", &volume, 0.000f, 1.000f);
 	
-	
+	ImGui::Text("AllSounds:");
+	ImGui::SameLine();
 	if (ImGui::Button("Stop"))
 	{
 		this->GetGame()->GetSoundManager()->SetPausedToAllSound(true);
 	}
 
+	ImGui::Text("AllSounds:");
+	ImGui::SameLine();
 	if (ImGui::Button("Replay"))
 	{
 		this->GetGame()->GetSoundManager()->SetPausedToAllSound(false);
 	}
 
-	ImGui::Text("Play : SampleSound");
-
-	if (ImGui::Button("PlaySound"))
+	ImGui::Text("SampleSound:");
+	ImGui::SameLine();
+	if (ImGui::Button("Play"))
 	{
 		audio_component_a_->Play();
 	}

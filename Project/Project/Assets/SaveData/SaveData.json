@@ -1,0 +1,23 @@
+{
+    "version": 1.0,
+    "save_data_1": {
+        "score": 4000,
+        "score_rank": "S"
+    },
+    "save_data_2": {
+        "score": 3000,
+        "score_rank": "A"
+    },
+    "save_data_3": {
+        "score": 2000,
+        "score_rank": "B"
+    },
+    "save_data_4": {
+        "score": 1000,
+        "score_rank": "C"
+    },
+    "save_data_5": {
+        "score": 500,
+        "score_rank": "D"
+    }
+}

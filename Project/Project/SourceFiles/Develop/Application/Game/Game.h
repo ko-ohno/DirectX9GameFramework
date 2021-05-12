@@ -62,7 +62,7 @@ public:
 	class EffectManager*	GetEffectManager(void) { return effect_manager_; }
 	class SoundManager*		GetSoundManager(void) { return sound_manager_; }
 	class ColliderManager*	GetColliderManager(void) { return collider_manager_; }
-
+	class SaveDataManager*	GetSaveDataManager(void) { return save_data_manager_; }
 
 private:
 	//ŠeXVˆ—
@@ -90,6 +90,7 @@ private:
 	class EffectManager*	 effect_manager_;
 	class SoundManager*		 sound_manager_;
 	class ColliderManager*	 collider_manager_;
+	class SaveDataManager*	 save_data_manager_;
 };
 
 
