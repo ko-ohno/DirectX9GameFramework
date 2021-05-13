@@ -7,14 +7,14 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
+#include "../../../../../StdAfx.h"
 #include "_SpriteTest.h"
-#include "../Component/RendererComponent/SpriteRendererComponent.h"
-#include "../../Resource/Texture.h"
+#include "../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../Resource/Texture.h"
 
-#include "../../../ImGui/ImGuiManager.h"
+#include "../../../../ImGui/ImGuiManager.h"
 
-#include "../../Input/InputCheck.h"
+#include "../../../Input/InputCheck.h"
 
 #pragma warning(disable:4996)
 

@@ -7,12 +7,12 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
+#include "../../../../../StdAfx.h"
 #include "_AudioTest.h"
-#include "../Component/AudioComponent.h"
+#include "../../Component/AudioComponent.h"
 
-#include "../../../ImGui/ImGuiManager.h"
-#include "../../Input/InputCheck.h"
+#include "../../../../ImGui/ImGuiManager.h"
+#include "../../../Input/InputCheck.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

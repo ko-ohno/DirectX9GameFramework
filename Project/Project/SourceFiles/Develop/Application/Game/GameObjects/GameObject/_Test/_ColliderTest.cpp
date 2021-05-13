@@ -7,22 +7,22 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
+#include "../../../../../StdAfx.h"
 #include "_ColliderTest.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../../Manager/ColliderManager.h"
 
-#include "../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
-#include "../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
-#include "../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
+#include "../../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
+#include "../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
+#include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 
-#include "../Component/ColliderComponent/SphereColliderComponent.h"
-#include "../Component/ColliderComponent/OBBColliderComponent.h"
+#include "../../Component/ColliderComponent/SphereColliderComponent.h"
+#include "../../Component/ColliderComponent/OBBColliderComponent.h"
 
-#include "../../../Math.h"
+#include "../../../../Math.h"
 
-#include "../../CheckCollision.h"
+#include "../../../CheckCollision.h"
 
-#include "../../../ImGui/ImGuiManager.h"
+#include "../../../../ImGui/ImGuiManager.h"
 
 
 /*-----------------------------------------------------------------------------

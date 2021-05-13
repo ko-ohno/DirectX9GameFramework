@@ -26,11 +26,13 @@ public:
 	enum class TypeID
 	{
 		None = -1
-		//自分自身
+		// 自分自身
 		, GameObject
-
-		//アクター(独立した役割を持つゲームオブジェクト)
+		// カメラ
 		, Camera
+
+		// キャラクター
+		, Character
 		, Enemy
 		, Player
 

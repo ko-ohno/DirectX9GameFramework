@@ -9,7 +9,7 @@
 #define	SAVE_DATA_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../GameObject.h"
 
 /*-------------------------------------
 /* セーブデータテスト用ゲームオブジェクトクラス

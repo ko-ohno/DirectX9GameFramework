@@ -1,37 +1,61 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Player.cpp] エネミーのゲームオブジェクト
+/*	[MeshTest.cpp] メッシュをテストするためのゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エネミーの処理を定義
+/*	説明：メッシュをテストするためのゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "Enemy.h"
-#include "../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../../../StdAfx.h"
+#include "_MeshTest.h"
+#include "../../Component/RendererComponent/StdMeshRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Enemy::Enemy(Game* game)
+MeshTest::MeshTest(Game* game)
 	: GameObject(game)
-	, sprite_(nullptr)
 {
-	//sprite_ = NEW SpriteRendererComponent(this, 10);
+	//ゲームレイヤーで描画
+	this->renderer_layer_type_ = RendererLayerType::Game;
+
+	std_mesh_renderer_component_ = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_->SetMesh(XFileMeshType::Box);
+
+	std_mesh_renderer_component_a = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_a->SetMesh(XFileMeshType::BlueBullet);
+	std_mesh_renderer_component_a->SetTranslationX(-5.f);
+
+
+	std_mesh_renderer_component_b = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_b->SetMesh(XFileMeshType::Cylinder);
+	std_mesh_renderer_component_b->SetTranslationX(5.f);
+
+	std_mesh_renderer_component_c = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_c->SetMesh(XFileMeshType::AirPlane);
+	std_mesh_renderer_component_c->SetTranslationY(-2.f);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Enemy::~Enemy(void)
+MeshTest::~MeshTest(void)
 {
+}
+
+/*-----------------------------------------------------------------------------
+/* ファクトリメソッド
+-----------------------------------------------------------------------------*/
+MeshTest* MeshTest::Create(Game* game)
+{
+	return NEW MeshTest(game);
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Enemy::Init(void)
+bool MeshTest::Init(void)
 {
 	return true;
 }
@@ -39,21 +63,21 @@ bool Enemy::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Enemy::Uninit(void)
+void MeshTest::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* ゲームオブジェクトの入力処理
+/* 入力処理
 -----------------------------------------------------------------------------*/
-void Enemy::InputGameObject(void)
+void MeshTest::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* overrideで自分自身を更新
+/* 更新処理
 -----------------------------------------------------------------------------*/
-void Enemy::UpdateGameObject(float deltaTime)
+void MeshTest::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 }

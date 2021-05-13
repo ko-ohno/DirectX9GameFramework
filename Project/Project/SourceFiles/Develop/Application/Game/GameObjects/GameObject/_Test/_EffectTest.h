@@ -1,30 +1,27 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[AudioTest.h] ゲームオブジェクト
+/*	[EffectTest.h] エフェクトテストゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ゲームオブジェクト
+/*	説明：エフェクトテストゲームオブジェクト
 =============================================================================*/
-#ifndef AUDIO_TEST_H_
-#define	AUDIO_TEST_H_
+#ifndef EFFECT_TEST_H_
+#define	EFFECT_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../GameObject.h"
+
 
 /*-------------------------------------
-/* 構造体
+/* エフェクトテストゲームオブジェクト
 -------------------------------------*/
-
-/*-------------------------------------
-/* クラス
--------------------------------------*/
-class AudioTest : public GameObject
+class EffectTest : public GameObject
 {
 public:
-	AudioTest(class Game* game);
-	~AudioTest(void);
+	EffectTest(class Game* game);
+	~EffectTest(void);
 
-	static AudioTest* Create(class Game* game);
+	static EffectTest* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -34,13 +31,14 @@ public:
 	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
-	class AudioComponent* audio_component_;
+	class EffectRendererComponent* effect_renderer_comp_;
 
-	class AudioComponent* audio_component_a_;
+	class EffectRendererComponent* effect_renderer_comp_a;
+	class EffectRendererComponent* effect_renderer_comp_b;
+
 };
 
-
-#endif //AUDIO_TEST_H_
+#endif //EFFECT_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

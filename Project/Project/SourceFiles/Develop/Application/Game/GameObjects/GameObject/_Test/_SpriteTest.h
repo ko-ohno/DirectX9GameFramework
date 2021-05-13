@@ -1,44 +1,48 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectTest.h] エフェクトテストゲームオブジェクト
+/*	[SpriteTest.h] スプライトのテストゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトテストゲームオブジェクト
+/*	説明：スプライトのテストゲームオブジェクト
 =============================================================================*/
-#ifndef EFFECT_TEST_H_
-#define	EFFECT_TEST_H_
+#ifndef SPRITE_TEST_H_
+#define	SPRITE_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
-
+#include "../../GameObject.h"
 
 /*-------------------------------------
-/* エフェクトテストゲームオブジェクト
+/* 構造体
 -------------------------------------*/
-class EffectTest : public GameObject
+
+/*-------------------------------------
+/* クラス
+-------------------------------------*/
+class SpriteTest : public GameObject
 {
 public:
-	EffectTest(class Game* game);
-	~EffectTest(void);
+	SpriteTest(class Game* game);
+	~SpriteTest(void);
 
-	static EffectTest* Create(class Game* game);
+	static SpriteTest* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
-
+	
 	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
-	class EffectRendererComponent* effect_renderer_comp_;
+	class SpriteRendererComponent* sprite_;
+	 
+	class SpriteRendererComponent* sprite_a_;
 
-	class EffectRendererComponent* effect_renderer_comp_a;
-	class EffectRendererComponent* effect_renderer_comp_b;
-
+	class SpriteRendererComponent* sprite_b_;
 };
 
-#endif //EFFECT_TEST_H_
+
+#endif //SPRITE_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

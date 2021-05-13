@@ -9,7 +9,7 @@
 #define	COLLIDER_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../GameObject.h"
 
 /*-------------------------------------
 /* テスト用ゲームオブジェクト

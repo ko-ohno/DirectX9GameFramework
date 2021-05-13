@@ -7,12 +7,12 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
+#include "../../../../../StdAfx.h"
 #include "_SaveDataTest.h"
-#include "../../Game.h"
-#include "../../Manager/SaveDataManager.h"
+#include "../../../Game.h"
+#include "../../../Manager/SaveDataManager.h"
 
-#include "../../../ImGui/ImGuiManager.h"
+#include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

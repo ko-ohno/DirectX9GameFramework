@@ -1,15 +1,15 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[SpriteTest.h] スプライトのテストゲームオブジェクト
+/*	[AudioTest.h] ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：スプライトのテストゲームオブジェクト
+/*	説明：ゲームオブジェクト
 =============================================================================*/
-#ifndef SPRITE_TEST_H_
-#define	SPRITE_TEST_H_
+#ifndef AUDIO_TEST_H_
+#define	AUDIO_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../GameObject.h"
 
 /*-------------------------------------
 /* 構造体
@@ -18,31 +18,29 @@
 /*-------------------------------------
 /* クラス
 -------------------------------------*/
-class SpriteTest : public GameObject
+class AudioTest : public GameObject
 {
 public:
-	SpriteTest(class Game* game);
-	~SpriteTest(void);
+	AudioTest(class Game* game);
+	~AudioTest(void);
 
-	static SpriteTest* Create(class Game* game);
+	static AudioTest* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
-	
+
 	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
 private:
-	class SpriteRendererComponent* sprite_;
-	 
-	class SpriteRendererComponent* sprite_a_;
+	class AudioComponent* audio_component_;
 
-	class SpriteRendererComponent* sprite_b_;
+	class AudioComponent* audio_component_a_;
 };
 
 
-#endif //SPRITE_TEST_H_
+#endif //AUDIO_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

@@ -9,7 +9,7 @@
 #define	MESH_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../GameObject.h"
 
 /*-------------------------------------
 /* 構造体

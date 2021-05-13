@@ -174,7 +174,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjectFactory.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\VertexData.h">
@@ -213,16 +213,16 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\SpriteShader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_BillboardTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_MeshTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Enemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.h">
@@ -285,10 +285,10 @@
     <ClInclude Include="SourceFiles\External\Effekseer\include\EffekseerRendererDX9.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_EffectTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_AudioTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.h">
@@ -306,7 +306,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_ColliderTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.h">
@@ -330,10 +330,13 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -485,7 +488,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjectFactory.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent.cpp">
@@ -521,16 +524,16 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\SpriteShader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_BillboardTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_MeshTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Enemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.cpp">
@@ -584,10 +587,10 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\EffectRendererComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_EffectTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_AudioTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\OBBColliderComponent.cpp">
@@ -605,7 +608,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ColliderComponent\RectangleColliderComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_ColliderTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent.cpp">
@@ -629,10 +632,13 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

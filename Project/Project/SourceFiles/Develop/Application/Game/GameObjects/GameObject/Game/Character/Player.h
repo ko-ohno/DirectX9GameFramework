@@ -1,45 +1,40 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BillboardTest.h] ビルボードをテストするためのゲームオブジェクト
+/*	[Player.h] プレイヤーのゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ビルボードをテストするためのゲームオブジェクト
+/*	説明：プレイヤーのゲームオブジェクトクラス定義
 =============================================================================*/
-#ifndef BILLBOARD_TEST_H_
-#define	BILLBOARD_TEST_H_
+#ifndef PLAYER_H_
+#define	PLAYER_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../../../GameObject.h"
+
+/*--- 構造体定義 ---*/
+
+/*--- クラスの前方宣言 ---*/
+
 
 /*-------------------------------------
-/* 構造体
+/* プレイヤーのゲームオブジェクトクラス
 -------------------------------------*/
-
-/*-------------------------------------
-/* クラス
--------------------------------------*/
-class BillboardTest : public GameObject
+class Player : public GameObject
 {
 public:
-	BillboardTest(class Game* game);
-	~BillboardTest(void);
+	Player(class Game* game);
+	~Player(void);
 
-	static BillboardTest* Create(class Game* game);
-
-	bool Init(void);	//初期化
-	void Uninit(void);	//終了化
-
-	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	TypeID GetType(void) const override { return TypeID::Player; }
+
 private:
-	class BillboardRendererComponent* billboard_;
-	class BillboardRendererComponent* billboard_a_;
+	class SpriteRendererComponent* sprite_;
 };
 
-
-#endif //BILLBOARD_TEST_H_
+#endif //PLAYER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

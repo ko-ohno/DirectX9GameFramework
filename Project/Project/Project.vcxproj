@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.h" />
@@ -201,8 +202,8 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Enemy.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Player.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\GridGizmoRendererComponent.h" />
@@ -237,8 +238,8 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\PauseMenu.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Result.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_BillboardTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_MeshTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\SkinMeshShader.h" />
@@ -278,14 +279,15 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_win32.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_EffectTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_AudioTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_ColliderTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.cpp" />
@@ -310,8 +312,8 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Enemy.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Player.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Enemy.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Game\Character\Player.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\GridGizmoRendererComponent.cpp" />
@@ -346,8 +348,8 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\PauseMenu.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Result.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_BillboardTest.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_MeshTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_BillboardTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_MeshTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\SkinMeshShader.cpp" />
@@ -382,12 +384,12 @@
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_draw.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SpriteTest.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_EffectTest.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_AudioTest.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_ColliderTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_EffectTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_AudioTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_ColliderTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\GizmoRendererComponent\SphereGizmoRendererComponent.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_SaveDataTest.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />

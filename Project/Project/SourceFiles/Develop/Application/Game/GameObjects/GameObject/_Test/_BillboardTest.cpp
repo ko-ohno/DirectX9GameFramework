@@ -1,63 +1,54 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectTest.cpp] エフェクトテストゲームオブジェクト
+/*	[BillboardTest.cpp] ビルボードをテストするためのゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトテストゲームオブジェクト
+/*	説明：ビルボードをテストするためのゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "_EffectTest.h"
-#include "../Component/RendererComponent/EffectRendererComponent.h"
-#include "../../Resource/Effect.h"
-
-#include "../../../ImGui/ImGuiManager.h"
+#include "../../../../../StdAfx.h"
+#include "_BillboardTest.h"
+#include "../../Component/RendererComponent/BillboardRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-EffectTest::EffectTest(Game* game)
+BillboardTest::BillboardTest(Game* game)
 	: GameObject(game)
-	, effect_renderer_comp_(nullptr)
-	, effect_renderer_comp_a(nullptr)
+	, billboard_(nullptr)
+	, billboard_a_(nullptr)
 {
+	//ゲームレイヤーで描画
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
-	effect_renderer_comp_ = NEW EffectRendererComponent(this);
-	effect_renderer_comp_->SetEffect(EffectType::AfterBurner);
-	effect_renderer_comp_->Play();
+	//スプライトコンポーネントを所有
+	billboard_ = NEW BillboardRendererComponent(this);
+	billboard_->SetTexture(TextureType::Sample);
 
-	effect_renderer_comp_a = NEW EffectRendererComponent(this);
-	effect_renderer_comp_a->SetEffect(EffectType::YellowDust);
-	effect_renderer_comp_a->Play();
-
-	//effect_renderer_comp_b = NEW EffectRendererComponent(this);
-	//effect_renderer_comp_b->SetEffect(EffectType::RedDust);
-	//effect_renderer_comp_b->Play();
-
-
+	billboard_a_ = NEW BillboardRendererComponent(this);
+	billboard_a_->SetTexture(TextureType::Sample);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-EffectTest::~EffectTest(void)
+BillboardTest::~BillboardTest(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* ファクトリメソッド
 -----------------------------------------------------------------------------*/
-EffectTest* EffectTest::Create(Game* game)
+BillboardTest* BillboardTest::Create(Game* game)
 {
-	return NEW EffectTest(game);
+	return NEW BillboardTest(game);
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool EffectTest::Init(void)
+bool BillboardTest::Init(void)
 {
 	return true;
 }
@@ -65,54 +56,37 @@ bool EffectTest::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void EffectTest::Uninit(void)
+void BillboardTest::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void EffectTest::InputGameObject(void)
+void BillboardTest::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void EffectTest::UpdateGameObject(float deltaTime)
+void BillboardTest::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	static float time = 0;
+	billboard_->SetTranslationX(-3.f);
+	auto info = billboard_->GetTextureImageInfo();
+	int wid = info->Width;
+	int het = info->Height;
+	
+	static float val = 0;
+	val += deltaTime * 100;
+	billboard_->SetUVAnimation(int(wid + val), int(het + val), wid, het);
+	
 
-	effect_renderer_comp_->SetTranslationZ(3.f);
+	billboard_a_->SetTranslationX(3.f);
+	billboard_a_->SetUVAnimation(int(wid - val), int(het - val), wid, het);
 
-	static bool isPaused = false;
-
-	ImGui::Begin("EffectTest");
-	ImGui::Text("Paused:");
-	ImGui::SameLine();
-	if (ImGui::Button("EffectPaused or Replay"))
-	{
-		if (isPaused == false)
-		{
-			game_->GetEffectManager()->SetPausedToAllEffect(true);
-			isPaused = true;
-		}
-		else
-		{
-			game_->GetEffectManager()->SetPausedToAllEffect(false);
-			isPaused = false;
-		}
-	}
-	ImGui::End();
-
-	//time += deltaTime;
-	//if (time >= 3.0f)
-	//{
-	//	effect_renderer_comp_a->Stop();
-	//	time = 0.f;
-	//}
 }
 
 /*=============================================================================

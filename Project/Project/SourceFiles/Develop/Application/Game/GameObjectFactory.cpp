@@ -13,20 +13,19 @@
 #include "GameObjects/GameObject.h"
 
 //テスト用
-#include "GameObjects/GameObject/_SpriteTest.h"
-#include "GameObjects/GameObject/_MeshTest.h"
-#include "GameObjects/GameObject/_BillboardTest.h"
-#include "GameObjects/GameObject/_EffectTest.h"
-#include "GameObjects/GameObject/_AudioTest.h"
-#include "GameObjects/GameObject/_ColliderTest.h"
-#include "GameObjects/GameObject/_SaveDataTest.h"
-
-
+#include "GameObjects/GameObject/_Test/_SpriteTest.h"
+#include "GameObjects/GameObject/_Test/_MeshTest.h"
+#include "GameObjects/GameObject/_Test/_BillboardTest.h"
+#include "GameObjects/GameObject/_Test/_EffectTest.h"
+#include "GameObjects/GameObject/_Test/_AudioTest.h"
+#include "GameObjects/GameObject/_Test/_ColliderTest.h"
+#include "GameObjects/GameObject/_Test/_SaveDataTest.h"
+#include "GameObjects/GameObject/Camera.h"
 
 //ゲームオブジェクト
 #include "GameObjects/GameObject/Camera.h"
-#include "GameObjects/GameObject/Player.h"
-#include "GameObjects/GameObject/Enemy.h"
+#include "GameObjects/GameObject/Game/Character/Player.h"
+#include "GameObjects/GameObject/Game/Character/Enemy.h"
 
 
 /*-----------------------------------------------------------------------------
