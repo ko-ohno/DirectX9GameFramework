@@ -1,24 +1,24 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BackGround.h] 背景ゲームオブジェクト
+/*	[Actor.h] アクターゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：背景ゲームオブジェクト
+/*	説明：アクターゲームオブジェクト
 =============================================================================*/
-#ifndef BACK_GROUND_H_
-#define	BACK_GROUND_H_
+#ifndef ACTOR_H_
+#define	ACTOR_H_
 
 /*--- インクルードファイル ---*/
 #include "../GameObject.h"
 
 /*-------------------------------------
-/* 背景ゲームオブジェクト
+/* アクターゲームオブジェクト
 -------------------------------------*/
-class BackGround : public GameObject
+class Actor : public GameObject
 {
 public:
-	BackGround(class Game* game);
-	virtual ~BackGround(void);
+	Actor(class Game* game);
+	virtual ~Actor(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -27,13 +27,13 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::BackGround; }
+	virtual TypeID GetType(void) const { return TypeID::Actor; }
 
 private:
 };
 
 
-#endif //BACK_GROUND_H_
+#endif //ACTOR_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

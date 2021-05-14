@@ -1,39 +1,38 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Actor.h] アクターゲームオブジェクト
+/*	[Enemy.h] 敵ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アクターゲームオブジェクト
+/*	説明： 敵ゲームオブジェクト
 =============================================================================*/
-#ifndef ACTOR_H_
-#define	ACTOR_H_
+#ifndef ENEMY_H_
+#define	ENEMY_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../Actor.h"
 
 /*-------------------------------------
-/* アクターゲームオブジェクト
+/*  敵ゲームオブジェクト
 -------------------------------------*/
-class Actor : public GameObject
+class Enemy : public Actor
 {
 public:
-	Actor(class Game* game);
-	~Actor(void);
+	Enemy(class Game* game);
+	~Enemy(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
-	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Actor; }
+	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
 private:
+	class SpriteRendererComponent* sprite_;
 };
 
-
-#endif //ACTOR_H_
+#endif //ENEMY_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

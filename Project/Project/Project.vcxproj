@@ -177,6 +177,9 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.h" />
     <ClInclude Include="SourceFiles\Develop\Application.h" />
     <ClInclude Include="SourceFiles\Develop\Application\AspectRatio.h" />
     <ClInclude Include="SourceFiles\Develop\Application\DX9Graphics.h" />
@@ -212,7 +215,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor\Enemy.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor\Player.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround.h" />
@@ -292,6 +295,9 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\AspectRatio.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\DX9Graphics.cpp" />
@@ -327,7 +333,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor\Enemy.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Actor\Player.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround.cpp" />

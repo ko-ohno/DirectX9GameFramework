@@ -1,39 +1,38 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BackGround.h] 背景ゲームオブジェクト
+/*	[Player.h] プレイヤーゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：背景ゲームオブジェクト
+/*	説明：プレイヤーゲームオブジェクト
 =============================================================================*/
-#ifndef BACK_GROUND_H_
-#define	BACK_GROUND_H_
+#ifndef PLAYER_H_
+#define	PLAYER_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../Actor.h"
 
 /*-------------------------------------
-/* 背景ゲームオブジェクト
+/* プレイヤーのゲームオブジェクト
 -------------------------------------*/
-class BackGround : public GameObject
+class Player : public Actor
 {
 public:
-	BackGround(class Game* game);
-	virtual ~BackGround(void);
+	Player(class Game* game);
+	~Player(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
-	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::BackGround; }
+	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
+	class SpriteRendererComponent* sprite_;
 };
 
-
-#endif //BACK_GROUND_H_
+#endif //PLAYER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/
