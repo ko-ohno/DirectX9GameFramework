@@ -1,0 +1,203 @@
+\hypertarget{class_shader}{}\doxysection{Shader クラス}
+\label{class_shader}\index{Shader@{Shader}}
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+
+
+Shader の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{class_shader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Shader 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{class_shader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shader_a4e48cd4c25b01fba5a350c4ad0662bdf}{Shader}} (class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$manager)
+\item 
+virtual \mbox{\hyperlink{class_shader_a7ea565f5de1e0d483c688280784f915a}{$\sim$\+Shader}} (void)
+\item 
+virtual bool \mbox{\hyperlink{class_shader_aad9561918b8f33c1dbc93be874a669ad}{Init}} (const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&lpd3d\+\_\+device)
+\item 
+virtual void \mbox{\hyperlink{class_shader_a4590bd82e9b1912adad9c18be7132aff}{Uninit}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_shader_a10d1c09c956680e40ba7b73dcdb35a12}{Shader\+Set}} (class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera, class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$renderer\+Component, class \mbox{\hyperlink{class_texture}{Texture}} $\ast$texture=nullptr)
+\item 
+virtual void \mbox{\hyperlink{class_shader_ab1118e0314b068365ccef427a9c1fdf2}{Shader\+Set}} (class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera, class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$renderer\+Component, class \mbox{\hyperlink{class_material}{Material}} $\ast$material=nullptr)
+\item 
+virtual void \mbox{\hyperlink{class_shader_a87f83f82bc4d06ec23af622b12f915cf}{Set\+Technique}} (const std\+::string \&technique\+Name)
+\item 
+virtual void \mbox{\hyperlink{class_shader_ad3c43749feec99e588ffdf77a0aa1e5f}{Shader\+Pass\+Begin}} (int shader\+Pass\+Number=0)
+\item 
+virtual void \mbox{\hyperlink{class_shader_af56f59ec238c3b5f76bffb930519338a}{Shader\+Pass\+End}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$ \mbox{\hyperlink{class_shader_aad35f250c46aa0928a36aedc365480b8}{manager\+\_\+}}
+\item 
+L\+P\+D\+I\+R\+E\+C\+T3\+D\+V\+E\+R\+T\+E\+X\+D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+N9 \mbox{\hyperlink{class_shader_aaa9ca37d55ff4f60713527fa77c1ebb5}{lpd3d\+\_\+vertex\+\_\+declaration\+\_\+}}
+\item 
+L\+P\+D3\+D\+X\+E\+F\+F\+E\+CT \mbox{\hyperlink{class_shader_aca7334fd9b6c276f41f8a6afbbf46319}{shader\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_shader_a4e48cd4c25b01fba5a350c4ad0662bdf}\label{class_shader_a4e48cd4c25b01fba5a350c4ad0662bdf}} 
+\index{Shader@{Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}}
+{\footnotesize\ttfamily Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_shader_a7ea565f5de1e0d483c688280784f915a}\label{class_shader_a7ea565f5de1e0d483c688280784f915a}} 
+\index{Shader@{Shader}!````~Shader@{$\sim$Shader}}
+\index{````~Shader@{$\sim$Shader}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{$\sim$Shader()}{~Shader()}}
+{\footnotesize\ttfamily Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_shader_a7ea565f5de1e0d483c688280784f915a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_shader_aad9561918b8f33c1dbc93be874a669ad}\label{class_shader_aad9561918b8f33c1dbc93be874a669ad}} 
+\index{Shader@{Shader}!Init@{Init}}
+\index{Init@{Init}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Shader\+::\+Init (\begin{DoxyParamCaption}\item[{const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&}]{lpd3d\+\_\+device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca}{Std\+Mesh\+Shader}}, \mbox{\hyperlink{class_sprite_shader_a72ba7588863bf357007f443da4c7ff80}{Sprite\+Shader}}, \mbox{\hyperlink{class_skin_mesh_shader_ac6ec7b41688e9c973a944a751f838805}{Skin\+Mesh\+Shader}}, \mbox{\hyperlink{class_gizmo_shader_a8428c280fa849c6f037ed452e370c494}{Gizmo\+Shader}}, \mbox{\hyperlink{class_dissolve_fade_shader_acb233e887d905c83d5f32ca8692dbf08}{Dissolve\+Fade\+Shader}}, \mbox{\hyperlink{class_billboard_shader_a38f0597666c9d15ca5b57c2f5ce532e7}{Billboard\+Shader}}で再実装されています。
+
+\mbox{\Hypertarget{class_shader_a87f83f82bc4d06ec23af622b12f915cf}\label{class_shader_a87f83f82bc4d06ec23af622b12f915cf}} 
+\index{Shader@{Shader}!SetTechnique@{SetTechnique}}
+\index{SetTechnique@{SetTechnique}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{SetTechnique()}{SetTechnique()}}
+{\footnotesize\ttfamily virtual void Shader\+::\+Set\+Technique (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{technique\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_std_mesh_shader_aa0143213da2a669435a70e85243ca27d}{Std\+Mesh\+Shader}}で再実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_shader_a87f83f82bc4d06ec23af622b12f915cf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_shader_ad3c43749feec99e588ffdf77a0aa1e5f}\label{class_shader_ad3c43749feec99e588ffdf77a0aa1e5f}} 
+\index{Shader@{Shader}!ShaderPassBegin@{ShaderPassBegin}}
+\index{ShaderPassBegin@{ShaderPassBegin}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{ShaderPassBegin()}{ShaderPassBegin()}}
+{\footnotesize\ttfamily void Shader\+::\+Shader\+Pass\+Begin (\begin{DoxyParamCaption}\item[{int}]{shader\+Pass\+Number = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_shader_ad3c43749feec99e588ffdf77a0aa1e5f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_shader_af56f59ec238c3b5f76bffb930519338a}\label{class_shader_af56f59ec238c3b5f76bffb930519338a}} 
+\index{Shader@{Shader}!ShaderPassEnd@{ShaderPassEnd}}
+\index{ShaderPassEnd@{ShaderPassEnd}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{ShaderPassEnd()}{ShaderPassEnd()}}
+{\footnotesize\ttfamily void Shader\+::\+Shader\+Pass\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_shader_af56f59ec238c3b5f76bffb930519338a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_shader_ab1118e0314b068365ccef427a9c1fdf2}\label{class_shader_ab1118e0314b068365ccef427a9c1fdf2}} 
+\index{Shader@{Shader}!ShaderSet@{ShaderSet}}
+\index{ShaderSet@{ShaderSet}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{ShaderSet()}{ShaderSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Shader\+::\+Shader\+Set (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera,  }\item[{class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$}]{renderer\+Component,  }\item[{class \mbox{\hyperlink{class_material}{Material}} $\ast$}]{material = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_std_mesh_shader_ae7359dca2b19b7722665720b11e98820}{Std\+Mesh\+Shader}}, \mbox{\hyperlink{class_gizmo_shader_a53f288c8452445f6b2498739e36104c7}{Gizmo\+Shader}}で再実装されています。
+
+\mbox{\Hypertarget{class_shader_a10d1c09c956680e40ba7b73dcdb35a12}\label{class_shader_a10d1c09c956680e40ba7b73dcdb35a12}} 
+\index{Shader@{Shader}!ShaderSet@{ShaderSet}}
+\index{ShaderSet@{ShaderSet}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{ShaderSet()}{ShaderSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Shader\+::\+Shader\+Set (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera,  }\item[{class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$}]{renderer\+Component,  }\item[{class \mbox{\hyperlink{class_texture}{Texture}} $\ast$}]{texture = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_sprite_shader_a253ed8e919c150789a5b1f38d08c1037}{Sprite\+Shader}}, \mbox{\hyperlink{class_skin_mesh_shader_afcd9039dc14ef52487c0ebed2d80d206}{Skin\+Mesh\+Shader}}, \mbox{\hyperlink{class_dissolve_fade_shader_a1119659d18077bcc570258d2f996b2dc}{Dissolve\+Fade\+Shader}}, \mbox{\hyperlink{class_billboard_shader_a6054143dea83289b0902c9bcc0710477}{Billboard\+Shader}}で再実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_shader_a10d1c09c956680e40ba7b73dcdb35a12_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_shader_a4590bd82e9b1912adad9c18be7132aff}\label{class_shader_a4590bd82e9b1912adad9c18be7132aff}} 
+\index{Shader@{Shader}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void Shader\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_skin_mesh_shader_a0a08dada24213e856f91ce8646775403}{Skin\+Mesh\+Shader}}で再実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_shader_a4590bd82e9b1912adad9c18be7132aff_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{class_shader_aaa9ca37d55ff4f60713527fa77c1ebb5}\label{class_shader_aaa9ca37d55ff4f60713527fa77c1ebb5}} 
+\index{Shader@{Shader}!lpd3d\_vertex\_declaration\_@{lpd3d\_vertex\_declaration\_}}
+\index{lpd3d\_vertex\_declaration\_@{lpd3d\_vertex\_declaration\_}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{lpd3d\_vertex\_declaration\_}{lpd3d\_vertex\_declaration\_}}
+{\footnotesize\ttfamily L\+P\+D\+I\+R\+E\+C\+T3\+D\+V\+E\+R\+T\+E\+X\+D\+E\+C\+L\+A\+R\+A\+T\+I\+O\+N9 Shader\+::lpd3d\+\_\+vertex\+\_\+declaration\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_shader_aad35f250c46aa0928a36aedc365480b8}\label{class_shader_aad35f250c46aa0928a36aedc365480b8}} 
+\index{Shader@{Shader}!manager\_@{manager\_}}
+\index{manager\_@{manager\_}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{manager\_}{manager\_}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}}$\ast$ Shader\+::manager\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_shader_aca7334fd9b6c276f41f8a6afbbf46319}\label{class_shader_aca7334fd9b6c276f41f8a6afbbf46319}} 
+\index{Shader@{Shader}!shader\_@{shader\_}}
+\index{shader\_@{shader\_}!Shader@{Shader}}
+\doxysubsubsection{\texorpdfstring{shader\_}{shader\_}}
+{\footnotesize\ttfamily L\+P\+D3\+D\+X\+E\+F\+F\+E\+CT Shader\+::shader\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\mbox{\hyperlink{_shader_8h}{Shader.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\mbox{\hyperlink{_shader_8cpp}{Shader.\+cpp}}\end{DoxyCompactItemize}

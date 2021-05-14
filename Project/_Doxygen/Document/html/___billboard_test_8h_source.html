@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/GameObject/_Test/_BillboardTest.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_5893874eac394361f2a7cae3d597a26b.html">GameObject</a></li><li class="navelem"><a class="el" href="dir_d02e84cff7c475ecd81b150f8bc3fe38.html">_Test</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">_BillboardTest.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="___billboard_test_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [BillboardTest.h] ビルボードテスト用ゲームオブジェクト</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：ビルボードテスト用ゲームオブジェクト</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef BILLBOARD_TEST_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define BILLBOARD_TEST_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../GameObject.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* ビルボードテスト用ゲームオブジェクト</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_billboard_test.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_billboard_test.html">BillboardTest</a> : <span class="keyword">public</span> <a class="code" href="class_game_object.html">GameObject</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_billboard_test.html#a5fbb5e574e3be06542b02d982aaaa883">BillboardTest</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_billboard_test.html#af5114626bf5a735782b644be702552cd">~BillboardTest</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_billboard_test.html#ad5aca100e79db7b23e6d5d8c62f8c424">Init</a>(<span class="keywordtype">void</span>);    <span class="comment">//初期化</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_billboard_test.html#a1a8a547d3f4a3bc6a47946da3fa9d882">Uninit</a>(<span class="keywordtype">void</span>);  <span class="comment">//終了化</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//GameObjectの関数overrideして、自身の挙動として定義する</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_billboard_test.html#ad9ac2f1b07ce70c9e6ad252c96370a93">InputGameObject</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_billboard_test.html#a4d00a280bdf1e87f8934588f2b56ea3b">UpdateGameObject</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_billboard_test.html#ab4cd83d06db903349e52c94ca98a9156">   30</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79">TypeID</a> <a class="code" href="class_billboard_test.html#ab4cd83d06db903349e52c94ca98a9156">GetType</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79aacf81da31567089ba42ce3a8c0594756">TypeID::BillboardTest</a>; }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">class </span><a class="code" href="class_billboard_renderer_component.html">BillboardRendererComponent</a>* billboard_;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">class </span><a class="code" href="class_billboard_renderer_component.html">BillboardRendererComponent</a>* billboard_a_;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif //BILLBOARD_TEST_H_</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_billboard_test_html_ad5aca100e79db7b23e6d5d8c62f8c424"><div class="ttname"><a href="class_billboard_test.html#ad5aca100e79db7b23e6d5d8c62f8c424">BillboardTest::Init</a></div><div class="ttdeci">bool Init(void)</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:43</div></div>
+<div class="ttc" id="a___billboard_test_8h_html"><div class="ttname"><a href="___billboard_test_8h.html">_BillboardTest.h</a></div></div>
+<div class="ttc" id="aclass_billboard_test_html_ab4cd83d06db903349e52c94ca98a9156"><div class="ttname"><a href="class_billboard_test.html#ab4cd83d06db903349e52c94ca98a9156">BillboardTest::GetType</a></div><div class="ttdeci">virtual TypeID GetType(void) const</div><div class="ttdef"><b>Definition:</b> _BillboardTest.h:30</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a847476e74d44cc6e6475f4d6a841d731"><div class="ttname"><a href="class_renderer_component.html#a847476e74d44cc6e6475f4d6a841d731">RendererComponent::SetTranslationX</a></div><div class="ttdeci">void SetTranslationX(float posX)</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:77</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a5ef347535fb2060bec106725c8d9cb74"><div class="ttname"><a href="class_billboard_renderer_component.html#a5ef347535fb2060bec106725c8d9cb74">BillboardRendererComponent::SetUVAnimation</a></div><div class="ttdeci">void SetUVAnimation(int textureCutX=0, int textureCutY=0, int textureCutWidth=0, int textureCutHeight=0)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.h:46</div></div>
+<div class="ttc" id="a_renderer_component_8h_html_afcb347a98326ea7641c2c3bf8b9877fea63d72051e901c069f8aa1b32aa0c43bb"><div class="ttname"><a href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fea63d72051e901c069f8aa1b32aa0c43bb">RendererLayerType::Game</a></div><div class="ttdeci">@ Game</div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="aclass_billboard_test_html_a5fbb5e574e3be06542b02d982aaaa883"><div class="ttname"><a href="class_billboard_test.html#a5fbb5e574e3be06542b02d982aaaa883">BillboardTest::BillboardTest</a></div><div class="ttdeci">BillboardTest(class Game *game)</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:17</div></div>
+<div class="ttc" id="aclass_billboard_test_html_ad9ac2f1b07ce70c9e6ad252c96370a93"><div class="ttname"><a href="class_billboard_test.html#ad9ac2f1b07ce70c9e6ad252c96370a93">BillboardTest::InputGameObject</a></div><div class="ttdeci">virtual void InputGameObject(void) override</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:58</div></div>
+<div class="ttc" id="aclass_billboard_test_html_a1a8a547d3f4a3bc6a47946da3fa9d882"><div class="ttname"><a href="class_billboard_test.html#a1a8a547d3f4a3bc6a47946da3fa9d882">BillboardTest::Uninit</a></div><div class="ttdeci">void Uninit(void)</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:51</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_aad469d8c1a900af9670ea34aea5f0cf1"><div class="ttname"><a href="class_billboard_renderer_component.html#aad469d8c1a900af9670ea34aea5f0cf1">BillboardRendererComponent::GetTextureImageInfo</a></div><div class="ttdeci">D3DXIMAGE_INFO * GetTextureImageInfo(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:353</div></div>
+<div class="ttc" id="aclass_billboard_test_html_af5114626bf5a735782b644be702552cd"><div class="ttname"><a href="class_billboard_test.html#af5114626bf5a735782b644be702552cd">BillboardTest::~BillboardTest</a></div><div class="ttdeci">~BillboardTest(void)</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:36</div></div>
+<div class="ttc" id="aclass_billboard_test_html_a4d00a280bdf1e87f8934588f2b56ea3b"><div class="ttname"><a href="class_billboard_test.html#a4d00a280bdf1e87f8934588f2b56ea3b">BillboardTest::UpdateGameObject</a></div><div class="ttdeci">virtual void UpdateGameObject(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> _BillboardTest.cpp:65</div></div>
+<div class="ttc" id="aclass_billboard_test_html"><div class="ttname"><a href="class_billboard_test.html">BillboardTest</a></div><div class="ttdef"><b>Definition:</b> _BillboardTest.h:18</div></div>
+<div class="ttc" id="aclass_game_object_html_a3c3d34a4aedaccafaa27c9e59dcc2b79"><div class="ttname"><a href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79">GameObject::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> GameObject.h:27</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a6cecd97cb181c1d7e950a0c6eede41ef"><div class="ttname"><a href="class_billboard_renderer_component.html#a6cecd97cb181c1d7e950a0c6eede41ef">BillboardRendererComponent::SetTexture</a></div><div class="ttdeci">void SetTexture(TextureType textureTypeID)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:331</div></div>
+<div class="ttc" id="aclass_game_object_html_a4b51caf07a8b87a1f5bcbedb05cfe1c1"><div class="ttname"><a href="class_game_object.html#a4b51caf07a8b87a1f5bcbedb05cfe1c1">GameObject::renderer_layer_type_</a></div><div class="ttdeci">RendererLayerType renderer_layer_type_</div><div class="ttdef"><b>Definition:</b> GameObject.h:141</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html"><div class="ttname"><a href="class_billboard_renderer_component.html">BillboardRendererComponent</a></div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.h:23</div></div>
+<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdef"><b>Definition:</b> Game.h:21</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<div class="ttc" id="aclass_game_object_html_a3c3d34a4aedaccafaa27c9e59dcc2b79aacf81da31567089ba42ce3a8c0594756"><div class="ttname"><a href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79aacf81da31567089ba42ce3a8c0594756">GameObject::TypeID::BillboardTest</a></div><div class="ttdeci">@ BillboardTest</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

@@ -1,0 +1,277 @@
+\hypertarget{class_effect_renderer_component}{}\doxysection{Effect\+Renderer\+Component クラス}
+\label{class_effect_renderer_component}\index{EffectRendererComponent@{EffectRendererComponent}}
+
+
+{\ttfamily \#include $<$Effect\+Renderer\+Component.\+h$>$}
+
+
+
+Effect\+Renderer\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_effect_renderer_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Effect\+Renderer\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_effect_renderer_component_aef8f324aeb96b5b0096600a7366057ce}{Effect\+Renderer\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int draw\+Order=100)
+\item 
+\mbox{\hyperlink{class_effect_renderer_component_ab9b66d29255ef488bd285845a0fb18da}{$\sim$\+Effect\+Renderer\+Component}} (void)
+\item 
+bool \mbox{\hyperlink{class_effect_renderer_component_a3ceeea0a8e5bc502a8183a105c99bb74}{Init}} (void) override
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_ad93b6f3549b8b3fd3a128597ec65e158}{Uninit}} (void) override
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_ae0576183ad5dcd2fc86b09161ca638ec}{Update}} (float delta\+Time) override
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a435487b62a7f1474dd9deff3910ce0c9}{Draw}} (class \mbox{\hyperlink{class_shader}{Shader}} $\ast$shader, class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera) override
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a45a2b78424998f7a12835039a094cc24}{Set\+Effect}} (\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}{Effect\+Type}} effect\+Type\+ID)
+\item 
+class \mbox{\hyperlink{class_effect}{Effect}} $\ast$ \mbox{\hyperlink{class_effect_renderer_component_ae70f81129aabee212b82e4ba61abfe0e}{Get\+Effect}} (void)
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_effect_renderer_component_a0346adf78b93ebabb96ed223ae954038}{Get\+Component\+Type}} () const override
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a0d87c2e9341d00c2eed7e874dcf02925}{Play}} (void)
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a44e6801c07dff1b4df030448bdc54f86}{Play}} (const D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&position)
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a33fe7efe432bdd84b9abe09ea6c65a40}{Play}} (float posX, float posY, float posZ)
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_aa1ab7dc7cf5b36c45b833c55881550af}{Paused}} (bool is\+Paused)
+\item 
+void \mbox{\hyperlink{class_effect_renderer_component_a6a9fcaadb8d6bde5a122df6657dc8e46}{Stop}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_effect_renderer_component_aef8f324aeb96b5b0096600a7366057ce}\label{class_effect_renderer_component_aef8f324aeb96b5b0096600a7366057ce}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!EffectRendererComponent@{EffectRendererComponent}}
+\index{EffectRendererComponent@{EffectRendererComponent}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{EffectRendererComponent()}{EffectRendererComponent()}}
+{\footnotesize\ttfamily Effect\+Renderer\+Component\+::\+Effect\+Renderer\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{draw\+Order = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_aef8f324aeb96b5b0096600a7366057ce_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_ab9b66d29255ef488bd285845a0fb18da}\label{class_effect_renderer_component_ab9b66d29255ef488bd285845a0fb18da}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!````~EffectRendererComponent@{$\sim$EffectRendererComponent}}
+\index{````~EffectRendererComponent@{$\sim$EffectRendererComponent}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$EffectRendererComponent()}{~EffectRendererComponent()}}
+{\footnotesize\ttfamily Effect\+Renderer\+Component\+::$\sim$\+Effect\+Renderer\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_ab9b66d29255ef488bd285845a0fb18da_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_effect_renderer_component_a435487b62a7f1474dd9deff3910ce0c9}\label{class_effect_renderer_component_a435487b62a7f1474dd9deff3910ce0c9}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Draw@{Draw}}
+\index{Draw@{Draw}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Draw (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_shader}{Shader}} $\ast$}]{shader,  }\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_renderer_component_adb21dd64eaf0580f41fc47a5e4c91b51}{Renderer\+Component}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a435487b62a7f1474dd9deff3910ce0c9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a0346adf78b93ebabb96ed223ae954038}\label{class_effect_renderer_component_a0346adf78b93ebabb96ed223ae954038}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} Effect\+Renderer\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a251b83eefdc535a955f39b93b6f46946}{Component}}を実装しています。
+
+\mbox{\Hypertarget{class_effect_renderer_component_ae70f81129aabee212b82e4ba61abfe0e}\label{class_effect_renderer_component_ae70f81129aabee212b82e4ba61abfe0e}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!GetEffect@{GetEffect}}
+\index{GetEffect@{GetEffect}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetEffect()}{GetEffect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_effect}{Effect}} $\ast$ Effect\+Renderer\+Component\+::\+Get\+Effect (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_effect_renderer_component_a3ceeea0a8e5bc502a8183a105c99bb74}\label{class_effect_renderer_component_a3ceeea0a8e5bc502a8183a105c99bb74}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Init@{Init}}
+\index{Init@{Init}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Effect\+Renderer\+Component\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a052af0555618b126140b6e0583ba68b8}{Component}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a3ceeea0a8e5bc502a8183a105c99bb74_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a3ceeea0a8e5bc502a8183a105c99bb74_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_aa1ab7dc7cf5b36c45b833c55881550af}\label{class_effect_renderer_component_aa1ab7dc7cf5b36c45b833c55881550af}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Paused@{Paused}}
+\index{Paused@{Paused}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Paused()}{Paused()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Paused (\begin{DoxyParamCaption}\item[{bool}]{is\+Paused }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_aa1ab7dc7cf5b36c45b833c55881550af_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a44e6801c07dff1b4df030448bdc54f86}\label{class_effect_renderer_component_a44e6801c07dff1b4df030448bdc54f86}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Play@{Play}}
+\index{Play@{Play}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Play (\begin{DoxyParamCaption}\item[{const D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&}]{position = {\ttfamily D3DXVECTOR3(0.f,~0.f,~0.f)} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a44e6801c07dff1b4df030448bdc54f86_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a33fe7efe432bdd84b9abe09ea6c65a40}\label{class_effect_renderer_component_a33fe7efe432bdd84b9abe09ea6c65a40}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Play@{Play}}
+\index{Play@{Play}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Play (\begin{DoxyParamCaption}\item[{float}]{posX = {\ttfamily 0.0f},  }\item[{float}]{posY = {\ttfamily 0.0f},  }\item[{float}]{posZ = {\ttfamily 0.0f} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a33fe7efe432bdd84b9abe09ea6c65a40_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a0d87c2e9341d00c2eed7e874dcf02925}\label{class_effect_renderer_component_a0d87c2e9341d00c2eed7e874dcf02925}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Play@{Play}}
+\index{Play@{Play}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Play (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a0d87c2e9341d00c2eed7e874dcf02925_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a0d87c2e9341d00c2eed7e874dcf02925_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a45a2b78424998f7a12835039a094cc24}\label{class_effect_renderer_component_a45a2b78424998f7a12835039a094cc24}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!SetEffect@{SetEffect}}
+\index{SetEffect@{SetEffect}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetEffect()}{SetEffect()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Set\+Effect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}{Effect\+Type}}}]{effect\+Type\+ID }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a45a2b78424998f7a12835039a094cc24_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a45a2b78424998f7a12835039a094cc24_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_a6a9fcaadb8d6bde5a122df6657dc8e46}\label{class_effect_renderer_component_a6a9fcaadb8d6bde5a122df6657dc8e46}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Stop@{Stop}}
+\index{Stop@{Stop}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_a6a9fcaadb8d6bde5a122df6657dc8e46_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_ad93b6f3549b8b3fd3a128597ec65e158}\label{class_effect_renderer_component_ad93b6f3549b8b3fd3a128597ec65e158}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a23c41e6704042f2f5769388207911436}{Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_ad93b6f3549b8b3fd3a128597ec65e158_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_effect_renderer_component_ae0576183ad5dcd2fc86b09161ca638ec}\label{class_effect_renderer_component_ae0576183ad5dcd2fc86b09161ca638ec}} 
+\index{EffectRendererComponent@{EffectRendererComponent}!Update@{Update}}
+\index{Update@{Update}!EffectRendererComponent@{EffectRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Effect\+Renderer\+Component\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a149d3c9b7d668eb4817dd84dc35bcfcc}{Component}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_effect_renderer_component_ae0576183ad5dcd2fc86b09161ca638ec_cgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_effect_renderer_component_8h}{Effect\+Renderer\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_effect_renderer_component_8cpp}{Effect\+Renderer\+Component.\+cpp}}\end{DoxyCompactItemize}

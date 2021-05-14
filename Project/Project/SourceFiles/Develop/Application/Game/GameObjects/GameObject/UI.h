@@ -30,8 +30,6 @@ enum class UIState
 class UI : public GameObject
 {
 public:
-
-public:
 	UI(class Game* game);
 	virtual ~UI(void);
 
@@ -50,7 +48,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::UI; } //Œã‚Åoverride‚Å‚«‚é‚æ‚¤‚É
 
 protected:
-	//UIObject‚ÌŠ—LÒ
+	//UI‚ÌŠ—LÒ
 	class Game* game_;
 
 	//UI‚Ìó‘Ô

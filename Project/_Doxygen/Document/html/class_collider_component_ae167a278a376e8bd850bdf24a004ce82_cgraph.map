@@ -1,0 +1,6 @@
+<map id="ColliderComponent::ColliderComponent" name="ColliderComponent::ColliderComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="5,64,144,105"/>
+<area shape="rect" id="node2" href="$class_collider_manager.html#a559c9925d0be829a31cf0c2a94ac7635" title=" " alt="" coords="192,5,381,47"/>
+<area shape="rect" id="node3" href="$class_game.html#a14f8b09aa269b3a9b12cd0f3dd31d816" title=" " alt="" coords="197,71,376,98"/>
+<area shape="rect" id="node4" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="207,122,366,149"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Game::GetEffectManager" name="Game::GetEffectManager">
+<area shape="rect" id="node1" title=" " alt="" coords="669,107,839,134"/>
+<area shape="rect" id="node2" href="$class_effect_renderer_component.html#a3ceeea0a8e5bc502a8183a105c99bb74" title=" " alt="" coords="433,5,607,47"/>
+<area shape="rect" id="node4" href="$class_effect_renderer_component.html#a45a2b78424998f7a12835039a094cc24" title=" " alt="" coords="433,71,607,112"/>
+<area shape="rect" id="node6" href="$class_renderer.html#a2088ef71b5bb8effe21f0ced2f383baf" title=" " alt="" coords="457,137,583,163"/>
+<area shape="rect" id="node9" href="$class_effect_test.html#afa9bc1aa6c9850c185c0abd81db4067a" title=" " alt="" coords="419,187,621,214"/>
+<area shape="rect" id="node3" href="$class_effect_renderer_component.html#aef8f324aeb96b5b0096600a7366057ce" title=" " alt="" coords="189,5,371,47"/>
+<area shape="rect" id="node5" href="$class_effect_test.html#adab9bc8fbb89cad10e7ebd9048867221" title=" " alt="" coords="207,78,353,105"/>
+<area shape="rect" id="node7" href="$class_game.html#aad5fedac2c610d50ba07f521a2802019" title=" " alt="" coords="225,137,335,163"/>
+<area shape="rect" id="node8" href="$class_application_manager.html#ac2a59a9b8ed24d6d7c6a9adf47d0d597" title=" " alt="" coords="5,129,141,171"/>
+</map>

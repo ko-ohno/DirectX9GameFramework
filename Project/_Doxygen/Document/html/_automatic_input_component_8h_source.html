@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/InputComponent/AutomaticInputComponent.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_c3798f9fa67b1239b9e0618395cf6c2b.html">Component</a></li><li class="navelem"><a class="el" href="dir_57cd4c0ac1d58ee4012998c966c86691.html">InputComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">AutomaticInputComponent.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_automatic_input_component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [AutomaticInputComponent.h]  デモプレイの自動入力コンポーネント</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：デモプレイの自動入力コンポーネントのクラス定義</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef AUTOMATIC_INPUT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define AUTOMATIC_INPUT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../InputComponent.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*--- 構造体定義 ---*/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*--- クラスの前方宣言 ---*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/* デモプレイの自動入力コンポーネント</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_automatic_input_component.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_automatic_input_component.html">AutomaticInputComponent</a> : <span class="keyword">public</span> <a class="code" href="class_input_component.html">InputComponent</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_automatic_input_component.html#a2c261728aa3b51273eb6929e48196bc3">AutomaticInputComponent</a>(<span class="keyword">class</span> <a class="code" href="class_game_object.html">GameObject</a>* owner, <span class="keywordtype">int</span> updateOrder = 100);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_automatic_input_component.html#a8286e007973dc8458d7c9ec752575b8b">~AutomaticInputComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_automatic_input_component.html#a51a797e64c756a366f90b695ee82c499">Init</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_automatic_input_component.html#a4ec3bac4469a6c14352b1310417f0fa0">Uninit</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_automatic_input_component.html#ace567730a9fd917e49db4300a7d7fab3">Input</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_automatic_input_component.html#a6dbbac29b8f40bee9346a0e3e0653273">Update</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_automatic_input_component.html#a0819446301eb69e790dc800e5ba6ec3f">   33</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> <a class="code" href="class_automatic_input_component.html#a0819446301eb69e790dc800e5ba6ec3f">GetComponentType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">TypeID::AutomaticInputComponent</a>; };</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif //AUTOMATIC_INPUT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_automatic_input_component_html"><div class="ttname"><a href="class_automatic_input_component.html">AutomaticInputComponent</a></div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.h:23</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">Component::TypeID::AutomaticInputComponent</a></div><div class="ttdeci">@ AutomaticInputComponent</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a2c261728aa3b51273eb6929e48196bc3"><div class="ttname"><a href="class_automatic_input_component.html#a2c261728aa3b51273eb6929e48196bc3">AutomaticInputComponent::AutomaticInputComponent</a></div><div class="ttdeci">AutomaticInputComponent(class GameObject *owner, int updateOrder=100)</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:16</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_ace567730a9fd917e49db4300a7d7fab3"><div class="ttname"><a href="class_automatic_input_component.html#ace567730a9fd917e49db4300a7d7fab3">AutomaticInputComponent::Input</a></div><div class="ttdeci">void Input(void) override</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:46</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efa"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a4ec3bac4469a6c14352b1310417f0fa0"><div class="ttname"><a href="class_automatic_input_component.html#a4ec3bac4469a6c14352b1310417f0fa0">AutomaticInputComponent::Uninit</a></div><div class="ttdeci">void Uninit(void) override</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:39</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a0819446301eb69e790dc800e5ba6ec3f"><div class="ttname"><a href="class_automatic_input_component.html#a0819446301eb69e790dc800e5ba6ec3f">AutomaticInputComponent::GetComponentType</a></div><div class="ttdeci">virtual TypeID GetComponentType() const override</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.h:33</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a8286e007973dc8458d7c9ec752575b8b"><div class="ttname"><a href="class_automatic_input_component.html#a8286e007973dc8458d7c9ec752575b8b">AutomaticInputComponent::~AutomaticInputComponent</a></div><div class="ttdeci">~AutomaticInputComponent(void)</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:24</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a6dbbac29b8f40bee9346a0e3e0653273"><div class="ttname"><a href="class_automatic_input_component.html#a6dbbac29b8f40bee9346a0e3e0653273">AutomaticInputComponent::Update</a></div><div class="ttdeci">void Update(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:53</div></div>
+<div class="ttc" id="aclass_automatic_input_component_html_a51a797e64c756a366f90b695ee82c499"><div class="ttname"><a href="class_automatic_input_component.html#a51a797e64c756a366f90b695ee82c499">AutomaticInputComponent::Init</a></div><div class="ttdeci">bool Init(void) override</div><div class="ttdef"><b>Definition:</b> AutomaticInputComponent.cpp:31</div></div>
+<div class="ttc" id="a_automatic_input_component_8h_html"><div class="ttname"><a href="_automatic_input_component_8h.html">AutomaticInputComponent.h</a></div></div>
+<div class="ttc" id="aclass_input_component_html"><div class="ttname"><a href="class_input_component.html">InputComponent</a></div><div class="ttdef"><b>Definition:</b> InputComponent.h:24</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

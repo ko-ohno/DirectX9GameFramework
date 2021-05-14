@@ -1,0 +1,166 @@
+\hypertarget{class_u_i}{}\doxysection{UI クラス}
+\label{class_u_i}\index{UI@{UI}}
+
+
+{\ttfamily \#include $<$U\+I.\+h$>$}
+
+
+
+UI の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_u_i__inherit__graph}
+\end{center}
+\end{figure}
+
+
+UI 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{class_u_i__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_i_ae6532c32826828f35560228645c1c765}{UI}} (class \mbox{\hyperlink{class_game}{Game}} $\ast$game)
+\item 
+virtual \mbox{\hyperlink{class_u_i_a4e4180c3ad19ddf62428ea2d6b5600ab}{$\sim$\+UI}} (void)
+\item 
+bool \mbox{\hyperlink{class_u_i_a2e0c9291f24c3c3a27ba42dde77dda09}{Init}} (void)
+\item 
+void \mbox{\hyperlink{class_u_i_a5346ad574d188225cf3bc013dbfa8ec6}{Uninit}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_u_i_a96bb81eb7d87996aea891bad24babdcf}{Input\+Game\+Object}} (void) override
+\item 
+virtual void \mbox{\hyperlink{class_u_i_aea7b4b1403dcab4421753d00a37f1fc8}{Update\+Game\+Object}} (float delta\+Time) override
+\item 
+void \mbox{\hyperlink{class_u_i_a21b5139050009518af8522438dace991}{Close}} (void)
+\item 
+void \mbox{\hyperlink{class_u_i_a91cd08c2307230e3f5f2b8186682a544}{Set\+State}} (\mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}} state)
+\item 
+\mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}} \mbox{\hyperlink{class_u_i_aa343e9b4c3c036a9a403cea5b0adb076}{Get\+State}} (void)
+\item 
+virtual \mbox{\hyperlink{class_game_object_a3c3d34a4aedaccafaa27c9e59dcc2b79}{Type\+ID}} \mbox{\hyperlink{class_u_i_a97968f868a950b8b0a39e5d4e57ca0be}{Get\+Type}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_game}{Game}} $\ast$ \mbox{\hyperlink{class_u_i_a691d38b1261008a5745bf43f0127e21d}{game\+\_\+}}
+\item 
+\mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}} \mbox{\hyperlink{class_u_i_a11ac1b8b5c51a75683cac5be42a2b758}{state\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_u_i_ae6532c32826828f35560228645c1c765}\label{class_u_i_ae6532c32826828f35560228645c1c765}} 
+\index{UI@{UI}!UI@{UI}}
+\index{UI@{UI}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{UI()}{UI()}}
+{\footnotesize\ttfamily U\+I\+::\+UI (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_u_i_a4e4180c3ad19ddf62428ea2d6b5600ab}\label{class_u_i_a4e4180c3ad19ddf62428ea2d6b5600ab}} 
+\index{UI@{UI}!````~UI@{$\sim$UI}}
+\index{````~UI@{$\sim$UI}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{$\sim$UI()}{~UI()}}
+{\footnotesize\ttfamily U\+I\+::$\sim$\+UI (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_u_i_a21b5139050009518af8522438dace991}\label{class_u_i_a21b5139050009518af8522438dace991}} 
+\index{UI@{UI}!Close@{Close}}
+\index{Close@{Close}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void U\+I\+::\+Close (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_u_i_aa343e9b4c3c036a9a403cea5b0adb076}\label{class_u_i_aa343e9b4c3c036a9a403cea5b0adb076}} 
+\index{UI@{UI}!GetState@{GetState}}
+\index{GetState@{GetState}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{GetState()}{GetState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}} U\+I\+::\+Get\+State (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_u_i_a97968f868a950b8b0a39e5d4e57ca0be}\label{class_u_i_a97968f868a950b8b0a39e5d4e57ca0be}} 
+\index{UI@{UI}!GetType@{GetType}}
+\index{GetType@{GetType}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{GetType()}{GetType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_game_object_a3c3d34a4aedaccafaa27c9e59dcc2b79}{Type\+ID}} U\+I\+::\+Get\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_game_object_a035f0e85a71483f508e9e46d36676782}{Game\+Object}}を再実装しています。
+
+
+
+\mbox{\hyperlink{class_title_ade5e62a4d207665986bd4386b56f7ae9}{Title}}, \mbox{\hyperlink{class_result_a1c5e176c4207cdafaa5f5f03ee49f77a}{Result}}, \mbox{\hyperlink{class_pause_menu_ab8996bad67613292c9591687b131d4a8}{Pause\+Menu}}, \mbox{\hyperlink{class_h_u_d_a86078d12ffb6bd326cb88d789d2fb559}{H\+UD}}, \mbox{\hyperlink{class_fade_abf755ecef48e6d2d132ff3e769bc9e90}{Fade}}で再実装されています。
+
+\mbox{\Hypertarget{class_u_i_a2e0c9291f24c3c3a27ba42dde77dda09}\label{class_u_i_a2e0c9291f24c3c3a27ba42dde77dda09}} 
+\index{UI@{UI}!Init@{Init}}
+\index{Init@{Init}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool U\+I\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_u_i_a96bb81eb7d87996aea891bad24babdcf}\label{class_u_i_a96bb81eb7d87996aea891bad24babdcf}} 
+\index{UI@{UI}!InputGameObject@{InputGameObject}}
+\index{InputGameObject@{InputGameObject}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{InputGameObject()}{InputGameObject()}}
+{\footnotesize\ttfamily void U\+I\+::\+Input\+Game\+Object (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_game_object_aedb4566a13396217f40dd83bc1243980}{Game\+Object}}を再実装しています。
+
+
+
+\mbox{\hyperlink{class_title_a73e574b55881f6fce53291130c470ef5}{Title}}, \mbox{\hyperlink{class_result_a3b84bd2ba920dfcdab9189fd517148f3}{Result}}, \mbox{\hyperlink{class_pause_menu_a8e602d73db8dce0a7e4d9cc49f388760}{Pause\+Menu}}, \mbox{\hyperlink{class_h_u_d_a3316d1dd6f84eff0c1a3950fcfce32b5}{H\+UD}}, \mbox{\hyperlink{class_fade_a11fe0be7da43538b0db40ae9293922c8}{Fade}}で再実装されています。
+
+\mbox{\Hypertarget{class_u_i_a91cd08c2307230e3f5f2b8186682a544}\label{class_u_i_a91cd08c2307230e3f5f2b8186682a544}} 
+\index{UI@{UI}!SetState@{SetState}}
+\index{SetState@{SetState}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{SetState()}{SetState()}}
+{\footnotesize\ttfamily void U\+I\+::\+Set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}}}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_u_i_a5346ad574d188225cf3bc013dbfa8ec6}\label{class_u_i_a5346ad574d188225cf3bc013dbfa8ec6}} 
+\index{UI@{UI}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void U\+I\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_u_i_aea7b4b1403dcab4421753d00a37f1fc8}\label{class_u_i_aea7b4b1403dcab4421753d00a37f1fc8}} 
+\index{UI@{UI}!UpdateGameObject@{UpdateGameObject}}
+\index{UpdateGameObject@{UpdateGameObject}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{UpdateGameObject()}{UpdateGameObject()}}
+{\footnotesize\ttfamily void U\+I\+::\+Update\+Game\+Object (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_game_object_a00511687c00595cc0002b3079190c378}{Game\+Object}}を再実装しています。
+
+
+
+\mbox{\hyperlink{class_title_a007006f737c423bad6f6a2f9675f8607}{Title}}, \mbox{\hyperlink{class_result_af452c2fe48a06a82e0c8da095ce69a7f}{Result}}, \mbox{\hyperlink{class_pause_menu_acd0702029d54842858006237b31378c6}{Pause\+Menu}}, \mbox{\hyperlink{class_h_u_d_a31d61cc8ab56baec190b0ab1bf70a053}{H\+UD}}, \mbox{\hyperlink{class_fade_ad00983cf68f0de0d62820523a3cc7ec0}{Fade}}で再実装されています。
+
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{class_u_i_a691d38b1261008a5745bf43f0127e21d}\label{class_u_i_a691d38b1261008a5745bf43f0127e21d}} 
+\index{UI@{UI}!game\_@{game\_}}
+\index{game\_@{game\_}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{game\_}{game\_}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_game}{Game}}$\ast$ U\+I\+::game\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_u_i_a11ac1b8b5c51a75683cac5be42a2b758}\label{class_u_i_a11ac1b8b5c51a75683cac5be42a2b758}} 
+\index{UI@{UI}!state\_@{state\_}}
+\index{state\_@{state\_}!UI@{UI}}
+\doxysubsubsection{\texorpdfstring{state\_}{state\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_u_i_8h_a46982b6b3247b002a74dde6ca26b2344}{U\+I\+State}} U\+I\+::state\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Game\+Object/\mbox{\hyperlink{_u_i_8h}{U\+I.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Game\+Object/\mbox{\hyperlink{_u_i_8cpp}{U\+I.\+cpp}}\end{DoxyCompactItemize}

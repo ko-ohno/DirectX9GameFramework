@@ -1,0 +1,57 @@
+\hypertarget{_debug_function_8h}{}\doxysection{D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Debug\+Code/\+Debug\+Function.h ファイル}
+\label{_debug_function_8h}\index{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/DebugCode/DebugFunction.h@{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/DebugCode/DebugFunction.h}}
+被依存関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_debug_function_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{名前空間}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_debug_function}{Debug\+Function}}
+\end{DoxyCompactItemize}
+\doxysubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_debug_function_8h_a50ec2ae92b15ebdc866c97f53163e48c}{O\+U\+T\+P\+U\+T\+\_\+\+F\+O\+R\+M\+A\+T\+\_\+\+S\+T\+R\+I\+NG}}(format, ...)~( \mbox{\hyperlink{namespace_debug_function_a2e90bcec003a9d82e6158b0d7ec0576a}{Debug\+Function\+::\+Output\+Format\+String}}(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+\_\+, format, \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+) )
+\begin{DoxyCompactList}\small\item\em このマクロは、「呼び出し先の」\char`\"{}ファイル名\char`\"{}と\char`\"{}行番号\char`\"{}、\char`\"{}関数名\char`\"{}を特定し、第一引数に指定したフォーマット付き文字列を生成します \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\std\+::string \mbox{\hyperlink{namespace_debug_function_a45e5ef8d491c9e06cf197c6bac3d1570}{Debug\+Function\+::\+Format}} (const std\+::string \&fmt, Args ... args)
+\item 
+std\+::string \mbox{\hyperlink{namespace_debug_function_a2e90bcec003a9d82e6158b0d7ec0576a}{Debug\+Function\+::\+Output\+Format\+String}} (const std\+::string \&file\+Name, int line\+Number, const std\+::string \&function\+Name, const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{namespace_debug_function_aba73f1bccd5e6e43a37525bbecc2b8f3}{Debug\+Function\+::\+Printf\+To\+Warning\+Message\+Box}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{namespace_debug_function_a139ed68540e2684c61bf273a583d2bf9}{Debug\+Function\+::\+Printf\+To\+Error\+Message\+Box}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{namespace_debug_function_a5887d4fd95ba20def5cc121f1a0e4449}{Debug\+Function\+::\+Printf\+To\+I\+D\+E\+Runtime\+Output\+Window}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{namespace_debug_function_ad15f65da0b8a95a648d6944a7e197304}{Debug\+Function\+::\+Printf\+To\+C\+U\+I\+Window}} (const char $\ast$format,...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\mbox{\Hypertarget{_debug_function_8h_a50ec2ae92b15ebdc866c97f53163e48c}\label{_debug_function_8h_a50ec2ae92b15ebdc866c97f53163e48c}} 
+\index{DebugFunction.h@{DebugFunction.h}!OUTPUT\_FORMAT\_STRING@{OUTPUT\_FORMAT\_STRING}}
+\index{OUTPUT\_FORMAT\_STRING@{OUTPUT\_FORMAT\_STRING}!DebugFunction.h@{DebugFunction.h}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_FORMAT\_STRING}{OUTPUT\_FORMAT\_STRING}}
+{\footnotesize\ttfamily \#define O\+U\+T\+P\+U\+T\+\_\+\+F\+O\+R\+M\+A\+T\+\_\+\+S\+T\+R\+I\+NG(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})~( \mbox{\hyperlink{namespace_debug_function_a2e90bcec003a9d82e6158b0d7ec0576a}{Debug\+Function\+::\+Output\+Format\+String}}(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+\_\+, format, \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+) )}
+
+
+
+このマクロは、「呼び出し先の」\char`\"{}ファイル名\char`\"{}と\char`\"{}行番号\char`\"{}、\char`\"{}関数名\char`\"{}を特定し、第一引数に指定したフォーマット付き文字列を生成します 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em format} & フォーマット (dとかfとかの) \\
+\hline
+\mbox{\texttt{ in}}  & {\em このパラメータには、char$\ast$型か、std\+::string型などの文字列を渡してください。} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+このマクロの呼び出し先の\char`\"{}ソースファイル名\char`\"{} と \char`\"{}行番号\char`\"{} と \char`\"{}関数名\char`\"{} および、\char`\"{}第一引数に指定したフォーマット付き文字列\char`\"{} を複合したstd\+::string型の文字列データを出力します。 
+\end{DoxyReturn}

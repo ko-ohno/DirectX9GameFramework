@@ -1,0 +1,20 @@
+<map id="WinMain" name="WinMain">
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,79,235"/>
+<area shape="rect" id="node2" href="$class_application.html#a712f26db76f989c82cf3fd7bcc1ac687" title=" " alt="" coords="145,132,262,159"/>
+<area shape="rect" id="node9" href="$class_application.html#af91d52f419731dd59eebd8aa2a325ebb" title=" " alt="" coords="127,208,280,235"/>
+<area shape="rect" id="node12" href="$class_application.html#a056a6cac5f7014c4f702416975ee141b" title=" " alt="" coords="134,309,273,336"/>
+<area shape="rect" id="node3" href="$class_message_loop.html#aeed4790cf8edaf570264c813b4ca1fdc" title=" " alt="" coords="382,107,517,133"/>
+<area shape="rect" id="node4" href="$class_i_manager.html#a8f9a6cb37569e13089f929e6185088f7" title=" " alt="" coords="627,5,802,32"/>
+<area shape="rect" id="node5" href="$class_i_manager.html#a995749f282fc654d8be96a1b10279926" title=" " alt="" coords="659,56,770,83"/>
+<area shape="rect" id="node6" href="$class_message_loop.html#a93eeda5c52625473c2e8e6f0d1c47cbd" title=" " alt="" coords="625,107,805,133"/>
+<area shape="rect" id="node8" href="$class_i_manager.html#a0b17a46b8520a98315baead2e3001aec" title=" " alt="" coords="653,157,777,184"/>
+<area shape="rect" id="node7" href="$class_i_manager.html#a3b3d20c3f7edef985d60b672a1de8ec4" title=" " alt="" coords="859,107,1011,133"/>
+<area shape="rect" id="node10" href="$class_message_loop.html#a5bc40728e8ebca31ef879778b9c6f10b" title=" " alt="" coords="364,208,535,235"/>
+<area shape="rect" id="node11" href="$class_i_manager.html#a32e803a0ea08faab7f5492784fe5f66a" title=" " alt="" coords="657,208,773,235"/>
+<area shape="rect" id="node13" href="$class_message_loop.html#abffe20ba8aaec465a0b0ae01ff0174e3" title=" " alt="" coords="375,259,524,285"/>
+<area shape="rect" id="node15" href="$class_win32_a_p_i_window.html#af48f39d95443aa3078f9c4e755a0c537" title=" " alt="" coords="328,309,571,336"/>
+<area shape="rect" id="node16" href="$namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3" title=" " alt="" coords="345,361,554,402"/>
+<area shape="rect" id="node17" href="$class_message_loop.html#afebdf6635eb2bbff611004cfdcdc311d" title=" " alt="" coords="372,427,527,453"/>
+<area shape="rect" id="node14" href="$class_message_loop.html#a6c5c4b5e9941932bff755887ae2804b8" title=" " alt="" coords="619,259,811,285"/>
+<area shape="rect" id="node18" href="$class_i_manager.html#aaecf6a75d42789bf1bde2e480ba3dc0d" title=" " alt="" coords="665,427,765,453"/>
+</map>

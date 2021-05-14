@@ -1,0 +1,85 @@
+\hypertarget{_im_gui_manager_8h}{}\doxysection{D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Im\+Gui/\+Im\+Gui\+Manager.h ファイル}
+\label{_im_gui_manager_8h}\index{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/ImGui/ImGuiManager.h@{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/ImGui/ImGuiManager.h}}
+{\ttfamily \#include \char`\"{}../../\+Std\+Afx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Math.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../../\+External/\+Im\+Gui/include/imgui.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../../\+External/\+Im\+Gui/include/imgui\+\_\+impl\+\_\+dx9.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../../\+External/\+Im\+Gui/include/imgui\+\_\+impl\+\_\+win32.\+h\char`\"{}}\newline
+Im\+Gui\+Manager.\+h の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_im_gui_manager_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_im_gui_manager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_im_gui_manager}{Im\+Gui\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsection*{名前空間}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_im_gui}{Im\+Gui}}
+\end{DoxyCompactItemize}
+\doxysubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}{Im\+Gui\+Color\+Style}} \{ \newline
+\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa6adf97f83acf6453d4a6a4b1070f3754}{Im\+Gui\+Color\+Style\+::\+None}} = -\/1, 
+\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffaa18366b217ebf811ad1886e4f4f865b2}{Im\+Gui\+Color\+Style\+::\+Dark}}, 
+\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffad35b51b639528d580362ca7042de6a0e}{Im\+Gui\+Color\+Style\+::\+Classic}}, 
+\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa9914a0ce04a7b7b6a8e39bec55064b82}{Im\+Gui\+Color\+Style\+::\+Light}}, 
+\newline
+\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa26a4b44a837bf97b972628509912b4a5}{Im\+Gui\+Color\+Style\+::\+M\+AX}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_im_gui_aec0c9259ca74e643cca93a04ce3d4a07}{Im\+Gui\+::\+Show\+Framerate}} (float delta\+Time)
+\item 
+bool \mbox{\hyperlink{namespace_im_gui_a5d442b8d8b7b85992ff7b97f332e7ebf}{Im\+Gui\+::\+Load\+Texture}} (const char $\ast$file\+Name, L\+P\+D\+I\+R\+E\+C\+T3\+D\+T\+E\+X\+T\+U\+R\+E9 $\ast$src\+Texture, class \mbox{\hyperlink{class_vector2}{Vector2}} \&texture\+Size)
+\item 
+bool \mbox{\hyperlink{namespace_im_gui_a961e96c8c88a3b4c874a1c11a37608ee}{Im\+Gui\+::\+Buffering\+Bar}} (const char $\ast$label, float value, const Im\+Vec2 \&size\+\_\+arg, const Im\+U32 \&bg\+\_\+col, const Im\+U32 \&fg\+\_\+col)
+\item 
+bool \mbox{\hyperlink{namespace_im_gui_a51d4b985dab3b416cb30cf353ce8e49f}{Im\+Gui\+::\+Spinner}} (const char $\ast$label, float radius, int thickness, const Im\+U32 \&color)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型詳解}
+\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}} 
+\index{ImGuiManager.h@{ImGuiManager.h}!ImGuiColorStyle@{ImGuiColorStyle}}
+\index{ImGuiColorStyle@{ImGuiColorStyle}!ImGuiManager.h@{ImGuiManager.h}}
+\doxysubsubsection{\texorpdfstring{ImGuiColorStyle}{ImGuiColorStyle}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}{Im\+Gui\+Color\+Style}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!ImGuiManager.h@{ImGuiManager.h}}\index{ImGuiManager.h@{ImGuiManager.h}!None@{None}}}\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa6adf97f83acf6453d4a6a4b1070f3754}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa6adf97f83acf6453d4a6a4b1070f3754}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dark@{Dark}!ImGuiManager.h@{ImGuiManager.h}}\index{ImGuiManager.h@{ImGuiManager.h}!Dark@{Dark}}}\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffaa18366b217ebf811ad1886e4f4f865b2}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffaa18366b217ebf811ad1886e4f4f865b2}} 
+Dark&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Classic@{Classic}!ImGuiManager.h@{ImGuiManager.h}}\index{ImGuiManager.h@{ImGuiManager.h}!Classic@{Classic}}}\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffad35b51b639528d580362ca7042de6a0e}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffad35b51b639528d580362ca7042de6a0e}} 
+Classic&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Light@{Light}!ImGuiManager.h@{ImGuiManager.h}}\index{ImGuiManager.h@{ImGuiManager.h}!Light@{Light}}}\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa9914a0ce04a7b7b6a8e39bec55064b82}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa9914a0ce04a7b7b6a8e39bec55064b82}} 
+Light&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX@{MAX}!ImGuiManager.h@{ImGuiManager.h}}\index{ImGuiManager.h@{ImGuiManager.h}!MAX@{MAX}}}\mbox{\Hypertarget{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa26a4b44a837bf97b972628509912b4a5}\label{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ffa26a4b44a837bf97b972628509912b4a5}} 
+M\+AX&\\
+\hline
+
+\end{DoxyEnumFields}

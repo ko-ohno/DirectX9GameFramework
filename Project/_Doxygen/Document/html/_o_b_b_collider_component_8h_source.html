@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/ColliderComponent/OBBColliderComponent.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_c3798f9fa67b1239b9e0618395cf6c2b.html">Component</a></li><li class="navelem"><a class="el" href="dir_89744bdc49887354f0caa4667262d07e.html">ColliderComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">OBBColliderComponent.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_o_b_b_collider_component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [OBBColliderComponent.h] OBBコライダコンポーネント</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：OBBコライダコンポーネント</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef OBB_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define OBB_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../ColliderComponent.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* OBBコライダコンポーネントクラス</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_o_b_b_collider_component.html">OBBColliderComponent</a> : <span class="keyword">public</span> <a class="code" href="class_collider_component.html">ColliderComponent</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">   20</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693">NONE</a> = -1</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        , <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383">X</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        , <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0">Y</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        , <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5">Z</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        , <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233">Max</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#ad5601b27864727b0c132ff53b8a0ff09">   30</a></span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> <a class="code" href="class_o_b_b_collider_component.html#ad5601b27864727b0c132ff53b8a0ff09">MAX_AXIS_ELEMENT</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233">AxisType::Max</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">   31</a></span>&#160;    <a class="code" href="class_vector3.html">Vector3</a> <a class="code" href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">position_</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">   32</a></span>&#160;    <a class="code" href="class_vector3.html">Vector3</a> <a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[<a class="code" href="class_o_b_b_collider_component.html#ad5601b27864727b0c132ff53b8a0ff09">MAX_AXIS_ELEMENT</a>];</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a167cbadca979f076381339f84a75ae3e">   33</a></span>&#160;    <span class="keywordtype">float</span>   <a class="code" href="class_o_b_b_collider_component.html#a167cbadca979f076381339f84a75ae3e">axis_length_</a>[<a class="code" href="class_o_b_b_collider_component.html#ad5601b27864727b0c132ff53b8a0ff09">MAX_AXIS_ELEMENT</a>];</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_o_b_b_collider_component.html#a52f05105a8cffb150c85961c5267bf1f">OBBColliderComponent</a>(<span class="keyword">class</span> <a class="code" href="class_game_object.html">GameObject</a>* owner, <span class="keywordtype">int</span> updateOrder = 100);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_o_b_b_collider_component.html#aadaf1861edf05446f3ef2724f4b8e542">~OBBColliderComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a48e94e90680f9a6122842b9a18d93983">   39</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> <a class="code" href="class_o_b_b_collider_component.html#a48e94e90680f9a6122842b9a18d93983">GetComponentType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">TypeID::OBBColliderComponent</a>; };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a405b62ebd7ab65273614ad7b3531fb10">   41</a></span>&#160;    <a class="code" href="class_vector3.html">Vector3</a>* <a class="code" href="class_o_b_b_collider_component.html#a405b62ebd7ab65273614ad7b3531fb10">GetPosition</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> &amp;<a class="code" href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">position_</a>; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#ae4f15f3b6b3ebe7b7eee949662fe1268">   42</a></span>&#160;    <span class="keywordtype">void</span>     <a class="code" href="class_o_b_b_collider_component.html#ae4f15f3b6b3ebe7b7eee949662fe1268">SetPosition</a>(<a class="code" href="class_vector3.html">Vector3</a>&amp; position) { <a class="code" href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">position_</a> = position; }</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a87a91ea9a0e1608b3eeba99d1cfdc5b6">   43</a></span>&#160;    <span class="keywordtype">void</span>     <a class="code" href="class_o_b_b_collider_component.html#a87a91ea9a0e1608b3eeba99d1cfdc5b6">SetPosition</a>(D3DXVECTOR3&amp; position) { <a class="code" href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">position_</a> = position; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#aabb6c8397011096e12ec6ec0ac0344ad">   45</a></span>&#160;    <a class="code" href="class_vector3.html">Vector3</a>* <a class="code" href="class_o_b_b_collider_component.html#aabb6c8397011096e12ec6ec0ac0344ad">GetDirElement</a>(<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a> axisType) { <span class="keywordflow">return</span> &amp;<a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(int)axisType]; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#ac4e72edf1614d0dc61365ae12e4fe55a">   47</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_o_b_b_collider_component.html#ac4e72edf1614d0dc61365ae12e4fe55a">SetDirElement</a>(D3DXMATRIX&amp; element)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        memcpy(&amp;<a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(<span class="keywordtype">int</span>)<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383">AxisType::X</a>], element.m[0], <span class="keyword">sizeof</span>(D3DXVECTOR3));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        memcpy(&amp;<a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(<span class="keywordtype">int</span>)<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0">AxisType::Y</a>], element.m[1], <span class="keyword">sizeof</span>(D3DXVECTOR3));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        memcpy(&amp;<a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(<span class="keywordtype">int</span>)<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5">AxisType::Z</a>], element.m[2], <span class="keyword">sizeof</span>(D3DXVECTOR3));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a2be69f69ecac4aef73c34f1a48384e2c">   54</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_o_b_b_collider_component.html#a2be69f69ecac4aef73c34f1a48384e2c">SetDirElement</a>(D3DXVECTOR3&amp; axisElement, <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a> axisType)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(int)axisType].x_ = axisElement.x;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(<span class="keywordtype">int</span>)axisType].<a class="code" href="class_vector3.html#a0821ce9c600d455c9c9632737336288c">y_</a> = axisElement.y;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(int)axisType].z_ = axisElement.z;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#aedb3ca8cf89d801b5791f3d04a5d0777">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_o_b_b_collider_component.html#aedb3ca8cf89d801b5791f3d04a5d0777">SetDirElement</a>(<a class="code" href="class_vector3.html">Vector3</a>&amp; axisElement, <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a> axisType)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">axis_element_</a>[(int)axisType] = axisElement;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a67b4045cc7012089a9926b4254cd526f">   66</a></span>&#160;    <span class="keywordtype">void</span>     <a class="code" href="class_o_b_b_collider_component.html#a67b4045cc7012089a9926b4254cd526f">SetDirLength</a>(<span class="keywordtype">float</span> axisLength, <a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a> axisType) { <a class="code" href="class_o_b_b_collider_component.html#a167cbadca979f076381339f84a75ae3e">axis_length_</a>[(int)axisType] = axisLength; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a4b2a0c30b81a99214aecc628ffaa7a2f">   67</a></span>&#160;    <span class="keywordtype">float</span>    <a class="code" href="class_o_b_b_collider_component.html#a4b2a0c30b81a99214aecc628ffaa7a2f">GetDirLength</a>(<a class="code" href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">AxisType</a> axisType) { <span class="keywordflow">return</span> <a class="code" href="class_o_b_b_collider_component.html#a167cbadca979f076381339f84a75ae3e">axis_length_</a>[(int)axisType]; }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// 分離軸に投影された軸成分から投影線分長を算出</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_o_b_b_collider_component.html#a6c6a0523de559139c7d86faff331840e">   70</a></span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_o_b_b_collider_component.html#a6c6a0523de559139c7d86faff331840e">LenSegOnSeparateAxis</a>(D3DXVECTOR3* Sep, D3DXVECTOR3* e1, D3DXVECTOR3* e2, D3DXVECTOR3* e3 = 0)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// 3つの内積の絶対値の和で投影線分長を計算</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// 分離軸Sepは標準化されていること</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">float</span> r1 = fabs(D3DXVec3Dot(Sep, e1));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">float</span> r2 = fabs(D3DXVec3Dot(Sep, e2));</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">float</span> r3 = e3 ? (fabs(D3DXVec3Dot(Sep, e3))) : 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> r1 + r2 + r3;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif //OBB_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a67b4045cc7012089a9926b4254cd526f"><div class="ttname"><a href="class_o_b_b_collider_component.html#a67b4045cc7012089a9926b4254cd526f">OBBColliderComponent::SetDirLength</a></div><div class="ttdeci">void SetDirLength(float axisLength, AxisType axisType)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:66</div></div>
+<div class="ttc" id="aclass_collider_component_html"><div class="ttname"><a href="class_collider_component.html">ColliderComponent</a></div><div class="ttdef"><b>Definition:</b> ColliderComponent.h:24</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_ac4e72edf1614d0dc61365ae12e4fe55a"><div class="ttname"><a href="class_o_b_b_collider_component.html#ac4e72edf1614d0dc61365ae12e4fe55a">OBBColliderComponent::SetDirElement</a></div><div class="ttdeci">void SetDirElement(D3DXMATRIX &amp;element)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:47</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a2be69f69ecac4aef73c34f1a48384e2c"><div class="ttname"><a href="class_o_b_b_collider_component.html#a2be69f69ecac4aef73c34f1a48384e2c">OBBColliderComponent::SetDirElement</a></div><div class="ttdeci">void SetDirElement(D3DXVECTOR3 &amp;axisElement, AxisType axisType)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:54</div></div>
+<div class="ttc" id="aclass_vector3_html"><div class="ttname"><a href="class_vector3.html">Vector3</a></div><div class="ttdef"><b>Definition:</b> Math.h:364</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233">OBBColliderComponent::AxisType::Max</a></div><div class="ttdeci">@ Max</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a8bf5601296c6eba94eb28d38e9328079"><div class="ttname"><a href="class_o_b_b_collider_component.html#a8bf5601296c6eba94eb28d38e9328079">OBBColliderComponent::position_</a></div><div class="ttdeci">Vector3 position_</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:31</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a4b2a0c30b81a99214aecc628ffaa7a2f"><div class="ttname"><a href="class_o_b_b_collider_component.html#a4b2a0c30b81a99214aecc628ffaa7a2f">OBBColliderComponent::GetDirLength</a></div><div class="ttdeci">float GetDirLength(AxisType axisType)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:67</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_aadaf1861edf05446f3ef2724f4b8e542"><div class="ttname"><a href="class_o_b_b_collider_component.html#aadaf1861edf05446f3ef2724f4b8e542">OBBColliderComponent::~OBBColliderComponent</a></div><div class="ttdeci">~OBBColliderComponent(void)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.cpp:30</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_ae4f15f3b6b3ebe7b7eee949662fe1268"><div class="ttname"><a href="class_o_b_b_collider_component.html#ae4f15f3b6b3ebe7b7eee949662fe1268">OBBColliderComponent::SetPosition</a></div><div class="ttdeci">void SetPosition(Vector3 &amp;position)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:42</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a87a91ea9a0e1608b3eeba99d1cfdc5b6"><div class="ttname"><a href="class_o_b_b_collider_component.html#a87a91ea9a0e1608b3eeba99d1cfdc5b6">OBBColliderComponent::SetPosition</a></div><div class="ttdeci">void SetPosition(D3DXVECTOR3 &amp;position)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:43</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a200b6b81f1215e43dcb7d04fed265dd4"><div class="ttname"><a href="class_o_b_b_collider_component.html#a200b6b81f1215e43dcb7d04fed265dd4">OBBColliderComponent::axis_element_</a></div><div class="ttdeci">Vector3 axis_element_[MAX_AXIS_ELEMENT]</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:32</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a52f05105a8cffb150c85961c5267bf1f"><div class="ttname"><a href="class_o_b_b_collider_component.html#a52f05105a8cffb150c85961c5267bf1f">OBBColliderComponent::OBBColliderComponent</a></div><div class="ttdeci">OBBColliderComponent(class GameObject *owner, int updateOrder=100)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.cpp:16</div></div>
+<div class="ttc" id="aclass_vector3_html_a0821ce9c600d455c9c9632737336288c"><div class="ttname"><a href="class_vector3.html#a0821ce9c600d455c9c9632737336288c">Vector3::y_</a></div><div class="ttdeci">float y_</div><div class="ttdef"><b>Definition:</b> Math.h:367</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efa"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0">OBBColliderComponent::AxisType::Y</a></div><div class="ttdeci">@ Y</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_aabb6c8397011096e12ec6ec0ac0344ad"><div class="ttname"><a href="class_o_b_b_collider_component.html#aabb6c8397011096e12ec6ec0ac0344ad">OBBColliderComponent::GetDirElement</a></div><div class="ttdeci">Vector3 * GetDirElement(AxisType axisType)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:45</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5">OBBColliderComponent::AxisType::Z</a></div><div class="ttdeci">@ Z</div></div>
+<div class="ttc" id="a_o_b_b_collider_component_8h_html"><div class="ttname"><a href="_o_b_b_collider_component_8h.html">OBBColliderComponent.h</a></div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6">OBBColliderComponent::AxisType</a></div><div class="ttdeci">AxisType</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:21</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a167cbadca979f076381339f84a75ae3e"><div class="ttname"><a href="class_o_b_b_collider_component.html#a167cbadca979f076381339f84a75ae3e">OBBColliderComponent::axis_length_</a></div><div class="ttdeci">float axis_length_[MAX_AXIS_ELEMENT]</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:33</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383">OBBColliderComponent::AxisType::X</a></div><div class="ttdeci">@ X</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693">OBBColliderComponent::AxisType::NONE</a></div><div class="ttdeci">@ NONE</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_aedb3ca8cf89d801b5791f3d04a5d0777"><div class="ttname"><a href="class_o_b_b_collider_component.html#aedb3ca8cf89d801b5791f3d04a5d0777">OBBColliderComponent::SetDirElement</a></div><div class="ttdeci">void SetDirElement(Vector3 &amp;axisElement, AxisType axisType)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:61</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a48e94e90680f9a6122842b9a18d93983"><div class="ttname"><a href="class_o_b_b_collider_component.html#a48e94e90680f9a6122842b9a18d93983">OBBColliderComponent::GetComponentType</a></div><div class="ttdeci">virtual TypeID GetComponentType() const override</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:39</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a6c6a0523de559139c7d86faff331840e"><div class="ttname"><a href="class_o_b_b_collider_component.html#a6c6a0523de559139c7d86faff331840e">OBBColliderComponent::LenSegOnSeparateAxis</a></div><div class="ttdeci">static float LenSegOnSeparateAxis(D3DXVECTOR3 *Sep, D3DXVECTOR3 *e1, D3DXVECTOR3 *e2, D3DXVECTOR3 *e3=0)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:70</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_ad5601b27864727b0c132ff53b8a0ff09"><div class="ttname"><a href="class_o_b_b_collider_component.html#ad5601b27864727b0c132ff53b8a0ff09">OBBColliderComponent::MAX_AXIS_ELEMENT</a></div><div class="ttdeci">static constexpr int MAX_AXIS_ELEMENT</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:30</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">Component::TypeID::OBBColliderComponent</a></div><div class="ttdeci">@ OBBColliderComponent</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html_a405b62ebd7ab65273614ad7b3531fb10"><div class="ttname"><a href="class_o_b_b_collider_component.html#a405b62ebd7ab65273614ad7b3531fb10">OBBColliderComponent::GetPosition</a></div><div class="ttdeci">Vector3 * GetPosition(void)</div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:41</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<div class="ttc" id="aclass_o_b_b_collider_component_html"><div class="ttname"><a href="class_o_b_b_collider_component.html">OBBColliderComponent</a></div><div class="ttdef"><b>Definition:</b> OBBColliderComponent.h:18</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

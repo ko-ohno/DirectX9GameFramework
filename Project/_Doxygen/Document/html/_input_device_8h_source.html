@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/InputDevice/InputDevice.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_a9da0a34931e38e74cf2e94e0dcd6843.html">InputDevice</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InputDevice.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_input_device_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [InputDevice.h] 入力デバイスの機能をまとめた管理クラス定義</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：キーボードや、ゲームパッドなどの処理を管理するクラス定義</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INPUT_DEVICE_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define INPUT_DEVICE_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*--- 構造体定義 ---*/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/* 入力デバイス管理クラス</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_input_device.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_device.html">InputDevice</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_input_device.html#a4b6083dfb9457b7932fc51590c12ce5f">InputDevice</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_input_device.html#a7fe56998c25d89ec579fd0a140de9966">~InputDevice</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_input_device.html">InputDevice</a> * <a class="code" href="class_input_device.html#acb849caa6e3b2297dc83df37142046b2">Create</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device.html#a7f1ad829855f4b0935955e73458081d8">CreateInputDevice</a>(<span class="keyword">const</span> HINSTANCE &amp;hInstance, <span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device.html#a812bd6ca62a4c8dc5deee6e1f5560e60">Update</a>(<span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_keyboard.html">InputDeviceKeyboard</a>* <a class="code" href="class_input_device.html#ad1f161a71b82864c22849ebb2a4013aa">GetDeviceInstanceKeyboard</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_mouse.html">InputDeviceMouse</a>*    <a class="code" href="class_input_device.html#a0091c70e8963bee53bab827f372d4249">GetDeviceInstanceMouse</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_x_input.html">InputDeviceXInput</a>*   <a class="code" href="class_input_device.html#a318e5f6fe57ec81edcc803316449e881">GetDeviceInstanceXInput</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device_x_input.html#a72f3def773a8a65fc5e6edf9d85718e1">Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> Uninit(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    HRESULT CreateDirectInputObject(<span class="keyword">const</span> HINSTANCE &amp;hInstance);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> CreateDeviceKyeboard(<span class="keyword">const</span> LPDIRECTINPUT8 &amp;lpdinputObject, <span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> CreateDeviceMouse(<span class="keyword">const</span> LPDIRECTINPUT8 &amp;lpdinputObject, <span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> CreateDeviceXInput(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_keyboard.html">InputDeviceKeyboard</a>* input_device_keyboard_;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_mouse.html">InputDeviceMouse</a>*    input_device_mouce_;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device_x_input.html">InputDeviceXInput</a>*   input_device_xinput_;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> LPDIRECTINPUT8 lpdinput_object_;     <span class="comment">// DirectInputオブジェクトへのポインタ</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif //INPUT_DEVICE_H_</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_input_device_x_input_html"><div class="ttname"><a href="class_input_device_x_input.html">InputDeviceXInput</a></div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.h:67</div></div>
+<div class="ttc" id="a_input_device_8h_html"><div class="ttname"><a href="_input_device_8h.html">InputDevice.h</a></div></div>
+<div class="ttc" id="a_input_device_keyboard_8h_html"><div class="ttname"><a href="_input_device_keyboard_8h.html">InputDeviceKeyboard.h</a></div></div>
+<div class="ttc" id="aclass_input_device_html_acb849caa6e3b2297dc83df37142046b2"><div class="ttname"><a href="class_input_device.html#acb849caa6e3b2297dc83df37142046b2">InputDevice::Create</a></div><div class="ttdeci">static InputDevice * Create(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:42</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a8bb7fd178355fcdd0136690e99afc7b4"><div class="ttname"><a href="class_input_device_keyboard.html#a8bb7fd178355fcdd0136690e99afc7b4">InputDeviceKeyboard::CreateDeviceKeyboard</a></div><div class="ttdeci">HRESULT CreateDeviceKeyboard(const LPDIRECTINPUT8 &amp;lpdinput_interface_object, const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:35</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a72f3def773a8a65fc5e6edf9d85718e1"><div class="ttname"><a href="class_input_device_x_input.html#a72f3def773a8a65fc5e6edf9d85718e1">InputDeviceXInput::Init</a></div><div class="ttdeci">void Init(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:31</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a615702c73d3c82afdd93d64d72c8867a"><div class="ttname"><a href="_std_afx_8h.html#a615702c73d3c82afdd93d64d72c8867a">SAFE_DELETE_</a></div><div class="ttdeci">#define SAFE_DELETE_(p)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:100</div></div>
+<div class="ttc" id="aclass_input_device_html_a4b6083dfb9457b7932fc51590c12ce5f"><div class="ttname"><a href="class_input_device.html#a4b6083dfb9457b7932fc51590c12ce5f">InputDevice::InputDevice</a></div><div class="ttdeci">InputDevice(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:26</div></div>
+<div class="ttc" id="a_input_device_x_input_8h_html"><div class="ttname"><a href="_input_device_x_input_8h.html">InputDeviceXInput.h</a></div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="a_input_device_mouse_8h_html"><div class="ttname"><a href="_input_device_mouse_8h.html">InputDeviceMouse.h</a></div></div>
+<div class="ttc" id="aclass_input_device_html_a7f1ad829855f4b0935955e73458081d8"><div class="ttname"><a href="class_input_device.html#a7f1ad829855f4b0935955e73458081d8">InputDevice::CreateInputDevice</a></div><div class="ttdeci">bool CreateInputDevice(const HINSTANCE &amp;hInstance, const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:113</div></div>
+<div class="ttc" id="aclass_input_device_html_a0091c70e8963bee53bab827f372d4249"><div class="ttname"><a href="class_input_device.html#a0091c70e8963bee53bab827f372d4249">InputDevice::GetDeviceInstanceMouse</a></div><div class="ttdeci">static class InputDeviceMouse * GetDeviceInstanceMouse(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:97</div></div>
+<div class="ttc" id="aclass_input_device_html_ad1f161a71b82864c22849ebb2a4013aa"><div class="ttname"><a href="class_input_device.html#ad1f161a71b82864c22849ebb2a4013aa">InputDevice::GetDeviceInstanceKeyboard</a></div><div class="ttdeci">static class InputDeviceKeyboard * GetDeviceInstanceKeyboard(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:89</div></div>
+<div class="ttc" id="aclass_input_device_html"><div class="ttname"><a href="class_input_device.html">InputDevice</a></div><div class="ttdef"><b>Definition:</b> InputDevice.h:22</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html"><div class="ttname"><a href="class_input_device_keyboard.html">InputDeviceKeyboard</a></div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.h:23</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a651f8429eeb3ec54d56f2ef722abe5ea"><div class="ttname"><a href="class_input_device_mouse.html#a651f8429eeb3ec54d56f2ef722abe5ea">InputDeviceMouse::Update</a></div><div class="ttdeci">void Update(const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:191</div></div>
+<div class="ttc" id="a_input_device_mouse_8cpp_html_a1d7ab29fdefabdb4e7e7cd27ac4c9934"><div class="ttname"><a href="_input_device_mouse_8cpp.html#a1d7ab29fdefabdb4e7e7cd27ac4c9934">DIRECTINPUT_VERSION</a></div><div class="ttdeci">#define DIRECTINPUT_VERSION</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:13</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_aac9bdfe6ce3ad7a7257548534f730649"><div class="ttname"><a href="class_input_device_x_input.html#aac9bdfe6ce3ad7a7257548534f730649">InputDeviceXInput::Update</a></div><div class="ttdeci">void Update(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:44</div></div>
+<div class="ttc" id="aclass_input_device_html_a812bd6ca62a4c8dc5deee6e1f5560e60"><div class="ttname"><a href="class_input_device.html#a812bd6ca62a4c8dc5deee6e1f5560e60">InputDevice::Update</a></div><div class="ttdeci">void Update(const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:78</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a6922911310c99941718e0b2a1adc9d8e"><div class="ttname"><a href="class_input_device_mouse.html#a6922911310c99941718e0b2a1adc9d8e">InputDeviceMouse::CrateInputDeviceMouse</a></div><div class="ttdeci">HRESULT CrateInputDeviceMouse(const LPDIRECTINPUT8 &amp;lpdinputObject, const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:38</div></div>
+<div class="ttc" id="aclass_input_device_html_a7fe56998c25d89ec579fd0a140de9966"><div class="ttname"><a href="class_input_device.html#a7fe56998c25d89ec579fd0a140de9966">InputDevice::~InputDevice</a></div><div class="ttdeci">~InputDevice(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:34</div></div>
+<div class="ttc" id="aclass_input_device_html_a318e5f6fe57ec81edcc803316449e881"><div class="ttname"><a href="class_input_device.html#a318e5f6fe57ec81edcc803316449e881">InputDevice::GetDeviceInstanceXInput</a></div><div class="ttdeci">static class InputDeviceXInput * GetDeviceInstanceXInput(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:105</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html"><div class="ttname"><a href="class_input_device_mouse.html">InputDeviceMouse</a></div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.h:23</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_ab09cb146fc05c27d90184e51ece91f8d"><div class="ttname"><a href="class_input_device_keyboard.html#ab09cb146fc05c27d90184e51ece91f8d">InputDeviceKeyboard::Update</a></div><div class="ttdeci">void Update(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:104</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

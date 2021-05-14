@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/RendererComponent/BillboardRendererComponent.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_c3798f9fa67b1239b9e0618395cf6c2b.html">Component</a></li><li class="navelem"><a class="el" href="dir_6b0d20879ae2d036a2badf701b0abad4.html">RendererComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">BillboardRendererComponent.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_billboard_renderer_component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [BillboardRendererComponent.h] ビルボードレンダラーコンポネントクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：ビルボードレンダラーコンポネントクラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef BILLBOARD_RENDERER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define BILLBOARD_RENDERER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../RendererComponent.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../../../../Math.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* 構造体</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*----------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/* ビルボードレンダラーコンポネントクラス</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">----------------------------------------*/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_billboard_renderer_component.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_billboard_renderer_component.html">BillboardRendererComponent</a> : <span class="keyword">public</span> <a class="code" href="class_renderer_component.html">RendererComponent</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_billboard_renderer_component.html#a537b31d52b4945f8ec6aec524d84e9c7">BillboardRendererComponent</a>(<span class="keyword">class</span> <a class="code" href="class_game_object.html">GameObject</a>* owner, <span class="keywordtype">int</span> drawOrder = 100);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_billboard_renderer_component.html#a81a27923be5265ebb524adcdac89c7fc">~BillboardRendererComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_billboard_renderer_component.html#a12fd205e360f07baceb1aba930cd1e5b">Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_billboard_renderer_component.html#a47e6b3dd5585019ffd52e45f025106dc">Uninit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_billboard_renderer_component.html#a8187d08d999e58a369dbd6f6104ce884">Draw</a>(<span class="keyword">class</span> <a class="code" href="class_shader.html">Shader</a>* shader, <span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_billboard_renderer_component.html#ad71ffaf0c364be1b591ce53e655d7764">   33</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> <a class="code" href="class_billboard_renderer_component.html#ad71ffaf0c364be1b591ce53e655d7764">GetComponentType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">TypeID::BillboardRendererComponent</a>; };</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//頂点用バッファ作成関数群</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> CreateVertexBuffer(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> CreateIndexBuffer(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> ComputeVertexBuffer(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">//UV座標の計算</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_billboard_renderer_component.html#a5ef347535fb2060bec106725c8d9cb74">   46</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_billboard_renderer_component.html#a5ef347535fb2060bec106725c8d9cb74">SetUVAnimation</a>(<span class="keywordtype">int</span> textureCutX = 0, <span class="keywordtype">int</span> textureCutY = 0, <span class="keywordtype">int</span> textureCutWidth = 0, <span class="keywordtype">int</span> textureCutHeight = 0)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">//UV座標を計算するかのフラグ</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        is_compute_texcord_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">//UV座標の計算</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        texture_cut_x_ = textureCutX;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        texture_cut_y_ = textureCutY;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        texture_cut_width_ = textureCutWidth;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        texture_cut_height_ = textureCutHeight;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//テクスチャの設定</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span>            <a class="code" href="class_billboard_renderer_component.html#a6cecd97cb181c1d7e950a0c6eede41ef">SetTexture</a>(<a class="code" href="_texture_manager_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> textureTypeID);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//テクスチャの取得</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">class </span><a class="code" href="class_texture.html">Texture</a>*  <a class="code" href="class_billboard_renderer_component.html#a30cff5730abef5b3ed59a2165db2f632">GetTexture</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//テクスチャ情報の取得</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    D3DXIMAGE_INFO* <a class="code" href="class_billboard_renderer_component.html#aad469d8c1a900af9670ea34aea5f0cf1">GetTextureImageInfo</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//回転成分の操作</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">//ビルボードなので必要なし</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//inline void SetRotate(float degree) { radian_ = Math::ToRadian(degree); }</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//inline void AddRotate(float addValueDegree) { radian_ += Math::ToRadian(addValueDegree); }</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">//inline float GetRadian(void) const { return radian_; }</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//inline float GetDegree(void) const { return degree_; }</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//全ビルボード共通の頂点用のデータ</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span>            MAX_VERTEX_COUNT = 4;   <span class="comment">//頂点バッファ数</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">static</span> LPDIRECT3DVERTEXBUFFER9  vertex_buffer_;         <span class="comment">//頂点バッファ</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span>            MAX_INDEX_COUNT = 6;    <span class="comment">//インデックスバッファ</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">static</span> LPDIRECT3DINDEXBUFFER9   index_buffer_;          <span class="comment">//インデックスバッファ数</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">static</span> <a class="code" href="struct_v_e_r_t_e_x___m_e_s_h.html">VERTEX_MESH</a>*             vertex_buffer_address_; <span class="comment">//頂点バッファのアドレス</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">static</span> LPWORD*                  index_buffer_address_;  <span class="comment">//インデックスバッファのアドレス</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">//UV座標計算をするか？</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> is_compute_texcord_;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">//UV座標の計算用</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">int</span> texture_cut_x_;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">int</span> texture_cut_y_;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> texture_cut_width_;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> texture_cut_height_;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">//テクスチャデータ</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">class </span><a class="code" href="class_texture.html">Texture</a>* texture_;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// 姿勢制御用のデータ</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">//回転行列</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">//親クラスRendererComponenで定義ずみ</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">//ワールド行列</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">//親クラスRendererComponenで定義ずみ</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">//座標</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">//親クラスRendererComponenで定義ずみ</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">//ポリゴンのサイズ</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">//親クラスRendererComponenで定義ずみ</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">//回転角度</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">//float degree_;</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">//float radian_;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif //BILLBOARD_RENDERER_H_</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_renderer_component_html"><div class="ttname"><a href="class_renderer_component.html">RendererComponent</a></div><div class="ttdef"><b>Definition:</b> RendererComponent.h:41</div></div>
+<div class="ttc" id="aclass_texture_html_ae78a8e477b0de919317f2fe6d06b6fc8"><div class="ttname"><a href="class_texture.html#ae78a8e477b0de919317f2fe6d06b6fc8">Texture::GetTextureImageInfo</a></div><div class="ttdeci">D3DXIMAGE_INFO * GetTextureImageInfo(void)</div><div class="ttdef"><b>Definition:</b> Texture.h:39</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a81a27923be5265ebb524adcdac89c7fc"><div class="ttname"><a href="class_billboard_renderer_component.html#a81a27923be5265ebb524adcdac89c7fc">BillboardRendererComponent::~BillboardRendererComponent</a></div><div class="ttdeci">~BillboardRendererComponent(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:51</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a54c0eb311a6fe23f74c5ba35959e117e"><div class="ttname"><a href="class_renderer_component.html#a54c0eb311a6fe23f74c5ba35959e117e">RendererComponent::vertex_color_</a></div><div class="ttdeci">D3DCOLOR vertex_color_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:152</div></div>
+<div class="ttc" id="a_vertex_data_8h_html_a503c8737b9dddfaef59f50295ffa80e2"><div class="ttname"><a href="_vertex_data_8h.html#a503c8737b9dddfaef59f50295ffa80e2">FVF_VERTEX_STD</a></div><div class="ttdeci">#define FVF_VERTEX_STD</div><div class="ttdef"><b>Definition:</b> VertexData.h:28</div></div>
+<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.h:19</div></div>
+<div class="ttc" id="a_billboard_renderer_component_8h_html"><div class="ttname"><a href="_billboard_renderer_component_8h.html">BillboardRendererComponent.h</a></div></div>
+<div class="ttc" id="aclass_shader_html_a10d1c09c956680e40ba7b73dcdb35a12"><div class="ttname"><a href="class_shader.html#a10d1c09c956680e40ba7b73dcdb35a12">Shader::ShaderSet</a></div><div class="ttdeci">virtual void ShaderSet(class Camera *camera, class RendererComponent *rendererComponent, class Texture *texture=nullptr)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:59</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a5ef347535fb2060bec106725c8d9cb74"><div class="ttname"><a href="class_billboard_renderer_component.html#a5ef347535fb2060bec106725c8d9cb74">BillboardRendererComponent::SetUVAnimation</a></div><div class="ttdeci">void SetUVAnimation(int textureCutX=0, int textureCutY=0, int textureCutWidth=0, int textureCutHeight=0)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.h:46</div></div>
+<div class="ttc" id="aclass_shader_html_af56f59ec238c3b5f76bffb930519338a"><div class="ttname"><a href="class_shader.html#af56f59ec238c3b5f76bffb930519338a">Shader::ShaderPassEnd</a></div><div class="ttdeci">virtual void ShaderPassEnd(void)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:88</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a47e6b3dd5585019ffd52e45f025106dc"><div class="ttname"><a href="class_billboard_renderer_component.html#a47e6b3dd5585019ffd52e45f025106dc">BillboardRendererComponent::Uninit</a></div><div class="ttdeci">void Uninit(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:93</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">Component::TypeID::BillboardRendererComponent</a></div><div class="ttdeci">@ BillboardRendererComponent</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a1588ca66128b728f8c4cfce6e006c472"><div class="ttname"><a href="class_renderer_component.html#a1588ca66128b728f8c4cfce6e006c472">RendererComponent::rotation_matrix_</a></div><div class="ttdeci">D3DXMATRIX rotation_matrix_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:161</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_aad469d8c1a900af9670ea34aea5f0cf1"><div class="ttname"><a href="class_billboard_renderer_component.html#aad469d8c1a900af9670ea34aea5f0cf1">BillboardRendererComponent::GetTextureImageInfo</a></div><div class="ttdeci">D3DXIMAGE_INFO * GetTextureImageInfo(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:353</div></div>
+<div class="ttc" id="a_texture_manager_8h_html_a65468556d79304b3a4bfc464cc12e549"><div class="ttname"><a href="_texture_manager_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a></div><div class="ttdeci">TextureType</div><div class="ttdef"><b>Definition:</b> TextureManager.h:17</div></div>
+<div class="ttc" id="aclass_game_html_a073433e798edb46ed2da577a4c1d9921"><div class="ttname"><a href="class_game.html#a073433e798edb46ed2da577a4c1d9921">Game::GetGraphics</a></div><div class="ttdeci">class DX9Graphics * GetGraphics(void)</div><div class="ttdef"><b>Definition:</b> Game.h:56</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efa"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a12fd205e360f07baceb1aba930cd1e5b"><div class="ttname"><a href="class_billboard_renderer_component.html#a12fd205e360f07baceb1aba930cd1e5b">BillboardRendererComponent::Init</a></div><div class="ttdeci">bool Init(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:60</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_camera_html_a4ac34d943a00ea4ad568617ba8e02408"><div class="ttname"><a href="class_camera.html#a4ac34d943a00ea4ad568617ba8e02408">Camera::GetViewInverseMatrix</a></div><div class="ttdeci">D3DXMATRIX * GetViewInverseMatrix(void)</div><div class="ttdef"><b>Definition:</b> Camera.cpp:83</div></div>
+<div class="ttc" id="aclass_component_html_a70cb743723f7acecf716b58d4e40262d"><div class="ttname"><a href="class_component.html#a70cb743723f7acecf716b58d4e40262d">Component::owner_</a></div><div class="ttdeci">class GameObject * owner_</div><div class="ttdef"><b>Definition:</b> Component.h:106</div></div>
+<div class="ttc" id="aclass_texture_manager_html_a8394fff3fd6a75e8cf9003f0ca26b307"><div class="ttname"><a href="class_texture_manager.html#a8394fff3fd6a75e8cf9003f0ca26b307">TextureManager::LoadTexture</a></div><div class="ttdeci">class Texture * LoadTexture(TextureType textureTypeID)</div><div class="ttdef"><b>Definition:</b> TextureManager.cpp:109</div></div>
+<div class="ttc" id="astruct_v_e_r_t_e_x___s_t_d_html"><div class="ttname"><a href="struct_v_e_r_t_e_x___s_t_d.html">VERTEX_STD</a></div><div class="ttdef"><b>Definition:</b> VertexData.h:21</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_ad71ffaf0c364be1b591ce53e655d7764"><div class="ttname"><a href="class_billboard_renderer_component.html#ad71ffaf0c364be1b591ce53e655d7764">BillboardRendererComponent::GetComponentType</a></div><div class="ttdeci">virtual TypeID GetComponentType() const override</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.h:33</div></div>
+<div class="ttc" id="aclass_game_html_a363350352a2214587b4af4e6b45b7b84"><div class="ttname"><a href="class_game.html#a363350352a2214587b4af4e6b45b7b84">Game::GetTextureManager</a></div><div class="ttdeci">class TextureManager * GetTextureManager(void)</div><div class="ttdef"><b>Definition:</b> Game.h:59</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a6cecd97cb181c1d7e950a0c6eede41ef"><div class="ttname"><a href="class_billboard_renderer_component.html#a6cecd97cb181c1d7e950a0c6eede41ef">BillboardRendererComponent::SetTexture</a></div><div class="ttdeci">void SetTexture(TextureType textureTypeID)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:331</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a537b31d52b4945f8ec6aec524d84e9c7"><div class="ttname"><a href="class_billboard_renderer_component.html#a537b31d52b4945f8ec6aec524d84e9c7">BillboardRendererComponent::BillboardRendererComponent</a></div><div class="ttdeci">BillboardRendererComponent(class GameObject *owner, int drawOrder=100)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:35</div></div>
+<div class="ttc" id="aclass_shader_html_ad3c43749feec99e588ffdf77a0aa1e5f"><div class="ttname"><a href="class_shader.html#ad3c43749feec99e588ffdf77a0aa1e5f">Shader::ShaderPassBegin</a></div><div class="ttdeci">virtual void ShaderPassBegin(int shaderPassNumber=0)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:79</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:23</div></div>
+<div class="ttc" id="aclass_game_object_html_a627f26322a15d2b65fe871b236e34c54"><div class="ttname"><a href="class_game_object.html#a627f26322a15d2b65fe871b236e34c54">GameObject::GetGame</a></div><div class="ttdeci">class Game * GetGame(void) const</div><div class="ttdef"><b>Definition:</b> GameObject.h:107</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a87d4602aece4a4c84a9ab81f7f2fb4c3"><div class="ttname"><a href="class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3">DX9Graphics::GetLPD3DDevice</a></div><div class="ttdeci">static LPDIRECT3DDEVICE9 * GetLPD3DDevice(void)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:71</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a30cff5730abef5b3ed59a2165db2f632"><div class="ttname"><a href="class_billboard_renderer_component.html#a30cff5730abef5b3ed59a2165db2f632">BillboardRendererComponent::GetTexture</a></div><div class="ttdeci">class Texture * GetTexture(void)</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:340</div></div>
+<div class="ttc" id="aclass_renderer_component_html_ab8ea7d00747990d1114c2b91d7d7f7b8"><div class="ttname"><a href="class_renderer_component.html#ab8ea7d00747990d1114c2b91d7d7f7b8">RendererComponent::shader_type_</a></div><div class="ttdeci">ShaderType shader_type_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:140</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html_a8187d08d999e58a369dbd6f6104ce884"><div class="ttname"><a href="class_billboard_renderer_component.html#a8187d08d999e58a369dbd6f6104ce884">BillboardRendererComponent::Draw</a></div><div class="ttdeci">void Draw(class Shader *shader, class Camera *camera) override</div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.cpp:102</div></div>
+<div class="ttc" id="astruct_v_e_r_t_e_x___m_e_s_h_html"><div class="ttname"><a href="struct_v_e_r_t_e_x___m_e_s_h.html">VERTEX_MESH</a></div><div class="ttdef"><b>Definition:</b> VertexData.h:37</div></div>
+<div class="ttc" id="aclass_billboard_renderer_component_html"><div class="ttname"><a href="class_billboard_renderer_component.html">BillboardRendererComponent</a></div><div class="ttdef"><b>Definition:</b> BillboardRendererComponent.h:23</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

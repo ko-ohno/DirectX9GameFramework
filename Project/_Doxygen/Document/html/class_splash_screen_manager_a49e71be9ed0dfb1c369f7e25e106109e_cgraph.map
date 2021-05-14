@@ -1,0 +1,13 @@
+<map id="SplashScreenManager::Init" name="SplashScreenManager::Init">
+<area shape="rect" id="node1" title=" " alt="" coords="5,150,159,191"/>
+<area shape="rect" id="node2" href="$class_d_x9_graphics.html#a2cd0c058f82d5673657d84e60807fccd" title=" " alt="" coords="236,5,379,32"/>
+<area shape="rect" id="node4" href="$class_im_gui_manager.html#ad7897caac88bcc6fd95a895f2a9e9d2b" title=" " alt="" coords="231,56,383,83"/>
+<area shape="rect" id="node5" href="$class_d_x9_graphics.html#a74105159c69b1ff5c65b7ea48f255505" title=" " alt="" coords="456,107,675,133"/>
+<area shape="rect" id="node6" href="$namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3" title=" " alt="" coords="723,219,932,261"/>
+<area shape="rect" id="node7" href="$class_win32_a_p_i_window.html#a114bf249b80001e6abe055fcf54f8c4c" title=" " alt="" coords="207,209,408,250"/>
+<area shape="rect" id="node8" href="$namespace_im_gui.html#a5d442b8d8b7b85992ff7b97f332e7ebf" title=" " alt="" coords="240,275,375,301"/>
+<area shape="rect" id="node10" href="$class_im_gui_manager.html#a3e939d9add6908f8767a00b99cd48a52" title=" " alt="" coords="228,325,387,352"/>
+<area shape="rect" id="node3" href="$class_d_x9_graphics.html#a5ff99a8faab4904e569387e58621d63e" title=" " alt="" coords="475,5,655,32"/>
+<area shape="rect" id="node9" href="$class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3" title=" " alt="" coords="463,245,668,272"/>
+<area shape="rect" id="node11" href="$class_im_gui_manager.html#a681fef9b9d6fbd71208d19425194f273" title=" " alt="" coords="478,347,653,389"/>
+</map>

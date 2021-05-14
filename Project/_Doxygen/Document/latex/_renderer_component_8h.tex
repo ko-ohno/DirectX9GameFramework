@@ -1,0 +1,87 @@
+\hypertarget{_renderer_component_8h}{}\doxysection{D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component.h ファイル}
+\label{_renderer_component_8h}\index{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/RendererComponent.h@{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/RendererComponent.h}}
+{\ttfamily \#include \char`\"{}../\+Component.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Manager/\+Shader\+Manager.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Manager/\+Texture\+Manager.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Manager/\+Mesh\+Manager.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Manager/\+Effect\+Manager.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../../\+D\+X9\+Graphics.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Vertex\+Data.\+h\char`\"{}}\newline
+Renderer\+Component.\+h の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_renderer_component_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_renderer_component_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}}
+\end{DoxyCompactItemize}
+\doxysubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fe}{Renderer\+Layer\+Type}} \{ \newline
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6adf97f83acf6453d4a6a4b1070f3754}{Renderer\+Layer\+Type\+::\+None}} = -\/1, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea03462a41aec357b74c89eb8d272532f7}{Renderer\+Layer\+Type\+::\+Sky}}, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea1298798308dfb56829d42c252adbd973}{Renderer\+Layer\+Type\+::\+Back\+Ground}}, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea63d72051e901c069f8aa1b32aa0c43bb}{Renderer\+Layer\+Type\+::\+Game}}, 
+\newline
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea2f26c1d581b3d996da11d4d07046348d}{Renderer\+Layer\+Type\+::\+Particle\+Effect}}, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea71ff71526d15db86eb50fcac245d183b}{Renderer\+Layer\+Type\+::\+UI}}, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea04e0385c10aefee8e4681617d2f3ef40}{Renderer\+Layer\+Type\+::\+Fade}}, 
+\mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6a061313d22e51e0f25b7cd4dc065233}{Renderer\+Layer\+Type\+::\+Max}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型詳解}
+\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fe}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fe}} 
+\index{RendererComponent.h@{RendererComponent.h}!RendererLayerType@{RendererLayerType}}
+\index{RendererLayerType@{RendererLayerType}!RendererComponent.h@{RendererComponent.h}}
+\doxysubsubsection{\texorpdfstring{RendererLayerType}{RendererLayerType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fe}{Renderer\+Layer\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!None@{None}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6adf97f83acf6453d4a6a4b1070f3754}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6adf97f83acf6453d4a6a4b1070f3754}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sky@{Sky}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!Sky@{Sky}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea03462a41aec357b74c89eb8d272532f7}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea03462a41aec357b74c89eb8d272532f7}} 
+Sky&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BackGround@{BackGround}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!BackGround@{BackGround}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea1298798308dfb56829d42c252adbd973}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea1298798308dfb56829d42c252adbd973}} 
+Back\+Ground&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Game@{Game}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!Game@{Game}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea63d72051e901c069f8aa1b32aa0c43bb}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea63d72051e901c069f8aa1b32aa0c43bb}} 
+Game&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ParticleEffect@{ParticleEffect}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!ParticleEffect@{ParticleEffect}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea2f26c1d581b3d996da11d4d07046348d}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea2f26c1d581b3d996da11d4d07046348d}} 
+Particle\+Effect&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI@{UI}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!UI@{UI}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea71ff71526d15db86eb50fcac245d183b}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea71ff71526d15db86eb50fcac245d183b}} 
+UI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Fade@{Fade}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!Fade@{Fade}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea04e0385c10aefee8e4681617d2f3ef40}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea04e0385c10aefee8e4681617d2f3ef40}} 
+Fade&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Max@{Max}!RendererComponent.h@{RendererComponent.h}}\index{RendererComponent.h@{RendererComponent.h}!Max@{Max}}}\mbox{\Hypertarget{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6a061313d22e51e0f25b7cd4dc065233}\label{_renderer_component_8h_afcb347a98326ea7641c2c3bf8b9877fea6a061313d22e51e0f25b7cd4dc065233}} 
+Max&\\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,151 @@
+\hypertarget{class_im_gui_manager}{}\doxysection{Im\+Gui\+Manager クラス}
+\label{class_im_gui_manager}\index{ImGuiManager@{ImGuiManager}}
+
+
+{\ttfamily \#include $<$Im\+Gui\+Manager.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_im_gui_manager_a127fd9fe6c0ac24252ade24669317157}{$\sim$\+Im\+Gui\+Manager}} (void)
+\item 
+bool \mbox{\hyperlink{class_im_gui_manager_a3e939d9add6908f8767a00b99cd48a52}{Start\+Up}} (class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}} $\ast$dx9\+Graphics, const H\+W\+ND \&window\+Handle)
+\item 
+void \mbox{\hyperlink{class_im_gui_manager_acc4ddaf9aa5173d46b009b7fe1207a08}{Shut\+Down}} (void)
+\item 
+void \mbox{\hyperlink{class_im_gui_manager_a681fef9b9d6fbd71208d19425194f273}{Set\+Default\+Color}} (\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}{Im\+Gui\+Color\+Style}} color\+Style=Im\+Gui\+Color\+Style\+::\+Dark)
+\item 
+void \mbox{\hyperlink{class_im_gui_manager_aa702ecba3f19c6ae5961db98540fbe9b}{Update\+Begin}} (void)
+\item 
+void \mbox{\hyperlink{class_im_gui_manager_acd66a565d9d45833af8632edaaa0b939}{Update\+End}} (void)
+\item 
+void \mbox{\hyperlink{class_im_gui_manager_a74cfcd4b28332a6cec71a865ac37b9c3}{Im\+Gui\+Render}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_im_gui_manager}{Im\+Gui\+Manager}} $\ast$ \mbox{\hyperlink{class_im_gui_manager_ad7897caac88bcc6fd95a895f2a9e9d2b}{Create}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_im_gui_manager_a127fd9fe6c0ac24252ade24669317157}\label{class_im_gui_manager_a127fd9fe6c0ac24252ade24669317157}} 
+\index{ImGuiManager@{ImGuiManager}!````~ImGuiManager@{$\sim$ImGuiManager}}
+\index{````~ImGuiManager@{$\sim$ImGuiManager}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{$\sim$ImGuiManager()}{~ImGuiManager()}}
+{\footnotesize\ttfamily Im\+Gui\+Manager\+::$\sim$\+Im\+Gui\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_im_gui_manager_ad7897caac88bcc6fd95a895f2a9e9d2b}\label{class_im_gui_manager_ad7897caac88bcc6fd95a895f2a9e9d2b}} 
+\index{ImGuiManager@{ImGuiManager}!Create@{Create}}
+\index{Create@{Create}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_im_gui_manager}{Im\+Gui\+Manager}} $\ast$ Im\+Gui\+Manager\+::\+Create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{class_im_gui_manager_ad7897caac88bcc6fd95a895f2a9e9d2b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_a74cfcd4b28332a6cec71a865ac37b9c3}\label{class_im_gui_manager_a74cfcd4b28332a6cec71a865ac37b9c3}} 
+\index{ImGuiManager@{ImGuiManager}!ImGuiRender@{ImGuiRender}}
+\index{ImGuiRender@{ImGuiRender}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{ImGuiRender()}{ImGuiRender()}}
+{\footnotesize\ttfamily void Im\+Gui\+Manager\+::\+Im\+Gui\+Render (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_a74cfcd4b28332a6cec71a865ac37b9c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_a681fef9b9d6fbd71208d19425194f273}\label{class_im_gui_manager_a681fef9b9d6fbd71208d19425194f273}} 
+\index{ImGuiManager@{ImGuiManager}!SetDefaultColor@{SetDefaultColor}}
+\index{SetDefaultColor@{SetDefaultColor}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{SetDefaultColor()}{SetDefaultColor()}}
+{\footnotesize\ttfamily void Im\+Gui\+Manager\+::\+Set\+Default\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_im_gui_manager_8h_ab375eacda48c5a5af4bccfd9163946ff}{Im\+Gui\+Color\+Style}}}]{color\+Style = {\ttfamily ImGuiColorStyle\+:\+:Dark} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_a681fef9b9d6fbd71208d19425194f273_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_a681fef9b9d6fbd71208d19425194f273_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_acc4ddaf9aa5173d46b009b7fe1207a08}\label{class_im_gui_manager_acc4ddaf9aa5173d46b009b7fe1207a08}} 
+\index{ImGuiManager@{ImGuiManager}!ShutDown@{ShutDown}}
+\index{ShutDown@{ShutDown}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{ShutDown()}{ShutDown()}}
+{\footnotesize\ttfamily void Im\+Gui\+Manager\+::\+Shut\+Down (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_acc4ddaf9aa5173d46b009b7fe1207a08_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_a3e939d9add6908f8767a00b99cd48a52}\label{class_im_gui_manager_a3e939d9add6908f8767a00b99cd48a52}} 
+\index{ImGuiManager@{ImGuiManager}!StartUp@{StartUp}}
+\index{StartUp@{StartUp}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{StartUp()}{StartUp()}}
+{\footnotesize\ttfamily bool Im\+Gui\+Manager\+::\+Start\+Up (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}} $\ast$}]{dx9\+Graphics,  }\item[{const H\+W\+ND \&}]{window\+Handle }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_a3e939d9add6908f8767a00b99cd48a52_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_a3e939d9add6908f8767a00b99cd48a52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_aa702ecba3f19c6ae5961db98540fbe9b}\label{class_im_gui_manager_aa702ecba3f19c6ae5961db98540fbe9b}} 
+\index{ImGuiManager@{ImGuiManager}!UpdateBegin@{UpdateBegin}}
+\index{UpdateBegin@{UpdateBegin}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{UpdateBegin()}{UpdateBegin()}}
+{\footnotesize\ttfamily void Im\+Gui\+Manager\+::\+Update\+Begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_aa702ecba3f19c6ae5961db98540fbe9b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_im_gui_manager_acd66a565d9d45833af8632edaaa0b939}\label{class_im_gui_manager_acd66a565d9d45833af8632edaaa0b939}} 
+\index{ImGuiManager@{ImGuiManager}!UpdateEnd@{UpdateEnd}}
+\index{UpdateEnd@{UpdateEnd}!ImGuiManager@{ImGuiManager}}
+\doxysubsubsection{\texorpdfstring{UpdateEnd()}{UpdateEnd()}}
+{\footnotesize\ttfamily void Im\+Gui\+Manager\+::\+Update\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_im_gui_manager_acd66a565d9d45833af8632edaaa0b939_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Im\+Gui/\mbox{\hyperlink{_im_gui_manager_8h}{Im\+Gui\+Manager.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Im\+Gui/\mbox{\hyperlink{_im_gui_manager_8cpp}{Im\+Gui\+Manager.\+cpp}}\end{DoxyCompactItemize}

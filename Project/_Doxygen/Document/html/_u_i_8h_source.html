@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/GameObject/UI.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_5893874eac394361f2a7cae3d597a26b.html">GameObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">UI.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_u_i_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [UI.h] UIのベースクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：このクラスから継承・派生させてUIオブジェクトを作成する</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef UI_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define UI_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../GameObject.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* UIの状態クラス</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">   18</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">UIState</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a6adf97f83acf6453d4a6a4b1070f3754">None</a> = -1</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    , <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a4d3d769b812b6faa6b76e1a8abaece2d">Active</a>    <span class="comment">//活動するUIオブジェクトか？</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    , Closing   <span class="comment">//停止するUIオブジェクトか？</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    , <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a26a4b44a837bf97b972628509912b4a5">MAX</a>       <span class="comment">//状態の最大値</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* UIのベースクラス</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_u_i.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_u_i.html">UI</a> : <span class="keyword">public</span> <a class="code" href="class_game_object.html">GameObject</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_u_i.html#ae6532c32826828f35560228645c1c765">UI</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_u_i.html#a4e4180c3ad19ddf62428ea2d6b5600ab">~UI</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_u_i.html#a2e0c9291f24c3c3a27ba42dde77dda09">Init</a>(<span class="keywordtype">void</span>);    <span class="comment">//初期化</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_u_i.html#a5346ad574d188225cf3bc013dbfa8ec6">Uninit</a>(<span class="keywordtype">void</span>);  <span class="comment">//終了化</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//GameObjectの関数overrideして、自身の挙動として定義する</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_i.html#a96bb81eb7d87996aea891bad24babdcf">InputGameObject</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_u_i.html#aea7b4b1403dcab4421753d00a37f1fc8">UpdateGameObject</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_u_i.html#a21b5139050009518af8522438dace991">   43</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_u_i.html#a21b5139050009518af8522438dace991">Close</a>(<span class="keywordtype">void</span>) { <a class="code" href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">state_</a> = UIState::Closing; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_u_i.html#a91cd08c2307230e3f5f2b8186682a544">   45</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_u_i.html#a91cd08c2307230e3f5f2b8186682a544">SetState</a>(<a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">UIState</a> state) { <a class="code" href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">state_</a> = state; };</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_u_i.html#aa343e9b4c3c036a9a403cea5b0adb076">   46</a></span>&#160;    <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">UIState</a> <a class="code" href="class_u_i.html#aa343e9b4c3c036a9a403cea5b0adb076">GetState</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">state_</a>; }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;     </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_u_i.html#a97968f868a950b8b0a39e5d4e57ca0be">   48</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79">TypeID</a> <a class="code" href="class_u_i.html#a97968f868a950b8b0a39e5d4e57ca0be">GetType</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79a71ff71526d15db86eb50fcac245d183b">TypeID::UI</a>; } <span class="comment">//後でoverrideできるように</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">//UIの所有者</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_u_i.html#a691d38b1261008a5745bf43f0127e21d">   52</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_game.html">Game</a>* <a class="code" href="class_u_i.html#a691d38b1261008a5745bf43f0127e21d">game_</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//UIの状態</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">   55</a></span>&#160;    <a class="code" href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">UIState</a>     <a class="code" href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">state_</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif //UI_H_</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_u_i_html_a96bb81eb7d87996aea891bad24babdcf"><div class="ttname"><a href="class_u_i.html#a96bb81eb7d87996aea891bad24babdcf">UI::InputGameObject</a></div><div class="ttdeci">virtual void InputGameObject(void) override</div><div class="ttdef"><b>Definition:</b> UI.cpp:54</div></div>
+<div class="ttc" id="aclass_game_object_html_a3c3d34a4aedaccafaa27c9e59dcc2b79a71ff71526d15db86eb50fcac245d183b"><div class="ttname"><a href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79a71ff71526d15db86eb50fcac245d183b">GameObject::TypeID::UI</a></div><div class="ttdeci">@ UI</div></div>
+<div class="ttc" id="aclass_u_i_html_a97968f868a950b8b0a39e5d4e57ca0be"><div class="ttname"><a href="class_u_i.html#a97968f868a950b8b0a39e5d4e57ca0be">UI::GetType</a></div><div class="ttdeci">virtual TypeID GetType(void) const</div><div class="ttdef"><b>Definition:</b> UI.h:48</div></div>
+<div class="ttc" id="aclass_u_i_html_a691d38b1261008a5745bf43f0127e21d"><div class="ttname"><a href="class_u_i.html#a691d38b1261008a5745bf43f0127e21d">UI::game_</a></div><div class="ttdeci">class Game * game_</div><div class="ttdef"><b>Definition:</b> UI.h:52</div></div>
+<div class="ttc" id="a_u_i_8h_html"><div class="ttname"><a href="_u_i_8h.html">UI.h</a></div></div>
+<div class="ttc" id="a_u_i_8h_html_a46982b6b3247b002a74dde6ca26b2344a4d3d769b812b6faa6b76e1a8abaece2d"><div class="ttname"><a href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a4d3d769b812b6faa6b76e1a8abaece2d">UIState::Active</a></div><div class="ttdeci">@ Active</div></div>
+<div class="ttc" id="aclass_game_object_html_a3c3d34a4aedaccafaa27c9e59dcc2b79"><div class="ttname"><a href="class_game_object.html#a3c3d34a4aedaccafaa27c9e59dcc2b79">GameObject::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> GameObject.h:27</div></div>
+<div class="ttc" id="a_u_i_8h_html_a46982b6b3247b002a74dde6ca26b2344"><div class="ttname"><a href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344">UIState</a></div><div class="ttdeci">UIState</div><div class="ttdef"><b>Definition:</b> UI.h:19</div></div>
+<div class="ttc" id="aclass_u_i_html_a2e0c9291f24c3c3a27ba42dde77dda09"><div class="ttname"><a href="class_u_i.html#a2e0c9291f24c3c3a27ba42dde77dda09">UI::Init</a></div><div class="ttdeci">bool Init(void)</div><div class="ttdef"><b>Definition:</b> UI.cpp:39</div></div>
+<div class="ttc" id="a_u_i_8h_html_a46982b6b3247b002a74dde6ca26b2344a6adf97f83acf6453d4a6a4b1070f3754"><div class="ttname"><a href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a6adf97f83acf6453d4a6a4b1070f3754">UIState::None</a></div><div class="ttdeci">@ None</div></div>
+<div class="ttc" id="aclass_u_i_html_a11ac1b8b5c51a75683cac5be42a2b758"><div class="ttname"><a href="class_u_i.html#a11ac1b8b5c51a75683cac5be42a2b758">UI::state_</a></div><div class="ttdeci">UIState state_</div><div class="ttdef"><b>Definition:</b> UI.h:55</div></div>
+<div class="ttc" id="aclass_u_i_html_a5346ad574d188225cf3bc013dbfa8ec6"><div class="ttname"><a href="class_u_i.html#a5346ad574d188225cf3bc013dbfa8ec6">UI::Uninit</a></div><div class="ttdeci">void Uninit(void)</div><div class="ttdef"><b>Definition:</b> UI.cpp:47</div></div>
+<div class="ttc" id="aclass_u_i_html_a21b5139050009518af8522438dace991"><div class="ttname"><a href="class_u_i.html#a21b5139050009518af8522438dace991">UI::Close</a></div><div class="ttdeci">void Close(void)</div><div class="ttdef"><b>Definition:</b> UI.h:43</div></div>
+<div class="ttc" id="aclass_u_i_html_aea7b4b1403dcab4421753d00a37f1fc8"><div class="ttname"><a href="class_u_i.html#aea7b4b1403dcab4421753d00a37f1fc8">UI::UpdateGameObject</a></div><div class="ttdeci">virtual void UpdateGameObject(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> UI.cpp:61</div></div>
+<div class="ttc" id="aclass_u_i_html_a91cd08c2307230e3f5f2b8186682a544"><div class="ttname"><a href="class_u_i.html#a91cd08c2307230e3f5f2b8186682a544">UI::SetState</a></div><div class="ttdeci">void SetState(UIState state)</div><div class="ttdef"><b>Definition:</b> UI.h:45</div></div>
+<div class="ttc" id="aclass_u_i_html_aa343e9b4c3c036a9a403cea5b0adb076"><div class="ttname"><a href="class_u_i.html#aa343e9b4c3c036a9a403cea5b0adb076">UI::GetState</a></div><div class="ttdeci">UIState GetState(void)</div><div class="ttdef"><b>Definition:</b> UI.h:46</div></div>
+<div class="ttc" id="aclass_u_i_html"><div class="ttname"><a href="class_u_i.html">UI</a></div><div class="ttdef"><b>Definition:</b> UI.h:31</div></div>
+<div class="ttc" id="a_u_i_8h_html_a46982b6b3247b002a74dde6ca26b2344a26a4b44a837bf97b972628509912b4a5"><div class="ttname"><a href="_u_i_8h.html#a46982b6b3247b002a74dde6ca26b2344a26a4b44a837bf97b972628509912b4a5">UIState::MAX</a></div><div class="ttdeci">@ MAX</div></div>
+<div class="ttc" id="aclass_u_i_html_ae6532c32826828f35560228645c1c765"><div class="ttname"><a href="class_u_i.html#ae6532c32826828f35560228645c1c765">UI::UI</a></div><div class="ttdeci">UI(class Game *game)</div><div class="ttdef"><b>Definition:</b> UI.cpp:16</div></div>
+<div class="ttc" id="aclass_u_i_html_a4e4180c3ad19ddf62428ea2d6b5600ab"><div class="ttname"><a href="class_u_i.html#a4e4180c3ad19ddf62428ea2d6b5600ab">UI::~UI</a></div><div class="ttdeci">virtual ~UI(void)</div><div class="ttdef"><b>Definition:</b> UI.cpp:32</div></div>
+<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdef"><b>Definition:</b> Game.h:21</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

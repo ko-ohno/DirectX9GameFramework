@@ -1,0 +1,78 @@
+\hypertarget{_effect_manager_8h}{}\doxysection{D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Manager/\+Effect\+Manager.h ファイル}
+\label{_effect_manager_8h}\index{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Manager/EffectManager.h@{D:/Application/\_Git/\_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Manager/EffectManager.h}}
+{\ttfamily \#include \char`\"{}Effekseer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Effekseer\+Renderer\+D\+X9.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Effekseer\+Sound\+X\+Audio2.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$X3\+D\+Audio.\+h$>$}\newline
+Effect\+Manager.\+h の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_effect_manager_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_effect_manager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_effect_manager}{Effect\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}{Effect\+Type}} \{ \newline
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6adf97f83acf6453d4a6a4b1070f3754}{Effect\+Type\+::\+None}} = -\/1, 
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43ac5dd1b2697720fe692c529688d3f4f8d}{Effect\+Type\+::\+Sample}}, 
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a8a3b003b9bfb819070dfd307eac8bb1e}{Effect\+Type\+::\+Blue\+Dust}}, 
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6046660725eb3d68951767e3ec02fdb0}{Effect\+Type\+::\+Yellow\+Dust}}, 
+\newline
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a5a2db9fd726b0e438d97c2eaeb9cb0fd}{Effect\+Type\+::\+Red\+Dust}}, 
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a90d7e756394616666adf7d08c18c4922}{Effect\+Type\+::\+After\+Burner}}, 
+\mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6a061313d22e51e0f25b7cd4dc065233}{Effect\+Type\+::\+Max}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型詳解}
+\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}} 
+\index{EffectManager.h@{EffectManager.h}!EffectType@{EffectType}}
+\index{EffectType@{EffectType}!EffectManager.h@{EffectManager.h}}
+\doxysubsubsection{\texorpdfstring{EffectType}{EffectType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43}{Effect\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!None@{None}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6adf97f83acf6453d4a6a4b1070f3754}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6adf97f83acf6453d4a6a4b1070f3754}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sample@{Sample}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!Sample@{Sample}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43ac5dd1b2697720fe692c529688d3f4f8d}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43ac5dd1b2697720fe692c529688d3f4f8d}} 
+Sample&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BlueDust@{BlueDust}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!BlueDust@{BlueDust}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a8a3b003b9bfb819070dfd307eac8bb1e}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a8a3b003b9bfb819070dfd307eac8bb1e}} 
+Blue\+Dust&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YellowDust@{YellowDust}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!YellowDust@{YellowDust}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6046660725eb3d68951767e3ec02fdb0}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6046660725eb3d68951767e3ec02fdb0}} 
+Yellow\+Dust&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RedDust@{RedDust}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!RedDust@{RedDust}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a5a2db9fd726b0e438d97c2eaeb9cb0fd}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a5a2db9fd726b0e438d97c2eaeb9cb0fd}} 
+Red\+Dust&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AfterBurner@{AfterBurner}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!AfterBurner@{AfterBurner}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a90d7e756394616666adf7d08c18c4922}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a90d7e756394616666adf7d08c18c4922}} 
+After\+Burner&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Max@{Max}!EffectManager.h@{EffectManager.h}}\index{EffectManager.h@{EffectManager.h}!Max@{Max}}}\mbox{\Hypertarget{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6a061313d22e51e0f25b7cd4dc065233}\label{_effect_manager_8h_a4809a7bb3fd1a421902a667cc1405d43a6a061313d22e51e0f25b7cd4dc065233}} 
+Max&\\
+\hline
+
+\end{DoxyEnumFields}

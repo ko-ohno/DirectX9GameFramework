@@ -1,0 +1,10 @@
+<map id="EffectRendererComponent" name="EffectRendererComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="5,184,179,211"/>
+<area shape="rect" id="node2" href="$class_renderer_component.html" title=" " alt="" coords="22,95,162,121"/>
+<area shape="rect" id="node3" href="$class_component.html" title=" " alt="" coords="215,5,303,32"/>
+<area shape="rect" id="node8" href="$class_transform_component.html" title=" " alt="" coords="186,95,331,121"/>
+<area shape="rect" id="node4" href="$class_game_object.html" title=" " alt="" coords="399,184,494,211"/>
+<area shape="rect" id="node5" href="$class_game.html" title=" " alt="" coords="467,95,525,121"/>
+<area shape="rect" id="node6" href="$class_shader.html" title=" " alt="" coords="549,95,611,121"/>
+<area shape="rect" id="node7" href="$class_shader_manager.html" title=" " alt="" coords="523,5,637,32"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="RendererComponent" name="RendererComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="141,107,281,133"/>
+<area shape="rect" id="node3" href="$class_billboard_renderer_component.html" title=" " alt="" coords="330,5,521,32"/>
+<area shape="rect" id="node4" href="$class_effect_renderer_component.html" title=" " alt="" coords="339,56,512,83"/>
+<area shape="rect" id="node5" href="$class_gizmo_renderer_component.html" title=" " alt="" coords="336,107,515,133"/>
+<area shape="rect" id="node9" href="$class_sprite_renderer_component.html" title=" " alt="" coords="338,157,513,184"/>
+<area shape="rect" id="node10" href="$class_std_mesh_renderer_component.html" title=" " alt="" coords="329,208,521,235"/>
+<area shape="rect" id="node2" href="$class_component.html" title=" " alt="" coords="5,107,93,133"/>
+<area shape="rect" id="node6" href="$class_box_gizmo_renderer_component.html" title=" " alt="" coords="578,56,779,83"/>
+<area shape="rect" id="node7" href="$class_grid_gizmo_renderer_component.html" title=" " alt="" coords="577,107,780,133"/>
+<area shape="rect" id="node8" href="$class_sphere_gizmo_renderer_component.html" title=" " alt="" coords="569,157,788,184"/>
+</map>

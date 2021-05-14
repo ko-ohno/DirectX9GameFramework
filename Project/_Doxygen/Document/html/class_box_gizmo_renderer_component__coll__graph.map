@@ -1,0 +1,11 @@
+<map id="BoxGizmoRendererComponent" name="BoxGizmoRendererComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="5,260,207,287"/>
+<area shape="rect" id="node2" href="$class_gizmo_renderer_component.html" title=" " alt="" coords="17,184,195,211"/>
+<area shape="rect" id="node3" href="$class_renderer_component.html" title=" " alt="" coords="36,95,176,121"/>
+<area shape="rect" id="node4" href="$class_component.html" title=" " alt="" coords="229,5,317,32"/>
+<area shape="rect" id="node9" href="$class_transform_component.html" title=" " alt="" coords="200,95,345,121"/>
+<area shape="rect" id="node5" href="$class_game_object.html" title=" " alt="" coords="413,184,508,211"/>
+<area shape="rect" id="node6" href="$class_game.html" title=" " alt="" coords="481,95,539,121"/>
+<area shape="rect" id="node7" href="$class_shader.html" title=" " alt="" coords="563,95,625,121"/>
+<area shape="rect" id="node8" href="$class_shader_manager.html" title=" " alt="" coords="537,5,651,32"/>
+</map>

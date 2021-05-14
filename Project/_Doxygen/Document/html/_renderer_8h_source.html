@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Renderer.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Renderer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_renderer_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [Renderer.h] レンダラークラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：レンダラークラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef RENDERER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define RENDERER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../Math.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_effect_manager_8h.html">Manager/EffectManager.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* レンダラークラス</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_renderer.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_renderer.html">Renderer</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_renderer.html#a9e06c6752402940e0756513a53534ae0">Renderer</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_renderer.html#a99308d3d72cd9408dd8faa2136dec547">~Renderer</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_renderer.html">Renderer</a>* <a class="code" href="class_renderer.html#a8cf91f61e9d4e93f7cd0558d7db32411">Create</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_renderer.html#a2088ef71b5bb8effe21f0ced2f383baf">StartUp</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a2bd38161deb47aeb86817db254b3ddb2">ShutDown</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#afb87cda56184dd3e91cce73e77669226">Update</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a151ddcf7a383b99ed68eff55e8173920">Draw</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> DrawUpRendererComponents(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera, <span class="keywordtype">int</span> nowDrawLayerOrder);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// レンダラーコンポーネントのポインタの追加と削除</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a86328c6e3042255e0ce2ca4e063abe27">AddRendererComponentAddress</a>(<span class="keyword">class</span> <a class="code" href="class_renderer_component.html">RendererComponent</a>* rendererComponent);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a30179adc23a8f518274f32a412186e1c">RemoveRendererComponentAddress</a>(<span class="keyword">class</span> <a class="code" href="class_renderer_component.html">RendererComponent</a>* rendererComponent);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// レンダラーコンポーネントのポインタの追加と削除</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a2c505916a67013b42434be283e39079d">AddCameraGameObjectAddress</a>(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* cameraGameObject);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a8f7db5d9d40143660d3b3c9682beb4a1">RemoveCameraGameObjectAddress</a>(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* cameraGameObject);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//レンダラーコンポーネントのソート</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_renderer.html#a04180d80feb8f10c7fcf4510c9197cda">SortByRendererComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_renderer.html#a39dbf9d5fc8824a18ee17e8b0a3dc543">   55</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_game.html">Game</a>* <a class="code" href="class_renderer.html#a39dbf9d5fc8824a18ee17e8b0a3dc543">GetGame</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> game_; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//レンダラーの所有者</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">class </span><a class="code" href="class_game.html">Game</a>* game_;  </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//シェーダの管理者</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">class </span><a class="code" href="class_shader_manager.html">ShaderManager</a>* shader_manager_;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//エフェクトの管理者</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">class </span><a class="code" href="class_effect_manager.html">EffectManager</a>* effect_manager_;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">//Effekseerのエフェクト描画用レンダラー</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">class </span>EffekseerRendererDX9::Renderer* effekseer_renderer_;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">//画面の高さ、幅、画面倍率</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">int</span>   screen_width_;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">int</span>   screen_height_;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> screen_scaler_;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">//カメラのゲームオブジェクトの稼働コンテナ</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::vector&lt;class Camera*&gt; camera_game_objects_;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//レンダラーコンポーネントの稼働コンテナ</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::vector&lt;class RendererComponent*&gt; renderer_components_;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//カメラ現在座標が、１フレーム前と違う場合、ソートをする</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="class_vector3.html">Vector3</a> now_camera_pos_; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_vector3.html">Vector3</a> old_camera_pos_;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};  </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif //RENDERER_H_</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_renderer_html"><div class="ttname"><a href="class_renderer.html">Renderer</a></div><div class="ttdef"><b>Definition:</b> Renderer.h:20</div></div>
+<div class="ttc" id="aclass_renderer_html_a9e06c6752402940e0756513a53534ae0"><div class="ttname"><a href="class_renderer.html#a9e06c6752402940e0756513a53534ae0">Renderer::Renderer</a></div><div class="ttdeci">Renderer(class Game *game)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:29</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a93f8395baa41a172cd07a5a47ffb0176"><div class="ttname"><a href="class_renderer_component.html#a93f8395baa41a172cd07a5a47ffb0176">RendererComponent::GetDrawOrder</a></div><div class="ttdeci">int GetDrawOrder(void) const</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:124</div></div>
+<div class="ttc" id="aclass_renderer_component_html"><div class="ttname"><a href="class_renderer_component.html">RendererComponent</a></div><div class="ttdef"><b>Definition:</b> RendererComponent.h:41</div></div>
+<div class="ttc" id="aclass_renderer_html_a30179adc23a8f518274f32a412186e1c"><div class="ttname"><a href="class_renderer.html#a30179adc23a8f518274f32a412186e1c">Renderer::RemoveRendererComponentAddress</a></div><div class="ttdeci">void RemoveRendererComponentAddress(class RendererComponent *rendererComponent)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:281</div></div>
+<div class="ttc" id="a_renderer_component_8h_html_afcb347a98326ea7641c2c3bf8b9877fea6a061313d22e51e0f25b7cd4dc065233"><div class="ttname"><a href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fea6a061313d22e51e0f25b7cd4dc065233">RendererLayerType::Max</a></div><div class="ttdeci">@ Max</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a28e3cbcf2c50858fc03904ff91a45c88"><div class="ttname"><a href="class_renderer_component.html#a28e3cbcf2c50858fc03904ff91a45c88">RendererComponent::GetRendererLayerType</a></div><div class="ttdeci">RendererLayerType GetRendererLayerType(void) const</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:117</div></div>
+<div class="ttc" id="a_sprite_shader_8h_html"><div class="ttname"><a href="_sprite_shader_8h.html">SpriteShader.h</a></div></div>
+<div class="ttc" id="a_shader_manager_8h_html_a6230e1b9ecbf2d82d10856fd7e1fde46a6adf97f83acf6453d4a6a4b1070f3754"><div class="ttname"><a href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46a6adf97f83acf6453d4a6a4b1070f3754">ShaderType::None</a></div><div class="ttdeci">@ None</div></div>
+<div class="ttc" id="aclass_vector3_html"><div class="ttname"><a href="class_vector3.html">Vector3</a></div><div class="ttdef"><b>Definition:</b> Math.h:364</div></div>
+<div class="ttc" id="a_std_mesh_shader_8h_html"><div class="ttname"><a href="_std_mesh_shader_8h.html">StdMeshShader.h</a></div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="a_renderer_8h_html"><div class="ttname"><a href="_renderer_8h.html">Renderer.h</a></div></div>
+<div class="ttc" id="aclass_renderer_html_a8cf91f61e9d4e93f7cd0558d7db32411"><div class="ttname"><a href="class_renderer.html#a8cf91f61e9d4e93f7cd0558d7db32411">Renderer::Create</a></div><div class="ttdeci">static Renderer * Create(class Game *game)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:53</div></div>
+<div class="ttc" id="aclass_renderer_html_a86328c6e3042255e0ce2ca4e063abe27"><div class="ttname"><a href="class_renderer.html#a86328c6e3042255e0ce2ca4e063abe27">Renderer::AddRendererComponentAddress</a></div><div class="ttdeci">void AddRendererComponentAddress(class RendererComponent *rendererComponent)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:255</div></div>
+<div class="ttc" id="aclass_effect_manager_html_aeb3ef14e907b81719b505cd7e811f94c"><div class="ttname"><a href="class_effect_manager.html#aeb3ef14e907b81719b505cd7e811f94c">EffectManager::GetEffekseerRenderer</a></div><div class="ttdeci">class EffekseerRendererDX9::Renderer * GetEffekseerRenderer(void)</div><div class="ttdef"><b>Definition:</b> EffectManager.h:103</div></div>
+<div class="ttc" id="aclass_shader_manager_html_a7310382566d5e2e478df128b335e7879"><div class="ttname"><a href="class_shader_manager.html#a7310382566d5e2e478df128b335e7879">ShaderManager::ShaderDispatch</a></div><div class="ttdeci">class Shader * ShaderDispatch(ShaderType shader)</div><div class="ttdef"><b>Definition:</b> ShaderManager.cpp:134</div></div>
+<div class="ttc" id="aclass_renderer_html_a151ddcf7a383b99ed68eff55e8173920"><div class="ttname"><a href="class_renderer.html#a151ddcf7a383b99ed68eff55e8173920">Renderer::Draw</a></div><div class="ttdeci">void Draw(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:123</div></div>
+<div class="ttc" id="aclass_effect_manager_html"><div class="ttname"><a href="class_effect_manager.html">EffectManager</a></div><div class="ttdef"><b>Definition:</b> EffectManager.h:53</div></div>
+<div class="ttc" id="aclass_game_html_aaa050e350e5ed4c48e7a7440e1c3b64a"><div class="ttname"><a href="class_game.html#aaa050e350e5ed4c48e7a7440e1c3b64a">Game::GetShaderManager</a></div><div class="ttdeci">class ShaderManager * GetShaderManager(void)</div><div class="ttdef"><b>Definition:</b> Game.h:58</div></div>
+<div class="ttc" id="a_renderer_component_8h_html_afcb347a98326ea7641c2c3bf8b9877fea71ff71526d15db86eb50fcac245d183b"><div class="ttname"><a href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fea71ff71526d15db86eb50fcac245d183b">RendererLayerType::UI</a></div><div class="ttdeci">@ UI</div></div>
+<div class="ttc" id="aclass_renderer_html_a04180d80feb8f10c7fcf4510c9197cda"><div class="ttname"><a href="class_renderer.html#a04180d80feb8f10c7fcf4510c9197cda">Renderer::SortByRendererComponent</a></div><div class="ttdeci">void SortByRendererComponent(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:351</div></div>
+<div class="ttc" id="aclass_effect_manager_html_a82300bd0d662fd68d7d0097db263bc6b"><div class="ttname"><a href="class_effect_manager.html#a82300bd0d662fd68d7d0097db263bc6b">EffectManager::Convert44Matrix</a></div><div class="ttdeci">const Effekseer::Matrix44 Convert44Matrix(const D3DXMATRIX &amp;d3dxMatrix)</div><div class="ttdef"><b>Definition:</b> EffectManager.cpp:275</div></div>
+<div class="ttc" id="a_skin_mesh_shader_8h_html"><div class="ttname"><a href="_skin_mesh_shader_8h.html">SkinMeshShader.h</a></div></div>
+<div class="ttc" id="aclass_renderer_html_afb87cda56184dd3e91cce73e77669226"><div class="ttname"><a href="class_renderer.html#afb87cda56184dd3e91cce73e77669226">Renderer::Update</a></div><div class="ttdeci">void Update(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:115</div></div>
+<div class="ttc" id="a_dissolve_shader_8h_html"><div class="ttname"><a href="_dissolve_shader_8h.html">DissolveShader.h</a></div></div>
+<div class="ttc" id="aclass_shader_manager_html"><div class="ttname"><a href="class_shader_manager.html">ShaderManager</a></div><div class="ttdef"><b>Definition:</b> ShaderManager.h:34</div></div>
+<div class="ttc" id="a_camera_8h_html"><div class="ttname"><a href="_camera_8h.html">Camera.h</a></div></div>
+<div class="ttc" id="a_renderer_component_8h_html"><div class="ttname"><a href="_renderer_component_8h.html">RendererComponent.h</a></div></div>
+<div class="ttc" id="aclass_renderer_html_a8f7db5d9d40143660d3b3c9682beb4a1"><div class="ttname"><a href="class_renderer.html#a8f7db5d9d40143660d3b3c9682beb4a1">Renderer::RemoveCameraGameObjectAddress</a></div><div class="ttdeci">void RemoveCameraGameObjectAddress(class Camera *cameraGameObject)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:304</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_renderer_html_a2c505916a67013b42434be283e39079d"><div class="ttname"><a href="class_renderer.html#a2c505916a67013b42434be283e39079d">Renderer::AddCameraGameObjectAddress</a></div><div class="ttdeci">void AddCameraGameObjectAddress(class Camera *cameraGameObject)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:296</div></div>
+<div class="ttc" id="aclass_renderer_html_a2bd38161deb47aeb86817db254b3ddb2"><div class="ttname"><a href="class_renderer.html#a2bd38161deb47aeb86817db254b3ddb2">Renderer::ShutDown</a></div><div class="ttdeci">void ShutDown(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:104</div></div>
+<div class="ttc" id="a_renderer_component_8h_html_afcb347a98326ea7641c2c3bf8b9877fe"><div class="ttname"><a href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fe">RendererLayerType</a></div><div class="ttdeci">RendererLayerType</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:25</div></div>
+<div class="ttc" id="aclass_renderer_html_a2088ef71b5bb8effe21f0ced2f383baf"><div class="ttname"><a href="class_renderer.html#a2088ef71b5bb8effe21f0ced2f383baf">Renderer::StartUp</a></div><div class="ttdeci">bool StartUp(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:61</div></div>
+<div class="ttc" id="a_effect_manager_8h_html"><div class="ttname"><a href="_effect_manager_8h.html">EffectManager.h</a></div></div>
+<div class="ttc" id="aclass_game_html_a808750e65ec7c088fe7d48e3b51c086d"><div class="ttname"><a href="class_game.html#a808750e65ec7c088fe7d48e3b51c086d">Game::GetEffectManager</a></div><div class="ttdeci">class EffectManager * GetEffectManager(void)</div><div class="ttdef"><b>Definition:</b> Game.h:62</div></div>
+<div class="ttc" id="a_billboard_shader_8h_html"><div class="ttname"><a href="_billboard_shader_8h.html">BillboardShader.h</a></div></div>
+<div class="ttc" id="aclass_renderer_html_a39dbf9d5fc8824a18ee17e8b0a3dc543"><div class="ttname"><a href="class_renderer.html#a39dbf9d5fc8824a18ee17e8b0a3dc543">Renderer::GetGame</a></div><div class="ttdeci">class Game * GetGame(void)</div><div class="ttdef"><b>Definition:</b> Renderer.h:55</div></div>
+<div class="ttc" id="aclass_renderer_html_a99308d3d72cd9408dd8faa2136dec547"><div class="ttname"><a href="class_renderer.html#a99308d3d72cd9408dd8faa2136dec547">Renderer::~Renderer</a></div><div class="ttdeci">~Renderer(void)</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:45</div></div>
+<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdef"><b>Definition:</b> Game.h:21</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

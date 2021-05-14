@@ -1,0 +1,1820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: RendererComponent クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="#pro-static-attribs">静的限定公開変数類</a> &#124;
+<a href="class_renderer_component-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">RendererComponent クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_renderer_component_8h_source.html">RendererComponent.h</a>&gt;</code></p>
+<div class="dynheader">
+RendererComponent の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component__inherit__graph.png" border="0" usemap="#a_renderer_component_inherit__map" alt="Inheritance graph"/></div>
+<map name="_renderer_component_inherit__map" id="_renderer_component_inherit__map">
+<area shape="rect" title=" " alt="" coords="141,107,281,133"/>
+<area shape="rect" href="class_billboard_renderer_component.html" title=" " alt="" coords="330,5,521,32"/>
+<area shape="rect" href="class_effect_renderer_component.html" title=" " alt="" coords="339,56,512,83"/>
+<area shape="rect" href="class_gizmo_renderer_component.html" title=" " alt="" coords="336,107,515,133"/>
+<area shape="rect" href="class_sprite_renderer_component.html" title=" " alt="" coords="338,157,513,184"/>
+<area shape="rect" href="class_std_mesh_renderer_component.html" title=" " alt="" coords="329,208,521,235"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="5,107,93,133"/>
+<area shape="rect" href="class_box_gizmo_renderer_component.html" title=" " alt="" coords="578,56,779,83"/>
+<area shape="rect" href="class_grid_gizmo_renderer_component.html" title=" " alt="" coords="577,107,780,133"/>
+<area shape="rect" href="class_sphere_gizmo_renderer_component.html" title=" " alt="" coords="569,157,788,184"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+RendererComponent 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component__coll__graph.png" border="0" usemap="#a_renderer_component_coll__map" alt="Collaboration graph"/></div>
+<map name="_renderer_component_coll__map" id="_renderer_component_coll__map">
+<area shape="rect" title=" " alt="" coords="5,95,145,121"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="198,5,286,32"/>
+<area shape="rect" href="class_transform_component.html" title=" " alt="" coords="169,95,315,121"/>
+<area shape="rect" href="class_game_object.html" title=" " alt="" coords="383,184,477,211"/>
+<area shape="rect" href="class_game.html" title=" " alt="" coords="451,95,508,121"/>
+<area shape="rect" href="class_shader.html" title=" " alt="" coords="532,95,595,121"/>
+<area shape="rect" href="class_shader_manager.html" title=" " alt="" coords="507,5,620,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab097ede84dfd92bd842eb5a29ec5aa95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ab097ede84dfd92bd842eb5a29ec5aa95">RendererComponent</a> (class <a class="el" href="class_game_object.html">GameObject</a> *owner, int drawOrder=100)</td></tr>
+<tr class="separator:ab097ede84dfd92bd842eb5a29ec5aa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af07b51c5dc320999e6603b8b5bedc0c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#af07b51c5dc320999e6603b8b5bedc0c7">~RendererComponent</a> (void)</td></tr>
+<tr class="separator:af07b51c5dc320999e6603b8b5bedc0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31583e403f0340717c54ceb4678a3caf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a31583e403f0340717c54ceb4678a3caf">Init</a> (void) override</td></tr>
+<tr class="separator:a31583e403f0340717c54ceb4678a3caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedccc36786592eaa63ec6c71b275b96e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#aedccc36786592eaa63ec6c71b275b96e">Uninit</a> (void) override</td></tr>
+<tr class="separator:aedccc36786592eaa63ec6c71b275b96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132712c992059188c12fc37dcefd1c13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a132712c992059188c12fc37dcefd1c13">Update</a> (float deltaTime) override</td></tr>
+<tr class="separator:a132712c992059188c12fc37dcefd1c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb21dd64eaf0580f41fc47a5e4c91b51"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#adb21dd64eaf0580f41fc47a5e4c91b51">Draw</a> (class <a class="el" href="class_shader.html">Shader</a> *shader, class <a class="el" href="class_camera.html">Camera</a> *camera)</td></tr>
+<tr class="separator:adb21dd64eaf0580f41fc47a5e4c91b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e8780e03684e61304d993eb6c58cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ab4e8780e03684e61304d993eb6c58cab">SetVertexColor</a> (int red=255, int green=255, int blue=255, int alpha=255)</td></tr>
+<tr class="separator:ab4e8780e03684e61304d993eb6c58cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566d428803c0e9880c2f04e57a133063"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a566d428803c0e9880c2f04e57a133063">GetVertexColor</a> (void)</td></tr>
+<tr class="separator:a566d428803c0e9880c2f04e57a133063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a825bd4108222095b3ba56e1fdd89d268"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a825bd4108222095b3ba56e1fdd89d268">SetTranslation</a> (float posX, float posY, float posZ=0.f)</td></tr>
+<tr class="separator:a825bd4108222095b3ba56e1fdd89d268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab64e824014d596d5a406955b46125da2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ab64e824014d596d5a406955b46125da2">SetTranslation</a> (const D3DXVECTOR3 &amp;position)</td></tr>
+<tr class="separator:ab64e824014d596d5a406955b46125da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a847476e74d44cc6e6475f4d6a841d731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a847476e74d44cc6e6475f4d6a841d731">SetTranslationX</a> (float posX)</td></tr>
+<tr class="separator:a847476e74d44cc6e6475f4d6a841d731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34b2a2f826563fc736d64ce280c2423"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#af34b2a2f826563fc736d64ce280c2423">SetTranslationY</a> (float posY)</td></tr>
+<tr class="separator:af34b2a2f826563fc736d64ce280c2423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f1ea21ab1500aa58bc2353ffe13455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a87f1ea21ab1500aa58bc2353ffe13455">SetTranslationZ</a> (float posZ)</td></tr>
+<tr class="separator:a87f1ea21ab1500aa58bc2353ffe13455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2027efc57ca0a81c7968b1f1b863cbda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a2027efc57ca0a81c7968b1f1b863cbda">AddTranslation</a> (float addValueX, float addValueY, float addValueZ=0.f)</td></tr>
+<tr class="separator:a2027efc57ca0a81c7968b1f1b863cbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ae57e53b3e1528ce4536a9490895c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ac5ae57e53b3e1528ce4536a9490895c0">AddTranslation</a> (const D3DXVECTOR3 &amp;addValue)</td></tr>
+<tr class="separator:ac5ae57e53b3e1528ce4536a9490895c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37fc9e10c1962330767cab43ae7e5d4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a37fc9e10c1962330767cab43ae7e5d4d">AddTranslationX</a> (float addValueX)</td></tr>
+<tr class="separator:a37fc9e10c1962330767cab43ae7e5d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7103e7482523c7d1e18158305a98762f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a7103e7482523c7d1e18158305a98762f">AddTranslationY</a> (float addValueY)</td></tr>
+<tr class="separator:a7103e7482523c7d1e18158305a98762f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0786e42c3a3be35a893caa151d1f5239"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a0786e42c3a3be35a893caa151d1f5239">AddTranslationZ</a> (float addValueZ)</td></tr>
+<tr class="separator:a0786e42c3a3be35a893caa151d1f5239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addb8607b8f2ed4c32cf1a01e4b689318"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#addb8607b8f2ed4c32cf1a01e4b689318">GetPosition</a> (void)</td></tr>
+<tr class="separator:addb8607b8f2ed4c32cf1a01e4b689318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8acf81c2cc69b6c65a1603ed68a2478d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a8acf81c2cc69b6c65a1603ed68a2478d">SetScale</a> (float scaleX, float scaleY, float scaleZ=1.f)</td></tr>
+<tr class="separator:a8acf81c2cc69b6c65a1603ed68a2478d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6bc4b72f2b107ca989f49e2709cbad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a0c6bc4b72f2b107ca989f49e2709cbad">SetScale</a> (const D3DXVECTOR3 &amp;scale)</td></tr>
+<tr class="separator:a0c6bc4b72f2b107ca989f49e2709cbad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447c047246cf930baca9a8d18d1d0715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a447c047246cf930baca9a8d18d1d0715">SetScaleX</a> (float scaleX)</td></tr>
+<tr class="separator:a447c047246cf930baca9a8d18d1d0715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61ac7e8ab83b825491bd42c8138b0ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ad61ac7e8ab83b825491bd42c8138b0ea">SetScaleY</a> (float scaleY)</td></tr>
+<tr class="separator:ad61ac7e8ab83b825491bd42c8138b0ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0702bdd9e76123f0fff66224d7160dfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a0702bdd9e76123f0fff66224d7160dfe">SetScaleZ</a> (float scaleZ)</td></tr>
+<tr class="separator:a0702bdd9e76123f0fff66224d7160dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90ffafb12246307ffc58e99f933ed405"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a90ffafb12246307ffc58e99f933ed405">AddScale</a> (float addValueX, float addValueY, float addValueZ=0.f)</td></tr>
+<tr class="separator:a90ffafb12246307ffc58e99f933ed405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3802c1ce7f5f89eb4a72c4ce5cdaf8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#aa3802c1ce7f5f89eb4a72c4ce5cdaf8d">AddScale</a> (const D3DXVECTOR3 &amp;addValue)</td></tr>
+<tr class="separator:aa3802c1ce7f5f89eb4a72c4ce5cdaf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa661c6b65c56908c37423166c0284578"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#aa661c6b65c56908c37423166c0284578">AddScaleX</a> (float addValueX)</td></tr>
+<tr class="separator:aa661c6b65c56908c37423166c0284578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027ff38fa7612ab2f45062f22fb7aebb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a027ff38fa7612ab2f45062f22fb7aebb">AddScaleY</a> (float addValueY)</td></tr>
+<tr class="separator:a027ff38fa7612ab2f45062f22fb7aebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2a6215fd68de4fda127c71b021304d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#adf2a6215fd68de4fda127c71b021304d">AddScaleZ</a> (float addValueZ)</td></tr>
+<tr class="separator:adf2a6215fd68de4fda127c71b021304d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9581fb5dceb33713b34f51bfd1aee52"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ab9581fb5dceb33713b34f51bfd1aee52">GetScale</a> (void)</td></tr>
+<tr class="separator:ab9581fb5dceb33713b34f51bfd1aee52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1f582dc446bcbd56e64138e03cae62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ace1f582dc446bcbd56e64138e03cae62">SetRotationMatrix</a> (const D3DXMATRIX &amp;rotationMatrix)</td></tr>
+<tr class="separator:ace1f582dc446bcbd56e64138e03cae62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace0f82969df913414a118d7a14a8c535"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ace0f82969df913414a118d7a14a8c535">GetRotationMatrix</a> (void)</td></tr>
+<tr class="separator:ace0f82969df913414a118d7a14a8c535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d13de1621080e69b0889d1b959c5cf3"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a3d13de1621080e69b0889d1b959c5cf3">GetWorldMatrix</a> (void)</td></tr>
+<tr class="separator:a3d13de1621080e69b0889d1b959c5cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ae83ba508221733452bdc213a62a30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a51ae83ba508221733452bdc213a62a30">GetComponentType</a> (void) const override</td></tr>
+<tr class="separator:a51ae83ba508221733452bdc213a62a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e3cbcf2c50858fc03904ff91a45c88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fe">RendererLayerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a28e3cbcf2c50858fc03904ff91a45c88">GetRendererLayerType</a> (void) const</td></tr>
+<tr class="separator:a28e3cbcf2c50858fc03904ff91a45c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05af3be1e8ad3803b7987d202cb9bf04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a05af3be1e8ad3803b7987d202cb9bf04">GetShaderType</a> (void) const</td></tr>
+<tr class="separator:a05af3be1e8ad3803b7987d202cb9bf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e63a46c85fae611ad157669f5c300a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ad5e63a46c85fae611ad157669f5c300a">GetShaderType</a> (<a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a> shaderType)</td></tr>
+<tr class="separator:ad5e63a46c85fae611ad157669f5c300a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f8395baa41a172cd07a5a47ffb0176"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a93f8395baa41a172cd07a5a47ffb0176">GetDrawOrder</a> (void) const</td></tr>
+<tr class="separator:a93f8395baa41a172cd07a5a47ffb0176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d3313ed7640b919e5caa8c43ddfdc17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a1d3313ed7640b919e5caa8c43ddfdc17">GetCameraDistance</a> (void) const</td></tr>
+<tr class="separator:a1d3313ed7640b919e5caa8c43ddfdc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db5cbcc925c033311ce29e8eb1acd7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a4db5cbcc925c033311ce29e8eb1acd7d">SetCameraDistance</a> (float cameraDistance)</td></tr>
+<tr class="separator:a4db5cbcc925c033311ce29e8eb1acd7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a9c5dd6f73d4c0f4c62f302bd01bacff2">Component</a> (class <a class="el" href="class_game_object.html">GameObject</a> *gameObject, int updateOrder=100)</td></tr>
+<tr class="separator:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#aea82675a4fea6db680068f581ec060da">~Component</a> (void)</td></tr>
+<tr class="separator:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f5bbaba222d7e031c347acad7375f4 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52f5bbaba222d7e031c347acad7375f4">Input</a> (void)</td></tr>
+<tr class="separator:a52f5bbaba222d7e031c347acad7375f4 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae679fc3e619dd58b995fd7699823dbff">OnUpdateWorldTransform</a> ()</td></tr>
+<tr class="separator:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a22af4b447abb06076370f06a34e9cab8">GetOwner</a> (void)</td></tr>
+<tr class="separator:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae545aa714a48db4771505bf4ea85f16d">GetUpdateOrder</a> (void) const</td></tr>
+<tr class="separator:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a175c1bd027369deca1c49b9db05917a2">LoadProperties</a> (void)</td></tr>
+<tr class="separator:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52303e15704fd14fa6ae8edf0e6c571c">SaveProperties</a> (void)</td></tr>
+<tr class="separator:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:a4786d59d27dd32f4c0c1792838fd8f07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fe">RendererLayerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a4786d59d27dd32f4c0c1792838fd8f07">renderer_layer_type_</a></td></tr>
+<tr class="separator:a4786d59d27dd32f4c0c1792838fd8f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8ea7d00747990d1114c2b91d7d7f7b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ab8ea7d00747990d1114c2b91d7d7f7b8">shader_type_</a></td></tr>
+<tr class="separator:ab8ea7d00747990d1114c2b91d7d7f7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac06b7037813d9ce6d38d8f98d5027c27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ac06b7037813d9ce6d38d8f98d5027c27">draw_order_</a></td></tr>
+<tr class="separator:ac06b7037813d9ce6d38d8f98d5027c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7d84ef87534c4c4d9712d8a13a07a2d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#aa7d84ef87534c4c4d9712d8a13a07a2d">camera_distance_</a></td></tr>
+<tr class="separator:aa7d84ef87534c4c4d9712d8a13a07a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c0eb311a6fe23f74c5ba35959e117e"><td class="memItemLeft" align="right" valign="top">D3DCOLOR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a54c0eb311a6fe23f74c5ba35959e117e">vertex_color_</a></td></tr>
+<tr class="separator:a54c0eb311a6fe23f74c5ba35959e117e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12871db58f1f17c76699b5207f4a0cab"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a12871db58f1f17c76699b5207f4a0cab">vector_vertex_color_</a></td></tr>
+<tr class="separator:a12871db58f1f17c76699b5207f4a0cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1588ca66128b728f8c4cfce6e006c472"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a1588ca66128b728f8c4cfce6e006c472">rotation_matrix_</a></td></tr>
+<tr class="separator:a1588ca66128b728f8c4cfce6e006c472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae345732e9d71f33fe6b814b38537ce31"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ae345732e9d71f33fe6b814b38537ce31">world_matrix_</a></td></tr>
+<tr class="separator:ae345732e9d71f33fe6b814b38537ce31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5700482ea2bea49b6221d9838bae7fb"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#ad5700482ea2bea49b6221d9838bae7fb">position_</a></td></tr>
+<tr class="separator:ad5700482ea2bea49b6221d9838bae7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24f7f50fd6ad1a3f09d1fcf0ea496958"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a24f7f50fd6ad1a3f09d1fcf0ea496958">scale_</a></td></tr>
+<tr class="separator:a24f7f50fd6ad1a3f09d1fcf0ea496958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a70cb743723f7acecf716b58d4e40262d">owner_</a></td></tr>
+<tr class="separator:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a481be1bd66b0a300fd6ac2923f2bdbd4">update_order_</a></td></tr>
+<tr class="separator:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
+静的限定公開変数類</h2></td></tr>
+<tr class="memitem:a896a109c20eb7c8a39a7c7ab46b9b5dd"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer_component.html#a896a109c20eb7c8a39a7c7ab46b9b5dd">DIVIDE_COLOR_VALUE</a> = 1.f / 255.f</td></tr>
+<tr class="separator:a896a109c20eb7c8a39a7c7ab46b9b5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_types_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開型</td></tr>
+<tr class="memitem:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> { <br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6adf97f83acf6453d4a6a4b1070f3754">TypeID::None</a> = -1, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa2cb05e4bb7830be982f0922fed86b4cd">TypeID::Component</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa9e6f576cf17836f460052c32a7fa43fe">TypeID::AIComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa69868e1fef52a8a942ce331c7d4f55b3">TypeID::EnemyAIComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa93fb6e7a5c5b168b6000da64242843f6">TypeID::AudioComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf6277b82599ea2dd7cb1a14f2428a69f">TypeID::CameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7896e2cdbbfe8030e06905facfc9bf29">TypeID::FollowCameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa3f1c271a632275626e50ea31e7f13168">TypeID::ColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa01f1e567837d70434ab35f4ef976b603">TypeID::CircleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">TypeID::RectangleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa014dd456037eb3506d09105c4eaf0b0f">TypeID::SphereColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">TypeID::OBBColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa59f67165af66e328927f7159ac877cae">TypeID::CapsuleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab0f1638e58c5c79718bedf05c97952df">TypeID::InputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae2020ecea0ad320cc95dcaa7e847c606">TypeID::PlayerInputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">TypeID::AutomaticInputComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafee91fc948fb129d8546b4093c886855">TypeID::RendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf85dee35eaf6b5e72b8288742b687c59">TypeID::SpriteRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">TypeID::BillboardRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa85c0f430ff38df27b4accb1004b78d97">TypeID::StdMeshRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">TypeID::EffectRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa5088e546ca39f7d3254867a5c3dd62b0">TypeID::GizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa38bb6d63f73ef2c06f0ec9a54b11166e">TypeID::GridGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacfdac83773699480e87992f143fe75d0">TypeID::SphereGizmoRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae73b968adcd6286da3eecf0b39353fff">TypeID::BoxGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaabf7729c0e506cfa70ad872ec9779d021">TypeID::TransformComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa02b9ce5d08af7afe14d61dabb514f605">TypeID::MoveComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>
+<br />
+ }</td></tr>
+<tr class="separator:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承静的公開変数類</td></tr>
+<tr class="memitem:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a71ea5985d37bea541e11fa15c57c7072">ComponentTypeNames</a> [static_cast&lt; int &gt;(<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>)]</td></tr>
+<tr class="separator:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ab097ede84dfd92bd842eb5a29ec5aa95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab097ede84dfd92bd842eb5a29ec5aa95">&#9670;&nbsp;</a></span>RendererComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RendererComponent::RendererComponent </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td>
+          <td class="paramname"><em>owner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>drawOrder</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_ab097ede84dfd92bd842eb5a29ec5aa95_cgraph.png" border="0" usemap="#aclass_renderer_component_ab097ede84dfd92bd842eb5a29ec5aa95_cgraph" alt=""/></div>
+<map name="class_renderer_component_ab097ede84dfd92bd842eb5a29ec5aa95_cgraph" id="class_renderer_component_ab097ede84dfd92bd842eb5a29ec5aa95_cgraph">
+<area shape="rect" title=" " alt="" coords="5,121,153,163"/>
+<area shape="rect" href="class_renderer.html#a86328c6e3042255e0ce2ca4e063abe27" title=" " alt="" coords="208,37,431,79"/>
+<area shape="rect" href="class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="240,103,399,130"/>
+<area shape="rect" href="class_game.html#a12af9b80ff68104e84f8f5d71debfb09" title=" " alt="" coords="250,154,389,181"/>
+<area shape="rect" href="class_game_object.html#ad254815229a820529f82a1d0d19a1939" title=" " alt="" coords="201,205,437,231"/>
+<area shape="rect" href="class_renderer_component.html#a93f8395baa41a172cd07a5a47ffb0176" title=" " alt="" coords="489,5,637,47"/>
+<area shape="rect" href="class_renderer_component.html#a28e3cbcf2c50858fc03904ff91a45c88" title=" " alt="" coords="485,71,640,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af07b51c5dc320999e6603b8b5bedc0c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af07b51c5dc320999e6603b8b5bedc0c7">&#9670;&nbsp;</a></span>~RendererComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RendererComponent::~RendererComponent </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_af07b51c5dc320999e6603b8b5bedc0c7_cgraph.png" border="0" usemap="#aclass_renderer_component_af07b51c5dc320999e6603b8b5bedc0c7_cgraph" alt=""/></div>
+<map name="class_renderer_component_af07b51c5dc320999e6603b8b5bedc0c7_cgraph" id="class_renderer_component_af07b51c5dc320999e6603b8b5bedc0c7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,49,153,90"/>
+<area shape="rect" href="class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="212,5,371,32"/>
+<area shape="rect" href="class_game.html#a12af9b80ff68104e84f8f5d71debfb09" title=" " alt="" coords="222,56,361,83"/>
+<area shape="rect" href="class_renderer.html#a30179adc23a8f518274f32a412186e1c" title=" " alt="" coords="201,107,381,149"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="aa3802c1ce7f5f89eb4a72c4ce5cdaf8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3802c1ce7f5f89eb4a72c4ce5cdaf8d">&#9670;&nbsp;</a></span>AddScale() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddScale </td>
+          <td>(</td>
+          <td class="paramtype">const D3DXVECTOR3 &amp;&#160;</td>
+          <td class="paramname"><em>addValue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90ffafb12246307ffc58e99f933ed405"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90ffafb12246307ffc58e99f933ed405">&#9670;&nbsp;</a></span>AddScale() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddScale </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueZ</em> = <code>0.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa661c6b65c56908c37423166c0284578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa661c6b65c56908c37423166c0284578">&#9670;&nbsp;</a></span>AddScaleX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddScaleX </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueX</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a027ff38fa7612ab2f45062f22fb7aebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027ff38fa7612ab2f45062f22fb7aebb">&#9670;&nbsp;</a></span>AddScaleY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddScaleY </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueY</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf2a6215fd68de4fda127c71b021304d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2a6215fd68de4fda127c71b021304d">&#9670;&nbsp;</a></span>AddScaleZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddScaleZ </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueZ</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5ae57e53b3e1528ce4536a9490895c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ae57e53b3e1528ce4536a9490895c0">&#9670;&nbsp;</a></span>AddTranslation() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddTranslation </td>
+          <td>(</td>
+          <td class="paramtype">const D3DXVECTOR3 &amp;&#160;</td>
+          <td class="paramname"><em>addValue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2027efc57ca0a81c7968b1f1b863cbda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2027efc57ca0a81c7968b1f1b863cbda">&#9670;&nbsp;</a></span>AddTranslation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddTranslation </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueZ</em> = <code>0.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37fc9e10c1962330767cab43ae7e5d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37fc9e10c1962330767cab43ae7e5d4d">&#9670;&nbsp;</a></span>AddTranslationX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddTranslationX </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueX</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7103e7482523c7d1e18158305a98762f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7103e7482523c7d1e18158305a98762f">&#9670;&nbsp;</a></span>AddTranslationY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddTranslationY </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueY</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0786e42c3a3be35a893caa151d1f5239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0786e42c3a3be35a893caa151d1f5239">&#9670;&nbsp;</a></span>AddTranslationZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::AddTranslationZ </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>addValueZ</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb21dd64eaf0580f41fc47a5e4c91b51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb21dd64eaf0580f41fc47a5e4c91b51">&#9670;&nbsp;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::Draw </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_shader.html">Shader</a> *&#160;</td>
+          <td class="paramname"><em>shader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">class <a class="el" href="class_camera.html">Camera</a> *&#160;</td>
+          <td class="paramname"><em>camera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_std_mesh_renderer_component.html#adeb2a34da5e28781682157edb14d1b6f">StdMeshRendererComponent</a>, <a class="el" href="class_sprite_renderer_component.html#a6599729fd6b0f2c6aa733250b2cbf44a">SpriteRendererComponent</a>, <a class="el" href="class_effect_renderer_component.html#a435487b62a7f1474dd9deff3910ce0c9">EffectRendererComponent</a>, <a class="el" href="class_billboard_renderer_component.html#a8187d08d999e58a369dbd6f6104ce884">BillboardRendererComponent</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="a1d3313ed7640b919e5caa8c43ddfdc17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d3313ed7640b919e5caa8c43ddfdc17">&#9670;&nbsp;</a></span>GetCameraDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RendererComponent::GetCameraDistance </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51ae83ba508221733452bdc213a62a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ae83ba508221733452bdc213a62a30">&#9670;&nbsp;</a></span>GetComponentType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> RendererComponent::GetComponentType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a251b83eefdc535a955f39b93b6f46946">Component</a>を実装しています。</p>
+
+</div>
+</div>
+<a id="a93f8395baa41a172cd07a5a47ffb0176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f8395baa41a172cd07a5a47ffb0176">&#9670;&nbsp;</a></span>GetDrawOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RendererComponent::GetDrawOrder </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a93f8395baa41a172cd07a5a47ffb0176_icgraph.png" border="0" usemap="#aclass_renderer_component_a93f8395baa41a172cd07a5a47ffb0176_icgraph" alt=""/></div>
+<map name="class_renderer_component_a93f8395baa41a172cd07a5a47ffb0176_icgraph" id="class_renderer_component_a93f8395baa41a172cd07a5a47ffb0176_icgraph">
+<area shape="rect" title=" " alt="" coords="472,5,620,47"/>
+<area shape="rect" href="class_renderer.html#a86328c6e3042255e0ce2ca4e063abe27" title=" " alt="" coords="201,5,424,47"/>
+<area shape="rect" href="class_renderer_component.html#ab097ede84dfd92bd842eb5a29ec5aa95" title=" " alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="addb8607b8f2ed4c32cf1a01e4b689318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb8607b8f2ed4c32cf1a01e4b689318">&#9670;&nbsp;</a></span>GetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR3* RendererComponent::GetPosition </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28e3cbcf2c50858fc03904ff91a45c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e3cbcf2c50858fc03904ff91a45c88">&#9670;&nbsp;</a></span>GetRendererLayerType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fe">RendererLayerType</a> RendererComponent::GetRendererLayerType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a28e3cbcf2c50858fc03904ff91a45c88_icgraph.png" border="0" usemap="#aclass_renderer_component_a28e3cbcf2c50858fc03904ff91a45c88_icgraph" alt=""/></div>
+<map name="class_renderer_component_a28e3cbcf2c50858fc03904ff91a45c88_icgraph" id="class_renderer_component_a28e3cbcf2c50858fc03904ff91a45c88_icgraph">
+<area shape="rect" title=" " alt="" coords="472,5,627,47"/>
+<area shape="rect" href="class_renderer.html#a86328c6e3042255e0ce2ca4e063abe27" title=" " alt="" coords="201,5,424,47"/>
+<area shape="rect" href="class_renderer_component.html#ab097ede84dfd92bd842eb5a29ec5aa95" title=" " alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ace0f82969df913414a118d7a14a8c535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace0f82969df913414a118d7a14a8c535">&#9670;&nbsp;</a></span>GetRotationMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX* RendererComponent::GetRotationMatrix </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9581fb5dceb33713b34f51bfd1aee52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9581fb5dceb33713b34f51bfd1aee52">&#9670;&nbsp;</a></span>GetScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR3* RendererComponent::GetScale </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5e63a46c85fae611ad157669f5c300a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e63a46c85fae611ad157669f5c300a">&#9670;&nbsp;</a></span>GetShaderType() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::GetShaderType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a>&#160;</td>
+          <td class="paramname"><em>shaderType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05af3be1e8ad3803b7987d202cb9bf04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05af3be1e8ad3803b7987d202cb9bf04">&#9670;&nbsp;</a></span>GetShaderType() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a> RendererComponent::GetShaderType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a566d428803c0e9880c2f04e57a133063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a566d428803c0e9880c2f04e57a133063">&#9670;&nbsp;</a></span>GetVertexColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR4* RendererComponent::GetVertexColor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a566d428803c0e9880c2f04e57a133063_icgraph.png" border="0" usemap="#aclass_renderer_component_a566d428803c0e9880c2f04e57a133063_icgraph" alt=""/></div>
+<map name="class_renderer_component_a566d428803c0e9880c2f04e57a133063_icgraph" id="class_renderer_component_a566d428803c0e9880c2f04e57a133063_icgraph">
+<area shape="rect" title=" " alt="" coords="224,5,372,47"/>
+<area shape="rect" href="class_gizmo_shader.html#a53f288c8452445f6b2498739e36104c7" title=" " alt="" coords="5,13,176,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3d13de1621080e69b0889d1b959c5cf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d13de1621080e69b0889d1b959c5cf3">&#9670;&nbsp;</a></span>GetWorldMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX* RendererComponent::GetWorldMatrix </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a3d13de1621080e69b0889d1b959c5cf3_icgraph.png" border="0" usemap="#aclass_renderer_component_a3d13de1621080e69b0889d1b959c5cf3_icgraph" alt=""/></div>
+<map name="class_renderer_component_a3d13de1621080e69b0889d1b959c5cf3_icgraph" id="class_renderer_component_a3d13de1621080e69b0889d1b959c5cf3_icgraph">
+<area shape="rect" title=" " alt="" coords="237,49,385,90"/>
+<area shape="rect" href="class_gizmo_shader.html#a53f288c8452445f6b2498739e36104c7" title=" " alt="" coords="12,5,183,32"/>
+<area shape="rect" href="class_std_mesh_shader.html#ae7359dca2b19b7722665720b11e98820" title=" " alt="" coords="5,56,189,83"/>
+<area shape="rect" href="class_billboard_shader.html#a6054143dea83289b0902c9bcc0710477" title=" " alt="" coords="6,107,189,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a31583e403f0340717c54ceb4678a3caf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31583e403f0340717c54ceb4678a3caf">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RendererComponent::Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a052af0555618b126140b6e0583ba68b8">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a4db5cbcc925c033311ce29e8eb1acd7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4db5cbcc925c033311ce29e8eb1acd7d">&#9670;&nbsp;</a></span>SetCameraDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetCameraDistance </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cameraDistance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace1f582dc446bcbd56e64138e03cae62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1f582dc446bcbd56e64138e03cae62">&#9670;&nbsp;</a></span>SetRotationMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetRotationMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const D3DXMATRIX &amp;&#160;</td>
+          <td class="paramname"><em>rotationMatrix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_ace1f582dc446bcbd56e64138e03cae62_icgraph.png" border="0" usemap="#aclass_renderer_component_ace1f582dc446bcbd56e64138e03cae62_icgraph" alt=""/></div>
+<map name="class_renderer_component_ace1f582dc446bcbd56e64138e03cae62_icgraph" id="class_renderer_component_ace1f582dc446bcbd56e64138e03cae62_icgraph">
+<area shape="rect" title=" " alt="" coords="228,5,376,47"/>
+<area shape="rect" href="class_collider_test.html#aa2c1d9aceea186e1c1eb5094ed87101e" title=" " alt="" coords="5,5,180,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c6bc4b72f2b107ca989f49e2709cbad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6bc4b72f2b107ca989f49e2709cbad">&#9670;&nbsp;</a></span>SetScale() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetScale </td>
+          <td>(</td>
+          <td class="paramtype">const D3DXVECTOR3 &amp;&#160;</td>
+          <td class="paramname"><em>scale</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8acf81c2cc69b6c65a1603ed68a2478d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8acf81c2cc69b6c65a1603ed68a2478d">&#9670;&nbsp;</a></span>SetScale() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetScale </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleZ</em> = <code>1.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a8acf81c2cc69b6c65a1603ed68a2478d_icgraph.png" border="0" usemap="#aclass_renderer_component_a8acf81c2cc69b6c65a1603ed68a2478d_icgraph" alt=""/></div>
+<map name="class_renderer_component_a8acf81c2cc69b6c65a1603ed68a2478d_icgraph" id="class_renderer_component_a8acf81c2cc69b6c65a1603ed68a2478d_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,404,47"/>
+<area shape="rect" href="class_sprite_test.html#ad2fe5dd9c8785590822611eb359e87b9" title=" " alt="" coords="5,13,208,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a447c047246cf930baca9a8d18d1d0715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447c047246cf930baca9a8d18d1d0715">&#9670;&nbsp;</a></span>SetScaleX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetScaleX </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleX</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad61ac7e8ab83b825491bd42c8138b0ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61ac7e8ab83b825491bd42c8138b0ea">&#9670;&nbsp;</a></span>SetScaleY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetScaleY </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleY</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0702bdd9e76123f0fff66224d7160dfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0702bdd9e76123f0fff66224d7160dfe">&#9670;&nbsp;</a></span>SetScaleZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetScaleZ </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scaleZ</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab64e824014d596d5a406955b46125da2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64e824014d596d5a406955b46125da2">&#9670;&nbsp;</a></span>SetTranslation() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetTranslation </td>
+          <td>(</td>
+          <td class="paramtype">const D3DXVECTOR3 &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a825bd4108222095b3ba56e1fdd89d268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a825bd4108222095b3ba56e1fdd89d268">&#9670;&nbsp;</a></span>SetTranslation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetTranslation </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posZ</em> = <code>0.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a825bd4108222095b3ba56e1fdd89d268_icgraph.png" border="0" usemap="#aclass_renderer_component_a825bd4108222095b3ba56e1fdd89d268_icgraph" alt=""/></div>
+<map name="class_renderer_component_a825bd4108222095b3ba56e1fdd89d268_icgraph" id="class_renderer_component_a825bd4108222095b3ba56e1fdd89d268_icgraph">
+<area shape="rect" title=" " alt="" coords="256,35,404,76"/>
+<area shape="rect" href="class_collider_test.html#aa2c1d9aceea186e1c1eb5094ed87101e" title=" " alt="" coords="19,5,194,47"/>
+<area shape="rect" href="class_sprite_test.html#ad2fe5dd9c8785590822611eb359e87b9" title=" " alt="" coords="5,71,208,98"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a847476e74d44cc6e6475f4d6a841d731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a847476e74d44cc6e6475f4d6a841d731">&#9670;&nbsp;</a></span>SetTranslationX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetTranslationX </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posX</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a847476e74d44cc6e6475f4d6a841d731_icgraph.png" border="0" usemap="#aclass_renderer_component_a847476e74d44cc6e6475f4d6a841d731_icgraph" alt=""/></div>
+<map name="class_renderer_component_a847476e74d44cc6e6475f4d6a841d731_icgraph" id="class_renderer_component_a847476e74d44cc6e6475f4d6a841d731_icgraph">
+<area shape="rect" title=" " alt="" coords="235,27,383,69"/>
+<area shape="rect" href="class_mesh_test.html#ade8d44969f9c2e2623a4c514a9988eb0" title=" " alt="" coords="24,5,168,32"/>
+<area shape="rect" href="class_billboard_test.html#a4d00a280bdf1e87f8934588f2b56ea3b" title=" " alt="" coords="5,57,187,98"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af34b2a2f826563fc736d64ce280c2423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af34b2a2f826563fc736d64ce280c2423">&#9670;&nbsp;</a></span>SetTranslationY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetTranslationY </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posY</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_af34b2a2f826563fc736d64ce280c2423_icgraph.png" border="0" usemap="#aclass_renderer_component_af34b2a2f826563fc736d64ce280c2423_icgraph" alt=""/></div>
+<map name="class_renderer_component_af34b2a2f826563fc736d64ce280c2423_icgraph" id="class_renderer_component_af34b2a2f826563fc736d64ce280c2423_icgraph">
+<area shape="rect" title=" " alt="" coords="197,5,345,47"/>
+<area shape="rect" href="class_mesh_test.html#ade8d44969f9c2e2623a4c514a9988eb0" title=" " alt="" coords="5,13,149,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a87f1ea21ab1500aa58bc2353ffe13455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f1ea21ab1500aa58bc2353ffe13455">&#9670;&nbsp;</a></span>SetTranslationZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetTranslationZ </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posZ</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_a87f1ea21ab1500aa58bc2353ffe13455_icgraph.png" border="0" usemap="#aclass_renderer_component_a87f1ea21ab1500aa58bc2353ffe13455_icgraph" alt=""/></div>
+<map name="class_renderer_component_a87f1ea21ab1500aa58bc2353ffe13455_icgraph" id="class_renderer_component_a87f1ea21ab1500aa58bc2353ffe13455_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,404,47"/>
+<area shape="rect" href="class_effect_test.html#afa9bc1aa6c9850c185c0abd81db4067a" title=" " alt="" coords="5,13,208,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab4e8780e03684e61304d993eb6c58cab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e8780e03684e61304d993eb6c58cab">&#9670;&nbsp;</a></span>SetVertexColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::SetVertexColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>red</em> = <code>255</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>green</em> = <code>255</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>blue</em> = <code>255</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>255</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_cgraph.png" border="0" usemap="#aclass_renderer_component_ab4e8780e03684e61304d993eb6c58cab_cgraph" alt=""/></div>
+<map name="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_cgraph" id="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,153,47"/>
+<area shape="rect" href="namespace_math.html#a0708162c6af3743ac362dab691428c50" title=" " alt="" coords="201,13,297,39"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_icgraph.png" border="0" usemap="#aclass_renderer_component_ab4e8780e03684e61304d993eb6c58cab_icgraph" alt=""/></div>
+<map name="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_icgraph" id="class_renderer_component_ab4e8780e03684e61304d993eb6c58cab_icgraph">
+<area shape="rect" title=" " alt="" coords="228,27,376,69"/>
+<area shape="rect" href="class_collider_test.html#af9d9009ec9aa0a3f96285e056ca13991" title=" " alt="" coords="9,5,176,32"/>
+<area shape="rect" href="class_collider_test.html#aa2c1d9aceea186e1c1eb5094ed87101e" title=" " alt="" coords="5,57,180,98"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aedccc36786592eaa63ec6c71b275b96e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedccc36786592eaa63ec6c71b275b96e">&#9670;&nbsp;</a></span>Uninit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::Uninit </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a23c41e6704042f2f5769388207911436">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a132712c992059188c12fc37dcefd1c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a132712c992059188c12fc37dcefd1c13">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RendererComponent::Update </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a149d3c9b7d668eb4817dd84dc35bcfcc">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="aa7d84ef87534c4c4d9712d8a13a07a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7d84ef87534c4c4d9712d8a13a07a2d">&#9670;&nbsp;</a></span>camera_distance_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RendererComponent::camera_distance_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a896a109c20eb7c8a39a7c7ab46b9b5dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a896a109c20eb7c8a39a7c7ab46b9b5dd">&#9670;&nbsp;</a></span>DIVIDE_COLOR_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr float RendererComponent::DIVIDE_COLOR_VALUE = 1.f / 255.f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac06b7037813d9ce6d38d8f98d5027c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06b7037813d9ce6d38d8f98d5027c27">&#9670;&nbsp;</a></span>draw_order_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RendererComponent::draw_order_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5700482ea2bea49b6221d9838bae7fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5700482ea2bea49b6221d9838bae7fb">&#9670;&nbsp;</a></span>position_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR3 RendererComponent::position_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4786d59d27dd32f4c0c1792838fd8f07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4786d59d27dd32f4c0c1792838fd8f07">&#9670;&nbsp;</a></span>renderer_layer_type_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_renderer_component_8h.html#afcb347a98326ea7641c2c3bf8b9877fe">RendererLayerType</a> RendererComponent::renderer_layer_type_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1588ca66128b728f8c4cfce6e006c472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1588ca66128b728f8c4cfce6e006c472">&#9670;&nbsp;</a></span>rotation_matrix_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX RendererComponent::rotation_matrix_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24f7f50fd6ad1a3f09d1fcf0ea496958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f7f50fd6ad1a3f09d1fcf0ea496958">&#9670;&nbsp;</a></span>scale_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR3 RendererComponent::scale_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8ea7d00747990d1114c2b91d7d7f7b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8ea7d00747990d1114c2b91d7d7f7b8">&#9670;&nbsp;</a></span>shader_type_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_shader_manager_8h.html#a6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a> RendererComponent::shader_type_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12871db58f1f17c76699b5207f4a0cab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12871db58f1f17c76699b5207f4a0cab">&#9670;&nbsp;</a></span>vector_vertex_color_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXVECTOR4 RendererComponent::vector_vertex_color_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a54c0eb311a6fe23f74c5ba35959e117e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54c0eb311a6fe23f74c5ba35959e117e">&#9670;&nbsp;</a></span>vertex_color_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DCOLOR RendererComponent::vertex_color_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae345732e9d71f33fe6b814b38537ce31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae345732e9d71f33fe6b814b38537ce31">&#9670;&nbsp;</a></span>world_matrix_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX RendererComponent::world_matrix_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/<a class="el" href="_renderer_component_8h_source.html">RendererComponent.h</a></li>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/<a class="el" href="_renderer_component_8cpp.html">RendererComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Resource/XFileMesh.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_94333a1d9bdc8b8889319a19b6b05b81.html">Resource</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">XFileMesh.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_x_file_mesh_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [XFileMesh.h] Xファイルメッシュクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：Xファイルメッシュクラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef XFILE_MESH_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define XFILE_MESH_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../Manager/MeshManager.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* Xファイルメッシュクラス</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_x_file_mesh.html">XFileMesh</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_x_file_mesh.html#a0d57594e32935e31843ad9fc6e2d77ef">XFileMesh</a>(<span class="keyword">class</span> <a class="code" href="class_mesh_manager.html">MeshManager</a>* manager, <a class="code" href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a> meshType);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_x_file_mesh.html#aa859d0f9822549cbe0a3b72b8ff57935">~XFileMesh</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// メッシュの読み込み</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_x_file_mesh.html#a80b9c6789c8eaa09a8c3af6a82ee4b17">LoadMeshFile</a>(<span class="keyword">const</span> <a class="code" href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a> meshType);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// プリミティブのメッシュか</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#adba3b2025b96455d2365e016d8347393">   29</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_x_file_mesh.html#adba3b2025b96455d2365e016d8347393">IsGetPrimitiveMesh</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> is_primitive_mesh_; }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// テクスチャの読み込みができているか</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#afff7c0edde32b6f821838635125bf938">   32</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_x_file_mesh.html#afff7c0edde32b6f821838635125bf938">IsGetLoadCompleted</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> is_loading_complete_; }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// マテリアルの追加</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_file_mesh.html#a75c0794d24e56835b3b3d89c25ac8635">AddMaterial</a>(<span class="keyword">class</span> <a class="code" href="class_material.html">Material</a>* material);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// メッシュのデータ取得関数</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// メッシュIDの取得</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#ac92c655eae896dcb55d1548cecbbb16b">   42</a></span>&#160;    <a class="code" href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a> <a class="code" href="class_x_file_mesh.html#ac92c655eae896dcb55d1548cecbbb16b">GetMeshTypeID</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> mesh_type_id_; }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// メッシュ情報の取得</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#a9d7b03fb831540854f6d878469400150">   45</a></span>&#160;    LPD3DXMESH <a class="code" href="class_x_file_mesh.html#a9d7b03fb831540854f6d878469400150">GetMesh</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> lpd3dx_mesh_; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// マテリアル数の取得</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#a0457a87dfc03722b5a65903d1d49f9a0">   48</a></span>&#160;    DWORD <a class="code" href="class_x_file_mesh.html#a0457a87dfc03722b5a65903d1d49f9a0">GetMaterialCounts</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> material_count_; }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// マテリアルバッファの取得</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#adff96a9a9d1d3a1a1f802b5052533577">   51</a></span>&#160;    LPD3DXBUFFER <a class="code" href="class_x_file_mesh.html#adff96a9a9d1d3a1a1f802b5052533577">GetMaterialBuffer</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> material_buffer_; }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_x_file_mesh.html#a8949b277da359c774d8682ce0adef7e6">   53</a></span>&#160;    std::vector&lt;class Material*&gt; <a class="code" href="class_x_file_mesh.html#a8949b277da359c774d8682ce0adef7e6">GetMeshMaterialList</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> mesh_material_list_; }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">bool</span> MeshOptimization(<span class="keyword">const</span> std::string&amp; xfileMeshName, <span class="keyword">const</span> LPD3DXBUFFER&amp; adjacensy);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> MeshClone(<span class="keyword">const</span> std::string&amp; xfileMeshName, <span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3dDevice);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//　プリミティブ作成関数の呼び出し</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> LoadD3DXPrimitiveMesh(<a class="code" href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a> meshType);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> LoadD3DXMeshPolygon(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">bool</span> LoadD3DXMeshBox(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> LoadD3DXMeshCylinder(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> LoadD3DXMeshSphere(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// メッシュの所有者</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">class </span><a class="code" href="class_mesh_manager.html">MeshManager</a>*  mesh_manager_;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// メッシュのデータ</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">bool</span>                is_primitive_mesh_;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">bool</span>                is_loading_complete_;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a>       mesh_type_id_;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    LPD3DXMESH          lpd3dx_mesh_;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    DWORD               material_count_;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    LPD3DXBUFFER        material_buffer_;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">//メッシュが所有するマテリアルのリスト</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::vector&lt;class Material*&gt; mesh_material_list_;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif //XFILE_MESH_H_</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_mesh_manager_html_a4087be301e6ff4723401221403341b1a"><div class="ttname"><a href="class_mesh_manager.html#a4087be301e6ff4723401221403341b1a">MeshManager::GetMeshRootpath</a></div><div class="ttdeci">std::string GetMeshRootpath(void) const</div><div class="ttdef"><b>Definition:</b> MeshManager.h:56</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_adba3b2025b96455d2365e016d8347393"><div class="ttname"><a href="class_x_file_mesh.html#adba3b2025b96455d2365e016d8347393">XFileMesh::IsGetPrimitiveMesh</a></div><div class="ttdeci">bool IsGetPrimitiveMesh(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:29</div></div>
+<div class="ttc" id="aclass_mesh_manager_html_ab55b36311932f5633a816a078b52014b"><div class="ttname"><a href="class_mesh_manager.html#ab55b36311932f5633a816a078b52014b">MeshManager::GetMeshFilepathList</a></div><div class="ttdeci">std::unordered_map&lt; enum class XFileMeshType, std::string &gt; GetMeshFilepathList(void)</div><div class="ttdef"><b>Definition:</b> MeshManager.h:74</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a80b9c6789c8eaa09a8c3af6a82ee4b17"><div class="ttname"><a href="class_x_file_mesh.html#a80b9c6789c8eaa09a8c3af6a82ee4b17">XFileMesh::LoadMeshFile</a></div><div class="ttdeci">bool LoadMeshFile(const XFileMeshType meshType)</div><div class="ttdef"><b>Definition:</b> XFileMesh.cpp:75</div></div>
+<div class="ttc" id="aclass_mesh_manager_html_a7eb3ea7c810da9e90f5ed13d4178e279"><div class="ttname"><a href="class_mesh_manager.html#a7eb3ea7c810da9e90f5ed13d4178e279">MeshManager::GetGame</a></div><div class="ttdeci">class Game * GetGame(void)</div><div class="ttdef"><b>Definition:</b> MeshManager.h:76</div></div>
+<div class="ttc" id="a_x_file_mesh_8h_html"><div class="ttname"><a href="_x_file_mesh_8h.html">XFileMesh.h</a></div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_adff96a9a9d1d3a1a1f802b5052533577"><div class="ttname"><a href="class_x_file_mesh.html#adff96a9a9d1d3a1a1f802b5052533577">XFileMesh::GetMaterialBuffer</a></div><div class="ttdeci">LPD3DXBUFFER GetMaterialBuffer(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:51</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_ac92c655eae896dcb55d1548cecbbb16b"><div class="ttname"><a href="class_x_file_mesh.html#ac92c655eae896dcb55d1548cecbbb16b">XFileMesh::GetMeshTypeID</a></div><div class="ttdeci">XFileMeshType GetMeshTypeID(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:42</div></div>
+<div class="ttc" id="aclass_game_html_a073433e798edb46ed2da577a4c1d9921"><div class="ttname"><a href="class_game.html#a073433e798edb46ed2da577a4c1d9921">Game::GetGraphics</a></div><div class="ttdeci">class DX9Graphics * GetGraphics(void)</div><div class="ttdef"><b>Definition:</b> Game.h:56</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_aa859d0f9822549cbe0a3b72b8ff57935"><div class="ttname"><a href="class_x_file_mesh.html#aa859d0f9822549cbe0a3b72b8ff57935">XFileMesh::~XFileMesh</a></div><div class="ttdeci">~XFileMesh(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.cpp:59</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_material_html"><div class="ttname"><a href="class_material.html">Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:18</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a9d7b03fb831540854f6d878469400150"><div class="ttname"><a href="class_x_file_mesh.html#a9d7b03fb831540854f6d878469400150">XFileMesh::GetMesh</a></div><div class="ttdeci">LPD3DXMESH GetMesh(void) const</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:45</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a8949b277da359c774d8682ce0adef7e6"><div class="ttname"><a href="class_x_file_mesh.html#a8949b277da359c774d8682ce0adef7e6">XFileMesh::GetMeshMaterialList</a></div><div class="ttdeci">std::vector&lt; class Material * &gt; GetMeshMaterialList(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:53</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a0d57594e32935e31843ad9fc6e2d77ef"><div class="ttname"><a href="class_x_file_mesh.html#a0d57594e32935e31843ad9fc6e2d77ef">XFileMesh::XFileMesh</a></div><div class="ttdeci">XFileMesh(class MeshManager *manager, XFileMeshType meshType)</div><div class="ttdef"><b>Definition:</b> XFileMesh.cpp:21</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_afff7c0edde32b6f821838635125bf938"><div class="ttname"><a href="class_x_file_mesh.html#afff7c0edde32b6f821838635125bf938">XFileMesh::IsGetLoadCompleted</a></div><div class="ttdeci">bool IsGetLoadCompleted(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:32</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a0457a87dfc03722b5a65903d1d49f9a0"><div class="ttname"><a href="class_x_file_mesh.html#a0457a87dfc03722b5a65903d1d49f9a0">XFileMesh::GetMaterialCounts</a></div><div class="ttdeci">DWORD GetMaterialCounts(void)</div><div class="ttdef"><b>Definition:</b> XFileMesh.h:48</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html"><div class="ttname"><a href="class_x_file_mesh.html">XFileMesh</a></div><div class="ttdef"><b>Definition:</b> XFileMesh.h:20</div></div>
+<div class="ttc" id="aclass_mesh_manager_html_a56bc9d45d1cf43f5951e09daa7c32276"><div class="ttname"><a href="class_mesh_manager.html#a56bc9d45d1cf43f5951e09daa7c32276">MeshManager::XFileMeshTypeNames</a></div><div class="ttdeci">static const char * XFileMeshTypeNames[static_cast&lt; int &gt;(XFileMeshType::Max)]</div><div class="ttdef"><b>Definition:</b> MeshManager.h:39</div></div>
+<div class="ttc" id="aclass_x_file_mesh_html_a75c0794d24e56835b3b3d89c25ac8635"><div class="ttname"><a href="class_x_file_mesh.html#a75c0794d24e56835b3b3d89c25ac8635">XFileMesh::AddMaterial</a></div><div class="ttdeci">void AddMaterial(class Material *material)</div><div class="ttdef"><b>Definition:</b> XFileMesh.cpp:170</div></div>
+<div class="ttc" id="a_mesh_manager_8h_html_add4527aa19bcb7c27e93f75f72d05a67"><div class="ttname"><a href="_mesh_manager_8h.html#add4527aa19bcb7c27e93f75f72d05a67">XFileMeshType</a></div><div class="ttdeci">XFileMeshType</div><div class="ttdef"><b>Definition:</b> MeshManager.h:17</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a87d4602aece4a4c84a9ab81f7f2fb4c3"><div class="ttname"><a href="class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3">DX9Graphics::GetLPD3DDevice</a></div><div class="ttdeci">static LPDIRECT3DDEVICE9 * GetLPD3DDevice(void)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:71</div></div>
+<div class="ttc" id="aclass_mesh_manager_html"><div class="ttname"><a href="class_mesh_manager.html">MeshManager</a></div><div class="ttdef"><b>Definition:</b> MeshManager.h:37</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

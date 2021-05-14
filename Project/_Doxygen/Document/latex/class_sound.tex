@@ -1,0 +1,134 @@
+\hypertarget{class_sound}{}\doxysection{Sound クラス}
+\label{class_sound}\index{Sound@{Sound}}
+
+
+{\ttfamily \#include $<$Sound.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sound_a2ba4ce2a141bc714446a7a0e604e05e0}{Sound}} (\mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} $\ast$manager, \mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}} sound\+Type)
+\item 
+\mbox{\hyperlink{class_sound_af2a80cd0248fc853d76f483f426aa289}{$\sim$\+Sound}} (void)
+\item 
+bool \mbox{\hyperlink{class_sound_aa6af4021d27ba17377b2417d4dd822c5}{Load\+Sound}} (const \mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}} sound\+Type)
+\item 
+bool \mbox{\hyperlink{class_sound_af60661f2d80df123b3175add8b87bf87}{Is\+Load\+Completed}} (void)
+\item 
+\mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}} \mbox{\hyperlink{class_sound_aea881269a5d7b47d10081ca6d8067967}{Get\+Sound\+Type\+ID}} (void)
+\item 
+I\+X\+Audio2\+Source\+Voice $\ast$ \mbox{\hyperlink{class_sound_a7180d5ac49b5e5eb130e1259ee8baa8a}{Get\+X\+Audio2\+Source\+Voice}} (void)
+\item 
+B\+Y\+TE $\ast$ \mbox{\hyperlink{class_sound_a5071dcb32acc0c5285e1270fe7b87a20}{Get\+Audio\+Data}} (void)
+\item 
+D\+W\+O\+RD \mbox{\hyperlink{class_sound_a94493f68459d058835857237ad1b51cf}{Get\+Audio\+Data\+Size}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_sound_a2ba4ce2a141bc714446a7a0e604e05e0}\label{class_sound_a2ba4ce2a141bc714446a7a0e604e05e0}} 
+\index{Sound@{Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}}
+{\footnotesize\ttfamily Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}}}]{sound\+Type }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_a2ba4ce2a141bc714446a7a0e604e05e0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_af2a80cd0248fc853d76f483f426aa289}\label{class_sound_af2a80cd0248fc853d76f483f426aa289}} 
+\index{Sound@{Sound}!````~Sound@{$\sim$Sound}}
+\index{````~Sound@{$\sim$Sound}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{$\sim$Sound()}{~Sound()}}
+{\footnotesize\ttfamily Sound\+::$\sim$\+Sound (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_sound_a5071dcb32acc0c5285e1270fe7b87a20}\label{class_sound_a5071dcb32acc0c5285e1270fe7b87a20}} 
+\index{Sound@{Sound}!GetAudioData@{GetAudioData}}
+\index{GetAudioData@{GetAudioData}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetAudioData()}{GetAudioData()}}
+{\footnotesize\ttfamily B\+Y\+TE$\ast$ Sound\+::\+Get\+Audio\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_a5071dcb32acc0c5285e1270fe7b87a20_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_a94493f68459d058835857237ad1b51cf}\label{class_sound_a94493f68459d058835857237ad1b51cf}} 
+\index{Sound@{Sound}!GetAudioDataSize@{GetAudioDataSize}}
+\index{GetAudioDataSize@{GetAudioDataSize}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetAudioDataSize()}{GetAudioDataSize()}}
+{\footnotesize\ttfamily D\+W\+O\+RD Sound\+::\+Get\+Audio\+Data\+Size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_a94493f68459d058835857237ad1b51cf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_aea881269a5d7b47d10081ca6d8067967}\label{class_sound_aea881269a5d7b47d10081ca6d8067967}} 
+\index{Sound@{Sound}!GetSoundTypeID@{GetSoundTypeID}}
+\index{GetSoundTypeID@{GetSoundTypeID}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetSoundTypeID()}{GetSoundTypeID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}} Sound\+::\+Get\+Sound\+Type\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_aea881269a5d7b47d10081ca6d8067967_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_a7180d5ac49b5e5eb130e1259ee8baa8a}\label{class_sound_a7180d5ac49b5e5eb130e1259ee8baa8a}} 
+\index{Sound@{Sound}!GetXAudio2SourceVoice@{GetXAudio2SourceVoice}}
+\index{GetXAudio2SourceVoice@{GetXAudio2SourceVoice}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetXAudio2SourceVoice()}{GetXAudio2SourceVoice()}}
+{\footnotesize\ttfamily I\+X\+Audio2\+Source\+Voice$\ast$ Sound\+::\+Get\+X\+Audio2\+Source\+Voice (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_a7180d5ac49b5e5eb130e1259ee8baa8a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_af60661f2d80df123b3175add8b87bf87}\label{class_sound_af60661f2d80df123b3175add8b87bf87}} 
+\index{Sound@{Sound}!IsLoadCompleted@{IsLoadCompleted}}
+\index{IsLoadCompleted@{IsLoadCompleted}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{IsLoadCompleted()}{IsLoadCompleted()}}
+{\footnotesize\ttfamily bool Sound\+::\+Is\+Load\+Completed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_sound_aa6af4021d27ba17377b2417d4dd822c5}\label{class_sound_aa6af4021d27ba17377b2417d4dd822c5}} 
+\index{Sound@{Sound}!LoadSound@{LoadSound}}
+\index{LoadSound@{LoadSound}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{LoadSound()}{LoadSound()}}
+{\footnotesize\ttfamily bool Sound\+::\+Load\+Sound (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_sound_manager_8h_ad2af16bf27c1b83797f1c32686caf1a3}{Sound\+Type}}}]{sound\+Type }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_aa6af4021d27ba17377b2417d4dd822c5_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{class_sound_aa6af4021d27ba17377b2417d4dd822c5_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Resource/\mbox{\hyperlink{_sound_8h}{Sound.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Resource/\mbox{\hyperlink{_sound_8cpp}{Sound.\+cpp}}\end{DoxyCompactItemize}

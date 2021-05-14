@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjectFactory.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GameObjectFactory.cpp ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_std_afx_8h_source.html">../../StdAfx.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_object_factory_8h_source.html">GameObjectFactory.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_object_8h_source.html">GameObjects/GameObject.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___camera_test_8h_source.html">GameObjects/GameObject/_Test/_CameraTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___sprite_test_8h_source.html">GameObjects/GameObject/_Test/_SpriteTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___mesh_test_8h_source.html">GameObjects/GameObject/_Test/_MeshTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___billboard_test_8h_source.html">GameObjects/GameObject/_Test/_BillboardTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___effect_test_8h_source.html">GameObjects/GameObject/_Test/_EffectTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___audio_test_8h_source.html">GameObjects/GameObject/_Test/_AudioTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___collider_test_8h_source.html">GameObjects/GameObject/_Test/_ColliderTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="___save_data_test_8h_source.html">GameObjects/GameObject/_Test/_SaveDataTest.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_camera_8h_source.html">GameObjects/GameObject/Camera.h</a>&quot;</code><br />
+<code>#include &quot;GameObjects/GameObject/Actor/Player.h&quot;</code><br />
+<code>#include &quot;GameObjects/GameObject/Actor/Enemy.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+GameObjectFactory.cpp の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="_game_object_factory_8cpp__incl.png" border="0" usemap="#a_d_1_2_application_2___git_2___local_repository_2_direct_x9_game_framework_2_project_2_project_2_source_files_2_develop_2_application_2_game_2_game_object_factory_8cpp" alt=""/></div>
+<map name="_d_1_2_application_2___git_2___local_repository_2_direct_x9_game_framework_2_project_2_project_2_source_files_2_develop_2_application_2_game_2_game_object_factory_8cpp" id="_d_1_2_application_2___git_2___local_repository_2_direct_x9_game_framework_2_project_2_project_2_source_files_2_develop_2_application_2_game_2_game_object_factory_8cpp">
+<area shape="rect" title=" " alt="" coords="1373,5,1585,91"/>
+<area shape="rect" href="_std_afx_8h.html" title=" " alt="" coords="1271,541,1367,568"/>
+<area shape="rect" href="_game_object_factory_8h.html" title=" " alt="" coords="531,235,681,262"/>
+<area shape="rect" href="_game_8h.html" title=" " alt="" coords="1808,467,1876,493"/>
+<area shape="rect" href="_game_object_8h.html" title=" " alt="" coords="1359,317,1549,344"/>
+<area shape="rect" href="___camera_test_8h.html" title=" " alt="" coords="1897,139,2075,180"/>
+<area shape="rect" href="_camera_8h.html" title=" " alt="" coords="1846,235,1937,262"/>
+<area shape="rect" href="___sprite_test_8h.html" title=" " alt="" coords="757,228,935,269"/>
+<area shape="rect" href="___mesh_test_8h.html" title=" " alt="" coords="959,228,1138,269"/>
+<area shape="rect" href="___billboard_test_8h.html" title=" " alt="" coords="1162,228,1341,269"/>
+<area shape="rect" href="___effect_test_8h.html" title=" " alt="" coords="1365,228,1543,269"/>
+<area shape="rect" href="___audio_test_8h.html" title=" " alt="" coords="1187,139,1366,180"/>
+<area shape="rect" href="___collider_test_8h.html" title=" " alt="" coords="1390,139,1569,180"/>
+<area shape="rect" href="___save_data_test_8h.html" title=" " alt="" coords="1593,139,1771,180"/>
+<area shape="rect" title=" " alt="" coords="2150,139,2329,180"/>
+<area shape="rect" title=" " alt="" coords="2353,139,2531,180"/>
+<area shape="rect" title=" " alt="" coords="5,623,92,650"/>
+<area shape="rect" title=" " alt="" coords="117,623,178,650"/>
+<area shape="rect" title=" " alt="" coords="203,623,271,650"/>
+<area shape="rect" title=" " alt="" coords="295,623,363,650"/>
+<area shape="rect" title=" " alt="" coords="387,623,444,650"/>
+<area shape="rect" title=" " alt="" coords="468,623,528,650"/>
+<area shape="rect" title=" " alt="" coords="552,623,617,650"/>
+<area shape="rect" title=" " alt="" coords="642,623,711,650"/>
+<area shape="rect" title=" " alt="" coords="735,623,794,650"/>
+<area shape="rect" title=" " alt="" coords="819,623,889,650"/>
+<area shape="rect" title=" " alt="" coords="914,623,994,650"/>
+<area shape="rect" title=" " alt="" coords="1019,623,1081,650"/>
+<area shape="rect" title=" " alt="" coords="1106,623,1178,650"/>
+<area shape="rect" title=" " alt="" coords="1203,623,1268,650"/>
+<area shape="rect" title=" " alt="" coords="1292,623,1347,650"/>
+<area shape="rect" title=" " alt="" coords="1371,623,1449,650"/>
+<area shape="rect" title=" " alt="" coords="1473,623,1547,650"/>
+<area shape="rect" title=" " alt="" coords="1571,623,1627,650"/>
+<area shape="rect" title=" " alt="" coords="1652,623,1691,650"/>
+<area shape="rect" title=" " alt="" coords="1715,623,1761,650"/>
+<area shape="rect" title=" " alt="" coords="1785,623,1896,650"/>
+<area shape="rect" title=" " alt="" coords="1920,616,2073,657"/>
+<area shape="rect" title=" " alt="" coords="2097,616,2251,657"/>
+<area shape="rect" title=" " alt="" coords="2275,616,2441,657"/>
+<area shape="rect" title=" " alt="" coords="2465,616,2619,657"/>
+<area shape="rect" title=" " alt="" coords="2643,616,2796,657"/>
+<area shape="rect" title=" " alt="" coords="2821,616,2983,657"/>
+<area shape="rect" title=" " alt="" coords="3008,616,3161,657"/>
+<area shape="rect" title=" " alt="" coords="3185,616,3339,657"/>
+<area shape="rect" href="_renderer_component_8h.html" title=" " alt="" coords="1390,392,1611,419"/>
+<area shape="rect" href="_component_8h.html" title=" " alt="" coords="1445,467,1556,493"/>
+<area shape="rect" href="_shader_manager_8h.html" title=" " alt="" coords="1218,467,1421,493"/>
+<area shape="rect" href="_texture_manager_8h.html" title=" " alt="" coords="1580,467,1784,493"/>
+<area shape="rect" href="_math_8h.html" title=" " alt="" coords="1847,317,1909,344"/>
+</map>
+</div>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

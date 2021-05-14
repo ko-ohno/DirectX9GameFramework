@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/AspectRatio.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">AspectRatio.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_aspect_ratio_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [AspectRatio.h] アスペクト比率自動計算クラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：アスペクト比率自動計算クラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef ASPECT_RATIO_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ASPECT_RATIO_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* 構造体</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/* アスペクト比率自動計算クラス</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_aspect_ratio.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_aspect_ratio.html">AspectRatio</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_aspect_ratio.html#a059e95ee977b82b01842a83b05d159cb">AspectRatio</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_aspect_ratio.html#a35931a464f1ca7bbc2f03439e8fe87e0">~AspectRatio</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_aspect_ratio.html">AspectRatio</a>* <a class="code" href="class_aspect_ratio.html#acbd5fbe43bc671f750e7291b5ca54933">Create</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::vector&lt;std::pair&lt;std::string, class Vector2&gt;&gt; <a class="code" href="class_aspect_ratio.html#a8fb796221b9c760f2a354fc9131e240d">GetAspectRatioList</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::vector&lt;float&gt; <a class="code" href="class_aspect_ratio.html#a291600f3057b0c607e14ac064e79e007">GetScreenScalerList</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::string OutputAspectRatioString(<span class="keyword">const</span> <span class="keyword">class</span> <a class="code" href="class_vector2.html">Vector2</a>&amp; screenSize);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::vector&lt;std::pair&lt;std::string, class Vector2&gt;&gt; aspect_ratio_list_;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::vector&lt;float&gt; screen_scaler_;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif //ASPECT_RATIO_H_</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_aspect_ratio_html"><div class="ttname"><a href="class_aspect_ratio.html">AspectRatio</a></div><div class="ttdef"><b>Definition:</b> AspectRatio.h:22</div></div>
+<div class="ttc" id="aclass_vector2_html_a5ce0e0f58da61ec110fa9a294000506e"><div class="ttname"><a href="class_vector2.html#a5ce0e0f58da61ec110fa9a294000506e">Vector2::y_</a></div><div class="ttdeci">float y_</div><div class="ttdef"><b>Definition:</b> Math.h:189</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_a291600f3057b0c607e14ac064e79e007"><div class="ttname"><a href="class_aspect_ratio.html#a291600f3057b0c607e14ac064e79e007">AspectRatio::GetScreenScalerList</a></div><div class="ttdeci">std::vector&lt; float &gt; GetScreenScalerList(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:100</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_acbd5fbe43bc671f750e7291b5ca54933"><div class="ttname"><a href="class_aspect_ratio.html#acbd5fbe43bc671f750e7291b5ca54933">AspectRatio::Create</a></div><div class="ttdeci">static AspectRatio * Create(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:84</div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_a35931a464f1ca7bbc2f03439e8fe87e0"><div class="ttname"><a href="class_aspect_ratio.html#a35931a464f1ca7bbc2f03439e8fe87e0">AspectRatio::~AspectRatio</a></div><div class="ttdeci">~AspectRatio(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:73</div></div>
+<div class="ttc" id="aclass_vector2_html_acd387b49a21174f02f8b495fc87f14d7"><div class="ttname"><a href="class_vector2.html#acd387b49a21174f02f8b495fc87f14d7">Vector2::x_</a></div><div class="ttdeci">float x_</div><div class="ttdef"><b>Definition:</b> Math.h:188</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_a8fb796221b9c760f2a354fc9131e240d"><div class="ttname"><a href="class_aspect_ratio.html#a8fb796221b9c760f2a354fc9131e240d">AspectRatio::GetAspectRatioList</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, class Vector2 &gt; &gt; GetAspectRatioList(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:92</div></div>
+<div class="ttc" id="a_win32_a_p_i_window_8h_html"><div class="ttname"><a href="_win32_a_p_i_window_8h.html">Win32APIWindow.h</a></div></div>
+<div class="ttc" id="a_math_8h_html"><div class="ttname"><a href="_math_8h.html">Math.h</a></div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html_af48f39d95443aa3078f9c4e755a0c537"><div class="ttname"><a href="class_win32_a_p_i_window.html#af48f39d95443aa3078f9c4e755a0c537">Win32APIWindow::GetFullScreenSize</a></div><div class="ttdeci">Vector2 GetFullScreenSize(void) const</div><div class="ttdef"><b>Definition:</b> Win32APIWindow.cpp:235</div></div>
+<div class="ttc" id="a_aspect_ratio_8h_html"><div class="ttname"><a href="_aspect_ratio_8h.html">AspectRatio.h</a></div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html"><div class="ttname"><a href="class_win32_a_p_i_window.html">Win32APIWindow</a></div><div class="ttdef"><b>Definition:</b> Win32APIWindow.h:47</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_a059e95ee977b82b01842a83b05d159cb"><div class="ttname"><a href="class_aspect_ratio.html#a059e95ee977b82b01842a83b05d159cb">AspectRatio::AspectRatio</a></div><div class="ttdeci">AspectRatio(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:18</div></div>
+<div class="ttc" id="aclass_vector2_html"><div class="ttname"><a href="class_vector2.html">Vector2</a></div><div class="ttdef"><b>Definition:</b> Math.h:186</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

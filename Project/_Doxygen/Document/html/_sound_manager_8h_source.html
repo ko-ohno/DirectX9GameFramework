@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Manager/SoundManager.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_4d0b1e6619eab9880efe64f04f102fb3.html">Manager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SoundManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_sound_manager_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [SoundManager.h] サウンド管理クラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：サウンド管理クラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SOUND_MANAGER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SOUND_MANAGER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;XAudio2.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* サウンドの種類</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">   18</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">SoundType</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3a6adf97f83acf6453d4a6a4b1070f3754">None</a> = -1</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    , Sample</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    , WonderLand</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    , <a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3a6a061313d22e51e0f25b7cd4dc065233">Max</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* サウンド管理クラス</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_sound_manager.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_sound_manager.html">SoundManager</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_sound_manager.html#accfedbf44f3069c8cd0f61a6282a490a">   33</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_sound_manager.html#accfedbf44f3069c8cd0f61a6282a490a">SoundTypeNames</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3a6a061313d22e51e0f25b7cd4dc065233">SoundType::Max</a>)];</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_sound_manager.html#a27cae1e05426d57b73fdb96f850f26c7">SoundManager</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_sound_manager.html#ab4cbf6445a75c7fc8063aa615c07c7c2">~SoundManager</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_sound_manager.html">SoundManager</a>* <a class="code" href="class_sound_manager.html#ae379fa2183ddadbcae06e81a7c69d703">Create</a>(<span class="keyword">class</span> <a class="code" href="class_game.html">Game</a>* game);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_sound_manager.html#ab7801a6297032857d9063e8f64672f86">StartUp</a>(<span class="keywordtype">void</span>);  <span class="comment">//起動</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_sound_manager.html#a7a835aaecf644a88f9b0775d0125ae59">Shutdown</a>(<span class="keywordtype">void</span>); <span class="comment">//停止</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> Init(<span class="keywordtype">void</span>);    <span class="comment">//初期化</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> Uninit(<span class="keywordtype">void</span>);  <span class="comment">//終了化</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// すべてのサウンドを一時停止</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_sound_manager.html#a1b1b4eaccf840d4fe1f8bd7e9ab0f04b">SetPausedToAllSound</a>(<span class="keywordtype">bool</span> isPaused);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//サウンドのルートパスの取得</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_sound_manager.html#a94a81a5d00e4340f6724e4fe48e82038">   53</a></span>&#160;    std::string <a class="code" href="class_sound_manager.html#a94a81a5d00e4340f6724e4fe48e82038">GetSoundRootpath</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> sound_root_path_; }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">//サウンドの読み込み</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">class </span><a class="code" href="class_sound.html">Sound</a>* <a class="code" href="class_sound_manager.html#ad2d85c2ff208a6ba9fdf55454b62bf95">LoadSound</a>(<a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">SoundType</a> soundTypeID);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//サウンドの解放</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_sound_manager.html#a530d26bb5e7d1531844aad93d99aa85d">ReleaseSound</a>(<a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">SoundType</a> soundTypeID);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//音声を検索する</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">class </span><a class="code" href="class_sound.html">Sound</a>* <a class="code" href="class_sound_manager.html#aea1f3579282c8220a06d5a3d04a1f529">FindSound</a>(<a class="code" href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">SoundType</a> soundTypeID);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// サウンドの追加と削除</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_sound_manager.html#a469552f59fbceda89f72fa9e63fd56a9">AddSound</a>(<span class="keyword">class</span> <a class="code" href="class_sound.html">Sound</a>* sound);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_sound_manager.html#af9cf3a6ebbc24bd51d8d7b9691df6643">RemoveSound</a>(<span class="keyword">class</span> <a class="code" href="class_sound.html">Sound</a>* sound);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_sound_manager.html#a56dede86e6f5eceb9197838628c11aa7">   71</a></span>&#160;    std::unordered_map&lt;SoundType, std::string&gt; <a class="code" href="class_sound_manager.html#a56dede86e6f5eceb9197838628c11aa7">GetSoundFilepathList</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> unmap_sound_path_list_; }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_sound_manager.html#abbd35677aed66b59482d84e43908c963">   73</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_game.html">Game</a>* <a class="code" href="class_sound_manager.html#abbd35677aed66b59482d84e43908c963">GetGame</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> game_; }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// XAudio2のインターフェイスを取得</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_sound_manager.html#a0d02e99edb9ea9604d2d96aee9dc16c3">   76</a></span>&#160;    IXAudio2* <a class="code" href="class_sound_manager.html#a0d02e99edb9ea9604d2d96aee9dc16c3">GetXAudio2Interface</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> xaudio2_; }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    IXAudio2*               xaudio2_;                   <span class="comment">// XAudio2へのインターフェイス</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    IXAudio2MasteringVoice* xaudio2_mastering_voice_;   <span class="comment">// マスターボイス</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//マネージャの所有者</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">class </span><a class="code" href="class_game.html">Game</a>* game_;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">//サウンドのルートパス</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::string sound_root_path_;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">//サウンドのパスリスト</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    std::unordered_map&lt;SoundType, std::string&gt; unmap_sound_path_list_;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">//サウンドのコンテナ</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::vector&lt;class Sound*&gt; sound_list_;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif //SOUND_MANAGER_H_</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_sound_manager_html_a27cae1e05426d57b73fdb96f850f26c7"><div class="ttname"><a href="class_sound_manager.html#a27cae1e05426d57b73fdb96f850f26c7">SoundManager::SoundManager</a></div><div class="ttdeci">SoundManager(class Game *game)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:24</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a56dede86e6f5eceb9197838628c11aa7"><div class="ttname"><a href="class_sound_manager.html#a56dede86e6f5eceb9197838628c11aa7">SoundManager::GetSoundFilepathList</a></div><div class="ttdeci">std::unordered_map&lt; SoundType, std::string &gt; GetSoundFilepathList(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.h:71</div></div>
+<div class="ttc" id="a_sound_manager_8h_html_ad2af16bf27c1b83797f1c32686caf1a3a6adf97f83acf6453d4a6a4b1070f3754"><div class="ttname"><a href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3a6adf97f83acf6453d4a6a4b1070f3754">SoundType::None</a></div><div class="ttdeci">@ None</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a7a835aaecf644a88f9b0775d0125ae59"><div class="ttname"><a href="class_sound_manager.html#a7a835aaecf644a88f9b0775d0125ae59">SoundManager::Shutdown</a></div><div class="ttdeci">void Shutdown(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:70</div></div>
+<div class="ttc" id="aclass_sound_manager_html_ab4cbf6445a75c7fc8063aa615c07c7c2"><div class="ttname"><a href="class_sound_manager.html#ab4cbf6445a75c7fc8063aa615c07c7c2">SoundManager::~SoundManager</a></div><div class="ttdeci">~SoundManager(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:34</div></div>
+<div class="ttc" id="a_sound_manager_8h_html"><div class="ttname"><a href="_sound_manager_8h.html">SoundManager.h</a></div></div>
+<div class="ttc" id="a_sound_manager_8h_html_ad2af16bf27c1b83797f1c32686caf1a3a6a061313d22e51e0f25b7cd4dc065233"><div class="ttname"><a href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3a6a061313d22e51e0f25b7cd4dc065233">SoundType::Max</a></div><div class="ttdeci">@ Max</div></div>
+<div class="ttc" id="aclass_sound_html"><div class="ttname"><a href="class_sound.html">Sound</a></div><div class="ttdef"><b>Definition:</b> Sound.h:19</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a0d02e99edb9ea9604d2d96aee9dc16c3"><div class="ttname"><a href="class_sound_manager.html#a0d02e99edb9ea9604d2d96aee9dc16c3">SoundManager::GetXAudio2Interface</a></div><div class="ttdeci">IXAudio2 * GetXAudio2Interface(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.h:76</div></div>
+<div class="ttc" id="a_std_afx_8h_html_ab6bca16ed021b1e211fde8669758f199"><div class="ttname"><a href="_std_afx_8h.html#ab6bca16ed021b1e211fde8669758f199">NEW</a></div><div class="ttdeci">#define NEW</div><div class="ttdef"><b>Definition:</b> StdAfx.h:93</div></div>
+<div class="ttc" id="aclass_sound_manager_html_af9cf3a6ebbc24bd51d8d7b9691df6643"><div class="ttname"><a href="class_sound_manager.html#af9cf3a6ebbc24bd51d8d7b9691df6643">SoundManager::RemoveSound</a></div><div class="ttdeci">void RemoveSound(class Sound *sound)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:251</div></div>
+<div class="ttc" id="aclass_sound_manager_html_aea1f3579282c8220a06d5a3d04a1f529"><div class="ttname"><a href="class_sound_manager.html#aea1f3579282c8220a06d5a3d04a1f529">SoundManager::FindSound</a></div><div class="ttdeci">class Sound * FindSound(SoundType soundTypeID)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:223</div></div>
+<div class="ttc" id="aclass_sound_manager_html_ae379fa2183ddadbcae06e81a7c69d703"><div class="ttname"><a href="class_sound_manager.html#ae379fa2183ddadbcae06e81a7c69d703">SoundManager::Create</a></div><div class="ttdeci">static SoundManager * Create(class Game *game)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:41</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a94a81a5d00e4340f6724e4fe48e82038"><div class="ttname"><a href="class_sound_manager.html#a94a81a5d00e4340f6724e4fe48e82038">SoundManager::GetSoundRootpath</a></div><div class="ttdeci">std::string GetSoundRootpath(void) const</div><div class="ttdef"><b>Definition:</b> SoundManager.h:53</div></div>
+<div class="ttc" id="a_sound_manager_8h_html_ad2af16bf27c1b83797f1c32686caf1a3"><div class="ttname"><a href="_sound_manager_8h.html#ad2af16bf27c1b83797f1c32686caf1a3">SoundType</a></div><div class="ttdeci">SoundType</div><div class="ttdef"><b>Definition:</b> SoundManager.h:19</div></div>
+<div class="ttc" id="aclass_sound_manager_html_ab7801a6297032857d9063e8f64672f86"><div class="ttname"><a href="class_sound_manager.html#ab7801a6297032857d9063e8f64672f86">SoundManager::StartUp</a></div><div class="ttdeci">bool StartUp(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:49</div></div>
+<div class="ttc" id="aclass_sound_manager_html"><div class="ttname"><a href="class_sound_manager.html">SoundManager</a></div><div class="ttdef"><b>Definition:</b> SoundManager.h:31</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_sound_manager_html_abbd35677aed66b59482d84e43908c963"><div class="ttname"><a href="class_sound_manager.html#abbd35677aed66b59482d84e43908c963">SoundManager::GetGame</a></div><div class="ttdeci">class Game * GetGame(void)</div><div class="ttdef"><b>Definition:</b> SoundManager.h:73</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a469552f59fbceda89f72fa9e63fd56a9"><div class="ttname"><a href="class_sound_manager.html#a469552f59fbceda89f72fa9e63fd56a9">SoundManager::AddSound</a></div><div class="ttdeci">void AddSound(class Sound *sound)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:243</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a530d26bb5e7d1531844aad93d99aa85d"><div class="ttname"><a href="class_sound_manager.html#a530d26bb5e7d1531844aad93d99aa85d">SoundManager::ReleaseSound</a></div><div class="ttdeci">void ReleaseSound(SoundType soundTypeID)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:207</div></div>
+<div class="ttc" id="aclass_sound_manager_html_ad2d85c2ff208a6ba9fdf55454b62bf95"><div class="ttname"><a href="class_sound_manager.html#ad2d85c2ff208a6ba9fdf55454b62bf95">SoundManager::LoadSound</a></div><div class="ttdeci">class Sound * LoadSound(SoundType soundTypeID)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:181</div></div>
+<div class="ttc" id="aclass_sound_manager_html_a1b1b4eaccf840d4fe1f8bd7e9ab0f04b"><div class="ttname"><a href="class_sound_manager.html#a1b1b4eaccf840d4fe1f8bd7e9ab0f04b">SoundManager::SetPausedToAllSound</a></div><div class="ttdeci">void SetPausedToAllSound(bool isPaused)</div><div class="ttdef"><b>Definition:</b> SoundManager.cpp:139</div></div>
+<div class="ttc" id="aclass_sound_html_aea881269a5d7b47d10081ca6d8067967"><div class="ttname"><a href="class_sound.html#aea881269a5d7b47d10081ca6d8067967">Sound::GetSoundTypeID</a></div><div class="ttdeci">SoundType GetSoundTypeID(void)</div><div class="ttdef"><b>Definition:</b> Sound.h:41</div></div>
+<div class="ttc" id="aclass_sound_manager_html_accfedbf44f3069c8cd0f61a6282a490a"><div class="ttname"><a href="class_sound_manager.html#accfedbf44f3069c8cd0f61a6282a490a">SoundManager::SoundTypeNames</a></div><div class="ttdeci">static const char * SoundTypeNames[static_cast&lt; int &gt;(SoundType::Max)]</div><div class="ttdef"><b>Definition:</b> SoundManager.h:33</div></div>
+<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdef"><b>Definition:</b> Game.h:21</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

@@ -1,0 +1,172 @@
+\hypertarget{class_x_file_mesh}{}\doxysection{X\+File\+Mesh クラス}
+\label{class_x_file_mesh}\index{XFileMesh@{XFileMesh}}
+
+
+{\ttfamily \#include $<$X\+File\+Mesh.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_x_file_mesh_a0d57594e32935e31843ad9fc6e2d77ef}{X\+File\+Mesh}} (class \mbox{\hyperlink{class_mesh_manager}{Mesh\+Manager}} $\ast$manager, \mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}} mesh\+Type)
+\item 
+\mbox{\hyperlink{class_x_file_mesh_aa859d0f9822549cbe0a3b72b8ff57935}{$\sim$\+X\+File\+Mesh}} (void)
+\item 
+bool \mbox{\hyperlink{class_x_file_mesh_a80b9c6789c8eaa09a8c3af6a82ee4b17}{Load\+Mesh\+File}} (const \mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}} mesh\+Type)
+\item 
+bool \mbox{\hyperlink{class_x_file_mesh_adba3b2025b96455d2365e016d8347393}{Is\+Get\+Primitive\+Mesh}} (void)
+\item 
+bool \mbox{\hyperlink{class_x_file_mesh_afff7c0edde32b6f821838635125bf938}{Is\+Get\+Load\+Completed}} (void)
+\item 
+void \mbox{\hyperlink{class_x_file_mesh_a75c0794d24e56835b3b3d89c25ac8635}{Add\+Material}} (class \mbox{\hyperlink{class_material}{Material}} $\ast$material)
+\item 
+\mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}} \mbox{\hyperlink{class_x_file_mesh_ac92c655eae896dcb55d1548cecbbb16b}{Get\+Mesh\+Type\+ID}} (void)
+\item 
+L\+P\+D3\+D\+X\+M\+E\+SH \mbox{\hyperlink{class_x_file_mesh_a9d7b03fb831540854f6d878469400150}{Get\+Mesh}} (void) const
+\item 
+D\+W\+O\+RD \mbox{\hyperlink{class_x_file_mesh_a0457a87dfc03722b5a65903d1d49f9a0}{Get\+Material\+Counts}} (void)
+\item 
+L\+P\+D3\+D\+X\+B\+U\+F\+F\+ER \mbox{\hyperlink{class_x_file_mesh_adff96a9a9d1d3a1a1f802b5052533577}{Get\+Material\+Buffer}} (void)
+\item 
+std\+::vector$<$ class \mbox{\hyperlink{class_material}{Material}} $\ast$ $>$ \mbox{\hyperlink{class_x_file_mesh_a8949b277da359c774d8682ce0adef7e6}{Get\+Mesh\+Material\+List}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_x_file_mesh_a0d57594e32935e31843ad9fc6e2d77ef}\label{class_x_file_mesh_a0d57594e32935e31843ad9fc6e2d77ef}} 
+\index{XFileMesh@{XFileMesh}!XFileMesh@{XFileMesh}}
+\index{XFileMesh@{XFileMesh}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{XFileMesh()}{XFileMesh()}}
+{\footnotesize\ttfamily X\+File\+Mesh\+::\+X\+File\+Mesh (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_mesh_manager}{Mesh\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}}}]{mesh\+Type }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a0d57594e32935e31843ad9fc6e2d77ef_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_aa859d0f9822549cbe0a3b72b8ff57935}\label{class_x_file_mesh_aa859d0f9822549cbe0a3b72b8ff57935}} 
+\index{XFileMesh@{XFileMesh}!````~XFileMesh@{$\sim$XFileMesh}}
+\index{````~XFileMesh@{$\sim$XFileMesh}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{$\sim$XFileMesh()}{~XFileMesh()}}
+{\footnotesize\ttfamily X\+File\+Mesh\+::$\sim$\+X\+File\+Mesh (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_x_file_mesh_a75c0794d24e56835b3b3d89c25ac8635}\label{class_x_file_mesh_a75c0794d24e56835b3b3d89c25ac8635}} 
+\index{XFileMesh@{XFileMesh}!AddMaterial@{AddMaterial}}
+\index{AddMaterial@{AddMaterial}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{AddMaterial()}{AddMaterial()}}
+{\footnotesize\ttfamily void X\+File\+Mesh\+::\+Add\+Material (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_material}{Material}} $\ast$}]{material }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a75c0794d24e56835b3b3d89c25ac8635_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_adff96a9a9d1d3a1a1f802b5052533577}\label{class_x_file_mesh_adff96a9a9d1d3a1a1f802b5052533577}} 
+\index{XFileMesh@{XFileMesh}!GetMaterialBuffer@{GetMaterialBuffer}}
+\index{GetMaterialBuffer@{GetMaterialBuffer}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{GetMaterialBuffer()}{GetMaterialBuffer()}}
+{\footnotesize\ttfamily L\+P\+D3\+D\+X\+B\+U\+F\+F\+ER X\+File\+Mesh\+::\+Get\+Material\+Buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_x_file_mesh_a0457a87dfc03722b5a65903d1d49f9a0}\label{class_x_file_mesh_a0457a87dfc03722b5a65903d1d49f9a0}} 
+\index{XFileMesh@{XFileMesh}!GetMaterialCounts@{GetMaterialCounts}}
+\index{GetMaterialCounts@{GetMaterialCounts}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{GetMaterialCounts()}{GetMaterialCounts()}}
+{\footnotesize\ttfamily D\+W\+O\+RD X\+File\+Mesh\+::\+Get\+Material\+Counts (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a0457a87dfc03722b5a65903d1d49f9a0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_a9d7b03fb831540854f6d878469400150}\label{class_x_file_mesh_a9d7b03fb831540854f6d878469400150}} 
+\index{XFileMesh@{XFileMesh}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{GetMesh()}{GetMesh()}}
+{\footnotesize\ttfamily L\+P\+D3\+D\+X\+M\+E\+SH X\+File\+Mesh\+::\+Get\+Mesh (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a9d7b03fb831540854f6d878469400150_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_a8949b277da359c774d8682ce0adef7e6}\label{class_x_file_mesh_a8949b277da359c774d8682ce0adef7e6}} 
+\index{XFileMesh@{XFileMesh}!GetMeshMaterialList@{GetMeshMaterialList}}
+\index{GetMeshMaterialList@{GetMeshMaterialList}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{GetMeshMaterialList()}{GetMeshMaterialList()}}
+{\footnotesize\ttfamily std\+::vector$<$class \mbox{\hyperlink{class_material}{Material}}$\ast$$>$ X\+File\+Mesh\+::\+Get\+Mesh\+Material\+List (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a8949b277da359c774d8682ce0adef7e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_ac92c655eae896dcb55d1548cecbbb16b}\label{class_x_file_mesh_ac92c655eae896dcb55d1548cecbbb16b}} 
+\index{XFileMesh@{XFileMesh}!GetMeshTypeID@{GetMeshTypeID}}
+\index{GetMeshTypeID@{GetMeshTypeID}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{GetMeshTypeID()}{GetMeshTypeID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}} X\+File\+Mesh\+::\+Get\+Mesh\+Type\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_ac92c655eae896dcb55d1548cecbbb16b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_afff7c0edde32b6f821838635125bf938}\label{class_x_file_mesh_afff7c0edde32b6f821838635125bf938}} 
+\index{XFileMesh@{XFileMesh}!IsGetLoadCompleted@{IsGetLoadCompleted}}
+\index{IsGetLoadCompleted@{IsGetLoadCompleted}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{IsGetLoadCompleted()}{IsGetLoadCompleted()}}
+{\footnotesize\ttfamily bool X\+File\+Mesh\+::\+Is\+Get\+Load\+Completed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_x_file_mesh_adba3b2025b96455d2365e016d8347393}\label{class_x_file_mesh_adba3b2025b96455d2365e016d8347393}} 
+\index{XFileMesh@{XFileMesh}!IsGetPrimitiveMesh@{IsGetPrimitiveMesh}}
+\index{IsGetPrimitiveMesh@{IsGetPrimitiveMesh}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{IsGetPrimitiveMesh()}{IsGetPrimitiveMesh()}}
+{\footnotesize\ttfamily bool X\+File\+Mesh\+::\+Is\+Get\+Primitive\+Mesh (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_adba3b2025b96455d2365e016d8347393_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_x_file_mesh_a80b9c6789c8eaa09a8c3af6a82ee4b17}\label{class_x_file_mesh_a80b9c6789c8eaa09a8c3af6a82ee4b17}} 
+\index{XFileMesh@{XFileMesh}!LoadMeshFile@{LoadMeshFile}}
+\index{LoadMeshFile@{LoadMeshFile}!XFileMesh@{XFileMesh}}
+\doxysubsubsection{\texorpdfstring{LoadMeshFile()}{LoadMeshFile()}}
+{\footnotesize\ttfamily bool X\+File\+Mesh\+::\+Load\+Mesh\+File (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}}}]{mesh\+Type }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a80b9c6789c8eaa09a8c3af6a82ee4b17_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_x_file_mesh_a80b9c6789c8eaa09a8c3af6a82ee4b17_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Resource/\mbox{\hyperlink{_x_file_mesh_8h}{X\+File\+Mesh.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Resource/\mbox{\hyperlink{_x_file_mesh_8cpp}{X\+File\+Mesh.\+cpp}}\end{DoxyCompactItemize}

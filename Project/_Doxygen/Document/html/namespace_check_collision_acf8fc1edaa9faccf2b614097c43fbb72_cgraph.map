@@ -1,0 +1,4 @@
+<map id="CheckCollision::CircleVSCircle" name="CheckCollision::CircleVSCircle">
+<area shape="rect" id="node1" title=" " alt="" coords="5,13,205,39"/>
+<area shape="rect" id="node2" href="$class_circle_collider_component.html#ae037f082b1fa218421ce0814c8f479f5" title=" " alt="" coords="253,5,417,47"/>
+</map>

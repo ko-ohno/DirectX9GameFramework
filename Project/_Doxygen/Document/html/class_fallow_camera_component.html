@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: FallowCameraComponent クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="class_fallow_camera_component-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">FallowCameraComponent クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_fallow_camera_component_8h_source.html">FallowCameraComponent.h</a>&gt;</code></p>
+<div class="dynheader">
+FallowCameraComponent の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_fallow_camera_component__inherit__graph.png" border="0" usemap="#a_fallow_camera_component_inherit__map" alt="Inheritance graph"/></div>
+<map name="_fallow_camera_component_inherit__map" id="_fallow_camera_component_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,155,176,181"/>
+<area shape="rect" href="class_camera_component.html" title=" " alt="" coords="24,80,157,107"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="47,5,135,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+FallowCameraComponent 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_fallow_camera_component__coll__graph.png" border="0" usemap="#a_fallow_camera_component_coll__map" alt="Collaboration graph"/></div>
+<map name="_fallow_camera_component_coll__map" id="_fallow_camera_component_coll__map">
+<area shape="rect" title=" " alt="" coords="5,231,176,257"/>
+<area shape="rect" href="class_camera_component.html" title=" " alt="" coords="24,141,157,168"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="220,29,308,55"/>
+<area shape="rect" href="class_transform_component.html" title=" " alt="" coords="186,141,331,168"/>
+<area shape="rect" href="class_game_object.html" title=" " alt="" coords="397,231,491,257"/>
+<area shape="rect" href="class_game.html" title=" " alt="" coords="370,141,427,168"/>
+<area shape="rect" href="class_shader.html" title=" " alt="" coords="546,141,609,168"/>
+<area shape="rect" href="class_shader_manager.html" title=" " alt="" coords="521,29,634,55"/>
+<area shape="rect" href="class_vector2.html" title=" " alt="" coords="49,29,116,55"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ae9e61f1c2776a358e50c3ebd7d1e3d67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fallow_camera_component.html#ae9e61f1c2776a358e50c3ebd7d1e3d67">FallowCameraComponent</a> (class <a class="el" href="class_game_object.html">GameObject</a> *owner, int updateOrder=100)</td></tr>
+<tr class="separator:ae9e61f1c2776a358e50c3ebd7d1e3d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0921438308afc9446374bae13f585f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fallow_camera_component.html#a5d0921438308afc9446374bae13f585f">~FallowCameraComponent</a> (void)</td></tr>
+<tr class="separator:a5d0921438308afc9446374bae13f585f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8477922f9cf472c548250da9a56fd1c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fallow_camera_component.html#ac8477922f9cf472c548250da9a56fd1c">GetComponentType</a> () const override</td></tr>
+<tr class="separator:ac8477922f9cf472c548250da9a56fd1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_camera_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_camera_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_camera_component.html">CameraComponent</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a9de9e6a34c6f8d043404174a38b4d8a3 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a9de9e6a34c6f8d043404174a38b4d8a3">CameraComponent</a> (class <a class="el" href="class_game_object.html">GameObject</a> *owner, int updateOrder=100)</td></tr>
+<tr class="separator:a9de9e6a34c6f8d043404174a38b4d8a3 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4857eada8303b31c6ae8dc5bf9abfb7a inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a4857eada8303b31c6ae8dc5bf9abfb7a">~CameraComponent</a> (void)</td></tr>
+<tr class="separator:a4857eada8303b31c6ae8dc5bf9abfb7a inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5ee9379f52ab5ea8c79d0333c21f536 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ae5ee9379f52ab5ea8c79d0333c21f536">Input</a> (void) override</td></tr>
+<tr class="separator:ae5ee9379f52ab5ea8c79d0333c21f536 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a937f5fa962b7f9bb7212a7bd94f12657 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a937f5fa962b7f9bb7212a7bd94f12657">Update</a> (float deltaTime) override</td></tr>
+<tr class="separator:a937f5fa962b7f9bb7212a7bd94f12657 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac15d1e2be81f05fac88ca13b2281dd5b inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ac15d1e2be81f05fac88ca13b2281dd5b">SetMoveSpeed</a> (float speed)</td></tr>
+<tr class="separator:ac15d1e2be81f05fac88ca13b2281dd5b inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ec1e908b1a00c37e75035b562eaab0 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a32ec1e908b1a00c37e75035b562eaab0">SetRotationDegree</a> (float degree)</td></tr>
+<tr class="separator:a32ec1e908b1a00c37e75035b562eaab0 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad4d25eea0951838561f02c3cbbaed5 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a5ad4d25eea0951838561f02c3cbbaed5">SetCameraTranslation</a> (float posX, float posY, float posZ)</td></tr>
+<tr class="separator:a5ad4d25eea0951838561f02c3cbbaed5 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac73ac07d975c89ffccc20710545c39e5 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ac73ac07d975c89ffccc20710545c39e5">SetCameraTranslation</a> (const D3DXVECTOR3 &amp;position)</td></tr>
+<tr class="separator:ac73ac07d975c89ffccc20710545c39e5 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4574635180ded99eb936de81bf5cd5 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a8d4574635180ded99eb936de81bf5cd5">SetCameraTranslationX</a> (float posX)</td></tr>
+<tr class="separator:a8d4574635180ded99eb936de81bf5cd5 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e56f08fc2c9f470ab394e7c86120b2 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a04e56f08fc2c9f470ab394e7c86120b2">SetCameraTranslationY</a> (float posY)</td></tr>
+<tr class="separator:a04e56f08fc2c9f470ab394e7c86120b2 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb2117f3398c2bfb15d12369292c1f4 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#acbb2117f3398c2bfb15d12369292c1f4">SetCameraTranslationZ</a> (float posZ)</td></tr>
+<tr class="separator:acbb2117f3398c2bfb15d12369292c1f4 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc65dfd511dee77c02d8ecaa7f8bd6d2 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#acc65dfd511dee77c02d8ecaa7f8bd6d2">AddCameraTranslation</a> (float addValueX, float addValueY, float addValueZ)</td></tr>
+<tr class="separator:acc65dfd511dee77c02d8ecaa7f8bd6d2 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeedf9b7fbff2026a1560fa756ba27b3 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#abeedf9b7fbff2026a1560fa756ba27b3">AddCameraTranslation</a> (const D3DXVECTOR3 &amp;addValue)</td></tr>
+<tr class="separator:abeedf9b7fbff2026a1560fa756ba27b3 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d64ecc1a01a9ddadd0a257abcee0bd inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a03d64ecc1a01a9ddadd0a257abcee0bd">AddCameraTranslationX</a> (float addValueX)</td></tr>
+<tr class="separator:a03d64ecc1a01a9ddadd0a257abcee0bd inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a9c4249f8d3d5a755366f935b425571 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a7a9c4249f8d3d5a755366f935b425571">AddCameraTranslationY</a> (float addValueY)</td></tr>
+<tr class="separator:a7a9c4249f8d3d5a755366f935b425571 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af623a40795d3165eb09f2cf142dc733c inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#af623a40795d3165eb09f2cf142dc733c">AddCameraTranslationZ</a> (float addValueZ)</td></tr>
+<tr class="separator:af623a40795d3165eb09f2cf142dc733c inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf1cc21a2dc03adad3b099c01a2f599 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#abcf1cc21a2dc03adad3b099c01a2f599">SetLookAtTranslation</a> (float posX, float posY, float posZ)</td></tr>
+<tr class="separator:abcf1cc21a2dc03adad3b099c01a2f599 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6ec0f549cf19cef649d7a9b336dd67 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a9e6ec0f549cf19cef649d7a9b336dd67">SetLookAtTranslation</a> (const D3DXVECTOR3 &amp;position)</td></tr>
+<tr class="separator:a9e6ec0f549cf19cef649d7a9b336dd67 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72ace2f6551f9a8451f9e992188daaf inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#af72ace2f6551f9a8451f9e992188daaf">SetLookAtTranslationX</a> (float posX)</td></tr>
+<tr class="separator:af72ace2f6551f9a8451f9e992188daaf inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f898e5c4874a9637e81e66a44bce20b inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a7f898e5c4874a9637e81e66a44bce20b">SetLookAtTranslationY</a> (float posY)</td></tr>
+<tr class="separator:a7f898e5c4874a9637e81e66a44bce20b inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9bc2140ef86e79bc9ee50b69f093d18 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#aa9bc2140ef86e79bc9ee50b69f093d18">SetLookAtTranslationZ</a> (float posZ)</td></tr>
+<tr class="separator:aa9bc2140ef86e79bc9ee50b69f093d18 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429824834dee56b8716ad0883739daae inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a429824834dee56b8716ad0883739daae">AddLookAtTranslation</a> (float addValueX, float addValueY, float addValueZ)</td></tr>
+<tr class="separator:a429824834dee56b8716ad0883739daae inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e9e94adfbbd509a57878662277f0ff inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a34e9e94adfbbd509a57878662277f0ff">AddLookAtTranslation</a> (const D3DXVECTOR3 &amp;addValue)</td></tr>
+<tr class="separator:a34e9e94adfbbd509a57878662277f0ff inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8227a4cd9ddf75295b5ffbcdbe6fe626 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a8227a4cd9ddf75295b5ffbcdbe6fe626">AddLookAtTranslationX</a> (float addValueX)</td></tr>
+<tr class="separator:a8227a4cd9ddf75295b5ffbcdbe6fe626 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e94f06f15763a29bf9b0bd360676b9 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a95e94f06f15763a29bf9b0bd360676b9">AddLookAtTranslationY</a> (float addValueY)</td></tr>
+<tr class="separator:a95e94f06f15763a29bf9b0bd360676b9 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb95dca758d0e89ed73b5b861b7b94c9 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#adb95dca758d0e89ed73b5b861b7b94c9">AddLookAtTranslationZ</a> (float addValueZ)</td></tr>
+<tr class="separator:adb95dca758d0e89ed73b5b861b7b94c9 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a866310d213e758d305bf392962f6832a inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a866310d213e758d305bf392962f6832a">GetPositon</a> (void)</td></tr>
+<tr class="separator:a866310d213e758d305bf392962f6832a inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff1a225ae9734b9b17fa2a1824f5d87c inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#aff1a225ae9734b9b17fa2a1824f5d87c">GetLookAtPositon</a> (void)</td></tr>
+<tr class="separator:aff1a225ae9734b9b17fa2a1824f5d87c inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872f7322fc47fa2a42e5c9fa96787458 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">const D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a872f7322fc47fa2a42e5c9fa96787458">GetFrontVector</a> (void)</td></tr>
+<tr class="separator:a872f7322fc47fa2a42e5c9fa96787458 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d55907b870860015792465745163a2 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">const D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a67d55907b870860015792465745163a2">GetUpVector</a> (void)</td></tr>
+<tr class="separator:a67d55907b870860015792465745163a2 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42984d48e603196bd64866a6203827ad inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">const D3DXVECTOR3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a42984d48e603196bd64866a6203827ad">GetRightVector</a> (void)</td></tr>
+<tr class="separator:a42984d48e603196bd64866a6203827ad inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556cec30ca37bad6f71607c0309ac186 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a556cec30ca37bad6f71607c0309ac186">GetViewMatrix</a> (void)</td></tr>
+<tr class="separator:a556cec30ca37bad6f71607c0309ac186 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82b19f1a7e2cc87129786c9dbbc126b4 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a82b19f1a7e2cc87129786c9dbbc126b4">GetViewInverseMatrix</a> (void)</td></tr>
+<tr class="separator:a82b19f1a7e2cc87129786c9dbbc126b4 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d60e7ca64beb90b2e8e72728f6ff2b inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a75d60e7ca64beb90b2e8e72728f6ff2b">GetProjection2DMatrix</a> (void)</td></tr>
+<tr class="separator:a75d60e7ca64beb90b2e8e72728f6ff2b inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b06e1fa81c78aca4395a4e4bdc0ef46 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a9b06e1fa81c78aca4395a4e4bdc0ef46">GetProjection3DMatrix</a> (void)</td></tr>
+<tr class="separator:a9b06e1fa81c78aca4395a4e4bdc0ef46 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1deb685db7ad92433ac4bdd8ca75539 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ab1deb685db7ad92433ac4bdd8ca75539">SetScreenAspectSize</a> (<a class="el" href="class_vector2.html">Vector2</a> &amp;aspectSize)</td></tr>
+<tr class="separator:ab1deb685db7ad92433ac4bdd8ca75539 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcd778b471eca9984490556db22f9951 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#abcd778b471eca9984490556db22f9951">IsGetCameraControlling</a> (void)</td></tr>
+<tr class="separator:abcd778b471eca9984490556db22f9951 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae09070174b780bdbb35348139c16e7c9 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ae09070174b780bdbb35348139c16e7c9">IsSetCameraControlling</a> (bool isCameraControlling)</td></tr>
+<tr class="separator:ae09070174b780bdbb35348139c16e7c9 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079f6eed7569c97ea28b10c1b907b9d9 inherit pub_methods_class_camera_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a079f6eed7569c97ea28b10c1b907b9d9">IsGetCameraMoved</a> (void) const</td></tr>
+<tr class="separator:a079f6eed7569c97ea28b10c1b907b9d9 inherit pub_methods_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a9c5dd6f73d4c0f4c62f302bd01bacff2">Component</a> (class <a class="el" href="class_game_object.html">GameObject</a> *gameObject, int updateOrder=100)</td></tr>
+<tr class="separator:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#aea82675a4fea6db680068f581ec060da">~Component</a> (void)</td></tr>
+<tr class="separator:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae679fc3e619dd58b995fd7699823dbff">OnUpdateWorldTransform</a> ()</td></tr>
+<tr class="separator:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a22af4b447abb06076370f06a34e9cab8">GetOwner</a> (void)</td></tr>
+<tr class="separator:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae545aa714a48db4771505bf4ea85f16d">GetUpdateOrder</a> (void) const</td></tr>
+<tr class="separator:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a175c1bd027369deca1c49b9db05917a2">LoadProperties</a> (void)</td></tr>
+<tr class="separator:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52303e15704fd14fa6ae8edf0e6c571c">SaveProperties</a> (void)</td></tr>
+<tr class="separator:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_types_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開型</td></tr>
+<tr class="memitem:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> { <br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6adf97f83acf6453d4a6a4b1070f3754">TypeID::None</a> = -1, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa2cb05e4bb7830be982f0922fed86b4cd">TypeID::Component</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa9e6f576cf17836f460052c32a7fa43fe">TypeID::AIComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa69868e1fef52a8a942ce331c7d4f55b3">TypeID::EnemyAIComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa93fb6e7a5c5b168b6000da64242843f6">TypeID::AudioComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf6277b82599ea2dd7cb1a14f2428a69f">TypeID::CameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7896e2cdbbfe8030e06905facfc9bf29">TypeID::FollowCameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa3f1c271a632275626e50ea31e7f13168">TypeID::ColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa01f1e567837d70434ab35f4ef976b603">TypeID::CircleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">TypeID::RectangleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa014dd456037eb3506d09105c4eaf0b0f">TypeID::SphereColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">TypeID::OBBColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa59f67165af66e328927f7159ac877cae">TypeID::CapsuleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab0f1638e58c5c79718bedf05c97952df">TypeID::InputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae2020ecea0ad320cc95dcaa7e847c606">TypeID::PlayerInputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">TypeID::AutomaticInputComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafee91fc948fb129d8546b4093c886855">TypeID::RendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf85dee35eaf6b5e72b8288742b687c59">TypeID::SpriteRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">TypeID::BillboardRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa85c0f430ff38df27b4accb1004b78d97">TypeID::StdMeshRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">TypeID::EffectRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa5088e546ca39f7d3254867a5c3dd62b0">TypeID::GizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa38bb6d63f73ef2c06f0ec9a54b11166e">TypeID::GridGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacfdac83773699480e87992f143fe75d0">TypeID::SphereGizmoRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae73b968adcd6286da3eecf0b39353fff">TypeID::BoxGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaabf7729c0e506cfa70ad872ec9779d021">TypeID::TransformComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa02b9ce5d08af7afe14d61dabb514f605">TypeID::MoveComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>
+<br />
+ }</td></tr>
+<tr class="separator:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承静的公開変数類</td></tr>
+<tr class="memitem:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a71ea5985d37bea541e11fa15c57c7072">ComponentTypeNames</a> [static_cast&lt; int &gt;(<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>)]</td></tr>
+<tr class="separator:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_camera_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_camera_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_camera_component.html">CameraComponent</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:aba1d55e11da34f07761d92de96b74c45 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#aba1d55e11da34f07761d92de96b74c45">is_need_update_</a></td></tr>
+<tr class="separator:aba1d55e11da34f07761d92de96b74c45 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0886b92ecdd7357f3d94391d5791786e inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a0886b92ecdd7357f3d94391d5791786e">is_camera_moved_</a></td></tr>
+<tr class="separator:a0886b92ecdd7357f3d94391d5791786e inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8ae3c2afd547bfd799aeb101dd7721c inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ab8ae3c2afd547bfd799aeb101dd7721c">is_camera_controlling_</a></td></tr>
+<tr class="separator:ab8ae3c2afd547bfd799aeb101dd7721c inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e702346c733fa402345e589a38c013 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a53e702346c733fa402345e589a38c013">position_</a></td></tr>
+<tr class="separator:a53e702346c733fa402345e589a38c013 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4157de55b27af814ba813c1c66e519f4 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a4157de55b27af814ba813c1c66e519f4">old_position_</a></td></tr>
+<tr class="separator:a4157de55b27af814ba813c1c66e519f4 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf08e4f31ac1b3550eef4040dbcc8c37 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#aaf08e4f31ac1b3550eef4040dbcc8c37">lookat_position_</a></td></tr>
+<tr class="separator:aaf08e4f31ac1b3550eef4040dbcc8c37 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14d4fe3bb57ee949748be1cea956b1f inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ad14d4fe3bb57ee949748be1cea956b1f">front_vector_</a></td></tr>
+<tr class="separator:ad14d4fe3bb57ee949748be1cea956b1f inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24db154ca5d4cad86fd79082a93d96a7 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a24db154ca5d4cad86fd79082a93d96a7">up_vector_</a></td></tr>
+<tr class="separator:a24db154ca5d4cad86fd79082a93d96a7 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5790e6ee4ee2cc719df97f8c0249907f inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a5790e6ee4ee2cc719df97f8c0249907f">right_vector_</a></td></tr>
+<tr class="separator:a5790e6ee4ee2cc719df97f8c0249907f inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b19eef2fbe44dd3a8936fb9490dd80 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXVECTOR3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a42b19eef2fbe44dd3a8936fb9490dd80">move_direction_</a></td></tr>
+<tr class="separator:a42b19eef2fbe44dd3a8936fb9490dd80 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2198c5d3b5c527b20fd051067f63bb8e inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a2198c5d3b5c527b20fd051067f63bb8e">movement_scale_</a></td></tr>
+<tr class="separator:a2198c5d3b5c527b20fd051067f63bb8e inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add10009901a858addab06ac4c3131959 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#add10009901a858addab06ac4c3131959">move_speed_</a></td></tr>
+<tr class="separator:add10009901a858addab06ac4c3131959 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308231281e215aef14abb309e59042d3 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a308231281e215aef14abb309e59042d3">rotation_degree_</a></td></tr>
+<tr class="separator:a308231281e215aef14abb309e59042d3 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b87efed2ab2d188621e1dfd9cfe5faa inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a6b87efed2ab2d188621e1dfd9cfe5faa">viewing_vector_length_</a></td></tr>
+<tr class="separator:a6b87efed2ab2d188621e1dfd9cfe5faa inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d87bfdb3f2c1031d1bdd617eb2895c8 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a9d87bfdb3f2c1031d1bdd617eb2895c8">screen_aspect_size_</a></td></tr>
+<tr class="separator:a9d87bfdb3f2c1031d1bdd617eb2895c8 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab281bef7a7fdeff913f0f58fa24a85a5 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ab281bef7a7fdeff913f0f58fa24a85a5">view_matrix_</a></td></tr>
+<tr class="separator:ab281bef7a7fdeff913f0f58fa24a85a5 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b0b2bb93793569ada1d7cafd2e4b80 inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#ae1b0b2bb93793569ada1d7cafd2e4b80">view_inverse_matrix_</a></td></tr>
+<tr class="separator:ae1b0b2bb93793569ada1d7cafd2e4b80 inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8a4a4cd89e32a5b67e6c54cd4a772f inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a4f8a4a4cd89e32a5b67e6c54cd4a772f">projection_matrix_2d_</a></td></tr>
+<tr class="separator:a4f8a4a4cd89e32a5b67e6c54cd4a772f inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d89208d5979ef1d3d34658375ef118a inherit pro_attribs_class_camera_component"><td class="memItemLeft" align="right" valign="top">D3DXMATRIX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_component.html#a4d89208d5979ef1d3d34658375ef118a">projection_matrix_3d_</a></td></tr>
+<tr class="separator:a4d89208d5979ef1d3d34658375ef118a inherit pro_attribs_class_camera_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a70cb743723f7acecf716b58d4e40262d">owner_</a></td></tr>
+<tr class="separator:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a481be1bd66b0a300fd6ac2923f2bdbd4">update_order_</a></td></tr>
+<tr class="separator:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ae9e61f1c2776a358e50c3ebd7d1e3d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9e61f1c2776a358e50c3ebd7d1e3d67">&#9670;&nbsp;</a></span>FallowCameraComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FallowCameraComponent::FallowCameraComponent </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td>
+          <td class="paramname"><em>owner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>updateOrder</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5d0921438308afc9446374bae13f585f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0921438308afc9446374bae13f585f">&#9670;&nbsp;</a></span>~FallowCameraComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FallowCameraComponent::~FallowCameraComponent </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ac8477922f9cf472c548250da9a56fd1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8477922f9cf472c548250da9a56fd1c">&#9670;&nbsp;</a></span>GetComponentType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> FallowCameraComponent::GetComponentType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_camera_component.html#a96d78d98422c50b94fd713788c5014cf">CameraComponent</a>を再実装しています。</p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/CameraComponent/<a class="el" href="_fallow_camera_component_8h_source.html">FallowCameraComponent.h</a></li>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/CameraComponent/<a class="el" href="_fallow_camera_component_8cpp.html">FallowCameraComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

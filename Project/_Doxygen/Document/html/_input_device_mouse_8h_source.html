@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/InputDevice/InputDeviceMouse.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_a9da0a34931e38e74cf2e94e0dcd6843.html">InputDevice</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InputDeviceMouse.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_input_device_mouse_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [InputDeviceMouse.h] マウス入力クラスの定義</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：マウス入力による動作クラスの定義</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INPUT_DEVICE_MOUSE_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define INPUT_DEVICE_MOUSE_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../Math.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*--- 構造体定義 ---*/</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/*--- クラスの前方宣言 ---*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/* マウス入力クラス</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_input_device_mouse.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_device_mouse.html">InputDeviceMouse</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_input_device_mouse.html#a2d0bc7dab542736a0419285a318c773f">InputDeviceMouse</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_input_device_mouse.html#a9c2b06fc5bd77f5790e9a0dac5f4f8aa">~InputDeviceMouse</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    HRESULT <a class="code" href="class_input_device_mouse.html#a6922911310c99941718e0b2a1adc9d8e">CrateInputDeviceMouse</a>(<span class="keyword">const</span> LPDIRECTINPUT8 &amp;lpdinputObject, <span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device_mouse.html#a651f8429eeb3ec54d56f2ef722abe5ea">Update</a>(<span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_mouse.html#a92a9f0284e883f19e084a764ec5ac261">GetMBPress</a>  (<span class="keywordtype">int</span> mibNum);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_mouse.html#a49e501c546cf3bba904cd5724b63e953">GetMBTrigger</a>(<span class="keywordtype">int</span> mibNum);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_mouse.html#ae3bb9bd6287ea1b1b5b3e616d4580649">GetMBRepeat</a> (<span class="keywordtype">int</span> mibNum);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_mouse.html#a6dc61267a5abc125eff3e058568e8b10">GetMBRelease</a>(<span class="keywordtype">int</span> mibNum);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">class </span><a class="code" href="class_vector2.html">Vector2</a> <a class="code" href="class_input_device_mouse.html#aad16cc4ffeba761aac5bb3e2942accd4">GetMCursorPos</a>(void) const;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> Init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> Uninit(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> UpdateMouseState(<span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> LIMIT_COUNT_REPEAT = 20;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> NUM_MB_MAX = 4;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//デバイス入力用</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> LPDIRECTINPUTDEVICE8 lpdinput_device_mouse_;     <span class="comment">// 入力デバイス(マウス)へのポインタ</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">static</span> POINT mouse_cursor_pos_;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    DIMOUSESTATE dimouse_state_;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    DIMOUSESTATE dimouse_state_old_;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    BYTE mb_state_[NUM_MB_MAX];                 <span class="comment">// マウスの入力情報ワーク</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    BYTE mb_state_trigger_[NUM_MB_MAX];         <span class="comment">// マウスのトリガー情報ワーク</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    BYTE mb_state_release_[NUM_MB_MAX];         <span class="comment">// マウスのリリース情報ワーク</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    BYTE mb_state_repeat_[NUM_MB_MAX];          <span class="comment">// マウスのリピート情報ワーク</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">int</span> mb_state_repeat_count_[NUM_MB_MAX];     <span class="comment">// マウスのリピートカウンタ</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif //INPUT_DEVICE_MOUSE_H_</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_input_device_mouse_html_a9c2b06fc5bd77f5790e9a0dac5f4f8aa"><div class="ttname"><a href="class_input_device_mouse.html#a9c2b06fc5bd77f5790e9a0dac5f4f8aa">InputDeviceMouse::~InputDeviceMouse</a></div><div class="ttdeci">~InputDeviceMouse(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:30</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a2d0bc7dab542736a0419285a318c773f"><div class="ttname"><a href="class_input_device_mouse.html#a2d0bc7dab542736a0419285a318c773f">InputDeviceMouse::InputDeviceMouse</a></div><div class="ttdeci">InputDeviceMouse(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:22</div></div>
+<div class="ttc" id="a_input_device_mouse_8h_html"><div class="ttname"><a href="_input_device_mouse_8h.html">InputDeviceMouse.h</a></div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a92a9f0284e883f19e084a764ec5ac261"><div class="ttname"><a href="class_input_device_mouse.html#a92a9f0284e883f19e084a764ec5ac261">InputDeviceMouse::GetMBPress</a></div><div class="ttdeci">bool GetMBPress(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:199</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_ae3bb9bd6287ea1b1b5b3e616d4580649"><div class="ttname"><a href="class_input_device_mouse.html#ae3bb9bd6287ea1b1b5b3e616d4580649">InputDeviceMouse::GetMBRepeat</a></div><div class="ttdeci">bool GetMBRepeat(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:215</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a651f8429eeb3ec54d56f2ef722abe5ea"><div class="ttname"><a href="class_input_device_mouse.html#a651f8429eeb3ec54d56f2ef722abe5ea">InputDeviceMouse::Update</a></div><div class="ttdeci">void Update(const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:191</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a6922911310c99941718e0b2a1adc9d8e"><div class="ttname"><a href="class_input_device_mouse.html#a6922911310c99941718e0b2a1adc9d8e">InputDeviceMouse::CrateInputDeviceMouse</a></div><div class="ttdeci">HRESULT CrateInputDeviceMouse(const LPDIRECTINPUT8 &amp;lpdinputObject, const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:38</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_aad16cc4ffeba761aac5bb3e2942accd4"><div class="ttname"><a href="class_input_device_mouse.html#aad16cc4ffeba761aac5bb3e2942accd4">InputDeviceMouse::GetMCursorPos</a></div><div class="ttdeci">class Vector2 GetMCursorPos(void) const</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:231</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html"><div class="ttname"><a href="class_input_device_mouse.html">InputDeviceMouse</a></div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.h:23</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a6dc61267a5abc125eff3e058568e8b10"><div class="ttname"><a href="class_input_device_mouse.html#a6dc61267a5abc125eff3e058568e8b10">InputDeviceMouse::GetMBRelease</a></div><div class="ttdeci">bool GetMBRelease(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:223</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a49e501c546cf3bba904cd5724b63e953"><div class="ttname"><a href="class_input_device_mouse.html#a49e501c546cf3bba904cd5724b63e953">InputDeviceMouse::GetMBTrigger</a></div><div class="ttdeci">bool GetMBTrigger(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:207</div></div>
+<div class="ttc" id="aclass_vector2_html"><div class="ttname"><a href="class_vector2.html">Vector2</a></div><div class="ttdef"><b>Definition:</b> Math.h:186</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

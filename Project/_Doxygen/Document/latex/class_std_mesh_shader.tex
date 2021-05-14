@@ -1,0 +1,135 @@
+\hypertarget{class_std_mesh_shader}{}\doxysection{Std\+Mesh\+Shader クラス}
+\label{class_std_mesh_shader}\index{StdMeshShader@{StdMeshShader}}
+
+
+{\ttfamily \#include $<$Std\+Mesh\+Shader.\+h$>$}
+
+
+
+Std\+Mesh\+Shader の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_std_mesh_shader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Std\+Mesh\+Shader 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{class_std_mesh_shader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_std_mesh_shader_a255bcb6c28dc8aa541d7a96aba30c9ae}{Std\+Mesh\+Shader}} (class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$manager)
+\item 
+\mbox{\hyperlink{class_std_mesh_shader_a8d042c9b39f8e8a69694f9ea1e8ee6e0}{$\sim$\+Std\+Mesh\+Shader}} (void)
+\item 
+bool \mbox{\hyperlink{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca}{Init}} (const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&lpd3d\+\_\+device) override
+\item 
+bool \mbox{\hyperlink{class_std_mesh_shader_ad2db935dd5e7dddc7ccd5b37449a40f3}{Shader\+Compile}} (const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&lpd3d\+\_\+device)
+\item 
+void \mbox{\hyperlink{class_std_mesh_shader_ae7359dca2b19b7722665720b11e98820}{Shader\+Set}} (class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera, class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$renderer\+Component, class \mbox{\hyperlink{class_material}{Material}} $\ast$material) override
+\item 
+void \mbox{\hyperlink{class_std_mesh_shader_aa0143213da2a669435a70e85243ca27d}{Set\+Technique}} (const std\+::string \&technique\+Name) override
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_std_mesh_shader_a255bcb6c28dc8aa541d7a96aba30c9ae}\label{class_std_mesh_shader_a255bcb6c28dc8aa541d7a96aba30c9ae}} 
+\index{StdMeshShader@{StdMeshShader}!StdMeshShader@{StdMeshShader}}
+\index{StdMeshShader@{StdMeshShader}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{StdMeshShader()}{StdMeshShader()}}
+{\footnotesize\ttfamily Std\+Mesh\+Shader\+::\+Std\+Mesh\+Shader (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_shader_a255bcb6c28dc8aa541d7a96aba30c9ae_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_shader_a8d042c9b39f8e8a69694f9ea1e8ee6e0}\label{class_std_mesh_shader_a8d042c9b39f8e8a69694f9ea1e8ee6e0}} 
+\index{StdMeshShader@{StdMeshShader}!````~StdMeshShader@{$\sim$StdMeshShader}}
+\index{````~StdMeshShader@{$\sim$StdMeshShader}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{$\sim$StdMeshShader()}{~StdMeshShader()}}
+{\footnotesize\ttfamily Std\+Mesh\+Shader\+::$\sim$\+Std\+Mesh\+Shader (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca}\label{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca}} 
+\index{StdMeshShader@{StdMeshShader}!Init@{Init}}
+\index{Init@{Init}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Std\+Mesh\+Shader\+::\+Init (\begin{DoxyParamCaption}\item[{const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&}]{lpd3d\+\_\+device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_shader_aad9561918b8f33c1dbc93be874a669ad}{Shader}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_shader_a04db50ed3ab507b30ac2535b69a42eca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_shader_aa0143213da2a669435a70e85243ca27d}\label{class_std_mesh_shader_aa0143213da2a669435a70e85243ca27d}} 
+\index{StdMeshShader@{StdMeshShader}!SetTechnique@{SetTechnique}}
+\index{SetTechnique@{SetTechnique}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{SetTechnique()}{SetTechnique()}}
+{\footnotesize\ttfamily void Std\+Mesh\+Shader\+::\+Set\+Technique (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{technique\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_shader_a87f83f82bc4d06ec23af622b12f915cf}{Shader}}を再実装しています。
+
+\mbox{\Hypertarget{class_std_mesh_shader_ad2db935dd5e7dddc7ccd5b37449a40f3}\label{class_std_mesh_shader_ad2db935dd5e7dddc7ccd5b37449a40f3}} 
+\index{StdMeshShader@{StdMeshShader}!ShaderCompile@{ShaderCompile}}
+\index{ShaderCompile@{ShaderCompile}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{ShaderCompile()}{ShaderCompile()}}
+{\footnotesize\ttfamily bool Std\+Mesh\+Shader\+::\+Shader\+Compile (\begin{DoxyParamCaption}\item[{const L\+P\+D\+I\+R\+E\+C\+T3\+D\+D\+E\+V\+I\+C\+E9 \&}]{lpd3d\+\_\+device }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_shader_ad2db935dd5e7dddc7ccd5b37449a40f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_shader_ae7359dca2b19b7722665720b11e98820}\label{class_std_mesh_shader_ae7359dca2b19b7722665720b11e98820}} 
+\index{StdMeshShader@{StdMeshShader}!ShaderSet@{ShaderSet}}
+\index{ShaderSet@{ShaderSet}!StdMeshShader@{StdMeshShader}}
+\doxysubsubsection{\texorpdfstring{ShaderSet()}{ShaderSet()}}
+{\footnotesize\ttfamily void Std\+Mesh\+Shader\+::\+Shader\+Set (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera,  }\item[{class \mbox{\hyperlink{class_renderer_component}{Renderer\+Component}} $\ast$}]{renderer\+Component,  }\item[{class \mbox{\hyperlink{class_material}{Material}} $\ast$}]{material }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_shader_ab1118e0314b068365ccef427a9c1fdf2}{Shader}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_shader_ae7359dca2b19b7722665720b11e98820_cgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Shader/\mbox{\hyperlink{_std_mesh_shader_8h}{Std\+Mesh\+Shader.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Shader/\mbox{\hyperlink{_std_mesh_shader_8cpp}{Std\+Mesh\+Shader.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="BillboardTest::UpdateGameObject" name="BillboardTest::UpdateGameObject">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,187,112"/>
+<area shape="rect" id="node2" href="$class_billboard_renderer_component.html#aad469d8c1a900af9670ea34aea5f0cf1" title=" " alt="" coords="235,5,425,47"/>
+<area shape="rect" id="node4" href="$class_renderer_component.html#a847476e74d44cc6e6475f4d6a841d731" title=" " alt="" coords="256,71,404,112"/>
+<area shape="rect" id="node5" href="$class_billboard_renderer_component.html#a5ef347535fb2060bec106725c8d9cb74" title=" " alt="" coords="235,136,425,177"/>
+<area shape="rect" id="node3" href="$class_texture.html#ae78a8e477b0de919317f2fe6d06b6fc8" title=" " alt="" coords="473,13,665,39"/>
+</map>

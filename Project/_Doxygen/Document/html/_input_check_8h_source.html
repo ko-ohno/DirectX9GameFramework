@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Input/InputCheck.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_4fbb8dd6b9dc1b4674e44b17704cf14d.html">Input</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InputCheck.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_input_check_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [InputCheck.h] デバイスからの入力状況を中継するクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：デバイスからの入力状況を中継するための仲介役クラス定義</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INPUT_CHECK_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define INPUT_CHECK_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../../InputDevice/InputDeviceXInput.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*--- 構造体定義 ---*/</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/* マウス入力用定数</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">   21</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a> :int</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    MIB_LEFT = 0,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    MIB_RIGHT,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461ba3dbd387f42fcc106abd0ec2c3df13dbc">MIB_CENTER</a>,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">   28</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> : int</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Pad1 = 0,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    Pad2,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    Pad3,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6aab1cf81c9307d54bc641778d978711ec6">Pad4</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/* 入力中継クラス</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_input_check.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_check.html">InputCheck</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_input_check.html">InputCheck</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_input_check.html#a78fb430daf24df51c32305dbbb0ce0eb">~InputCheck</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">//Press     //ボタンを押したら</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//Trigger   //ボタンを押した瞬間</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//Repeat    //ボタンを押し続けていたら</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//Release   //ボタンを放した瞬間</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_input_check.html#a3f1f146bc9980f50c3446ce34e0a08d1">SetInputDeviceState</a>(<span class="keyword">class</span> <a class="code" href="class_input_device.html">InputDevice</a> * inputDevice);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#ae96060d1dad926e39e567ef83595fccb">KeyPress</a>(<span class="keywordtype">int</span> dikKeynum);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#ab8d491a097918ed9e8f7f86123ca58f9">KeyTrigger</a>(<span class="keywordtype">int</span> dikKeynum);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a9dcb56656787b5617ff4354bb7e4eb9c">KeyRepeat</a>(<span class="keywordtype">int</span> dikKeynum);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#af2a2ed1f2f73cfb4dc665c627d80919e">KeyRelease</a>(<span class="keywordtype">int</span> dikKeynum);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a8340e1f20d5b9fbc475d063891602fd6">MButtonPress</a>(<a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a> mibNum);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#ac353ada35b32794192c11bef26018136">MButtonTrigger</a>(<a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a> mibNum);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#aa123f142250fadf6a502212cd5b72d99">MButtonRepeat</a>(<a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a> mibNum);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a814a44ed2fc408e34395c21d4d150f56">MButtonRelease</a>(<a class="code" href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a> mibNum);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_vector2.html">Vector2</a> <a class="code" href="class_input_check.html#a24a49e487006b453e04ef883216e1292">MouseCursorPos</a>(void);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a10478543183beb877c98735ac99d4a52">XInputPress</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex, <a class="code" href="_input_device_x_input_8h.html#a1a78cf7c6dba6841881f76283f2bf1ee">XInputButton</a> xibIndex);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a4149053137858e3ee6bb590df946b3c0">XInputTrigger</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex, <a class="code" href="_input_device_x_input_8h.html#a1a78cf7c6dba6841881f76283f2bf1ee">XInputButton</a> xibIndex);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a43ef57b64ed6497b9b4592b8e6eb1fd3">XInputRepeat</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex, <a class="code" href="_input_device_x_input_8h.html#a1a78cf7c6dba6841881f76283f2bf1ee">XInputButton</a> xibIndex);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_input_check.html#a92f5f7f23bae2baacd6351de17bb01eb">XInputRelease</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex, <a class="code" href="_input_device_x_input_8h.html#a1a78cf7c6dba6841881f76283f2bf1ee">XInputButton</a> xibIndex);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_vector2.html">Vector2</a> <a class="code" href="class_input_check.html#a255768d8104f1d5a8b05bbf52adb6c9d">XInputThumbLeft</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_vector2.html">Vector2</a> <a class="code" href="class_input_check.html#a4628126659c88b61fe344bf98c00498f">XInputThumbRight</a>(<a class="code" href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a> padIndex);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="class_input_device.html">InputDevice</a> *input_device_;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif //INPUT_CHECK_H_</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_input_device_keyboard_html_a2e8b2de82d7e2d46aa4680c0e7e542ef"><div class="ttname"><a href="class_input_device_keyboard.html#a2e8b2de82d7e2d46aa4680c0e7e542ef">InputDeviceKeyboard::GetKeyboardRepeat</a></div><div class="ttdeci">bool GetKeyboardRepeat(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:170</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_abf53dcecc58b471750803d0137335601"><div class="ttname"><a href="class_input_device_x_input.html#abf53dcecc58b471750803d0137335601">InputDeviceXInput::GetXIBRelease</a></div><div class="ttdeci">bool GetXIBRelease(int padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:274</div></div>
+<div class="ttc" id="aclass_input_check_html_ae96060d1dad926e39e567ef83595fccb"><div class="ttname"><a href="class_input_check.html#ae96060d1dad926e39e567ef83595fccb">InputCheck::KeyPress</a></div><div class="ttdeci">static bool KeyPress(int dikKeynum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:44</div></div>
+<div class="ttc" id="aclass_input_check_html_a9dcb56656787b5617ff4354bb7e4eb9c"><div class="ttname"><a href="class_input_check.html#a9dcb56656787b5617ff4354bb7e4eb9c">InputCheck::KeyRepeat</a></div><div class="ttdeci">static bool KeyRepeat(int dikKeynum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:62</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_afdf3abd3604e90e2009ef1c7c051ee21"><div class="ttname"><a href="class_input_device_x_input.html#afdf3abd3604e90e2009ef1c7c051ee21">InputDeviceXInput::GetXIBPress</a></div><div class="ttdeci">bool GetXIBPress(int padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:258</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a60162065672350893671ada616f15c98"><div class="ttname"><a href="class_input_device_x_input.html#a60162065672350893671ada616f15c98">InputDeviceXInput::GetThumbLY</a></div><div class="ttdeci">double GetThumbLY(int padIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:234</div></div>
+<div class="ttc" id="aclass_vector2_html_a5ce0e0f58da61ec110fa9a294000506e"><div class="ttname"><a href="class_vector2.html#a5ce0e0f58da61ec110fa9a294000506e">Vector2::y_</a></div><div class="ttdeci">float y_</div><div class="ttdef"><b>Definition:</b> Math.h:189</div></div>
+<div class="ttc" id="aclass_input_check_html_a10478543183beb877c98735ac99d4a52"><div class="ttname"><a href="class_input_check.html#a10478543183beb877c98735ac99d4a52">InputCheck::XInputPress</a></div><div class="ttdeci">static bool XInputPress(PadIndex padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:125</div></div>
+<div class="ttc" id="aclass_input_check_html_a92f5f7f23bae2baacd6351de17bb01eb"><div class="ttname"><a href="class_input_check.html#a92f5f7f23bae2baacd6351de17bb01eb">InputCheck::XInputRelease</a></div><div class="ttdeci">static bool XInputRelease(PadIndex padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:152</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_ace4a6086c14fdd40a4051635fb06898c"><div class="ttname"><a href="class_input_device_keyboard.html#ace4a6086c14fdd40a4051635fb06898c">InputDeviceKeyboard::GetKeyboardTrigger</a></div><div class="ttdeci">bool GetKeyboardTrigger(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:162</div></div>
+<div class="ttc" id="aclass_input_check_html_a814a44ed2fc408e34395c21d4d150f56"><div class="ttname"><a href="class_input_check.html#a814a44ed2fc408e34395c21d4d150f56">InputCheck::MButtonRelease</a></div><div class="ttdeci">static bool MButtonRelease(MibNum mibNum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:107</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a871341a2bccbe6ac4a83103f4f903c78"><div class="ttname"><a href="class_input_device_x_input.html#a871341a2bccbe6ac4a83103f4f903c78">InputDeviceXInput::GetXIBTrigger</a></div><div class="ttdeci">bool GetXIBTrigger(int padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:266</div></div>
+<div class="ttc" id="a_input_check_8h_html_a19b3c3cfc204212d1ec979d865a2461b"><div class="ttname"><a href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461b">MibNum</a></div><div class="ttdeci">MibNum</div><div class="ttdef"><b>Definition:</b> InputCheck.h:22</div></div>
+<div class="ttc" id="aclass_vector2_html_acd387b49a21174f02f8b495fc87f14d7"><div class="ttname"><a href="class_vector2.html#acd387b49a21174f02f8b495fc87f14d7">Vector2::x_</a></div><div class="ttdeci">float x_</div><div class="ttdef"><b>Definition:</b> Math.h:188</div></div>
+<div class="ttc" id="aclass_input_check_html_a24a49e487006b453e04ef883216e1292"><div class="ttname"><a href="class_input_check.html#a24a49e487006b453e04ef883216e1292">InputCheck::MouseCursorPos</a></div><div class="ttdeci">static class Vector2 MouseCursorPos(void)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:116</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a6f671e8dd39fe1f0571913bfb3fa239c"><div class="ttname"><a href="class_input_device_keyboard.html#a6f671e8dd39fe1f0571913bfb3fa239c">InputDeviceKeyboard::GetKeyboardPress</a></div><div class="ttdeci">bool GetKeyboardPress(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:154</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a92a9f0284e883f19e084a764ec5ac261"><div class="ttname"><a href="class_input_device_mouse.html#a92a9f0284e883f19e084a764ec5ac261">InputDeviceMouse::GetMBPress</a></div><div class="ttdeci">bool GetMBPress(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:199</div></div>
+<div class="ttc" id="a_input_check_8h_html_a09f2192f5a5e2286967760d548538b6a"><div class="ttname"><a href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6a">PadIndex</a></div><div class="ttdeci">PadIndex</div><div class="ttdef"><b>Definition:</b> InputCheck.h:29</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a8ea90d61b5d0e639ddb2a2f94c428b68"><div class="ttname"><a href="class_input_device_x_input.html#a8ea90d61b5d0e639ddb2a2f94c428b68">InputDeviceXInput::GetXIBRepeat</a></div><div class="ttdeci">bool GetXIBRepeat(int padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:282</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_ae3bb9bd6287ea1b1b5b3e616d4580649"><div class="ttname"><a href="class_input_device_mouse.html#ae3bb9bd6287ea1b1b5b3e616d4580649">InputDeviceMouse::GetMBRepeat</a></div><div class="ttdeci">bool GetMBRepeat(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:215</div></div>
+<div class="ttc" id="aclass_input_device_html_a0091c70e8963bee53bab827f372d4249"><div class="ttname"><a href="class_input_device.html#a0091c70e8963bee53bab827f372d4249">InputDevice::GetDeviceInstanceMouse</a></div><div class="ttdeci">static class InputDeviceMouse * GetDeviceInstanceMouse(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:97</div></div>
+<div class="ttc" id="a_input_check_8h_html_a19b3c3cfc204212d1ec979d865a2461ba3dbd387f42fcc106abd0ec2c3df13dbc"><div class="ttname"><a href="_input_check_8h.html#a19b3c3cfc204212d1ec979d865a2461ba3dbd387f42fcc106abd0ec2c3df13dbc">MibNum::MIB_LEFT</a></div><div class="ttdeci">@ MIB_LEFT</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a646a953b143203fc82120d37f7ae0348"><div class="ttname"><a href="class_input_device_x_input.html#a646a953b143203fc82120d37f7ae0348">InputDeviceXInput::GetThumbLX</a></div><div class="ttdeci">double GetThumbLX(int padIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:226</div></div>
+<div class="ttc" id="aclass_input_check_html"><div class="ttname"><a href="class_input_check.html">InputCheck</a></div><div class="ttdef"><b>Definition:</b> InputCheck.h:41</div></div>
+<div class="ttc" id="aclass_input_device_html_ad1f161a71b82864c22849ebb2a4013aa"><div class="ttname"><a href="class_input_device.html#ad1f161a71b82864c22849ebb2a4013aa">InputDevice::GetDeviceInstanceKeyboard</a></div><div class="ttdeci">static class InputDeviceKeyboard * GetDeviceInstanceKeyboard(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:89</div></div>
+<div class="ttc" id="aclass_input_device_html"><div class="ttname"><a href="class_input_device.html">InputDevice</a></div><div class="ttdef"><b>Definition:</b> InputDevice.h:22</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a3609bfda982a049b20278d78633fad13"><div class="ttname"><a href="class_input_device_x_input.html#a3609bfda982a049b20278d78633fad13">InputDeviceXInput::GetThumbRX</a></div><div class="ttdeci">double GetThumbRX(int padIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:242</div></div>
+<div class="ttc" id="aclass_input_check_html_a255768d8104f1d5a8b05bbf52adb6c9d"><div class="ttname"><a href="class_input_check.html#a255768d8104f1d5a8b05bbf52adb6c9d">InputCheck::XInputThumbLeft</a></div><div class="ttdeci">static class Vector2 XInputThumbLeft(PadIndex padIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:161</div></div>
+<div class="ttc" id="a_input_check_8h_html_a09f2192f5a5e2286967760d548538b6aab1cf81c9307d54bc641778d978711ec6"><div class="ttname"><a href="_input_check_8h.html#a09f2192f5a5e2286967760d548538b6aab1cf81c9307d54bc641778d978711ec6">PadIndex::Pad1</a></div><div class="ttdeci">@ Pad1</div></div>
+<div class="ttc" id="aclass_input_device_x_input_html_a93d82c54903965fd5dee7a7622e8ba9e"><div class="ttname"><a href="class_input_device_x_input.html#a93d82c54903965fd5dee7a7622e8ba9e">InputDeviceXInput::GetThumbRY</a></div><div class="ttdeci">double GetThumbRY(int padIndex)</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.cpp:250</div></div>
+<div class="ttc" id="a_input_device_x_input_8h_html_a1a78cf7c6dba6841881f76283f2bf1ee"><div class="ttname"><a href="_input_device_x_input_8h.html#a1a78cf7c6dba6841881f76283f2bf1ee">XInputButton</a></div><div class="ttdeci">XInputButton</div><div class="ttdef"><b>Definition:</b> InputDeviceXInput.h:37</div></div>
+<div class="ttc" id="a_input_check_8h_html"><div class="ttname"><a href="_input_check_8h.html">InputCheck.h</a></div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a5d2d4f439c3279fafb6582e57e28d275"><div class="ttname"><a href="class_input_device_keyboard.html#a5d2d4f439c3279fafb6582e57e28d275">InputDeviceKeyboard::GetKeyboardRelease</a></div><div class="ttdeci">bool GetKeyboardRelease(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:178</div></div>
+<div class="ttc" id="aclass_input_check_html_a4628126659c88b61fe344bf98c00498f"><div class="ttname"><a href="class_input_check.html#a4628126659c88b61fe344bf98c00498f">InputCheck::XInputThumbRight</a></div><div class="ttdeci">static class Vector2 XInputThumbRight(PadIndex padIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:182</div></div>
+<div class="ttc" id="aclass_input_check_html_a43ef57b64ed6497b9b4592b8e6eb1fd3"><div class="ttname"><a href="class_input_check.html#a43ef57b64ed6497b9b4592b8e6eb1fd3">InputCheck::XInputRepeat</a></div><div class="ttdeci">static bool XInputRepeat(PadIndex padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:143</div></div>
+<div class="ttc" id="aclass_input_check_html_a3f1f146bc9980f50c3446ce34e0a08d1"><div class="ttname"><a href="class_input_check.html#a3f1f146bc9980f50c3446ce34e0a08d1">InputCheck::SetInputDeviceState</a></div><div class="ttdeci">static void SetInputDeviceState(class InputDevice *inputDevice)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:36</div></div>
+<div class="ttc" id="aclass_input_device_html_a318e5f6fe57ec81edcc803316449e881"><div class="ttname"><a href="class_input_device.html#a318e5f6fe57ec81edcc803316449e881">InputDevice::GetDeviceInstanceXInput</a></div><div class="ttdeci">static class InputDeviceXInput * GetDeviceInstanceXInput(void)</div><div class="ttdef"><b>Definition:</b> InputDevice.cpp:105</div></div>
+<div class="ttc" id="aclass_input_check_html_aa123f142250fadf6a502212cd5b72d99"><div class="ttname"><a href="class_input_check.html#aa123f142250fadf6a502212cd5b72d99">InputCheck::MButtonRepeat</a></div><div class="ttdeci">static bool MButtonRepeat(MibNum mibNum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:98</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_aad16cc4ffeba761aac5bb3e2942accd4"><div class="ttname"><a href="class_input_device_mouse.html#aad16cc4ffeba761aac5bb3e2942accd4">InputDeviceMouse::GetMCursorPos</a></div><div class="ttdeci">class Vector2 GetMCursorPos(void) const</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:231</div></div>
+<div class="ttc" id="aclass_input_check_html_ab8d491a097918ed9e8f7f86123ca58f9"><div class="ttname"><a href="class_input_check.html#ab8d491a097918ed9e8f7f86123ca58f9">InputCheck::KeyTrigger</a></div><div class="ttdeci">static bool KeyTrigger(int dikKeynum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:53</div></div>
+<div class="ttc" id="aclass_input_check_html_a78fb430daf24df51c32305dbbb0ce0eb"><div class="ttname"><a href="class_input_check.html#a78fb430daf24df51c32305dbbb0ce0eb">InputCheck::~InputCheck</a></div><div class="ttdeci">~InputCheck(void)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:29</div></div>
+<div class="ttc" id="aclass_input_check_html_a8340e1f20d5b9fbc475d063891602fd6"><div class="ttname"><a href="class_input_check.html#a8340e1f20d5b9fbc475d063891602fd6">InputCheck::MButtonPress</a></div><div class="ttdeci">static bool MButtonPress(MibNum mibNum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:80</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a6dc61267a5abc125eff3e058568e8b10"><div class="ttname"><a href="class_input_device_mouse.html#a6dc61267a5abc125eff3e058568e8b10">InputDeviceMouse::GetMBRelease</a></div><div class="ttdeci">bool GetMBRelease(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:223</div></div>
+<div class="ttc" id="aclass_input_check_html_ac353ada35b32794192c11bef26018136"><div class="ttname"><a href="class_input_check.html#ac353ada35b32794192c11bef26018136">InputCheck::MButtonTrigger</a></div><div class="ttdeci">static bool MButtonTrigger(MibNum mibNum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:89</div></div>
+<div class="ttc" id="aclass_input_check_html_a4149053137858e3ee6bb590df946b3c0"><div class="ttname"><a href="class_input_check.html#a4149053137858e3ee6bb590df946b3c0">InputCheck::XInputTrigger</a></div><div class="ttdeci">static bool XInputTrigger(PadIndex padIndex, XInputButton xibIndex)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:134</div></div>
+<div class="ttc" id="aclass_input_device_mouse_html_a49e501c546cf3bba904cd5724b63e953"><div class="ttname"><a href="class_input_device_mouse.html#a49e501c546cf3bba904cd5724b63e953">InputDeviceMouse::GetMBTrigger</a></div><div class="ttdeci">bool GetMBTrigger(int mibNum)</div><div class="ttdef"><b>Definition:</b> InputDeviceMouse.cpp:207</div></div>
+<div class="ttc" id="aclass_input_check_html_af2a2ed1f2f73cfb4dc665c627d80919e"><div class="ttname"><a href="class_input_check.html#af2a2ed1f2f73cfb4dc665c627d80919e">InputCheck::KeyRelease</a></div><div class="ttdeci">static bool KeyRelease(int dikKeynum)</div><div class="ttdef"><b>Definition:</b> InputCheck.cpp:71</div></div>
+<div class="ttc" id="aclass_vector2_html"><div class="ttname"><a href="class_vector2.html">Vector2</a></div><div class="ttdef"><b>Definition:</b> Math.h:186</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

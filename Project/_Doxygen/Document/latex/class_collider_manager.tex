@@ -1,0 +1,174 @@
+\hypertarget{class_collider_manager}{}\doxysection{Collider\+Manager クラス}
+\label{class_collider_manager}\index{ColliderManager@{ColliderManager}}
+
+
+{\ttfamily \#include $<$Collider\+Manager.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_collider_manager_aa5be682eea06e292ec76927dcc101721}{Collider\+Manager}} (class \mbox{\hyperlink{class_game}{Game}} $\ast$game)
+\item 
+\mbox{\hyperlink{class_collider_manager_ac51b3cd56cc433943b2fb9350a3e6cda}{$\sim$\+Collider\+Manager}} (void)
+\item 
+bool \mbox{\hyperlink{class_collider_manager_a627aff8213d3fa32b9339b5e82180e6d}{Start\+Up}} (void)
+\item 
+void \mbox{\hyperlink{class_collider_manager_a919d309f5286a564389a8fe09b991167}{Shutdown}} (void)
+\item 
+void \mbox{\hyperlink{class_collider_manager_a559c9925d0be829a31cf0c2a94ac7635}{Add\+Collider\+Component\+Address}} (class \mbox{\hyperlink{class_collider_component}{Collider\+Component}} $\ast$collider\+Component)
+\item 
+void \mbox{\hyperlink{class_collider_manager_ac46ed7a7dcd777001b1b111f03a854ec}{Remove\+Collider\+Component\+Address}} (class \mbox{\hyperlink{class_collider_component}{Collider\+Component}} $\ast$collider\+Component)
+\item 
+std\+::vector$<$ class \mbox{\hyperlink{class_collider_component}{Collider\+Component}} $\ast$ $>$ \mbox{\hyperlink{class_collider_manager_a817db32cf6920222a0b44c87995b248d}{Get\+Collider\+Component\+List}} (void)
+\item 
+class \mbox{\hyperlink{class_game}{Game}} $\ast$ \mbox{\hyperlink{class_collider_manager_aedbb698a912ef6dbaf1b755e264675d7}{Get\+Game}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_collider_manager}{Collider\+Manager}} $\ast$ \mbox{\hyperlink{class_collider_manager_a069e2a017de4d8b14161b28103f0f7ef}{Create}} (class \mbox{\hyperlink{class_game}{Game}} $\ast$game)
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{class_collider_manager_a89a4b5e74b431677028579033d8cfb7c}{Collider\+Type\+Names}} \mbox{[}static\+\_\+cast$<$ int $>$(\mbox{\hyperlink{_collider_manager_8h_ad2197e39bd509bf45ebf7189a5bc110fa6a061313d22e51e0f25b7cd4dc065233}{Coliider\+Type\+::\+Max}})\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_collider_manager_aa5be682eea06e292ec76927dcc101721}\label{class_collider_manager_aa5be682eea06e292ec76927dcc101721}} 
+\index{ColliderManager@{ColliderManager}!ColliderManager@{ColliderManager}}
+\index{ColliderManager@{ColliderManager}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{ColliderManager()}{ColliderManager()}}
+{\footnotesize\ttfamily Collider\+Manager\+::\+Collider\+Manager (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_aa5be682eea06e292ec76927dcc101721_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_ac51b3cd56cc433943b2fb9350a3e6cda}\label{class_collider_manager_ac51b3cd56cc433943b2fb9350a3e6cda}} 
+\index{ColliderManager@{ColliderManager}!````~ColliderManager@{$\sim$ColliderManager}}
+\index{````~ColliderManager@{$\sim$ColliderManager}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{$\sim$ColliderManager()}{~ColliderManager()}}
+{\footnotesize\ttfamily Collider\+Manager\+::$\sim$\+Collider\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_collider_manager_a559c9925d0be829a31cf0c2a94ac7635}\label{class_collider_manager_a559c9925d0be829a31cf0c2a94ac7635}} 
+\index{ColliderManager@{ColliderManager}!AddColliderComponentAddress@{AddColliderComponentAddress}}
+\index{AddColliderComponentAddress@{AddColliderComponentAddress}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{AddColliderComponentAddress()}{AddColliderComponentAddress()}}
+{\footnotesize\ttfamily void Collider\+Manager\+::\+Add\+Collider\+Component\+Address (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_collider_component}{Collider\+Component}} $\ast$}]{collider\+Component }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a559c9925d0be829a31cf0c2a94ac7635_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_a069e2a017de4d8b14161b28103f0f7ef}\label{class_collider_manager_a069e2a017de4d8b14161b28103f0f7ef}} 
+\index{ColliderManager@{ColliderManager}!Create@{Create}}
+\index{Create@{Create}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_collider_manager}{Collider\+Manager}} $\ast$ Collider\+Manager\+::\+Create (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game}{Game}} $\ast$}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a069e2a017de4d8b14161b28103f0f7ef_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a069e2a017de4d8b14161b28103f0f7ef_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_a817db32cf6920222a0b44c87995b248d}\label{class_collider_manager_a817db32cf6920222a0b44c87995b248d}} 
+\index{ColliderManager@{ColliderManager}!GetColliderComponentList@{GetColliderComponentList}}
+\index{GetColliderComponentList@{GetColliderComponentList}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{GetColliderComponentList()}{GetColliderComponentList()}}
+{\footnotesize\ttfamily std\+::vector$<$class \mbox{\hyperlink{class_collider_component}{Collider\+Component}}$\ast$$>$ Collider\+Manager\+::\+Get\+Collider\+Component\+List (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a817db32cf6920222a0b44c87995b248d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_aedbb698a912ef6dbaf1b755e264675d7}\label{class_collider_manager_aedbb698a912ef6dbaf1b755e264675d7}} 
+\index{ColliderManager@{ColliderManager}!GetGame@{GetGame}}
+\index{GetGame@{GetGame}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{GetGame()}{GetGame()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_game}{Game}}$\ast$ Collider\+Manager\+::\+Get\+Game (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_collider_manager_ac46ed7a7dcd777001b1b111f03a854ec}\label{class_collider_manager_ac46ed7a7dcd777001b1b111f03a854ec}} 
+\index{ColliderManager@{ColliderManager}!RemoveColliderComponentAddress@{RemoveColliderComponentAddress}}
+\index{RemoveColliderComponentAddress@{RemoveColliderComponentAddress}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{RemoveColliderComponentAddress()}{RemoveColliderComponentAddress()}}
+{\footnotesize\ttfamily void Collider\+Manager\+::\+Remove\+Collider\+Component\+Address (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_collider_component}{Collider\+Component}} $\ast$}]{collider\+Component }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_ac46ed7a7dcd777001b1b111f03a854ec_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_a919d309f5286a564389a8fe09b991167}\label{class_collider_manager_a919d309f5286a564389a8fe09b991167}} 
+\index{ColliderManager@{ColliderManager}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily void Collider\+Manager\+::\+Shutdown (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a919d309f5286a564389a8fe09b991167_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_collider_manager_a627aff8213d3fa32b9339b5e82180e6d}\label{class_collider_manager_a627aff8213d3fa32b9339b5e82180e6d}} 
+\index{ColliderManager@{ColliderManager}!StartUp@{StartUp}}
+\index{StartUp@{StartUp}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{StartUp()}{StartUp()}}
+{\footnotesize\ttfamily bool Collider\+Manager\+::\+Start\+Up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_collider_manager_a627aff8213d3fa32b9339b5e82180e6d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{class_collider_manager_a89a4b5e74b431677028579033d8cfb7c}\label{class_collider_manager_a89a4b5e74b431677028579033d8cfb7c}} 
+\index{ColliderManager@{ColliderManager}!ColliderTypeNames@{ColliderTypeNames}}
+\index{ColliderTypeNames@{ColliderTypeNames}!ColliderManager@{ColliderManager}}
+\doxysubsubsection{\texorpdfstring{ColliderTypeNames}{ColliderTypeNames}}
+{\footnotesize\ttfamily const char $\ast$ Collider\+Manager\+::\+Collider\+Type\+Names\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Sphere"{}}}
+\DoxyCodeLine{    , \textcolor{stringliteral}{"{}OBB"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Manager/\mbox{\hyperlink{_collider_manager_8h}{Collider\+Manager.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Manager/\mbox{\hyperlink{_collider_manager_8cpp}{Collider\+Manager.\+cpp}}\end{DoxyCompactItemize}

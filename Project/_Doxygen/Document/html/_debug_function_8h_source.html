@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/DebugCode/DebugFunction.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_833e73d822c62e8303d2a7711ad70f89.html">DebugCode</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">DebugFunction.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_debug_function_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [DebugFunction.h] デバッグ関数</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：デバッグ関数</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef DEBUG_FUNCTION_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define DEBUG_FUNCTION_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* 構造体</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*--- マクロ定義 ---*/</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// 組み込みマクロの展開先を制御するために、文字列操作をするための関数を、マクロ定義に内包させた。</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="_debug_function_8h.html#a50ec2ae92b15ebdc866c97f53163e48c">   28</a></span>&#160;<span class="preprocessor">#define OUTPUT_FORMAT_STRING(format, ...) ( DebugFunction::OutputFormatString(__FILE__, __LINE__, __FUNCTION__, format, __VA_ARGS__) )</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/* デバッグ関数</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespace_debug_function.html">   33</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_debug_function.html">DebugFunction</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//std::string型でフォーマット付き文字列を扱うためのテンプレート関数</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... Args&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespace_debug_function.html#a45e5ef8d491c9e06cf197c6bac3d1570">   37</a></span>&#160;    std::string <a class="code" href="namespace_debug_function.html#a45e5ef8d491c9e06cf197c6bac3d1570">Format</a>(<span class="keyword">const</span> std::string&amp; fmt, Args ... args)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">size_t</span> len = std::snprintf(<span class="keyword">nullptr</span>, 0, fmt.c_str(), args ...);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::vector&lt;char&gt; buf(len + 1);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        std::snprintf(&amp;buf[0], len + 1, fmt.c_str(), args ...);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> std::string(&amp;buf[0], &amp;buf[0] + len);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// @brief デバッグ用のエラーメッセージ用のフォーマット付き文字列生成します。</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// @param [in] format フォーマット  (%dとか%fとかの)</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// @param [in] この関数の呼び出し先の &quot;ファイル名&quot; を入力。</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// @param [in] この関数の呼び出し先の &quot;行番号&quot; を入力。</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// @param [in] この関数を呼び出し先の &quot;関数名&quot; を入力</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// @return すべてのパラメータを結合した、デバッグ用のエラーメッセージ文字列を生成します。</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string <a class="code" href="namespace_debug_function.html#a2e90bcec003a9d82e6158b0d7ec0576a">OutputFormatString</a>(<span class="keyword">const</span> std::string&amp; fileName, <span class="keywordtype">int</span> lineNumber, <span class="keyword">const</span> std::string&amp; functionName, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// @brief ワーニング処理に対してはこの関数を使う。メッセージボックスにフォーマット付き文字列を表示</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// @param [in] format フォーマット  (%dとか%fとかの)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// @param [in] 可変長変数</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// @remarks この関数はパラメータに指定された警告メッセージを表示します。</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3">PrintfToWarningMessageBox</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// @brief エラー処理に対してはこの関数を使う。assert()にフォーマット付き文字列を表示</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// @param [in] format フォーマット  (%dとか%fとかの)</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// @param [in] 可変長変数</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// @remarks この関数はパラメータに指定されたエラーメッセージを表示します。</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_debug_function.html#a139ed68540e2684c61bf273a583d2bf9">PrintfToErrorMessageBox</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// @brief VisualStudioがランタイム時の出力ウィンドウにフォーマット付き文字列を表示</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// @param [in] format フォーマット  (%dとか%fとかの)</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// @param [in] 可変長変数</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// @remarks この関数はデバッグ用です、デバッグ時にしか動作しません</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_debug_function.html#a5887d4fd95ba20def5cc121f1a0e4449">PrintfToIDERuntimeOutputWindow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// @brief コマンドライン インターフェース にフォーマット付き文字列を表示</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// @param [in] format フォーマット  (%dとか%fとかの)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// @param [in] 可変長変数</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// @remarks この関数はデバッグ用です、デバッグ時にしか動作しません</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_debug_function.html#ad15f65da0b8a95a648d6944a7e197304">PrintfToCUIWindow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif //DEBUG_FUNCTION_H_</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_debug_function_html_a139ed68540e2684c61bf273a583d2bf9"><div class="ttname"><a href="namespace_debug_function.html#a139ed68540e2684c61bf273a583d2bf9">DebugFunction::PrintfToErrorMessageBox</a></div><div class="ttdeci">void PrintfToErrorMessageBox(const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:65</div></div>
+<div class="ttc" id="anamespace_debug_function_html_a45e5ef8d491c9e06cf197c6bac3d1570"><div class="ttname"><a href="namespace_debug_function.html#a45e5ef8d491c9e06cf197c6bac3d1570">DebugFunction::Format</a></div><div class="ttdeci">std::string Format(const std::string &amp;fmt, Args ... args)</div><div class="ttdef"><b>Definition:</b> DebugFunction.h:37</div></div>
+<div class="ttc" id="anamespace_debug_function_html_ad15f65da0b8a95a648d6944a7e197304"><div class="ttname"><a href="namespace_debug_function.html#ad15f65da0b8a95a648d6944a7e197304">DebugFunction::PrintfToCUIWindow</a></div><div class="ttdeci">void PrintfToCUIWindow(const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:94</div></div>
+<div class="ttc" id="a_debug_function_8h_html"><div class="ttname"><a href="_debug_function_8h.html">DebugFunction.h</a></div></div>
+<div class="ttc" id="anamespace_debug_function_html_a5887d4fd95ba20def5cc121f1a0e4449"><div class="ttname"><a href="namespace_debug_function.html#a5887d4fd95ba20def5cc121f1a0e4449">DebugFunction::PrintfToIDERuntimeOutputWindow</a></div><div class="ttdeci">void PrintfToIDERuntimeOutputWindow(const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:79</div></div>
+<div class="ttc" id="anamespace_debug_function_html_aba73f1bccd5e6e43a37525bbecc2b8f3"><div class="ttname"><a href="namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3">DebugFunction::PrintfToWarningMessageBox</a></div><div class="ttdeci">void PrintfToWarningMessageBox(const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:52</div></div>
+<div class="ttc" id="anamespace_debug_function_html_a2e90bcec003a9d82e6158b0d7ec0576a"><div class="ttname"><a href="namespace_debug_function.html#a2e90bcec003a9d82e6158b0d7ec0576a">DebugFunction::OutputFormatString</a></div><div class="ttdeci">std::string OutputFormatString(const std::string &amp;fileName, int lineNumber, const std::string &amp;functionName, const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:18</div></div>
+<div class="ttc" id="anamespace_debug_function_html"><div class="ttname"><a href="namespace_debug_function.html">DebugFunction</a></div><div class="ttdef"><b>Definition:</b> DebugFunction.h:34</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

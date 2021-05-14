@@ -1,0 +1,10 @@
+<map id="SpriteRendererComponent" name="SpriteRendererComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="5,184,180,211"/>
+<area shape="rect" id="node2" href="$class_renderer_component.html" title=" " alt="" coords="23,95,163,121"/>
+<area shape="rect" id="node3" href="$class_component.html" title=" " alt="" coords="215,5,303,32"/>
+<area shape="rect" id="node8" href="$class_transform_component.html" title=" " alt="" coords="187,95,332,121"/>
+<area shape="rect" id="node4" href="$class_game_object.html" title=" " alt="" coords="400,184,495,211"/>
+<area shape="rect" id="node5" href="$class_game.html" title=" " alt="" coords="468,95,525,121"/>
+<area shape="rect" id="node6" href="$class_shader.html" title=" " alt="" coords="549,95,612,121"/>
+<area shape="rect" id="node7" href="$class_shader_manager.html" title=" " alt="" coords="524,5,637,32"/>
+</map>

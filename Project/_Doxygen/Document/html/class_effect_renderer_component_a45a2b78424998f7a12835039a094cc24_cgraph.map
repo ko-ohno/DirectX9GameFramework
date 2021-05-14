@@ -1,0 +1,9 @@
+<map id="EffectRendererComponent::SetEffect" name="EffectRendererComponent::SetEffect">
+<area shape="rect" id="node1" title=" " alt="" coords="5,49,179,90"/>
+<area shape="rect" id="node2" href="$class_game.html#a808750e65ec7c088fe7d48e3b51c086d" title=" " alt="" coords="229,5,399,32"/>
+<area shape="rect" id="node3" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="235,56,393,83"/>
+<area shape="rect" id="node4" href="$class_effect_manager.html#a82eaf59e3fb85f53377dc68571148966" title=" " alt="" coords="227,107,401,133"/>
+<area shape="rect" id="node5" href="$class_effect_manager.html#aa0c802bade42ca9713dc4e705462f9f4" title=" " alt="" coords="450,81,619,108"/>
+<area shape="rect" id="node6" href="$class_effect_manager.html#ae35e2f8f28493fe27cb8b2d9b6c764fc" title=" " alt="" coords="449,132,620,159"/>
+<area shape="rect" id="node7" href="$class_effect.html#ae27398775106122b79d0019d1f444d8c" title=" " alt="" coords="668,132,825,159"/>
+</map>

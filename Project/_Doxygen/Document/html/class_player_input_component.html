@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: PlayerInputComponent クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="class_player_input_component-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">PlayerInputComponent クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_player_input_component_8h_source.html">PlayerInputComponent.h</a>&gt;</code></p>
+<div class="dynheader">
+PlayerInputComponent の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_player_input_component__inherit__graph.png" border="0" usemap="#a_player_input_component_inherit__map" alt="Inheritance graph"/></div>
+<map name="_player_input_component_inherit__map" id="_player_input_component_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,155,159,181"/>
+<area shape="rect" href="class_input_component.html" title=" " alt="" coords="24,80,140,107"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="38,5,126,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+PlayerInputComponent 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_player_input_component__coll__graph.png" border="0" usemap="#a_player_input_component_coll__map" alt="Collaboration graph"/></div>
+<map name="_player_input_component_coll__map" id="_player_input_component_coll__map">
+<area shape="rect" title=" " alt="" coords="5,184,159,211"/>
+<area shape="rect" href="class_input_component.html" title=" " alt="" coords="24,95,140,121"/>
+<area shape="rect" href="class_component.html" title=" " alt="" coords="193,5,281,32"/>
+<area shape="rect" href="class_transform_component.html" title=" " alt="" coords="164,95,309,121"/>
+<area shape="rect" href="class_game_object.html" title=" " alt="" coords="377,184,472,211"/>
+<area shape="rect" href="class_game.html" title=" " alt="" coords="445,95,503,121"/>
+<area shape="rect" href="class_shader.html" title=" " alt="" coords="527,95,589,121"/>
+<area shape="rect" href="class_shader_manager.html" title=" " alt="" coords="501,5,615,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:aa63016cf426e6c0c1a4f92bdd86bbc71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#aa63016cf426e6c0c1a4f92bdd86bbc71">PlayerInputComponent</a> (class <a class="el" href="class_game_object.html">GameObject</a> *owner, int updateOrder=100)</td></tr>
+<tr class="separator:aa63016cf426e6c0c1a4f92bdd86bbc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a035734f964bb7abd2709ed0787ef90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#a5a035734f964bb7abd2709ed0787ef90">~PlayerInputComponent</a> (void)</td></tr>
+<tr class="separator:a5a035734f964bb7abd2709ed0787ef90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1112892a4d63f0cbd0cc777d6b69e1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#aa1112892a4d63f0cbd0cc777d6b69e1a">Init</a> (void) override</td></tr>
+<tr class="separator:aa1112892a4d63f0cbd0cc777d6b69e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca1415ff0ea8f5687f3a8d37d8f040d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#a3ca1415ff0ea8f5687f3a8d37d8f040d">Uninit</a> (void) override</td></tr>
+<tr class="separator:a3ca1415ff0ea8f5687f3a8d37d8f040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36796afc8b4456c942e913c8d3c144f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#a36796afc8b4456c942e913c8d3c144f6">Input</a> (void) override</td></tr>
+<tr class="separator:a36796afc8b4456c942e913c8d3c144f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af02ca556ef31ae96bbba31456db533c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#af02ca556ef31ae96bbba31456db533c1">Update</a> (float deltaTime) override</td></tr>
+<tr class="separator:af02ca556ef31ae96bbba31456db533c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b83b335b18d094579460689ebbaf56"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input_component.html#af8b83b335b18d094579460689ebbaf56">GetComponentType</a> () const override</td></tr>
+<tr class="separator:af8b83b335b18d094579460689ebbaf56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_input_component.html">InputComponent</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:acc89a30c13412972696822f63a3e84d8 inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#acc89a30c13412972696822f63a3e84d8">InputComponent</a> (class <a class="el" href="class_game_object.html">GameObject</a> *owner, int updateOrder=100)</td></tr>
+<tr class="separator:acc89a30c13412972696822f63a3e84d8 inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2666a13847fdd2f87b98e46aa0063ed3 inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#a2666a13847fdd2f87b98e46aa0063ed3">~InputComponent</a> (void)</td></tr>
+<tr class="separator:a2666a13847fdd2f87b98e46aa0063ed3 inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a97c1ee99285c774b38c8d9fb37dd64 inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#a3a97c1ee99285c774b38c8d9fb37dd64">GetComponentType</a> (void) const override</td></tr>
+<tr class="separator:a3a97c1ee99285c774b38c8d9fb37dd64 inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a9c5dd6f73d4c0f4c62f302bd01bacff2">Component</a> (class <a class="el" href="class_game_object.html">GameObject</a> *gameObject, int updateOrder=100)</td></tr>
+<tr class="separator:a9c5dd6f73d4c0f4c62f302bd01bacff2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#aea82675a4fea6db680068f581ec060da">~Component</a> (void)</td></tr>
+<tr class="separator:aea82675a4fea6db680068f581ec060da inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae679fc3e619dd58b995fd7699823dbff">OnUpdateWorldTransform</a> ()</td></tr>
+<tr class="separator:ae679fc3e619dd58b995fd7699823dbff inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a22af4b447abb06076370f06a34e9cab8">GetOwner</a> (void)</td></tr>
+<tr class="separator:a22af4b447abb06076370f06a34e9cab8 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae545aa714a48db4771505bf4ea85f16d">GetUpdateOrder</a> (void) const</td></tr>
+<tr class="separator:ae545aa714a48db4771505bf4ea85f16d inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a175c1bd027369deca1c49b9db05917a2">LoadProperties</a> (void)</td></tr>
+<tr class="separator:a175c1bd027369deca1c49b9db05917a2 inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52303e15704fd14fa6ae8edf0e6c571c">SaveProperties</a> (void)</td></tr>
+<tr class="separator:a52303e15704fd14fa6ae8edf0e6c571c inherit pub_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_types_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承公開型</td></tr>
+<tr class="memitem:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> { <br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6adf97f83acf6453d4a6a4b1070f3754">TypeID::None</a> = -1, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa2cb05e4bb7830be982f0922fed86b4cd">TypeID::Component</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa9e6f576cf17836f460052c32a7fa43fe">TypeID::AIComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa69868e1fef52a8a942ce331c7d4f55b3">TypeID::EnemyAIComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa93fb6e7a5c5b168b6000da64242843f6">TypeID::AudioComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf6277b82599ea2dd7cb1a14f2428a69f">TypeID::CameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7896e2cdbbfe8030e06905facfc9bf29">TypeID::FollowCameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa3f1c271a632275626e50ea31e7f13168">TypeID::ColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa01f1e567837d70434ab35f4ef976b603">TypeID::CircleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">TypeID::RectangleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa014dd456037eb3506d09105c4eaf0b0f">TypeID::SphereColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">TypeID::OBBColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa59f67165af66e328927f7159ac877cae">TypeID::CapsuleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab0f1638e58c5c79718bedf05c97952df">TypeID::InputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae2020ecea0ad320cc95dcaa7e847c606">TypeID::PlayerInputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">TypeID::AutomaticInputComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafee91fc948fb129d8546b4093c886855">TypeID::RendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf85dee35eaf6b5e72b8288742b687c59">TypeID::SpriteRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">TypeID::BillboardRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa85c0f430ff38df27b4accb1004b78d97">TypeID::StdMeshRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">TypeID::EffectRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa5088e546ca39f7d3254867a5c3dd62b0">TypeID::GizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa38bb6d63f73ef2c06f0ec9a54b11166e">TypeID::GridGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacfdac83773699480e87992f143fe75d0">TypeID::SphereGizmoRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae73b968adcd6286da3eecf0b39353fff">TypeID::BoxGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaabf7729c0e506cfa70ad872ec9779d021">TypeID::TransformComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa02b9ce5d08af7afe14d61dabb514f605">TypeID::MoveComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>
+<br />
+ }</td></tr>
+<tr class="separator:a72ac443ed11aa0c07688929f18734efa inherit pub_types_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承静的公開変数類</td></tr>
+<tr class="memitem:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a71ea5985d37bea541e11fa15c57c7072">ComponentTypeNames</a> [static_cast&lt; int &gt;(<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>)]</td></tr>
+<tr class="separator:a71ea5985d37bea541e11fa15c57c7072 inherit pub_static_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_component')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_component.html">Component</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a70cb743723f7acecf716b58d4e40262d">owner_</a></td></tr>
+<tr class="separator:a70cb743723f7acecf716b58d4e40262d inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a481be1bd66b0a300fd6ac2923f2bdbd4">update_order_</a></td></tr>
+<tr class="separator:a481be1bd66b0a300fd6ac2923f2bdbd4 inherit pro_attribs_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="aa63016cf426e6c0c1a4f92bdd86bbc71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa63016cf426e6c0c1a4f92bdd86bbc71">&#9670;&nbsp;</a></span>PlayerInputComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlayerInputComponent::PlayerInputComponent </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td>
+          <td class="paramname"><em>owner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>updateOrder</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a035734f964bb7abd2709ed0787ef90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a035734f964bb7abd2709ed0787ef90">&#9670;&nbsp;</a></span>~PlayerInputComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlayerInputComponent::~PlayerInputComponent </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="af8b83b335b18d094579460689ebbaf56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b83b335b18d094579460689ebbaf56">&#9670;&nbsp;</a></span>GetComponentType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> PlayerInputComponent::GetComponentType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a251b83eefdc535a955f39b93b6f46946">Component</a>を実装しています。</p>
+
+</div>
+</div>
+<a id="aa1112892a4d63f0cbd0cc777d6b69e1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1112892a4d63f0cbd0cc777d6b69e1a">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInputComponent::Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a052af0555618b126140b6e0583ba68b8">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a36796afc8b4456c942e913c8d3c144f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36796afc8b4456c942e913c8d3c144f6">&#9670;&nbsp;</a></span>Input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInputComponent::Input </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a52f5bbaba222d7e031c347acad7375f4">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a3ca1415ff0ea8f5687f3a8d37d8f040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca1415ff0ea8f5687f3a8d37d8f040d">&#9670;&nbsp;</a></span>Uninit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInputComponent::Uninit </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a23c41e6704042f2f5769388207911436">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="af02ca556ef31ae96bbba31456db533c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02ca556ef31ae96bbba31456db533c1">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInputComponent::Update </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_component.html#a149d3c9b7d668eb4817dd84dc35bcfcc">Component</a>を再実装しています。</p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/InputComponent/<a class="el" href="_player_input_component_8h_source.html">PlayerInputComponent.h</a></li>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/InputComponent/<a class="el" href="_player_input_component_8cpp.html">PlayerInputComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

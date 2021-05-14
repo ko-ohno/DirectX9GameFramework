@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Shader/GizmoShader.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_2efe9618d39f763ec79d8fe1517b3e08.html">Shader</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GizmoShader.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_gizmo_shader_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [GizmoShader.h] スプライトシェーダクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：スプライトシェーダクラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef GIZMO_SHADER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define GIZMO_SHADER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../Shader.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* スプライトシェーダクラス</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_gizmo_shader.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_gizmo_shader.html">GizmoShader</a> : <span class="keyword">public</span> <a class="code" href="class_shader.html">Shader</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_gizmo_shader.html#aa6546082a16ca5173300141b4d793663">GizmoShader</a>(<span class="keyword">class</span> <a class="code" href="class_shader_manager.html">ShaderManager</a>* manager);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_gizmo_shader.html#af97e3929ce19ba257f47920caf19f93a">~GizmoShader</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">//初期化</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_gizmo_shader.html#a8428c280fa849c6f037ed452e370c494">Init</a>(<span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3d_device) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//シェーダのコンパイル</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_gizmo_shader.html#ac1798390d5d6c68bab6708efac72f2aa">ShaderCompile</a>(<span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3d_device);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> NewShaderCompile(<span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3d_device);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> LoadCompiledShader(<span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3d_device);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_gizmo_shader.html#a53f288c8452445f6b2498739e36104c7">ShaderSet</a>(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera, <span class="keyword">class</span> <a class="code" href="class_renderer_component.html">RendererComponent</a>* rendererComponent, <span class="keyword">class</span> <a class="code" href="class_material.html">Material</a>* material) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    D3DXHANDLE d3dxhandle_technique_;   <span class="comment">//テクニックへのハンドル</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif //GIZMO_SHADER_H_</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_renderer_component_html"><div class="ttname"><a href="class_renderer_component.html">RendererComponent</a></div><div class="ttdef"><b>Definition:</b> RendererComponent.h:41</div></div>
+<div class="ttc" id="a_gizmo_shader_8h_html"><div class="ttname"><a href="_gizmo_shader_8h.html">GizmoShader.h</a></div></div>
+<div class="ttc" id="aclass_gizmo_shader_html_aa6546082a16ca5173300141b4d793663"><div class="ttname"><a href="class_gizmo_shader.html#aa6546082a16ca5173300141b4d793663">GizmoShader::GizmoShader</a></div><div class="ttdeci">GizmoShader(class ShaderManager *manager)</div><div class="ttdef"><b>Definition:</b> GizmoShader.cpp:21</div></div>
+<div class="ttc" id="aclass_gizmo_shader_html"><div class="ttname"><a href="class_gizmo_shader.html">GizmoShader</a></div><div class="ttdef"><b>Definition:</b> GizmoShader.h:18</div></div>
+<div class="ttc" id="aclass_gizmo_shader_html_a8428c280fa849c6f037ed452e370c494"><div class="ttname"><a href="class_gizmo_shader.html#a8428c280fa849c6f037ed452e370c494">GizmoShader::Init</a></div><div class="ttdeci">bool Init(const LPDIRECT3DDEVICE9 &amp;lpd3d_device) override</div><div class="ttdef"><b>Definition:</b> GizmoShader.cpp:42</div></div>
+<div class="ttc" id="aclass_shader_html_aaa9ca37d55ff4f60713527fa77c1ebb5"><div class="ttname"><a href="class_shader.html#aaa9ca37d55ff4f60713527fa77c1ebb5">Shader::lpd3d_vertex_declaration_</a></div><div class="ttdeci">LPDIRECT3DVERTEXDECLARATION9 lpd3d_vertex_declaration_</div><div class="ttdef"><b>Definition:</b> Shader.h:51</div></div>
+<div class="ttc" id="aclass_shader_html_aca7334fd9b6c276f41f8a6afbbf46319"><div class="ttname"><a href="class_shader.html#aca7334fd9b6c276f41f8a6afbbf46319">Shader::shader_</a></div><div class="ttdeci">LPD3DXEFFECT shader_</div><div class="ttdef"><b>Definition:</b> Shader.h:52</div></div>
+<div class="ttc" id="aclass_game_html_a073433e798edb46ed2da577a4c1d9921"><div class="ttname"><a href="class_game.html#a073433e798edb46ed2da577a4c1d9921">Game::GetGraphics</a></div><div class="ttdeci">class DX9Graphics * GetGraphics(void)</div><div class="ttdef"><b>Definition:</b> Game.h:56</div></div>
+<div class="ttc" id="aclass_gizmo_shader_html_af97e3929ce19ba257f47920caf19f93a"><div class="ttname"><a href="class_gizmo_shader.html#af97e3929ce19ba257f47920caf19f93a">GizmoShader::~GizmoShader</a></div><div class="ttdeci">~GizmoShader(void)</div><div class="ttdef"><b>Definition:</b> GizmoShader.cpp:35</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_camera_html_af6ee97c7e71ad6b47fac6f203d69dc62"><div class="ttname"><a href="class_camera.html#af6ee97c7e71ad6b47fac6f203d69dc62">Camera::GetViewMatrix</a></div><div class="ttdeci">D3DXMATRIX * GetViewMatrix(void)</div><div class="ttdef"><b>Definition:</b> Camera.cpp:75</div></div>
+<div class="ttc" id="aclass_material_html"><div class="ttname"><a href="class_material.html">Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:18</div></div>
+<div class="ttc" id="aclass_shader_manager_html"><div class="ttname"><a href="class_shader_manager.html">ShaderManager</a></div><div class="ttdef"><b>Definition:</b> ShaderManager.h:34</div></div>
+<div class="ttc" id="aclass_gizmo_shader_html_a53f288c8452445f6b2498739e36104c7"><div class="ttname"><a href="class_gizmo_shader.html#a53f288c8452445f6b2498739e36104c7">GizmoShader::ShaderSet</a></div><div class="ttdeci">void ShaderSet(class Camera *camera, class RendererComponent *rendererComponent, class Material *material) override</div><div class="ttdef"><b>Definition:</b> GizmoShader.cpp:186</div></div>
+<div class="ttc" id="aclass_gizmo_shader_html_ac1798390d5d6c68bab6708efac72f2aa"><div class="ttname"><a href="class_gizmo_shader.html#ac1798390d5d6c68bab6708efac72f2aa">GizmoShader::ShaderCompile</a></div><div class="ttdeci">bool ShaderCompile(const LPDIRECT3DDEVICE9 &amp;lpd3d_device)</div><div class="ttdef"><b>Definition:</b> GizmoShader.cpp:90</div></div>
+<div class="ttc" id="aclass_camera_html_adb0f4e7181a9a12fb2a50022d631fba2"><div class="ttname"><a href="class_camera.html#adb0f4e7181a9a12fb2a50022d631fba2">Camera::GetProjection3DMatrix</a></div><div class="ttdeci">D3DXMATRIX * GetProjection3DMatrix(void)</div><div class="ttdef"><b>Definition:</b> Camera.cpp:99</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a566d428803c0e9880c2f04e57a133063"><div class="ttname"><a href="class_renderer_component.html#a566d428803c0e9880c2f04e57a133063">RendererComponent::GetVertexColor</a></div><div class="ttdeci">D3DXVECTOR4 * GetVertexColor(void)</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:68</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_shader_html_aad35f250c46aa0928a36aedc365480b8"><div class="ttname"><a href="class_shader.html#aad35f250c46aa0928a36aedc365480b8">Shader::manager_</a></div><div class="ttdeci">class ShaderManager * manager_</div><div class="ttdef"><b>Definition:</b> Shader.h:49</div></div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:23</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a87d4602aece4a4c84a9ab81f7f2fb4c3"><div class="ttname"><a href="class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3">DX9Graphics::GetLPD3DDevice</a></div><div class="ttdeci">static LPDIRECT3DDEVICE9 * GetLPD3DDevice(void)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:71</div></div>
+<div class="ttc" id="aclass_shader_manager_html_aad4f65dca2079255531dafacfb83f687"><div class="ttname"><a href="class_shader_manager.html#aad4f65dca2079255531dafacfb83f687">ShaderManager::GetGame</a></div><div class="ttdeci">class Game * GetGame(void)</div><div class="ttdef"><b>Definition:</b> ShaderManager.h:44</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a3d13de1621080e69b0889d1b959c5cf3"><div class="ttname"><a href="class_renderer_component.html#a3d13de1621080e69b0889d1b959c5cf3">RendererComponent::GetWorldMatrix</a></div><div class="ttdeci">D3DXMATRIX * GetWorldMatrix(void)</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:111</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/ColliderComponent/RectangleColliderComponent.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_c3798f9fa67b1239b9e0618395cf6c2b.html">Component</a></li><li class="navelem"><a class="el" href="dir_89744bdc49887354f0caa4667262d07e.html">ColliderComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">RectangleColliderComponent.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_rectangle_collider_component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [RectangleColliderComponent.h] レクタングルコライダのコンポーネント</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：レクタングルコライダのコンポーネント</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef RECTANGLE_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define RECTANGLE_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../ColliderComponent.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* レクタングルコライダのコンポーネント</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_rectangle_collider_component.html">RectangleColliderComponent</a> : <span class="keyword">public</span> <a class="code" href="class_collider_component.html">ColliderComponent</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">   20</a></span>&#160;    <a class="code" href="class_vector2.html">Vector2</a> <a class="code" href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">position_</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a5a0a43fecdd8f97ece6671a47a64dd0b">   21</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_rectangle_collider_component.html#a5a0a43fecdd8f97ece6671a47a64dd0b">width_</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a97f890b8bf2795ecfa12bfc78b6c2b95">   22</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_rectangle_collider_component.html#a97f890b8bf2795ecfa12bfc78b6c2b95">height_</a>; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_rectangle_collider_component.html#a82fc6aa94a2b93348e3aad77a3617c90">RectangleColliderComponent</a>(<span class="keyword">class</span> <a class="code" href="class_game_object.html">GameObject</a>* owner, <span class="keywordtype">int</span> updateOrder = 100);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_rectangle_collider_component.html#ac22c4caf1362360e4fff2d61e6b38931">~RectangleColliderComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a779cc513c6aa66ef3b6561cf1cd23891">   28</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> <a class="code" href="class_rectangle_collider_component.html#a779cc513c6aa66ef3b6561cf1cd23891">GetComponentType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">TypeID::RectangleColliderComponent</a>; };</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#ae43765bc3e4d1cfbfc9c81075b57eed2">   30</a></span>&#160;    <a class="code" href="class_vector2.html">Vector2</a>* <a class="code" href="class_rectangle_collider_component.html#ae43765bc3e4d1cfbfc9c81075b57eed2">GetPosition</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> &amp;<a class="code" href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">position_</a>; }</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a6586990e51519fd9beb8d85df984eb7f">   31</a></span>&#160;    <span class="keywordtype">void</span>     <a class="code" href="class_rectangle_collider_component.html#a6586990e51519fd9beb8d85df984eb7f">SetPosition</a>(<a class="code" href="class_vector2.html">Vector2</a>&amp; position) { <a class="code" href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">position_</a> = position; }</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a1f4ba815b495a8d9ae6944fe9688afca">   32</a></span>&#160;    <span class="keywordtype">void</span>     <a class="code" href="class_rectangle_collider_component.html#a1f4ba815b495a8d9ae6944fe9688afca">SetPosition</a>(D3DXVECTOR2&amp; position) { <a class="code" href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">position_</a> = position; }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//　幅の設定</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a726a857835cb3148894e4a5f849641dd">   38</a></span>&#160;    <span class="keywordtype">void</span>  <a class="code" href="class_rectangle_collider_component.html#a726a857835cb3148894e4a5f849641dd">SetWidth</a>(<span class="keywordtype">float</span> width) { <a class="code" href="class_rectangle_collider_component.html#a5a0a43fecdd8f97ece6671a47a64dd0b">width_</a> = width; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a257b95dcd1a3555f8ad5fcb61c217880">   39</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_rectangle_collider_component.html#a257b95dcd1a3555f8ad5fcb61c217880">GetWidth</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="class_rectangle_collider_component.html#a5a0a43fecdd8f97ece6671a47a64dd0b">width_</a>; }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">//　高さの設定</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#a06b31298fb79d92493a249ed4eee0da5">   45</a></span>&#160;    <span class="keywordtype">void</span>  <a class="code" href="class_rectangle_collider_component.html#a06b31298fb79d92493a249ed4eee0da5">SetHeight</a>(<span class="keywordtype">float</span> height) { <a class="code" href="class_rectangle_collider_component.html#a97f890b8bf2795ecfa12bfc78b6c2b95">height_</a> = height; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_rectangle_collider_component.html#acea68aee89ffc32f9f6979ca5ffeac56">   46</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_rectangle_collider_component.html#acea68aee89ffc32f9f6979ca5ffeac56">GetHeight</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="class_rectangle_collider_component.html#a97f890b8bf2795ecfa12bfc78b6c2b95">height_</a>; }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif //RECTANGLE_COLLIDER_COMPONENT_H_</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_rectangle_collider_component_html_a257b95dcd1a3555f8ad5fcb61c217880"><div class="ttname"><a href="class_rectangle_collider_component.html#a257b95dcd1a3555f8ad5fcb61c217880">RectangleColliderComponent::GetWidth</a></div><div class="ttdeci">float GetWidth(void)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:39</div></div>
+<div class="ttc" id="aclass_collider_component_html"><div class="ttname"><a href="class_collider_component.html">ColliderComponent</a></div><div class="ttdef"><b>Definition:</b> ColliderComponent.h:24</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html"><div class="ttname"><a href="class_rectangle_collider_component.html">RectangleColliderComponent</a></div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:18</div></div>
+<div class="ttc" id="a_rectangle_collider_component_8h_html"><div class="ttname"><a href="_rectangle_collider_component_8h.html">RectangleColliderComponent.h</a></div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">Component::TypeID::RectangleColliderComponent</a></div><div class="ttdeci">@ RectangleColliderComponent</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efa"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a5a0a43fecdd8f97ece6671a47a64dd0b"><div class="ttname"><a href="class_rectangle_collider_component.html#a5a0a43fecdd8f97ece6671a47a64dd0b">RectangleColliderComponent::width_</a></div><div class="ttdeci">float width_</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:21</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a779cc513c6aa66ef3b6561cf1cd23891"><div class="ttname"><a href="class_rectangle_collider_component.html#a779cc513c6aa66ef3b6561cf1cd23891">RectangleColliderComponent::GetComponentType</a></div><div class="ttdeci">virtual TypeID GetComponentType() const override</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:28</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a71a6abb4d72cd72a18ac2943eacb374a"><div class="ttname"><a href="class_rectangle_collider_component.html#a71a6abb4d72cd72a18ac2943eacb374a">RectangleColliderComponent::position_</a></div><div class="ttdeci">Vector2 position_</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:20</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a82fc6aa94a2b93348e3aad77a3617c90"><div class="ttname"><a href="class_rectangle_collider_component.html#a82fc6aa94a2b93348e3aad77a3617c90">RectangleColliderComponent::RectangleColliderComponent</a></div><div class="ttdeci">RectangleColliderComponent(class GameObject *owner, int updateOrder=100)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.cpp:16</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a97f890b8bf2795ecfa12bfc78b6c2b95"><div class="ttname"><a href="class_rectangle_collider_component.html#a97f890b8bf2795ecfa12bfc78b6c2b95">RectangleColliderComponent::height_</a></div><div class="ttdeci">float height_</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:22</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_acea68aee89ffc32f9f6979ca5ffeac56"><div class="ttname"><a href="class_rectangle_collider_component.html#acea68aee89ffc32f9f6979ca5ffeac56">RectangleColliderComponent::GetHeight</a></div><div class="ttdeci">float GetHeight(void)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:46</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_ac22c4caf1362360e4fff2d61e6b38931"><div class="ttname"><a href="class_rectangle_collider_component.html#ac22c4caf1362360e4fff2d61e6b38931">RectangleColliderComponent::~RectangleColliderComponent</a></div><div class="ttdeci">~RectangleColliderComponent(void)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.cpp:27</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a1f4ba815b495a8d9ae6944fe9688afca"><div class="ttname"><a href="class_rectangle_collider_component.html#a1f4ba815b495a8d9ae6944fe9688afca">RectangleColliderComponent::SetPosition</a></div><div class="ttdeci">void SetPosition(D3DXVECTOR2 &amp;position)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:32</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_ae43765bc3e4d1cfbfc9c81075b57eed2"><div class="ttname"><a href="class_rectangle_collider_component.html#ae43765bc3e4d1cfbfc9c81075b57eed2">RectangleColliderComponent::GetPosition</a></div><div class="ttdeci">Vector2 * GetPosition(void)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:30</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a726a857835cb3148894e4a5f849641dd"><div class="ttname"><a href="class_rectangle_collider_component.html#a726a857835cb3148894e4a5f849641dd">RectangleColliderComponent::SetWidth</a></div><div class="ttdeci">void SetWidth(float width)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:38</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a6586990e51519fd9beb8d85df984eb7f"><div class="ttname"><a href="class_rectangle_collider_component.html#a6586990e51519fd9beb8d85df984eb7f">RectangleColliderComponent::SetPosition</a></div><div class="ttdeci">void SetPosition(Vector2 &amp;position)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:31</div></div>
+<div class="ttc" id="aclass_rectangle_collider_component_html_a06b31298fb79d92493a249ed4eee0da5"><div class="ttname"><a href="class_rectangle_collider_component.html#a06b31298fb79d92493a249ed4eee0da5">RectangleColliderComponent::SetHeight</a></div><div class="ttdeci">void SetHeight(float height)</div><div class="ttdef"><b>Definition:</b> RectangleColliderComponent.h:45</div></div>
+<div class="ttc" id="aclass_vector2_html"><div class="ttname"><a href="class_vector2.html">Vector2</a></div><div class="ttdef"><b>Definition:</b> Math.h:186</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

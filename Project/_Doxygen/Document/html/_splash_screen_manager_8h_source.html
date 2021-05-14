@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Manager/SplashScreenManager.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_1d3c07287348364d68b8f0a8e16d3bdb.html">Manager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SplashScreenManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_splash_screen_manager_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [SplashScreenManager.h] スプラッシュスクリーン全体の処理の管理クラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：スプラッシュスクリーンの全体の処理の管理クラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SPLASHSCREEN_MANAGER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SPLASHSCREEN_MANAGER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../IManager.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../Win32APIWindow.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../Math.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* 構造体</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* アプリ全体の処理の管理クラス</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_splash_screen_manager.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_splash_screen_manager.html">SplashScreenManager</a> : <span class="keyword">public</span> <a class="code" href="class_i_manager.html">IManager</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_splash_screen_manager.html#a5069dfe15135ea4afd8fe14a62838fbc">SplashScreenManager</a>(<span class="keyword">const</span> <a class="code" href="struct_window_style.html">WindowStyle</a>&amp; windowStyle);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_splash_screen_manager.html#a2e4b70aff5ef116ddab7d028895f2b48">~SplashScreenManager</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_splash_screen_manager.html#a49e71be9ed0dfb1c369f7e25e106109e">Init</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_splash_screen_manager.html#a67d5c1d77a7460a01dae2fc7e770c87a">Uninit</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_splash_screen_manager.html#a82da91a84891152a269f969a1be8c062">Input</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_splash_screen_manager.html#a7febb88107df8b011791ccacbad6cb52">Update</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_splash_screen_manager.html#ab2c029d9a7876a2ba18d5b147a06dbdd">GenerateOutput</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//スプラッシュスクリーン側からアプリケーション側に、アスペクト比率を渡す</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">class </span><a class="code" href="class_vector2.html">Vector2</a>* <a class="code" href="class_splash_screen_manager.html#a6e28bf2f0207918168d04e89aadcc9df">GetSelectedAspectRatio</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">float</span>          <a class="code" href="class_splash_screen_manager.html#a225d023d8b71f4b0a0a72815f19ca274">GetScreenScaler</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// メッセージループの状態をマネージャ側から制御</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_splash_screen_manager.html#a3f1a79ee1210d0cd5c048f96d99416bf">IsLoopBreak</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_splash_screen_manager.html#a064bdfc1088beadb182fc32d3ad2dc61">IsShutDown</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//アスペクト比率の作成</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> MakeListAspectRatio(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//アスペクト比率の計算</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_vector2.html">Vector2</a>                  aspect_ratio_size_;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::vector&lt;std::string&gt; aspact_ratio_string_array_;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt;Vector2&gt;     aspect_ratio_size_array_;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::vector&lt;float&gt;       screen_scaler_array_;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">float</span>                    screen_scaler_;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">//スプラッシュスクリーン用の画像データ</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    LPDIRECT3DTEXTURE9       texture_;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_vector2.html">Vector2</a>                  texture_size_;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    HWND                     window_handle_;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">class </span><a class="code" href="class_win32_a_p_i_window.html">Win32APIWindow</a>*    splash_window_;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">class </span><a class="code" href="class_d_x9_graphics.html">DX9Graphics</a>*       dx9_graphics_;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">class </span><a class="code" href="class_im_gui_manager.html">ImGuiManager</a>*      imgui_manager_;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span>                     is_loop_break_;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span>                     is_shutdown_;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif //SPLASHSCREEN_MANAGER_H_</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_splash_screen_manager_html_a82da91a84891152a269f969a1be8c062"><div class="ttname"><a href="class_splash_screen_manager.html#a82da91a84891152a269f969a1be8c062">SplashScreenManager::Input</a></div><div class="ttdeci">void Input(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:104</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a7972d73bfcf49698b1b98dd1adf6ae2f"><div class="ttname"><a href="class_d_x9_graphics.html#a7972d73bfcf49698b1b98dd1adf6ae2f">DX9Graphics::RenderingBegin</a></div><div class="ttdeci">bool RenderingBegin(void)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:99</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a2cd0c058f82d5673657d84e60807fccd"><div class="ttname"><a href="class_d_x9_graphics.html#a2cd0c058f82d5673657d84e60807fccd">DX9Graphics::Create</a></div><div class="ttdeci">static DX9Graphics * Create()</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:41</div></div>
+<div class="ttc" id="a_splash_screen_manager_8h_html"><div class="ttname"><a href="_splash_screen_manager_8h.html">SplashScreenManager.h</a></div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a6e28bf2f0207918168d04e89aadcc9df"><div class="ttname"><a href="class_splash_screen_manager.html#a6e28bf2f0207918168d04e89aadcc9df">SplashScreenManager::GetSelectedAspectRatio</a></div><div class="ttdeci">class Vector2 * GetSelectedAspectRatio(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:244</div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html_a716d4c4e5de85d065536848098572408"><div class="ttname"><a href="class_win32_a_p_i_window.html#a716d4c4e5de85d065536848098572408">Win32APIWindow::CreateNewWindow</a></div><div class="ttdeci">HWND CreateNewWindow(WindowStyle windowStyle, bool isAppWindow=false)</div><div class="ttdef"><b>Definition:</b> Win32APIWindow.cpp:50</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html"><div class="ttname"><a href="class_im_gui_manager.html">ImGuiManager</a></div><div class="ttdef"><b>Definition:</b> ImGuiManager.h:37</div></div>
+<div class="ttc" id="aclass_vector2_html_a5ce0e0f58da61ec110fa9a294000506e"><div class="ttname"><a href="class_vector2.html#a5ce0e0f58da61ec110fa9a294000506e">Vector2::y_</a></div><div class="ttdeci">float y_</div><div class="ttdef"><b>Definition:</b> Math.h:189</div></div>
+<div class="ttc" id="a_debug_function_8h_html_a50ec2ae92b15ebdc866c97f53163e48c"><div class="ttname"><a href="_debug_function_8h.html#a50ec2ae92b15ebdc866c97f53163e48c">OUTPUT_FORMAT_STRING</a></div><div class="ttdeci">#define OUTPUT_FORMAT_STRING(format,...)</div><div class="ttdoc">このマクロは、「呼び出し先の」&quot;ファイル名&quot;と&quot;行番号&quot;、&quot;関数名&quot;を特定し、第一引数に指定したフォーマット付き文字列を生成します</div><div class="ttdef"><b>Definition:</b> DebugFunction.h:28</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a615702c73d3c82afdd93d64d72c8867a"><div class="ttname"><a href="_std_afx_8h.html#a615702c73d3c82afdd93d64d72c8867a">SAFE_DELETE_</a></div><div class="ttdeci">#define SAFE_DELETE_(p)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:100</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_a3e939d9add6908f8767a00b99cd48a52"><div class="ttname"><a href="class_im_gui_manager.html#a3e939d9add6908f8767a00b99cd48a52">ImGuiManager::StartUp</a></div><div class="ttdeci">bool StartUp(class DX9Graphics *dx9Graphics, const HWND &amp;windowHandle)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:42</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_acd66a565d9d45833af8632edaaa0b939"><div class="ttname"><a href="class_im_gui_manager.html#acd66a565d9d45833af8632edaaa0b939">ImGuiManager::UpdateEnd</a></div><div class="ttdeci">void UpdateEnd(void)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:129</div></div>
+<div class="ttc" id="aclass_aspect_ratio_html_acbd5fbe43bc671f750e7291b5ca54933"><div class="ttname"><a href="class_aspect_ratio.html#acbd5fbe43bc671f750e7291b5ca54933">AspectRatio::Create</a></div><div class="ttdeci">static AspectRatio * Create(void)</div><div class="ttdef"><b>Definition:</b> AspectRatio.cpp:84</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html"><div class="ttname"><a href="class_d_x9_graphics.html">DX9Graphics</a></div><div class="ttdef"><b>Definition:</b> DX9Graphics.h:21</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a2e4b70aff5ef116ddab7d028895f2b48"><div class="ttname"><a href="class_splash_screen_manager.html#a2e4b70aff5ef116ddab7d028895f2b48">SplashScreenManager::~SplashScreenManager</a></div><div class="ttdeci">~SplashScreenManager(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:40</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_ab2c029d9a7876a2ba18d5b147a06dbdd"><div class="ttname"><a href="class_splash_screen_manager.html#ab2c029d9a7876a2ba18d5b147a06dbdd">SplashScreenManager::GenerateOutput</a></div><div class="ttdeci">void GenerateOutput(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:210</div></div>
+<div class="ttc" id="aclass_vector2_html_acd387b49a21174f02f8b495fc87f14d7"><div class="ttname"><a href="class_vector2.html#acd387b49a21174f02f8b495fc87f14d7">Vector2::x_</a></div><div class="ttdeci">float x_</div><div class="ttdef"><b>Definition:</b> Math.h:188</div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html_a39796627c9284577cb6b39182c4c17bc"><div class="ttname"><a href="class_win32_a_p_i_window.html#a39796627c9284577cb6b39182c4c17bc">Win32APIWindow::GetWindowSize</a></div><div class="ttdeci">Vector2 GetWindowSize(void) const</div><div class="ttdef"><b>Definition:</b> Win32APIWindow.cpp:209</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a5069dfe15135ea4afd8fe14a62838fbc"><div class="ttname"><a href="class_splash_screen_manager.html#a5069dfe15135ea4afd8fe14a62838fbc">SplashScreenManager::SplashScreenManager</a></div><div class="ttdeci">SplashScreenManager(const WindowStyle &amp;windowStyle)</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:22</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a03bebc30a0cd016385ab8be172dcdec2"><div class="ttname"><a href="class_d_x9_graphics.html#a03bebc30a0cd016385ab8be172dcdec2">DX9Graphics::RenderingEnd</a></div><div class="ttdeci">void RenderingEnd(void)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:107</div></div>
+<div class="ttc" id="aclass_i_manager_html"><div class="ttname"><a href="class_i_manager.html">IManager</a></div><div class="ttdef"><b>Definition:</b> IManager.h:23</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_acc4ddaf9aa5173d46b009b7fe1207a08"><div class="ttname"><a href="class_im_gui_manager.html#acc4ddaf9aa5173d46b009b7fe1207a08">ImGuiManager::ShutDown</a></div><div class="ttdeci">void ShutDown(void)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:82</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_a74cfcd4b28332a6cec71a865ac37b9c3"><div class="ttname"><a href="class_im_gui_manager.html#a74cfcd4b28332a6cec71a865ac37b9c3">ImGuiManager::ImGuiRender</a></div><div class="ttdeci">void ImGuiRender(void)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:137</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a67d5c1d77a7460a01dae2fc7e770c87a"><div class="ttname"><a href="class_splash_screen_manager.html#a67d5c1d77a7460a01dae2fc7e770c87a">SplashScreenManager::Uninit</a></div><div class="ttdeci">void Uninit(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:87</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_ad7897caac88bcc6fd95a895f2a9e9d2b"><div class="ttname"><a href="class_im_gui_manager.html#ad7897caac88bcc6fd95a895f2a9e9d2b">ImGuiManager::Create</a></div><div class="ttdeci">static ImGuiManager * Create(void)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:34</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a7febb88107df8b011791ccacbad6cb52"><div class="ttname"><a href="class_splash_screen_manager.html#a7febb88107df8b011791ccacbad6cb52">SplashScreenManager::Update</a></div><div class="ttdeci">void Update(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:111</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a225d023d8b71f4b0a0a72815f19ca274"><div class="ttname"><a href="class_splash_screen_manager.html#a225d023d8b71f4b0a0a72815f19ca274">SplashScreenManager::GetScreenScaler</a></div><div class="ttdeci">float GetScreenScaler(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:252</div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html_a114bf249b80001e6abe055fcf54f8c4c"><div class="ttname"><a href="class_win32_a_p_i_window.html#a114bf249b80001e6abe055fcf54f8c4c">Win32APIWindow::GetWindowClientSize</a></div><div class="ttdeci">Vector2 GetWindowClientSize(const HWND &amp;windowHandle) const</div><div class="ttdef"><b>Definition:</b> Win32APIWindow.cpp:217</div></div>
+<div class="ttc" id="astruct_window_style_html"><div class="ttname"><a href="struct_window_style.html">WindowStyle</a></div><div class="ttdef"><b>Definition:</b> Win32APIWindow.h:19</div></div>
+<div class="ttc" id="aclass_d_x9_graphics_html_a74105159c69b1ff5c65b7ea48f255505"><div class="ttname"><a href="class_d_x9_graphics.html#a74105159c69b1ff5c65b7ea48f255505">DX9Graphics::CreateDX9Graphics</a></div><div class="ttdeci">bool CreateDX9Graphics(const HWND &amp;windowHandle, const class Vector2 &amp;screenSize)</div><div class="ttdef"><b>Definition:</b> DX9Graphics.cpp:49</div></div>
+<div class="ttc" id="anamespace_debug_function_html_aba73f1bccd5e6e43a37525bbecc2b8f3"><div class="ttname"><a href="namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3">DebugFunction::PrintfToWarningMessageBox</a></div><div class="ttdeci">void PrintfToWarningMessageBox(const char *format,...)</div><div class="ttdef"><b>Definition:</b> DebugFunction.cpp:52</div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html_aea9d9e960706839432276cee6743886f"><div class="ttname"><a href="class_win32_a_p_i_window.html#aea9d9e960706839432276cee6743886f">Win32APIWindow::Create</a></div><div class="ttdeci">static Win32APIWindow * Create()</div><div class="ttdef"><b>Definition:</b> Win32APIWindow.cpp:42</div></div>
+<div class="ttc" id="aclass_im_gui_manager_html_aa702ecba3f19c6ae5961db98540fbe9b"><div class="ttname"><a href="class_im_gui_manager.html#aa702ecba3f19c6ae5961db98540fbe9b">ImGuiManager::UpdateBegin</a></div><div class="ttdeci">void UpdateBegin(void)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:119</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a49e71be9ed0dfb1c369f7e25e106109e"><div class="ttname"><a href="class_splash_screen_manager.html#a49e71be9ed0dfb1c369f7e25e106109e">SplashScreenManager::Init</a></div><div class="ttdeci">bool Init(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:48</div></div>
+<div class="ttc" id="aclass_win32_a_p_i_window_html"><div class="ttname"><a href="class_win32_a_p_i_window.html">Win32APIWindow</a></div><div class="ttdef"><b>Definition:</b> Win32APIWindow.h:47</div></div>
+<div class="ttc" id="anamespace_im_gui_html_a5d442b8d8b7b85992ff7b97f332e7ebf"><div class="ttname"><a href="namespace_im_gui.html#a5d442b8d8b7b85992ff7b97f332e7ebf">ImGui::LoadTexture</a></div><div class="ttdeci">bool LoadTexture(const char *fileName, LPDIRECT3DTEXTURE9 *srcTexture, class Vector2 &amp;textureSize)</div><div class="ttdef"><b>Definition:</b> ImGuiManager.cpp:162</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a064bdfc1088beadb182fc32d3ad2dc61"><div class="ttname"><a href="class_splash_screen_manager.html#a064bdfc1088beadb182fc32d3ad2dc61">SplashScreenManager::IsShutDown</a></div><div class="ttdeci">bool IsShutDown(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:268</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html_a3f1a79ee1210d0cd5c048f96d99416bf"><div class="ttname"><a href="class_splash_screen_manager.html#a3f1a79ee1210d0cd5c048f96d99416bf">SplashScreenManager::IsLoopBreak</a></div><div class="ttdeci">bool IsLoopBreak(void) override</div><div class="ttdef"><b>Definition:</b> SplashScreenManager.cpp:260</div></div>
+<div class="ttc" id="aclass_vector2_html"><div class="ttname"><a href="class_vector2.html">Vector2</a></div><div class="ttdef"><b>Definition:</b> Math.h:186</div></div>
+<div class="ttc" id="aclass_splash_screen_manager_html"><div class="ttname"><a href="class_splash_screen_manager.html">SplashScreenManager</a></div><div class="ttdef"><b>Definition:</b> SplashScreenManager.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

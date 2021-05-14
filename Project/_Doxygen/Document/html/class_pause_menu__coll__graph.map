@@ -1,0 +1,10 @@
+<map id="PauseMenu" name="PauseMenu">
+<area shape="rect" id="node1" title=" " alt="" coords="5,349,96,376"/>
+<area shape="rect" id="node2" href="$class_u_i.html" title=" " alt="" coords="31,273,70,300"/>
+<area shape="rect" id="node3" href="$class_game_object.html" title=" " alt="" coords="113,184,207,211"/>
+<area shape="rect" id="node8" href="$class_component.html" title=" " alt="" coords="99,273,187,300"/>
+<area shape="rect" id="node4" href="$class_game.html" title=" " alt="" coords="33,95,90,121"/>
+<area shape="rect" id="node5" href="$class_shader.html" title=" " alt="" coords="131,95,194,121"/>
+<area shape="rect" id="node6" href="$class_shader_manager.html" title=" " alt="" coords="106,5,219,32"/>
+<area shape="rect" id="node7" href="$class_transform_component.html" title=" " alt="" coords="141,349,286,376"/>
+</map>

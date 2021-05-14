@@ -1,0 +1,14 @@
+<map id="SpriteTest::UpdateGameObject" name="SpriteTest::UpdateGameObject">
+<area shape="rect" id="node1" title=" " alt="" coords="5,261,208,287"/>
+<area shape="rect" id="node2" href="$class_sprite_renderer_component.html#ad1212922edb62d6c137e1d7d4e83d06f" title=" " alt="" coords="256,5,431,47"/>
+<area shape="rect" id="node4" href="$namespace_im_gui.html#a961e96c8c88a3b4c874a1c11a37608ee" title=" " alt="" coords="276,71,411,98"/>
+<area shape="rect" id="node5" href="$class_sprite_renderer_component.html#a854eefc90076d0bdc849620d3501a6d1" title=" " alt="" coords="256,123,431,164"/>
+<area shape="rect" id="node6" href="$class_sprite_renderer_component.html#a0882018bb1b2134967656417be85a502" title=" " alt="" coords="256,188,431,229"/>
+<area shape="rect" id="node7" href="$class_sprite_renderer_component.html#a68ff98e3ea71282fa4a82d2306f0b75a" title=" " alt="" coords="256,253,431,295"/>
+<area shape="rect" id="node9" href="$class_renderer_component.html#a8acf81c2cc69b6c65a1603ed68a2478d" title=" " alt="" coords="269,319,417,360"/>
+<area shape="rect" id="node10" href="$class_renderer_component.html#a825bd4108222095b3ba56e1fdd89d268" title=" " alt="" coords="269,384,417,425"/>
+<area shape="rect" id="node11" href="$class_sprite_renderer_component.html#ad552b9f1ddd6b4a18f0bf25da736d650" title=" " alt="" coords="256,449,431,491"/>
+<area shape="rect" id="node12" href="$namespace_im_gui.html#a51d4b985dab3b416cb30cf353ce8e49f" title=" " alt="" coords="289,515,397,542"/>
+<area shape="rect" id="node3" href="$namespace_math.html#afca6da72d9fd1905411d64f9fe900a54" title="小数点第１位まで、角度への円周へ変換" alt="" coords="518,13,631,39"/>
+<area shape="rect" id="node8" href="$class_texture.html#ae78a8e477b0de919317f2fe6d06b6fc8" title=" " alt="" coords="479,261,671,287"/>
+</map>

@@ -1,0 +1,288 @@
+\hypertarget{class_sprite_renderer_component}{}\doxysection{Sprite\+Renderer\+Component クラス}
+\label{class_sprite_renderer_component}\index{SpriteRendererComponent@{SpriteRendererComponent}}
+
+
+{\ttfamily \#include $<$Sprite\+Renderer\+Component.\+h$>$}
+
+
+
+Sprite\+Renderer\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_sprite_renderer_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Sprite\+Renderer\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sprite_renderer_component_a6e16dfc2579480e6c8e3e627d3d54abb}{Sprite\+Renderer\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int draw\+Order=200)
+\item 
+\mbox{\hyperlink{class_sprite_renderer_component_a914b7c1aeaf146a1e47b4ce6063beb60}{$\sim$\+Sprite\+Renderer\+Component}} (void)
+\item 
+bool \mbox{\hyperlink{class_sprite_renderer_component_a0cc8abeb71c7e06baa49c272d309b004}{Init}} (void) override
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_a02e00c697d5dcf78720f64dfad4ea096}{Uninit}} (void) override
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_a6599729fd6b0f2c6aa733250b2cbf44a}{Draw}} (class \mbox{\hyperlink{class_shader}{Shader}} $\ast$shader, class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera) override
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_sprite_renderer_component_a5b8f8322c683ea7cfcb72409c28b458b}{Get\+Component\+Type}} () const override
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_ad552b9f1ddd6b4a18f0bf25da736d650}{Set\+U\+V\+Animation}} (int texture\+CutX=0, int texture\+CutY=0, int texture\+Cut\+Width=0, int texture\+Cut\+Height=0)
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_ae8cbb99feffc5a0a69492b76523caf7e}{Set\+Texture}} (\mbox{\hyperlink{_texture_manager_8h_a65468556d79304b3a4bfc464cc12e549}{Texture\+Type}} texture\+Type\+ID)
+\item 
+class \mbox{\hyperlink{class_texture}{Texture}} $\ast$ \mbox{\hyperlink{class_sprite_renderer_component_a55c321d0ce75f3f6b61ab54b027b4f56}{Get\+Texture}} ()
+\item 
+D3\+D\+X\+I\+M\+A\+G\+E\+\_\+\+I\+N\+FO $\ast$ \mbox{\hyperlink{class_sprite_renderer_component_a68ff98e3ea71282fa4a82d2306f0b75a}{Get\+Texture\+Image\+Info}} ()
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_a0184c3da2288e21f94856ec72f2f731d}{Set\+Drawing\+Position\+To\+Center}} (const bool is\+Offset\+Scaleing\+Center)
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_a4e2cc5794c551a062f967f395f455e5f}{Set\+Rotate}} (float degree)
+\item 
+void \mbox{\hyperlink{class_sprite_renderer_component_ad1212922edb62d6c137e1d7d4e83d06f}{Add\+Rotate}} (float add\+Value\+Degree)
+\item 
+float \mbox{\hyperlink{class_sprite_renderer_component_a0882018bb1b2134967656417be85a502}{Get\+Radian}} (void) const
+\item 
+float \mbox{\hyperlink{class_sprite_renderer_component_a854eefc90076d0bdc849620d3501a6d1}{Get\+Degree}} (void) const
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_sprite_renderer_component_a6e16dfc2579480e6c8e3e627d3d54abb}\label{class_sprite_renderer_component_a6e16dfc2579480e6c8e3e627d3d54abb}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SpriteRendererComponent@{SpriteRendererComponent}}
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SpriteRendererComponent()}{SpriteRendererComponent()}}
+{\footnotesize\ttfamily Sprite\+Renderer\+Component\+::\+Sprite\+Renderer\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{draw\+Order = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a6e16dfc2579480e6c8e3e627d3d54abb_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a914b7c1aeaf146a1e47b4ce6063beb60}\label{class_sprite_renderer_component_a914b7c1aeaf146a1e47b4ce6063beb60}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!````~SpriteRendererComponent@{$\sim$SpriteRendererComponent}}
+\index{````~SpriteRendererComponent@{$\sim$SpriteRendererComponent}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$SpriteRendererComponent()}{~SpriteRendererComponent()}}
+{\footnotesize\ttfamily Sprite\+Renderer\+Component\+::$\sim$\+Sprite\+Renderer\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a914b7c1aeaf146a1e47b4ce6063beb60_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_sprite_renderer_component_ad1212922edb62d6c137e1d7d4e83d06f}\label{class_sprite_renderer_component_ad1212922edb62d6c137e1d7d4e83d06f}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!AddRotate@{AddRotate}}
+\index{AddRotate@{AddRotate}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{AddRotate()}{AddRotate()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Add\+Rotate (\begin{DoxyParamCaption}\item[{float}]{add\+Value\+Degree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{class_sprite_renderer_component_ad1212922edb62d6c137e1d7d4e83d06f_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_ad1212922edb62d6c137e1d7d4e83d06f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a6599729fd6b0f2c6aa733250b2cbf44a}\label{class_sprite_renderer_component_a6599729fd6b0f2c6aa733250b2cbf44a}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!Draw@{Draw}}
+\index{Draw@{Draw}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Draw (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_shader}{Shader}} $\ast$}]{shader,  }\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_renderer_component_adb21dd64eaf0580f41fc47a5e4c91b51}{Renderer\+Component}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a6599729fd6b0f2c6aa733250b2cbf44a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a5b8f8322c683ea7cfcb72409c28b458b}\label{class_sprite_renderer_component_a5b8f8322c683ea7cfcb72409c28b458b}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} Sprite\+Renderer\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a251b83eefdc535a955f39b93b6f46946}{Component}}を実装しています。
+
+\mbox{\Hypertarget{class_sprite_renderer_component_a854eefc90076d0bdc849620d3501a6d1}\label{class_sprite_renderer_component_a854eefc90076d0bdc849620d3501a6d1}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!GetDegree@{GetDegree}}
+\index{GetDegree@{GetDegree}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetDegree()}{GetDegree()}}
+{\footnotesize\ttfamily float Sprite\+Renderer\+Component\+::\+Get\+Degree (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a854eefc90076d0bdc849620d3501a6d1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a0882018bb1b2134967656417be85a502}\label{class_sprite_renderer_component_a0882018bb1b2134967656417be85a502}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!GetRadian@{GetRadian}}
+\index{GetRadian@{GetRadian}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetRadian()}{GetRadian()}}
+{\footnotesize\ttfamily float Sprite\+Renderer\+Component\+::\+Get\+Radian (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a0882018bb1b2134967656417be85a502_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a55c321d0ce75f3f6b61ab54b027b4f56}\label{class_sprite_renderer_component_a55c321d0ce75f3f6b61ab54b027b4f56}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!GetTexture@{GetTexture}}
+\index{GetTexture@{GetTexture}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetTexture()}{GetTexture()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_texture}{Texture}} $\ast$ Sprite\+Renderer\+Component\+::\+Get\+Texture (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_sprite_renderer_component_a68ff98e3ea71282fa4a82d2306f0b75a}\label{class_sprite_renderer_component_a68ff98e3ea71282fa4a82d2306f0b75a}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!GetTextureImageInfo@{GetTextureImageInfo}}
+\index{GetTextureImageInfo@{GetTextureImageInfo}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetTextureImageInfo()}{GetTextureImageInfo()}}
+{\footnotesize\ttfamily D3\+D\+X\+I\+M\+A\+G\+E\+\_\+\+I\+N\+FO $\ast$ Sprite\+Renderer\+Component\+::\+Get\+Texture\+Image\+Info (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a68ff98e3ea71282fa4a82d2306f0b75a_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a68ff98e3ea71282fa4a82d2306f0b75a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a0cc8abeb71c7e06baa49c272d309b004}\label{class_sprite_renderer_component_a0cc8abeb71c7e06baa49c272d309b004}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!Init@{Init}}
+\index{Init@{Init}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Sprite\+Renderer\+Component\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a052af0555618b126140b6e0583ba68b8}{Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a0cc8abeb71c7e06baa49c272d309b004_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a0184c3da2288e21f94856ec72f2f731d}\label{class_sprite_renderer_component_a0184c3da2288e21f94856ec72f2f731d}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SetDrawingPositionToCenter@{SetDrawingPositionToCenter}}
+\index{SetDrawingPositionToCenter@{SetDrawingPositionToCenter}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetDrawingPositionToCenter()}{SetDrawingPositionToCenter()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Set\+Drawing\+Position\+To\+Center (\begin{DoxyParamCaption}\item[{const bool}]{is\+Offset\+Scaleing\+Center }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a0184c3da2288e21f94856ec72f2f731d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a4e2cc5794c551a062f967f395f455e5f}\label{class_sprite_renderer_component_a4e2cc5794c551a062f967f395f455e5f}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SetRotate@{SetRotate}}
+\index{SetRotate@{SetRotate}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetRotate()}{SetRotate()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Set\+Rotate (\begin{DoxyParamCaption}\item[{float}]{degree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{class_sprite_renderer_component_a4e2cc5794c551a062f967f395f455e5f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_ae8cbb99feffc5a0a69492b76523caf7e}\label{class_sprite_renderer_component_ae8cbb99feffc5a0a69492b76523caf7e}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SetTexture@{SetTexture}}
+\index{SetTexture@{SetTexture}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetTexture()}{SetTexture()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Set\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_texture_manager_8h_a65468556d79304b3a4bfc464cc12e549}{Texture\+Type}}}]{texture\+Type\+ID }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_ae8cbb99feffc5a0a69492b76523caf7e_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_ae8cbb99feffc5a0a69492b76523caf7e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_ad552b9f1ddd6b4a18f0bf25da736d650}\label{class_sprite_renderer_component_ad552b9f1ddd6b4a18f0bf25da736d650}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!SetUVAnimation@{SetUVAnimation}}
+\index{SetUVAnimation@{SetUVAnimation}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetUVAnimation()}{SetUVAnimation()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Set\+U\+V\+Animation (\begin{DoxyParamCaption}\item[{int}]{texture\+CutX = {\ttfamily 0},  }\item[{int}]{texture\+CutY = {\ttfamily 0},  }\item[{int}]{texture\+Cut\+Width = {\ttfamily 0},  }\item[{int}]{texture\+Cut\+Height = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_ad552b9f1ddd6b4a18f0bf25da736d650_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sprite_renderer_component_a02e00c697d5dcf78720f64dfad4ea096}\label{class_sprite_renderer_component_a02e00c697d5dcf78720f64dfad4ea096}} 
+\index{SpriteRendererComponent@{SpriteRendererComponent}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!SpriteRendererComponent@{SpriteRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void Sprite\+Renderer\+Component\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a23c41e6704042f2f5769388207911436}{Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sprite_renderer_component_a02e00c697d5dcf78720f64dfad4ea096_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_sprite_renderer_component_8h}{Sprite\+Renderer\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_sprite_renderer_component_8cpp}{Sprite\+Renderer\+Component.\+cpp}}\end{DoxyCompactItemize}

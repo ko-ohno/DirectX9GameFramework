@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: Component クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-attribs">静的公開変数類</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="class_component-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">Component クラス<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_component_8h_source.html">Component.h</a>&gt;</code></p>
+<div class="dynheader">
+Component の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_component__inherit__graph.png" border="0" usemap="#a_component_inherit__map" alt="Inheritance graph"/></div>
+<map name="_component_inherit__map" id="_component_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,233,93,260"/>
+<area shape="rect" href="class_a_i_component.html" title=" " alt="" coords="164,31,264,57"/>
+<area shape="rect" href="class_audio_component.html" title=" " alt="" coords="153,132,275,159"/>
+<area shape="rect" href="class_camera_component.html" title=" " alt="" coords="147,183,281,209"/>
+<area shape="rect" href="class_collider_component.html" title=" " alt="" coords="149,233,279,260"/>
+<area shape="rect" href="class_input_component.html" title=" " alt="" coords="156,360,272,387"/>
+<area shape="rect" href="class_renderer_component.html" title=" " alt="" coords="144,537,284,564"/>
+<area shape="rect" href="class_transform_component.html" title=" " alt="" coords="141,664,287,691"/>
+<area shape="rect" href="class_enemy_a_i_component.html" title=" " alt="" coords="360,5,501,32"/>
+<area shape="rect" href="class_fallow_camera_component.html" title=" " alt="" coords="345,56,516,83"/>
+<area shape="rect" href="class_capsule_collider_component.html" title=" " alt="" coords="341,107,520,133"/>
+<area shape="rect" href="class_circle_collider_component.html" title=" " alt="" coords="349,157,513,184"/>
+<area shape="rect" href="class_o_b_b_collider_component.html" title=" " alt="" coords="351,208,510,235"/>
+<area shape="rect" href="class_rectangle_collider_component.html" title=" " alt="" coords="336,259,525,285"/>
+<area shape="rect" href="class_sphere_collider_component.html" title=" " alt="" coords="345,309,517,336"/>
+<area shape="rect" href="class_automatic_input_component.html" title=" " alt="" coords="343,360,518,387"/>
+<area shape="rect" href="class_player_input_component.html" title=" " alt="" coords="354,411,507,437"/>
+<area shape="rect" href="class_billboard_renderer_component.html" title=" " alt="" coords="335,461,526,488"/>
+<area shape="rect" href="class_effect_renderer_component.html" title=" " alt="" coords="344,512,517,539"/>
+<area shape="rect" href="class_gizmo_renderer_component.html" title=" " alt="" coords="341,563,520,589"/>
+<area shape="rect" href="class_sprite_renderer_component.html" title=" " alt="" coords="343,613,518,640"/>
+<area shape="rect" href="class_std_mesh_renderer_component.html" title=" " alt="" coords="335,664,527,691"/>
+<area shape="rect" href="class_box_gizmo_renderer_component.html" title=" " alt="" coords="583,512,785,539"/>
+<area shape="rect" href="class_grid_gizmo_renderer_component.html" title=" " alt="" coords="583,563,785,589"/>
+<area shape="rect" href="class_sphere_gizmo_renderer_component.html" title=" " alt="" coords="575,613,793,640"/>
+<area shape="rect" href="class_move_component.html" title=" " alt="" coords="371,715,490,741"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+Component 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_component__coll__graph.png" border="0" usemap="#a_component_coll__map" alt="Collaboration graph"/></div>
+<map name="_component_coll__map" id="_component_coll__map">
+<area shape="rect" title=" " alt="" coords="95,5,183,32"/>
+<area shape="rect" href="class_transform_component.html" title=" " alt="" coords="5,95,151,121"/>
+<area shape="rect" href="class_game_object.html" title=" " alt="" coords="220,184,315,211"/>
+<area shape="rect" href="class_game.html" title=" " alt="" coords="288,95,345,121"/>
+<area shape="rect" href="class_shader.html" title=" " alt="" coords="369,95,432,121"/>
+<area shape="rect" href="class_shader_manager.html" title=" " alt="" coords="344,5,457,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a72ac443ed11aa0c07688929f18734efa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> { <br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6adf97f83acf6453d4a6a4b1070f3754">TypeID::None</a> = -1, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa2cb05e4bb7830be982f0922fed86b4cd">TypeID::Component</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa9e6f576cf17836f460052c32a7fa43fe">TypeID::AIComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa69868e1fef52a8a942ce331c7d4f55b3">TypeID::EnemyAIComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa93fb6e7a5c5b168b6000da64242843f6">TypeID::AudioComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf6277b82599ea2dd7cb1a14f2428a69f">TypeID::CameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7896e2cdbbfe8030e06905facfc9bf29">TypeID::FollowCameraComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa3f1c271a632275626e50ea31e7f13168">TypeID::ColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa01f1e567837d70434ab35f4ef976b603">TypeID::CircleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a">TypeID::RectangleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa014dd456037eb3506d09105c4eaf0b0f">TypeID::SphereColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb">TypeID::OBBColliderComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa59f67165af66e328927f7159ac877cae">TypeID::CapsuleColliderComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab0f1638e58c5c79718bedf05c97952df">TypeID::InputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae2020ecea0ad320cc95dcaa7e847c606">TypeID::PlayerInputComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757">TypeID::AutomaticInputComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaafee91fc948fb129d8546b4093c886855">TypeID::RendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaaf85dee35eaf6b5e72b8288742b687c59">TypeID::SpriteRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c">TypeID::BillboardRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa85c0f430ff38df27b4accb1004b78d97">TypeID::StdMeshRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">TypeID::EffectRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa5088e546ca39f7d3254867a5c3dd62b0">TypeID::GizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa38bb6d63f73ef2c06f0ec9a54b11166e">TypeID::GridGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaacfdac83773699480e87992f143fe75d0">TypeID::SphereGizmoRendererComponent</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaae73b968adcd6286da3eecf0b39353fff">TypeID::BoxGizmoRendererComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaabf7729c0e506cfa70ad872ec9779d021">TypeID::TransformComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa02b9ce5d08af7afe14d61dabb514f605">TypeID::MoveComponent</a>, 
+<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>
+<br />
+ }</td></tr>
+<tr class="separator:a72ac443ed11aa0c07688929f18734efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a9c5dd6f73d4c0f4c62f302bd01bacff2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a9c5dd6f73d4c0f4c62f302bd01bacff2">Component</a> (class <a class="el" href="class_game_object.html">GameObject</a> *gameObject, int updateOrder=100)</td></tr>
+<tr class="separator:a9c5dd6f73d4c0f4c62f302bd01bacff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea82675a4fea6db680068f581ec060da"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#aea82675a4fea6db680068f581ec060da">~Component</a> (void)</td></tr>
+<tr class="separator:aea82675a4fea6db680068f581ec060da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a052af0555618b126140b6e0583ba68b8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a052af0555618b126140b6e0583ba68b8">Init</a> (void)</td></tr>
+<tr class="separator:a052af0555618b126140b6e0583ba68b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c41e6704042f2f5769388207911436"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a23c41e6704042f2f5769388207911436">Uninit</a> (void)</td></tr>
+<tr class="separator:a23c41e6704042f2f5769388207911436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f5bbaba222d7e031c347acad7375f4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52f5bbaba222d7e031c347acad7375f4">Input</a> (void)</td></tr>
+<tr class="separator:a52f5bbaba222d7e031c347acad7375f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149d3c9b7d668eb4817dd84dc35bcfcc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a149d3c9b7d668eb4817dd84dc35bcfcc">Update</a> (float deltaTime)</td></tr>
+<tr class="separator:a149d3c9b7d668eb4817dd84dc35bcfcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae679fc3e619dd58b995fd7699823dbff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae679fc3e619dd58b995fd7699823dbff">OnUpdateWorldTransform</a> ()</td></tr>
+<tr class="separator:ae679fc3e619dd58b995fd7699823dbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22af4b447abb06076370f06a34e9cab8"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a22af4b447abb06076370f06a34e9cab8">GetOwner</a> (void)</td></tr>
+<tr class="separator:a22af4b447abb06076370f06a34e9cab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae545aa714a48db4771505bf4ea85f16d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#ae545aa714a48db4771505bf4ea85f16d">GetUpdateOrder</a> (void) const</td></tr>
+<tr class="separator:ae545aa714a48db4771505bf4ea85f16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251b83eefdc535a955f39b93b6f46946"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a251b83eefdc535a955f39b93b6f46946">GetComponentType</a> () const =0</td></tr>
+<tr class="separator:a251b83eefdc535a955f39b93b6f46946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175c1bd027369deca1c49b9db05917a2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a175c1bd027369deca1c49b9db05917a2">LoadProperties</a> (void)</td></tr>
+<tr class="separator:a175c1bd027369deca1c49b9db05917a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52303e15704fd14fa6ae8edf0e6c571c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a52303e15704fd14fa6ae8edf0e6c571c">SaveProperties</a> (void)</td></tr>
+<tr class="separator:a52303e15704fd14fa6ae8edf0e6c571c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+静的公開変数類</h2></td></tr>
+<tr class="memitem:a71ea5985d37bea541e11fa15c57c7072"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a71ea5985d37bea541e11fa15c57c7072">ComponentTypeNames</a> [static_cast&lt; int &gt;(<a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233">TypeID::Max</a>)]</td></tr>
+<tr class="separator:a71ea5985d37bea541e11fa15c57c7072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:a70cb743723f7acecf716b58d4e40262d"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a70cb743723f7acecf716b58d4e40262d">owner_</a></td></tr>
+<tr class="separator:a70cb743723f7acecf716b58d4e40262d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481be1bd66b0a300fd6ac2923f2bdbd4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a481be1bd66b0a300fd6ac2923f2bdbd4">update_order_</a></td></tr>
+<tr class="separator:a481be1bd66b0a300fd6ac2923f2bdbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">列挙型メンバ詳解</h2>
+<a id="a72ac443ed11aa0c07688929f18734efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ac443ed11aa0c07688929f18734efa">&#9670;&nbsp;</a></span>TypeID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa2cb05e4bb7830be982f0922fed86b4cd"></a>Component&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa9e6f576cf17836f460052c32a7fa43fe"></a>AIComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa69868e1fef52a8a942ce331c7d4f55b3"></a>EnemyAIComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa93fb6e7a5c5b168b6000da64242843f6"></a>AudioComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaaf6277b82599ea2dd7cb1a14f2428a69f"></a>CameraComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa7896e2cdbbfe8030e06905facfc9bf29"></a>FollowCameraComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa3f1c271a632275626e50ea31e7f13168"></a>ColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa01f1e567837d70434ab35f4ef976b603"></a>CircleColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa7a8fcf1c1546d7933c79f2360204737a"></a>RectangleColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa014dd456037eb3506d09105c4eaf0b0f"></a>SphereColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaafeae59d52d971332c0154c0aef9eabbb"></a>OBBColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa59f67165af66e328927f7159ac877cae"></a>CapsuleColliderComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaab0f1638e58c5c79718bedf05c97952df"></a>InputComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaae2020ecea0ad320cc95dcaa7e847c606"></a>PlayerInputComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaacdb2e4c94d950a6da7b295958a7a6757"></a>AutomaticInputComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaafee91fc948fb129d8546b4093c886855"></a>RendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaaf85dee35eaf6b5e72b8288742b687c59"></a>SpriteRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaab2ece0061510e7587d9bc47b91e0474c"></a>BillboardRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa85c0f430ff38df27b4accb1004b78d97"></a>StdMeshRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf"></a>EffectRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa5088e546ca39f7d3254867a5c3dd62b0"></a>GizmoRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa38bb6d63f73ef2c06f0ec9a54b11166e"></a>GridGizmoRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaacfdac83773699480e87992f143fe75d0"></a>SphereGizmoRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaae73b968adcd6286da3eecf0b39353fff"></a>BoxGizmoRendererComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaabf7729c0e506cfa70ad872ec9779d021"></a>TransformComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa02b9ce5d08af7afe14d61dabb514f605"></a>MoveComponent&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72ac443ed11aa0c07688929f18734efaa6a061313d22e51e0f25b7cd4dc065233"></a>Max&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a9c5dd6f73d4c0f4c62f302bd01bacff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c5dd6f73d4c0f4c62f302bd01bacff2">&#9670;&nbsp;</a></span>Component()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component::Component </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_game_object.html">GameObject</a> *&#160;</td>
+          <td class="paramname"><em>gameObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>updateOrder</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_component_a9c5dd6f73d4c0f4c62f302bd01bacff2_cgraph.png" border="0" usemap="#aclass_component_a9c5dd6f73d4c0f4c62f302bd01bacff2_cgraph" alt=""/></div>
+<map name="class_component_a9c5dd6f73d4c0f4c62f302bd01bacff2_cgraph" id="class_component_a9c5dd6f73d4c0f4c62f302bd01bacff2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" href="class_game_object.html#a34d70f63ab47394215ad79eebfb7dfc9" title=" " alt="" coords="216,5,408,32"/>
+<area shape="rect" href="class_component.html#ae545aa714a48db4771505bf4ea85f16d" title=" " alt="" coords="456,5,647,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aea82675a4fea6db680068f581ec060da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea82675a4fea6db680068f581ec060da">&#9670;&nbsp;</a></span>~Component()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Component::~Component </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_component_aea82675a4fea6db680068f581ec060da_cgraph.png" border="0" usemap="#aclass_component_aea82675a4fea6db680068f581ec060da_cgraph" alt=""/></div>
+<map name="class_component_aea82675a4fea6db680068f581ec060da_cgraph" id="class_component_aea82675a4fea6db680068f581ec060da_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,176,32"/>
+<area shape="rect" href="class_game_object.html#aaa8e99b8a90e01c79e540486818cea6e" title=" " alt="" coords="224,5,439,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a251b83eefdc535a955f39b93b6f46946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a251b83eefdc535a955f39b93b6f46946">&#9670;&nbsp;</a></span>GetComponentType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> Component::GetComponentType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_renderer_component.html#a51ae83ba508221733452bdc213a62a30">RendererComponent</a>, <a class="el" href="class_input_component.html#a3a97c1ee99285c774b38c8d9fb37dd64">InputComponent</a>, <a class="el" href="class_move_component.html#a4000f3aca19f9dcb55cc4ebfe1500093">MoveComponent</a>, <a class="el" href="class_transform_component.html#a57ba052129caf907957e75b9714c5a41">TransformComponent</a>, <a class="el" href="class_std_mesh_renderer_component.html#ab494fd2c639415d4965a53a8bc2ca42a">StdMeshRendererComponent</a>, <a class="el" href="class_sprite_renderer_component.html#a5b8f8322c683ea7cfcb72409c28b458b">SpriteRendererComponent</a>, <a class="el" href="class_effect_renderer_component.html#a0346adf78b93ebabb96ed223ae954038">EffectRendererComponent</a>, <a class="el" href="class_billboard_renderer_component.html#ad71ffaf0c364be1b591ce53e655d7764">BillboardRendererComponent</a>, <a class="el" href="class_player_input_component.html#af8b83b335b18d094579460689ebbaf56">PlayerInputComponent</a>, <a class="el" href="class_automatic_input_component.html#a0819446301eb69e790dc800e5ba6ec3f">AutomaticInputComponent</a>, <a class="el" href="class_sphere_collider_component.html#a1e0d185d17f9f4a1b15192c2677186b1">SphereColliderComponent</a>, <a class="el" href="class_rectangle_collider_component.html#a779cc513c6aa66ef3b6561cf1cd23891">RectangleColliderComponent</a>, <a class="el" href="class_o_b_b_collider_component.html#a48e94e90680f9a6122842b9a18d93983">OBBColliderComponent</a>, <a class="el" href="class_circle_collider_component.html#ae037f082b1fa218421ce0814c8f479f5">CircleColliderComponent</a>, <a class="el" href="class_capsule_collider_component.html#a22dd064df9ab31e60b7facf388a31f30">CapsuleColliderComponent</a>, <a class="el" href="class_collider_component.html#a4744d013c9ad1414d3bf47f462d57d48">ColliderComponent</a>, <a class="el" href="class_fallow_camera_component.html#ac8477922f9cf472c548250da9a56fd1c">FallowCameraComponent</a>, <a class="el" href="class_camera_component.html#a96d78d98422c50b94fd713788c5014cf">CameraComponent</a>, <a class="el" href="class_audio_component.html#a120e4a115390e0b3f5864e69317a6fd7">AudioComponent</a>, <a class="el" href="class_enemy_a_i_component.html#a60311d3a01180d8af446dbc915756e66">EnemyAIComponent</a>, <a class="el" href="class_a_i_component.html#a729bd82e99aa29b3b0da2de00370d16c">AIComponent</a> (計21項目)で実装されています。</p>
+
+</div>
+</div>
+<a id="a22af4b447abb06076370f06a34e9cab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22af4b447abb06076370f06a34e9cab8">&#9670;&nbsp;</a></span>GetOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">class <a class="el" href="class_game_object.html">GameObject</a>* Component::GetOwner </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae545aa714a48db4771505bf4ea85f16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae545aa714a48db4771505bf4ea85f16d">&#9670;&nbsp;</a></span>GetUpdateOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Component::GetUpdateOrder </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_component_ae545aa714a48db4771505bf4ea85f16d_icgraph.png" border="0" usemap="#aclass_component_ae545aa714a48db4771505bf4ea85f16d_icgraph" alt=""/></div>
+<map name="class_component_ae545aa714a48db4771505bf4ea85f16d_icgraph" id="class_component_ae545aa714a48db4771505bf4ea85f16d_icgraph">
+<area shape="rect" title=" " alt="" coords="456,5,647,32"/>
+<area shape="rect" href="class_game_object.html#a34d70f63ab47394215ad79eebfb7dfc9" title=" " alt="" coords="216,5,408,32"/>
+<area shape="rect" href="class_component.html#a9c5dd6f73d4c0f4c62f302bd01bacff2" title=" " alt="" coords="5,5,168,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a052af0555618b126140b6e0583ba68b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a052af0555618b126140b6e0583ba68b8">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Component::Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_transform_component.html#a297a251439046e3a44a580eddb00484e">TransformComponent</a>, <a class="el" href="class_std_mesh_renderer_component.html#a9989a470ccaa6f9e1b25f4bdd2bd6c66">StdMeshRendererComponent</a>, <a class="el" href="class_sprite_renderer_component.html#a0cc8abeb71c7e06baa49c272d309b004">SpriteRendererComponent</a>, <a class="el" href="class_effect_renderer_component.html#a3ceeea0a8e5bc502a8183a105c99bb74">EffectRendererComponent</a>, <a class="el" href="class_renderer_component.html#a31583e403f0340717c54ceb4678a3caf">RendererComponent</a>, <a class="el" href="class_player_input_component.html#aa1112892a4d63f0cbd0cc777d6b69e1a">PlayerInputComponent</a>, <a class="el" href="class_automatic_input_component.html#a51a797e64c756a366f90b695ee82c499">AutomaticInputComponent</a>, <a class="el" href="class_audio_component.html#a27a8b95a8efb4d4b568c3b9980de39a6">AudioComponent</a>, <a class="el" href="class_billboard_renderer_component.html#a12fd205e360f07baceb1aba930cd1e5b">BillboardRendererComponent</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="a52f5bbaba222d7e031c347acad7375f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f5bbaba222d7e031c347acad7375f4">&#9670;&nbsp;</a></span>Input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::Input </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_transform_component.html#a9729e63dc6392f1840c7833d0b7c2d85">TransformComponent</a>, <a class="el" href="class_player_input_component.html#a36796afc8b4456c942e913c8d3c144f6">PlayerInputComponent</a>, <a class="el" href="class_automatic_input_component.html#ace567730a9fd917e49db4300a7d7fab3">AutomaticInputComponent</a>, <a class="el" href="class_camera_component.html#ae5ee9379f52ab5ea8c79d0333c21f536">CameraComponent</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="a175c1bd027369deca1c49b9db05917a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a175c1bd027369deca1c49b9db05917a2">&#9670;&nbsp;</a></span>LoadProperties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::LoadProperties </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae679fc3e619dd58b995fd7699823dbff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae679fc3e619dd58b995fd7699823dbff">&#9670;&nbsp;</a></span>OnUpdateWorldTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::OnUpdateWorldTransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52303e15704fd14fa6ae8edf0e6c571c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52303e15704fd14fa6ae8edf0e6c571c">&#9670;&nbsp;</a></span>SaveProperties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::SaveProperties </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23c41e6704042f2f5769388207911436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c41e6704042f2f5769388207911436">&#9670;&nbsp;</a></span>Uninit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::Uninit </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_transform_component.html#acd0d0ef894d81ce67168ca59495b5095">TransformComponent</a>, <a class="el" href="class_std_mesh_renderer_component.html#a75ea565a8ce19c641942d591b90c9361">StdMeshRendererComponent</a>, <a class="el" href="class_sprite_renderer_component.html#a02e00c697d5dcf78720f64dfad4ea096">SpriteRendererComponent</a>, <a class="el" href="class_effect_renderer_component.html#ad93b6f3549b8b3fd3a128597ec65e158">EffectRendererComponent</a>, <a class="el" href="class_renderer_component.html#aedccc36786592eaa63ec6c71b275b96e">RendererComponent</a>, <a class="el" href="class_player_input_component.html#a3ca1415ff0ea8f5687f3a8d37d8f040d">PlayerInputComponent</a>, <a class="el" href="class_automatic_input_component.html#a4ec3bac4469a6c14352b1310417f0fa0">AutomaticInputComponent</a>, <a class="el" href="class_audio_component.html#a4acadbdcc95f409843162dac280ea1b6">AudioComponent</a>, <a class="el" href="class_billboard_renderer_component.html#a47e6b3dd5585019ffd52e45f025106dc">BillboardRendererComponent</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="a149d3c9b7d668eb4817dd84dc35bcfcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149d3c9b7d668eb4817dd84dc35bcfcc">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::Update </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_transform_component.html#a7f61e8eea1e3d05a32653fa45bd10fe1">TransformComponent</a>, <a class="el" href="class_effect_renderer_component.html#ae0576183ad5dcd2fc86b09161ca638ec">EffectRendererComponent</a>, <a class="el" href="class_renderer_component.html#a132712c992059188c12fc37dcefd1c13">RendererComponent</a>, <a class="el" href="class_player_input_component.html#af02ca556ef31ae96bbba31456db533c1">PlayerInputComponent</a>, <a class="el" href="class_automatic_input_component.html#a6dbbac29b8f40bee9346a0e3e0653273">AutomaticInputComponent</a>, <a class="el" href="class_camera_component.html#a937f5fa962b7f9bb7212a7bd94f12657">CameraComponent</a>, <a class="el" href="class_audio_component.html#ac9fafdff688c5316ebe794020fa3db5d">AudioComponent</a>で再実装されています。</p>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="a71ea5985d37bea541e11fa15c57c7072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ea5985d37bea541e11fa15c57c7072">&#9670;&nbsp;</a></span>ComponentTypeNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Component::ComponentTypeNames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初期値:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    </div>
+<div class="line">    <span class="stringliteral">&quot;Component&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;AIComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;EnemyAIComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;AudioComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;CameraComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;FollowCameraComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;ColliderComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;SphereColliderComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;CapsuleColliderComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;InputComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;PlayerInputComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;AutomaticInputComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;RenderComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;SpriteComponent&quot;</span></div>
+<div class="line">    </div>
+<div class="line">    , <span class="stringliteral">&quot;TransformComponent&quot;</span></div>
+<div class="line">    , <span class="stringliteral">&quot;MoveComponent&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a70cb743723f7acecf716b58d4e40262d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70cb743723f7acecf716b58d4e40262d">&#9670;&nbsp;</a></span>owner_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">class <a class="el" href="class_game_object.html">GameObject</a>* Component::owner_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a481be1bd66b0a300fd6ac2923f2bdbd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481be1bd66b0a300fd6ac2923f2bdbd4">&#9670;&nbsp;</a></span>update_order_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Component::update_order_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/<a class="el" href="_component_8h_source.html">Component.h</a></li>
+<li>D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/<a class="el" href="_component_8cpp.html">Component.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

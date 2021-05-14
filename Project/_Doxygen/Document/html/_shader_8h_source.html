@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/Shader.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Shader.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_shader_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [Shader.h] シェーダーのベースクラス</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：シェーダーのベースクラス</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SHADER_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SHADER_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_vertex_data_8h.html">VertexData.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* 構造体</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/* シェーダークラス</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_shader.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_shader.html">Shader</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_shader.html#a4e48cd4c25b01fba5a350c4ad0662bdf">Shader</a>(<span class="keyword">class</span> <a class="code" href="class_shader_manager.html">ShaderManager</a>* manager);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_shader.html#a7ea565f5de1e0d483c688280784f915a">~Shader</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">//後でoverrideできるようにvirtualに</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_shader.html#aad9561918b8f33c1dbc93be874a669ad">Init</a>(<span class="keyword">const</span> LPDIRECT3DDEVICE9&amp; lpd3d_device);   <span class="comment">//初期化</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#a4590bd82e9b1912adad9c18be7132aff">Uninit</a>(<span class="keywordtype">void</span>);  <span class="comment">//終了化</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">//シェーダーのセット</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#a10d1c09c956680e40ba7b73dcdb35a12">ShaderSet</a>(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera, <span class="keyword">class</span> <a class="code" href="class_renderer_component.html">RendererComponent</a>* rendererComponent, <span class="keyword">class</span> <a class="code" href="class_texture.html">Texture</a>* texture = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#a10d1c09c956680e40ba7b73dcdb35a12">ShaderSet</a>(<span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera, <span class="keyword">class</span> <a class="code" href="class_renderer_component.html">RendererComponent</a>* rendererComponent, <span class="keyword">class</span> <a class="code" href="class_material.html">Material</a>* material = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//テクニックのセット</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_shader.html#a87f83f82bc4d06ec23af622b12f915cf">   38</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#a87f83f82bc4d06ec23af622b12f915cf">SetTechnique</a>(<span class="keyword">const</span> std::string&amp; techniqueName) { UNREFERENCED_PARAMETER(techniqueName);}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">//シェーダーの開始</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#ad3c43749feec99e588ffdf77a0aa1e5f">ShaderPassBegin</a>(<span class="keywordtype">int</span> shaderPassNumber = 0);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//シェーダーの終了</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_shader.html#af56f59ec238c3b5f76bffb930519338a">ShaderPassEnd</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//シェーダーの所有者</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_shader.html#aad35f250c46aa0928a36aedc365480b8">   49</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_shader_manager.html">ShaderManager</a>* <a class="code" href="class_shader.html#aad35f250c46aa0928a36aedc365480b8">manager_</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_shader.html#aaa9ca37d55ff4f60713527fa77c1ebb5">   51</a></span>&#160;    LPDIRECT3DVERTEXDECLARATION9 <a class="code" href="class_shader.html#aaa9ca37d55ff4f60713527fa77c1ebb5">lpd3d_vertex_declaration_</a>; <span class="comment">//頂点宣言</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_shader.html#aca7334fd9b6c276f41f8a6afbbf46319">   52</a></span>&#160;    LPD3DXEFFECT                 <a class="code" href="class_shader.html#aca7334fd9b6c276f41f8a6afbbf46319">shader_</a>;                   <span class="comment">//シェーダ情報</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif //RENDERER_H_</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_renderer_component_html"><div class="ttname"><a href="class_renderer_component.html">RendererComponent</a></div><div class="ttdef"><b>Definition:</b> RendererComponent.h:41</div></div>
+<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.h:19</div></div>
+<div class="ttc" id="aclass_shader_html_a10d1c09c956680e40ba7b73dcdb35a12"><div class="ttname"><a href="class_shader.html#a10d1c09c956680e40ba7b73dcdb35a12">Shader::ShaderSet</a></div><div class="ttdeci">virtual void ShaderSet(class Camera *camera, class RendererComponent *rendererComponent, class Texture *texture=nullptr)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:59</div></div>
+<div class="ttc" id="aclass_shader_html_af56f59ec238c3b5f76bffb930519338a"><div class="ttname"><a href="class_shader.html#af56f59ec238c3b5f76bffb930519338a">Shader::ShaderPassEnd</a></div><div class="ttdeci">virtual void ShaderPassEnd(void)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:88</div></div>
+<div class="ttc" id="a_vertex_data_8h_html"><div class="ttname"><a href="_vertex_data_8h.html">VertexData.h</a></div></div>
+<div class="ttc" id="aclass_shader_html_a4e48cd4c25b01fba5a350c4ad0662bdf"><div class="ttname"><a href="class_shader.html#a4e48cd4c25b01fba5a350c4ad0662bdf">Shader::Shader</a></div><div class="ttdeci">Shader(class ShaderManager *manager)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:16</div></div>
+<div class="ttc" id="aclass_shader_html_a4590bd82e9b1912adad9c18be7132aff"><div class="ttname"><a href="class_shader.html#a4590bd82e9b1912adad9c18be7132aff">Shader::Uninit</a></div><div class="ttdeci">virtual void Uninit(void)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:43</div></div>
+<div class="ttc" id="aclass_shader_html_aaa9ca37d55ff4f60713527fa77c1ebb5"><div class="ttname"><a href="class_shader.html#aaa9ca37d55ff4f60713527fa77c1ebb5">Shader::lpd3d_vertex_declaration_</a></div><div class="ttdeci">LPDIRECT3DVERTEXDECLARATION9 lpd3d_vertex_declaration_</div><div class="ttdef"><b>Definition:</b> Shader.h:51</div></div>
+<div class="ttc" id="a_shader_8h_html"><div class="ttname"><a href="_shader_8h.html">Shader.h</a></div></div>
+<div class="ttc" id="aclass_shader_html_aca7334fd9b6c276f41f8a6afbbf46319"><div class="ttname"><a href="class_shader.html#aca7334fd9b6c276f41f8a6afbbf46319">Shader::shader_</a></div><div class="ttdeci">LPD3DXEFFECT shader_</div><div class="ttdef"><b>Definition:</b> Shader.h:52</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_material_html"><div class="ttname"><a href="class_material.html">Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:18</div></div>
+<div class="ttc" id="aclass_shader_manager_html"><div class="ttname"><a href="class_shader_manager.html">ShaderManager</a></div><div class="ttdef"><b>Definition:</b> ShaderManager.h:34</div></div>
+<div class="ttc" id="aclass_shader_html_ad3c43749feec99e588ffdf77a0aa1e5f"><div class="ttname"><a href="class_shader.html#ad3c43749feec99e588ffdf77a0aa1e5f">Shader::ShaderPassBegin</a></div><div class="ttdeci">virtual void ShaderPassBegin(int shaderPassNumber=0)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:79</div></div>
+<div class="ttc" id="aclass_shader_html_a87f83f82bc4d06ec23af622b12f915cf"><div class="ttname"><a href="class_shader.html#a87f83f82bc4d06ec23af622b12f915cf">Shader::SetTechnique</a></div><div class="ttdeci">virtual void SetTechnique(const std::string &amp;techniqueName)</div><div class="ttdef"><b>Definition:</b> Shader.h:38</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_shader_html_aad9561918b8f33c1dbc93be874a669ad"><div class="ttname"><a href="class_shader.html#aad9561918b8f33c1dbc93be874a669ad">Shader::Init</a></div><div class="ttdeci">virtual bool Init(const LPDIRECT3DDEVICE9 &amp;lpd3d_device)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:34</div></div>
+<div class="ttc" id="aclass_shader_html_aad35f250c46aa0928a36aedc365480b8"><div class="ttname"><a href="class_shader.html#aad35f250c46aa0928a36aedc365480b8">Shader::manager_</a></div><div class="ttdeci">class ShaderManager * manager_</div><div class="ttdef"><b>Definition:</b> Shader.h:49</div></div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:23</div></div>
+<div class="ttc" id="aclass_shader_html_a7ea565f5de1e0d483c688280784f915a"><div class="ttname"><a href="class_shader.html#a7ea565f5de1e0d483c688280784f915a">Shader::~Shader</a></div><div class="ttdeci">virtual ~Shader(void)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:26</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

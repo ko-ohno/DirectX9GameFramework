@@ -1,0 +1,116 @@
+\hypertarget{class_automatic_input_component}{}\doxysection{Automatic\+Input\+Component クラス}
+\label{class_automatic_input_component}\index{AutomaticInputComponent@{AutomaticInputComponent}}
+
+
+{\ttfamily \#include $<$Automatic\+Input\+Component.\+h$>$}
+
+
+
+Automatic\+Input\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_automatic_input_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Automatic\+Input\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_automatic_input_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_automatic_input_component_a2c261728aa3b51273eb6929e48196bc3}{Automatic\+Input\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int update\+Order=100)
+\item 
+\mbox{\hyperlink{class_automatic_input_component_a8286e007973dc8458d7c9ec752575b8b}{$\sim$\+Automatic\+Input\+Component}} (void)
+\item 
+bool \mbox{\hyperlink{class_automatic_input_component_a51a797e64c756a366f90b695ee82c499}{Init}} (void) override
+\item 
+void \mbox{\hyperlink{class_automatic_input_component_a4ec3bac4469a6c14352b1310417f0fa0}{Uninit}} (void) override
+\item 
+void \mbox{\hyperlink{class_automatic_input_component_ace567730a9fd917e49db4300a7d7fab3}{Input}} (void) override
+\item 
+void \mbox{\hyperlink{class_automatic_input_component_a6dbbac29b8f40bee9346a0e3e0653273}{Update}} (float delta\+Time) override
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_automatic_input_component_a0819446301eb69e790dc800e5ba6ec3f}{Get\+Component\+Type}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_automatic_input_component_a2c261728aa3b51273eb6929e48196bc3}\label{class_automatic_input_component_a2c261728aa3b51273eb6929e48196bc3}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!AutomaticInputComponent@{AutomaticInputComponent}}
+\index{AutomaticInputComponent@{AutomaticInputComponent}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{AutomaticInputComponent()}{AutomaticInputComponent()}}
+{\footnotesize\ttfamily Automatic\+Input\+Component\+::\+Automatic\+Input\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{update\+Order = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_automatic_input_component_a8286e007973dc8458d7c9ec752575b8b}\label{class_automatic_input_component_a8286e007973dc8458d7c9ec752575b8b}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!````~AutomaticInputComponent@{$\sim$AutomaticInputComponent}}
+\index{````~AutomaticInputComponent@{$\sim$AutomaticInputComponent}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$AutomaticInputComponent()}{~AutomaticInputComponent()}}
+{\footnotesize\ttfamily Automatic\+Input\+Component\+::$\sim$\+Automatic\+Input\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_automatic_input_component_a0819446301eb69e790dc800e5ba6ec3f}\label{class_automatic_input_component_a0819446301eb69e790dc800e5ba6ec3f}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} Automatic\+Input\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a251b83eefdc535a955f39b93b6f46946}{Component}}を実装しています。
+
+\mbox{\Hypertarget{class_automatic_input_component_a51a797e64c756a366f90b695ee82c499}\label{class_automatic_input_component_a51a797e64c756a366f90b695ee82c499}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!Init@{Init}}
+\index{Init@{Init}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Automatic\+Input\+Component\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a052af0555618b126140b6e0583ba68b8}{Component}}を再実装しています。
+
+\mbox{\Hypertarget{class_automatic_input_component_ace567730a9fd917e49db4300a7d7fab3}\label{class_automatic_input_component_ace567730a9fd917e49db4300a7d7fab3}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!Input@{Input}}
+\index{Input@{Input}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{Input()}{Input()}}
+{\footnotesize\ttfamily void Automatic\+Input\+Component\+::\+Input (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a52f5bbaba222d7e031c347acad7375f4}{Component}}を再実装しています。
+
+\mbox{\Hypertarget{class_automatic_input_component_a4ec3bac4469a6c14352b1310417f0fa0}\label{class_automatic_input_component_a4ec3bac4469a6c14352b1310417f0fa0}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void Automatic\+Input\+Component\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a23c41e6704042f2f5769388207911436}{Component}}を再実装しています。
+
+\mbox{\Hypertarget{class_automatic_input_component_a6dbbac29b8f40bee9346a0e3e0653273}\label{class_automatic_input_component_a6dbbac29b8f40bee9346a0e3e0653273}} 
+\index{AutomaticInputComponent@{AutomaticInputComponent}!Update@{Update}}
+\index{Update@{Update}!AutomaticInputComponent@{AutomaticInputComponent}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Automatic\+Input\+Component\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a149d3c9b7d668eb4817dd84dc35bcfcc}{Component}}を再実装しています。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Input\+Component/\mbox{\hyperlink{_automatic_input_component_8h}{Automatic\+Input\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Input\+Component/\mbox{\hyperlink{_automatic_input_component_8cpp}{Automatic\+Input\+Component.\+cpp}}\end{DoxyCompactItemize}

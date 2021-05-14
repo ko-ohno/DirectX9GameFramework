@@ -1,0 +1,284 @@
+\hypertarget{class_o_b_b_collider_component}{}\doxysection{O\+B\+B\+Collider\+Component クラス}
+\label{class_o_b_b_collider_component}\index{OBBColliderComponent@{OBBColliderComponent}}
+
+
+{\ttfamily \#include $<$O\+B\+B\+Collider\+Component.\+h$>$}
+
+
+
+O\+B\+B\+Collider\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_o_b_b_collider_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+O\+B\+B\+Collider\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} \{ \newline
+\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693}{Axis\+Type\+::\+N\+O\+NE}} = -\/1, 
+\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383}{Axis\+Type\+::X}}, 
+\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0}{Axis\+Type\+::Y}}, 
+\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5}{Axis\+Type\+::Z}}, 
+\newline
+\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233}{Axis\+Type\+::\+Max}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_o_b_b_collider_component_a52f05105a8cffb150c85961c5267bf1f}{O\+B\+B\+Collider\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int update\+Order=100)
+\item 
+\mbox{\hyperlink{class_o_b_b_collider_component_aadaf1861edf05446f3ef2724f4b8e542}{$\sim$\+O\+B\+B\+Collider\+Component}} (void)
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_o_b_b_collider_component_a48e94e90680f9a6122842b9a18d93983}{Get\+Component\+Type}} () const override
+\item 
+\mbox{\hyperlink{class_vector3}{Vector3}} $\ast$ \mbox{\hyperlink{class_o_b_b_collider_component_a405b62ebd7ab65273614ad7b3531fb10}{Get\+Position}} (void)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_ae4f15f3b6b3ebe7b7eee949662fe1268}{Set\+Position}} (\mbox{\hyperlink{class_vector3}{Vector3}} \&position)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_a87a91ea9a0e1608b3eeba99d1cfdc5b6}{Set\+Position}} (D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&position)
+\item 
+\mbox{\hyperlink{class_vector3}{Vector3}} $\ast$ \mbox{\hyperlink{class_o_b_b_collider_component_aabb6c8397011096e12ec6ec0ac0344ad}{Get\+Dir\+Element}} (\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} axis\+Type)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_ac4e72edf1614d0dc61365ae12e4fe55a}{Set\+Dir\+Element}} (D3\+D\+X\+M\+A\+T\+R\+IX \&element)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_a2be69f69ecac4aef73c34f1a48384e2c}{Set\+Dir\+Element}} (D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&axis\+Element, \mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} axis\+Type)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_aedb3ca8cf89d801b5791f3d04a5d0777}{Set\+Dir\+Element}} (\mbox{\hyperlink{class_vector3}{Vector3}} \&axis\+Element, \mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} axis\+Type)
+\item 
+void \mbox{\hyperlink{class_o_b_b_collider_component_a67b4045cc7012089a9926b4254cd526f}{Set\+Dir\+Length}} (float axis\+Length, \mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} axis\+Type)
+\item 
+float \mbox{\hyperlink{class_o_b_b_collider_component_a4b2a0c30b81a99214aecc628ffaa7a2f}{Get\+Dir\+Length}} (\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}} axis\+Type)
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{class_o_b_b_collider_component_a6c6a0523de559139c7d86faff331840e}{Len\+Seg\+On\+Separate\+Axis}} (D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$Sep, D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$e1, D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$e2, D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$e3=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vector3}{Vector3}} \mbox{\hyperlink{class_o_b_b_collider_component_a8bf5601296c6eba94eb28d38e9328079}{position\+\_\+}}
+\item 
+\mbox{\hyperlink{class_vector3}{Vector3}} \mbox{\hyperlink{class_o_b_b_collider_component_a200b6b81f1215e43dcb7d04fed265dd4}{axis\+\_\+element\+\_\+}} \mbox{[}\mbox{\hyperlink{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}{M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT}}\mbox{]}
+\item 
+float \mbox{\hyperlink{class_o_b_b_collider_component_a167cbadca979f076381339f84a75ae3e}{axis\+\_\+length\+\_\+}} \mbox{[}\mbox{\hyperlink{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}{M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT}}\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \mbox{\hyperlink{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}{M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT}} = static\+\_\+cast$<$int$>$(\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233}{Axis\+Type\+::\+Max}})
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{列挙型メンバ詳解}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!AxisType@{AxisType}}
+\index{AxisType@{AxisType}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{AxisType}{AxisType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{O\+B\+B\+Collider\+Component\+::\+Axis\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!OBBColliderComponent@{OBBColliderComponent}}\index{OBBColliderComponent@{OBBColliderComponent}!NONE@{NONE}}}\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6ab50339a10e1de285ac99d4c3990b8693}} 
+N\+O\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X@{X}!OBBColliderComponent@{OBBColliderComponent}}\index{OBBColliderComponent@{OBBColliderComponent}!X@{X}}}\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a02129bb861061d1a052c592e2dc6b383}} 
+X&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Y@{Y}!OBBColliderComponent@{OBBColliderComponent}}\index{OBBColliderComponent@{OBBColliderComponent}!Y@{Y}}}\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a57cec4137b614c87cb4e24a3d003a3e0}} 
+Y&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Z@{Z}!OBBColliderComponent@{OBBColliderComponent}}\index{OBBColliderComponent@{OBBColliderComponent}!Z@{Z}}}\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a21c2e59531c8710156d34a3c30ac81d5}} 
+Z&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Max@{Max}!OBBColliderComponent@{OBBColliderComponent}}\index{OBBColliderComponent@{OBBColliderComponent}!Max@{Max}}}\mbox{\Hypertarget{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233}\label{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233}} 
+Max&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a52f05105a8cffb150c85961c5267bf1f}\label{class_o_b_b_collider_component_a52f05105a8cffb150c85961c5267bf1f}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!OBBColliderComponent@{OBBColliderComponent}}
+\index{OBBColliderComponent@{OBBColliderComponent}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{OBBColliderComponent()}{OBBColliderComponent()}}
+{\footnotesize\ttfamily O\+B\+B\+Collider\+Component\+::\+O\+B\+B\+Collider\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{update\+Order = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_aadaf1861edf05446f3ef2724f4b8e542}\label{class_o_b_b_collider_component_aadaf1861edf05446f3ef2724f4b8e542}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!````~OBBColliderComponent@{$\sim$OBBColliderComponent}}
+\index{````~OBBColliderComponent@{$\sim$OBBColliderComponent}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$OBBColliderComponent()}{~OBBColliderComponent()}}
+{\footnotesize\ttfamily O\+B\+B\+Collider\+Component\+::$\sim$\+O\+B\+B\+Collider\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a48e94e90680f9a6122842b9a18d93983}\label{class_o_b_b_collider_component_a48e94e90680f9a6122842b9a18d93983}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} O\+B\+B\+Collider\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_collider_component_a4744d013c9ad1414d3bf47f462d57d48}{Collider\+Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_a48e94e90680f9a6122842b9a18d93983_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_aabb6c8397011096e12ec6ec0ac0344ad}\label{class_o_b_b_collider_component_aabb6c8397011096e12ec6ec0ac0344ad}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!GetDirElement@{GetDirElement}}
+\index{GetDirElement@{GetDirElement}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetDirElement()}{GetDirElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector3}{Vector3}}$\ast$ O\+B\+B\+Collider\+Component\+::\+Get\+Dir\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}}}]{axis\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_aabb6c8397011096e12ec6ec0ac0344ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a4b2a0c30b81a99214aecc628ffaa7a2f}\label{class_o_b_b_collider_component_a4b2a0c30b81a99214aecc628ffaa7a2f}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!GetDirLength@{GetDirLength}}
+\index{GetDirLength@{GetDirLength}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetDirLength()}{GetDirLength()}}
+{\footnotesize\ttfamily float O\+B\+B\+Collider\+Component\+::\+Get\+Dir\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}}}]{axis\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_a4b2a0c30b81a99214aecc628ffaa7a2f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a405b62ebd7ab65273614ad7b3531fb10}\label{class_o_b_b_collider_component_a405b62ebd7ab65273614ad7b3531fb10}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector3}{Vector3}}$\ast$ O\+B\+B\+Collider\+Component\+::\+Get\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_a405b62ebd7ab65273614ad7b3531fb10_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a6c6a0523de559139c7d86faff331840e}\label{class_o_b_b_collider_component_a6c6a0523de559139c7d86faff331840e}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!LenSegOnSeparateAxis@{LenSegOnSeparateAxis}}
+\index{LenSegOnSeparateAxis@{LenSegOnSeparateAxis}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{LenSegOnSeparateAxis()}{LenSegOnSeparateAxis()}}
+{\footnotesize\ttfamily static float O\+B\+B\+Collider\+Component\+::\+Len\+Seg\+On\+Separate\+Axis (\begin{DoxyParamCaption}\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$}]{Sep,  }\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$}]{e1,  }\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$}]{e2,  }\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 $\ast$}]{e3 = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_a6c6a0523de559139c7d86faff331840e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_ac4e72edf1614d0dc61365ae12e4fe55a}\label{class_o_b_b_collider_component_ac4e72edf1614d0dc61365ae12e4fe55a}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetDirElement@{SetDirElement}}
+\index{SetDirElement@{SetDirElement}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetDirElement()}{SetDirElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Dir\+Element (\begin{DoxyParamCaption}\item[{D3\+D\+X\+M\+A\+T\+R\+IX \&}]{element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_ac4e72edf1614d0dc61365ae12e4fe55a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a2be69f69ecac4aef73c34f1a48384e2c}\label{class_o_b_b_collider_component_a2be69f69ecac4aef73c34f1a48384e2c}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetDirElement@{SetDirElement}}
+\index{SetDirElement@{SetDirElement}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetDirElement()}{SetDirElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Dir\+Element (\begin{DoxyParamCaption}\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&}]{axis\+Element,  }\item[{\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}}}]{axis\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_aedb3ca8cf89d801b5791f3d04a5d0777}\label{class_o_b_b_collider_component_aedb3ca8cf89d801b5791f3d04a5d0777}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetDirElement@{SetDirElement}}
+\index{SetDirElement@{SetDirElement}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetDirElement()}{SetDirElement()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Dir\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector3}{Vector3}} \&}]{axis\+Element,  }\item[{\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}}}]{axis\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_a67b4045cc7012089a9926b4254cd526f}\label{class_o_b_b_collider_component_a67b4045cc7012089a9926b4254cd526f}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetDirLength@{SetDirLength}}
+\index{SetDirLength@{SetDirLength}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetDirLength()}{SetDirLength()}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Dir\+Length (\begin{DoxyParamCaption}\item[{float}]{axis\+Length,  }\item[{\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6}{Axis\+Type}}}]{axis\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_a87a91ea9a0e1608b3eeba99d1cfdc5b6}\label{class_o_b_b_collider_component_a87a91ea9a0e1608b3eeba99d1cfdc5b6}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R3 \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_ae4f15f3b6b3ebe7b7eee949662fe1268}\label{class_o_b_b_collider_component_ae4f15f3b6b3ebe7b7eee949662fe1268}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void O\+B\+B\+Collider\+Component\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector3}{Vector3}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_o_b_b_collider_component_ae4f15f3b6b3ebe7b7eee949662fe1268_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{class_o_b_b_collider_component_a200b6b81f1215e43dcb7d04fed265dd4}\label{class_o_b_b_collider_component_a200b6b81f1215e43dcb7d04fed265dd4}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!axis\_element\_@{axis\_element\_}}
+\index{axis\_element\_@{axis\_element\_}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{axis\_element\_}{axis\_element\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector3}{Vector3}} O\+B\+B\+Collider\+Component\+::axis\+\_\+element\+\_\+\mbox{[}\mbox{\hyperlink{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}{M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT}}\mbox{]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_a167cbadca979f076381339f84a75ae3e}\label{class_o_b_b_collider_component_a167cbadca979f076381339f84a75ae3e}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!axis\_length\_@{axis\_length\_}}
+\index{axis\_length\_@{axis\_length\_}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{axis\_length\_}{axis\_length\_}}
+{\footnotesize\ttfamily float O\+B\+B\+Collider\+Component\+::axis\+\_\+length\+\_\+\mbox{[}\mbox{\hyperlink{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}{M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT}}\mbox{]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}\label{class_o_b_b_collider_component_ad5601b27864727b0c132ff53b8a0ff09}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!MAX\_AXIS\_ELEMENT@{MAX\_AXIS\_ELEMENT}}
+\index{MAX\_AXIS\_ELEMENT@{MAX\_AXIS\_ELEMENT}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{MAX\_AXIS\_ELEMENT}{MAX\_AXIS\_ELEMENT}}
+{\footnotesize\ttfamily constexpr int O\+B\+B\+Collider\+Component\+::\+M\+A\+X\+\_\+\+A\+X\+I\+S\+\_\+\+E\+L\+E\+M\+E\+NT = static\+\_\+cast$<$int$>$(\mbox{\hyperlink{class_o_b_b_collider_component_a6039091c26016e4d884338c0009c05f6a6a061313d22e51e0f25b7cd4dc065233}{Axis\+Type\+::\+Max}})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{class_o_b_b_collider_component_a8bf5601296c6eba94eb28d38e9328079}\label{class_o_b_b_collider_component_a8bf5601296c6eba94eb28d38e9328079}} 
+\index{OBBColliderComponent@{OBBColliderComponent}!position\_@{position\_}}
+\index{position\_@{position\_}!OBBColliderComponent@{OBBColliderComponent}}
+\doxysubsubsection{\texorpdfstring{position\_}{position\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector3}{Vector3}} O\+B\+B\+Collider\+Component\+::position\+\_\+}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Collider\+Component/\mbox{\hyperlink{_o_b_b_collider_component_8h}{O\+B\+B\+Collider\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Collider\+Component/\mbox{\hyperlink{_o_b_b_collider_component_8cpp}{O\+B\+B\+Collider\+Component.\+cpp}}\end{DoxyCompactItemize}

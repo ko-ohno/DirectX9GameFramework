@@ -1,0 +1,7 @@
+<map id="Texture::GetTextureImageInfo" name="Texture::GetTextureImageInfo">
+<area shape="rect" id="node1" title=" " alt="" coords="495,46,687,73"/>
+<area shape="rect" id="node2" href="$class_sprite_renderer_component.html#a68ff98e3ea71282fa4a82d2306f0b75a" title=" " alt="" coords="264,5,439,47"/>
+<area shape="rect" id="node4" href="$class_billboard_renderer_component.html#aad469d8c1a900af9670ea34aea5f0cf1" title=" " alt="" coords="256,71,447,112"/>
+<area shape="rect" id="node3" href="$class_sprite_test.html#ad2fe5dd9c8785590822611eb359e87b9" title=" " alt="" coords="5,13,208,39"/>
+<area shape="rect" id="node5" href="$class_billboard_test.html#a4d00a280bdf1e87f8934588f2b56ea3b" title=" " alt="" coords="16,71,197,112"/>
+</map>

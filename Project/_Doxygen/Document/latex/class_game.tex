@@ -1,0 +1,406 @@
+\hypertarget{class_game}{}\doxysection{Game クラス}
+\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04}{Game\+State}} \{ \newline
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04a6adf97f83acf6453d4a6a4b1070f3754}{Game\+State\+::\+None}} = -\/1, 
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04ab78a3223503896721cca1303f776159b}{Game\+State\+::\+Title}}, 
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04a6288740a1cd0de37312619df3b6ddcf3}{Game\+State\+::\+Gameplay}}, 
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04a8eea62084ca7e541d918e823422bd82e}{Game\+State\+::\+Result}}, 
+\newline
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04ae99180abf47a8b3a856e0bcb2656990a}{Game\+State\+::\+Paused}}, 
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04a0d82790b0612935992bd564a17ce37d6}{Game\+State\+::\+Quit}}, 
+\mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04a26a4b44a837bf97b972628509912b4a5}{Game\+State\+::\+M\+AX}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_a3ae96cfdab80ddfed4e942b23c59cfd9}{Game}} (void)
+\item 
+\mbox{\hyperlink{class_game_a5132fe2c0d2a41ad6b613dc2baeca24c}{$\sim$\+Game}} (void)
+\item 
+bool \mbox{\hyperlink{class_game_aad5fedac2c610d50ba07f521a2802019}{Start\+Up}} (class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}} $\ast$dx9\+Graphisc)
+\item 
+void \mbox{\hyperlink{class_game_a82f558299df0f6922c950d51476d4fc8}{Shut\+Down}} (void)
+\item 
+void \mbox{\hyperlink{class_game_a417aa6f5a8eb9fda0f77ff3838982dca}{Input}} (void)
+\item 
+void \mbox{\hyperlink{class_game_a0ee29f2672f4b4d2ab4279fcd7475dfa}{Update}} (float delta\+Time)
+\item 
+void \mbox{\hyperlink{class_game_aac537e297245546b9c4dca2afed64407}{Generate\+Output}} (void)
+\item 
+void \mbox{\hyperlink{class_game_a3006784cc1871221e68f1f1a7b28b43d}{Add\+Game\+Object}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$game\+Object)
+\item 
+void \mbox{\hyperlink{class_game_a82ce9652cc320411bc05a8c3ce7aec3d}{Remove\+Game\+Object}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$game\+Object)
+\item 
+const std\+::vector$<$ class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$ $>$ \& \mbox{\hyperlink{class_game_ab16e3424cbcc70ee303d7c6e01d29950}{Get\+Game\+Objects}} () const
+\item 
+class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}} $\ast$ \mbox{\hyperlink{class_game_a073433e798edb46ed2da577a4c1d9921}{Get\+Graphics}} (void)
+\item 
+class \mbox{\hyperlink{class_renderer}{Renderer}} $\ast$ \mbox{\hyperlink{class_game_a12af9b80ff68104e84f8f5d71debfb09}{Get\+Renderer}} (void)
+\item 
+class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}} $\ast$ \mbox{\hyperlink{class_game_aaa050e350e5ed4c48e7a7440e1c3b64a}{Get\+Shader\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_texture_manager}{Texture\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a363350352a2214587b4af4e6b45b7b84}{Get\+Texture\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_mesh_manager}{Mesh\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a84c8e8f996617349e4f555bcb7a636da}{Get\+Mesh\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_light_manager}{Light\+Manager}} $\ast$ \mbox{\hyperlink{class_game_aafaa33f6c4097f7bf350ff5e4daded4e}{Get\+Light\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_effect_manager}{Effect\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a808750e65ec7c088fe7d48e3b51c086d}{Get\+Effect\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a4393e9c21a28d61d9164e5bccb8451b2}{Get\+Sound\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_collider_manager}{Collider\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a14f8b09aa269b3a9b12cd0f3dd31d816}{Get\+Collider\+Manager}} (void)
+\item 
+class \mbox{\hyperlink{class_save_data_manager}{Save\+Data\+Manager}} $\ast$ \mbox{\hyperlink{class_game_a4ad0fdcd71594a12187bd9ac03d3c7e8}{Get\+Save\+Data\+Manager}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_game}{Game}} $\ast$ \mbox{\hyperlink{class_game_a47154761f3497d431e351fc3efbdadec}{Create}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型メンバ詳解}
+\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04}} 
+\index{Game@{Game}!GameState@{GameState}}
+\index{GameState@{GameState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_game_a7f57a7a8408e554d0a72882c287e1d04}{Game\+::\+Game\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!Game@{Game}}\index{Game@{Game}!None@{None}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04a6adf97f83acf6453d4a6a4b1070f3754}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04a6adf97f83acf6453d4a6a4b1070f3754}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Title@{Title}!Game@{Game}}\index{Game@{Game}!Title@{Title}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04ab78a3223503896721cca1303f776159b}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04ab78a3223503896721cca1303f776159b}} 
+Title&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Gameplay@{Gameplay}!Game@{Game}}\index{Game@{Game}!Gameplay@{Gameplay}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04a6288740a1cd0de37312619df3b6ddcf3}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04a6288740a1cd0de37312619df3b6ddcf3}} 
+Gameplay&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Result@{Result}!Game@{Game}}\index{Game@{Game}!Result@{Result}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04a8eea62084ca7e541d918e823422bd82e}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04a8eea62084ca7e541d918e823422bd82e}} 
+Result&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Paused@{Paused}!Game@{Game}}\index{Game@{Game}!Paused@{Paused}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04ae99180abf47a8b3a856e0bcb2656990a}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04ae99180abf47a8b3a856e0bcb2656990a}} 
+Paused&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Quit@{Quit}!Game@{Game}}\index{Game@{Game}!Quit@{Quit}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04a0d82790b0612935992bd564a17ce37d6}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04a0d82790b0612935992bd564a17ce37d6}} 
+Quit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX@{MAX}!Game@{Game}}\index{Game@{Game}!MAX@{MAX}}}\mbox{\Hypertarget{class_game_a7f57a7a8408e554d0a72882c287e1d04a26a4b44a837bf97b972628509912b4a5}\label{class_game_a7f57a7a8408e554d0a72882c287e1d04a26a4b44a837bf97b972628509912b4a5}} 
+M\+AX&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_game_a3ae96cfdab80ddfed4e942b23c59cfd9}\label{class_game_a3ae96cfdab80ddfed4e942b23c59cfd9}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a3ae96cfdab80ddfed4e942b23c59cfd9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a5132fe2c0d2a41ad6b613dc2baeca24c}\label{class_game_a5132fe2c0d2a41ad6b613dc2baeca24c}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_game_a3006784cc1871221e68f1f1a7b28b43d}\label{class_game_a3006784cc1871221e68f1f1a7b28b43d}} 
+\index{Game@{Game}!AddGameObject@{AddGameObject}}
+\index{AddGameObject@{AddGameObject}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{AddGameObject()}{AddGameObject()}}
+{\footnotesize\ttfamily void Game\+::\+Add\+Game\+Object (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{game\+Object }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a3006784cc1871221e68f1f1a7b28b43d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a47154761f3497d431e351fc3efbdadec}\label{class_game_a47154761f3497d431e351fc3efbdadec}} 
+\index{Game@{Game}!Create@{Create}}
+\index{Create@{Create}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_game}{Game}} $\ast$ Game\+::\+Create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{class_game_a47154761f3497d431e351fc3efbdadec_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{class_game_a47154761f3497d431e351fc3efbdadec_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_aac537e297245546b9c4dca2afed64407}\label{class_game_aac537e297245546b9c4dca2afed64407}} 
+\index{Game@{Game}!GenerateOutput@{GenerateOutput}}
+\index{GenerateOutput@{GenerateOutput}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GenerateOutput()}{GenerateOutput()}}
+{\footnotesize\ttfamily void Game\+::\+Generate\+Output (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_aac537e297245546b9c4dca2afed64407_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_game_aac537e297245546b9c4dca2afed64407_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a14f8b09aa269b3a9b12cd0f3dd31d816}\label{class_game_a14f8b09aa269b3a9b12cd0f3dd31d816}} 
+\index{Game@{Game}!GetColliderManager@{GetColliderManager}}
+\index{GetColliderManager@{GetColliderManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetColliderManager()}{GetColliderManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_collider_manager}{Collider\+Manager}}$\ast$ Game\+::\+Get\+Collider\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a14f8b09aa269b3a9b12cd0f3dd31d816_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a808750e65ec7c088fe7d48e3b51c086d}\label{class_game_a808750e65ec7c088fe7d48e3b51c086d}} 
+\index{Game@{Game}!GetEffectManager@{GetEffectManager}}
+\index{GetEffectManager@{GetEffectManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetEffectManager()}{GetEffectManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_effect_manager}{Effect\+Manager}}$\ast$ Game\+::\+Get\+Effect\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a808750e65ec7c088fe7d48e3b51c086d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_ab16e3424cbcc70ee303d7c6e01d29950}\label{class_game_ab16e3424cbcc70ee303d7c6e01d29950}} 
+\index{Game@{Game}!GetGameObjects@{GetGameObjects}}
+\index{GetGameObjects@{GetGameObjects}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetGameObjects()}{GetGameObjects()}}
+{\footnotesize\ttfamily const std\+::vector$<$class \mbox{\hyperlink{class_game_object}{Game\+Object}}$\ast$$>$\& Game\+::\+Get\+Game\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_game_a073433e798edb46ed2da577a4c1d9921}\label{class_game_a073433e798edb46ed2da577a4c1d9921}} 
+\index{Game@{Game}!GetGraphics@{GetGraphics}}
+\index{GetGraphics@{GetGraphics}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetGraphics()}{GetGraphics()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}}$\ast$ Game\+::\+Get\+Graphics (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a073433e798edb46ed2da577a4c1d9921_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_aafaa33f6c4097f7bf350ff5e4daded4e}\label{class_game_aafaa33f6c4097f7bf350ff5e4daded4e}} 
+\index{Game@{Game}!GetLightManager@{GetLightManager}}
+\index{GetLightManager@{GetLightManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetLightManager()}{GetLightManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_light_manager}{Light\+Manager}}$\ast$ Game\+::\+Get\+Light\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_game_a84c8e8f996617349e4f555bcb7a636da}\label{class_game_a84c8e8f996617349e4f555bcb7a636da}} 
+\index{Game@{Game}!GetMeshManager@{GetMeshManager}}
+\index{GetMeshManager@{GetMeshManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetMeshManager()}{GetMeshManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_mesh_manager}{Mesh\+Manager}}$\ast$ Game\+::\+Get\+Mesh\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a84c8e8f996617349e4f555bcb7a636da_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a12af9b80ff68104e84f8f5d71debfb09}\label{class_game_a12af9b80ff68104e84f8f5d71debfb09}} 
+\index{Game@{Game}!GetRenderer@{GetRenderer}}
+\index{GetRenderer@{GetRenderer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetRenderer()}{GetRenderer()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_renderer}{Renderer}}$\ast$ Game\+::\+Get\+Renderer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{class_game_a12af9b80ff68104e84f8f5d71debfb09_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a4ad0fdcd71594a12187bd9ac03d3c7e8}\label{class_game_a4ad0fdcd71594a12187bd9ac03d3c7e8}} 
+\index{Game@{Game}!GetSaveDataManager@{GetSaveDataManager}}
+\index{GetSaveDataManager@{GetSaveDataManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetSaveDataManager()}{GetSaveDataManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_save_data_manager}{Save\+Data\+Manager}}$\ast$ Game\+::\+Get\+Save\+Data\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a4ad0fdcd71594a12187bd9ac03d3c7e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_aaa050e350e5ed4c48e7a7440e1c3b64a}\label{class_game_aaa050e350e5ed4c48e7a7440e1c3b64a}} 
+\index{Game@{Game}!GetShaderManager@{GetShaderManager}}
+\index{GetShaderManager@{GetShaderManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetShaderManager()}{GetShaderManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_shader_manager}{Shader\+Manager}}$\ast$ Game\+::\+Get\+Shader\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_aaa050e350e5ed4c48e7a7440e1c3b64a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a4393e9c21a28d61d9164e5bccb8451b2}\label{class_game_a4393e9c21a28d61d9164e5bccb8451b2}} 
+\index{Game@{Game}!GetSoundManager@{GetSoundManager}}
+\index{GetSoundManager@{GetSoundManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetSoundManager()}{GetSoundManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_sound_manager}{Sound\+Manager}}$\ast$ Game\+::\+Get\+Sound\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a4393e9c21a28d61d9164e5bccb8451b2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a363350352a2214587b4af4e6b45b7b84}\label{class_game_a363350352a2214587b4af4e6b45b7b84}} 
+\index{Game@{Game}!GetTextureManager@{GetTextureManager}}
+\index{GetTextureManager@{GetTextureManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetTextureManager()}{GetTextureManager()}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_texture_manager}{Texture\+Manager}}$\ast$ Game\+::\+Get\+Texture\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a363350352a2214587b4af4e6b45b7b84_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a417aa6f5a8eb9fda0f77ff3838982dca}\label{class_game_a417aa6f5a8eb9fda0f77ff3838982dca}} 
+\index{Game@{Game}!Input@{Input}}
+\index{Input@{Input}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Input()}{Input()}}
+{\footnotesize\ttfamily void Game\+::\+Input (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{class_game_a417aa6f5a8eb9fda0f77ff3838982dca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a82ce9652cc320411bc05a8c3ce7aec3d}\label{class_game_a82ce9652cc320411bc05a8c3ce7aec3d}} 
+\index{Game@{Game}!RemoveGameObject@{RemoveGameObject}}
+\index{RemoveGameObject@{RemoveGameObject}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{RemoveGameObject()}{RemoveGameObject()}}
+{\footnotesize\ttfamily void Game\+::\+Remove\+Game\+Object (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{game\+Object }\end{DoxyParamCaption})}
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a82ce9652cc320411bc05a8c3ce7aec3d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a82f558299df0f6922c950d51476d4fc8}\label{class_game_a82f558299df0f6922c950d51476d4fc8}} 
+\index{Game@{Game}!ShutDown@{ShutDown}}
+\index{ShutDown@{ShutDown}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{ShutDown()}{ShutDown()}}
+{\footnotesize\ttfamily void Game\+::\+Shut\+Down (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a82f558299df0f6922c950d51476d4fc8_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{class_game_a82f558299df0f6922c950d51476d4fc8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_aad5fedac2c610d50ba07f521a2802019}\label{class_game_aad5fedac2c610d50ba07f521a2802019}} 
+\index{Game@{Game}!StartUp@{StartUp}}
+\index{StartUp@{StartUp}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{StartUp()}{StartUp()}}
+{\footnotesize\ttfamily bool Game\+::\+Start\+Up (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_d_x9_graphics}{D\+X9\+Graphics}} $\ast$}]{dx9\+Graphisc }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_aad5fedac2c610d50ba07f521a2802019_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{class_game_aad5fedac2c610d50ba07f521a2802019_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a0ee29f2672f4b4d2ab4279fcd7475dfa}\label{class_game_a0ee29f2672f4b4d2ab4279fcd7475dfa}} 
+\index{Game@{Game}!Update@{Update}}
+\index{Update@{Update}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Game\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{class_game_a0ee29f2672f4b4d2ab4279fcd7475dfa_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_game_a0ee29f2672f4b4d2ab4279fcd7475dfa_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

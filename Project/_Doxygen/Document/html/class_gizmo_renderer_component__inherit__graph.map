@@ -1,0 +1,8 @@
+<map id="GizmoRendererComponent" name="GizmoRendererComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="243,155,422,181"/>
+<area shape="rect" id="node4" href="$class_box_gizmo_renderer_component.html" title=" " alt="" coords="5,229,207,256"/>
+<area shape="rect" id="node5" href="$class_grid_gizmo_renderer_component.html" title=" " alt="" coords="231,229,434,256"/>
+<area shape="rect" id="node6" href="$class_sphere_gizmo_renderer_component.html" title=" " alt="" coords="458,229,677,256"/>
+<area shape="rect" id="node2" href="$class_renderer_component.html" title=" " alt="" coords="263,80,403,107"/>
+<area shape="rect" id="node3" href="$class_component.html" title=" " alt="" coords="289,5,377,32"/>
+</map>

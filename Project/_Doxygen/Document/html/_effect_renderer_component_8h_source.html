@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/Game/GameObjects/Component/RendererComponent/EffectRendererComponent.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_f096b720ef29b06b7ed7900b12d140a7.html">Game</a></li><li class="navelem"><a class="el" href="dir_28f7ae21b167149685ac14e89d0caf1e.html">GameObjects</a></li><li class="navelem"><a class="el" href="dir_c3798f9fa67b1239b9e0618395cf6c2b.html">Component</a></li><li class="navelem"><a class="el" href="dir_6b0d20879ae2d036a2badf701b0abad4.html">RendererComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">EffectRendererComponent.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_effect_renderer_component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [EffectRendererComponent.h]  エフェクトコンポーネント</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：エフェクトコンポーネント</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef EFFECT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define EFFECT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../RendererComponent.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* エフェクトコンポーネントクラス</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_effect_renderer_component.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_effect_renderer_component.html">EffectRendererComponent</a> : <span class="keyword">public</span> <a class="code" href="class_renderer_component.html">RendererComponent</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_effect_renderer_component.html#aef8f324aeb96b5b0096600a7366057ce">EffectRendererComponent</a>(<span class="keyword">class</span> <a class="code" href="class_game_object.html">GameObject</a>* owner, <span class="keywordtype">int</span> drawOrder = 100);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_effect_renderer_component.html#ab9b66d29255ef488bd285845a0fb18da">~EffectRendererComponent</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_effect_renderer_component.html#a3ceeea0a8e5bc502a8183a105c99bb74">Init</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#ad93b6f3549b8b3fd3a128597ec65e158">Uninit</a>(<span class="keywordtype">void</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#ae0576183ad5dcd2fc86b09161ca638ec">Update</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a435487b62a7f1474dd9deff3910ce0c9">Draw</a>(<span class="keyword">class</span> <a class="code" href="class_shader.html">Shader</a>* shader, <span class="keyword">class</span> <a class="code" href="class_camera.html">Camera</a>* camera) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// エフェクトの設定</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a45a2b78424998f7a12835039a094cc24">SetEffect</a>(<a class="code" href="_effect_manager_8h.html#a4809a7bb3fd1a421902a667cc1405d43">EffectType</a> effectTypeID);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// エフェクト情報の取得</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">class </span><a class="code" href="class_effect.html">Effect</a>* <a class="code" href="class_effect_renderer_component.html#ae70f81129aabee212b82e4ba61abfe0e">GetEffect</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_effect_renderer_component.html#a0346adf78b93ebabb96ed223ae954038">   34</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efa">TypeID</a> <a class="code" href="class_effect_renderer_component.html#a0346adf78b93ebabb96ed223ae954038">GetComponentType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">TypeID::EffectRendererComponent</a>; };</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// エフェクトの再生</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a0d87c2e9341d00c2eed7e874dcf02925">Play</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a0d87c2e9341d00c2eed7e874dcf02925">Play</a>(<span class="keyword">const</span> D3DXVECTOR3&amp; position);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a0d87c2e9341d00c2eed7e874dcf02925">Play</a>(<span class="keywordtype">float</span> posX, <span class="keywordtype">float</span> posY, <span class="keywordtype">float</span> posZ);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// エフェクトの一時停止</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#aa1ab7dc7cf5b36c45b833c55881550af">Paused</a>(<span class="keywordtype">bool</span> isPaused);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// エフェクトの停止</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_effect_renderer_component.html#a6a9fcaadb8d6bde5a122df6657dc8e46">Stop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// エフェクトの管理者</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">class </span><a class="code" href="class_effect_manager.html">EffectManager</a>* effect_manager_;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Effekseerのマネージャへのポインタ</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    Effekseer::Manager*  effekseer_manager_;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// エフェクトのデータ</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">class </span><a class="code" href="class_effect.html">Effect</a>*        effect_;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif //EFFECT_COMPONENT_H_</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">/*      End of File</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">=============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_effect_renderer_component_html_a3ceeea0a8e5bc502a8183a105c99bb74"><div class="ttname"><a href="class_effect_renderer_component.html#a3ceeea0a8e5bc502a8183a105c99bb74">EffectRendererComponent::Init</a></div><div class="ttdeci">bool Init(void) override</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:44</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_a45a2b78424998f7a12835039a094cc24"><div class="ttname"><a href="class_effect_renderer_component.html#a45a2b78424998f7a12835039a094cc24">EffectRendererComponent::SetEffect</a></div><div class="ttdeci">void SetEffect(EffectType effectTypeID)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:150</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_aa1ab7dc7cf5b36c45b833c55881550af"><div class="ttname"><a href="class_effect_renderer_component.html#aa1ab7dc7cf5b36c45b833c55881550af">EffectRendererComponent::Paused</a></div><div class="ttdeci">void Paused(bool isPaused)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:199</div></div>
+<div class="ttc" id="aclass_renderer_component_html"><div class="ttname"><a href="class_renderer_component.html">RendererComponent</a></div><div class="ttdef"><b>Definition:</b> RendererComponent.h:41</div></div>
+<div class="ttc" id="aclass_effect_html"><div class="ttname"><a href="class_effect.html">Effect</a></div><div class="ttdef"><b>Definition:</b> Effect.h:20</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_a6a9fcaadb8d6bde5a122df6657dc8e46"><div class="ttname"><a href="class_effect_renderer_component.html#a6a9fcaadb8d6bde5a122df6657dc8e46">EffectRendererComponent::Stop</a></div><div class="ttdeci">void Stop(void)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:208</div></div>
+<div class="ttc" id="a_effect_manager_8h_html_a4809a7bb3fd1a421902a667cc1405d43"><div class="ttname"><a href="_effect_manager_8h.html#a4809a7bb3fd1a421902a667cc1405d43">EffectType</a></div><div class="ttdeci">EffectType</div><div class="ttdef"><b>Definition:</b> EffectManager.h:38</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a24f7f50fd6ad1a3f09d1fcf0ea496958"><div class="ttname"><a href="class_renderer_component.html#a24f7f50fd6ad1a3f09d1fcf0ea496958">RendererComponent::scale_</a></div><div class="ttdeci">D3DXVECTOR3 scale_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:170</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_a435487b62a7f1474dd9deff3910ce0c9"><div class="ttname"><a href="class_effect_renderer_component.html#a435487b62a7f1474dd9deff3910ce0c9">EffectRendererComponent::Draw</a></div><div class="ttdeci">void Draw(class Shader *shader, class Camera *camera) override</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:138</div></div>
+<div class="ttc" id="aclass_renderer_component_html_ae345732e9d71f33fe6b814b38537ce31"><div class="ttname"><a href="class_renderer_component.html#ae345732e9d71f33fe6b814b38537ce31">RendererComponent::world_matrix_</a></div><div class="ttdeci">D3DXMATRIX world_matrix_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:164</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efaa63bd11ae7ee6f01dc44f0afaa3bcf0bf">Component::TypeID::EffectRendererComponent</a></div><div class="ttdeci">@ EffectRendererComponent</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a1588ca66128b728f8c4cfce6e006c472"><div class="ttname"><a href="class_renderer_component.html#a1588ca66128b728f8c4cfce6e006c472">RendererComponent::rotation_matrix_</a></div><div class="ttdeci">D3DXMATRIX rotation_matrix_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:161</div></div>
+<div class="ttc" id="a_effect_renderer_component_8h_html"><div class="ttname"><a href="_effect_renderer_component_8h.html">EffectRendererComponent.h</a></div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_ad93b6f3549b8b3fd3a128597ec65e158"><div class="ttname"><a href="class_effect_renderer_component.html#ad93b6f3549b8b3fd3a128597ec65e158">EffectRendererComponent::Uninit</a></div><div class="ttdeci">void Uninit(void) override</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:71</div></div>
+<div class="ttc" id="aclass_effect_manager_html"><div class="ttname"><a href="class_effect_manager.html">EffectManager</a></div><div class="ttdef"><b>Definition:</b> EffectManager.h:53</div></div>
+<div class="ttc" id="aclass_renderer_component_html_ad5700482ea2bea49b6221d9838bae7fb"><div class="ttname"><a href="class_renderer_component.html#ad5700482ea2bea49b6221d9838bae7fb">RendererComponent::position_</a></div><div class="ttdeci">D3DXVECTOR3 position_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:167</div></div>
+<div class="ttc" id="aclass_renderer_component_html_a4786d59d27dd32f4c0c1792838fd8f07"><div class="ttname"><a href="class_renderer_component.html#a4786d59d27dd32f4c0c1792838fd8f07">RendererComponent::renderer_layer_type_</a></div><div class="ttdeci">RendererLayerType renderer_layer_type_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:137</div></div>
+<div class="ttc" id="aclass_component_html_a72ac443ed11aa0c07688929f18734efa"><div class="ttname"><a href="class_component.html#a72ac443ed11aa0c07688929f18734efa">Component::TypeID</a></div><div class="ttdeci">TypeID</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_ab9b66d29255ef488bd285845a0fb18da"><div class="ttname"><a href="class_effect_renderer_component.html#ab9b66d29255ef488bd285845a0fb18da">EffectRendererComponent::~EffectRendererComponent</a></div><div class="ttdeci">~EffectRendererComponent(void)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:35</div></div>
+<div class="ttc" id="aclass_component_html_a70cb743723f7acecf716b58d4e40262d"><div class="ttname"><a href="class_component.html#a70cb743723f7acecf716b58d4e40262d">Component::owner_</a></div><div class="ttdeci">class GameObject * owner_</div><div class="ttdef"><b>Definition:</b> Component.h:106</div></div>
+<div class="ttc" id="aclass_effect_html_aba3f77356d7e9d16d069e599336b4bcd"><div class="ttname"><a href="class_effect.html#aba3f77356d7e9d16d069e599336b4bcd">Effect::GetEffectHandle</a></div><div class="ttdeci">Effekseer::Handle * GetEffectHandle(void)</div><div class="ttdef"><b>Definition:</b> Effect.h:42</div></div>
+<div class="ttc" id="aclass_effect_manager_html_a82eaf59e3fb85f53377dc68571148966"><div class="ttname"><a href="class_effect_manager.html#a82eaf59e3fb85f53377dc68571148966">EffectManager::LoadEffect</a></div><div class="ttdeci">class Effect * LoadEffect(EffectType effectTypeID)</div><div class="ttdef"><b>Definition:</b> EffectManager.cpp:294</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_ae0576183ad5dcd2fc86b09161ca638ec"><div class="ttname"><a href="class_effect_renderer_component.html#ae0576183ad5dcd2fc86b09161ca638ec">EffectRendererComponent::Update</a></div><div class="ttdeci">void Update(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:78</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_a0d87c2e9341d00c2eed7e874dcf02925"><div class="ttname"><a href="class_effect_renderer_component.html#a0d87c2e9341d00c2eed7e874dcf02925">EffectRendererComponent::Play</a></div><div class="ttdeci">void Play(void)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:172</div></div>
+<div class="ttc" id="aclass_effect_html_ac5f137d0de9719ffd2c0479b8049e62b"><div class="ttname"><a href="class_effect.html#ac5f137d0de9719ffd2c0479b8049e62b">Effect::GetEffect</a></div><div class="ttdeci">Effekseer::Effect * GetEffect(void)</div><div class="ttdef"><b>Definition:</b> Effect.h:39</div></div>
+<div class="ttc" id="aclass_effect_manager_html_ada215bbc5febf615ecae403fda68b495"><div class="ttname"><a href="class_effect_manager.html#ada215bbc5febf615ecae403fda68b495">EffectManager::GetEffekseerManager</a></div><div class="ttdeci">class Effekseer::Manager * GetEffekseerManager(void)</div><div class="ttdef"><b>Definition:</b> EffectManager.h:102</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:23</div></div>
+<div class="ttc" id="aclass_game_object_html_a627f26322a15d2b65fe871b236e34c54"><div class="ttname"><a href="class_game_object.html#a627f26322a15d2b65fe871b236e34c54">GameObject::GetGame</a></div><div class="ttdeci">class Game * GetGame(void) const</div><div class="ttdef"><b>Definition:</b> GameObject.h:107</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_a0346adf78b93ebabb96ed223ae954038"><div class="ttname"><a href="class_effect_renderer_component.html#a0346adf78b93ebabb96ed223ae954038">EffectRendererComponent::GetComponentType</a></div><div class="ttdeci">virtual TypeID GetComponentType() const override</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.h:34</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html"><div class="ttname"><a href="class_effect_renderer_component.html">EffectRendererComponent</a></div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.h:18</div></div>
+<div class="ttc" id="aclass_renderer_component_html_ab8ea7d00747990d1114c2b91d7d7f7b8"><div class="ttname"><a href="class_renderer_component.html#ab8ea7d00747990d1114c2b91d7d7f7b8">RendererComponent::shader_type_</a></div><div class="ttdeci">ShaderType shader_type_</div><div class="ttdef"><b>Definition:</b> RendererComponent.h:140</div></div>
+<div class="ttc" id="aclass_game_html_a808750e65ec7c088fe7d48e3b51c086d"><div class="ttname"><a href="class_game.html#a808750e65ec7c088fe7d48e3b51c086d">Game::GetEffectManager</a></div><div class="ttdeci">class EffectManager * GetEffectManager(void)</div><div class="ttdef"><b>Definition:</b> Game.h:62</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_aef8f324aeb96b5b0096600a7366057ce"><div class="ttname"><a href="class_effect_renderer_component.html#aef8f324aeb96b5b0096600a7366057ce">EffectRendererComponent::EffectRendererComponent</a></div><div class="ttdeci">EffectRendererComponent(class GameObject *owner, int drawOrder=100)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:20</div></div>
+<div class="ttc" id="aclass_effect_renderer_component_html_ae70f81129aabee212b82e4ba61abfe0e"><div class="ttname"><a href="class_effect_renderer_component.html#ae70f81129aabee212b82e4ba61abfe0e">EffectRendererComponent::GetEffect</a></div><div class="ttdeci">class Effect * GetEffect(void)</div><div class="ttdef"><b>Definition:</b> EffectRendererComponent.cpp:159</div></div>
+<div class="ttc" id="aclass_game_object_html"><div class="ttname"><a href="class_game_object.html">GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.h:24</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

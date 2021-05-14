@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DirectX9GameFramework: D:/Application/_Git/_LocalRepository/DirectX9GameFramework/Project/Project/SourceFiles/Develop/Application/InputDevice/InputDeviceKeyboard.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">DirectX9GameFramework
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ffd1f789ec7bd0a45fc6ad92579c5070.html">Project</a></li><li class="navelem"><a class="el" href="dir_ffbf61e9b62f693e0ec0cdb93c8f1c24.html">SourceFiles</a></li><li class="navelem"><a class="el" href="dir_d29b5f43023444021cf4c57d323273fa.html">Develop</a></li><li class="navelem"><a class="el" href="dir_f65e5fe5cc9cc150e8fd14ca2372c1fc.html">Application</a></li><li class="navelem"><a class="el" href="dir_a9da0a34931e38e74cf2e94e0dcd6843.html">InputDevice</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InputDeviceKeyboard.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_input_device_keyboard_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*=============================================================================</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*  [InputDeviceKeyboard.h] キーボードへの入力管理クラス定義</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*  Author：Kousuke,Ohno.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*  説明：キー入力の更新、キーボードの初期化を行うクラス定義。</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">=============================================================================*/</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INPUT_DEVICE_KEYBOARD_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define INPUT_DEVICE_KEYBOARD_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*--- インクルードファイル ---*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../StdAfx.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*--- 構造体定義 ---*/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*--- クラスの前方宣言 ---*/</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*-------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/* キーボード入力クラス</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">-------------------------------------*/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_input_device_keyboard.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_device_keyboard.html">InputDeviceKeyboard</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_input_device_keyboard.html#a1af5f03f275ee75a82e6c23c27c69767">InputDeviceKeyboard</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_input_device_keyboard.html#a00fde30402bbe13bfdd8e5c6a26a439c">~InputDeviceKeyboard</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device_keyboard.html#a0d85c32d03262b7701d1b358805dc57b">Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    HRESULT <a class="code" href="class_input_device_keyboard.html#a8bb7fd178355fcdd0136690e99afc7b4">CreateDeviceKeyboard</a>(<span class="keyword">const</span> LPDIRECTINPUT8 &amp;lpdinput_interface_object, <span class="keyword">const</span> HWND &amp;wndHandle);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device_keyboard.html#aec052beac10f0bf35d197dfecee41bdb">Uninit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_device_keyboard.html#ab09cb146fc05c27d90184e51ece91f8d">Update</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_keyboard.html#a6f671e8dd39fe1f0571913bfb3fa239c">GetKeyboardPress</a>(<span class="keywordtype">int</span> nKey);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_keyboard.html#ace4a6086c14fdd40a4051635fb06898c">GetKeyboardTrigger</a>(<span class="keywordtype">int</span> nKey);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_keyboard.html#a2e8b2de82d7e2d46aa4680c0e7e542ef">GetKeyboardRepeat</a>(<span class="keywordtype">int</span> nKey);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_input_device_keyboard.html#a5d2d4f439c3279fafb6582e57e28d275">GetKeyboardRelease</a>(<span class="keywordtype">int</span> nKey);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> LIMIT_COUNT_REPEAT = 20;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> NUM_KEY_MAX = 256;         <span class="comment">//キーの最大上限数</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">static</span> LPDIRECTINPUTDEVICE8 lpdinput_device_keyboard_;  <span class="comment">// 入力デバイス(キーボード)へのポインタ</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    BYTE key_state_[NUM_KEY_MAX];               <span class="comment">// キーボードの入力情報ワーク</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    BYTE key_state_trigger_[NUM_KEY_MAX];       <span class="comment">// キーボードのトリガー情報ワーク</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    BYTE key_state_release_[NUM_KEY_MAX];       <span class="comment">// キーボードのリリース情報ワーク</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    BYTE key_state_repeat_[NUM_KEY_MAX];        <span class="comment">// キーボードのリピート情報ワーク</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span>  key_state_repeat_count_[NUM_KEY_MAX];  <span class="comment">// キーボードのリピートカウンタ</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif //INPUT_DEVICE_KEYBOARD_H_</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/*==============================================================================</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//      End of file</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">==============================================================================*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_input_device_keyboard_html_a2e8b2de82d7e2d46aa4680c0e7e542ef"><div class="ttname"><a href="class_input_device_keyboard.html#a2e8b2de82d7e2d46aa4680c0e7e542ef">InputDeviceKeyboard::GetKeyboardRepeat</a></div><div class="ttdeci">bool GetKeyboardRepeat(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:170</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a0d85c32d03262b7701d1b358805dc57b"><div class="ttname"><a href="class_input_device_keyboard.html#a0d85c32d03262b7701d1b358805dc57b">InputDeviceKeyboard::Init</a></div><div class="ttdeci">void Init(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:74</div></div>
+<div class="ttc" id="a_input_device_keyboard_8h_html"><div class="ttname"><a href="_input_device_keyboard_8h.html">InputDeviceKeyboard.h</a></div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a8bb7fd178355fcdd0136690e99afc7b4"><div class="ttname"><a href="class_input_device_keyboard.html#a8bb7fd178355fcdd0136690e99afc7b4">InputDeviceKeyboard::CreateDeviceKeyboard</a></div><div class="ttdeci">HRESULT CreateDeviceKeyboard(const LPDIRECTINPUT8 &amp;lpdinput_interface_object, const HWND &amp;wndHandle)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:35</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_ace4a6086c14fdd40a4051635fb06898c"><div class="ttname"><a href="class_input_device_keyboard.html#ace4a6086c14fdd40a4051635fb06898c">InputDeviceKeyboard::GetKeyboardTrigger</a></div><div class="ttdeci">bool GetKeyboardTrigger(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:162</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a6f671e8dd39fe1f0571913bfb3fa239c"><div class="ttname"><a href="class_input_device_keyboard.html#a6f671e8dd39fe1f0571913bfb3fa239c">InputDeviceKeyboard::GetKeyboardPress</a></div><div class="ttdeci">bool GetKeyboardPress(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:154</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a00fde30402bbe13bfdd8e5c6a26a439c"><div class="ttname"><a href="class_input_device_keyboard.html#a00fde30402bbe13bfdd8e5c6a26a439c">InputDeviceKeyboard::~InputDeviceKeyboard</a></div><div class="ttdeci">~InputDeviceKeyboard()</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:27</div></div>
+<div class="ttc" id="a_std_afx_8h_html_a92e910f157307f1cc19bc5919c168118"><div class="ttname"><a href="_std_afx_8h.html#a92e910f157307f1cc19bc5919c168118">SAFE_RELEASE_</a></div><div class="ttdeci">#define SAFE_RELEASE_(x)</div><div class="ttdef"><b>Definition:</b> StdAfx.h:97</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html"><div class="ttname"><a href="class_input_device_keyboard.html">InputDeviceKeyboard</a></div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.h:23</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a5d2d4f439c3279fafb6582e57e28d275"><div class="ttname"><a href="class_input_device_keyboard.html#a5d2d4f439c3279fafb6582e57e28d275">InputDeviceKeyboard::GetKeyboardRelease</a></div><div class="ttdeci">bool GetKeyboardRelease(int nKey)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:178</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_aec052beac10f0bf35d197dfecee41bdb"><div class="ttname"><a href="class_input_device_keyboard.html#aec052beac10f0bf35d197dfecee41bdb">InputDeviceKeyboard::Uninit</a></div><div class="ttdeci">void Uninit(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:90</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_ab09cb146fc05c27d90184e51ece91f8d"><div class="ttname"><a href="class_input_device_keyboard.html#ab09cb146fc05c27d90184e51ece91f8d">InputDeviceKeyboard::Update</a></div><div class="ttdeci">void Update(void)</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:104</div></div>
+<div class="ttc" id="aclass_input_device_keyboard_html_a1af5f03f275ee75a82e6c23c27c69767"><div class="ttname"><a href="class_input_device_keyboard.html#a1af5f03f275ee75a82e6c23c27c69767">InputDeviceKeyboard::InputDeviceKeyboard</a></div><div class="ttdeci">InputDeviceKeyboard()</div><div class="ttdef"><b>Definition:</b> InputDeviceKeyboard.cpp:19</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

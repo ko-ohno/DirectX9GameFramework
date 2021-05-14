@@ -1,0 +1,4 @@
+<map id="Light" name="Light">
+<area shape="rect" id="node1" title=" " alt="" coords="35,5,86,32"/>
+<area shape="rect" id="node2" href="$class_directional_light.html" title=" " alt="" coords="5,80,116,107"/>
+</map>

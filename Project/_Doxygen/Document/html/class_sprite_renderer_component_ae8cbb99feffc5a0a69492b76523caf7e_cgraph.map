@@ -1,0 +1,9 @@
+<map id="SpriteRendererComponent::SetTexture" name="SpriteRendererComponent::SetTexture">
+<area shape="rect" id="node1" title=" " alt="" coords="5,49,180,90"/>
+<area shape="rect" id="node2" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="246,5,405,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a363350352a2214587b4af4e6b45b7b84" title=" " alt="" coords="236,56,415,83"/>
+<area shape="rect" id="node4" href="$class_texture_manager.html#a8394fff3fd6a75e8cf9003f0ca26b307" title=" " alt="" coords="228,107,423,133"/>
+<area shape="rect" id="node5" href="$class_texture_manager.html#a46d80e73d34d93766d27a9c07dc3ef38" title=" " alt="" coords="471,81,661,108"/>
+<area shape="rect" id="node6" href="$class_texture_manager.html#aa5900de2c7b325b63b359e03364dc89e" title=" " alt="" coords="471,132,661,159"/>
+<area shape="rect" id="node7" href="$class_texture.html#a2cae8a75658f80d58747f0b5eae1d3b9" title=" " alt="" coords="709,132,887,159"/>
+</map>

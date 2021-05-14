@@ -1,0 +1,216 @@
+\hypertarget{class_i_manager}{}\doxysection{I\+Manager クラス}
+\label{class_i_manager}\index{IManager@{IManager}}
+
+
+{\ttfamily \#include $<$I\+Manager.\+h$>$}
+
+
+
+I\+Manager の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_i_manager__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_manager_a4afa972c5549fc0dea7c7afe683fd536}{I\+Manager}} (void)
+\item 
+virtual \mbox{\hyperlink{class_i_manager_a41a70877f33bd4f3672421d0ecb5a9ee}{$\sim$\+I\+Manager}} (void)
+\item 
+virtual bool \mbox{\hyperlink{class_i_manager_aaecf6a75d42789bf1bde2e480ba3dc0d}{Init}} (void)=0
+\item 
+virtual void \mbox{\hyperlink{class_i_manager_a32e803a0ea08faab7f5492784fe5f66a}{Uninit}} (void)=0
+\item 
+virtual void \mbox{\hyperlink{class_i_manager_a995749f282fc654d8be96a1b10279926}{Input}} (void)=0
+\item 
+virtual void \mbox{\hyperlink{class_i_manager_a0b17a46b8520a98315baead2e3001aec}{Update}} (float delta\+Time)=0
+\item 
+virtual void \mbox{\hyperlink{class_i_manager_a8f9a6cb37569e13089f929e6185088f7}{Generate\+Output}} (void)=0
+\item 
+virtual class \mbox{\hyperlink{class_vector2}{Vector2}} $\ast$ \mbox{\hyperlink{class_i_manager_ab3dd2ae90d634b4de808efe026621144}{Get\+Selected\+Aspect\+Ratio}} (void)
+\item 
+virtual float \mbox{\hyperlink{class_i_manager_a0feabf2a8247d77ba57f57f8a04d27f3}{Get\+Screen\+Scaler}} (void)
+\item 
+virtual bool \mbox{\hyperlink{class_i_manager_a4ee128509486b2b93eb3f643693ca6e1}{Is\+Loop\+Break}} (void)
+\item 
+virtual bool \mbox{\hyperlink{class_i_manager_a3b3d20c3f7edef985d60b672a1de8ec4}{Is\+Shut\+Down}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_i_manager_a4afa972c5549fc0dea7c7afe683fd536}\label{class_i_manager_a4afa972c5549fc0dea7c7afe683fd536}} 
+\index{IManager@{IManager}!IManager@{IManager}}
+\index{IManager@{IManager}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{IManager()}{IManager()}}
+{\footnotesize\ttfamily I\+Manager\+::\+I\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_i_manager_a41a70877f33bd4f3672421d0ecb5a9ee}\label{class_i_manager_a41a70877f33bd4f3672421d0ecb5a9ee}} 
+\index{IManager@{IManager}!````~IManager@{$\sim$IManager}}
+\index{````~IManager@{$\sim$IManager}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{$\sim$IManager()}{~IManager()}}
+{\footnotesize\ttfamily virtual I\+Manager\+::$\sim$\+I\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_i_manager_a8f9a6cb37569e13089f929e6185088f7}\label{class_i_manager_a8f9a6cb37569e13089f929e6185088f7}} 
+\index{IManager@{IManager}!GenerateOutput@{GenerateOutput}}
+\index{GenerateOutput@{GenerateOutput}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{GenerateOutput()}{GenerateOutput()}}
+{\footnotesize\ttfamily virtual void I\+Manager\+::\+Generate\+Output (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_ab2c029d9a7876a2ba18d5b147a06dbdd}{Splash\+Screen\+Manager}}, \mbox{\hyperlink{class_application_manager_ab15eba8115cc35002ba28dac752b8a8a}{Application\+Manager}}で実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a8f9a6cb37569e13089f929e6185088f7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_a0feabf2a8247d77ba57f57f8a04d27f3}\label{class_i_manager_a0feabf2a8247d77ba57f57f8a04d27f3}} 
+\index{IManager@{IManager}!GetScreenScaler@{GetScreenScaler}}
+\index{GetScreenScaler@{GetScreenScaler}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{GetScreenScaler()}{GetScreenScaler()}}
+{\footnotesize\ttfamily virtual float I\+Manager\+::\+Get\+Screen\+Scaler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a225d023d8b71f4b0a0a72815f19ca274}{Splash\+Screen\+Manager}}で再実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a0feabf2a8247d77ba57f57f8a04d27f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_ab3dd2ae90d634b4de808efe026621144}\label{class_i_manager_ab3dd2ae90d634b4de808efe026621144}} 
+\index{IManager@{IManager}!GetSelectedAspectRatio@{GetSelectedAspectRatio}}
+\index{GetSelectedAspectRatio@{GetSelectedAspectRatio}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{GetSelectedAspectRatio()}{GetSelectedAspectRatio()}}
+{\footnotesize\ttfamily virtual class \mbox{\hyperlink{class_vector2}{Vector2}}$\ast$ I\+Manager\+::\+Get\+Selected\+Aspect\+Ratio (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a6e28bf2f0207918168d04e89aadcc9df}{Splash\+Screen\+Manager}}で再実装されています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_ab3dd2ae90d634b4de808efe026621144_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_ab3dd2ae90d634b4de808efe026621144_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_aaecf6a75d42789bf1bde2e480ba3dc0d}\label{class_i_manager_aaecf6a75d42789bf1bde2e480ba3dc0d}} 
+\index{IManager@{IManager}!Init@{Init}}
+\index{Init@{Init}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily virtual bool I\+Manager\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a49e71be9ed0dfb1c369f7e25e106109e}{Splash\+Screen\+Manager}}, \mbox{\hyperlink{class_application_manager_ac2a59a9b8ed24d6d7c6a9adf47d0d597}{Application\+Manager}}で実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_aaecf6a75d42789bf1bde2e480ba3dc0d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_a995749f282fc654d8be96a1b10279926}\label{class_i_manager_a995749f282fc654d8be96a1b10279926}} 
+\index{IManager@{IManager}!Input@{Input}}
+\index{Input@{Input}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{Input()}{Input()}}
+{\footnotesize\ttfamily virtual void I\+Manager\+::\+Input (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a82da91a84891152a269f969a1be8c062}{Splash\+Screen\+Manager}}, \mbox{\hyperlink{class_application_manager_a02cb90277741df603a6a8b00cf504dca}{Application\+Manager}}で実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a995749f282fc654d8be96a1b10279926_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_a4ee128509486b2b93eb3f643693ca6e1}\label{class_i_manager_a4ee128509486b2b93eb3f643693ca6e1}} 
+\index{IManager@{IManager}!IsLoopBreak@{IsLoopBreak}}
+\index{IsLoopBreak@{IsLoopBreak}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{IsLoopBreak()}{IsLoopBreak()}}
+{\footnotesize\ttfamily virtual bool I\+Manager\+::\+Is\+Loop\+Break (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a3f1a79ee1210d0cd5c048f96d99416bf}{Splash\+Screen\+Manager}}で再実装されています。
+
+\mbox{\Hypertarget{class_i_manager_a3b3d20c3f7edef985d60b672a1de8ec4}\label{class_i_manager_a3b3d20c3f7edef985d60b672a1de8ec4}} 
+\index{IManager@{IManager}!IsShutDown@{IsShutDown}}
+\index{IsShutDown@{IsShutDown}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{IsShutDown()}{IsShutDown()}}
+{\footnotesize\ttfamily virtual bool I\+Manager\+::\+Is\+Shut\+Down (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a064bdfc1088beadb182fc32d3ad2dc61}{Splash\+Screen\+Manager}}で再実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a3b3d20c3f7edef985d60b672a1de8ec4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_a32e803a0ea08faab7f5492784fe5f66a}\label{class_i_manager_a32e803a0ea08faab7f5492784fe5f66a}} 
+\index{IManager@{IManager}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily virtual void I\+Manager\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a67d5c1d77a7460a01dae2fc7e770c87a}{Splash\+Screen\+Manager}}, \mbox{\hyperlink{class_application_manager_a216c0d9b20d89e9e2624c5732e0b758e}{Application\+Manager}}で実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a32e803a0ea08faab7f5492784fe5f66a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_i_manager_a0b17a46b8520a98315baead2e3001aec}\label{class_i_manager_a0b17a46b8520a98315baead2e3001aec}} 
+\index{IManager@{IManager}!Update@{Update}}
+\index{Update@{Update}!IManager@{IManager}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void I\+Manager\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\mbox{\hyperlink{class_splash_screen_manager_a7febb88107df8b011791ccacbad6cb52}{Splash\+Screen\+Manager}}, \mbox{\hyperlink{class_application_manager_a93f66283ea7182142ba6be6e97ddd129}{Application\+Manager}}で実装されています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_manager_a0b17a46b8520a98315baead2e3001aec_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\mbox{\hyperlink{_i_manager_8h}{I\+Manager.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,12 @@
+<map id="CameraTest" name="CameraTest">
+<area shape="rect" id="node1" title=" " alt="" coords="99,575,191,601"/>
+<area shape="rect" id="node2" href="$class_camera.html" title=" " alt="" coords="112,499,179,525"/>
+<area shape="rect" id="node3" href="$class_game_object.html" title=" " alt="" coords="289,184,383,211"/>
+<area shape="rect" id="node8" href="$class_component.html" title=" " alt="" coords="233,297,321,323"/>
+<area shape="rect" id="node4" href="$class_game.html" title=" " alt="" coords="70,95,127,121"/>
+<area shape="rect" id="node5" href="$class_shader.html" title=" " alt="" coords="305,95,367,121"/>
+<area shape="rect" id="node6" href="$class_shader_manager.html" title=" " alt="" coords="279,5,393,32"/>
+<area shape="rect" id="node7" href="$class_transform_component.html" title=" " alt="" coords="274,409,419,436"/>
+<area shape="rect" id="node9" href="$class_camera_component.html" title=" " alt="" coords="79,409,212,436"/>
+<area shape="rect" id="node10" href="$class_vector2.html" title=" " alt="" coords="73,297,140,323"/>
+</map>

@@ -1,0 +1,161 @@
+\hypertarget{class_rectangle_collider_component}{}\doxysection{Rectangle\+Collider\+Component クラス}
+\label{class_rectangle_collider_component}\index{RectangleColliderComponent@{RectangleColliderComponent}}
+
+
+{\ttfamily \#include $<$Rectangle\+Collider\+Component.\+h$>$}
+
+
+
+Rectangle\+Collider\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_rectangle_collider_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Rectangle\+Collider\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_rectangle_collider_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangle_collider_component_a82fc6aa94a2b93348e3aad77a3617c90}{Rectangle\+Collider\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int update\+Order=100)
+\item 
+\mbox{\hyperlink{class_rectangle_collider_component_ac22c4caf1362360e4fff2d61e6b38931}{$\sim$\+Rectangle\+Collider\+Component}} (void)
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_rectangle_collider_component_a779cc513c6aa66ef3b6561cf1cd23891}{Get\+Component\+Type}} () const override
+\item 
+\mbox{\hyperlink{class_vector2}{Vector2}} $\ast$ \mbox{\hyperlink{class_rectangle_collider_component_ae43765bc3e4d1cfbfc9c81075b57eed2}{Get\+Position}} (void)
+\item 
+void \mbox{\hyperlink{class_rectangle_collider_component_a6586990e51519fd9beb8d85df984eb7f}{Set\+Position}} (\mbox{\hyperlink{class_vector2}{Vector2}} \&position)
+\item 
+void \mbox{\hyperlink{class_rectangle_collider_component_a1f4ba815b495a8d9ae6944fe9688afca}{Set\+Position}} (D3\+D\+X\+V\+E\+C\+T\+O\+R2 \&position)
+\item 
+void \mbox{\hyperlink{class_rectangle_collider_component_a726a857835cb3148894e4a5f849641dd}{Set\+Width}} (float width)
+\item 
+float \mbox{\hyperlink{class_rectangle_collider_component_a257b95dcd1a3555f8ad5fcb61c217880}{Get\+Width}} (void)
+\item 
+void \mbox{\hyperlink{class_rectangle_collider_component_a06b31298fb79d92493a249ed4eee0da5}{Set\+Height}} (float height)
+\item 
+float \mbox{\hyperlink{class_rectangle_collider_component_acea68aee89ffc32f9f6979ca5ffeac56}{Get\+Height}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vector2}{Vector2}} \mbox{\hyperlink{class_rectangle_collider_component_a71a6abb4d72cd72a18ac2943eacb374a}{position\+\_\+}}
+\item 
+float \mbox{\hyperlink{class_rectangle_collider_component_a5a0a43fecdd8f97ece6671a47a64dd0b}{width\+\_\+}}
+\item 
+float \mbox{\hyperlink{class_rectangle_collider_component_a97f890b8bf2795ecfa12bfc78b6c2b95}{height\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_rectangle_collider_component_a82fc6aa94a2b93348e3aad77a3617c90}\label{class_rectangle_collider_component_a82fc6aa94a2b93348e3aad77a3617c90}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!RectangleColliderComponent@{RectangleColliderComponent}}
+\index{RectangleColliderComponent@{RectangleColliderComponent}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{RectangleColliderComponent()}{RectangleColliderComponent()}}
+{\footnotesize\ttfamily Rectangle\+Collider\+Component\+::\+Rectangle\+Collider\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{update\+Order = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_ac22c4caf1362360e4fff2d61e6b38931}\label{class_rectangle_collider_component_ac22c4caf1362360e4fff2d61e6b38931}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!````~RectangleColliderComponent@{$\sim$RectangleColliderComponent}}
+\index{````~RectangleColliderComponent@{$\sim$RectangleColliderComponent}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$RectangleColliderComponent()}{~RectangleColliderComponent()}}
+{\footnotesize\ttfamily Rectangle\+Collider\+Component\+::$\sim$\+Rectangle\+Collider\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_rectangle_collider_component_a779cc513c6aa66ef3b6561cf1cd23891}\label{class_rectangle_collider_component_a779cc513c6aa66ef3b6561cf1cd23891}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} Rectangle\+Collider\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_collider_component_a4744d013c9ad1414d3bf47f462d57d48}{Collider\+Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_rectangle_collider_component_a779cc513c6aa66ef3b6561cf1cd23891_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_rectangle_collider_component_acea68aee89ffc32f9f6979ca5ffeac56}\label{class_rectangle_collider_component_acea68aee89ffc32f9f6979ca5ffeac56}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetHeight()}{GetHeight()}}
+{\footnotesize\ttfamily float Rectangle\+Collider\+Component\+::\+Get\+Height (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_ae43765bc3e4d1cfbfc9c81075b57eed2}\label{class_rectangle_collider_component_ae43765bc3e4d1cfbfc9c81075b57eed2}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector2}{Vector2}}$\ast$ Rectangle\+Collider\+Component\+::\+Get\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a257b95dcd1a3555f8ad5fcb61c217880}\label{class_rectangle_collider_component_a257b95dcd1a3555f8ad5fcb61c217880}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!GetWidth@{GetWidth}}
+\index{GetWidth@{GetWidth}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{GetWidth()}{GetWidth()}}
+{\footnotesize\ttfamily float Rectangle\+Collider\+Component\+::\+Get\+Width (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a06b31298fb79d92493a249ed4eee0da5}\label{class_rectangle_collider_component_a06b31298fb79d92493a249ed4eee0da5}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!SetHeight@{SetHeight}}
+\index{SetHeight@{SetHeight}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetHeight()}{SetHeight()}}
+{\footnotesize\ttfamily void Rectangle\+Collider\+Component\+::\+Set\+Height (\begin{DoxyParamCaption}\item[{float}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a1f4ba815b495a8d9ae6944fe9688afca}\label{class_rectangle_collider_component_a1f4ba815b495a8d9ae6944fe9688afca}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Rectangle\+Collider\+Component\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{D3\+D\+X\+V\+E\+C\+T\+O\+R2 \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a6586990e51519fd9beb8d85df984eb7f}\label{class_rectangle_collider_component_a6586990e51519fd9beb8d85df984eb7f}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Rectangle\+Collider\+Component\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector2}{Vector2}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a726a857835cb3148894e4a5f849641dd}\label{class_rectangle_collider_component_a726a857835cb3148894e4a5f849641dd}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!SetWidth@{SetWidth}}
+\index{SetWidth@{SetWidth}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{SetWidth()}{SetWidth()}}
+{\footnotesize\ttfamily void Rectangle\+Collider\+Component\+::\+Set\+Width (\begin{DoxyParamCaption}\item[{float}]{width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{class_rectangle_collider_component_a97f890b8bf2795ecfa12bfc78b6c2b95}\label{class_rectangle_collider_component_a97f890b8bf2795ecfa12bfc78b6c2b95}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!height\_@{height\_}}
+\index{height\_@{height\_}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{height\_}{height\_}}
+{\footnotesize\ttfamily float Rectangle\+Collider\+Component\+::height\+\_\+}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a71a6abb4d72cd72a18ac2943eacb374a}\label{class_rectangle_collider_component_a71a6abb4d72cd72a18ac2943eacb374a}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!position\_@{position\_}}
+\index{position\_@{position\_}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{position\_}{position\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vector2}{Vector2}} Rectangle\+Collider\+Component\+::position\+\_\+}
+
+\mbox{\Hypertarget{class_rectangle_collider_component_a5a0a43fecdd8f97ece6671a47a64dd0b}\label{class_rectangle_collider_component_a5a0a43fecdd8f97ece6671a47a64dd0b}} 
+\index{RectangleColliderComponent@{RectangleColliderComponent}!width\_@{width\_}}
+\index{width\_@{width\_}!RectangleColliderComponent@{RectangleColliderComponent}}
+\doxysubsubsection{\texorpdfstring{width\_}{width\_}}
+{\footnotesize\ttfamily float Rectangle\+Collider\+Component\+::width\+\_\+}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Collider\+Component/\mbox{\hyperlink{_rectangle_collider_component_8h}{Rectangle\+Collider\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Collider\+Component/\mbox{\hyperlink{_rectangle_collider_component_8cpp}{Rectangle\+Collider\+Component.\+cpp}}\end{DoxyCompactItemize}

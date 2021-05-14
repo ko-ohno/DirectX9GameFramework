@@ -1,0 +1,169 @@
+\hypertarget{class_std_mesh_renderer_component}{}\doxysection{Std\+Mesh\+Renderer\+Component クラス}
+\label{class_std_mesh_renderer_component}\index{StdMeshRendererComponent@{StdMeshRendererComponent}}
+
+
+{\ttfamily \#include $<$Std\+Mesh\+Renderer\+Component.\+h$>$}
+
+
+
+Std\+Mesh\+Renderer\+Component の継承関係図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_std_mesh_renderer_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Std\+Mesh\+Renderer\+Component 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_std_mesh_renderer_component_aa6059e41309b722060823824c05957e2}{Std\+Mesh\+Renderer\+Component}} (class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$owner, int draw\+Order=100)
+\item 
+\mbox{\hyperlink{class_std_mesh_renderer_component_a583c7264674dcccbf0c57fd649d67779}{$\sim$\+Std\+Mesh\+Renderer\+Component}} (void)
+\item 
+bool \mbox{\hyperlink{class_std_mesh_renderer_component_a9989a470ccaa6f9e1b25f4bdd2bd6c66}{Init}} (void) override
+\item 
+void \mbox{\hyperlink{class_std_mesh_renderer_component_a75ea565a8ce19c641942d591b90c9361}{Uninit}} (void) override
+\item 
+void \mbox{\hyperlink{class_std_mesh_renderer_component_adeb2a34da5e28781682157edb14d1b6f}{Draw}} (class \mbox{\hyperlink{class_shader}{Shader}} $\ast$shader, class \mbox{\hyperlink{class_camera}{Camera}} $\ast$camera) override
+\item 
+virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} \mbox{\hyperlink{class_std_mesh_renderer_component_ab494fd2c639415d4965a53a8bc2ca42a}{Get\+Component\+Type}} () const override
+\item 
+void \mbox{\hyperlink{class_std_mesh_renderer_component_a0ec67d7beda3e341a052154de92cfe91}{Set\+Mesh}} (\mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}} xfile\+Mesh\+Type\+ID)
+\item 
+class \mbox{\hyperlink{class_x_file_mesh}{X\+File\+Mesh}} $\ast$ \mbox{\hyperlink{class_std_mesh_renderer_component_a48cc4fd86dc7c7248407a926263c9f49}{Get\+Mesh}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{その他の継承メンバ}
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_aa6059e41309b722060823824c05957e2}\label{class_std_mesh_renderer_component_aa6059e41309b722060823824c05957e2}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{StdMeshRendererComponent()}{StdMeshRendererComponent()}}
+{\footnotesize\ttfamily Std\+Mesh\+Renderer\+Component\+::\+Std\+Mesh\+Renderer\+Component (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_game_object}{Game\+Object}} $\ast$}]{owner,  }\item[{int}]{draw\+Order = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_aa6059e41309b722060823824c05957e2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_a583c7264674dcccbf0c57fd649d67779}\label{class_std_mesh_renderer_component_a583c7264674dcccbf0c57fd649d67779}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!````~StdMeshRendererComponent@{$\sim$StdMeshRendererComponent}}
+\index{````~StdMeshRendererComponent@{$\sim$StdMeshRendererComponent}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$StdMeshRendererComponent()}{~StdMeshRendererComponent()}}
+{\footnotesize\ttfamily Std\+Mesh\+Renderer\+Component\+::$\sim$\+Std\+Mesh\+Renderer\+Component (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_a583c7264674dcccbf0c57fd649d67779_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_adeb2a34da5e28781682157edb14d1b6f}\label{class_std_mesh_renderer_component_adeb2a34da5e28781682157edb14d1b6f}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!Draw@{Draw}}
+\index{Draw@{Draw}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Std\+Mesh\+Renderer\+Component\+::\+Draw (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_shader}{Shader}} $\ast$}]{shader,  }\item[{class \mbox{\hyperlink{class_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_renderer_component_adb21dd64eaf0580f41fc47a5e4c91b51}{Renderer\+Component}}を再実装しています。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_adeb2a34da5e28781682157edb14d1b6f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_ab494fd2c639415d4965a53a8bc2ca42a}\label{class_std_mesh_renderer_component_ab494fd2c639415d4965a53a8bc2ca42a}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!GetComponentType@{GetComponentType}}
+\index{GetComponentType@{GetComponentType}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetComponentType()}{GetComponentType()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_component_a72ac443ed11aa0c07688929f18734efa}{Type\+ID}} Std\+Mesh\+Renderer\+Component\+::\+Get\+Component\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a251b83eefdc535a955f39b93b6f46946}{Component}}を実装しています。
+
+\mbox{\Hypertarget{class_std_mesh_renderer_component_a48cc4fd86dc7c7248407a926263c9f49}\label{class_std_mesh_renderer_component_a48cc4fd86dc7c7248407a926263c9f49}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{GetMesh()}{GetMesh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_x_file_mesh}{X\+File\+Mesh}} $\ast$ Std\+Mesh\+Renderer\+Component\+::\+Get\+Mesh (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_std_mesh_renderer_component_a9989a470ccaa6f9e1b25f4bdd2bd6c66}\label{class_std_mesh_renderer_component_a9989a470ccaa6f9e1b25f4bdd2bd6c66}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!Init@{Init}}
+\index{Init@{Init}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily bool Std\+Mesh\+Renderer\+Component\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a052af0555618b126140b6e0583ba68b8}{Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_a9989a470ccaa6f9e1b25f4bdd2bd6c66_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_a0ec67d7beda3e341a052154de92cfe91}\label{class_std_mesh_renderer_component_a0ec67d7beda3e341a052154de92cfe91}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!SetMesh@{SetMesh}}
+\index{SetMesh@{SetMesh}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{SetMesh()}{SetMesh()}}
+{\footnotesize\ttfamily void Std\+Mesh\+Renderer\+Component\+::\+Set\+Mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_mesh_manager_8h_add4527aa19bcb7c27e93f75f72d05a67}{X\+File\+Mesh\+Type}}}]{xfile\+Mesh\+Type\+ID }\end{DoxyParamCaption})}
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_a0ec67d7beda3e341a052154de92cfe91_cgraph}
+\end{center}
+\end{figure}
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_a0ec67d7beda3e341a052154de92cfe91_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_std_mesh_renderer_component_a75ea565a8ce19c641942d591b90c9361}\label{class_std_mesh_renderer_component_a75ea565a8ce19c641942d591b90c9361}} 
+\index{StdMeshRendererComponent@{StdMeshRendererComponent}!Uninit@{Uninit}}
+\index{Uninit@{Uninit}!StdMeshRendererComponent@{StdMeshRendererComponent}}
+\doxysubsubsection{\texorpdfstring{Uninit()}{Uninit()}}
+{\footnotesize\ttfamily void Std\+Mesh\+Renderer\+Component\+::\+Uninit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_component_a23c41e6704042f2f5769388207911436}{Component}}を再実装しています。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_std_mesh_renderer_component_a75ea565a8ce19c641942d591b90c9361_icgraph}
+\end{center}
+\end{figure}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_std_mesh_renderer_component_8h}{Std\+Mesh\+Renderer\+Component.\+h}}\item 
+D\+:/\+Application/\+\_\+\+Git/\+\_\+\+Local\+Repository/\+Direct\+X9\+Game\+Framework/\+Project/\+Project/\+Source\+Files/\+Develop/\+Application/\+Game/\+Game\+Objects/\+Component/\+Renderer\+Component/\mbox{\hyperlink{_std_mesh_renderer_component_8cpp}{Std\+Mesh\+Renderer\+Component.\+cpp}}\end{DoxyCompactItemize}
