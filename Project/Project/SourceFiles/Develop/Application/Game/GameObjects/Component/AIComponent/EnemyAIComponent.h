@@ -27,7 +27,6 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::EnemyAIComponent; };
 
-
 private:
 };
 

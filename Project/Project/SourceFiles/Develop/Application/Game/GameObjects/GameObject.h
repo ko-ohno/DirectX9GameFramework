@@ -31,24 +31,36 @@ public:
 		// カメラ
 		, Camera
 
-		// キャラクター
-		, Character
-		, Enemy
+		// アクター
+		, Actor
 		, Player
+		, Enemy
 
-		, TestSprite
-		, TestBillboard
-		, TestMesh
-		, TestEffect
-		, TestAudio
-
-		//UI
+		// UI
 		, UI
-
+		, Fade
 		, HUD
 		, PauseMenu
 		, Result
 		, Title
+
+		// 背景
+		, BackGround
+		, Planet
+		, SkyBox
+
+		// ゲームマネージャ
+		, GameManager
+
+		// テスト用のゲームオブジェクト
+		, SpriteTest
+		, BillboardTest
+		, MeshTest
+		, EffectTest
+		, AudioTest
+		, ColliderTest
+		, CameraTest
+		, SaveDataTest
 
 		, MAX		//ゲームオブジェクトのIDの最大値
 	};

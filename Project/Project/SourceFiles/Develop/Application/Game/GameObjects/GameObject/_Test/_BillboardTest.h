@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BillboardTest.h] ビルボードをテストするためのゲームオブジェクト
+/*	[BillboardTest.h] ビルボードテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ビルボードをテストするためのゲームオブジェクト
+/*	説明：ビルボードテスト用ゲームオブジェクト
 =============================================================================*/
 #ifndef BILLBOARD_TEST_H_
 #define	BILLBOARD_TEST_H_
@@ -12,11 +12,7 @@
 #include "../../GameObject.h"
 
 /*-------------------------------------
-/* 構造体
--------------------------------------*/
-
-/*-------------------------------------
-/* クラス
+/* ビルボードテスト用ゲームオブジェクト
 -------------------------------------*/
 class BillboardTest : public GameObject
 {
@@ -24,14 +20,14 @@ public:
 	BillboardTest(class Game* game);
 	~BillboardTest(void);
 
-	static BillboardTest* Create(class Game* game);
-
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
 	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
+
+	virtual TypeID GetType(void) const { return TypeID::BillboardTest; }
 
 private:
 	class BillboardRendererComponent* billboard_;

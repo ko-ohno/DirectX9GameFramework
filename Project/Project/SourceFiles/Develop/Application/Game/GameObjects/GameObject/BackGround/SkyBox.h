@@ -1,24 +1,24 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Fade.h] フェードゲームオブジェクト
+/*	[SkyBox.h] スカイボックス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：フェードゲームオブジェクト
+/*	説明：スカイボックス
 =============================================================================*/
-#ifndef Fade_H_
-#define	Fade_H_
+#ifndef SKY_BOX_H_
+#define	SKY_BOX_H_
 
 /*--- インクルードファイル ---*/
-#include "../UI.h"
+#include "../BackGround.h"
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* スカイボックス
 -------------------------------------*/
-class Fade : public UI
+class SkyBox : public BackGround
 {
 public:
-	Fade(class Game* game);
-	~Fade(void);
+	SkyBox(class Game* game);
+	~SkyBox(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -27,12 +27,12 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Fade; }
+	virtual TypeID GetType(void) const { return TypeID::SkyBox; }
 
 private:
 };
 
-#endif //Fade_H_
+#endif //SkyBox_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

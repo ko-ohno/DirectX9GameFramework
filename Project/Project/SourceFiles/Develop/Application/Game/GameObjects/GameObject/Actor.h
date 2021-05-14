@@ -1,24 +1,24 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Fade.h] フェードゲームオブジェクト
+/*	[Actor.h] アクターゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：フェードゲームオブジェクト
+/*	説明：アクターゲームオブジェクト
 =============================================================================*/
-#ifndef Fade_H_
-#define	Fade_H_
+#ifndef ACTOR_H_
+#define	ACTOR_H_
 
 /*--- インクルードファイル ---*/
-#include "../UI.h"
+#include "../GameObject.h"
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* アクターゲームオブジェクト
 -------------------------------------*/
-class Fade : public UI
+class Actor : public GameObject
 {
 public:
-	Fade(class Game* game);
-	~Fade(void);
+	Actor(class Game* game);
+	~Actor(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -27,12 +27,13 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Fade; }
+	virtual TypeID GetType(void) const { return TypeID::Actor; }
 
 private:
 };
 
-#endif //Fade_H_
+
+#endif //ACTOR_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

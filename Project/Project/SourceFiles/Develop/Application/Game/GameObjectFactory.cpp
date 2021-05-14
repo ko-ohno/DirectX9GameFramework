@@ -12,7 +12,8 @@
 #include "Game.h"
 #include "GameObjects/GameObject.h"
 
-//テスト用
+//テスト用ゲームオブジェクト
+#include "GameObjects/GameObject/_Test/_CameraTest.h"
 #include "GameObjects/GameObject/_Test/_SpriteTest.h"
 #include "GameObjects/GameObject/_Test/_MeshTest.h"
 #include "GameObjects/GameObject/_Test/_BillboardTest.h"
@@ -20,12 +21,12 @@
 #include "GameObjects/GameObject/_Test/_AudioTest.h"
 #include "GameObjects/GameObject/_Test/_ColliderTest.h"
 #include "GameObjects/GameObject/_Test/_SaveDataTest.h"
+
+//ゲーム用ゲームオブジェクト
 #include "GameObjects/GameObject/Camera.h"
 
-//ゲームオブジェクト
-#include "GameObjects/GameObject/Camera.h"
-#include "GameObjects/GameObject/Game/Character/Player.h"
-#include "GameObjects/GameObject/Game/Character/Enemy.h"
+#include "GameObjects/GameObject/Actor/Player.h"
+#include "GameObjects/GameObject/Actor/Enemy.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -60,11 +61,10 @@ bool GameObjectFactory::StartUp(void)
 	game_objects_.clear();
 
 	//ゲームオブジェクトの作成と追加
+	const bool isTestMode = true;
+	if(isTestMode)
 	{
-		this->AddGameObject(NEW Camera(game_));
-		//this->AddGameObject(NEW Player(game_));
-		//this->AddGameObject(NEW Enemy(game_));
-
+		this->AddGameObject(NEW CameraTest(game_));
 		this->AddGameObject(NEW SpriteTest(game_));
 		this->AddGameObject(NEW BillboardTest(game_));
 		this->AddGameObject(NEW MeshTest(game_));
@@ -72,6 +72,10 @@ bool GameObjectFactory::StartUp(void)
 		this->AddGameObject(NEW AudioTest(game_));
 		this->AddGameObject(NEW ColliderTest(game_));
 		this->AddGameObject(NEW SaveDataTest(game_));
+	}
+	else
+	{
+		this->AddGameObject(NEW Camera(game_));
 
 	}
 	return true;

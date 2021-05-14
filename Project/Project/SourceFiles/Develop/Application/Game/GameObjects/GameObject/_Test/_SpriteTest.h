@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[SpriteTest.h] スプライトのテストゲームオブジェクト
+/*	[SpriteTest.h] スプライトテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：スプライトのテストゲームオブジェクト
+/*	説明：スプライトテスト用ゲームオブジェクト
 =============================================================================*/
 #ifndef SPRITE_TEST_H_
 #define	SPRITE_TEST_H_
@@ -12,19 +12,13 @@
 #include "../../GameObject.h"
 
 /*-------------------------------------
-/* 構造体
--------------------------------------*/
-
-/*-------------------------------------
-/* クラス
+/* スプライトテスト用ゲームオブジェクト
 -------------------------------------*/
 class SpriteTest : public GameObject
 {
 public:
 	SpriteTest(class Game* game);
 	~SpriteTest(void);
-
-	static SpriteTest* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -33,11 +27,11 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	virtual TypeID GetType(void) const { return TypeID::SpriteTest; }
+
 private:
 	class SpriteRendererComponent* sprite_;
-	 
 	class SpriteRendererComponent* sprite_a_;
-
 	class SpriteRendererComponent* sprite_b_;
 };
 

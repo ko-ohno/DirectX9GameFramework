@@ -11,11 +11,6 @@
 /*--- インクルードファイル ---*/
 #include "../UI.h"
 
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
-
 /*-------------------------------------
 /* ポーズメニュー画面クラス
 -------------------------------------*/
@@ -25,17 +20,17 @@ public:
 	PauseMenu(class Game* game);
 	~PauseMenu(void);
 
-	void Init(void) override;
-	void Uninit(void) override;
-	void Input(void) override;
-	void Update(float deltaTime) override;
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
+
+	//GameObjectの関数overrideして、自身の挙動として定義する
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 	virtual TypeID GetType(void) const { return TypeID::PauseMenu; }
 
 private:
-
 };
-
 
 #endif //PAUSE_MENU_H_
 /*=============================================================================

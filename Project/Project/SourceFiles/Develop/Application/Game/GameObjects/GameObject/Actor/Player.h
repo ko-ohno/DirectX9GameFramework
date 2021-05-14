@@ -1,38 +1,38 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Fade.h] フェードゲームオブジェクト
+/*	[Player.h] プレイヤーゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：フェードゲームオブジェクト
+/*	説明：プレイヤーゲームオブジェクト
 =============================================================================*/
-#ifndef Fade_H_
-#define	Fade_H_
+#ifndef PLAYER_H_
+#define	PLAYER_H_
 
 /*--- インクルードファイル ---*/
-#include "../UI.h"
+#include "../Actor.h"
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* プレイヤーのゲームオブジェクト
 -------------------------------------*/
-class Fade : public UI
+class Player : public Actor
 {
 public:
-	Fade(class Game* game);
-	~Fade(void);
+	Player(class Game* game);
+	~Player(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
-	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Fade; }
+	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
+	class SpriteRendererComponent* sprite_;
 };
 
-#endif //Fade_H_
+#endif //PLAYER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

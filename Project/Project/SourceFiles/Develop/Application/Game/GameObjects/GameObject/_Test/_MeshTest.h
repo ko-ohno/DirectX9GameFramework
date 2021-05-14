@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[MeshTest.h] メッシュをテストするためのゲームオブジェクト
+/*	[MeshTest.h] メッシュテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：メッシュをテストするためのゲームオブジェクト
+/*	説明：メッシュテスト用ゲームオブジェクト
 =============================================================================*/
 #ifndef MESH_TEST_H_
 #define	MESH_TEST_H_
@@ -11,20 +11,15 @@
 /*--- インクルードファイル ---*/
 #include "../../GameObject.h"
 
-/*-------------------------------------
-/* 構造体
--------------------------------------*/
 
 /*-------------------------------------
-/* クラス
+/* メッシュテスト用ゲームオブジェクト
 -------------------------------------*/
 class MeshTest : public GameObject
 {
 public:
 	MeshTest(class Game* game);
 	~MeshTest(void);
-
-	static MeshTest* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -33,6 +28,7 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	virtual TypeID GetType(void) const { return TypeID::MeshTest; }
 
 private:
 	class StdMeshRendererComponent* std_mesh_renderer_component_;

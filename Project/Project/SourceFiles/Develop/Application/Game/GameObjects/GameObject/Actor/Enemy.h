@@ -1,40 +1,38 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Player.h] プレイヤーのゲームオブジェクト
+/*	[Enemy.h] 敵ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：プレイヤーのゲームオブジェクトクラス定義
+/*	説明： 敵ゲームオブジェクト
 =============================================================================*/
-#ifndef PLAYER_H_
-#define	PLAYER_H_
+#ifndef ENEMY_H_
+#define	ENEMY_H_
 
 /*--- インクルードファイル ---*/
-#include "../../../GameObject.h"
-
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+#include "../Actor.h"
 
 /*-------------------------------------
-/* プレイヤーのゲームオブジェクトクラス
+/*  敵ゲームオブジェクト
 -------------------------------------*/
-class Player : public GameObject
+class Enemy : public Actor
 {
 public:
-	Player(class Game* game);
-	~Player(void);
+	Enemy(class Game* game);
+	~Enemy(void);
+
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
 
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	TypeID GetType(void) const override { return TypeID::Player; }
+	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
 private:
 	class SpriteRendererComponent* sprite_;
 };
 
-#endif //PLAYER_H_
+#endif //ENEMY_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

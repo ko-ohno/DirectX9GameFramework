@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectTest.h] エフェクトテストゲームオブジェクト
+/*	[EffectTest.h] エフェクトテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトテストゲームオブジェクト
+/*	説明：エフェクトテスト用ゲームオブジェクト
 =============================================================================*/
 #ifndef EFFECT_TEST_H_
 #define	EFFECT_TEST_H_
@@ -13,7 +13,7 @@
 
 
 /*-------------------------------------
-/* エフェクトテストゲームオブジェクト
+/* エフェクトテスト用ゲームオブジェクト
 -------------------------------------*/
 class EffectTest : public GameObject
 {
@@ -21,14 +21,14 @@ public:
 	EffectTest(class Game* game);
 	~EffectTest(void);
 
-	static EffectTest* Create(class Game* game);
-
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
 	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
+
+	virtual TypeID GetType(void) const { return TypeID::EffectTest; }
 
 private:
 	class EffectRendererComponent* effect_renderer_comp_;

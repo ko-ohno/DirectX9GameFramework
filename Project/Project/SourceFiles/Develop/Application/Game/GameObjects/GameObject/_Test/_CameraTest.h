@@ -1,24 +1,24 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Fade.h] フェードゲームオブジェクト
+/*	[CameraTest.h] カメラテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：フェードゲームオブジェクト
+/*	説明：カメラテスト用ゲームオブジェクト
 =============================================================================*/
-#ifndef Fade_H_
-#define	Fade_H_
+#ifndef CAMERA_TEST_H_
+#define	CAMERA_TEST_H_
 
 /*--- インクルードファイル ---*/
-#include "../UI.h"
+#include "../Camera.h"
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* カメラテスト用ゲームオブジェクト
 -------------------------------------*/
-class Fade : public UI
+class CameraTest : public Camera
 {
 public:
-	Fade(class Game* game);
-	~Fade(void);
+	CameraTest(class Game* game);
+	~CameraTest(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -27,12 +27,13 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Fade; }
+	virtual TypeID GetType(void) const { return TypeID::CameraTest; }
 
 private:
 };
 
-#endif //Fade_H_
+
+#endif //CAMERA_TEST_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

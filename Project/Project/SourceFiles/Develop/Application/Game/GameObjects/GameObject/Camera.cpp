@@ -40,14 +40,6 @@ Camera::~Camera(void)
 }
 
 /*-----------------------------------------------------------------------------
-/* ファクトリメソッド
------------------------------------------------------------------------------*/
-Camera* Camera::Create(class Game* game)
-{
-	return NEW Camera(game);
-}
-
-/*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
 bool Camera::Init(void)
@@ -74,36 +66,7 @@ void Camera::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Camera::UpdateGameObject(float deltaTime)
 {
-	//camera_component_->SetLookAtTranslationY(3.f);
-	//camera_component_->SetCameraTranslationY(3.f);
-
-
 	UNREFERENCED_PARAMETER(deltaTime);
-
-	//カメラを操作するか
-	const bool is_camera_controlling = camera_component_->IsGetCameraControlling();
-
-	ImGui::Begin("camera");
-	ImGui::SetNextTreeNodeOpen(true);
-	if (ImGui::TreeNode("CameraControll"))
-	{
-		if (is_camera_controlling)
-		{
-			if (ImGui::Button("OFF"))
-			{
-				camera_component_->IsSetCameraControlling(false);
-			}
-		}
-		else
-		{
-			if (ImGui::Button("ON"))
-			{
-				camera_component_->IsSetCameraControlling(true);
-			}
-		}
-		ImGui::TreePop();
-	}
-	ImGui::End();
 }
 
 /*-----------------------------------------------------------------------------

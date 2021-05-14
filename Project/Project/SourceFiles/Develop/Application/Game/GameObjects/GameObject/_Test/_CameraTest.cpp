@@ -1,34 +1,39 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Hoge.cpp] ゲームオブジェクト
+/*	[CameraTest.cpp] カメラテスト用ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ゲームオブジェクト
+/*	説明：カメラテスト用ゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../StdAfx.h"
-#include "Hoge.h"
+#include "../../../../../StdAfx.h"
+#include "_CameraTest.h"
+#include "../../Component/CameraComponent.h"
+#include "../../../Renderer.h"
+
+#include "../../../Input/InputCheck.h"
+#include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Hoge::Hoge(Game* game)
-	: GameObject(game)
+CameraTest::CameraTest(Game* game)
+	: Camera(game)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Hoge::~Hoge(void)
+CameraTest::~CameraTest(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Hoge::Init(void)
+bool CameraTest::Init(void)
 {
 	return true;
 }
@@ -36,23 +41,49 @@ bool Hoge::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Hoge::Uninit(void)
+void CameraTest::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void Hoge::InputGameObject(void)
+void CameraTest::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void Hoge::UpdateGameObject(float deltaTime)
+void CameraTest::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	//カメラを操作するか
+	const bool is_camera_controlling = camera_component_->IsGetCameraControlling();
+
+	ImGui::Begin("camera");
+	ImGui::SetNextTreeNodeOpen(true);
+	if (ImGui::TreeNode("CameraControll"))
+	{
+		if (is_camera_controlling)
+		{
+			if (ImGui::Button("OFF"))
+			{
+				camera_component_->IsSetCameraControlling(false);
+			}
+		}
+		else
+		{
+			if (ImGui::Button("ON"))
+			{
+				camera_component_->IsSetCameraControlling(true);
+			}
+		}
+		ImGui::TreePop();
+	}
+	ImGui::End();
+
 }
 
 /*=============================================================================

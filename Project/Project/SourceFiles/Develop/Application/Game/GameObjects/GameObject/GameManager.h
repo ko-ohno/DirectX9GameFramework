@@ -1,43 +1,38 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Enemy.h] エネミーのゲームオブジェクトクラス
+/*	[GameManager.h] ゲーム進行管理オブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エネミーのゲームオブジェクトクラス定義
+/*	説明：ゲーム進行管理オブジェクト
 =============================================================================*/
-#ifndef ENEMY_H_
-#define	ENEMY_H_
+#ifndef GAME_MANAGER_H_
+#define	GAME_MANAGER_H_
 
 /*--- インクルードファイル ---*/
-#include "../../../GameObject.h"
-
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+#include "../GameObject.h"
 
 /*-------------------------------------
-/* エネミーのゲームオブジェクトクラス
+/* ゲーム進行管理オブジェクト
 -------------------------------------*/
-class Enemy : public GameObject
+class GameManager : public GameObject
 {
 public:
-	Enemy(class Game* game);
-	~Enemy(void);
+	GameManager(class Game* game);
+	~GameManager(void);
 
-	bool Init(void);
-	void Uninit(void);
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
 
+	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Enemy; }
+	virtual TypeID GetType(void) const { return TypeID::GameManager; }
 
 private:
-	class SpriteRendererComponent* sprite_;
 };
 
-#endif //ENEMY_H_
+#endif //GAME_MANAGER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/
