@@ -31,11 +31,6 @@ public:
 		// カメラ
 		, Camera
 
-		// アクター
-		, Actor
-		, Player
-		, Enemy
-
 		// UI
 		, UI
 		, Fade
@@ -43,6 +38,11 @@ public:
 		, PauseMenu
 		, Result
 		, Title
+
+		// アクター
+		, Actor
+		, Player
+		, Enemy
 
 		// 背景
 		, BackGround
@@ -118,9 +118,6 @@ public:
 	void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 	RendererLayerType GetRendererLayerType(void) { return renderer_layer_type_; }
 
-	//シェーダーのセット
-	void SetShader(class Shader* shader) { shader_ = shader; } 
-
 	//ゲームオブジェクトの姿勢情報の取得
 	class TransformComponent* GetTransform(void) const { return transform_component_; }
 
@@ -139,9 +136,6 @@ protected:
 
 	//レンダラーのレイヤー型情報　
 	RendererLayerType				renderer_layer_type_;
-
-	//所有するシェーダーオブジェクト
-	class Shader*					shader_;
 
 	//姿勢制御コンポーネント
 	class TransformComponent*		transform_component_;

@@ -43,7 +43,6 @@ bool StdMeshRendererComponent::Init(void)
 {
 	//描画シェーダーの指定
 	this->shader_type_ = ShaderType::StandardMesh;
-
 	return true;
 }
 

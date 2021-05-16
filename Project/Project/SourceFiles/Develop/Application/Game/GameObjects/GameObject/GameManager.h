@@ -30,6 +30,8 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameManager; }
 
 private:
+	class GridGizmoRendererComponent* grid_gizmo_;
+
 };
 
 #endif //GAME_MANAGER_H_

@@ -27,6 +27,8 @@ enum class XFileMeshType
 	, BlueBullet
 	, RedBullet
 
+	, SkyBox
+	, SkyDome
 	, Max
 };
 

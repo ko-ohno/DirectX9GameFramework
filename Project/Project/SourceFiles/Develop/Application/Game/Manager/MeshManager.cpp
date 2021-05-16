@@ -25,6 +25,10 @@ const char* MeshManager::XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)
 	, "GreenBullet"
 	, "BlueBullet"
 	, "RedBullet"
+
+	, "SkyBox"
+	, "SkyDome"
+
 };
 
 
@@ -70,10 +74,6 @@ bool MeshManager::StartUp(void)
 		//this->LoadMesh(XFileMeshType::Box);
 		//this->LoadMesh(XFileMeshType::Cylinder);
 		//this->LoadMesh(XFileMeshType::Sphere);
-
-		//this->LoadMesh(XFileMeshType::GreenBullet);
-
-
 	}
 	return true;
 }
@@ -119,7 +119,12 @@ bool MeshManager::Init(void)
 			unmap_mesh_path_list_[XFileMeshType::BlueBullet]	= "Bullet/BlueBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::GreenBullet]	= "Bullet/GreenBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::RedBullet]		= "Bullet/RedBullet.x";
+
 			unmap_mesh_path_list_[XFileMeshType::AirPlane]		= "AirPlane/f1.x";
+
+			unmap_mesh_path_list_[XFileMeshType::SkyBox]		= "SkyBox/SkyBox.x";
+			unmap_mesh_path_list_[XFileMeshType::SkyDome]		= "SkyDome/SkyDome.x";
+
 		}
 	}
 	return true;

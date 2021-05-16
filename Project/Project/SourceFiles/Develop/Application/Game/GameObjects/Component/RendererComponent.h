@@ -118,7 +118,7 @@ public:
 
 	// このコンポーネントがレンダリングされるシェーダーの種類
 	inline ShaderType GetShaderType(void) const { return shader_type_; }
-	inline void GetShaderType(ShaderType shaderType) { shader_type_ = shaderType; }
+	inline void SetShaderType(ShaderType shaderType) { shader_type_ = shaderType; }
 
 	// 描画命令順位:数値が大きいほど描画順位が高い
 	inline int GetDrawOrder(void) const   { return draw_order_; }

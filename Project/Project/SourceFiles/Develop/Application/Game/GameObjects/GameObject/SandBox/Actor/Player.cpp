@@ -7,9 +7,9 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
+#include "../../../../../../StdAfx.h"
 #include "Player.h"
-#include "../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../Component/RendererComponent/SpriteRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

@@ -26,7 +26,7 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	TypeID GetType(void) const override { return TypeID::Player; }
+	GameObject::TypeID GetType(void) const override { return GameObject::TypeID::Player; }
 
 private:
 	class SpriteRendererComponent* sprite_;

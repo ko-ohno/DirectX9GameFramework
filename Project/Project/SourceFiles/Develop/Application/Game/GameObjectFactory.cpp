@@ -23,10 +23,13 @@
 #include "GameObjects/GameObject/_Test/_SaveDataTest.h"
 
 //ゲーム用ゲームオブジェクト
+#include "GameObjects/GameObject/GameManager.h"
 #include "GameObjects/GameObject/Camera.h"
 
-#include "GameObjects/GameObject/Actor/Player.h"
-#include "GameObjects/GameObject/Actor/Enemy.h"
+#include "GameObjects/GameObject/BackGround/SkyBox.h"
+
+#include "GameObjects/GameObject/SandBox/Actor/Player.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -61,7 +64,7 @@ bool GameObjectFactory::StartUp(void)
 	game_objects_.clear();
 
 	//ゲームオブジェクトの作成と追加
-	const bool isTestMode = true;
+	const bool isTestMode = false;
 	if(isTestMode)
 	{
 		this->AddGameObject(NEW CameraTest(game_));
@@ -75,7 +78,10 @@ bool GameObjectFactory::StartUp(void)
 	}
 	else
 	{
-		this->AddGameObject(NEW Camera(game_));
+		this->AddGameObject(NEW GameManager(game_));
+		this->AddGameObject(NEW CameraTest(game_));
+		//this->AddGameObject(NEW Camera(game_));
+		this->AddGameObject(NEW SkyBox(game_));
 
 	}
 	return true;

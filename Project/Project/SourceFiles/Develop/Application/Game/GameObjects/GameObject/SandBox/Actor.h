@@ -9,12 +9,12 @@
 #define	ACTOR_H_
 
 /*--- インクルードファイル ---*/
-#include "../GameObject.h"
+#include "../SandBox.h"
 
 /*-------------------------------------
 /* アクターゲームオブジェクト
 -------------------------------------*/
-class Actor : public GameObject
+class Actor : public SandBox
 {
 public:
 	Actor(class Game* game);

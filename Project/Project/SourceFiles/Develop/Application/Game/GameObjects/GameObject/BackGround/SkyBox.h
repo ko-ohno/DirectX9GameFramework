@@ -30,6 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::SkyBox; }
 
 private:
+	class StdMeshRendererComponent* mesh_component_;
 };
 
 #endif //SkyBox_H_

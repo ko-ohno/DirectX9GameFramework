@@ -18,12 +18,7 @@ UI::UI(class Game* game)
 	, game_(game)
 	, state_(UIState::Closing)
 {
-	//RendererTypeInfo::SetRendererLayerType();
-	//RendererTypeInfo::SetRendererType();
-	//RendererTypeInfo::SetShaderType();
-	//	ShaderType::
-
-	//this->SetRendererTypeInfo(RendererTypeInfo::)
+	this->renderer_layer_type_ = RendererLayerType::UI;
 }
 
 /*-----------------------------------------------------------------------------

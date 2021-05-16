@@ -16,6 +16,7 @@
 BackGround::BackGround(Game* game)
 	: GameObject(game)
 {
+	this->renderer_layer_type_ = RendererLayerType::BackGround;
 }
 
 /*-----------------------------------------------------------------------------

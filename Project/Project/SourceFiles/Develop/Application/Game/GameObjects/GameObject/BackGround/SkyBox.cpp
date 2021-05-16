@@ -10,12 +10,22 @@
 #include "../../../../../StdAfx.h"
 #include "SkyBox.h"
 
+#include "../../Component/RendererComponent/StdMeshRendererComponent.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 SkyBox::SkyBox(Game* game)
 	: BackGround(game)
 {
+	mesh_component_ = NEW StdMeshRendererComponent(this);
+	mesh_component_->SetMesh(XFileMeshType::SkyDome);
+
+	const float scale = 1.f;
+	mesh_component_->SetScale(scale, scale, scale);
+
+
+	//CityProjectではDefaultShaderで出力しているので確認するべし
 }
 
 /*-----------------------------------------------------------------------------

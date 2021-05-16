@@ -9,9 +9,9 @@
 #define	EFFECT_MANAGER_H_
 
 /*--- インクルードファイル ---*/
-#include "Effekseer.h"
-#include "EffekseerRendererDX9.h"
-#include "EffekseerSoundXAudio2.h"
+#include "../../../../External/Effekseer/include/Effekseer.h"
+#include "../../../../External/Effekseer/include/EffekseerRendererDX9.h"
+#include "../../../../External/Effekseer/include/EffekseerSoundXAudio2.h"
 
 // 音再生用ライブラリの呼び出し
 #include <X3DAudio.h>
