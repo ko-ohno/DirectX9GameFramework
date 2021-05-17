@@ -443,6 +443,8 @@ void CameraComponent::ComputeRotationLookatPosition(float deltaTime)
 -----------------------------------------------------------------------------*/
 void CameraComponent::ComputeViewMatrix(void)
 {
+	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
+
 	// ビュー行列作成
 	{
 		//
@@ -456,7 +458,9 @@ void CameraComponent::ComputeViewMatrix(void)
 						  , &position_	 	// 視点
 						  , &lookat_position_	// 注視点
 						  , &up_vector_);	// カメラの頭の向き	
+
 	}
+	lpd3d_device->SetTransform(D3DTS_VIEW, &view_matrix_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -503,6 +507,8 @@ void CameraComponent::ComputeProjection2DMatrix(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::ComputeProjection3DMatrix(void)
 {
+	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
+
 	// 3Dプロジェクション変換行列作成
 	{
 		D3DXMatrixPerspectiveFovLH(&projection_matrix_3d_												// 3D射影変換行列
@@ -511,6 +517,8 @@ void CameraComponent::ComputeProjection3DMatrix(void)
 								  , static_cast<FLOAT>(1.f)												// ニアクリップ   : カメラの描画領域の
 								  , static_cast<FLOAT>(1000.f));										// ファークリップ : カメラの描画領域の奥までの距離
 	}
+
+	lpd3d_device->SetTransform(D3DTS_PROJECTION, &projection_matrix_3d_);
 }
 
 /*=============================================================================

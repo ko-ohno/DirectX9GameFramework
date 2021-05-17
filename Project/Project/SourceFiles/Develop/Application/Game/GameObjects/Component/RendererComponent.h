@@ -88,6 +88,7 @@ public:
 
 	//ägèkê¨ï™ÇÃëÄçÏ
 
+	inline void SetScale(float scaleValue) { scale_ = { scaleValue, scaleValue, scaleValue }; }
 	inline void SetScale(float scaleX, float scaleY, float scaleZ = 1.f) { scale_ = { scaleX, scaleY, scaleZ }; }
 	inline void SetScale(const D3DXVECTOR3& scale) { scale_ = scale; }
 	inline void SetScaleX(float scaleX) { scale_.x = scaleX; }

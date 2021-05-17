@@ -22,6 +22,7 @@ enum class XFileMeshType
 	, Sphere
 
 	, AirPlane
+	, SpaceShip
 
 	, GreenBullet
 	, BlueBullet

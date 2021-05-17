@@ -39,6 +39,9 @@ Material::~Material(void)
 -----------------------------------------------------------------------------*/
 bool Material::Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial)
 {
+	//ƒ}ƒeƒŠƒAƒ‹‚ð•Û‘¶
+	d3d_material_ = d3dxMaterial;
+
 	const bool is_load_success = this->LoadTexture(lpd3dDevice, filePath);
 	if (is_load_success)
 	{

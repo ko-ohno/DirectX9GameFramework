@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[SkyBox.h] スカイボックス
+/*	[SkyBox.h] スカイボックスのゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：スカイボックス
+/*	説明：スカイボックスのゲームオブジェクト
 =============================================================================*/
 #ifndef SKY_BOX_H_
 #define	SKY_BOX_H_
@@ -12,7 +12,7 @@
 #include "../BackGround.h"
 
 /*-------------------------------------
-/* スカイボックス
+/* スカイボックスのゲームオブジェクト
 -------------------------------------*/
 class SkyBox : public BackGround
 {
@@ -30,7 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::SkyBox; }
 
 private:
-	class StdMeshRendererComponent* mesh_component_;
+	class FFPMeshRendererComponent* ffp_mesh_component_;
 };
 
 #endif //SkyBox_H_

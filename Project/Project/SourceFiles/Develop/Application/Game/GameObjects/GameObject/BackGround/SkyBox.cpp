@@ -1,31 +1,27 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[SkyBox.cpp] スカイボックス
+/*	[SkyBox.cpp] スカイボックスのゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：スカイボックス
+/*	説明：スカイボックスのゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "SkyBox.h"
-
-#include "../../Component/RendererComponent/StdMeshRendererComponent.h"
+#include "../../Component/RendererComponent/FFPMeshRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 SkyBox::SkyBox(Game* game)
 	: BackGround(game)
+	, ffp_mesh_component_(nullptr)
 {
-	mesh_component_ = NEW StdMeshRendererComponent(this);
-	mesh_component_->SetMesh(XFileMeshType::SkyDome);
+	ffp_mesh_component_ = NEW FFPMeshRendererComponent(this);
+	ffp_mesh_component_->SetMesh(XFileMeshType::SkyBox);
 
-	const float scale = 1.f;
-	mesh_component_->SetScale(scale, scale, scale);
-
-
-	//CityProjectではDefaultShaderで出力しているので確認するべし
+	ffp_mesh_component_->SetScale(100.f);
 }
 
 /*-----------------------------------------------------------------------------

@@ -50,6 +50,7 @@ public:
 		, RendererComponent
 		, SpriteRendererComponent
 		, BillboardRendererComponent
+		, FFPMeshRendererComponent
 		, StdMeshRendererComponent
 		, EffectRendererComponent
 		//ギズモとしてレンダリング(形として出力)するオブジェクト

@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.h" />
     <ClInclude Include="SourceFiles\Develop\Application.h" />
     <ClInclude Include="SourceFiles\Develop\Application\AspectRatio.h" />
@@ -295,6 +296,7 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent .cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\AspectRatio.cpp" />

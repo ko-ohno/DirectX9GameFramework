@@ -21,6 +21,7 @@ const char* MeshManager::XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)
 	, "Sphere"
 
 	, "AirPlane"
+	, "SpaceShip"
 
 	, "GreenBullet"
 	, "BlueBullet"
@@ -121,6 +122,7 @@ bool MeshManager::Init(void)
 			unmap_mesh_path_list_[XFileMeshType::RedBullet]		= "Bullet/RedBullet.x";
 
 			unmap_mesh_path_list_[XFileMeshType::AirPlane]		= "AirPlane/f1.x";
+			unmap_mesh_path_list_[XFileMeshType::SpaceShip]		= "SpaceShip/UFS_Caspian.x";
 
 			unmap_mesh_path_list_[XFileMeshType::SkyBox]		= "SkyBox/SkyBox.x";
 			unmap_mesh_path_list_[XFileMeshType::SkyDome]		= "SkyDome/SkyDome.x";
