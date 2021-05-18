@@ -15,6 +15,7 @@
 #include "Manager/TextureManager.h"
 #include "Manager/MeshManager.h"
 #include "Manager/EffectManager.h"
+#include "Manager/LightManager.h"
 #include "Manager/SoundManager.h"
 #include "Manager/ColliderManager.h"
 #include "Manager/SaveDataManager.h"
@@ -37,6 +38,7 @@ Game::Game(void)
 	, texture_manager_(nullptr)
 	, mesh_manager_(nullptr)
 	, effect_manager_(nullptr)
+	, light_manager_(nullptr)
 	, sound_manager_(nullptr)
 	, collider_manager_(nullptr)
 	, save_data_manager_(nullptr)
@@ -115,7 +117,16 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			return false;
 		}
 
-		//エフェクトマネージャの起動
+		//ライトマネージャの起動
+		light_manager_ = light_manager_->Create(this);
+		const bool light_manager_init = light_manager_->StartUp();
+		if (light_manager_init == false)
+		{
+			assert(!"Game::StartUp()：ライトマネージャの起動に失敗しました。");
+			return false;
+		}
+
+		//サウンドマネージャの起動
 		sound_manager_ = sound_manager_->Create(this);
 		const bool sound_manager_init = sound_manager_->StartUp();
 		if (sound_manager_init == false)
@@ -182,6 +193,30 @@ void Game::ShutDown(void)
 	
 	//マネージャーのファクトリの使用
 	{
+		//セーブデータマネージャの破棄
+		{
+			save_data_manager_->Shutdown();
+			SAFE_DELETE_(save_data_manager_);
+		}
+
+		//サウンドマネージャの破棄
+		{
+			sound_manager_->Shutdown();
+			SAFE_DELETE_(sound_manager_);
+		}
+
+		//コライダマネージャの破棄
+		{
+			collider_manager_->Shutdown();
+			SAFE_DELETE_(collider_manager_);
+		}
+
+		//コライダマネージャの破棄
+		{
+			light_manager_->Shutdown();
+			SAFE_DELETE_(light_manager_);
+		}
+
 		//エフェクトマネージャの破棄
 		{
 			effect_manager_->Shutdown();
@@ -206,23 +241,6 @@ void Game::ShutDown(void)
 			SAFE_DELETE_(shader_manager_);
 		}
 
-		//サウンドマネージャの破棄
-		{
-			sound_manager_->Shutdown();
-			SAFE_DELETE_(sound_manager_);
-		}
-
-		//コライダマネージャの破棄
-		{
-			collider_manager_->Shutdown();
-			SAFE_DELETE_(collider_manager_);
-		}
-
-		//セーブデータマネージャの破棄
-		{
-			save_data_manager_->Shutdown();
-			SAFE_DELETE_(save_data_manager_);
-		}
 	}
 	 
 	//レンダラーの破棄

@@ -9,16 +9,19 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Player.h"
-#include "../../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Player::Player(Game* game)
 	: Actor(game)
-	, sprite_(nullptr)
+	, ffp_mesh_renderer_component(nullptr)
 {
-	//sprite_ = NEW SpriteRendererComponent(this, 100);
+	ffp_mesh_renderer_component = NEW FFPMeshRendererComponent(this);
+	ffp_mesh_renderer_component->SetMesh(XFileMeshType::SpaceShip);
+	ffp_mesh_renderer_component->SetEnableLighting(true);
+	ffp_mesh_renderer_component->SetScale(0.5f);
 }
 
 /*-----------------------------------------------------------------------------

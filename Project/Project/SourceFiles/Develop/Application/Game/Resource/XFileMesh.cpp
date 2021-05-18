@@ -158,7 +158,13 @@ bool XFileMesh::LoadMeshFile(const XFileMeshType meshType)
 
 				// マテリアルの作成
 				this->AddMaterial(NEW Material(lpd3d_device, filepath, lpd3dx_materials[i].MatD3D));
+				{
+					continue;
+				}
 			}
+
+			// マテリアルの作成
+			this->AddMaterial(NEW Material(lpd3dx_materials[i].MatD3D));
 		}
 	}
 	return true;

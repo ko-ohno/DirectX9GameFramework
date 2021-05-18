@@ -26,10 +26,10 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	GameObject::TypeID GetType(void) const override { return GameObject::TypeID::Player; }
+	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
-	class SpriteRendererComponent* sprite_;
+	class FFPMeshRendererComponent* ffp_mesh_renderer_component;
 };
 
 #endif //PLAYER_H_

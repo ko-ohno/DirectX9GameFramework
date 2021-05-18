@@ -17,11 +17,12 @@
 class Material
 {
 public:
-	Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial);
+	Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial);
+	Material(const D3DMATERIAL9& d3dxMaterial);
 	~Material(void);
 
 private:
-	bool Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial);
+	bool Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial);
 	void Uninit(void);
 
 public:

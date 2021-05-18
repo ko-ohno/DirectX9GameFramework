@@ -14,16 +14,37 @@
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Material::Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial)
+Material::Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial)
 	: is_load_completed_(false)
 	, lpd3d_texture_(nullptr)
+	, d3d_material_(D3DMATERIAL9())
 	, diffuse_(1.f, 1.f, 1.f, 1.f)
 	, ambient_(1.f, 1.f, 1.f, 1.f)
 	, specular_(1.f, 1.f, 1.f, 1.f)
 	, emissive_(1.f, 1.f, 1.f, 1.f)
 	, light_power_(1.f)
 {
-	this->Init(lpd3dDevice, filePath, d3dxMaterial);
+	this->Init(lpd3dDevice, filePath, d3dMaterial);
+}
+
+/*-----------------------------------------------------------------------------
+/* コンストラクタ
+-----------------------------------------------------------------------------*/
+Material::Material(const D3DMATERIAL9& d3dMaterial)
+	: is_load_completed_(false)
+	, lpd3d_texture_(nullptr)
+	, d3d_material_(D3DMATERIAL9())
+	, diffuse_(1.f, 1.f, 1.f, 1.f)
+	, ambient_(1.f, 1.f, 1.f, 1.f)
+	, specular_(1.f, 1.f, 1.f, 1.f)
+	, emissive_(1.f, 1.f, 1.f, 1.f)
+	, light_power_(1.f)
+{
+	//テクスチャのの読み込み
+	this->is_load_completed_ = true;
+
+	//マテリアルの変換
+	this->SetConvertMaterial(d3dMaterial);
 }
 
 /*-----------------------------------------------------------------------------
@@ -37,11 +58,8 @@ Material::~Material(void)
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Material::Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial)
+bool Material::Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial)
 {
-	//マテリアルを保存
-	d3d_material_ = d3dxMaterial;
-
 	const bool is_load_success = this->LoadTexture(lpd3dDevice, filePath);
 	if (is_load_success)
 	{
@@ -49,7 +67,7 @@ bool Material::Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& fil
 		this->is_load_completed_ = true;
 
 		//マテリアルの変換
-		this->SetConvertMaterial(d3dxMaterial);
+		this->SetConvertMaterial(d3dMaterial);
 	}
 	else
 	{
@@ -106,41 +124,45 @@ bool Material::LoadTexture(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::stri
 /*-----------------------------------------------------------------------------
 /* マテリアルの変換処理
 -----------------------------------------------------------------------------*/
-void Material::SetConvertMaterial(const D3DMATERIAL9& d3dxMaterial)
+void Material::SetConvertMaterial(const D3DMATERIAL9& d3dMaterial)
 {
+	//マテリアルを保存
+	d3d_material_ = d3dMaterial;
+
+	//色情報のバッファ
 	D3DXVECTOR4 color_buffer;
 	float		light_power;
 
 	// 拡散反射光
-	color_buffer.x = d3dxMaterial.Diffuse.r;
-	color_buffer.y = d3dxMaterial.Diffuse.g;
-	color_buffer.z = d3dxMaterial.Diffuse.b;
-	color_buffer.w = d3dxMaterial.Diffuse.a;
+	color_buffer.x = d3dMaterial.Diffuse.r;
+	color_buffer.y = d3dMaterial.Diffuse.g;
+	color_buffer.z = d3dMaterial.Diffuse.b;
+	color_buffer.w = d3dMaterial.Diffuse.a;
 	this->SetDiffuse(color_buffer);
 
 	// 環境光
-	color_buffer.x = d3dxMaterial.Ambient.r;
-	color_buffer.y = d3dxMaterial.Ambient.g;
-	color_buffer.z = d3dxMaterial.Ambient.b;
-	color_buffer.w = d3dxMaterial.Ambient.a;
+	color_buffer.x = d3dMaterial.Ambient.r;
+	color_buffer.y = d3dMaterial.Ambient.g;
+	color_buffer.z = d3dMaterial.Ambient.b;
+	color_buffer.w = d3dMaterial.Ambient.a;
 	this->SetAmbient(color_buffer);
 
 	// 鏡面反射光 
-	color_buffer.x = d3dxMaterial.Specular.r;
-	color_buffer.y = d3dxMaterial.Specular.g;
-	color_buffer.z = d3dxMaterial.Specular.b;
-	color_buffer.w = d3dxMaterial.Specular.a;
+	color_buffer.x = d3dMaterial.Specular.r;
+	color_buffer.y = d3dMaterial.Specular.g;
+	color_buffer.z = d3dMaterial.Specular.b;
+	color_buffer.w = d3dMaterial.Specular.a;
 	this->SetSpecular(color_buffer);
 
 	// 自己発光
-	color_buffer.x = d3dxMaterial.Emissive.r;
-	color_buffer.y = d3dxMaterial.Emissive.g;
-	color_buffer.z = d3dxMaterial.Emissive.b;
-	color_buffer.w = d3dxMaterial.Emissive.a;
+	color_buffer.x = d3dMaterial.Emissive.r;
+	color_buffer.y = d3dMaterial.Emissive.g;
+	color_buffer.z = d3dMaterial.Emissive.b;
+	color_buffer.w = d3dMaterial.Emissive.a;
 	this->SetEmissive(color_buffer);
 
 	//ライトの強さ
-	light_power = d3dxMaterial.Power;
+	light_power = d3dMaterial.Power;
 	this->SetLightPower(light_power);
 }
 

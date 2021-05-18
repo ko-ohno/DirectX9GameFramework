@@ -52,7 +52,7 @@ bool LightManager::StartUp(void)
 /*-----------------------------------------------------------------------------
 /* ’âŽ~ˆ—
 -----------------------------------------------------------------------------*/
-void LightManager::ShutDown(void)
+void LightManager::Shutdown(void)
 {
 	this->Uninit();
 }
@@ -77,6 +77,8 @@ void LightManager::Uninit(void)
 	while (!light_list_.empty())
 	{
 		delete light_list_.back();
+		light_list_.back() = nullptr;
+		light_list_.pop_back();
 	}
 }
 

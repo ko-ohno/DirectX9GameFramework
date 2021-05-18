@@ -16,12 +16,12 @@
 -----------------------------------------------------------------------------*/
 SkyBox::SkyBox(Game* game)
 	: BackGround(game)
-	, ffp_mesh_component_(nullptr)
+	, ffp_mesh_renderer_component(nullptr)
 {
-	ffp_mesh_component_ = NEW FFPMeshRendererComponent(this);
-	ffp_mesh_component_->SetMesh(XFileMeshType::SkyBox);
-
-	ffp_mesh_component_->SetScale(100.f);
+	ffp_mesh_renderer_component = NEW FFPMeshRendererComponent(this);
+	ffp_mesh_renderer_component->SetMesh(XFileMeshType::SkyBox);
+	ffp_mesh_renderer_component->SetTranslationZ(10.f);
+	ffp_mesh_renderer_component->SetScale(100.f);
 }
 
 /*-----------------------------------------------------------------------------

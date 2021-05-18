@@ -27,6 +27,9 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::FFPMeshRendererComponent; };
 
+	// ライトの有効化
+	void SetEnableLighting(bool isEnable);
+
 	// メッシュ情報の設定
 	void SetMesh(XFileMeshType xfileMeshTypeID);
 
@@ -34,6 +37,9 @@ public:
 	class XFileMesh* GetMesh(void);
 
 private:
+	//ライトが有効かどうか
+	bool is_enable_lighting_;
+
 	// メッシュのデータ
 	class XFileMesh* xfile_mesh_;
 };

@@ -308,13 +308,13 @@ void CameraComponent::ComputeCameraMovement(float deltaTime)
 		// ç∂âEà⁄ìÆ
 		//
 
-		if (is_move_left)
+		if (is_move_right)
 		{
 			position_		 += (right_vector_ * move_speed_) * deltaTime;
 			lookat_position_ += (right_vector_ * move_speed_) * deltaTime;
 		}
 		
-		if (is_move_right)
+		if (is_move_left)
 		{
 			position_		 -= (right_vector_ * move_speed_) * deltaTime;
 			lookat_position_ -= (right_vector_ * move_speed_) * deltaTime;

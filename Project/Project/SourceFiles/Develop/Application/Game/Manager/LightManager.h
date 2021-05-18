@@ -32,7 +32,7 @@ public:
 	static LightManager* Create(class Game* game);
 
 	bool StartUp(void);	 //‹N“®
-	void ShutDown(void); //’â~
+	void Shutdown(void); //’â~
 
 private:
 	bool Init(void);	 //‰Šú‰»

@@ -21,6 +21,7 @@
 -----------------------------------------------------------------------------*/
 FFPMeshRendererComponent::FFPMeshRendererComponent(GameObject* owner, int drawOrder)
 	: RendererComponent(owner, drawOrder)
+	, is_enable_lighting_(false)
 	, xfile_mesh_(nullptr)
 {
 	// 初期化
@@ -69,66 +70,57 @@ void FFPMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 		assert(!"FFPMeshRendererComponent::Draw():メッシュ情報が設定されていません！");
 	}
 
+	lpd3d_device->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
+
+	lpd3d_device->SetFVF(FVF_VERTEX_MESH);
+
+	lpd3d_device->SetTransform(D3DTS_WORLD, this->GetWorldMatrix());
+
+	if (is_enable_lighting_)
+	{
+		lpd3d_device->SetRenderState(D3DRS_LIGHTING, TRUE);
+	}
+
 	//描画処理
 	{
+		LPD3DXMATERIAL materials = (LPD3DXMATERIAL)xfile_mesh_->GetMaterialBuffer()->GetBufferPointer();
+
 		// マテリアル数の取得
 		auto material_count = xfile_mesh_->GetMaterialCounts();
 
 		// マテリアルリストの取得
-		auto material_list = xfile_mesh_->GetMeshMaterialList();
+		auto material_buffer = xfile_mesh_->GetMaterialBuffer();
 
-		//マテリアルの一時格納先
-		class Material* material_buffers = nullptr;
-
-		// Zfuncの有効化
-		lpd3d_device->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-
-		// FVF(今から使用する頂点情報)の設定
-		lpd3d_device->SetFVF(FVF_VERTEX_MESH);
-
-		//ワールド座標変換
-		lpd3d_device->SetTransform(D3DTS_WORLD, this->GetWorldMatrix()); 
-
-		//マテリアルがあるか？
-		if (material_count > 0)
+		for (unsigned int i = 0; i < material_count; i++)
 		{
-			// マテリアル数分だけ描画
-			for (int i = 0; i < static_cast<int>(material_count); i++)
+			lpd3d_device->SetMaterial(&materials[i].MatD3D);
+			if (materials[i].pTextureFilename != nullptr)
 			{
-				//マテリアルの初期化
-				material_buffers = nullptr;
-
-				// 作成されたマテリアルのリストが空ではない時
-				if (!material_list.empty())
-				{
-					// 作成されたマテリアルリストとマテリアル数が食い違うとき
-					const bool is_list_out_of_range = (static_cast<unsigned int>(i) < material_list.size());
-					if (is_list_out_of_range)
-					{
-						material_buffers = xfile_mesh_->GetMeshMaterialList().at(i);
-					}
-
-					// マテリアルの設定
-					lpd3d_device->SetMaterial(material_buffers->GetD3DMaterial());
-
-					// テクスチャの設定
-					lpd3d_device->SetTexture(0, *material_buffers->GetTexture());
-				}
-
-				// メッシュの描画
-				xfile_mesh_->GetMesh()->DrawSubset(i);
-
+				lpd3d_device->SetTexture(0, *xfile_mesh_->GetMeshMaterialList().at(i)->GetTexture());
 			}
-		}
-		else
-		{
-			// メッシュの描画
-			xfile_mesh_->GetMesh()->DrawSubset(0);
-		}
+			else
+			{
+				lpd3d_device->SetTexture(0, nullptr);
+			}
 
-		// Zfuncの無効化
-		lpd3d_device->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
+			xfile_mesh_->GetMesh()->DrawSubset(i);
+		}
 	}
+
+	if (is_enable_lighting_)
+	{
+		lpd3d_device->SetRenderState(D3DRS_LIGHTING, FALSE);
+	}
+
+	lpd3d_device->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
+}
+
+/*-----------------------------------------------------------------------------
+/* ライト
+-----------------------------------------------------------------------------*/
+void FFPMeshRendererComponent::SetEnableLighting(bool isEnable)
+{
+	this->is_enable_lighting_ = isEnable;
 }
 
 /*-----------------------------------------------------------------------------

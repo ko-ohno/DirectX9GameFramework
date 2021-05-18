@@ -30,7 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::SkyBox; }
 
 private:
-	class FFPMeshRendererComponent* ffp_mesh_component_;
+	class FFPMeshRendererComponent* ffp_mesh_renderer_component;
 };
 
 #endif //SkyBox_H_
