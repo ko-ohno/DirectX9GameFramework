@@ -24,10 +24,9 @@
 
 //ゲーム用ゲームオブジェクト
 #include "GameObjects/GameObject/GameManager.h"
-#include "GameObjects/GameObject/Camera.h"
-
 #include "GameObjects/GameObject/BackGround/SkyBox.h"
 
+#include "GameObjects/GameObject/SandBox/GameCamera.h"
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 
@@ -80,7 +79,12 @@ bool GameObjectFactory::StartUp(void)
 	{
 		this->AddGameObject(NEW GameManager(game_));
 		this->AddGameObject(NEW CameraTest(game_));
-		//this->AddGameObject(NEW Camera(game_));
+		//this->AddGameObject(NEW GameCamera(game_));
+
+
+		this->AddGameObject(NEW Player(game_));
+
+
 		this->AddGameObject(NEW SkyBox(game_));
 
 	}
@@ -123,6 +127,7 @@ void GameObjectFactory::AddGameObject(GameObject* gameObject)
 -----------------------------------------------------------------------------*/
 void GameObjectFactory::RemoveGameObjectAll(void)
 {
+	//Game.cppでやっているので削除処理は不要
 	//while (!game_objects_.empty())
 	//{
 	//	delete game_objects_.back();

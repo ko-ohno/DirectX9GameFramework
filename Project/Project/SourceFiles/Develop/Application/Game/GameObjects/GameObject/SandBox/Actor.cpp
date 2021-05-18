@@ -16,6 +16,7 @@
 Actor::Actor(Game* game)
 	: SandBox(game)
 {
+	renderer_layer_type_ = RendererLayerType::Game;
 }
 
 /*-----------------------------------------------------------------------------

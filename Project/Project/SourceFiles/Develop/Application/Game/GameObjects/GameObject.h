@@ -30,6 +30,7 @@ public:
 		, GameObject
 		// ƒJƒƒ‰
 		, Camera
+		, GameCamera
 
 		// UI
 		, UI
