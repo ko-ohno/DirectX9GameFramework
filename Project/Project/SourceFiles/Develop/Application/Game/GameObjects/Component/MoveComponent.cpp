@@ -7,15 +7,19 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
+#include "../../../../StdAfx.h"
 #include "MoveComponent.h"
+#include "../GameObject.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 MoveComponent::MoveComponent(GameObject* owner, int updateOrder)
-	: TransformComponent(owner, updateOrder)
+	: Component(owner, updateOrder)
+	, transform_component_(nullptr)
 {
+	// 自身の所有者のコンポーネントを取得
+	this->transform_component_ = owner->GetTransform();
 }
 
 /*-----------------------------------------------------------------------------

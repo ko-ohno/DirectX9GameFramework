@@ -9,7 +9,7 @@
 #define	MOVE_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
-#include "../TransformComponent.h"
+#include "../Component.h"
 
 /*--- 構造体定義 ---*/
 
@@ -19,7 +19,7 @@
 /*-------------------------------------
 /* 移動のコンポーネント
 -------------------------------------*/
-class MoveComponent : public TransformComponent
+class MoveComponent : public Component
 {
 public:
 	MoveComponent(class GameObject* owner, int updateOrder);
@@ -27,8 +27,8 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::MoveComponent; };
 
-private:
-
+protected:
+	class TransformComponent* transform_component_;
 };
 
 
