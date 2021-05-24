@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.h" />
     <ClInclude Include="SourceFiles\Develop\Application.h" />
@@ -212,7 +213,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround\Planet.h" />
@@ -296,6 +297,7 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent .cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application.cpp" />
@@ -331,7 +333,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\BackGround\Planet.cpp" />
@@ -435,6 +437,9 @@
     <Text Include="CommentTemplate\Cpp\_Cpp_GameObjectSource.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentHeader.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentSource.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

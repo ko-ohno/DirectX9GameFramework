@@ -10,7 +10,7 @@
 #include "../../../StdAfx.h"
 #include "../game.h"
 #include "GameObject.h"
-#include "Component.h"
+#include "Component/TransformComponent.h"
 
 //ゲームオブジェクトのリスト(セーブ用の種別  テキストデータ)
 const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
@@ -61,6 +61,10 @@ GameObject::~GameObject(void)
 -----------------------------------------------------------------------------*/
 bool GameObject::Init(void)
 {
+	//姿勢コンポーネントの作成
+	{
+		transform_component_ = NEW TransformComponent(this);
+	}
 	return true;
 }
 

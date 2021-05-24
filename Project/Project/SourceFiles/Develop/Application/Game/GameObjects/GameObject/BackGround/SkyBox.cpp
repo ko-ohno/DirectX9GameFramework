@@ -16,12 +16,14 @@
 -----------------------------------------------------------------------------*/
 SkyBox::SkyBox(Game* game)
 	: BackGround(game)
-	, ffp_mesh_renderer_component(nullptr)
+	, ffp_mesh_sky_box_(nullptr)
 {
-	ffp_mesh_renderer_component = NEW FFPMeshRendererComponent(this);
-	ffp_mesh_renderer_component->SetMesh(XFileMeshType::SkyBox);
-	ffp_mesh_renderer_component->SetTranslationZ(10.f);
-	ffp_mesh_renderer_component->SetScale(100.f);
+	ffp_mesh_sky_box_ = NEW FFPMeshRendererComponent(this);
+	ffp_mesh_sky_box_->SetMesh(XFileMeshType::SkyBox);
+	ffp_mesh_sky_box_->SetTranslationZ(200.f);
+	ffp_mesh_sky_box_->SetScale(300.f);
+
+	//Transformの要素　拡縮　回転平行移動の変数をのこして、moveコンポーネントで移動するようにする
 }
 
 /*-----------------------------------------------------------------------------

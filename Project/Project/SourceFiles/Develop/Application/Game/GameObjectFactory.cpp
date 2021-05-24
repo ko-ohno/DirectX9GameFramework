@@ -25,6 +25,7 @@
 //ゲーム用ゲームオブジェクト
 #include "GameObjects/GameObject/GameManager.h"
 #include "GameObjects/GameObject/BackGround/SkyBox.h"
+#include "GameObjects/GameObject/BackGround/Planet.h"
 
 #include "GameObjects/GameObject/SandBox/GameCamera.h"
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
@@ -84,8 +85,8 @@ bool GameObjectFactory::StartUp(void)
 
 		this->AddGameObject(NEW Player(game_));
 
-
 		this->AddGameObject(NEW SkyBox(game_));
+		this->AddGameObject(NEW Planet(game_));
 
 	}
 	return true;

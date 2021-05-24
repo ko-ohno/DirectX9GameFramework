@@ -17,6 +17,7 @@
 #include "../../Manager/EffectManager.h"
 #include "../../../DX9Graphics.h"
 #include "../../VertexData.h"
+#include "../Component/TransformComponent.h"
 
 /*-------------------------------------
 /* レンダラーが保有されるレイヤーの型
@@ -103,7 +104,7 @@ public:
 
 	inline D3DXVECTOR3* GetScale(void) { return &scale_; }
 
-public:
+public: 
 	// このコンポーネントの回転を取得
 	inline void SetRotationMatrix(const D3DXMATRIX& rotationMatrix) { rotation_matrix_ = rotationMatrix; }
 	inline D3DXMATRIX* GetRotationMatrix(void) { return &rotation_matrix_; }

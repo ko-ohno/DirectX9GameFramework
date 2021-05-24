@@ -11,6 +11,8 @@
 #include "_MeshTest.h"
 #include "../../Component/RendererComponent/StdMeshRendererComponent.h"
 
+#include "../../../../ImGui/ImGuiManager.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -72,6 +74,17 @@ void MeshTest::InputGameObject(void)
 void MeshTest::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	static float test_rot = 0.f;
+	ImGui::Begin("transform_test");
+	ImGui::Text("transform_test:%f", test_rot);
+	ImGui::SliderFloat("##test_rot_bar", &test_rot, 0.0f, 360.0f);
+	ImGui::Text("transform_deg_:%f", transform_component_->GetAngleYaw());
+	ImGui::End();
+
+	transform_component_->IsSetExecuteSlerp(true);
+	this->transform_component_->SetRotationYaw(test_rot);
+
 }
 
 /*=============================================================================

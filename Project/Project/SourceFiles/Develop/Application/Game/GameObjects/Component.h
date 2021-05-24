@@ -58,9 +58,11 @@ public:
 		, GridGizmoRendererComponent
 		, SphereGizmoRendererComponent
 		, BoxGizmoRendererComponent
-		//姿勢制御と移動
+		//姿勢制御
 		, TransformComponent
+		//移動コンポーネント
 		, MoveComponent 
+		, PlayerMoveComponent
 		
 		//コンポーネントの最大値
 		, Max

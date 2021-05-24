@@ -29,7 +29,11 @@ public:
 	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
-	class FFPMeshRendererComponent* ffp_mesh_renderer_component;
+	class FFPMeshRendererComponent* mesh_space_ship_;
+
+	class FFPMeshRendererComponent* test_mesh_;
+
+	class EffectRendererComponent*  effect_after_burner_;
 };
 
 #endif //PLAYER_H_

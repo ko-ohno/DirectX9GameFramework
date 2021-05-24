@@ -12,15 +12,24 @@
 
 #include "../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
 
+#include "../Component/RendererComponent/EffectRendererComponent.h"
+
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 GameManager::GameManager(Game* game)
 	: GameObject(game)
+	, grid_gizmo_(nullptr)
+	, effect_space_dust_(nullptr)
 {
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
 	grid_gizmo_ = NEW GridGizmoRendererComponent(this);
+
+	effect_space_dust_ = NEW EffectRendererComponent(this);
+	effect_space_dust_->SetEffect(EffectType::YellowDust);
+	effect_space_dust_->Play();	//再生開始
 }
 
 /*-----------------------------------------------------------------------------

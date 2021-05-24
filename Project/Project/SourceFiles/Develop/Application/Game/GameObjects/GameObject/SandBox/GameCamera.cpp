@@ -54,6 +54,7 @@ void GameCamera::InputGameObject(void)
 void GameCamera::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
 }
 
 /*=============================================================================

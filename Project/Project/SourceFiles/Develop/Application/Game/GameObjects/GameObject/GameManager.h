@@ -30,8 +30,11 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameManager; }
 
 private:
+	// サイズの基準のギズモを作成
 	class GridGizmoRendererComponent* grid_gizmo_;
 
+	// 宇宙の地理の表示
+	class EffectRendererComponent*	  effect_space_dust_;
 };
 
 #endif //GAME_MANAGER_H_

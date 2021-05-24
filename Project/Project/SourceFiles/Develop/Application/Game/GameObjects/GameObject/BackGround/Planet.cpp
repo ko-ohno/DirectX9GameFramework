@@ -10,12 +10,19 @@
 #include "../../../../../StdAfx.h"
 #include "Planet.h"
 
+#include "../../Component/RendererComponent/BillboardRendererComponent.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Planet::Planet(Game* game)
 	: BackGround(game)
 {
+	planet_billboard_ = NEW BillboardRendererComponent(this);
+	planet_billboard_->SetTexture(TextureType::Planet);
+	planet_billboard_->SetTranslationY(-20.f);
+	planet_billboard_->SetTranslationZ(150.f);
+	planet_billboard_->SetScale(50.f);
 }
 
 /*-----------------------------------------------------------------------------

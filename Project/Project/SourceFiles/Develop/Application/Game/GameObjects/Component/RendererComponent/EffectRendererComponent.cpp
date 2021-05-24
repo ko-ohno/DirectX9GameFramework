@@ -10,6 +10,7 @@
 #include "../../../../../StdAfx.h"
 #include "EffectRendererComponent.h"
 #include "../../GameObject.h"
+#include "../TransformComponent.h"
 #include "../../../Resource/Effect.h"
 #include "../../GameObject/Camera.h"
 
@@ -125,8 +126,14 @@ void EffectRendererComponent::Update(float deltaTime)
 		world_matrix_._44 = 1.0f;
 	}
 
+	// 自身の所有者のワールド行列と、自身のワールド行列を取得
+	auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
+
+	// ワールド行列を計算
+	auto world_matrix = world_matrix_ * owner_world_matrix;
+
 	//エフェクトの表示座標を更新
-	effekseer_manager_->SetBaseMatrix(*effect_->GetEffectHandle(), this->effect_manager_->Convert43Matrix(world_matrix_));
+	effekseer_manager_->SetBaseMatrix(*effect_->GetEffectHandle(), this->effect_manager_->Convert43Matrix(world_matrix));
 
 	//エフェクトをハンドル単位で更新
 	effekseer_manager_->UpdateHandle(*effect_->GetEffectHandle());

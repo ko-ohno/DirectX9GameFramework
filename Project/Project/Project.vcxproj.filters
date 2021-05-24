@@ -165,7 +165,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent.h">
@@ -366,6 +366,9 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp">
@@ -497,7 +500,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\StdMeshRendererComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\TransformComponent\MoveComponent.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent.cpp">
@@ -695,6 +698,9 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent .cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico">
@@ -720,5 +726,8 @@
     <Text Include="CommentTemplate\Cpp\_Cpp_GameObjectSource.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentSource.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentHeader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Planet; }
 
 private:
+	class BillboardRendererComponent* planet_billboard_;
 };
 
 #endif //PLANET_H_
