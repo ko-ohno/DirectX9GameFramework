@@ -41,11 +41,12 @@ bool DirectionalLight::Init(void)
 		//ライトの種類を指定
 		this->light_type_ = LightType::DirectionalLight;
 
+		//ライトの向きを指定
+		this->SetLightDirection(1.f, -1.f, 0.3f);
+
 		//固定機能パイプラインのライトを初期化
 		this->InitDirect3DLight();
 
-		//ライトの向きを指定
-		this->SetLightDirection(1.f, -1.f, 0.f);
 	}
 	return true;
 }
@@ -75,10 +76,10 @@ bool DirectionalLight::InitDirect3DLight(void)
 		light_.Ambient.a = 1.0f;
 
 		//マテリアルの鏡面反射光の設定
-		light_.Specular.r = 0.0f;
-		light_.Specular.g = 0.0f;
-		light_.Specular.b = 0.0f;
-		light_.Specular.a = 0.0f;
+		light_.Specular.r = 1.0f;
+		light_.Specular.g = 1.0f;
+		light_.Specular.b = 1.0f;
+		light_.Specular.a = 1.0f;
 
 		lpd3d_device->SetRenderState(D3DRS_AMBIENT, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
@@ -104,10 +105,10 @@ bool DirectionalLight::InitDirect3DLight(void)
 		d3d_material_.Ambient.a = 1.0f;
 
 		//マテリアルの鏡面反射光の設定
-		d3d_material_.Specular.r = 0.0f;
-		d3d_material_.Specular.g = 0.0f;
-		d3d_material_.Specular.b = 0.0f;
-		d3d_material_.Specular.a = 0.0f;
+		d3d_material_.Specular.r = 0.3f;
+		d3d_material_.Specular.g = 0.3f;
+		d3d_material_.Specular.b = 0.3f;
+		d3d_material_.Specular.a = 1.0f;
 
 		lpd3d_device->SetMaterial(&d3d_material_);
 	}
