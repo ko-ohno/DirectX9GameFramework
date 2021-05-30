@@ -11,7 +11,7 @@
 #include "EffectManager.h"
 #include "../Game.h"
 #include "../../DX9Graphics.h"
-#include "../Resource/Effect.h"
+#include "../Resource/GameEffect.h"
 
 //エフェクトの名前リスト
 const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = {
@@ -19,6 +19,10 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "BlueDust"
 	, "YellowDust"
 	, "RedDust"
+	
+	, "BlueMuzzluFrash"
+	, "YellowMuzzluFrash"
+	, "RedMuzzleFlash"
 
 	, "AfterBurner"
 
@@ -102,10 +106,15 @@ bool EffectManager::Init(void)
 		{
 			//unmap_effect_path_list_[EffectType::Sample] = "Sample";
 
-			//宇宙ゴミのパーティクル
-			unmap_effect_path_list_[EffectType::YellowDust]  = "SpaceDust/yellow_dust.efk";
-			unmap_effect_path_list_[EffectType::BlueDust]	 = "SpaceDust/blue_dust.efk";
-			unmap_effect_path_list_[EffectType::RedDust]	 = "SpaceDust/red_dust.efk";
+			// 宇宙ゴミのパーティクル
+			unmap_effect_path_list_[EffectType::SpaceDustYellow]  = "SpaceDust/yellow_dust.efk";
+			unmap_effect_path_list_[EffectType::SpaceDustBlue]	  = "SpaceDust/blue_dust.efk";
+			unmap_effect_path_list_[EffectType::SpaceDustRed]	  = "SpaceDust/red_dust.efk";
+
+			// マズルフラッシュのエフェクト
+			unmap_effect_path_list_[EffectType::MuzzluFrashGreen]  = "Shot/shot_green.efk";
+			unmap_effect_path_list_[EffectType::MuzzluFrashBlue]   = "Shot/shot_blue.efk";
+			unmap_effect_path_list_[EffectType::MuzzluFrashOrange] = "Shot/shot_orange.efk";
 
 			//アフターバーナーのエフェクト
 			unmap_effect_path_list_[EffectType::AfterBurner] = "AfterBurner/after_burner.efk";
@@ -291,7 +300,7 @@ const Effekseer::Matrix44 EffectManager::Convert44Matrix(const D3DXMATRIX& d3dxM
 /*-----------------------------------------------------------------------------
 /* エフェクトの読み込み処理
 -----------------------------------------------------------------------------*/
-Effect* EffectManager::LoadEffect(EffectType effectTypeID)
+GameEffect* EffectManager::LoadEffect(EffectType effectTypeID)
 {
 	auto effect = this->FindEffect(effectTypeID);
 	if (effect != nullptr)
@@ -308,7 +317,7 @@ Effect* EffectManager::LoadEffect(EffectType effectTypeID)
 			assert("範囲外のエフェクトIDを参照しようとしています！");
 			return nullptr;
 		}
-		this->AddEffect(NEW Effect(this, effectTypeID));
+		this->AddEffect(NEW GameEffect(this, effectTypeID));
 	}
 	return this->FindEffect(effectTypeID);
 }
@@ -332,7 +341,7 @@ void EffectManager::ReleaseEffect(EffectType effectTypeID)
 /*-----------------------------------------------------------------------------
 /* エフェクトの検索処理
 -----------------------------------------------------------------------------*/
-Effect* EffectManager::FindEffect(EffectType effectTypeID)
+GameEffect* EffectManager::FindEffect(EffectType effectTypeID)
 {
 	//エフェクトリストの検索
 	for (auto effect : effect_list_)
@@ -352,7 +361,7 @@ Effect* EffectManager::FindEffect(EffectType effectTypeID)
 /*-----------------------------------------------------------------------------
 /* エフェクトの追加処理
 -----------------------------------------------------------------------------*/
-void EffectManager::AddEffect(Effect* effect)
+void EffectManager::AddEffect(GameEffect* effect)
 {
 	effect_list_.emplace_back(effect);
 }
@@ -360,7 +369,7 @@ void EffectManager::AddEffect(Effect* effect)
 /*-----------------------------------------------------------------------------
 /* エフェクトの削除処理
 -----------------------------------------------------------------------------*/
-void EffectManager::RemoveEffect(Effect* effect)
+void EffectManager::RemoveEffect(GameEffect* effect)
 {
 	auto iter = std::find(effect_list_.begin()	//範囲0～
 						 , effect_list_.end()	//範囲最大まで

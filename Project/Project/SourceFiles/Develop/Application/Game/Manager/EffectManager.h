@@ -21,13 +21,13 @@
 
 //ライブラリのリンク
 #if defined(_DEBUG)||(DEBUG)
-#pragma comment(lib, "Effekseer/Debug/Effekseer.lib")
-#pragma comment(lib, "Effekseer/Debug/EffekseerRendererDX9.lib")
-#pragma comment(lib, "Effekseer/Debug/EffekseerSoundXAudio2.lib")
+#pragma comment(lib, "Effekseer/Debug/Effekseer.Debug.lib")
+#pragma comment(lib, "Effekseer/Debug/EffekseerRendererDX9.Debug.lib")
+#pragma comment(lib, "Effekseer/Debug/EffekseerSoundXAudio2.Debug.lib")
 #else			
-#pragma comment(lib, "Effekseer/Release/Effekseer.lib")
-#pragma comment(lib, "Effekseer/Release/EffekseerRendererDX9.lib")
-#pragma comment(lib, "Effekseer/Release/EffekseerSoundXAudio2.lib")
+#pragma comment(lib, "Effekseer/Release/Effekseer.Release.lib")
+#pragma comment(lib, "Effekseer/Release/EffekseerRendererDX9.Release.lib")
+#pragma comment(lib, "Effekseer/Release/EffekseerSoundXAudio2.Release.lib")
 #endif
 
 
@@ -38,9 +38,13 @@ enum class EffectType
 {
 	None = -1
 	, Sample
-	, BlueDust
-	, YellowDust
-	, RedDust
+	, SpaceDustBlue
+	, SpaceDustYellow
+	, SpaceDustRed
+
+	, MuzzluFrashBlue
+	, MuzzluFrashGreen
+	, MuzzluFrashOrange
 
 	, AfterBurner
 	, Max
@@ -81,20 +85,20 @@ public:
 	std::string GetEffectRootpath(void) const { return effect_root_path_; }
 
 	//メッシュの読み込み
-	class Effect* LoadEffect(EffectType effectTypeID);
+	class GameEffect* LoadEffect(EffectType effectTypeID);
 
 	//メッシュの解放
 	void ReleaseEffect(EffectType effectTypeID);
 
 	//メッシュを検索する
-	class Effect* FindEffect(EffectType effectTypeID);
+	class GameEffect* FindEffect(EffectType effectTypeID);
 
 	//
 	// エフェクトの追加と削除
 	//
 
-	void AddEffect(class Effect* effect);
-	void RemoveEffect(class Effect* effect);
+	void AddEffect(class GameEffect* effect);
+	void RemoveEffect(class GameEffect* effect);
 
 	std::unordered_map<enum class EffectType, std::string> GetEffectFilepathList(void) { return unmap_effect_path_list_; }
 
@@ -121,7 +125,7 @@ private:
 	std::unordered_map<enum class EffectType, std::string> unmap_effect_path_list_;
 
 	//メッシュリストのコンテナ
-	std::vector<class Effect*> effect_list_;
+	std::vector<class GameEffect*> effect_list_;
 };
 
 #endif //EFFECT_MANAGER_H_
