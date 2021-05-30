@@ -25,6 +25,7 @@ RendererComponent::RendererComponent(GameObject* owner, int drawOrder)
 	, camera_distance_(0.f)
 	, vertex_color_(D3DCOLOR_RGBA(255, 255, 255, 255))
 	, vector_vertex_color_(1.f, 1.f, 1.f, 1.f)
+	, is_owner_transform_order_(true)
 	, position_(0.f, 0.f, 0.f)
 	, scale_(1.f, 1.f, 1.f)
 {
@@ -112,11 +113,14 @@ void RendererComponent::Update(float deltaTime)
 		world_matrix_._44 = 1.0f;
 	}
 
-	// このコンポーネントの所有者の姿勢ワールド行列を取得
-	auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
+	if (is_owner_transform_order_)
+	{
+		// このコンポーネントの所有者の姿勢ワールド行列を取得
+		auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
 
-	// 所有者の影響下になるようにする
-	world_matrix_ = world_matrix_ * owner_world_matrix;
+		// 所有者の影響下になるようにする
+		world_matrix_ = world_matrix_ * owner_world_matrix;
+	}
 }
 
 /*-----------------------------------------------------------------------------

@@ -33,8 +33,14 @@ private:
 	// サイズの基準のギズモを作成
 	class GridGizmoRendererComponent* grid_gizmo_;
 
-	// 宇宙の地理の表示
+	// プレイヤーの遊び場を可視化
+	class BoxGizmoRendererComponent*  player_sandbox_gizmo_;
+
+	// 宇宙のチリの表示
 	class EffectRendererComponent*	  effect_space_dust_;
+
+	// BGMの再生
+	class AudioComponent*			  bgm_;
 };
 
 #endif //GAME_MANAGER_H_

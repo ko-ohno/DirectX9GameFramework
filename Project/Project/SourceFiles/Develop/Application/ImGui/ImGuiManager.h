@@ -63,7 +63,7 @@ private:
 namespace ImGui
 {
 	//フレームレートの表示
-	void ShowFramerate(float deltaTime);
+	void ShowFPS(float deltaTime);
 
 	//ImGui用のテクスチャ読み込み関数
 	bool LoadTexture(const char* fileName

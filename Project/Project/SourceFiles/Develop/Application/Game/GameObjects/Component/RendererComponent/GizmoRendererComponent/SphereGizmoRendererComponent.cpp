@@ -65,13 +65,6 @@ void SphereGizmoRendererComponent::Draw(Shader* shader, Camera* camera)
 		assert(!"SphereGizmoRendererComponent::Draw():メッシュ情報が設定されていません！");
 	}
 
-	//// 所有者と自身の姿勢ワールド行列を取得
-	//auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
-	//auto gizmo_world_matrix = *this->GetWorldMatrix();
-
-	//// 所有者の影響下になるようにする
-	//auto world_matrix = gizmo_world_matrix * owner_world_matrix;
-
 	//描画処理
 	{
 		// NULLのマテリアルを渡す

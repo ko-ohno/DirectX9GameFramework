@@ -65,13 +65,6 @@ void FFPMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 
 	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
-	//// 自身の所有者のワールド行列と、自身のワールド行列を取得
-	//auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
-	//auto mesh_world_matrix = *this->GetWorldMatrix();
-
-	//// ワールド行列を計算
-	//auto world_matrix = mesh_world_matrix * owner_world_matrix;
-
 	//メッシュ情報の確認
 	if (xfile_mesh_ == nullptr)
 	{

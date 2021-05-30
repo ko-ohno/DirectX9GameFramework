@@ -129,22 +129,25 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameObject; } //後でoverrideできるように
 
 protected:
-	//GameObjectの所有者
+	// GameObjectの所有者
 	class Game*						game_;
 
-	//GameObjectの状態
+	// GameObjectの状態
 	State							state_;
+
+	// このGameObjectの親
+	class GameObject*				parent_;
 
 	//レンダラーのレイヤー型情報　
 	RendererLayerType				renderer_layer_type_;
 
-	//姿勢制御コンポーネント
+	// 姿勢制御コンポーネント
 	class TransformComponent*		transform_component_;
 
-	//姿勢情報を再計算するか
+	// 姿勢情報を再計算するか
 	bool							re_compute_transform_;
 
-	//所有コンポーネント
+	// 所有コンポーネント
 	std::vector<class Component*>	components_;
 };
 

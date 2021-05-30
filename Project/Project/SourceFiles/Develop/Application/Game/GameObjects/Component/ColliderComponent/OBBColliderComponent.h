@@ -12,20 +12,22 @@
 #include "../ColliderComponent.h"
 
 /*-------------------------------------
+/* OBBコライダの各軸
+-------------------------------------*/
+enum class AxisType
+{
+	NONE = -1
+	, X
+	, Y
+	, Z
+	, Max
+};
+
+/*-------------------------------------
 /* OBBコライダコンポーネントクラス
 -------------------------------------*/
 class OBBColliderComponent : public ColliderComponent
 {
-public:
-	enum class AxisType
-	{
-		NONE = -1
-		, X
-		, Y
-		, Z
-		, Max
-	};
-
 public:
 	static constexpr int MAX_AXIS_ELEMENT = static_cast<int>(AxisType::Max);
 	Vector3 position_;

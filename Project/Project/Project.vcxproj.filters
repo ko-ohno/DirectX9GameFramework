@@ -291,7 +291,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Effect.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h">
@@ -367,6 +367,15 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -626,7 +635,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Effect.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp">
@@ -699,6 +708,15 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

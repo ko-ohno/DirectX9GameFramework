@@ -17,15 +17,40 @@ const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	//自分自身
 	"GameObject"
 
-	//アクター(独立した役割を持つゲームオブジェクト)
+	// カメラ
 	, "Camera"
-	, "Enemy"
-	, "Player"
+	, "GameCamera"
 
-	//テスト
-	, "TestMesh"
-	, "TestSprite"
-	, "TestBillboard"
+	// UI
+	, "UI"
+	, "Fade"
+	, "HUD"
+	, "PauseMenu"
+	, "Result"
+	, "Title"
+
+	// アクター
+	, "Actor"
+	, "Player"
+	, "Enemy"
+
+	// 背景
+	, "BackGround"
+	, "Planet"
+	, "SkyBox"
+
+	// ゲームマネージャ
+	, "GameManager"
+
+	// テスト用のゲームオブジェクト
+	, "SpriteTest"
+	, "BillboardTest"
+	, "MeshTest"
+	, "EffectTest"
+	, "AudioTest"
+	, "ColliderTest"
+	, "CameraTest"
+	, "SaveDataTest"
 
 };
 

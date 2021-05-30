@@ -1,15 +1,15 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[TransformComponent.h]  移動コンポーネント
+/*	[BlasterComponent.h]  光線銃コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：移動コンポーネントのクラス定義
+/*	説明：光線銃コンポーネント
 =============================================================================*/
-#ifndef MOVE_COMPONENT_H_
-#define	MOVE_COMPONENT_H_
+#ifndef BLASTER_COMPONENT_H_
+#define	BLASTER_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
-#include "../Component.h"
+#include "../WeaponComponent.h"
 
 /*--- 構造体定義 ---*/
 
@@ -17,22 +17,32 @@
 
 
 /*-------------------------------------
-/* 移動のコンポーネント
+/* 武器コンポーネント
 -------------------------------------*/
-class MoveComponent : public Component
+class BlasterComponent : public WeaponComponent
 {
 public:
-	MoveComponent(class GameObject* owner, int updateOrder);
-	~MoveComponent(void);
+	BlasterComponent(class GameObject* owner, int updateOrder = 100);
+	~BlasterComponent(void);
 
-	virtual TypeID GetComponentType() const override { return TypeID::MoveComponent; };
+private:
+	bool Init(void) override;
+	void Uninit(void) override;
 
-protected:
-	class TransformComponent* owner_transform_;
+public:
+	void Input(void) override;
+	void Update(float deltaTime) override;
+
+	virtual TypeID GetComponentType() const override { return TypeID::BlasterComponent; };
+
+	void Fire(void);
+
+private:
+	// 銃の発射エフェクト
+	class EffectRendererComponent* muzzle_flash_;
 };
 
-
-#endif //MOVE_COMPONENT_H_
+#endif //WEAPON_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

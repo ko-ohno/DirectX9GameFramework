@@ -29,7 +29,8 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Actor; }
 
-private:
+protected:
+	class MoveComponent* move_component_;
 };
 
 

@@ -112,7 +112,6 @@ void ColliderTest::UpdateGameObject(float deltaTime)
 	ImGui::End();
 
 
-
 	D3DXVECTOR3 box_pos			= { 0.0f, 0.f, 0.f };
 	D3DXVECTOR3 box_start_pos	= {-3.0f, 3.f, 0.f };
 	D3DXVECTOR3 box_end_pos		= {-1.5f, 3.f, 0.f };

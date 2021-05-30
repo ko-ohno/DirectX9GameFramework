@@ -11,7 +11,7 @@
 #include "EffectRendererComponent.h"
 #include "../../GameObject.h"
 #include "../TransformComponent.h"
-#include "../../../Resource/Effect.h"
+#include "../../../Resource/GameEffect.h"
 #include "../../GameObject/Camera.h"
 
 
@@ -22,6 +22,7 @@ EffectRendererComponent::EffectRendererComponent(GameObject* owner, int drawOrde
 	: RendererComponent(owner, drawOrder)
 	, effect_(nullptr)
 	, effekseer_manager_(nullptr)
+	, effect_handle_(-1)
 {
 	//描画レイヤーを指定
 	renderer_layer_type_ = RendererLayerType::ParticleEffect;
@@ -126,17 +127,21 @@ void EffectRendererComponent::Update(float deltaTime)
 		world_matrix_._44 = 1.0f;
 	}
 
-	// 自身の所有者のワールド行列と、自身のワールド行列を取得
-	auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
+	if (is_owner_transform_order_)
+	{
+		// 自身の所有者のワールド行列と、自身のワールド行列を取得
+		auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
 
-	// ワールド行列を計算
-	auto world_matrix = world_matrix_ * owner_world_matrix;
+		// ワールド行列を計算
+		auto world_matrix = world_matrix_ * owner_world_matrix;
 
-	//エフェクトの表示座標を更新
-	effekseer_manager_->SetBaseMatrix(*effect_->GetEffectHandle(), this->effect_manager_->Convert43Matrix(world_matrix));
+		//エフェクトの表示座標を更新
+		effekseer_manager_->SetBaseMatrix(effect_handle_, this->effect_manager_->Convert43Matrix(world_matrix));
 
-	//エフェクトをハンドル単位で更新
-	effekseer_manager_->UpdateHandle(*effect_->GetEffectHandle());
+		// エフェクトをハンドル単位で更新
+		// ハンドル単位の描画がうまくいかないため保留。Game.cppで一括更新
+		//effekseer_manager_->UpdateHandle(*effect_->GetEffectHandle());
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -148,7 +153,7 @@ void EffectRendererComponent::Draw(Shader* shader, Camera* camera)
 	UNREFERENCED_PARAMETER(camera);
 	
 	//エフェクトをハンドル単位で描画
-	effekseer_manager_->DrawHandle(*effect_->GetEffectHandle());
+	effekseer_manager_->DrawHandle(effect_handle_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -163,7 +168,7 @@ void EffectRendererComponent::SetEffect(EffectType effectTypeID)
 /*-----------------------------------------------------------------------------
 /* エフェクト情報の取得
 -----------------------------------------------------------------------------*/
-Effect* EffectRendererComponent::GetEffect(void)
+GameEffect* EffectRendererComponent::GetEffect(void)
 {
 	//メッシュ情報の取得
 	if (this->effect_ == nullptr)
@@ -179,7 +184,7 @@ Effect* EffectRendererComponent::GetEffect(void)
 void EffectRendererComponent::Play(void)
 {
 	//エフェクトのハンドル書き換え
-	*effect_->GetEffectHandle() = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(0, 0, 0));
+	effect_handle_ = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(0, 0, 0));
 }
 
 /*-----------------------------------------------------------------------------
@@ -188,7 +193,7 @@ void EffectRendererComponent::Play(void)
 void EffectRendererComponent::Play(const D3DXVECTOR3& position = D3DXVECTOR3(0.f, 0.f, 0.f))
 {
 	//エフェクトのハンドル書き換え
-	*effect_->GetEffectHandle() = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(position.x, position.y, position.z));
+	effect_handle_ = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(position.x, position.y, position.z));
 }
 
 /*-----------------------------------------------------------------------------
@@ -197,7 +202,7 @@ void EffectRendererComponent::Play(const D3DXVECTOR3& position = D3DXVECTOR3(0.f
 void EffectRendererComponent::Play(float posX = 0.0f, float posY = 0.0f, float posZ = 0.0f)
 {
 	//エフェクトのハンドル書き換え
-	*effect_->GetEffectHandle() = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(posX, posY, posZ));
+	effect_handle_ = effekseer_manager_->Play(effect_->GetEffect(), Effekseer::Vector3D(posX, posY, posZ));
 }
 
 /*-----------------------------------------------------------------------------
@@ -206,7 +211,7 @@ void EffectRendererComponent::Play(float posX = 0.0f, float posY = 0.0f, float p
 void EffectRendererComponent::Paused(bool isPaused)
 {
 	//エフェクトのハンドル書き換え
-	effekseer_manager_->SetPaused(*effect_->GetEffectHandle(), isPaused);
+	effekseer_manager_->SetPaused(effect_handle_, isPaused);
 }
 
 /*-----------------------------------------------------------------------------
@@ -215,7 +220,7 @@ void EffectRendererComponent::Paused(bool isPaused)
 void EffectRendererComponent::Stop(void)
 {
 	//エフェクトのハンドル書き換え
-	effekseer_manager_->StopEffect(*effect_->GetEffectHandle());
+	effekseer_manager_->StopEffect(effect_handle_);
 }
 
 /*=============================================================================

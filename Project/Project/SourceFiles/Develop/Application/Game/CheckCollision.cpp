@@ -154,23 +154,23 @@ bool CheckCollision::ObbVSObb(OBBColliderComponent* obbA, OBBColliderComponent* 
 
     // 各方向ベクトルの確保
     // （N***:標準化方向ベクトル）
-    D3DXVECTOR3 NAe1 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(OBBColliderComponent::AxisType::X));
-    D3DXVECTOR3 Ae1  = NAe1 * obbA->GetDirLength(OBBColliderComponent::AxisType::X);
+    D3DXVECTOR3 NAe1 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(AxisType::X));
+    D3DXVECTOR3 Ae1  = NAe1 * obbA->GetDirLength(AxisType::X);
               
-    D3DXVECTOR3 NAe2 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(OBBColliderComponent::AxisType::Y));
-    D3DXVECTOR3 Ae2  = NAe2 * obbA->GetDirLength(OBBColliderComponent::AxisType::Y);
+    D3DXVECTOR3 NAe2 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(AxisType::Y));
+    D3DXVECTOR3 Ae2  = NAe2 * obbA->GetDirLength(AxisType::Y);
               
-    D3DXVECTOR3 NAe3 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(OBBColliderComponent::AxisType::Z));
-    D3DXVECTOR3 Ae3  = NAe3 * obbA->GetDirLength(OBBColliderComponent::AxisType::Z);
+    D3DXVECTOR3 NAe3 = *CheckCollision::ConvertDirectXVec3(obbA->GetDirElement(AxisType::Z));
+    D3DXVECTOR3 Ae3  = NAe3 * obbA->GetDirLength(AxisType::Z);
               
-    D3DXVECTOR3 NBe1 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(OBBColliderComponent::AxisType::X));
-    D3DXVECTOR3 Be1  = NBe1 * obbB->GetDirLength(OBBColliderComponent::AxisType::X);
+    D3DXVECTOR3 NBe1 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(AxisType::X));
+    D3DXVECTOR3 Be1  = NBe1 * obbB->GetDirLength(AxisType::X);
               
-    D3DXVECTOR3 NBe2 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(OBBColliderComponent::AxisType::Y));
-    D3DXVECTOR3 Be2  = NBe2 * obbB->GetDirLength(OBBColliderComponent::AxisType::Y);
+    D3DXVECTOR3 NBe2 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(AxisType::Y));
+    D3DXVECTOR3 Be2  = NBe2 * obbB->GetDirLength(AxisType::Y);
               
-    D3DXVECTOR3 NBe3 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(OBBColliderComponent::AxisType::Z));
-    D3DXVECTOR3 Be3  = NBe3 * obbB->GetDirLength(OBBColliderComponent::AxisType::Z);
+    D3DXVECTOR3 NBe3 = *CheckCollision::ConvertDirectXVec3(obbB->GetDirElement(AxisType::Z));
+    D3DXVECTOR3 Be3  = NBe3 * obbB->GetDirLength(AxisType::Z);
 
     D3DXVECTOR3 obbA_position = *CheckCollision::ConvertDirectXVec3(obbA->GetPosition());
     D3DXVECTOR3 obbB_position = *CheckCollision::ConvertDirectXVec3(obbB->GetPosition());

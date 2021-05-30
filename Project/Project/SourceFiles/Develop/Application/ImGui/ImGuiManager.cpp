@@ -144,7 +144,7 @@ void ImGuiManager::ImGuiRender(void)
 /*-----------------------------------------------------------------------------
 /* ImGuiのフレームの更新終了ハンドラ
 -----------------------------------------------------------------------------*/
-void ImGui::ShowFramerate(float deltaTime)
+void ImGui::ShowFPS(float deltaTime)
 {
 	ImGuiWindowFlags gui_window_style = (ImGuiWindowFlags_NoMove);
 	static bool is_open = false;

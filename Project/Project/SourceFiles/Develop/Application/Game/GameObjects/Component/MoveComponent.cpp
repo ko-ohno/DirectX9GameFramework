@@ -16,10 +16,10 @@
 -----------------------------------------------------------------------------*/
 MoveComponent::MoveComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
-	, transform_component_(nullptr)
+	, owner_transform_(nullptr)
 {
 	// 自身の所有者のコンポーネントを取得
-	this->transform_component_ = owner->GetTransform();
+	this->owner_transform_ = owner->GetTransform();
 }
 
 /*-----------------------------------------------------------------------------

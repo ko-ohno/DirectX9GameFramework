@@ -125,6 +125,9 @@ public:
 	// •`‰æ–½—ß‡ˆÊ:”’l‚ª‘å‚«‚¢‚Ù‚Ç•`‰æ‡ˆÊ‚ª‚‚¢
 	inline int GetDrawOrder(void) const   { return draw_order_; }
 
+	// Š—LÒ‚Ìp¨§Œä‚Ì‰e‹¿‚ğó‚¯‚é‚©H
+	inline void SetOwnerTransfromOrder(bool isOwnerTransformOrder) { is_owner_transform_order_ = isOwnerTransformOrder; }
+
 	// ƒJƒƒ‰‚©‚ç‚Ì‹——£
 	inline float GetCameraDistance(void) const { return camera_distance_; }
 	inline void SetCameraDistance(float cameraDistance) { camera_distance_ = cameraDistance; }
@@ -158,6 +161,8 @@ protected:
 	//
 	// RendererComponent‚Ìp¨î•ñ
 	//
+
+	bool is_owner_transform_order_;
 
 	//‰ñ“]î•ñ
 	D3DXMATRIX rotation_matrix_;

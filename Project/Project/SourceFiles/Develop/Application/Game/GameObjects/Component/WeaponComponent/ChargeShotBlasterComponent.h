@@ -1,29 +1,29 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[PlayerMoveComponent.h]  プレイヤーの移動コンポーネント
+/*	[ChargeShotBlasterComponent.h]  チャージショット光線銃コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：プレイヤーの移動コンポーネント
+/*	説明：チャージショット光線銃コンポーネント
 =============================================================================*/
-#ifndef PLAYER_MOVE_COMPONENT_H_
-#define	PLAYER_MOVE_COMPONENT_H_
+#ifndef CHARGE_SHOT_BLASTER_COMPONENT_H_
+#define	CHARGE_SHOT_BLASTER_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
-#include "../MoveComponent.h"
-#include "../TransformComponent.h"
+#include "../WeaponComponent.h"
 
 /*--- 構造体定義 ---*/
 
 /*--- クラスの前方宣言 ---*/
 
+
 /*-------------------------------------
-/* プレイヤーの移動コンポーネント
+/* 武器コンポーネント
 -------------------------------------*/
-class PlayerMoveComponent : public MoveComponent
+class ChargeShotBlasterComponent : public WeaponComponent
 {
 public:
-	PlayerMoveComponent(class GameObject* owner, int updateOrder = 100);
-	~PlayerMoveComponent(void);
+	ChargeShotBlasterComponent(class GameObject* owner, int updateOrder = 100);
+	~ChargeShotBlasterComponent(void);
 
 private:
 	bool Init(void) override;
@@ -33,27 +33,14 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
-	virtual TypeID GetComponentType() const override { return TypeID::PlayerMoveComponent; };
-
-	void UpdateMovementState(class Vector2& padThumb);
-	//void UpdateMovement(float deltaTime);
-
+	virtual TypeID GetComponentType() const override { return TypeID::ChargeShotBlasterComponent; };
 
 private:
-	// プレイヤーの遊び場
-	class OBBColliderComponent* player_sandbox_;
-
-	//　どこへ移動するか
-	bool is_move_top_;
-	bool is_move_bottom_;
-	bool is_move_left_;
-	bool is_move_right_;
-
-	//　移動速度
-	float move_speed_;
+	// 銃の発射エフェクト
+	//class EffectRendererComponent* muzzle_flash_;
 };
 
-#endif //PLAYER_MOVE_COMPONENT_H_
+#endif //CHARGE_SHOT_BLASTER_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

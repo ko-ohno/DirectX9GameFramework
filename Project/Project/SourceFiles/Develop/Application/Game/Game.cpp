@@ -270,7 +270,7 @@ void Game::Input(void)
 -----------------------------------------------------------------------------*/
 void Game::Update(float deltaTime)
 {
-	ImGui::ShowFramerate(deltaTime);
+	ImGui::ShowFPS(deltaTime);
 
 
 	if (game_state_ == GameState::Gameplay)
@@ -278,7 +278,6 @@ void Game::Update(float deltaTime)
 		//ゲームオブジェクトの更新
 		this->UpdateGameObjects(deltaTime);
 	}
-
 
 	switch (game_state_)
 	{
@@ -380,7 +379,7 @@ void Game::UpdateGameObjects(float deltaTime)
 	//ゲームオブジェクトとエフェクトの総更新処理
 	{
 		//エフェクトマネージャの更新開始
-		effect_manager_->GetEffekseerManager()->BeginUpdate();
+		//effect_manager_->GetEffekseerManager()->BeginUpdate();
 
 		//すべてのゲームオブジェクトの更新
 		updating_game_objects_ = true;
@@ -390,8 +389,11 @@ void Game::UpdateGameObjects(float deltaTime)
 		}
 		updating_game_objects_ = false;
 
+		//エフェクトマネージャの一括更新処理
+		effect_manager_->GetEffekseerManager()->Update();
+
 		//エフェクトマネージャの更新終了
-		effect_manager_->GetEffekseerManager()->EndUpdate();
+		//effect_manager_->GetEffekseerManager()->EndUpdate();
 	}
 
 	//待機リストのゲームオブジェクトの操作

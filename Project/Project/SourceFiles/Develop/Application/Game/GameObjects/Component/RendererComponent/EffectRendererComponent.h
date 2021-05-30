@@ -29,7 +29,7 @@ public:
 	void SetEffect(EffectType effectTypeID);
 
 	// エフェクト情報の取得
-	class Effect* GetEffect(void);
+	class GameEffect* GetEffect(void);
 
 	virtual TypeID GetComponentType() const override { return TypeID::EffectRendererComponent; };
 
@@ -61,7 +61,10 @@ private:
 	Effekseer::Manager*	 effekseer_manager_;
 
 	// エフェクトのデータ
-	class Effect*		 effect_;
+	class GameEffect*		 effect_;
+
+	// エフェクトのハンドル
+	Effekseer::Handle	 effect_handle_;
 };
 
 #endif //EFFECT_COMPONENT_H_

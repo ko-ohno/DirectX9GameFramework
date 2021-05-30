@@ -10,7 +10,7 @@
 #include "../../../../../StdAfx.h"
 #include "_EffectTest.h"
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
-#include "../../../Resource/Effect.h"
+#include "../../../Resource/GameEffect.h"
 
 #include "../../../../ImGui/ImGuiManager.h"
 
@@ -29,7 +29,7 @@ EffectTest::EffectTest(Game* game)
 	effect_renderer_comp_->Play();
 
 	effect_renderer_comp_a = NEW EffectRendererComponent(this);
-	effect_renderer_comp_a->SetEffect(EffectType::YellowDust);
+	effect_renderer_comp_a->SetEffect(EffectType::SpaceDustYellow);
 	effect_renderer_comp_a->Play();
 
 	//effect_renderer_comp_b = NEW EffectRendererComponent(this);

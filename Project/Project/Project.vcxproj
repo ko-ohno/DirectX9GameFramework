@@ -177,8 +177,11 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.h" />
     <ClInclude Include="SourceFiles\Develop\Application.h" />
     <ClInclude Include="SourceFiles\Develop\Application\AspectRatio.h" />
@@ -252,7 +255,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Renderer.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Effect.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Material.h" />
@@ -297,8 +300,11 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent .cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\AspectRatio.cpp" />
@@ -372,7 +378,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Renderer.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Effect.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Material.cpp" />
