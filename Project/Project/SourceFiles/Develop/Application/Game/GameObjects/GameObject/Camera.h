@@ -47,7 +47,6 @@ protected:
 
 	//ƒJƒƒ‰‚ª“®‚¢‚½‚©
 	bool is_moved_;
-
 	D3DXVECTOR3 position_
 			  , old_position_;
 };

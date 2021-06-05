@@ -23,6 +23,10 @@ const char* MeshManager::XFileMeshTypeNames[static_cast<int>(XFileMeshType::Max)
 	, "AirPlane"
 	, "SpaceShip"
 
+	, "EnemyWeak"
+	, "EnemyStrong"
+	, "EnemyBoss"
+
 	, "GreenBullet"
 	, "BlueBullet"
 	, "RedBullet"
@@ -117,12 +121,16 @@ bool MeshManager::Init(void)
 		// メッシュファイルの読み込み用ファイルパスリストの作成  
 		//
 		{
+			unmap_mesh_path_list_[XFileMeshType::AirPlane]		= "AirPlane/f1.x";
+			unmap_mesh_path_list_[XFileMeshType::SpaceShip]		= "SpaceShip/UFS_Caspian.x";
+
+			unmap_mesh_path_list_[XFileMeshType::EnemyWeak]		= "Enemy/ufo_weak.x";
+			unmap_mesh_path_list_[XFileMeshType::EnemyStrong]	= "Enemy/ufo_strong.x";
+			unmap_mesh_path_list_[XFileMeshType::EnemyBoss]		= "Enemy/ufo_boss.x";
+
 			unmap_mesh_path_list_[XFileMeshType::BlueBullet]	= "Bullet/BlueBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::GreenBullet]	= "Bullet/GreenBullet.x";
 			unmap_mesh_path_list_[XFileMeshType::RedBullet]		= "Bullet/RedBullet.x";
-
-			unmap_mesh_path_list_[XFileMeshType::AirPlane]		= "AirPlane/f1.x";
-			unmap_mesh_path_list_[XFileMeshType::SpaceShip]		= "SpaceShip/UFS_Caspian.x";
 
 			unmap_mesh_path_list_[XFileMeshType::SkyBox]		= "SkyBox/SkyBox.x";
 			unmap_mesh_path_list_[XFileMeshType::SkyDome]		= "SkyDome/SkyDome.x";

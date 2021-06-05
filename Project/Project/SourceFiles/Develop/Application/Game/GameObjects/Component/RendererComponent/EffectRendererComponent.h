@@ -1,12 +1,12 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectRendererComponent.h]  エフェクトコンポーネント
+/*	[EffectRendererComponent.h]  エフェクト描画コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトコンポーネント
+/*	説明：エフェクト描画コンポーネント
 =============================================================================*/
-#ifndef EFFECT_COMPONENT_H_
-#define	EFFECT_COMPONENT_H_
+#ifndef EFFECT_RENDERER_COMPONENT_H_
+#define	EFFECT_RENDERER_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../RendererComponent.h"
@@ -24,6 +24,8 @@ public:
 	void Uninit(void) override;
 	void Update(float deltaTime) override;
 	void Draw(class Shader* shader, class Camera* camera) override;
+
+	void SetBaseMatrix(const D3DXMATRIX& d3dxMatrix);
 
 	// エフェクトの設定
 	void SetEffect(EffectType effectTypeID);
@@ -61,13 +63,13 @@ private:
 	Effekseer::Manager*	 effekseer_manager_;
 
 	// エフェクトのデータ
-	class GameEffect*		 effect_;
+	class GameEffect*	 effect_;
 
 	// エフェクトのハンドル
 	Effekseer::Handle	 effect_handle_;
 };
 
-#endif //EFFECT_COMPONENT_H_
+#endif //EFFECT_RENDERER_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

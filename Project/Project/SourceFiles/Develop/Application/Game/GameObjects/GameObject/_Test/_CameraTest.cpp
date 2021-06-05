@@ -10,7 +10,6 @@
 #include "../../../../../StdAfx.h"
 #include "_CameraTest.h"
 #include "../../Component/CameraComponent.h"
-#include "../../../Renderer.h"
 
 #include "../../../Input/InputCheck.h"
 #include "../../../../ImGui/ImGuiManager.h"
@@ -79,6 +78,11 @@ void CameraTest::UpdateGameObject(float deltaTime)
 			{
 				camera_component_->IsSetCameraControlling(true);
 			}
+		}
+
+		if (ImGui::Button("CameraTransformReset"))
+		{
+			camera_component_->SetCameraTransformReset();
 		}
 		ImGui::TreePop();
 	}

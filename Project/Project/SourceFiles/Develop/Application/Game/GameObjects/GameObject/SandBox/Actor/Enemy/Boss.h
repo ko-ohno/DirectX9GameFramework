@@ -1,39 +1,37 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[TransformComponent.h]  移動コンポーネント
+/*	[Boss.h] ボスゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：移動コンポーネントのクラス定義
+/*	説明： ボスゲームオブジェクト
 =============================================================================*/
-#ifndef MOVE_COMPONENT_H_
-#define	MOVE_COMPONENT_H_
+#ifndef BOSS_H_
+#define	BOSS_H_
 
 /*--- インクルードファイル ---*/
-#include "../Component.h"
-#include "TransformComponent.h"
-
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+#include "../Enemy.h"
 
 /*-------------------------------------
-/* 移動のコンポーネント
+/*  敵ゲームオブジェクト
 -------------------------------------*/
-class MoveComponent : public Component
+class Boss : public Enemy
 {
 public:
-	MoveComponent(class GameObject* owner, int updateOrder);
-	~MoveComponent(void);
+	Boss(class Game* game);
+	~Boss(void);
 
-	virtual TypeID GetComponentType() const override { return TypeID::MoveComponent; };
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
 
-protected:
-	class TransformComponent* owner_transform_;
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
+
+	virtual TypeID GetType(void) const { return TypeID::Boss; }
+
+private:
 };
 
-
-#endif //MOVE_COMPONENT_H_
+#endif //BOSS_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

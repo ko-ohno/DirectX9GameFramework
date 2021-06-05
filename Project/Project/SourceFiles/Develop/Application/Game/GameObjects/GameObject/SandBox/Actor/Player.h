@@ -30,20 +30,11 @@ public:
 
 private:
 	// 描画コンポーネント
-	class FFPMeshRendererComponent* mesh_space_ship_;
 	class EffectRendererComponent*  effect_after_burner_;
 	
 	// 武器コンポーネント
 	class BlasterComponent*			left_blaster_;
 	class BlasterComponent*			right_blaster_;
-
-	// 衝突判定コンポーネント
-	class SphereColliderComponent* sphere_collider_;
-	class OBBColliderComponent*	   box_collider_;
-
-	// ギズモコンポーネント
-	class SphereGizmoRendererComponent* sphere_gizmo_;
-	class BoxGizmoRendererComponent*	box_gizmo_;
 };
 
 #endif //PLAYER_H_

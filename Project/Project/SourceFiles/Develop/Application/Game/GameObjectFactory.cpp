@@ -30,6 +30,7 @@
 #include "GameObjects/GameObject/SandBox/GameCamera.h"
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -79,11 +80,11 @@ bool GameObjectFactory::StartUp(void)
 	else
 	{
 		this->AddGameObject(NEW GameManager(game_));
-		this->AddGameObject(NEW CameraTest(game_));
-		//this->AddGameObject(NEW GameCamera(game_));
-
+		this->AddGameObject(NEW GameCamera(game_));
 
 		this->AddGameObject(NEW Player(game_));
+		this->AddGameObject(NEW Boss(game_));
+
 
 		this->AddGameObject(NEW SkyBox(game_));
 		this->AddGameObject(NEW Planet(game_));

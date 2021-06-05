@@ -24,6 +24,10 @@ enum class XFileMeshType
 	, AirPlane
 	, SpaceShip
 
+	, EnemyWeak
+	, EnemyStrong
+	, EnemyBoss
+
 	, GreenBullet
 	, BlueBullet
 	, RedBullet

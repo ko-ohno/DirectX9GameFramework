@@ -1,64 +1,94 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Actor.cpp] アクターゲームオブジェクト
+/*	[Boss.cpp] ボスゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アクターゲームオブジェクト
+/*	説明：ボスゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
-#include "Actor.h"
+#include "../../../../../../../StdAfx.h"
+#include "Boss.h"
+
+// メッシュコンポーネント
+#include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
+#include "../../../../Component/MoveComponent/BossMoveComponent.h"
+
+// 球の衝突判定
+#include "../../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
+#include "../../../../Component/ColliderComponent/SphereColliderComponent.h"
+
+// ボックスの衝突判定
+#include "../../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
+#include "../../../../Component/ColliderComponent/OBBColliderComponent.h"
+
+// ImGui
+#include "../../../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Actor::Actor(Game* game)
-	: SandBox(game)
-	, actor_mesh_(nullptr)
-	, sphere_collider_(nullptr)
-	, sphere_gizmo_(nullptr)
-	, obb_collider_(nullptr)
-	, box_gizmo_(nullptr)
+Boss::Boss(Game* game)
+	: Enemy(game)
 {
-	renderer_layer_type_ = RendererLayerType::Game;
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Actor::~Actor(void)
+Boss::~Boss(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Actor::Init(void)
+bool Boss::Init(void)
 {
+	// ボスの移動コンポーネントを生成
+	actor_move_ = NEW BossMoveComponent(this);
+
+	{
+		// ボスのメッシュ生成
+		actor_mesh_ = NEW FFPMeshRendererComponent(this);
+		actor_mesh_->SetMesh(XFileMeshType::EnemyBoss);
+		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
+
+
+	}
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Actor::Uninit(void)
+void Boss::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 入力処理
+/* ゲームオブジェクトの入力処理
 -----------------------------------------------------------------------------*/
-void Actor::InputGameObject(void)
+void Boss::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 更新処理
+/* overrideで自分自身を更新
 -----------------------------------------------------------------------------*/
-void Actor::UpdateGameObject(float deltaTime)
+void Boss::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	static float value = 0.f;
+	ImGui::Begin("Boss");
+	ImGui::SliderFloat("##vertical", &value , -180.f, 180.0f);
+	ImGui::End();
+
+	this->transform_component_->SetRotationPitch(value);
+
 }
 
 /*=============================================================================

@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectRendererComponent.cpp] エフェクトコンポーネント
+/*	[EffectRendererComponent.cpp] エフェクト描画コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトコンポーネント
+/*	説明：エフェクト描画コンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
@@ -133,15 +133,17 @@ void EffectRendererComponent::Update(float deltaTime)
 		auto owner_world_matrix = *owner_->GetTransform()->GetWorldMatrix();
 
 		// ワールド行列を計算
-		auto world_matrix = world_matrix_ * owner_world_matrix;
+		world_matrix_ = world_matrix_ * owner_world_matrix;
 
-		//エフェクトの表示座標を更新
-		effekseer_manager_->SetBaseMatrix(effect_handle_, this->effect_manager_->Convert43Matrix(world_matrix));
-
-		// エフェクトをハンドル単位で更新
-		// ハンドル単位の描画がうまくいかないため保留。Game.cppで一括更新
-		//effekseer_manager_->UpdateHandle(*effect_->GetEffectHandle());
 	}
+
+	//エフェクトの姿勢情報を更新
+	effekseer_manager_->SetBaseMatrix(effect_handle_, this->effect_manager_->Convert43Matrix(world_matrix_));
+
+
+	// エフェクトをハンドル単位で更新
+	// ハンドル単位の描画がうまくいかないため保留。Game.cppで一括更新
+	//effekseer_manager_->UpdateHandle(*effect_->GetEffectHandle());
 }
 
 /*-----------------------------------------------------------------------------
@@ -154,6 +156,15 @@ void EffectRendererComponent::Draw(Shader* shader, Camera* camera)
 	
 	//エフェクトをハンドル単位で描画
 	effekseer_manager_->DrawHandle(effect_handle_);
+}
+
+/*-----------------------------------------------------------------------------
+/* ベースの姿勢行列の設定
+-----------------------------------------------------------------------------*/
+void EffectRendererComponent::SetBaseMatrix(const D3DXMATRIX& d3dxMatrix)
+{
+	//エフェクトの姿勢情報を更新
+	effekseer_manager_->SetBaseMatrix(effect_handle_, this->effect_manager_->Convert43Matrix(d3dxMatrix));
 }
 
 /*-----------------------------------------------------------------------------

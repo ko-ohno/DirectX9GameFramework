@@ -13016,7 +13016,7 @@ Frame Root {
            96.078431;
            0.500000; 0.500000; 0.500000;;
            0.000000; 0.000000; 0.000000;;
-          TextureFilename {"931377098.jpg";}
+          TextureFilename {"Enemy/931377098.jpg";}
         }
       } // End of Circle material list
     } // End of Circle mesh

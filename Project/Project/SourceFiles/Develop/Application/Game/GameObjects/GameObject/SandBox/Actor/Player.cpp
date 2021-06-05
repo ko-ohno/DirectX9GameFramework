@@ -30,19 +30,17 @@
 // 入力コンポーネント 
 #include "../../../../Input/InputCheck.h"
 
+// ImGUI
+#include "../../../../../ImGui/ImGuiManager.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Player::Player(Game* game)
 	: Actor(game)
-	, mesh_space_ship_(nullptr)
 	, effect_after_burner_(nullptr)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
-	, box_collider_(nullptr)
-	, sphere_collider_(nullptr)
-	, box_gizmo_(nullptr)
-	, sphere_gizmo_(nullptr)
 {
 	this->Init();
 }
@@ -60,13 +58,16 @@ Player::~Player(void)
 -----------------------------------------------------------------------------*/
 bool Player::Init(void)
 {
+	// プレイヤーの移動コンポーネントの生成
+	actor_move_ = NEW  PlayerMoveComponent(this);
+
 	// 描画コンポーネント
 	{
 		// 自機の表示
-		mesh_space_ship_ = NEW FFPMeshRendererComponent(this);
-		mesh_space_ship_->SetMesh(XFileMeshType::SpaceShip);
-		mesh_space_ship_->SetEnableLighting(true);
-		mesh_space_ship_->SetScale(0.5f);
+		actor_mesh_ = NEW FFPMeshRendererComponent(this);
+		actor_mesh_->SetMesh(XFileMeshType::SpaceShip);
+		actor_mesh_->SetEnableLighting(true);
+		actor_mesh_->SetScale(0.5f);
 
 		// アフターバーナーの表示
 		effect_after_burner_ = NEW EffectRendererComponent(this);
@@ -85,16 +86,13 @@ bool Player::Init(void)
 
 	//　衝突判定コンポーネント
 	{
-		box_collider_ = NEW OBBColliderComponent(this);
 		sphere_collider_ = NEW SphereColliderComponent(this);
-
-		box_gizmo_	= NEW BoxGizmoRendererComponent(this);
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(this);
+		sphere_gizmo_->SetVertexColor(255, 255, 0, 255);
+
+		obb_collider_ = NEW OBBColliderComponent(this);
+		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
 	}
-
-	// プレイヤーの移動コンポーネント
-	move_component_ = NEW  PlayerMoveComponent(this);
-
 	return true;
 }
 
@@ -133,6 +131,13 @@ void Player::UpdateGameObject(float deltaTime)
 		left_blaster_->Fire();
 		right_blaster_->Fire();
 	}
+
+
+	ImGui::Begin("PlayerTransform");
+	ImGui::Text("Yaw:%f", transform_component_->GetAngleYaw());
+	ImGui::Text("Pitch:%f", transform_component_->GetAnglePitch());
+	ImGui::Text("Roll:%f", transform_component_->GetAngleRoll());
+	ImGui::End();
 }
 
 /*=============================================================================

@@ -521,6 +521,16 @@ void CameraComponent::ComputeProjection3DMatrix(void)
 	lpd3d_device->SetTransform(D3DTS_PROJECTION, &projection_matrix_3d_);
 }
 
+/*-----------------------------------------------------------------------------
+/*　カメラの姿勢のリセット
+-----------------------------------------------------------------------------*/
+void CameraComponent::SetCameraTransformReset(void)
+{
+	front_vector_ = { 0.f, 0.f, 1.f};
+	up_vector_	  = { 0.f, 1.f, 0.f };
+	right_vector_ = { 1.f, 0.f, 0.f };
+}
+
 /*=============================================================================
 /*		End of File
 =============================================================================*/

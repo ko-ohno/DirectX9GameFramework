@@ -29,7 +29,6 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
 private:
-	class SpriteRendererComponent* sprite_;
 };
 
 #endif //ENEMY_H_

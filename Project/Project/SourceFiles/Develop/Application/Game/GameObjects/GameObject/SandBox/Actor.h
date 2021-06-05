@@ -29,7 +29,15 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Actor; }
 
-private:
+protected:
+	// エネミーのメッシュ
+	class FFPMeshRendererComponent*		actor_mesh_;
+
+	// 衝突判定
+	class SphereGizmoRendererComponent* sphere_gizmo_;
+	class SphereColliderComponent*		sphere_collider_;
+	class BoxGizmoRendererComponent*	box_gizmo_;
+	class OBBColliderComponent*			obb_collider_;
 };
 
 

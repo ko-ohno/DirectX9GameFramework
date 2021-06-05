@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[GameCamera.h] ゲームオブジェクト
+/*	[GameCamera.h] カメラゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ゲームオブジェクト
+/*	説明：カメラゲームオブジェクト
 =============================================================================*/
 #ifndef GameCamera_H_
 #define	GameCamera_H_
@@ -12,7 +12,7 @@
 #include "../Camera.h"
 
 /*-------------------------------------
-/* クラス
+/* カメラゲームオブジェクト
 -------------------------------------*/
 class GameCamera : public Camera
 {
@@ -30,6 +30,19 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameCamera; }
 
 private:
+	// 注視点座標のギズモ
+	class BoxGizmoRendererComponent* lookat_point_gizmo_;
+
+	// 上がるか下がるか
+	bool is_move_top_;
+	bool is_move_bottom_;
+
+	// 値を上回るか、下回るか
+	bool is_value_over_;
+	bool is_value_under_;
+
+	// 垂直
+	float vertical_camera_shake_;
 };
 
 

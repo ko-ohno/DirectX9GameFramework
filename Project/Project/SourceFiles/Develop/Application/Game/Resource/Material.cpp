@@ -105,6 +105,12 @@ bool Material::LoadTexture(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::stri
 
 		// "Assets/Meshs/" を消したあとで、ファイルパスの"/"を先頭から探す。
 		auto pos = filepath.find("/");
+		{
+			if (pos == INFINITE)
+			{
+				assert(!"Material::LoadTexture():マテリアルのテクスチャが読み込めませんでした。");
+			}
+		}
 
 		//ファイルパスの"/"から後ろ部分を一括削除
 		filepath.erase(pos);

@@ -10,7 +10,6 @@
 
 /*--- インクルードファイル ---*/
 #include "../MoveComponent.h"
-#include "../TransformComponent.h"
 
 /*--- 構造体定義 ---*/
 

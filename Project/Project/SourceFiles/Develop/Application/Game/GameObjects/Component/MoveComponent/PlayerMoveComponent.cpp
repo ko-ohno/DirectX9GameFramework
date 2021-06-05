@@ -84,9 +84,6 @@ void PlayerMoveComponent::Update(float deltaTime)
 	// ã‰º¶‰E‚ÌˆÚ“®ˆ—
 	D3DXVECTOR3 front_vector = *owner_transform_->GetFrontVector();
 	{
-		float rotation_yaw = 0.f;
-		float rotation_pitch = 0.f;
-
 		// ã‰º‚ÌˆÚ“®ˆ—
 		{
 			const float move_value = left_thumb.y_ * (front_vector.y * move_speed_);

@@ -65,6 +65,11 @@ private:
 
 public:
 	//
+	//　カメラの姿勢のリセット
+	//
+	void SetCameraTransformReset(void);
+
+	//
 	//　速度の設定
 	//
 
@@ -115,7 +120,7 @@ public:
 	// カメラ・注視点座標：位置情報の取得
 	//
 
-	inline D3DXVECTOR3* GetPositon(void) { return &position_; }
+	inline D3DXVECTOR3* GetPosition(void) { return &position_; }
 	inline D3DXVECTOR3* GetLookAtPositon(void) { return &lookat_position_; }
 
 	//
@@ -153,6 +158,7 @@ public:
 	bool IsGetCameraMoved(void) const { return is_camera_moved_; }
 
 	virtual TypeID GetComponentType() const override { return TypeID::CameraComponent; }
+
 
 private:
 protected:

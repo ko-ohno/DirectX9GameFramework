@@ -1,64 +1,85 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Actor.cpp] アクターゲームオブジェクト
+/*	[BossMoveComponent.cpp] ボスの移動コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アクターゲームオブジェクト
+/*	説明：ボスの移動コンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "Actor.h"
+#include "BossMoveComponent.h"
+#include "../ColliderComponent/OBBColliderComponent.h"
+#include "../RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
+#include "../../../Input/InputCheck.h"
+#include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Actor::Actor(Game* game)
-	: SandBox(game)
-	, actor_mesh_(nullptr)
-	, sphere_collider_(nullptr)
-	, sphere_gizmo_(nullptr)
-	, obb_collider_(nullptr)
-	, box_gizmo_(nullptr)
+BossMoveComponent::BossMoveComponent(GameObject* owner, int updateOrder)
+	: MoveComponent(owner, updateOrder)
+	, move_speed_(10.f)
 {
-	renderer_layer_type_ = RendererLayerType::Game;
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Actor::~Actor(void)
+BossMoveComponent::~BossMoveComponent(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Actor::Init(void)
+bool BossMoveComponent::Init(void)
 {
+	// ボスのサンドボックスを初期化
+	{
+		player_sandbox_ = NEW OBBColliderComponent(owner_);
+		player_sandbox_->SetDirLength(5.f, AxisType::X);
+		player_sandbox_->SetDirLength(3.f, AxisType::Y);
+	}
+
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Actor::Uninit(void)
+void BossMoveComponent::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void Actor::InputGameObject(void)
+void BossMoveComponent::Input(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 更新処理
+/*　更新処理
 -----------------------------------------------------------------------------*/
-void Actor::UpdateGameObject(float deltaTime)
+void BossMoveComponent::Update(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
+	// 線形球面保管を行うフラグをONに
+	{
+		owner_transform_->IsSetExecuteSlerp(true);
+	}
+
+
+}
+
+/*-----------------------------------------------------------------------------
+/*　移動の状態更新処理
+-----------------------------------------------------------------------------*/
+void BossMoveComponent::UpdateMovementState(Vector2& padThumb)
+{
+
 }
 
 /*=============================================================================

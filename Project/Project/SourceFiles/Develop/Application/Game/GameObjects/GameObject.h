@@ -44,6 +44,7 @@ public:
 		, Actor
 		, Player
 		, Enemy
+		, Boss
 
 		// 背景
 		, BackGround
@@ -108,6 +109,12 @@ public:
 	class Game* GetGame(void) const { return game_; }
 
 	//
+	// 自身の親のゲームオブジェクトの設定
+	//
+	void SetParentGameObject(class GameObject* parentGameObject) { game_object_parent_ = parentGameObject; };
+	class GameObject* GetParentGameObject(void) { return game_object_parent_; }
+
+	//
 	// ゲームオブジェクトの状態
 	//
 
@@ -136,7 +143,7 @@ protected:
 	State							state_;
 
 	// このGameObjectの親
-	class GameObject*				parent_;
+	class GameObject*				game_object_parent_;
 
 	//レンダラーのレイヤー型情報　
 	RendererLayerType				renderer_layer_type_;

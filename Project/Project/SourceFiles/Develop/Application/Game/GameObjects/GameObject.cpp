@@ -33,6 +33,7 @@ const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	, "Actor"
 	, "Player"
 	, "Enemy"
+	, "Boss"
 
 	// 背景
 	, "BackGround"
@@ -63,6 +64,7 @@ GameObject::GameObject(class Game* game)
 	, renderer_layer_type_(RendererLayerType::None)
 	, transform_component_(nullptr)
 	, re_compute_transform_(true)
+	, game_object_parent_(nullptr)
 {
 	//ゲームオブジェクトを管理先へ追加
 	game_->AddGameObject(this);
