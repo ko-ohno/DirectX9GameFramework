@@ -46,6 +46,11 @@ public:
 	void GenerateOutput(void);
 
 public:
+	//エネミーの追加と削除
+	void AddEnemy(class GameObject* gameObject);
+	void RemoveEnemy(class GameObject* gameObject);
+
+public:
 	//ゲームオブジェクトの追加と削除
 	void AddGameObject(class GameObject* gameObject);
 	void RemoveGameObject(class GameObject* gameObject);
@@ -79,6 +84,9 @@ private:
 	std::vector<class GameObject*>  pending_game_objects_;
 	std::vector<class GameObject*>  game_objects_;
 
+	// エネミーのリストのコンテナ
+	std::vector<class Enemy*> enemie_list_;
+
 private:
 	class GameObjectFactory* game_object_fuctory_;
 	class DX9Graphics*		 dx9_graphics_;
@@ -92,7 +100,6 @@ private:
 	class ColliderManager*	 collider_manager_;
 	class SaveDataManager*	 save_data_manager_;
 };
-
 
 #endif //GAME_H_
 /*=============================================================================

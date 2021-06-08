@@ -255,37 +255,37 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Input\InputCheck.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONHelper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONSampler.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\ColliderManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\EffectManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\LightManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\LightManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\MeshManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\SaveDataManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\ShaderManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\SoundManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\TextureManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.h">
@@ -385,6 +385,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -608,37 +614,37 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Input\InputCheck.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONHelper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONSampler.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\ColliderManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\EffectManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\LightManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\LightManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\MeshManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\SaveDataManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\ShaderManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\SoundManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\TextureManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light\DirectionalLight.cpp">
@@ -735,6 +741,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "_ColliderTest.h"
-#include "../../../Manager/ColliderManager.h"
+#include "../../../ResourceManager/ColliderManager.h"
 
 #include "../../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"

@@ -11,7 +11,7 @@
 #include "AudioComponent.h"
 #include "../GameObject.h"
 #include "../../Game.h"
-#include "../../Manager/SoundManager.h"
+#include "../../ResourceManager/SoundManager.h"
 #include "../../Resource/Sound.h"
 
 /*-----------------------------------------------------------------------------

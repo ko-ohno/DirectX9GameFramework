@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "XFileMesh.h"
-#include "../Manager/MeshManager.h"
+#include "../ResourceManager/MeshManager.h"
 #include "../Game.h"
 #include "../../DX9Graphics.h"
 #include "../Resource/Texture.h"

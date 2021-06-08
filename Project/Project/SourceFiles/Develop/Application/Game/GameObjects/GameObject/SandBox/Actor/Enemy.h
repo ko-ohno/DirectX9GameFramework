@@ -28,7 +28,7 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
-private:
+protected:
 };
 
 #endif //ENEMY_H_

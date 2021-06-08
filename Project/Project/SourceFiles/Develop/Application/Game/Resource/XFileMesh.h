@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
-#include "../Manager/MeshManager.h"
+#include "../ResourceManager/MeshManager.h"
 
 
 /*-------------------------------------

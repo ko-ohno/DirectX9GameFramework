@@ -12,6 +12,19 @@
 #include "../Enemy.h"
 
 /*-------------------------------------
+/*  ボス
+-------------------------------------*/
+enum class BossState
+{
+	None = -1
+	, Enter
+	, BodyPress
+	, Shooting
+	, LaserCannone
+	, Max
+};
+
+/*-------------------------------------
 /*  敵ゲームオブジェクト
 -------------------------------------*/
 class Boss : public Enemy
@@ -28,7 +41,16 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Boss; }
 
+	//
+	// ボスの行動ステートの設定
+	//
+
+	BossState GetState(void) { return boss_state_; }
+	void SetState(BossState bossState) { boss_state_ = bossState; }
+
 private:
+	BossState boss_state_;
+	class BossAIComponent* boss_ai_;
 };
 
 #endif //BOSS_H_

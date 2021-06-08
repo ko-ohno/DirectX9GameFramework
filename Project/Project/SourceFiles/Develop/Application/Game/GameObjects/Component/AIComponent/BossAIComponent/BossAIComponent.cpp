@@ -1,85 +1,34 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Component.cpp] コンポーネントのベースクラス
+/*	[BossAIComponent.cpp] ボスAIコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：コンポーネントのベースクラスの処理を定義
+/*	説明：ボスAIコンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "Component.h"
-#include "GameObject.h"
-
-//コンポーネントのリスト
-const char* Component::ComponentTypeNames[static_cast<int>(TypeID::Max)] = {
-	// 自分自身
-	"Component"
-	// AI
-	, "AIComponent"
-	, "EnemyAIComponent"
-	, "BossAIComponent"
-	// 音声
-	, "AudioComponent"
-	// カメラ
-	, "CameraComponent"
-	, "FollowCameraComponent"
-	// 衝突判定
-	, "ColliderComponent"
-	, "CircleColliderComponent"
-	, "RectangleColliderComponent"
-	, "SphereColliderComponent"
-	, "OBBColliderComponent"
-	, "CapsuleColliderComponent"
-	// 入力
-	, "InputComponent"
-	, "PlayerInputComponent"
-	, "AutomaticInputComponent"
-	// レンダリング(形として出力)するオブジェクト
-	, "RenderComponent"
-	, "SpriteRendererComponent"
-	, "BillboardRendererComponent"
-	, "FFPMeshRendererComponent"
-	, "StdMeshRendererComponent"
-	, "EffectRendererComponent"
-	// ギズモとしてレンダリング(形として出力)するオブジェクト
-	, "GizmoRendererComponent"
-	, "GridGizmoRendererComponent"
-	, "SphereGizmoRendererComponent"
-	, "BoxGizmoRendererComponent"
-	// 姿勢制御
-	, "TransformComponent"
-	// 移動コンポーネント
-	, "MoveComponent"
-	, "PlayerMoveComponent"
-	// 武器コンポーネント
-	, "WeaponComponent"
-	, "BlasterComponent"
-	, "ChargeShotBlasterComponent"
-
-};
+#include "../../../../../../StdAfx.h"
+#include "BossAIComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Component::Component(GameObject* owner, int updateOrder)
-	: owner_(owner)
-	, update_order_(updateOrder)
+BossAIComponent::BossAIComponent(GameObject* owner, int updateOrder)
+	: EnemyAIComponent(owner, updateOrder)
 {
-	owner_->AddComponent(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Component::~Component(void)
+BossAIComponent::~BossAIComponent(void)
 {
-	owner_->RemoveComponent(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Component::Init(void)
+bool BossAIComponent::Init(void)
 {
 	return true;
 }
@@ -87,44 +36,83 @@ bool Component::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Component::Uninit(void)
+void BossAIComponent::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void Component::Input(void)
+void BossAIComponent::Input(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 更新処理
+/*　更新処理
 -----------------------------------------------------------------------------*/
-void Component::Update(float deltaTime)
+void BossAIComponent::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (boss_state_machine_ != nullptr)
+	{
+		boss_state_machine_->Update(this, deltaTime);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　ボスのステートマシンの変更
+-----------------------------------------------------------------------------*/
+void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
+{
+	if (boss_state_machine_ != nullptr)
+		delete boss_state_machine_;
+
+	boss_state_machine_ = bossStateMachine;
+
+	//if (boss_state_machine_ != nullptr)
+	//	boss_state_machine_->Init();
+}
+
+/*-----------------------------------------------------------------------------
+/*　ボスの待機行動
+-----------------------------------------------------------------------------*/
+void BossAIComponent::Wait(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------
-/* コンポーネントの姿勢制御の更新
+/*　ボスの登場行動
 -----------------------------------------------------------------------------*/
-void Component::OnUpdateWorldTransform()
+void BossAIComponent::Enter(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 }
 
 /*-----------------------------------------------------------------------------
-/* コンポーネントの状態の読み込み
+/*　ボスの体当たり行動
 -----------------------------------------------------------------------------*/
-void Component::LoadProperties(void)
+void BossAIComponent::BodyPress(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------
-/* コンポーネントの状態の保存
+/*　ボスの射撃攻撃行動
 -----------------------------------------------------------------------------*/
-void Component::SaveProperties(void)
+void BossAIComponent::Shoot(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　ボスのレーザー砲攻撃行動
+-----------------------------------------------------------------------------*/
+void BossAIComponent::LaserCannon(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

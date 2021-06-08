@@ -30,6 +30,7 @@ public:
 		// AI
 		, AIComponent
 		, EnemyAIComponent
+		, BossAIComponent
 		// ‰¹º
 		, AudioComponent
 		// ƒJƒƒ‰

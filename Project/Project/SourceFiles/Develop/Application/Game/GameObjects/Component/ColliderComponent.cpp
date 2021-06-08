@@ -11,7 +11,7 @@
 #include "ColliderComponent.h"
 #include "../GameObject.h"
 #include "../../Game.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../ResourceManager/ColliderManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

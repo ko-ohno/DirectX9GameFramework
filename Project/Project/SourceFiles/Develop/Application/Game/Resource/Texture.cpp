@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "Texture.h"
-#include "../Manager/TextureManager.h"
+#include "../ResourceManager/TextureManager.h"
 #include "../Game.h"
 #include "../../DX9Graphics.h"
 

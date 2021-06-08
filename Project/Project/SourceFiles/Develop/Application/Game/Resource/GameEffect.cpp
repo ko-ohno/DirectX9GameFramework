@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "GameEffect.h"
-#include "../Manager/EffectManager.h"
+#include "../ResourceManager/EffectManager.h"
 
 #pragma warning(disable:4996)
 

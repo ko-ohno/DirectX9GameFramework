@@ -17,6 +17,8 @@
 enum class ColiiderType
 {
 	None = -1
+	, Circle
+	, Rectangle
 	, Sphere
 	, OBB
 

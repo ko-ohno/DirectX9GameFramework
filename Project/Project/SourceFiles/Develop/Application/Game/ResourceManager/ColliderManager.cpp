@@ -12,7 +12,9 @@
 
 //エフェクトの名前リスト
 const char* ColliderManager::ColliderTypeNames[static_cast<int>(ColiiderType::Max)] = {
-	"Sphere"
+	"Circle"
+	, "Rectangle"
+	, "Sphere"
 	, "OBB"
 };
 

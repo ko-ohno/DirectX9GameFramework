@@ -11,7 +11,7 @@
 #include "Renderer.h"
 #include "GameObjects/GameObject/Camera.h"
 #include "GameObjects/Component/RendererComponent.h"
-#include "Manager/EffectManager.h"
+#include "ResourceManager/EffectManager.h"
 
 #include "Shader/DissolveShader.h"
 

@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
-#include "../Manager/EffectManager.h"
+#include "../ResourceManager/EffectManager.h"
 
 
 /*-------------------------------------

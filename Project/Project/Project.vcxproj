@@ -177,6 +177,8 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.h" />
@@ -246,17 +248,17 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Input\InputCheck.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\LightManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\ColliderManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\EffectManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONHelper.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONSampler.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\LightManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\MeshManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\SaveDataManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\ShaderManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\SoundManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ResourceManager\TextureManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Renderer.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Light.h" />
@@ -303,6 +305,8 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.cpp" />
@@ -372,17 +376,17 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SaveDataTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\_Test\_SpriteTest.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Input\InputCheck.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ColliderManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\EffectManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONHelper.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\JSONManager\JSONSampler.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\LightManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\MeshManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SaveDataManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\ShaderManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\SoundManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\Manager\TextureManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\ColliderManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\EffectManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONHelper.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\JSONManager\JSONSampler.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\LightManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\MeshManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\SaveDataManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\ShaderManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\SoundManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\ResourceManager\TextureManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Renderer.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\GameEffect.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Light.cpp" />

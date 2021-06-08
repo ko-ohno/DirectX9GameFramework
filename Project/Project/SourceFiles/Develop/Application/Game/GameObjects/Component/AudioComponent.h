@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../Component.h"
-#include "../../Manager/SoundManager.h"
+#include "../../ResourceManager/SoundManager.h"
 
 /*--- 構造体定義 ---*/
 

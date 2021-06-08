@@ -11,7 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
 #include "../Math.h"
-#include "Manager/EffectManager.h"
+#include "ResourceManager/EffectManager.h"
 
 /*-------------------------------------
 /* レンダラークラス

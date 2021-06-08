@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../StdAfx.h"
 #include "DirectionalLight.h"
-#include "../../Manager/LightManager.h"
+#include "../../ResourceManager/LightManager.h"
 #include "../../Game.h"
 #include "../../../DX9Graphics.h"
 
