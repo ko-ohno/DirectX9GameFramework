@@ -125,9 +125,6 @@ void Renderer::Draw(void)
 	//レンダラーコンポーネントの描画
 	int now_draw_layer_order = 0;
 	int camera_counter_ = 0;
-
-	//一度だけRendererLayerTypeのUIレイヤーとFadeレイヤーを描画するフラグ
-	bool is_2Dlayer_draw_one_time = false;
 	
 	//描画レイヤー分繰り返す
 	for (now_draw_layer_order
@@ -137,16 +134,6 @@ void Renderer::Draw(void)
 		//カメラのインスタンス数だけ描画する
 		for (auto camera_game_object : camera_game_objects_)
 		{
-		
-			//RendererLayerTypeのUIレイヤーとFadeレイヤーを描画するか？
-			is_2Dlayer_draw_one_time = ((camera_counter_ != 0)
-										&& now_draw_layer_order >= static_cast<int>(RendererLayerType::UI));
-
-			if (is_2Dlayer_draw_one_time)
-			{
-				continue;
-			}
-
 			//レンダラーコンポーネントのソート
 			const bool is_camera_moved = camera_game_object->IsGetCameraMoved();
 			if (is_camera_moved == true)
