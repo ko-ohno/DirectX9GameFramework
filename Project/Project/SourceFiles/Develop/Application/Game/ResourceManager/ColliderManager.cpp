@@ -10,8 +10,8 @@
 #include "../../../StdAfx.h"
 #include "ColliderManager.h"
 
-//エフェクトの名前リスト
-const char* ColliderManager::ColliderTypeNames[static_cast<int>(ColiiderType::Max)] = {
+//コライダの名前リスト
+const char* ColliderManager::ColliderTypeNames[static_cast<int>(ColliderType::Max)] = {
 	"Circle"
 	, "Rectangle"
 	, "Sphere"

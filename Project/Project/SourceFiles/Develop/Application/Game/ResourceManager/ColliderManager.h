@@ -14,7 +14,7 @@
 /*-------------------------------------
 /* ƒRƒ‰ƒCƒ_‚ÌŽí—Þ
 -------------------------------------*/
-enum class ColiiderType
+enum class ColliderType
 {
 	None = -1
 	, Circle
@@ -31,7 +31,7 @@ enum class ColiiderType
 class ColliderManager
 {
 public:
-	static const char* ColliderTypeNames[static_cast<int>(ColiiderType::Max)];
+	static const char* ColliderTypeNames[static_cast<int>(ColliderType::Max)];
 
 public:
 	ColliderManager(class Game* game);
