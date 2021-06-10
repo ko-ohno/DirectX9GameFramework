@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "Light.h"
-#include "../Manager/LightManager.h"
+#include "../ResourceManager/LightManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

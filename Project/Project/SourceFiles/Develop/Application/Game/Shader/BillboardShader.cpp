@@ -11,7 +11,7 @@
 #include "BillboardShader.h"
 #include "../../DX9Graphics.h"
 #include "../Shader.h"
-#include "../Manager/ShaderManager.h"
+#include "../ResourceManager/ShaderManager.h"
 #include "../Game.h"
 #include "../GameObjects/GameObject/Camera.h"
 #include "../GameObjects/Component/RendererComponent.h"

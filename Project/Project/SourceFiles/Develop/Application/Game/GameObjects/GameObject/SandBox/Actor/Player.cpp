@@ -85,7 +85,7 @@ bool Player::Init(void)
 			{
 				far_reticle_ = NEW BillboardRendererComponent(this);
 				far_reticle_->SetTexture(TextureType::FarReticle);
-				far_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				far_reticle_->SetVertexColor(0, 255, 0, 255);
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
@@ -97,7 +97,7 @@ bool Player::Init(void)
 			{
 				near_reticle_ = NEW BillboardRendererComponent(this);
 				near_reticle_->SetTexture(TextureType::NearReticle);
-				near_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				near_reticle_->SetVertexColor(0, 255, 0, 255);
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
@@ -109,7 +109,7 @@ bool Player::Init(void)
 			{
 				lockon_reticle_ = NEW BillboardRendererComponent(this);
 				lockon_reticle_->SetTexture(TextureType::NearReticle);
-				lockon_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				lockon_reticle_->SetVertexColor(0, 255, 0, 255);
 				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
