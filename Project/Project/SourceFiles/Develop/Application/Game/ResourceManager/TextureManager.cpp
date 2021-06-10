@@ -16,6 +16,9 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	//é©ï™é©êg
 	"Sample"
 	, "Prototype"
+	, "Reticle"
+	, "LockonReticle"
+
 	, "Planet"
 };
 
@@ -85,7 +88,9 @@ bool TextureManager::Init(void)
 	{
 		unmap_texture_path_list_[TextureType::Sample]    = "tex1.bmp";
 		unmap_texture_path_list_[TextureType::Prototype] = "PrototypingTextures/texture_01.png";
-		unmap_texture_path_list_[TextureType::Planet]	 = "Planet.png";
+		unmap_texture_path_list_[TextureType::FarReticle]		 = "ReticleFar.png";
+		unmap_texture_path_list_[TextureType::NearReticle] = "ReticleNear.png";
+		unmap_texture_path_list_[TextureType::Planet]	     = "Planet.png";
 
 	}
 	return true;

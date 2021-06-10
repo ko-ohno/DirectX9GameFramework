@@ -30,7 +30,16 @@ public:
 
 private:
 	// 描画コンポーネント
-	class EffectRendererComponent*  effect_after_burner_;
+	class EffectRendererComponent*    effect_after_burner_;
+
+	// 遠くのレティクル
+	class BillboardRendererComponent* far_reticle_;
+
+	// 手前のレティクル
+	class BillboardRendererComponent* near_reticle_;
+
+	// ロックオンのレティクル
+	class BillboardRendererComponent* lockon_reticle_;
 	
 	// 武器コンポーネント
 	class BlasterComponent*			left_blaster_;

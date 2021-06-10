@@ -73,6 +73,7 @@ void PlayerMoveComponent::Update(float deltaTime)
 	// 線形球面保管を行うフラグをONに
 	{
 		owner_transform_->IsSetExecuteSlerp(true);
+		owner_transform_->SetSlerpSpeed(1.2f);
 	}
 
 	// 入力から移動の状態を更新

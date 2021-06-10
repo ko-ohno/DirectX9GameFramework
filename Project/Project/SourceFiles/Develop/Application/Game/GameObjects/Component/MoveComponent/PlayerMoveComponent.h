@@ -35,8 +35,6 @@ public:
 	virtual TypeID GetComponentType() const override { return TypeID::PlayerMoveComponent; };
 
 	void UpdateMovementState(class Vector2& padThumb);
-	//void UpdateMovement(float deltaTime);
-
 
 private:
 	// ƒvƒŒƒCƒ„[‚Ì—V‚Ñê

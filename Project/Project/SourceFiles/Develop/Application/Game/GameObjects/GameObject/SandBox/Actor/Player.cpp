@@ -10,8 +10,10 @@
 #include "../../../../../../StdAfx.h"
 #include "Player.h"
 
+// 描画コンポーネント
 #include "../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 #include "../../../Component/RendererComponent/EffectRendererComponent.h"
+#include "../../../Component/RendererComponent/BillboardRendererComponent.h"
 
 // 武器コンポーネント
 #include "../../../Component/WeaponComponent/BlasterComponent.h"
@@ -39,6 +41,9 @@
 Player::Player(Game* game)
 	: Actor(game)
 	, effect_after_burner_(nullptr)
+	, near_reticle_(nullptr)
+	, far_reticle_(nullptr)
+	, lockon_reticle_(nullptr)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
 {
@@ -73,6 +78,45 @@ bool Player::Init(void)
 		effect_after_burner_ = NEW EffectRendererComponent(this);
 		effect_after_burner_->SetEffect(EffectType::AfterBurner);
 		effect_after_burner_->Play();
+
+		// レティクルの設定
+		{
+			// 遠くのレティクル
+			{
+				far_reticle_ = NEW BillboardRendererComponent(this);
+				far_reticle_->SetTexture(TextureType::FarReticle);
+				far_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
+
+				// レティクルの性質の調整
+				far_reticle_->SetScale(1.2f);
+				far_reticle_->SetTranslationZ(8.f);
+			}
+
+			//　手前のレティクル
+			{
+				near_reticle_ = NEW BillboardRendererComponent(this);
+				near_reticle_->SetTexture(TextureType::NearReticle);
+				near_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
+
+				// レティクルの性質の調整
+				near_reticle_->SetScale(1.4f);
+				near_reticle_->SetTranslationZ(6.0f);
+			}
+
+			//　ロックオンのレティクル
+			{
+				lockon_reticle_ = NEW BillboardRendererComponent(this);
+				lockon_reticle_->SetTexture(TextureType::NearReticle);
+				lockon_reticle_->SetVertexColor(0.f, 255, 0, 255);
+				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
+
+				// レティクルの性質の調整
+				lockon_reticle_->SetScale(1.4f);
+				lockon_reticle_->SetTranslationZ(6.0f);
+			}
+		}
 	}
 
 	// 武器コンポーネント
@@ -119,6 +163,7 @@ void Player::UpdateGameObject(float deltaTime)
 
 	// エフェクトの位置を調整
 	effect_after_burner_->SetTranslation(0.f, 0.1f, -1.1f);
+
 
 	// 武器の位置を調整
 	{

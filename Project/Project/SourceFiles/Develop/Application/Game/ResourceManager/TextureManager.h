@@ -18,8 +18,9 @@ enum class TextureType
 	None = -1
 	, Sample
 	, Prototype
+	, FarReticle
+	, NearReticle
 	, Planet
-
 	, Max
 };
 

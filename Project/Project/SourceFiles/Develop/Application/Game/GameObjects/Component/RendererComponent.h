@@ -115,7 +115,8 @@ public:
 	// このコンポーネントの型
 	inline TypeID GetComponentType(void) const override { return TypeID::RendererComponent; }
 	
-	// このコンポーネントがレンダリングされる描画レイヤーの種類
+	// このコンポーネントがレンダリングされる描画レイヤーの設定
+	inline void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 	inline RendererLayerType GetRendererLayerType(void) const { return renderer_layer_type_; }
 
 	// このコンポーネントがレンダリングされるシェーダーの種類
