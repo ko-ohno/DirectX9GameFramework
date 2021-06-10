@@ -177,7 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.h" />
@@ -305,7 +305,7 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.cpp" />

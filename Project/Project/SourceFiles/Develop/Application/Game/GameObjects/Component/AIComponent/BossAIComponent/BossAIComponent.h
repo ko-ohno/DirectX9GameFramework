@@ -38,6 +38,7 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::BossAIComponent; };
 private:
+	class Actor*			boss_actor_adress_;
 	class BossStateMachine* boss_state_machine_;
 };
 

@@ -46,11 +46,6 @@ public:
 	void GenerateOutput(void);
 
 public:
-	//エネミーの追加と削除
-	void AddEnemy(class GameObject* gameObject);
-	void RemoveEnemy(class GameObject* gameObject);
-
-public:
 	//ゲームオブジェクトの追加と削除
 	void AddGameObject(class GameObject* gameObject);
 	void RemoveGameObject(class GameObject* gameObject);
@@ -60,6 +55,9 @@ public:
 
 	class DX9Graphics*		GetGraphics(void) { return dx9_graphics_; }
 	class Renderer*			GetRenderer(void) { return renderer_; }
+
+	// リソースの各マネージャ
+
 	class ShaderManager*	GetShaderManager(void) { return shader_manager_; }
 	class TextureManager*	GetTextureManager(void) { return texture_manager_; }
 	class MeshManager*		GetMeshManager(void) { return mesh_manager_; }
@@ -68,6 +66,10 @@ public:
 	class SoundManager*		GetSoundManager(void) { return sound_manager_; }
 	class ColliderManager*	GetColliderManager(void) { return collider_manager_; }
 	class SaveDataManager*	GetSaveDataManager(void) { return save_data_manager_; }
+
+	// サンドボックスの各マネージャ
+
+	class ActorManager*	GetActorManager(void) { return actor_manager_; }
 
 private:
 	//各更新処理
@@ -84,13 +86,13 @@ private:
 	std::vector<class GameObject*>  pending_game_objects_;
 	std::vector<class GameObject*>  game_objects_;
 
-	// エネミーのリストのコンテナ
-	std::vector<class Enemy*> enemie_list_;
-
 private:
 	class GameObjectFactory* game_object_fuctory_;
 	class DX9Graphics*		 dx9_graphics_;
 	class Renderer*			 renderer_;
+
+	// リソースの管理者
+
 	class ShaderManager*	 shader_manager_;
 	class TextureManager*	 texture_manager_;
 	class MeshManager*		 mesh_manager_;
@@ -99,6 +101,11 @@ private:
 	class SoundManager*		 sound_manager_;
 	class ColliderManager*	 collider_manager_;
 	class SaveDataManager*	 save_data_manager_;
+
+	// サンドボックスの管理者
+
+	class ActorManager*	 actor_manager_;
+
 };
 
 #endif //GAME_H_

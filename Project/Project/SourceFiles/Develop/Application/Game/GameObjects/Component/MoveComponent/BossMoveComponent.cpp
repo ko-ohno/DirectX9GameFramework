@@ -11,13 +11,16 @@
 #include "BossMoveComponent.h"
 #include "../../GameObject.h"
 #include "../../../../Math.h"
+#include "../../../SandBoxManager/ActorManager.h"
+#include "../../GameObject/SandBox/Actor/Enemy.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 BossMoveComponent::BossMoveComponent(GameObject* owner, int updateOrder)
 	: MoveComponent(owner, updateOrder)
-	, boss_ai_(nullptr)
+	, owner_boss_actor_(nullptr)
 	, enter_motion_state_(EnterMotionState::NONE)
 	, attack_motion_state_(AttackMotionState::NONE)
 	, boss_motion_state_(BossMotionState::NONE)
@@ -44,7 +47,6 @@ BossMoveComponent::~BossMoveComponent(void)
 -----------------------------------------------------------------------------*/
 bool BossMoveComponent::Init(void)
 {
-
 	return true;
 }
 
@@ -67,24 +69,27 @@ void BossMoveComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void BossMoveComponent::Update(float deltaTime)
 {
-	if (this->boss_ai_ == nullptr)
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (owner_boss_actor_ == nullptr)
 	{
-		auto owner_component_list = owner_->GetComponents();
+		auto actor_game_objects = owner_->GetGame()->GetActorManager()->GetActorGameObjectList();
 
-		//　総当たり検索をする
-		for (auto owner_component : owner_component_list)
+		// アクターのリストを総当たり検索
+		for (auto actor_game_object : actor_game_objects)
 		{
-			//
-			auto type_id = owner_component->GetComponentType();
-			if (type_id == Component::TypeID::BossAIComponent)
+			// ボスのゲームオブジェクトを取得
+			auto type_id = actor_game_object->GetType();
+			if (type_id == GameObject::TypeID::Boss)
 			{
-				auto ai = owner_component;
-
-				//ai->ge
-				break;
+				owner_boss_actor_ = actor_game_object;
 			}
 		}
 	}
+
+	auto actor_state = owner_boss_actor_->GetActorState();
+
+
 
 	// 各回転値の取得
 	yaw_   = owner_transform_->GetAngleYaw();

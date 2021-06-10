@@ -52,6 +52,8 @@ Boss::~Boss(void)
 -----------------------------------------------------------------------------*/
 bool Boss::Init(void)
 {
+	actor_state_ = ActorState::Wait;
+
 	// ボスの移動コンポーネントを生成
 	actor_move_ = NEW BossMoveComponent(this);
 
@@ -64,7 +66,7 @@ bool Boss::Init(void)
 		actor_mesh_->SetMesh(XFileMeshType::EnemyBoss);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 
-
+		this->transform_component_->SetTranslationZ(15.f);
 	}
 	return true;
 }
@@ -88,6 +90,8 @@ void Boss::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Boss::UpdateGameObject(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	//boss_ai_->ChangeState(NEW BossStateEnter());
 
 	//boss_ai_->ChangeState(NEW BossStateWait());

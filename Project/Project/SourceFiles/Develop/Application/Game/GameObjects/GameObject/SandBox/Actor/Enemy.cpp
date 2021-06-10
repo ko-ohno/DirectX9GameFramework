@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Enemy.h"
-#include "../../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../../SandBoxManager/ActorManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

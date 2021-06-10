@@ -1,119 +1,101 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BossAIComponent.cpp] ボスAIコンポーネント
+/*	[ActorManager.cpp] アクター管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ボスAIコンポーネント
+/*	説明：アクター管理クラス
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../../StdAfx.h"
-#include "BossAIComponent.h"
+#include "../../../StdAfx.h"
+#include "ActorManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-BossAIComponent::BossAIComponent(GameObject* owner, int updateOrder)
-	: EnemyAIComponent(owner, updateOrder)
-	, boss_state_machine_(nullptr)
+ActorManager::ActorManager(Game* game)
+	: game_(game)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-BossAIComponent::~BossAIComponent(void)
+ActorManager::~ActorManager(void)
 {
+}
+
+/*-----------------------------------------------------------------------------
+/* ファクトリメソッド
+-----------------------------------------------------------------------------*/
+ActorManager* ActorManager::Create(Game* game)
+{
+	return NEW ActorManager(game);
+}
+
+/*-----------------------------------------------------------------------------
+/* 起動処理
+-----------------------------------------------------------------------------*/
+bool ActorManager::StartUp(void)
+{
+	//自身の初期化
+	const bool Enemie_manager_init = this->Init();
+	if (Enemie_manager_init == false)
+	{
+		assert(!"ActorManager::StartUp()：アクターーマネージャの初期化に失敗しました。");
+		return false;
+	}
+	return true;
+}
+
+/*-----------------------------------------------------------------------------
+/* 停止処理
+-----------------------------------------------------------------------------*/
+void ActorManager::Shutdown(void)
+{
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool BossAIComponent::Init(void)
+bool ActorManager::Init(void)
 {
+	//自身の初期化
+	{
+		actor_list_.clear();
+	}
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void BossAIComponent::Uninit(void)
+void ActorManager::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
-/* 入力処理
+/* アクターゲームオブジェクトのアドレスの追加処理
 -----------------------------------------------------------------------------*/
-void BossAIComponent::Input(void)
+void ActorManager::AddActorGameObjectAddress(Actor* Actor)
 {
+	actor_list_.emplace_back(Actor);
 }
 
 /*-----------------------------------------------------------------------------
-/*　更新処理
+/* アクターゲームオブジェクトのアドレスの削除処理
 -----------------------------------------------------------------------------*/
-void BossAIComponent::Update(float deltaTime)
+void ActorManager::RemoveActorGameObjectAddress(Actor* Actor)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
+	auto iter = std::find(actor_list_.begin() //範囲0～
+						 , actor_list_.end()  //範囲最大まで
+						 , Actor);			   //探す対象
 
-	if (boss_state_machine_ != nullptr)
+	if (iter != actor_list_.end())
 	{
-		boss_state_machine_->Update(this, deltaTime);
+		actor_list_.erase(iter);
 	}
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスのステートマシンの変更
------------------------------------------------------------------------------*/
-void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
-{
-	if (boss_state_machine_ != nullptr)
-		delete boss_state_machine_;
-
-	boss_state_machine_ = bossStateMachine;
-
-	//if (boss_state_machine_ != nullptr)
-	//	boss_state_machine_->Init();
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスの待機行動
------------------------------------------------------------------------------*/
-void BossAIComponent::Wait(float deltaTime)
-{
-	UNREFERENCED_PARAMETER(deltaTime);
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスの登場行動
------------------------------------------------------------------------------*/
-void BossAIComponent::Enter(float deltaTime)
-{
-	UNREFERENCED_PARAMETER(deltaTime);
-
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスの体当たり行動
------------------------------------------------------------------------------*/
-void BossAIComponent::BodyPress(float deltaTime)
-{
-	UNREFERENCED_PARAMETER(deltaTime);
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスの射撃攻撃行動
------------------------------------------------------------------------------*/
-void BossAIComponent::Shoot(float deltaTime)
-{
-	UNREFERENCED_PARAMETER(deltaTime);
-}
-
-/*-----------------------------------------------------------------------------
-/*　ボスのレーザー砲攻撃行動
------------------------------------------------------------------------------*/
-void BossAIComponent::LaserCannon(float deltaTime)
-{
-	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

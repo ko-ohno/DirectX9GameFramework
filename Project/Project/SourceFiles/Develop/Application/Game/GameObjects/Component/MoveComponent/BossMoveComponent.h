@@ -80,7 +80,8 @@ public:
 	void SetBossMotionState(BossMotionState bossState) { boss_motion_state_ = bossState; }
 
 private:
-	class BossAIComponent* boss_ai_;
+	// 所有者のボスアクター
+	class Actor* owner_boss_actor_;
 
 	//
 	// ボスの行動状態

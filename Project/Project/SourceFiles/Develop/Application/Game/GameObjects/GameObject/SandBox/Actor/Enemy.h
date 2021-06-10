@@ -29,6 +29,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
 protected:
+	ActorState  boss_state_;
 };
 
 #endif //ENEMY_H_

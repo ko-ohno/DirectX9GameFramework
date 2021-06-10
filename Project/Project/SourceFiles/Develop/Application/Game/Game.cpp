@@ -20,6 +20,9 @@
 #include "ResourceManager/ColliderManager.h"
 #include "ResourceManager/SaveDataManager.h"
 
+#include "SandBoxManager/ActorManager.h"
+
+
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
 
@@ -79,7 +82,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	//ゲームの状態
 	game_state_ = GameState::Gameplay;
 
-	//マネージャーのファクトリをつくる
+	//リソース用の各マネージャーの起動
 	{
 		//シェーダーマネージャの起動
 		shader_manager_ = shader_manager_->Create(this);
@@ -154,6 +157,19 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		}
 	}
 
+	// サンドボックス用のマネージャの起動
+	{
+		//セーブデータマネージャの起動
+		actor_manager_ = actor_manager_->Create(this);
+		const bool actor_manager_init = actor_manager_->StartUp();
+		if (actor_manager_init == false)
+		{
+			assert(!"Game::StartUp()：アクターマネージャの起動に失敗しました。");
+			return false;
+		}
+
+	}
+
 	//レンダラーの起動
 	renderer_ = renderer_->Create(this);
 	const bool renderer_init = renderer_->StartUp();
@@ -190,8 +206,14 @@ void Game::ShutDown(void)
 		game_object_fuctory_->ShutDown();
 		SAFE_DELETE_(game_object_fuctory_);
 	}
-	
-	//マネージャーのファクトリの使用
+
+	// サンドボックスの各マネージャの破棄
+	{
+		actor_manager_->Shutdown();
+		SAFE_DELETE_(actor_manager_)
+	}
+
+	// リソースの各マネージャーの破棄
 	{
 		//セーブデータマネージャの破棄
 		{
@@ -242,7 +264,7 @@ void Game::ShutDown(void)
 		}
 
 	}
-	 
+
 	//レンダラーの破棄
 	{
 		renderer_->ShutDown();

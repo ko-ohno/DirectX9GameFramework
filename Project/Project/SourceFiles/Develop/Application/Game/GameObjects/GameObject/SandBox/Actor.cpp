@@ -9,12 +9,18 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "Actor.h"
+#include "../../../SandBoxManager/ActorManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Actor::Actor(Game* game)
 	: SandBox(game)
+	, actor_state_(ActorState::None)
+	, max_hit_point_(10.f)
+	, hit_point_(10.f)
+	, max_attack_(3.f)
+	, attack_(3.f)
 	, actor_mesh_(nullptr)
 	, sphere_collider_(nullptr)
 	, sphere_gizmo_(nullptr)
@@ -22,6 +28,9 @@ Actor::Actor(Game* game)
 	, box_gizmo_(nullptr)
 {
 	renderer_layer_type_ = RendererLayerType::Game;
+
+	// アクターマネージャにインスタンスのアドレスを追加
+	game_->GetActorManager()->AddActorGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -29,6 +38,8 @@ Actor::Actor(Game* game)
 -----------------------------------------------------------------------------*/
 Actor::~Actor(void)
 {
+	// アクターマネージャにインスタンスのアドレスを追加
+	game_->GetActorManager()->RemoveActorGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
