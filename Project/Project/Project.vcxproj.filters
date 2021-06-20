@@ -354,7 +354,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera\GameCamera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy.h">
@@ -378,19 +378,28 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\StrongEnemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -710,7 +719,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera\GameCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy.cpp">
@@ -734,19 +743,28 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\StrongEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

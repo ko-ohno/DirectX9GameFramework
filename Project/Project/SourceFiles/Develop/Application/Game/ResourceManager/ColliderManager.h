@@ -54,7 +54,7 @@ public:
 	void AddColliderComponentAddress(class ColliderComponent* colliderComponent);
 	void RemoveColliderComponentAddress(class ColliderComponent* colliderComponent);
 
-	std::vector<class ColliderComponent*> GetColliderComponentList(void) { return collider_list_; }
+	std::vector<class ColliderComponent*>& GetColliderComponentList(void) { return collider_list_; }
 
 	class Game* GetGame(void) { return game_; }
 

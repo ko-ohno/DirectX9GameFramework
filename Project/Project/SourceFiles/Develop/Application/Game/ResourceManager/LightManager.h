@@ -48,7 +48,7 @@ public:
 
 	class Game* GetGame(void) { return game_; }
 
-	const std::vector<class Light*> GetLightList(void) const { return light_list_; }
+	const std::vector<class Light*>& GetLightList(void) const { return light_list_; }
 private:
 	//マネージャーの所有者
 	class Game* game_;

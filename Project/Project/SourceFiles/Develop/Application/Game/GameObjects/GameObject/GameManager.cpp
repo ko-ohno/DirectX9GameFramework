@@ -69,7 +69,7 @@ bool GameManager::Init(void)
 	bgm_ = NEW AudioComponent(this);
 	bgm_->SetSound(SoundType::WonderLand);
 	bgm_->SetAudioVolume(0.1f);
-	bgm_->PlayLoop();
+	//bgm_->PlayLoop();
 
 	return true;
 }

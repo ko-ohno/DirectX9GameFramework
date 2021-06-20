@@ -15,7 +15,6 @@
 -----------------------------------------------------------------------------*/
 SandBox::SandBox(Game* game)
 	: GameObject(game)
-	, actor_move_(nullptr)
 {
 	this->renderer_layer_type_ = RendererLayerType::Game;
 }

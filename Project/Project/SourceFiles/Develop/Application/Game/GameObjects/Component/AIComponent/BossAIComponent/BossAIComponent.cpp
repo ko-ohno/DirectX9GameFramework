@@ -9,6 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "BossAIComponent.h"
+#include "../../../GameObject/SandBox/Actor/Enemy.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -17,6 +18,7 @@ BossAIComponent::BossAIComponent(GameObject* owner, int updateOrder)
 	: EnemyAIComponent(owner, updateOrder)
 	, boss_state_machine_(nullptr)
 {
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -24,6 +26,7 @@ BossAIComponent::BossAIComponent(GameObject* owner, int updateOrder)
 -----------------------------------------------------------------------------*/
 BossAIComponent::~BossAIComponent(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -55,6 +58,55 @@ void BossAIComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// このAIの所有者がnullptrか？
+	if (ai_owner_ != nullptr)
+	{
+		// ボスの状態を遷移
+		auto enemy_state = ai_owner_->GetEnemyState();
+		{
+			switch (enemy_state)
+			{
+			case EnemyState::Wait:
+				this->ChangeState(NEW BossStateWait());
+				break;
+
+			case EnemyState::Enter:
+				this->ChangeState(NEW BossStateEnter());
+				break;
+
+			case EnemyState::BodyPress:
+				this->ChangeState(NEW BossStateBodyPress());
+				break;
+
+			case EnemyState::Shooting:
+				this->ChangeState(NEW BossStateShooting());
+				break;
+
+			case EnemyState::LaserCannon:
+				this->ChangeState(NEW BossStateLaserCannon());
+				break;
+
+			case EnemyState::Destroy:
+				break;
+
+			default:
+				assert(!"BossAIComponent::Update()：ボスがAIが不正な状態です！");
+				break;
+			}
+		}
+
+		// このAIの所有者が移動コンポーネントがnullptrか？
+		if (enemy_move_ != nullptr)
+		{
+			if (enemy_move_->GetEnemyMotionState() == EnemyMotionState::End)
+			{
+				ai_owner_->SetEnemyState(EnemyState::Wait);
+			}
+			enemy_move_->SetEnemyState(enemy_state);
+		}
+	}
+
+	// このAIのステートマシンがnullptrか？
 	if (boss_state_machine_ != nullptr)
 	{
 		boss_state_machine_->Update(this, deltaTime);
@@ -71,8 +123,8 @@ void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
 
 	boss_state_machine_ = bossStateMachine;
 
-	//if (boss_state_machine_ != nullptr)
-	//	boss_state_machine_->Init();
+	if (boss_state_machine_ != nullptr)
+		boss_state_machine_->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -81,6 +133,8 @@ void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
 void BossAIComponent::Wait(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	enemy_move_->SetEnemyState(EnemyState::Wait);
 }
 
 /*-----------------------------------------------------------------------------
@@ -90,6 +144,7 @@ void BossAIComponent::Enter(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	enemy_move_->SetEnemyState(EnemyState::Enter);
 }
 
 /*-----------------------------------------------------------------------------
@@ -98,6 +153,8 @@ void BossAIComponent::Enter(float deltaTime)
 void BossAIComponent::BodyPress(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	enemy_move_->SetEnemyState(EnemyState::BodyPress);
 }
 
 /*-----------------------------------------------------------------------------
@@ -106,6 +163,8 @@ void BossAIComponent::BodyPress(float deltaTime)
 void BossAIComponent::Shoot(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	enemy_move_->SetEnemyState(EnemyState::Shooting);
 }
 
 /*-----------------------------------------------------------------------------
@@ -114,6 +173,8 @@ void BossAIComponent::Shoot(float deltaTime)
 void BossAIComponent::LaserCannon(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	enemy_move_->SetEnemyState(EnemyState::LaserCannon);
 }
 
 /*=============================================================================

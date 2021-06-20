@@ -144,7 +144,6 @@ void TransformComponent::ComputeDirectionVector(void)
 										  , Math::ToRadian(degree_yaw_)
 										  , Math::ToRadian(degree_pitch_)
 										  , Math::ToRadian(degree_roll_));
-
 	}
 	 
 	//向き行列と、向きベクトルを作成

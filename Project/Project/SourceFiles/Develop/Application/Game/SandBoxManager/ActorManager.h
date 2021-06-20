@@ -31,13 +31,14 @@ private:
 
 public:
 	//
-	// アクターの追加と削除
+	// アクターの追加と削除と検索
 	//
 
-	void AddActorGameObjectAddress(class Actor* Actor);
-	void RemoveActorGameObjectAddress(class Actor* Actor);
+	void AddActorGameObjectAddress(class Actor* actor);
+	void RemoveActorGameObjectAddress(class Actor* actor);
+	class Actor* FindActorGameObjectAddress(class Actor* actor);
 
-	std::vector<class Actor*> GetActorGameObjectList(void) { return actor_list_; }
+	const std::vector<class Actor*>& GetActorGameObjectList(void) const { return actor_list_; }
 
 	class Game* GetGame(void) { return game_; }
 

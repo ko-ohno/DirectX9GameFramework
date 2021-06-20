@@ -29,6 +29,9 @@ public:
 	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
+	// 移動コンポーネント
+	class PlayerMoveComponent*		  player_move_;
+
 	// 描画コンポーネント
 	class EffectRendererComponent*    effect_after_burner_;
 
@@ -42,8 +45,8 @@ private:
 	class BillboardRendererComponent* lockon_reticle_;
 	
 	// 武器コンポーネント
-	class BlasterComponent*			left_blaster_;
-	class BlasterComponent*			right_blaster_;
+	class BlasterComponent*			  left_blaster_;
+	class BlasterComponent*			  right_blaster_;
 };
 
 #endif //PLAYER_H_

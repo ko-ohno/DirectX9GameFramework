@@ -7,24 +7,20 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
+#include "../../../../../../StdAfx.h"
 #include "BossMoveComponent.h"
-#include "../../GameObject.h"
-#include "../../../../Math.h"
-#include "../../../SandBoxManager/ActorManager.h"
-#include "../../GameObject/SandBox/Actor/Enemy.h"
+#include "../../../GameObject.h"
+#include "../../../../../Math.h"
+#include "../../../../SandBoxManager/ActorManager.h"
+#include "../../../GameObject/SandBox/Actor/Enemy.h"
 
+#include "../../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 BossMoveComponent::BossMoveComponent(GameObject* owner, int updateOrder)
-	: MoveComponent(owner, updateOrder)
-	, owner_boss_actor_(nullptr)
-	, enter_motion_state_(EnterMotionState::NONE)
-	, attack_motion_state_(AttackMotionState::NONE)
-	, boss_motion_state_(BossMotionState::NONE)
-	, boss_motion_state_old_(BossMotionState::NONE)
+	: EnemyMoveComponent(owner, updateOrder)
 	, position_(0.f, 0.f, 0.f)
 	, yaw_(0.f)
 	, pitch_(0.f)
@@ -47,6 +43,10 @@ BossMoveComponent::~BossMoveComponent(void)
 -----------------------------------------------------------------------------*/
 bool BossMoveComponent::Init(void)
 {
+	// 状態ステートを待機に
+	{
+		enemy_state_ = EnemyState::Wait; 
+	}
 	return true;
 }
 
@@ -69,28 +69,6 @@ void BossMoveComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void BossMoveComponent::Update(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
-	if (owner_boss_actor_ == nullptr)
-	{
-		auto actor_game_objects = owner_->GetGame()->GetActorManager()->GetActorGameObjectList();
-
-		// アクターのリストを総当たり検索
-		for (auto actor_game_object : actor_game_objects)
-		{
-			// ボスのゲームオブジェクトを取得
-			auto type_id = actor_game_object->GetType();
-			if (type_id == GameObject::TypeID::Boss)
-			{
-				owner_boss_actor_ = actor_game_object;
-			}
-		}
-	}
-
-	auto actor_state = owner_boss_actor_->GetActorState();
-
-
-
 	// 各回転値の取得
 	yaw_   = owner_transform_->GetAngleYaw();
 	pitch_ = owner_transform_->GetAnglePitch();
@@ -101,10 +79,45 @@ void BossMoveComponent::Update(float deltaTime)
 		owner_transform_->IsSetExecuteSlerp(true);
 	}
 
-	//owner_transform_->SetTranslation();
+	ImGui::Begin("boss_state");
+
+	// 敵の状態更新
+	switch (enemy_state_)
+	{
+	case EnemyState::Enter:
+		ImGui::Text("enter");
+		this->MoveActionEnter(deltaTime);
+		break;
+	
+	case EnemyState::Wait:
+		ImGui::Text("wait");
+		this->MoveActionWait(deltaTime);
+		break;
+
+	case EnemyState::BodyPress:
+		ImGui::Text("body_press");
+		this->MoveActionBodyPress(deltaTime);
+		break;
+
+	case EnemyState::Shooting:
+		ImGui::Text("shooting");
+		this->MoveActionShoot(deltaTime);
+		break;
+	
+	case EnemyState::LaserCannon:
+		ImGui::Text("laser_cannon");
+		this->MoveActionLaserCannon(deltaTime);
+		break;
+
+	default:
+		assert(!"BossMoveComponent::Update()：ボスが不正な行動ステートにあります！");
+		break;
+	}
+
+	ImGui::End();
 
 	//ボスのステートの更新
-	boss_motion_state_old_ = boss_motion_state_;
+	enemy_state_old_ = enemy_state_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -118,10 +131,10 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 	owner_transform_->AddRotationYaw(4);
 
 	//1フレーム前と差異があった場合
-	if (boss_motion_state_ != boss_motion_state_old_)
+	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
-		enter_motion_state_ = EnterMotionState::FROM_RIGHT;
+		enemy_motion_state_ = EnemyMotionState::FromRight;
 		execute_time_ = 0.f;
 	}
 
@@ -129,9 +142,9 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 	const float MAX_EXE_TIME = 2.f;
 	execute_time_ += deltaTime;
 
-	switch (enter_motion_state_)
+	switch (enemy_motion_state_)
 	{
-	case EnterMotionState::FROM_RIGHT:
+	case EnemyMotionState::FromRight:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &enter_from_right_wait_position_
@@ -142,11 +155,11 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enter_motion_state_ = EnterMotionState::FLOM_LEFT;
+			enemy_motion_state_ = EnemyMotionState::FromLeft;
 		}
 		break;
 
-	case EnterMotionState::FLOM_LEFT:
+	case EnemyMotionState::FromLeft:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &enter_from_left_wait_position_
@@ -157,11 +170,11 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enter_motion_state_ = EnterMotionState::FLOM_UNDER;
+			enemy_motion_state_ = EnemyMotionState::FromUnder;
 		}
 		break;
 
-	case EnterMotionState::FLOM_UNDER:
+	case EnemyMotionState::FromUnder:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &enter_from_under_wait_position_
@@ -172,15 +185,16 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enter_motion_state_ = EnterMotionState::END;
+			enemy_motion_state_ = EnemyMotionState::Complete;
 		}
 		break;
 
-	case EnterMotionState::END:
+	case EnemyMotionState::Complete:
 		// モーションの実行時間が最大を超えたら
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
-			boss_motion_state_ = BossMotionState::WAIT;
+			enemy_state_ = EnemyState::Wait;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
@@ -210,7 +224,7 @@ void BossMoveComponent::MoveActionWait(float deltaTime)
 	if (execute_time_ >= MAX_STATE_TIME)
 	{
 		execute_time_ = 0.f;
-		boss_motion_state_ = BossMotionState::WAIT;
+		enemy_state_ = EnemyState::Wait;
 	}
 }
 
@@ -229,16 +243,16 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 	execute_time_ += deltaTime;
 
 	//1フレーム前と差異があった場合
-	if (boss_motion_state_ != boss_motion_state_old_)
+	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
-		attack_motion_state_ = AttackMotionState::START_UP;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
 		execute_time_ = 0.f;
 	}
 
-	switch (attack_motion_state_)
+	switch (enemy_motion_state_)
 	{
-	case AttackMotionState::START_UP:	//いったん下がって
+	case EnemyMotionState::StartUp:	//いったん下がって
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &wait_position_
@@ -249,11 +263,11 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::RELAY;
+			enemy_motion_state_ = EnemyMotionState::Relay;
 		}
 		break;
 
-	case AttackMotionState::RELAY:	//初期座標に戻ってから
+	case EnemyMotionState::Relay:	//初期座標に戻ってから
 
 		// 移動速度を二倍に
 		execute_time_ += deltaTime;
@@ -268,11 +282,11 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::ATTACK;
+			enemy_motion_state_ = EnemyMotionState::Attack;
 		}
 		break;
 
-	case AttackMotionState::ATTACK:	//攻撃
+	case EnemyMotionState::Attack:	//攻撃
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
@@ -284,11 +298,11 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::END;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
-	case AttackMotionState::END:	//余韻を残して待機行動へ
+	case EnemyMotionState::End:	//余韻を残して待機行動へ
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
@@ -300,7 +314,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			boss_motion_state_ = BossMotionState::WAIT;
+			enemy_state_ = EnemyState::Wait;
 		}
 		break;
 
@@ -319,11 +333,11 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 void BossMoveComponent::MoveActionShoot(float deltaTime)
 {
 	//1フレーム前と差異があった場合
-	if (boss_motion_state_ != boss_motion_state_old_)
+	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
 		execute_time_ = 0.f;
-		attack_motion_state_ = AttackMotionState::START_UP;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
 	}
 
 	//アニメーションの時間
@@ -332,9 +346,9 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 	execute_time_ += deltaTime;
 
 
-	switch (attack_motion_state_)
+	switch (enemy_motion_state_)
 	{
-	case AttackMotionState::START_UP:
+	case EnemyMotionState::StartUp:
 
 		// 回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
@@ -351,25 +365,26 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::ATTACK;
+			enemy_motion_state_ = EnemyMotionState::Attack;
 		}
 		break;
 
-	case AttackMotionState::ATTACK:
+	case EnemyMotionState::Attack:
+
 		//回転の更新
-		owner_transform_->SetSlerpSpeed(3.0f);
-		owner_transform_->SetRotation(0, 90, roll_);
-		owner_transform_->AddRotationRoll(4);
+		owner_transform_->SetSlerpSpeed(5.f);
+		owner_transform_->SetRotation(90.f, pitch_, 90.f);
+		owner_transform_->AddRotationPitch(4);
 
 		//状態の遷移
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::END;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
-	case AttackMotionState::END:
+	case EnemyMotionState::End:
 		//回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
 		owner_transform_->SetRotation(yaw_, 0, 0);
@@ -385,7 +400,7 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			boss_motion_state_ = BossMotionState::WAIT;
+			enemy_state_ = EnemyState::Wait;
 		}
 		break;
 
@@ -404,11 +419,11 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 {
 	//1フレーム前と差異があった場合
-	if (boss_motion_state_ != boss_motion_state_old_)
+	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
 		execute_time_ = 0.f;
-		attack_motion_state_ = AttackMotionState::START_UP;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
 
 		//エフェクトの再生
 
@@ -418,9 +433,9 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 	const float MAX_STATE_TIME = 7.f;
 	execute_time_ += deltaTime;
 
-	switch (attack_motion_state_)
+	switch (enemy_motion_state_)
 	{
-	case AttackMotionState::START_UP:
+	case EnemyMotionState::StartUp:
 		// 回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
 		owner_transform_->SetRotation(yaw_, 0, 0);
@@ -437,11 +452,11 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		if (execute_time_ >= 1.f)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::ATTACK;
+			enemy_motion_state_ = EnemyMotionState::Attack;
 		}
 		break;
 
-	case AttackMotionState::ATTACK:
+	case EnemyMotionState::Attack:
 		// 回転の更新
 		owner_transform_->SetSlerpSpeed(3.0f);
 
@@ -453,11 +468,11 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			attack_motion_state_ = AttackMotionState::END;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
-	case AttackMotionState::END:
+	case EnemyMotionState::End:
 		// 回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
 		owner_transform_->SetRotation(yaw_, 0, 0);
@@ -473,7 +488,7 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		if (execute_time_ >= 1.f)
 		{
 			execute_time_ = 0.f;
-			boss_motion_state_ = BossMotionState::WAIT;
+			enemy_state_ = EnemyState::Wait;
 		}
 		break;
 

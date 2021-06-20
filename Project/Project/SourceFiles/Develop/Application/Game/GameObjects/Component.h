@@ -64,6 +64,7 @@ public:
 		// 移動コンポーネント
 		, MoveComponent 
 		, PlayerMoveComponent
+		, EnemyMoveComponent
 		, BossMoveComponent
 		// 武器コンポーネント
 		, WeaponComponent

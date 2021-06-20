@@ -27,7 +27,7 @@
 #include "GameObjects/GameObject/BackGround/SkyBox.h"
 #include "GameObjects/GameObject/BackGround/Planet.h"
 
-#include "GameObjects/GameObject/SandBox/GameCamera.h"
+#include "GameObjects/GameObject/Camera/GameCamera.h"
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"

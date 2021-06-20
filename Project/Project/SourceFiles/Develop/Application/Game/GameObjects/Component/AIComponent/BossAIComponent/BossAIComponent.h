@@ -37,8 +37,8 @@ public:
 	void LaserCannon(float deltaTime);
 
 	virtual TypeID GetComponentType() const override { return TypeID::BossAIComponent; };
+
 private:
-	class Actor*			boss_actor_adress_;
 	class BossStateMachine* boss_state_machine_;
 };
 
@@ -63,13 +63,9 @@ class BossStateEnter : public BossStateMachine
 {
 public:
 	BossStateEnter(void)
-	{
-		this->Init();
-	}
+	{}
 	~BossStateEnter(void) override
-	{
-		this->Uninit();
-	}
+	{}
 
 	void Init(void) override
 	{}
@@ -91,13 +87,9 @@ class BossStateWait : public BossStateMachine
 {
 public:
 	BossStateWait(void)
-	{
-		this->Init();
-	}
+	{}
 	~BossStateWait(void) override
-	{
-		this->Uninit();
-	}
+	{}
 
 	void Init(void) override
 	{}
@@ -116,17 +108,13 @@ private:
 /*-------------------------------------
 /* ボスの体当たり攻撃クラス
 -------------------------------------*/
-class BossStateBodyblow : public BossStateMachine
+class BossStateBodyPress : public BossStateMachine
 {
 public:
-	BossStateBodyblow(void)
-	{
-		this->Init();
-	}
-	~BossStateBodyblow(void) override
-	{
-		this->Uninit();
-	}
+	BossStateBodyPress(void)
+	{}
+	~BossStateBodyPress(void) override
+	{}
 
 	void Init(void) override
 	{}
@@ -143,17 +131,13 @@ private:
 /*-------------------------------------
 /* ボスの銃撃行動クラス
 -------------------------------------*/
-class BossStateShoot : public BossStateMachine
+class BossStateShooting : public BossStateMachine
 {
 public:
-	BossStateShoot(void)
-	{
-		this->Init();
-	}
-	~BossStateShoot(void) override
-	{
-		this->Uninit();
-	}
+	BossStateShooting(void)
+	{}
+	~BossStateShooting(void) override
+	{}
 
 	void Init(void) override
 	{}
@@ -173,13 +157,9 @@ class BossStateLaserCannon : public BossStateMachine
 {
 public:
 	BossStateLaserCannon(void)
-	{
-		this->Init();
-	}
+	{}
 	~BossStateLaserCannon(void) override
-	{
-		this->Uninit();
-	}
+	{}
 
 	void Init(void) override
 	{}

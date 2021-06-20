@@ -64,7 +64,7 @@ Player::~Player(void)
 bool Player::Init(void)
 {
 	// プレイヤーの移動コンポーネントの生成
-	actor_move_ = NEW  PlayerMoveComponent(this);
+	player_move_ = NEW  PlayerMoveComponent(this);
 
 	// 描画コンポーネント
 	{
@@ -89,8 +89,8 @@ bool Player::Init(void)
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				far_reticle_->SetScale(1.2f);
-				far_reticle_->SetTranslationZ(8.f);
+				far_reticle_->SetScale(0.8f);
+				far_reticle_->SetTranslationZ(10.f);
 			}
 
 			//　手前のレティクル
@@ -101,8 +101,8 @@ bool Player::Init(void)
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				near_reticle_->SetScale(1.4f);
-				near_reticle_->SetTranslationZ(6.0f);
+				near_reticle_->SetScale(1.f);
+				near_reticle_->SetTranslationZ(9.f);
 			}
 
 			//　ロックオンのレティクル
@@ -113,8 +113,8 @@ bool Player::Init(void)
 				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				lockon_reticle_->SetScale(1.4f);
-				lockon_reticle_->SetTranslationZ(6.0f);
+				lockon_reticle_->SetScale(1.f);
+				lockon_reticle_->SetTranslationZ(9.f);
 			}
 		}
 	}

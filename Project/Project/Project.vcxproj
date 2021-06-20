@@ -177,11 +177,12 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent.h" />
@@ -232,7 +233,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Player.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera\GameCamera.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.h" />
@@ -303,13 +304,16 @@
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_impl_win32.h" />
     <ClInclude Include="SourceFiles\External\ImGui\include\imgui_internal.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\StrongEnemy.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\BossMoveComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\ChargeBullet.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\PlayerMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\FFPMeshRendererComponent .cpp" />
@@ -360,7 +364,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Player.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\GameCamera.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\Camera\GameCamera.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.cpp" />
@@ -426,6 +430,8 @@
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_draw.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_dx9.cpp" />
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui_impl_win32.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\StrongEnemy.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Icon\icon.ico" />

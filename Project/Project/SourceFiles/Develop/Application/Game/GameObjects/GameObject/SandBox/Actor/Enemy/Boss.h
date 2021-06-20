@@ -11,7 +11,6 @@
 /*--- インクルードファイル ---*/
 #include "../Enemy.h"
 
-
 /*-------------------------------------
 /*  敵ゲームオブジェクト
 -------------------------------------*/
@@ -30,7 +29,6 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Boss; }
 
 private:
-	class BossAIComponent* boss_ai_;
 };
 
 #endif //BOSS_H_

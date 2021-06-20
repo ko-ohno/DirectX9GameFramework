@@ -78,24 +78,46 @@ void ActorManager::Uninit(void)
 /*-----------------------------------------------------------------------------
 /* アクターゲームオブジェクトのアドレスの追加処理
 -----------------------------------------------------------------------------*/
-void ActorManager::AddActorGameObjectAddress(Actor* Actor)
+void ActorManager::AddActorGameObjectAddress(Actor* actor)
 {
-	actor_list_.emplace_back(Actor);
+	actor_list_.emplace_back(actor);
 }
 
 /*-----------------------------------------------------------------------------
 /* アクターゲームオブジェクトのアドレスの削除処理
 -----------------------------------------------------------------------------*/
-void ActorManager::RemoveActorGameObjectAddress(Actor* Actor)
+void ActorManager::RemoveActorGameObjectAddress(Actor* actor)
 {
 	auto iter = std::find(actor_list_.begin() //範囲0～
 						 , actor_list_.end()  //範囲最大まで
-						 , Actor);			   //探す対象
+						 , actor);			   //探す対象
 
 	if (iter != actor_list_.end())
 	{
 		actor_list_.erase(iter);
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* アクターゲームオブジェクトのアドレスを検索処理
+-----------------------------------------------------------------------------*/
+Actor* ActorManager::FindActorGameObjectAddress(Actor* actor)
+{
+	auto iter = std::find(actor_list_.begin() //範囲0～
+						 , actor_list_.end()  //範囲最大まで
+						 , actor);			   //探す対象
+
+	// 見つかった場合
+	if (iter != actor_list_.end())
+	{
+		// コンテナの中のインデックスを取得
+		const int iter_index = std::distance(actor_list_.begin(), iter);
+		return actor_list_.at(iter_index);
+	}
+
+	// 見つからなかった場合
+	assert(!"ActorManager::FindActorGameObjectAddress():アクターが見つかりませんでした！");
+	return nullptr;
 }
 
 /*=============================================================================

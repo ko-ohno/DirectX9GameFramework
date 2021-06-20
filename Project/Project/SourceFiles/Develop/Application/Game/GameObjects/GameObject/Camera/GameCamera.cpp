@@ -49,6 +49,7 @@ bool GameCamera::Init(void)
 
 		camera_component_->SetCameraTranslationX(0.f);
 		camera_component_->SetCameraTranslationY(0.f);
+		camera_component_->SetCameraTranslationZ(-15.f);
 	}
 
 	// 注視点座標のギズモを表示

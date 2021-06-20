@@ -23,7 +23,7 @@ PlayerMoveComponent::PlayerMoveComponent(GameObject* owner, int updateOrder)
 	, is_move_bottom_(false)
 	, is_move_left_(false)
 	, is_move_right_(false)
-	, move_speed_(10.f)
+	, move_speed_(12.f)
 {
 	this->Init();
 }
@@ -87,35 +87,35 @@ void PlayerMoveComponent::Update(float deltaTime)
 	{
 		// ã‰º‚ÌˆÚ“®ˆ—
 		{
-			const float move_value = left_thumb.y_ * (front_vector.y * move_speed_);
+			const float move_value_y = left_thumb.y_ * (front_vector.y * move_speed_);
 			if (is_move_top_)
 			{
 				owner_transform_->SetRotationPitch(-30.f);
-				owner_transform_->AddTranslationY(move_value * deltaTime);
+				owner_transform_->AddTranslationY(move_value_y * deltaTime);
 			}
 
 			if (is_move_bottom_)
 			{
 				owner_transform_->SetRotationPitch(30.f);
-				owner_transform_->AddTranslationY(-move_value * deltaTime);
+				owner_transform_->AddTranslationY(-move_value_y * deltaTime);
 			}
 		}
 		
 		// ¶‰E‚ÌˆÚ“®ˆ—
 		{
-			const float move_value = left_thumb.x_ * (front_vector.x * move_speed_);
+			const float move_value_x = left_thumb.x_ * (front_vector.x * move_speed_);
 			if (is_move_right_)
 			{
 				owner_transform_->SetRotationYaw(30.f);
 				owner_transform_->SetRotationRoll(-15.f);
-				owner_transform_->AddTranslationX(move_value * deltaTime);
+				owner_transform_->AddTranslationX(move_value_x * deltaTime);
 			}
 
 			if (is_move_left_)
 			{
 				owner_transform_->SetRotationYaw(-30.f);
 				owner_transform_->SetRotationRoll(15.f);
-				owner_transform_->AddTranslationX(-move_value * deltaTime);
+				owner_transform_->AddTranslationX(-move_value_x * deltaTime);
 			}
 		}
 

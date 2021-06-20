@@ -16,7 +16,6 @@
 -----------------------------------------------------------------------------*/
 Actor::Actor(Game* game)
 	: SandBox(game)
-	, actor_state_(ActorState::None)
 	, max_hit_point_(10.f)
 	, hit_point_(10.f)
 	, max_attack_(3.f)

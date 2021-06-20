@@ -16,6 +16,9 @@
 -----------------------------------------------------------------------------*/
 Enemy::Enemy(Game* game)
 	: Actor(game)
+	, enemy_state_(EnemyState::None)
+	, enemy_ai_(nullptr)
+	, enemy_move_(nullptr)
 {
 }
 

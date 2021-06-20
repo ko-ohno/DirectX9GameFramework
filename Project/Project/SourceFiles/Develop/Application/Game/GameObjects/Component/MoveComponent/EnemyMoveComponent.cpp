@@ -1,32 +1,30 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EnemyAIComponent.cpp] 敵AIのコンポーネント
+/*	[EnemyMoveComponent.cpp] 敵の移動コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：敵AIコンポーネントの処理を定義
+/*	説明：敵の移動コンポーネントの処理を定義
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "EnemyAIComponent.h"
+#include "EnemyMoveComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-EnemyAIComponent::EnemyAIComponent(GameObject* owner, int updateOrder)
-	: AIComponent(owner, updateOrder)
-	, ai_owner_(nullptr)
-	, enemy_move_(nullptr)
+EnemyMoveComponent::EnemyMoveComponent(GameObject* owner, int updateOrder)
+	: MoveComponent(owner, updateOrder)
+	, enemy_motion_state_(EnemyMotionState::None)
 	, enemy_state_(EnemyState::None)
-	, max_hit_point_(0.f)
-	, hit_point_(0.f)
+	, enemy_state_old_(EnemyState::None)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-EnemyAIComponent::~EnemyAIComponent(void)
+EnemyMoveComponent::~EnemyMoveComponent(void)
 {
 }
 
