@@ -29,6 +29,9 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Boss; }
 
 private:
+	static constexpr float ATTACK_VALUE_BODY_PRESS		= 10.f;
+	static constexpr float ATTACK_VALUE_SHOOT			=  5.f;
+	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
 };
 
 #endif //BOSS_H_

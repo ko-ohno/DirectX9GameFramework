@@ -46,13 +46,7 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
 
-	inline EnemyState GetEnemyState(void) { return enemy_state_; }
-	inline void SetEnemyState(EnemyState actorState) { enemy_state_ = actorState; }
-
 protected:
-	// 敵のステート
-	enum class EnemyState	  enemy_state_;
-
 	// 敵のAIコンポーネント
 	class EnemyAIComponent*   enemy_ai_;
 

@@ -41,15 +41,19 @@ public:
 	EnemyMoveComponent(class GameObject* owner, int updateOrder);
 	~EnemyMoveComponent(void);
 
+
+	//
+	// 敵AIの状態を設定
+	//
+
+	void SetEnemyState(EnemyState enemyState) { enemy_state_ = enemyState; }
+
 	//
 	// 移動アクションを指定
 	//
 
-	void SetEnemyState(EnemyState enemyState) { enemy_state_ = enemyState; }
-	EnemyState GetEnemyState(void) { return enemy_state_; }
-
-	void SetEnemyMotionState(EnemyMotionState enemyMotionState) { enemy_motion_state_ = enemyMotionState; }
-	EnemyMotionState GetEnemyMotionState(void) const { return enemy_motion_state_; }
+	void GetMotionState(EnemyMotionState enemyMotionState) { enemy_motion_state_ = enemyMotionState; }
+	EnemyMotionState GetMotionState(void) const { return enemy_motion_state_; }
 
 	virtual TypeID GetComponentType() const override { return TypeID::EnemyMoveComponent; };
 

@@ -78,15 +78,14 @@ bool Boss::Init(void)
 
 	// ボスの状態を初期化
 	{
-		// AIの所有者を通知
-		enemy_ai_->SetEnemyAIOwner(this);
-
-		// 移動コンポーネントを通知
-		enemy_ai_->SetOwnerMoveComponent(this->enemy_move_);
+		auto init_boss_state = EnemyState::Enter;
 
 		// 敵の状態を初期化
-		this->SetEnemyState(EnemyState::Enter);
+		enemy_ai_->SetEnemyState(init_boss_state);
+		enemy_move_->SetEnemyState(init_boss_state);
 	}
+
+
 	return true;
 }
 
@@ -116,97 +115,53 @@ void Boss::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
 	}
 
-	// AIコンポーネントから敵の行動状態を取得
+	/*
+	*			←		EnemyState		←
+	* 
+	┏━━━━━━┓←┏━━━━━━┓←┏━━━━━━┓
+	┃　　Move　　┃  ┃　　Boss 　 ┃　┃　　AI　　　┃
+	┗━━━━━━┛→┗━━━━━━┛→┗━━━━━━┛
+	*
+	*			→		MotionState		→
+	*/
+
+	// AIコンポーネントから敵AIの行動ステートを取得
 	auto ai_state = enemy_ai_->GetEnemyState();
 	{
-		// AIコンポーネントの情報から、次の移動モーションを決定する
+		// 移動コンポーネントへ、敵AIの行動ステートを通知
+		enemy_move_->SetEnemyState(ai_state);
 	}
-
-
 
 	// 移動コンポーネントから移動モーション状態を取得
-	auto move_motion_state = enemy_move_->GetEnemyMotionState();
+	auto move_motion_state = enemy_move_->GetMotionState();
 	{
-		// 移動コンポーネントの情報から、次の移動モーションを決定する
+		// AIコンポーネントへ移動モーション状態を通知
+		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
-
-	//boss_ai_->ChangeState(NEW BossStateEnter());
-	//boss_ai_->ChangeState(NEW BossStateWait());
-	//boss_ai_->ChangeState(NEW BossStateBodyblow());
-	//boss_ai_->ChangeState(NEW BossStateShoot());
-	//boss_ai_->ChangeState(NEW BossStateLaserCannon());
-
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_Y))
+	//　自身のAIのステートから攻撃力を更新する
+	switch (ai_state)
 	{
-		this->SetEnemyState(EnemyState::Enter);
+	case EnemyState::BodyPress:
+		attack_ = ATTACK_VALUE_BODY_PRESS;
+		break;
+
+	case EnemyState::Shooting:
+		attack_ = ATTACK_VALUE_SHOOT;
+		break;
+
+	case EnemyState::LaserCannon:
+		attack_ = ATTACK_VALUE_LASER_CANNON;
+		break;
+
+	case EnemyState::Destroy:
+		attack_ = 0.f;
+		break;
+
+	default:
+		break;
 	}
 
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_LEFT_SHOULDER))
-	{
-		this->SetEnemyState(EnemyState::Wait);
-	}
-
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_LEFT_TRIGGER))
-	{
-		this->SetEnemyState(EnemyState::BodyPress);
-	}
-
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_RIGHT_SHOULDER))
-	{
-		this->SetEnemyState(EnemyState::Shooting);
-	}
-
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_RIGHT_TRIGGER))
-	{
-		this->SetEnemyState(EnemyState::LaserCannon);
-	}
-
-	//// エネミーの状態ステート
-	//{
-	//	switch (enemy_state_)
-	//	{
-	//	case EnemyState::Wait:
-	//		enemy_move_->SetMoveActionState(EnemyState::Wait);
-	//		break;
-	//
-	//	case EnemyState::Enter:
-	//		enemy_move_->SetMoveActionState(EnemyState::Enter);
-	//		break;
-
-	//	case EnemyState::BodyPress:
-	//		enemy_move_->SetMoveActionState(EnemyState::BodyPress);
-	//		break;
-
-	//	case EnemyState::Shooting:
-	//		enemy_move_->SetMoveActionState(EnemyState::Shooting);
-	//		break;
-
-	//	case EnemyState::LaserCannon:
-	//		enemy_move_->SetMoveActionState(EnemyState::LaserCannon);
-	//		break;
-
-	//	case EnemyState::Destroy:
-	//		// 倒されたときのモーション
-	//		enemy_move_->SetMoveActionState(EnemyState::Wait);
-	//		break;
-
-	//	default:
-	//		assert(!"Boss::UpdateGameObject()：ボスが不正な状態をしています！");
-	//		break;
-	//	}
-	//}
-
-	//// 自身の状態をAIに通知
-	//{
-	//	if (enemy_move_->GetEnemyMotionState() == EnemyMotionState::End)
-	//	{
-	//		boss_ai_->SetEnemyState(EnemyState::Wait);
-	//	}
-	//	
-	//	boss_ai_->SetHitPoint(this->GetHitPoint());
-	//	this->SetEnemyState(boss_ai_->GetEnemyState());
-	//}
 }
 
 /*=============================================================================

@@ -28,6 +28,8 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
+	void EnemyStateController(void);
+
 	void ChangeState(class BossStateMachine* bossStateMachine);
 
 	void Wait(float deltaTime);

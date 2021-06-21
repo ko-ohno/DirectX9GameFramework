@@ -15,9 +15,8 @@
 -----------------------------------------------------------------------------*/
 EnemyAIComponent::EnemyAIComponent(GameObject* owner, int updateOrder)
 	: AIComponent(owner, updateOrder)
-	, ai_owner_(nullptr)
-	, enemy_move_(nullptr)
 	, enemy_state_(EnemyState::None)
+	, motion_state_(EnemyMotionState::None)
 	, max_hit_point_(0.f)
 	, hit_point_(0.f)
 {

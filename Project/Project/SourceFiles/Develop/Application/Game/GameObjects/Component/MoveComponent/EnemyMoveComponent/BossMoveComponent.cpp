@@ -43,10 +43,6 @@ BossMoveComponent::~BossMoveComponent(void)
 -----------------------------------------------------------------------------*/
 bool BossMoveComponent::Init(void)
 {
-	// 状態ステートを待機に
-	{
-		enemy_state_ = EnemyState::Wait; 
-	}
 	return true;
 }
 
@@ -193,7 +189,6 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		// モーションの実行時間が最大を超えたら
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
-			enemy_state_ = EnemyState::Wait;
 			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
@@ -224,7 +219,7 @@ void BossMoveComponent::MoveActionWait(float deltaTime)
 	if (execute_time_ >= MAX_STATE_TIME)
 	{
 		execute_time_ = 0.f;
-		enemy_state_ = EnemyState::Wait;
+		enemy_motion_state_ = EnemyMotionState::End;
 	}
 }
 
@@ -298,11 +293,11 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_motion_state_ = EnemyMotionState::End;
+			enemy_motion_state_ = EnemyMotionState::Complete;
 		}
 		break;
 
-	case EnemyMotionState::End:	//余韻を残して待機行動へ
+	case EnemyMotionState::Complete:	//余韻を残して待機行動へ
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
@@ -314,7 +309,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_state_ = EnemyState::Wait;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
@@ -380,11 +375,11 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_motion_state_ = EnemyMotionState::End;
+			enemy_motion_state_ = EnemyMotionState::Complete;
 		}
 		break;
 
-	case EnemyMotionState::End:
+	case EnemyMotionState::Complete:
 		//回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
 		owner_transform_->SetRotation(yaw_, 0, 0);
@@ -400,7 +395,7 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_state_ = EnemyState::Wait;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
@@ -468,11 +463,11 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		if (execute_time_ >= MAX_STATE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_motion_state_ = EnemyMotionState::End;
+			enemy_motion_state_ = EnemyMotionState::Complete;
 		}
 		break;
 
-	case EnemyMotionState::End:
+	case EnemyMotionState::Complete:
 		// 回転の更新
 		owner_transform_->SetSlerpSpeed(5.f);
 		owner_transform_->SetRotation(yaw_, 0, 0);
@@ -488,7 +483,7 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		if (execute_time_ >= 1.f)
 		{
 			execute_time_ = 0.f;
-			enemy_state_ = EnemyState::Wait;
+			enemy_motion_state_ = EnemyMotionState::End;
 		}
 		break;
 
