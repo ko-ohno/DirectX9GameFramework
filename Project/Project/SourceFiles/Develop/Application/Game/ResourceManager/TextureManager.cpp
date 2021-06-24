@@ -13,12 +13,11 @@
 
 //テクスチャーのリスト
 const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)] = {
-	//自分自身
 	"Sample"
 	, "Prototype"
-	, "Reticle"
-	, "LockonReticle"
-
+	, "Blank"
+	, "FarReticle"
+	, "NearReticle"
 	, "Planet"
 };
 
@@ -86,11 +85,12 @@ bool TextureManager::Init(void)
 	// リストの初期化
 	unmap_texture_path_list_.clear();
 	{
-		unmap_texture_path_list_[TextureType::Sample]    = "tex1.bmp";
-		unmap_texture_path_list_[TextureType::Prototype] = "PrototypingTextures/texture_01.png";
-		unmap_texture_path_list_[TextureType::FarReticle]		 = "ReticleFar.png";
+		unmap_texture_path_list_[TextureType::Sample]	   = "tex1.bmp";
+		unmap_texture_path_list_[TextureType::Prototype]   = "PrototypingTextures/texture_01.png";
+		unmap_texture_path_list_[TextureType::Blank]	   = "Blank.png";
+		unmap_texture_path_list_[TextureType::FarReticle]  = "ReticleFar.png";
 		unmap_texture_path_list_[TextureType::NearReticle] = "ReticleNear.png";
-		unmap_texture_path_list_[TextureType::Planet]	     = "Planet.png";
+		unmap_texture_path_list_[TextureType::Planet]	   = "Planet.png";
 
 	}
 	return true;

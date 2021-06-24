@@ -18,6 +18,7 @@ enum class TextureType
 	None = -1
 	, Sample
 	, Prototype
+	, Blank
 	, FarReticle
 	, NearReticle
 	, Planet
