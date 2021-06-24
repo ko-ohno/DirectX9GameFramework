@@ -210,22 +210,26 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 	//コンポーネントの総描画
 	for (auto renderer_component : renderer_components_)
 	{
-		//レンダラーのレイヤーの情報を取得
-		auto renderer_layer_type = renderer_component->GetRendererLayerType();
-
-		//描画命令中のレイヤーとレンダラーのレイヤーが等しい時描画
-		if (static_cast<int>(renderer_layer_type) == nowDrawLayerOrder)
+		// 描画する描画コンポーネントか？
+		if (renderer_component->IsGetDrawable())
 		{
-			//シェーダーのセット
-			auto shader_type = renderer_component->GetShaderType();
-			if (shader_type == ShaderType::None)
-			{
-				assert(!"DrawUpRendererComponents():不正なシェーダーが設定されています。");
-			}
-			auto shader = shader_manager_->ShaderDispatch(shader_type); //定数キーからシェーダを取得
+			//レンダラーのレイヤーの情報を取得
+			auto renderer_layer_type = renderer_component->GetRendererLayerType();
 
-			//シェーダを使用したコンポーネントの描画
-			renderer_component->Draw(shader, camera);
+			//描画命令中のレイヤーとレンダラーのレイヤーが等しい時描画
+			if (static_cast<int>(renderer_layer_type) == nowDrawLayerOrder)
+			{
+				//シェーダーのセット
+				auto shader_type = renderer_component->GetShaderType();
+				if (shader_type == ShaderType::None)
+				{
+					assert(!"DrawUpRendererComponents():不正なシェーダーが設定されています。");
+				}
+				auto shader = shader_manager_->ShaderDispatch(shader_type); //定数キーからシェーダを取得
+
+				//シェーダを使用したコンポーネントの描画
+				renderer_component->Draw(shader, camera);
+			}
 		}
 	}
 }

@@ -19,6 +19,7 @@
 -----------------------------------------------------------------------------*/
 RendererComponent::RendererComponent(GameObject* owner, int drawOrder)
 	: Component(owner, drawOrder)
+	, is_drawable_(true)
 	, draw_order_(drawOrder)
 	, renderer_layer_type_(RendererLayerType::None)
 	, shader_type_(ShaderType::None)

@@ -106,8 +106,8 @@ public:
 
 public: 
 	// このコンポーネントの回転を取得
-	inline void SetRotationMatrix(const D3DXMATRIX& rotationMatrix) { rotation_matrix_ = rotationMatrix; }
 	inline D3DXMATRIX* GetRotationMatrix(void) { return &rotation_matrix_; }
+	inline void SetRotationMatrix(const D3DXMATRIX& rotationMatrix) { rotation_matrix_ = rotationMatrix; }
 
 	// このコンポーネントのワールド座標情報を取得
 	inline D3DXMATRIX* GetWorldMatrix(void) { return &world_matrix_; }
@@ -115,9 +115,13 @@ public:
 	// このコンポーネントの型
 	inline TypeID GetComponentType(void) const override { return TypeID::RendererComponent; }
 	
+	// このコンポーネントの型
+	inline bool IsGetDrawable(void) { return is_drawable_; }
+	inline void IsSetDrawable(bool isDrawable) { is_drawable_ = isDrawable; }
+
 	// このコンポーネントがレンダリングされる描画レイヤーの設定
-	inline void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 	inline RendererLayerType GetRendererLayerType(void) const { return renderer_layer_type_; }
+	inline void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 
 	// このコンポーネントがレンダリングされるシェーダーの種類
 	inline ShaderType GetShaderType(void) const { return shader_type_; }
@@ -138,6 +142,9 @@ protected:
 	//
 	//　Renderer用の情報
 	//
+
+	// 描画するか
+	bool is_drawable_;
 
 	// 描画するレイヤーの種類
 	RendererLayerType renderer_layer_type_;
