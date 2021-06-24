@@ -30,6 +30,8 @@ public:
 		// AI
 		, AIComponent
 		, EnemyAIComponent
+		, WeakEnemyAIComponent
+		, StrongEnemyAIComponent
 		, BossAIComponent
 		// 音声
 		, AudioComponent
@@ -65,6 +67,8 @@ public:
 		, MoveComponent 
 		, PlayerMoveComponent
 		, EnemyMoveComponent
+		, WeakEnemyMoveComponent
+		, StrongEnemyMoveComponent
 		, BossMoveComponent
 		// 武器コンポーネント
 		, WeaponComponent

@@ -44,6 +44,8 @@ public:
 		, Actor
 		, Player
 		, Enemy
+		, WeakEnemy
+		, StrongEnemy
 		, Boss
 
 		// îwåi

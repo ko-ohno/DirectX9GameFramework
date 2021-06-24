@@ -69,7 +69,8 @@ public:
 
 	// サンドボックスの各マネージャ
 
-	class ActorManager*	GetActorManager(void) { return actor_manager_; }
+	class ActorManager*	 GetActorManager(void) { return actor_manager_; }
+	class EnemieManager* GetEnemieManager(void) { return enemie_manager_; }
 
 private:
 	//各更新処理
@@ -105,6 +106,7 @@ private:
 	// サンドボックスの管理者
 
 	class ActorManager*	 actor_manager_;
+	class EnemieManager* enemie_manager_;
 
 };
 

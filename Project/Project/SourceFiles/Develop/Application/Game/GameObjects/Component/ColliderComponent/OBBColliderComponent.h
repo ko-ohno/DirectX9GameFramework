@@ -40,11 +40,16 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::OBBColliderComponent; };
 
-	Vector3* GetPosition(void) { return &position_; }
-	void	 SetPosition(Vector3& position) { position_ = position; }
-	void	 SetPosition(D3DXVECTOR3& position) { position_ = position; }
+	inline void SetTranslation(Vector3& position) { position_ = position; }
+	inline void SetTranslation(D3DXVECTOR3& position) { position_ = position; }
+	inline void SetTranslation(float posX, float posY, float posZ) { position_ = { posX, posY, posZ }; }
+	inline void SetTranslationX(float posX) { position_.x_ = posX; }
+	inline void SetTranslationY(float posY) { position_.y_ = posY; }
+	inline void SetTranslationZ(float posZ) { position_.z_ = posZ; }
 
-	Vector3* GetDirElement(AxisType axisType) { return &axis_element_[(int)axisType]; }
+	inline Vector3* GetPosition(void) { return &position_; }
+
+	inline Vector3* GetDirElement(AxisType axisType) { return &axis_element_[(int)axisType]; }
 
 	void SetDirElement(D3DXMATRIX& element)
 	{
@@ -65,8 +70,8 @@ public:
 		axis_element_[(int)axisType] = axisElement;
 	}
 
-	void	 SetDirLength(float axisLength, AxisType axisType) { axis_length_[(int)axisType] = axisLength; }
-	float	 GetDirLength(AxisType axisType) { return axis_length_[(int)axisType]; }
+	inline void	 SetDirLength(float axisLength, AxisType axisType) { axis_length_[(int)axisType] = axisLength; }
+	inline float GetDirLength(AxisType axisType) { return axis_length_[(int)axisType]; }
 
 	// ï™ó£é≤Ç…ìäâeÇ≥ÇÍÇΩé≤ê¨ï™Ç©ÇÁìäâeê¸ï™í∑ÇéZèo
 	static float LenSegOnSeparateAxis(D3DXVECTOR3* Sep, D3DXVECTOR3* e1, D3DXVECTOR3* e2, D3DXVECTOR3* e3 = 0)

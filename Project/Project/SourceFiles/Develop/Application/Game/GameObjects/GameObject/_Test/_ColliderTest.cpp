@@ -134,7 +134,7 @@ void ColliderTest::UpdateGameObject(float deltaTime)
 		box_gizmo_renderer_component_->SetRotationMatrix(rot_matrix);
 
 		// 衝突判定を更新
-		obb_collider_component_->SetPosition(box_pos);
+		obb_collider_component_->SetTranslation(box_pos);
 
 		//衝突判定に回転を反映
 		obb_collider_component_->SetDirElement(rot_matrix);
@@ -145,7 +145,7 @@ void ColliderTest::UpdateGameObject(float deltaTime)
 		box_gizmo_renderer_component_a_->SetVertexColor(255, 255, 255, 255);
 
 		// 衝突判定Aを更新
-		obb_collider_component_a_->SetPosition(box_end_pos);
+		obb_collider_component_a_->SetTranslation(box_end_pos);
 
 
 	
@@ -172,7 +172,7 @@ void ColliderTest::UpdateGameObject(float deltaTime)
 		sphere_gizmo_renderer_component_->SetVertexColor(255, 255, 255, 255);
 
 		// 衝突判定を更新
-		sphere_collider_component_->SetPosition(sphere_pos);
+		sphere_collider_component_->SetTranslation(sphere_pos);
 
 
 		// ギズモAの更新
@@ -180,7 +180,7 @@ void ColliderTest::UpdateGameObject(float deltaTime)
 		sphere_gizmo_renderer_component_a_->SetVertexColor(255, 255, 255, 255);
 
 		// 衝突判定Aを更新
-		sphere_collider_component_a_->SetPosition(sphere_end_pos);
+		sphere_collider_component_a_->SetTranslation(sphere_end_pos);
 
 		const bool isHit = CheckCollision::SphereVSSpghre(sphere_collider_component_, sphere_collider_component_a_);
 		if (isHit)

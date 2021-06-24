@@ -177,9 +177,13 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\StrongEnemyAIComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\StrongEnemyMoveComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\WeakEnemyMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\BossAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.h" />
@@ -268,6 +272,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Sound.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Texture.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.h" />
@@ -308,9 +313,13 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\StrongEnemyAIComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\StrongEnemyMoveComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\WeakEnemyMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\BossAIComponent\BossAIComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\BossAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\Boss.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.cpp" />
@@ -399,6 +408,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Sound.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Texture.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.cpp" />

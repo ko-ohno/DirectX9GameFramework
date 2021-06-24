@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Enemy.h"
-#include "../../../../SandBoxManager/ActorManager.h"
+#include "../../../../SandBoxManager/EnemieManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -19,6 +19,8 @@ Enemy::Enemy(Game* game)
 	, enemy_ai_(nullptr)
 	, enemy_move_(nullptr)
 {
+	// マネージャのリストにアドレスを追加
+	game->GetEnemieManager()->AddEnemyGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -26,6 +28,8 @@ Enemy::Enemy(Game* game)
 -----------------------------------------------------------------------------*/
 Enemy::~Enemy(void)
 {
+	// マネージャのリストにアドレスを削除
+	game_->GetEnemieManager()->RemoveEnemyGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------

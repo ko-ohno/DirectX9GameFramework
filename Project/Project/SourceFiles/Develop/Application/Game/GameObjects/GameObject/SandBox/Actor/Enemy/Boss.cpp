@@ -14,7 +14,7 @@
 #include "../../../../Component/MoveComponent/EnemyMoveComponent/BossMoveComponent.h"
 
 // ボスAIコンポーネント
-#include "../../../../Component/AIComponent/BossAIComponent/BossAIComponent.h"
+#include "../../../../Component/AIComponent/EnemyAIComponent/BossAIComponent.h"
 
 // メッシュコンポーネント
 #include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
@@ -85,7 +85,50 @@ bool Boss::Init(void)
 		enemy_move_->SetEnemyState(init_boss_state);
 	}
 
+	// 衝突判定関係
+	{
+		// 衝突判定の高さ　オフセット座標
+		const float collider_height_pos = 3.f;
 
+		// 球
+		{
+			// 球の半径
+			const float sphere_radius_size = 6.f;
+
+			// 衝突判定
+			sphere_collider_ = NEW SphereColliderComponent(this);
+			sphere_collider_->SetTranslationY(collider_height_pos);
+			sphere_collider_->SetRadius(sphere_radius_size);
+
+			// ギズモ
+			sphere_gizmo_ = NEW SphereGizmoRendererComponent(this);
+			sphere_gizmo_->SetTranslationY(collider_height_pos);
+			sphere_gizmo_->SetScale(sphere_radius_size);
+		}
+
+		// 箱
+		{
+			// 箱の高さ
+			const float box_height_size = 1.5f;
+
+			// 箱の水平軸の大きさ
+			const float box_size = 16.f;
+
+			// 衝突判定
+			obb_collider_ = NEW OBBColliderComponent(this);
+			obb_collider_->SetTranslationY(collider_height_pos);
+			obb_collider_->SetDirLength(box_size	   , AxisType::X);
+			obb_collider_->SetDirLength(box_height_size, AxisType::Y);
+			obb_collider_->SetDirLength(box_size	   , AxisType::Z);
+
+			// ギズモ
+			box_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			box_gizmo_->SetTranslationY(collider_height_pos);
+			box_gizmo_->AddScaleX(box_size);
+			box_gizmo_->AddScaleY(box_height_size);
+			box_gizmo_->AddScaleZ(box_size);
+		}
+	}
 	return true;
 }
 

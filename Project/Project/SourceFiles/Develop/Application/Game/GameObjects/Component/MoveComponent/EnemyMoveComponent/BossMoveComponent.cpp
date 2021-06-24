@@ -75,33 +75,54 @@ void BossMoveComponent::Update(float deltaTime)
 		owner_transform_->IsSetExecuteSlerp(true);
 	}
 
-	ImGui::Begin("boss_state");
+	// 自身の状態を表記
+	ImGui::Begin("boss_move_state");
+	{
+		switch (enemy_state_)
+		{
+		case EnemyState::Enter:
+			ImGui::Text("enter");
+			break;
+
+		case EnemyState::Wait:
+			ImGui::Text("wait");
+			break;
+
+		case EnemyState::BodyPress:
+			ImGui::Text("body_press");
+			break;
+
+		case EnemyState::Shooting:
+			ImGui::Text("shooting");
+			break;
+
+		case EnemyState::LaserCannon:
+			ImGui::Text("laser_cannon");
+			break;
+		}
+	}
+	ImGui::End();
 
 	// 敵の状態更新
 	switch (enemy_state_)
 	{
 	case EnemyState::Enter:
-		ImGui::Text("enter");
 		this->MoveActionEnter(deltaTime);
 		break;
 	
 	case EnemyState::Wait:
-		ImGui::Text("wait");
 		this->MoveActionWait(deltaTime);
 		break;
 
 	case EnemyState::BodyPress:
-		ImGui::Text("body_press");
 		this->MoveActionBodyPress(deltaTime);
 		break;
 
 	case EnemyState::Shooting:
-		ImGui::Text("shooting");
 		this->MoveActionShoot(deltaTime);
 		break;
 	
 	case EnemyState::LaserCannon:
-		ImGui::Text("laser_cannon");
 		this->MoveActionLaserCannon(deltaTime);
 		break;
 
@@ -109,8 +130,6 @@ void BossMoveComponent::Update(float deltaTime)
 		assert(!"BossMoveComponent::Update()：ボスが不正な行動ステートにあります！");
 		break;
 	}
-
-	ImGui::End();
 
 	//ボスのステートの更新
 	enemy_state_old_ = enemy_state_;
@@ -212,14 +231,14 @@ void BossMoveComponent::MoveActionWait(float deltaTime)
 	owner_transform_->AddRotationYaw(4);
 
 	// アニメーションの時間
-	const float MAX_STATE_TIME = 5.f;
+	const float MAX_STATE_TIME = 2.f;
 	execute_time_ += deltaTime;
 
 	// モーションの実行時間が最大を超えたら
 	if (execute_time_ >= MAX_STATE_TIME)
 	{
 		execute_time_ = 0.f;
-		enemy_motion_state_ = EnemyMotionState::End;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
 	}
 }
 
@@ -331,8 +350,8 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
-		execute_time_ = 0.f;
 		enemy_motion_state_ = EnemyMotionState::StartUp;
+		execute_time_ = 0.f;
 	}
 
 	//アニメーションの時間

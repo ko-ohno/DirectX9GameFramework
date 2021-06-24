@@ -30,16 +30,21 @@ public:
 	// îºåaÇÃê›íË
 	//
 
-	void SetRadius(float radius) { radius_ = radius; }
-	float GetRadius(void) { return radius_; };
+	inline void SetRadius(float radius) { radius_ = radius; }
+	inline float GetRadius(void) { return radius_; };
 
 	//
 	// ç¿ïWÇÃê›íË 
 	//
 
-	void SetPosition(D3DXVECTOR3& position) { position_ = position; }
-	void SetPosition(Vector3& position) { position_ = position; }
-	Vector3* GetPosition(void) { return &position_; }
+	inline void SetTranslation(Vector3& position) { position_ = position; }
+	inline void SetTranslation(D3DXVECTOR3& position) { position_ = position; }
+	inline void SetTranslation(float posX, float posY, float posZ) { position_ = { posX, posY, posZ }; }
+	inline void SetTranslationX(float posX) { position_.x_ = posX; }
+	inline void SetTranslationY(float posY) { position_.y_ = posY; }
+	inline void SetTranslationZ(float posZ) { position_.z_ = posZ; }
+
+	inline Vector3* GetPosition(void) { return &position_; }
 };
 
 #endif //SPHERE_COLLIDER_COMPONENT_H_

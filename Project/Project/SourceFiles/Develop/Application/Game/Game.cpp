@@ -21,7 +21,7 @@
 #include "ResourceManager/SaveDataManager.h"
 
 #include "SandBoxManager/ActorManager.h"
-
+#include "SandBoxManager/EnemieManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
@@ -45,6 +45,9 @@ Game::Game(void)
 	, sound_manager_(nullptr)
 	, collider_manager_(nullptr)
 	, save_data_manager_(nullptr)
+
+	, actor_manager_(nullptr)
+	, enemie_manager_(nullptr)
 
 	, game_object_fuctory_(nullptr)
 {
@@ -159,7 +162,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 
 	// サンドボックス用のマネージャの起動
 	{
-		//セーブデータマネージャの起動
+		//アクターのマネージャの起動
 		actor_manager_ = actor_manager_->Create(this);
 		const bool actor_manager_init = actor_manager_->StartUp();
 		if (actor_manager_init == false)
@@ -168,6 +171,14 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			return false;
 		}
 
+		//エネミーのマネージャの起動
+		enemie_manager_ = enemie_manager_->Create(this);
+		const bool enemie_manager_init = enemie_manager_->StartUp();
+		if (enemie_manager_init == false)
+		{
+			assert(!"Game::StartUp()：エネミーマネージャの起動に失敗しました。");
+			return false;
+		}
 	}
 
 	//レンダラーの起動
@@ -209,8 +220,14 @@ void Game::ShutDown(void)
 
 	// サンドボックスの各マネージャの破棄
 	{
+		//アクターマネージャの破棄
 		actor_manager_->Shutdown();
-		SAFE_DELETE_(actor_manager_)
+		SAFE_DELETE_(actor_manager_);
+
+		//エネミーマネージャの破棄
+		enemie_manager_->Shutdown();
+		SAFE_DELETE_(enemie_manager_);
+
 	}
 
 	// リソースの各マネージャーの破棄
@@ -293,7 +310,6 @@ void Game::Input(void)
 void Game::Update(float deltaTime)
 {
 	ImGui::ShowFPS(deltaTime);
-
 
 	if (game_state_ == GameState::Gameplay)
 	{
