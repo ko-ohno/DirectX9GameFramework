@@ -16,6 +16,7 @@
 UI::UI(class Game* game)
 	: GameObject(game)
 	, game_(game)
+	, is_drawable_(false)
 	, state_(UIState::Closing)
 {
 	this->renderer_layer_type_ = RendererLayerType::UI;

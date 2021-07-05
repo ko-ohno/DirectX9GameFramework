@@ -35,8 +35,6 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	, window_style_(WindowStyle())
 	, screen_scaler_(0.0f)
 	, game_(nullptr)
-	, sprite_shader_(nullptr)
-	, test_camera_(nullptr)
 {
 	app_window_	   = app_window_->Create();
 	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
@@ -72,6 +70,7 @@ bool ApplicationManager::Init(void)
 	//グラフィックスオブジェクトの生成。
 	{
 		dx9_graphics_ = dx9_graphics_->Create();
+		dx9_graphics_->SetScreenScaler(screen_scaler_); // 画面の拡大率を設定
 		const bool directx9_init = dx9_graphics_->CreateDX9Graphics(window_handle_, app_window_->GetWindowClientSize(window_handle_));
 		if (directx9_init == false)
 		{

@@ -1,4 +1,4 @@
-/*=============================================================================
+ /*=============================================================================
 /*-----------------------------------------------------------------------------
 /*	[Player.h] プレイヤーゲームオブジェクト
 /*	Author：Kousuke,Ohno.
@@ -32,21 +32,27 @@ private:
 	// 移動コンポーネント
 	class PlayerMoveComponent*		  player_move_;
 
+	//
 	// 描画コンポーネント
+	//
+
 	class EffectRendererComponent*    effect_after_burner_;
 
-	// 遠くのレティクル
+	// レティクル
+
 	class BillboardRendererComponent* far_reticle_;
-
-	// 手前のレティクル
 	class BillboardRendererComponent* near_reticle_;
-
-	// ロックオンのレティクル
 	class BillboardRendererComponent* lockon_reticle_;
 	
 	// 武器コンポーネント
-	class BlasterComponent*			  left_blaster_;
-	class BlasterComponent*			  right_blaster_;
+
+	class BlasterWeaponComponent*			  left_blaster_;
+	class BlasterWeaponComponent*			  right_blaster_;
+
+	// ロックオン用衝突判定コンポーネント
+
+	class OBBColliderComponent*		  lockon_collider_;
+	class BoxGizmoRendererComponent*  lockon_gizmo_;
 };
 
 #endif //PLAYER_H_

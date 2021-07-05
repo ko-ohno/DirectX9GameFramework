@@ -72,27 +72,22 @@ void BossAIComponent::Update(float deltaTime)
 		{
 		case EnemyState::Wait:
 			ImGui::Text("wait");
-			this->ChangeState(NEW BossStateWait());
 			break;
 
 		case EnemyState::Enter:
 			ImGui::Text("enter");
-			this->ChangeState(NEW BossStateEnter());
 			break;
 
 		case EnemyState::BodyPress:
 			ImGui::Text("body_press");
-			this->ChangeState(NEW BossStateBodyPress());
 			break;
 
 		case EnemyState::Shooting:
 			ImGui::Text("shooting");
-			this->ChangeState(NEW BossStateShooting());
 			break;
 
 		case EnemyState::LaserCannon:
 			ImGui::Text("laser_cannon");
-			this->ChangeState(NEW BossStateLaserCannon());
 			break;
 
 		case EnemyState::Destroy:

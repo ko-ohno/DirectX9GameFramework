@@ -67,7 +67,7 @@ public:
 public:
 
 	//•`‰æÀ•W‚ğƒ|ƒŠƒSƒ“‚Ì’†‰›‚Ö
-	inline void SetDrawingPositionToCenter(const bool isOffsetScaleingCenter) { is_offset_scale_ = isOffsetScaleingCenter; }
+	inline void IsSetDrawingPositionToCenter(const bool isOffsetScaleingCenter) { is_offset_scale_ = isOffsetScaleingCenter; }
 
 	//‰ñ“]¬•ª‚Ì‘€ì
 

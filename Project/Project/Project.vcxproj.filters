@@ -372,10 +372,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.h">
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterWeaponComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.h">
@@ -415,6 +412,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteDigitRendererComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -752,10 +752,7 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeShotBlasterComponent.cpp">
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\BlasterWeaponComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet\ChargeBullet.cpp">
@@ -795,6 +792,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteDigitRendererComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

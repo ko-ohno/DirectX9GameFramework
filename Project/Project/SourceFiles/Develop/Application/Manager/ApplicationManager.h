@@ -49,10 +49,6 @@ private:
 
 	//ゲーム用の環境
 	class Game*				game_;
-
-	//テスト用
-	class SpriteShader*		sprite_shader_;
-	class TestCamera*		test_camera_;
 };
 
 #endif //APPLICATION_MANAGER_H_

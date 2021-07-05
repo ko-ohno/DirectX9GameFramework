@@ -1,12 +1,12 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[ChargeShotBlasterComponent.h]  チャージショット光線銃コンポーネント
+/*	[BlasterComponent.h]  光線銃武器コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：チャージショット光線銃コンポーネント
+/*	説明：光線銃武器コンポーネント
 =============================================================================*/
-#ifndef CHARGE_SHOT_BLASTER_COMPONENT_H_
-#define	CHARGE_SHOT_BLASTER_COMPONENT_H_
+#ifndef BLASTER_WEAPON_COMPONENT_H_
+#define	BLASTER_WEAPON_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../WeaponComponent.h"
@@ -17,13 +17,13 @@
 
 
 /*-------------------------------------
-/* 武器コンポーネント
+/* 光線銃武器コンポーネント
 -------------------------------------*/
-class ChargeShotBlasterComponent : public WeaponComponent
+class BlasterWeaponComponent : public WeaponComponent
 {
 public:
-	ChargeShotBlasterComponent(class GameObject* owner, int updateOrder = 100);
-	~ChargeShotBlasterComponent(void);
+	BlasterWeaponComponent(class GameObject* owner, int updateOrder = 100);
+	~BlasterWeaponComponent(void);
 
 private:
 	bool Init(void) override;
@@ -33,14 +33,22 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
-	virtual TypeID GetComponentType() const override { return TypeID::ChargeShotBlasterComponent; };
+	virtual TypeID GetComponentType() const override { return TypeID::BlasterComponent; };
 
-private:
+	// 攻撃の種類
+	void BulletFire(void);
+	void ChargeShotFire(void);
+	void AimShotFire(void);
+
+protected:
 	// 銃の発射エフェクト
-	//class EffectRendererComponent* muzzle_flash_;
+	class EffectRendererComponent* muzzle_flash_;
+
+	// このコンポーネントの位置を示すgizmo
+	class SphereGizmoRendererComponent* sphere_gizmo_;
 };
 
-#endif //CHARGE_SHOT_BLASTER_COMPONENT_H_
+#endif //BLASTER_WEAPON_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

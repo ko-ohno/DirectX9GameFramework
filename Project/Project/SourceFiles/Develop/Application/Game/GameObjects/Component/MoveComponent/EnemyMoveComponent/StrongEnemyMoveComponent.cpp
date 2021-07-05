@@ -64,6 +64,8 @@ void StrongEnemyMoveComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void StrongEnemyMoveComponent::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	// Še‰ñ“]’l‚ÌŽæ“¾
 	yaw_ = owner_transform_->GetAngleYaw();
 	pitch_ = owner_transform_->GetAnglePitch();

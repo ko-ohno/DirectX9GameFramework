@@ -22,15 +22,24 @@
 #include "GameObjects/GameObject/_Test/_ColliderTest.h"
 #include "GameObjects/GameObject/_Test/_SaveDataTest.h"
 
-//ゲーム用ゲームオブジェクト
+// ゲーム管理ゲームオブジェクト
 #include "GameObjects/GameObject/GameManager.h"
+
+// カメラ
+#include "GameObjects/GameObject/Camera/GameCamera.h"
+
+// 背景レイヤー
 #include "GameObjects/GameObject/BackGround/SkyBox.h"
 #include "GameObjects/GameObject/BackGround/Planet.h"
 
-#include "GameObjects/GameObject/Camera/GameCamera.h"
+// サンドボックスレイヤー
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
+
+// UIレイヤー
+#include "GameObjects/GameObject/UI/HUD.h"
+
 
 
 /*-----------------------------------------------------------------------------
@@ -79,16 +88,22 @@ bool GameObjectFactory::StartUp(void)
 	}
 	else
 	{
+		// ゲーム管理ゲームオブジェクト
 		this->AddGameObject(NEW GameManager(game_));
+
+		// カメラ
 		this->AddGameObject(NEW GameCamera(game_));
 
-		this->AddGameObject(NEW Player(game_));
-		this->AddGameObject(NEW Boss(game_));
-
-
+		// 背景レイヤーのオブジェクト作成
 		this->AddGameObject(NEW SkyBox(game_));
 		this->AddGameObject(NEW Planet(game_));
 
+		// サンドボックスレイヤーのオブジェクト作成
+		this->AddGameObject(NEW Player(game_));
+		this->AddGameObject(NEW Boss(game_));
+
+		// UIレイヤーのオブジェクト作成
+		this->AddGameObject(NEW HUD(game_));
 	}
 	return true;
 }

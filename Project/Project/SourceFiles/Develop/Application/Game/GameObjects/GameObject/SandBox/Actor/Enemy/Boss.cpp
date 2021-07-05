@@ -27,6 +27,8 @@
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
 #include "../../../../Component/ColliderComponent/OBBColliderComponent.h"
 
+#include "../../../../Component/WeaponComponent/BlasterWeaponComponent.h"
+
 // 入力チェック
 #include "../../../../../Input/InputCheck.h"
 

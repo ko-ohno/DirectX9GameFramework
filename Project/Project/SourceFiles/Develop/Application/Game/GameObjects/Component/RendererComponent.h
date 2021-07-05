@@ -131,7 +131,7 @@ public:
 	inline int GetDrawOrder(void) const   { return draw_order_; }
 
 	// Š—LÒ‚Ìp¨§Œä‚Ì‰e‹¿‚ğó‚¯‚é‚©H
-	inline void SetOwnerTransfromOrder(bool isOwnerTransformOrder) { is_owner_transform_order_ = isOwnerTransformOrder; }
+	inline void IsSetOwnerTransfromOrder(bool isOwnerTransformOrder) { is_owner_transform_order_ = isOwnerTransformOrder; }
 
 	// ƒJƒƒ‰‚©‚ç‚Ì‹——£
 	inline float GetCameraDistance(void) const { return camera_distance_; }

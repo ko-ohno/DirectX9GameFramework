@@ -40,18 +40,24 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	void Close(void) { state_ = UIState::Closing; }
+	inline bool IsGetDrawable(void) { return is_drawable_; }
+	inline void IsSetDrawable(bool isDrawable) { is_drawable_ = isDrawable; }
 
-	void SetState(UIState state) { state_ = state; };
-	UIState GetState(void) { return state_; }
+	inline void Close(void) { state_ = UIState::Closing; }
+
+	inline void SetState(UIState state) { state_ = state; };
+	inline UIState GetState(void) { return state_; }
 	 
 	virtual TypeID GetType(void) const { return TypeID::UI; } //Œã‚Åoverride‚Å‚«‚é‚æ‚¤‚É
 
 protected:
-	//UI‚ÌŠ—LÒ
+	// UI‚ÌŠ—LÒ
 	class Game* game_;
 
-	//UI‚Ìó‘Ô
+	// •`‰æ‚ğ‚·‚é‚©
+	bool is_drawable_;
+
+	// UI‚Ìó‘Ô
 	UIState		state_;
 };
 

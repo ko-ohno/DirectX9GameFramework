@@ -16,7 +16,7 @@
 #include "../../../Component/RendererComponent/BillboardRendererComponent.h"
 
 // 武器コンポーネント
-#include "../../../Component/WeaponComponent/BlasterComponent.h"
+#include "../../../Component/WeaponComponent/BlasterWeaponComponent.h"
 
 // 移動コンポーネント
 #include "../../../Component/MoveComponent/PlayerMoveComponent.h"
@@ -89,7 +89,7 @@ bool Player::Init(void)
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				far_reticle_->SetScale(0.8f);
+				far_reticle_->SetScale(1.2f);
 				far_reticle_->SetTranslationZ(10.f);
 			}
 
@@ -101,7 +101,7 @@ bool Player::Init(void)
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				near_reticle_->SetScale(1.f);
+				near_reticle_->SetScale(1.4f);
 				near_reticle_->SetTranslationZ(9.f);
 			}
 
@@ -113,7 +113,7 @@ bool Player::Init(void)
 				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
-				lockon_reticle_->SetScale(1.f);
+				lockon_reticle_->SetScale(1.4f);
 				lockon_reticle_->SetTranslationZ(9.f);
 			}
 		}
@@ -122,20 +122,38 @@ bool Player::Init(void)
 	// 武器コンポーネント
 	{
 		// 左の光線銃
-		left_blaster_ = NEW BlasterComponent(this);
+		left_blaster_ = NEW BlasterWeaponComponent(this);
 
 		// 右の光線銃
-		right_blaster_ = NEW BlasterComponent(this);
+		right_blaster_ = NEW BlasterWeaponComponent(this);
 	}
 
 	//　衝突判定コンポーネント
 	{
+		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(this);
 		sphere_gizmo_->SetVertexColor(255, 255, 0, 255);
 
+		// OBBの衝突判定
 		obb_collider_ = NEW OBBColliderComponent(this);
 		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
+
+		// ロックオンの箱の衝突判定
+		{
+			const float lockon_langth_ = 20.f;
+
+			lockon_collider_ = NEW OBBColliderComponent(this);
+			lockon_collider_->SetDirLength(1.1f, AxisType::X);
+			lockon_collider_->SetDirLength(1.1f, AxisType::Y);
+			lockon_collider_->SetDirLength(lockon_langth_, AxisType::Z);
+
+			lockon_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			lockon_gizmo_->SetVertexColor(0, 255, 255, 128);
+			lockon_gizmo_->SetScaleX(1.1f);
+			lockon_gizmo_->SetScaleY(1.1f);
+			lockon_gizmo_->SetScaleZ(lockon_langth_);
+		}
 	}
 	return true;
 }
@@ -173,10 +191,9 @@ void Player::UpdateGameObject(float deltaTime)
 
 	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
 	{
-		left_blaster_->Fire();
-		right_blaster_->Fire();
+		left_blaster_->BulletFire();
+		right_blaster_->BulletFire();
 	}
-
 
 	ImGui::Begin("PlayerTransform");
 	ImGui::Text("Yaw:%f", transform_component_->GetAngleYaw());

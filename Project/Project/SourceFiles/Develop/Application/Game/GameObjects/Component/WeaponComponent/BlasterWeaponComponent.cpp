@@ -1,73 +1,86 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BlasterComponent.cpp] 光線銃コンポーネント
+/*	[BlasterWeaponComponent.cpp] 光線銃武器コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：光線銃コンポーネント
+/*	説明：光線銃武器コンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "BlasterComponent.h"
+#include "BlasterWeaponComponent.h"
 #include "../../GameObject.h"
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
+#include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../GameObject/SandBox/Bullet.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-BlasterComponent::BlasterComponent(GameObject* owner, int updateOrder)
+BlasterWeaponComponent::BlasterWeaponComponent(GameObject* owner, int updateOrder)
 	: WeaponComponent(owner, updateOrder)
 	, muzzle_flash_(nullptr)
 {
-	muzzle_flash_ = NEW EffectRendererComponent(owner);
-	muzzle_flash_->SetEffect(EffectType::MuzzluFrashGreen);
-
-	// 所有者からの影響を無効に
-	muzzle_flash_->SetOwnerTransfromOrder(false);
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-BlasterComponent::~BlasterComponent(void)
+BlasterWeaponComponent::~BlasterWeaponComponent(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool BlasterComponent::Init(void)
+bool BlasterWeaponComponent::Init(void)
 {
+	muzzle_flash_ = NEW EffectRendererComponent(owner_);
+	muzzle_flash_->SetEffect(EffectType::MuzzluFrashGreen);
+
+	// 所有者からの影響を無効に
+	muzzle_flash_->IsSetOwnerTransfromOrder(false);
+
+	// ギズモの生成
+	sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
+	sphere_gizmo_->SetScale(0.5f);
+	sphere_gizmo_->SetVertexColor(0, 255, 255);
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void BlasterComponent::Uninit(void)
+void BlasterWeaponComponent::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void BlasterComponent::Input(void)
+void BlasterWeaponComponent::Input(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /*　更新処理
 -----------------------------------------------------------------------------*/
-void BlasterComponent::Update(float deltaTime)
+void BlasterWeaponComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// ギズモの更新
+	{
+		sphere_gizmo_->SetTranslation(position_);
+	}
 }
 
 /*-----------------------------------------------------------------------------
 /*　発射処理
 -----------------------------------------------------------------------------*/
-void BlasterComponent::Fire(void)
+void BlasterWeaponComponent::BulletFire(void)
 {	
 	// 平行移動情報の作成
 	D3DXMATRIX translation_matrix;
@@ -94,6 +107,20 @@ void BlasterComponent::Fire(void)
 
 		bullet->SetCreatePosition(translation_matrix._41, translation_matrix._42, translation_matrix._43);
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　敵の弾の発射処理
+-----------------------------------------------------------------------------*/
+void BlasterWeaponComponent::AimShotFire(void)
+{
+}
+
+/*-----------------------------------------------------------------------------
+/*　チャージ弾の発射処理
+-----------------------------------------------------------------------------*/
+void BlasterWeaponComponent::ChargeShotFire(void)
+{
 }
 
 /*=============================================================================

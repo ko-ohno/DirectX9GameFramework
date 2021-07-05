@@ -45,6 +45,7 @@ private:
 	class SphereGizmoRendererComponent* sphere_collider_gizmo_;
 
 	D3DXVECTOR3 parent_front_vector_;
+	D3DXVECTOR3 front_vector_;
 	float		kill_timer_;
 	float		alive_time_;
 	float		move_speed_;

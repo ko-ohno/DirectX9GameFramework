@@ -52,6 +52,7 @@ public:
 		// レンダリング(形として出力)するオブジェクト
 		, RendererComponent
 		, SpriteRendererComponent
+		, SpriteDigitRendererComponent
 		, BillboardRendererComponent
 		, FFPMeshRendererComponent
 		, StdMeshRendererComponent

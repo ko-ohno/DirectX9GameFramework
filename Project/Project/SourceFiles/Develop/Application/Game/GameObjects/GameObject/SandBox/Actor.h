@@ -34,13 +34,16 @@ public:
 
 	inline void SetMaxHitPoint(float maxHitPoint) { max_hit_point_ = maxHitPoint; }
 	inline void SetHitPoint(float hitPoint) { hit_point_ = hitPoint; }
-	inline float GetHitPoint(void) { return hit_point_; } 
+	inline float GetHitPoint(void) { return hit_point_; }
 
 	// UŒ‚—Í‚Ìİ’è
 
 	inline void SetMaxAttack(float maxAttack) { max_attack_ = maxAttack; }
 	inline void SetAttack(float attack) { attack_ = attack; }
 	inline float GetAttack(void) { return attack_; }
+
+	class SphereColliderComponent* GetSphereCollider(void) { return sphere_collider_; }
+	class OBBColliderComponent* GetOBBCollider(void) { return obb_collider_; }
 
 protected:
 	// ƒpƒ‰ƒ[ƒ^
@@ -54,12 +57,11 @@ protected:
 	class FFPMeshRendererComponent*		actor_mesh_;
 
 	// Õ“Ë”»’è
-	class SphereGizmoRendererComponent* sphere_gizmo_;
 	class SphereColliderComponent*		sphere_collider_;
-	class BoxGizmoRendererComponent*	box_gizmo_;
+	class SphereGizmoRendererComponent* sphere_gizmo_;
 	class OBBColliderComponent*			obb_collider_;
+	class BoxGizmoRendererComponent*	box_gizmo_;
 };
-
 
 #endif //ACTOR_H_
 /*=============================================================================
