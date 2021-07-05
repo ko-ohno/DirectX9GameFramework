@@ -19,6 +19,8 @@ enum class TextureType
 	, Sample
 	, Prototype
 	, Blank
+	, ScoreFontOrigin_0
+	, ScoreFontOrigin_1
 	, FarReticle
 	, NearReticle
 	, Planet

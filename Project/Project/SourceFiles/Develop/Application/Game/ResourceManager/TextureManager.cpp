@@ -16,6 +16,8 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	"Sample"
 	, "Prototype"
 	, "Blank"
+	, "ScoreFontOrigin_0"
+	, "ScoreFontOrigin_1"
 	, "FarReticle"
 	, "NearReticle"
 	, "Planet"
@@ -85,12 +87,14 @@ bool TextureManager::Init(void)
 	// ÉäÉXÉgÇÃèâä˙âª
 	unmap_texture_path_list_.clear();
 	{
-		unmap_texture_path_list_[TextureType::Sample]	   = "tex1.bmp";
-		unmap_texture_path_list_[TextureType::Prototype]   = "PrototypingTextures/texture_01.png";
-		unmap_texture_path_list_[TextureType::Blank]	   = "Blank.png";
-		unmap_texture_path_list_[TextureType::FarReticle]  = "ReticleFar.png";
-		unmap_texture_path_list_[TextureType::NearReticle] = "ReticleNear.png";
-		unmap_texture_path_list_[TextureType::Planet]	   = "Planet.png";
+		unmap_texture_path_list_[TextureType::Sample]			 = "tex1.bmp";
+		unmap_texture_path_list_[TextureType::Prototype]		 = "PrototypingTextures/texture_01.png";
+		unmap_texture_path_list_[TextureType::Blank]			 = "Blank.png";
+		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0] = "score_font_origin_0.png";
+		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1] = "score_font_origin_1.png";
+		unmap_texture_path_list_[TextureType::FarReticle]		 = "ReticleFar.png";
+		unmap_texture_path_list_[TextureType::NearReticle]		 = "ReticleNear.png";
+		unmap_texture_path_list_[TextureType::Planet]			 = "Planet.png";
 
 	}
 	return true;
