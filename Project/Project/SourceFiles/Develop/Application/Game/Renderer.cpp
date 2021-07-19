@@ -211,7 +211,7 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 	for (auto renderer_component : renderer_components_)
 	{
 		// 描画する描画コンポーネントか？
-		if (renderer_component->IsGetDrawable())
+		if (renderer_component->IsGetDrawable() == true)
 		{
 			//レンダラーのレイヤーの情報を取得
 			auto renderer_layer_type = renderer_component->GetRendererLayerType();

@@ -9,16 +9,26 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "Result.h"
+#include "../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../Component/RendererComponent/SpriteDigitRendererComponent.h"
+#include "../../Component/AudioComponent.h"
+#include "../../../Input/InputCheck.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Result::Result(class Game* game)
 	: UI(game)
+	, result_(nullptr)
+	, bg_(nullptr)
+	, bgm_result_(nullptr)
+	, se_(nullptr)
+	, result_state_(ResultMenuState::None)
+	, result_state_old_(ResultMenuState::None)
+	, screen_width_(0)
+	, screen_height_(0)
 {
-	//UIオブジェクトを生成したら、
-	//メンバ変数state_がClosingになるまで表示され続ける。
-	//サブクラスは生成と削除に関する処理を記述することでUIの操作をすること
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -26,6 +36,7 @@ Result::Result(class Game* game)
 -----------------------------------------------------------------------------*/
 Result::~Result(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -33,6 +44,85 @@ Result::~Result(void)
 -----------------------------------------------------------------------------*/
 bool Result::Init(void)
 {
+	// 状態を初期化
+	result_state_old_ = result_state_ = ResultMenuState::Wait;
+
+	// リザルト画面のデータを作成
+	{
+		// 説明の表示
+		go_next_ = NEW SpriteRendererComponent(this);
+		go_next_->SetTexture(TextureType::GoNext);
+
+		// タイトルの表示
+		result_ = NEW SpriteRendererComponent(this);
+		result_->SetTexture(TextureType::Result);
+		result_->IsSetDrawingPositionToCenter(true);
+
+		// 背景の表示
+		bg_ = NEW SpriteRendererComponent(this, 150);
+		bg_->SetTexture(TextureType::ScreenBG); 
+
+		// スコア表示用データの生成
+		for (int i = 0; i < MAX_SCORE_DATA; i++)
+		{
+			ranking_bg_[i] = nullptr;
+			ranking_double_point_[i] = nullptr;
+			ranking_num_[i] = nullptr;
+			ranking_score_digit_[i] = nullptr;
+
+			ranking_bg_[i] = NEW SpriteRendererComponent(this);
+			ranking_bg_[i]->SetTexture(TextureType::Blank);
+			ranking_bg_[i]->SetVertexColor(0, 255, 255, 128);
+			ranking_bg_[i]->IsSetDrawingPositionToCenter(true);
+
+			ranking_double_point_[i] = NEW SpriteRendererComponent(this);
+			ranking_double_point_[i]->SetTexture(TextureType::ScoreDoublePoint);
+			ranking_double_point_[i]->IsSetDrawingPositionToCenter(true);
+
+			ranking_num_[i] = NEW SpriteDigitRendererComponent(this);
+			ranking_num_[i]->SetTexture(TextureType::ScoreFontOrigin_0);
+			ranking_num_[i]->IsSetDrawingPositionToCenter(true);
+			ranking_num_[i]->SetDrawableDigitLength(1);
+			ranking_num_[i]->SetIntData(i + 1);
+
+			switch (i)
+			{
+			case 0:
+				ranking_num_[i]->SetVertexColor(230, 180, 34);
+				break;
+
+			case 1:
+				ranking_num_[i]->SetVertexColor(212, 212, 212);
+				break;
+
+			case 2:
+				ranking_num_[i]->SetVertexColor(179,  140, 93);
+				break;
+
+			default:
+				break;
+			}
+
+			ranking_score_digit_[i] = NEW SpriteDigitRendererComponent(this);
+			ranking_score_digit_[i]->SetTexture(TextureType::ScoreFontOrigin_0);
+			ranking_score_digit_[i]->IsSetDrawingPositionToCenter(true);
+			ranking_score_digit_[i]->SetDrawableDigitLength(3);
+			ranking_score_digit_[i]->SetOffestWidth(30);
+			ranking_score_digit_[i]->SetIntData(0);
+		}
+	}
+
+	// 音声データの作成
+	{
+		// BGM
+		bgm_result_ = NEW AudioComponent(this);
+		bgm_result_->SetSound(SoundType::Kemono);
+		bgm_result_->PlayLoop();
+		
+		//SE
+		se_ = NEW AudioComponent(this);
+		se_->SetSound(SoundType::SelectSound);
+	}
 	return true;
 }
 
@@ -41,6 +131,10 @@ bool Result::Init(void)
 -----------------------------------------------------------------------------*/
 void Result::Uninit(void)
 {
+	// BGMの停止
+	{
+		bgm_result_->Stop();
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -56,6 +150,144 @@ void Result::InputGameObject(void)
 void Result::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 画面サイズの取得
+	screen_width_  = game_->GetGraphics()->GetScreenSize().x_;
+	screen_height_ = game_->GetGraphics()->GetScreenSize().y_;
+
+	// メニューの更新
+	this->UpdateMenu(deltaTime);
+
+	// 表題のスプライトの更新
+	this->UpdateResultSprite(deltaTime);
+
+	// 背景の更新
+	this->UpdateBackground(deltaTime);
+
+	// ランキングデータの更新
+	this->UpdateRankingData(deltaTime);
+
+	// 入力された情報が1フレーム前と違ったら
+	if (result_state_ != result_state_old_)
+	{
+		se_->Play();
+	}
+
+	// 1フレーム前の情報を更新
+	result_state_old_ = result_state_;
+}
+
+/*-----------------------------------------------------------------------------
+/* メニューの更新処理
+-----------------------------------------------------------------------------*/
+void Result::UpdateMenu(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// テクスチャのサイズを取得
+	float texture_width  = static_cast<float>(go_next_->GetTextureImageInfo()->Width);
+	float texture_height = static_cast<float>(go_next_->GetTextureImageInfo()->Height);
+
+	// ポリゴンのサイズを更新
+	go_next_->SetScaleX(texture_width);
+	go_next_->SetScaleY(texture_height);
+
+	// 描画座標の更新
+	go_next_->SetTranslationX(screen_width_ - texture_width);
+	go_next_->SetTranslationY(screen_height_ - texture_height);
+
+}
+
+/*-----------------------------------------------------------------------------
+/* リザルトの表題の更新処理
+-----------------------------------------------------------------------------*/
+void Result::UpdateResultSprite(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// テクスチャのサイズを取得
+	float texture_width  = static_cast<float>(result_->GetTextureImageInfo()->Width);
+	float texture_height = static_cast<float>(result_->GetTextureImageInfo()->Height);
+
+	// ポリゴンのサイズを更新
+	result_->SetScaleX(texture_width);
+	result_->SetScaleY(texture_height);
+
+	// 描画座標の更新
+	result_->SetTranslationX(screen_width_ / 2.f);
+	result_->SetTranslationY(screen_height_ / 8.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 背景の更新処理
+-----------------------------------------------------------------------------*/
+void Result::UpdateBackground(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 背景ポリゴンのサイズを更新
+	bg_->SetScaleX(screen_width_);
+	bg_->SetScaleY(screen_height_);
+
+	// テクスチャの切り取りサイズを変更
+	float texture_width  = static_cast<float>(bg_->GetTextureImageInfo()->Width);
+	float texture_height = static_cast<float>(bg_->GetTextureImageInfo()->Height);
+
+	// テクスチャの切り取り座標を初期化
+	static float texture_cut_pos_x = 0.f;
+	const float scroll_speed = 100.f;
+	texture_cut_pos_x += scroll_speed * deltaTime;
+	if (texture_cut_pos_x >= texture_width)
+	{
+		texture_cut_pos_x = 0.f;
+	}
+
+	// 背景をUVアニメーション
+	bg_->SetUVAnimation(static_cast<int>(texture_cut_pos_x)
+					   , 0
+					   , static_cast<int>(screen_width_)
+					   , static_cast<int>(texture_height));
+}
+
+/*-----------------------------------------------------------------------------
+/* ランキングの更新処理
+-----------------------------------------------------------------------------*/
+void Result::UpdateRankingData(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// テクスチャのサイズを取得
+	float texture_width  = static_cast<float>(ranking_score_digit_[0]->GetFontWidth());
+	float texture_height = static_cast<float>(ranking_score_digit_[0]->GetFontHeight());
+
+	for (int i = 0; i < MAX_SCORE_DATA; i++)
+	{
+		// ランキングの背景を描画
+		{
+			ranking_bg_[i]->SetScaleX(screen_width_ / 2.f);
+			ranking_bg_[i]->SetScaleY(texture_height);
+
+			ranking_bg_[i]->SetTranslationX(screen_width_ / 2.f);
+			ranking_bg_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+		}
+	
+		// ランキングの順位を描画
+		{
+			ranking_num_[i]->SetTranslationX(screen_width_ / 3.5f);
+			ranking_num_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+
+			ranking_double_point_[i]->SetTranslationX(ranking_num_[i]->GetPosition()->x + texture_width);
+			ranking_double_point_[i]->SetTranslationY(ranking_num_[i]->GetPosition()->y);
+		}
+
+		// ランキングのスコアを描画
+		{
+			auto digit_width = ranking_score_digit_[0]->GetMaxDrawableDigitWidth();
+
+			ranking_score_digit_[i]->SetTranslationX((screen_width_ / 2.f) - ((digit_width / 3.f) * 2.f));			
+			ranking_score_digit_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+		}
+	}
 }
 
 /*=============================================================================

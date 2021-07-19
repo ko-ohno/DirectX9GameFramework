@@ -199,6 +199,12 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("Yaw:%f", transform_component_->GetAngleYaw());
 	ImGui::Text("Pitch:%f", transform_component_->GetAnglePitch());
 	ImGui::Text("Roll:%f", transform_component_->GetAngleRoll());
+
+	auto pos = *transform_component_->GetPosition();
+	ImGui::Text("PosX:%f", pos.x);
+	ImGui::Text("PosY:%f", pos.y);
+	ImGui::Text("PosZ:%f", pos.z);
+
 	ImGui::End();
 }
 

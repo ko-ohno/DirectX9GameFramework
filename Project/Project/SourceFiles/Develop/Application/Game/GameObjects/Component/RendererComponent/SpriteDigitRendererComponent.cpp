@@ -79,11 +79,7 @@ bool SpriteDigitRendererComponent::Init(void)
 			sprite_digit_[i]->SetScaleX(static_cast<float>(font_width_));
 			sprite_digit_[i]->SetScaleY(static_cast<float>(font_height_));
 
-			// •`‰æ‚·‚é‚©‚Ìİ’è
-			if (i <= drawable_digit_length_ -1)
-			{
-				sprite_digit_[i]->IsSetDrawable(false);
-			}
+			sprite_digit_[i]->IsSetDrawable(false);
 		}
 	}
 	return true;
@@ -151,7 +147,7 @@ void SpriteDigitRendererComponent::Update(float deltaTime)
 	for (int i = 0; i < MAX_DIGIT_LENGTH; i++)
 	{
 		// •`‰æ‚·‚é‚©‚ğİ’è‚·‚é
-		if (i <= drawable_digit_length_ - 1)
+		if (i <= drawable_digit_length_)
 		{
 			sprite_digit_[i]->IsSetDrawable(true);
 		}
@@ -214,10 +210,12 @@ void SpriteDigitRendererComponent::Update(float deltaTime)
 			const int font_padding_width = font_width_ - offset_width_;
 
 			// ŠeŒ…‚Ì•
-			max_digit_width_ = font_padding_width * drawable_digit_length_;
+			max_digit_width_ = font_width_ * drawable_digit_length_;
+
+			float offset = static_cast<float>(max_digit_width_ - (font_padding_width * i));
 
 			// ‘S‘Ì‚Ì’·‚³‚©‚çˆø‚¢‚Ä‚¢‚­
-			const float draw_pos_x = position_.x + (max_digit_width_ - (font_padding_width * (i + 1)));
+			const float draw_pos_x = position_.x + offset;
 			const float draw_pos_y = position_.y;
 
 			// À•W‚Ìİ’è

@@ -135,6 +135,7 @@ void GameObject::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void GameObject::Update(float deltaTime)
 {
+
 	if (state_ == State::Active)
 	{
 		if (this->GetRendererLayerType() == RendererLayerType::None)

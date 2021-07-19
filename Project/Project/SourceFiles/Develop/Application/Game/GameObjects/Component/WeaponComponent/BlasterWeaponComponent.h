@@ -35,10 +35,16 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::BlasterComponent; };
 
+	// 敵のターゲットを見つける処理
+	void FindTargetofEnemy(void);
+
 	// 攻撃の種類
 	void BulletFire(void);
 	void ChargeShotFire(void);
-	void AimShotFire(void);
+	void EnemyAimShotFire(void);
+
+private:
+	class Actor* player_object_;
 
 protected:
 	// 銃の発射エフェクト

@@ -13,13 +13,20 @@
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../GameObject/SandBox/Bullet.h"
+#include "../../../Game.h"
+#include "../../GameObject/SandBox/Actor.h"
+#include "../../../SandBoxManager/ActorManager.h"
+
+#include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 BlasterWeaponComponent::BlasterWeaponComponent(GameObject* owner, int updateOrder)
 	: WeaponComponent(owner, updateOrder)
+	, player_object_(nullptr)
 	, muzzle_flash_(nullptr)
+	, sphere_gizmo_(nullptr)
 {
 	this->Init();
 }
@@ -37,16 +44,21 @@ BlasterWeaponComponent::~BlasterWeaponComponent(void)
 -----------------------------------------------------------------------------*/
 bool BlasterWeaponComponent::Init(void)
 {
-	muzzle_flash_ = NEW EffectRendererComponent(owner_);
-	muzzle_flash_->SetEffect(EffectType::MuzzluFrashGreen);
+	// 弾の発射エフェクト
+	{
+		muzzle_flash_ = NEW EffectRendererComponent(owner_);
+		muzzle_flash_->SetEffect(EffectType::MuzzluFrashBlue);
 
-	// 所有者からの影響を無効に
-	muzzle_flash_->IsSetOwnerTransfromOrder(false);
+		// 所有者からの影響を無効に
+		muzzle_flash_->IsSetOwnerTransfromOrder(false);
+	}
 
 	// ギズモの生成
-	sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
-	sphere_gizmo_->SetScale(0.5f);
-	sphere_gizmo_->SetVertexColor(0, 255, 255);
+	{
+		sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
+		sphere_gizmo_->SetScale(0.5f);
+		sphere_gizmo_->SetVertexColor(0, 255, 255);
+	}
 	return true;
 }
 
@@ -71,9 +83,37 @@ void BlasterWeaponComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 所有者が敵だった場合
+	if (owner_->GetType() >= GameObject::TypeID::Enemy)
+	{
+		this->FindTargetofEnemy();
+	}
+
 	// ギズモの更新
 	{
 		sphere_gizmo_->SetTranslation(position_);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　敵のターゲット(プレイヤー)を見つける処理
+-----------------------------------------------------------------------------*/
+void BlasterWeaponComponent::FindTargetofEnemy(void)
+{
+	// プレイヤーの取得
+	{
+		if (player_object_ == nullptr)
+		{
+			auto actor_list = owner_->GetGame()->GetActorManager()->GetActorGameObjectList();
+
+			for (auto actor : actor_list)
+			{
+				if (actor->GetType() == GameObject::TypeID::Player)
+				{
+					player_object_ = actor;
+				}
+			}
+		}
 	}
 }
 
@@ -93,18 +133,19 @@ void BlasterWeaponComponent::BulletFire(void)
 	// 所有者の姿勢情報と合成する
 	translation_matrix = translation_matrix  * *owner_transform_->GetWorldMatrix();
 
-	// 発射光エフェクトの再生
-	muzzle_flash_->Play(translation_matrix._41, translation_matrix._42, translation_matrix._43);
+	// エフェクトの再生
+	{
+		// エフェクトの種類を設定
+		muzzle_flash_->SetEffect(EffectType::MuzzluFrashBlue);
 
-	//
-	// エフェクトの再生時に、生成座標そのままだと、ちらつきが残ってしまうバグがあるので注意
-	//
-	//muzzle_flash_->Play(position_);
+		// 発射光エフェクトの再生
+		muzzle_flash_->Play(translation_matrix._41, translation_matrix._42, translation_matrix._43);
+	}
 
 	// 弾丸の生成
 	{
 		auto bullet = NEW Bullet(owner_->GetGame());
-
+		bullet->SetParentGameObject(owner_);
 		bullet->SetCreatePosition(translation_matrix._41, translation_matrix._42, translation_matrix._43);
 	}
 }
@@ -112,8 +153,55 @@ void BlasterWeaponComponent::BulletFire(void)
 /*-----------------------------------------------------------------------------
 /*　敵の弾の発射処理
 -----------------------------------------------------------------------------*/
-void BlasterWeaponComponent::AimShotFire(void)
+void BlasterWeaponComponent::EnemyAimShotFire(void)
 {
+
+	// 平行移動情報の作成
+	D3DXMATRIX translation_matrix;
+	D3DXMatrixIdentity(&translation_matrix);
+	{
+		translation_matrix._41 = position_.x;
+		translation_matrix._42 = position_.y;
+		translation_matrix._43 = position_.z;
+
+		// 所有者の姿勢情報と合成する
+		translation_matrix = translation_matrix * *owner_transform_->GetWorldMatrix();
+	}
+
+	// 目的の向きベクトルを作成
+	D3DXVECTOR3 front_vector = { 0.f, 0.f, 0.f };
+	if (player_object_ != nullptr)
+	{
+		// プレイヤーの座標座標
+		D3DXVECTOR3 player_pos = *player_object_->GetTransform()->GetPosition();
+	
+		// 武器の座標
+		D3DXVECTOR3 blaster_pos = { translation_matrix._41, translation_matrix._42, translation_matrix._43 };
+
+		// 前ベクトルを生成
+		front_vector = player_pos - blaster_pos;
+	
+		// ベクトルを長さ1にする
+		D3DXVec3Normalize(&front_vector, &front_vector);
+
+	}
+
+	// 発射光エフェクトの再生
+	{
+		// エフェクトの種類を設定
+		muzzle_flash_->SetEffect(EffectType::MuzzluFrashOrange);
+
+		// 発射光エフェクトの再生
+		muzzle_flash_->Play(translation_matrix._41, translation_matrix._42, translation_matrix._43);
+	}
+
+	// 弾丸の生成
+	{
+		auto bullet = NEW Bullet(owner_->GetGame());
+		bullet->SetFrontVector(front_vector);
+		bullet->SetParentGameObject(owner_);
+		bullet->SetCreatePosition(translation_matrix._41, translation_matrix._42, translation_matrix._43);
+	}
 }
 
 /*-----------------------------------------------------------------------------

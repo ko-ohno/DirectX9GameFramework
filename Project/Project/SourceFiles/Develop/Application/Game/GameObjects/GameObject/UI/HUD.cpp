@@ -102,8 +102,8 @@ bool HUD::Init(void)
 			// 桁数字
 			distance_digit_ = NEW SpriteDigitRendererComponent(this);
 			distance_digit_->SetTexture(TextureType::ScoreFontOrigin_0);
-			distance_digit_->SetDrawableDigitLength(3);
-			distance_digit_->SetColor(255, 255, 0);
+			distance_digit_->SetDrawableDigitLength(2);
+			distance_digit_->SetVertexColor(255, 255, 0);
 		}
 
 		// スコアのの表示
@@ -270,7 +270,9 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 			meter_left_bg_->SetScaleX(120.f);
 			meter_left_bg_->SetScaleY(150.f);
 			meter_left_bg_->SetRotate(45.f);
-			meter_left_bg_->SetTranslation(draw_pos_x, draw_pos_y);
+			meter_left_bg_->SetTranslationX(draw_pos_x);
+			meter_left_bg_->SetTranslationY(draw_pos_y);
+
 		}
 	
 		// 右
@@ -286,7 +288,9 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 			meter_right_bg_->SetScaleX(120.f);
 			meter_right_bg_->SetScaleY(150.f);
 			meter_right_bg_->SetRotate(-45.f);
-			meter_right_bg_->SetTranslation(draw_pos_x, draw_pos_y);
+			meter_right_bg_->SetTranslationX(draw_pos_x);
+			meter_right_bg_->SetTranslationY(draw_pos_y);
+
 		}
 	}
 
@@ -295,7 +299,7 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 		distance_digit_->SetIntData(static_cast<int>(distance_value_));
 
 		// 描画座標
-		const float draw_pos_x = (screen_width / 2) - (distance_digit_->GetMaxDrawableDigitWidth()/2) - 10;
+		const float draw_pos_x = (screen_width / 2) - (distance_digit_->GetMaxDrawableDigitWidth()) - 15;
 		const float draw_pos_y = (screen_height - distance_digit_->GetFontHeight());
 
 		distance_digit_->SetTranslationX(draw_pos_x);
@@ -318,7 +322,7 @@ void HUD::UpdateScoreHUD(float deltaTime)
 	{
 		score_digit_->SetIntData(score_value_);
 
-		const float offset_value = 100;
+		const float offset_value = 200;
 
 		// 描画座標
 		const float draw_pos_x = (screen_width  - distance_digit_->GetMaxDrawableDigitWidth()) - offset_value;

@@ -24,8 +24,13 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "YellowMuzzluFrash"
 	, "RedMuzzleFlash"
 
-	, "AfterBurner"
+	, "ChargeBulletState1Charge"
+	, "ChargeBulletState2Hold"
+	, "ChargeBulletState3Fire"
+	, "ChargeBulletState4Bullet"
+	, "ChargeBulletState5Explosion"
 
+	, "AfterBurner"
 };
 
 /*-----------------------------------------------------------------------------
@@ -115,6 +120,13 @@ bool EffectManager::Init(void)
 			unmap_effect_path_list_[EffectType::MuzzluFrashGreen]  = "Shot/shot_green.efk";
 			unmap_effect_path_list_[EffectType::MuzzluFrashBlue]   = "Shot/shot_blue.efk";
 			unmap_effect_path_list_[EffectType::MuzzluFrashOrange] = "Shot/shot_orange.efk";
+
+			// チャージ弾のエフェクト
+			unmap_effect_path_list_[EffectType::ChargeBulletState1Charge]	 = "ChargeBullet/cb_state_1_charge.efk";
+			unmap_effect_path_list_[EffectType::ChargeBulletState2Hold]		 = "ChargeBullet/cb_state_2_hold.efk";
+			unmap_effect_path_list_[EffectType::ChargeBulletState3Fire]		 = "ChargeBullet/cb_state_3_fire.efk";
+			unmap_effect_path_list_[EffectType::ChargeBulletState4Bullet]	 = "ChargeBullet/cb_state_4_bullet.efk";
+			unmap_effect_path_list_[EffectType::ChargeBulletState5Explosion] = "ChargeBullet/cb_state_5_explosion.efk";
 
 			//アフターバーナーのエフェクト
 			unmap_effect_path_list_[EffectType::AfterBurner] = "AfterBurner/after_burner.efk";

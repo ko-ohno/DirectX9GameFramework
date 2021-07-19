@@ -16,6 +16,10 @@ const char* SoundManager::SoundTypeNames[static_cast<int>(SoundType::Max)] = {
 	//©•ª©g
 	"Sample"
 	, "WonderLand"
+	, "JetPenguin"
+	, "Kemono"
+
+	, "SelectSound"
 };
 
 /*-----------------------------------------------------------------------------
@@ -83,12 +87,18 @@ bool SoundManager::Init(void)
 	// ƒŠƒXƒg‚Ì‰Šú‰»
 	unmap_sound_path_list_.clear();
 	{
+		// BGM
 		//unmap_sound_path_list_[SoundType::Sample] = "BGM/samaple.wav";
-
-		//unmap_sound_path_list_[SoundType::Sample] = "SE/samaple.wav";
-
 		unmap_sound_path_list_[SoundType::Sample]		= "BGM/GameOver.wav";
-		unmap_sound_path_list_[SoundType::WonderLand]	= "BGM/wonderland.wav";
+		unmap_sound_path_list_[SoundType::WonderLand]	= "BGM/wonderland.wav"; 
+		unmap_sound_path_list_[SoundType::JetPenguin]   = "BGM/penguin.wav";
+		unmap_sound_path_list_[SoundType::Kemono]		= "BGM/kemono.wav";
+
+
+		// SE
+		//unmap_sound_path_list_[SoundType::Sample] = "SE/samaple.wav";
+		unmap_sound_path_list_[SoundType::SelectSound] = "SE/select_sound.wav";
+
 	}
 
 	HRESULT hr;

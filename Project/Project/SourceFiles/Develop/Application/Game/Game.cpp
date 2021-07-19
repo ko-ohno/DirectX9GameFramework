@@ -279,7 +279,6 @@ void Game::ShutDown(void)
 			shader_manager_->Shutdown();
 			SAFE_DELETE_(shader_manager_);
 		}
-
 	}
 
 	//レンダラーの破棄
@@ -294,13 +293,10 @@ void Game::ShutDown(void)
 -----------------------------------------------------------------------------*/
 void Game::Input(void)
 {
-	if (game_state_ == GameState::Gameplay)
+	//ゲームオブジェクトの入力処理
+	for (auto game_object : game_objects_)
 	{
-		//ゲームオブジェクトの入力処理
-		for (auto game_object : game_objects_)
-		{
-			game_object->Input();
-		}
+		game_object->Input();
 	}
 }
 
@@ -311,11 +307,6 @@ void Game::Update(float deltaTime)
 {
 	ImGui::ShowFPS(deltaTime);
 
-	if (game_state_ == GameState::Gameplay)
-	{
-		//ゲームオブジェクトの更新
-		this->UpdateGameObjects(deltaTime);
-	}
 
 	switch (game_state_)
 	{
@@ -323,6 +314,8 @@ void Game::Update(float deltaTime)
 		break;
 
 	case Game::GameState::Gameplay:
+		//ゲームオブジェクトの総更新
+		this->UpdateGameObjects(deltaTime);
 		break;
 
 	case Game::GameState::Result:
@@ -446,7 +439,7 @@ void Game::UpdateGameObjects(float deltaTime)
 	std::vector<class GameObject*> dead_game_objects;
 	for (auto game_object : game_objects_)
 	{
-		if (game_object->GetState() == GameObject::State::Dead)
+		if (game_object->GetGameObjectState() == GameObject::State::Dead)
 		{
 			dead_game_objects.emplace_back(game_object);
 		}

@@ -46,8 +46,8 @@ private:
 	
 	// 武器コンポーネント
 
-	class BlasterWeaponComponent*			  left_blaster_;
-	class BlasterWeaponComponent*			  right_blaster_;
+	class BlasterWeaponComponent*	  left_blaster_;
+	class BlasterWeaponComponent*	  right_blaster_;
 
 	// ロックオン用衝突判定コンポーネント
 

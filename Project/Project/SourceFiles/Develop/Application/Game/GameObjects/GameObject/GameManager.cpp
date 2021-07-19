@@ -19,6 +19,8 @@
 #include "../Component/AudioComponent.h"
 
 
+#include "../../Input/InputCheck.h"
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -94,6 +96,12 @@ void GameManager::InputGameObject(void)
 void GameManager::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_X))
+	{
+		game_->SetGameState(Game::GameState::Paused);
+	}
+
 }
 
 /*=============================================================================

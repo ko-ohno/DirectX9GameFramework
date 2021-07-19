@@ -16,8 +16,17 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	"Sample"
 	, "Prototype"
 	, "Blank"
+	, "GoNext"
+	, "Title"
+	, "Result"
+	, "Pause"
+	, "Resume"
+	, "ScreenBG"
+	, "GameStart"
+	, "GameQuit"
 	, "ScoreFontOrigin_0"
 	, "ScoreFontOrigin_1"
+	, "ScoreDoublePoint"
 	, "FarReticle"
 	, "NearReticle"
 	, "Planet"
@@ -87,14 +96,23 @@ bool TextureManager::Init(void)
 	// ÉäÉXÉgÇÃèâä˙âª
 	unmap_texture_path_list_.clear();
 	{
-		unmap_texture_path_list_[TextureType::Sample]			 = "tex1.bmp";
-		unmap_texture_path_list_[TextureType::Prototype]		 = "PrototypingTextures/texture_01.png";
-		unmap_texture_path_list_[TextureType::Blank]			 = "Blank.png";
-		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0] = "score_font_origin_0.png";
-		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1] = "score_font_origin_1.png";
-		unmap_texture_path_list_[TextureType::FarReticle]		 = "ReticleFar.png";
-		unmap_texture_path_list_[TextureType::NearReticle]		 = "ReticleNear.png";
-		unmap_texture_path_list_[TextureType::Planet]			 = "Planet.png";
+		unmap_texture_path_list_[TextureType::Sample]			  = "tex1.bmp";
+		unmap_texture_path_list_[TextureType::Prototype]		  = "PrototypingTextures/texture_01.png";
+		unmap_texture_path_list_[TextureType::Blank]			  = "Blank.png";
+		unmap_texture_path_list_[TextureType::GoNext]			  = "go_next.png";
+		unmap_texture_path_list_[TextureType::Title]			  = "title.png";
+		unmap_texture_path_list_[TextureType::Result]			  = "result.png";
+		unmap_texture_path_list_[TextureType::Pause]			  = "Pause.png";
+		unmap_texture_path_list_[TextureType::Resume]			  = "resume.png";
+		unmap_texture_path_list_[TextureType::ScreenBG]			  = "bg_space.png";
+		unmap_texture_path_list_[TextureType::GameStart] = "GameStart.png";
+		unmap_texture_path_list_[TextureType::GameQuit]  = "quit.png";
+		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0]  = "score_font_origin_0.png";
+		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1]  = "score_font_origin_1.png";
+		unmap_texture_path_list_[TextureType::ScoreDoublePoint]   = "double.png";
+		unmap_texture_path_list_[TextureType::FarReticle]		  = "ReticleFar.png";
+		unmap_texture_path_list_[TextureType::NearReticle]		  = "ReticleNear.png";
+		unmap_texture_path_list_[TextureType::Planet]			  = "Planet.png";
 
 	}
 	return true;

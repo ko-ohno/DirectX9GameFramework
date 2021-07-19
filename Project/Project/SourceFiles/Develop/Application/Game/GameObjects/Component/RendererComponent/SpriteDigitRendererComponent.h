@@ -32,13 +32,13 @@ public:
 	void SetTexture(TextureType textureType) { texture_type_ = textureType; };
 
 	// 桁の描画座標をポリゴンの中心にするか
-	void IsSetDrawingPositionToCenter(bool isIDrawingPositionToCenter) { is_font_texture_uv_origin_zero_ = isIDrawingPositionToCenter; }
+	void IsSetDrawingPositionToCenter(bool isIDrawingPositionToCenter) { is_drawing_position_to_center_ = isIDrawingPositionToCenter; }
 
 	// テクスチャの設定　
 	void IsSetFontTextureUVOriginZero(bool isTextureUVOriginZero) { is_font_texture_uv_origin_zero_ = isTextureUVOriginZero; }
 
 	// 色情報の設定
-	void SetColor(int red = 255, int green = 255, int blue = 255, int alpha = 255)
+	void SetVertexColor(int red = 255, int green = 255, int blue = 255, int alpha = 255)
 	{
 		red_	= red;
 		green_	= green;
@@ -47,7 +47,7 @@ public:
 	}
 
 	// 描画する有効桁数の設定
-	void SetDrawableDigitLength(int drawableDigitLength) { drawable_digit_length_ = drawableDigitLength; };
+	void SetDrawableDigitLength(int drawableDigitLength) { drawable_digit_length_ = (drawableDigitLength -1); };
 
 	// フォントの幅を設定
 	int GetFontWidth(void) { return font_width_; }
@@ -69,7 +69,7 @@ public:
 
 private:
 	// 最大桁数
-	static constexpr int MAX_DIGIT_LENGTH = 8 + 1;
+	static constexpr int MAX_DIGIT_LENGTH = 8;
 
 	//テクスチャの分割数
 	static constexpr int texture_width_divisions = 5;

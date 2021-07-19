@@ -46,6 +46,12 @@ enum class EffectType
 	, MuzzluFrashGreen
 	, MuzzluFrashOrange
 
+	, ChargeBulletState1Charge
+	, ChargeBulletState2Hold
+	, ChargeBulletState3Fire
+	, ChargeBulletState4Bullet
+	, ChargeBulletState5Explosion
+
 	, AfterBurner
 	, Max
 };

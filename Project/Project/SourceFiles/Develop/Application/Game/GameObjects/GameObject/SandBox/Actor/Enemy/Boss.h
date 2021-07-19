@@ -32,6 +32,11 @@ private:
 	static constexpr float ATTACK_VALUE_BODY_PRESS		= 10.f;
 	static constexpr float ATTACK_VALUE_SHOOT			=  5.f;
 	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
+
+	// ç≈ëÂïêäÌêî
+	static constexpr int MAX_WEAPON_COUNT = 3;
+	
+	class BlasterWeaponComponent* blaster_[MAX_WEAPON_COUNT];
 };
 
 #endif //BOSS_H_

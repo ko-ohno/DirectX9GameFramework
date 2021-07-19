@@ -45,6 +45,9 @@ public:
 	void Update(float deltaTime);
 	void GenerateOutput(void);
 
+	//ゲームステートの更新
+	void SetGameState(GameState gameState) { game_state_ = gameState; }
+
 public:
 	//ゲームオブジェクトの追加と削除
 	void AddGameObject(class GameObject* gameObject);
@@ -69,8 +72,8 @@ public:
 
 	// サンドボックスの各マネージャ
 
-	class ActorManager*	 GetActorManager(void) { return actor_manager_; }
-	class EnemieManager* GetEnemieManager(void) { return enemie_manager_; }
+	class ActorManager*	    GetActorManager(void) { return actor_manager_; }
+	class EnemieManager*    GetEnemieManager(void) { return enemie_manager_; }
 
 private:
 	//各更新処理

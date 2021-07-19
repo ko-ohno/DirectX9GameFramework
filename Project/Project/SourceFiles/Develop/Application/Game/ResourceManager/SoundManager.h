@@ -19,7 +19,14 @@ enum class SoundType
 {
 	None = -1
 	, Sample
+
+	// BGM
 	, WonderLand
+	, JetPenguin
+	, Kemono
+
+	// SE
+	, SelectSound
 
 	, Max
 };

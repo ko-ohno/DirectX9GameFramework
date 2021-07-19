@@ -120,8 +120,8 @@ public:
 	// ゲームオブジェクトの状態
 	//
 
-	void SetState(State state) { state_ = state; };
-	State GetState(void) { return state_; }
+	void SetGameObjectState(State state) { state_ = state; };
+	State GetGameObjectState(void) { return state_; }
 	
 	//ゲームオブジェクトのレイヤーについて
 

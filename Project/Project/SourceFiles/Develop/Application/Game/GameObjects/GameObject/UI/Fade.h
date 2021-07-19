@@ -30,6 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Fade; }
 
 private:
+	class SpriteRendererComponent* fade_;
 };
 
 #endif //Fade_H_

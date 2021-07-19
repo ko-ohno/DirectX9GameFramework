@@ -12,6 +12,17 @@
 #include "../UI.h"
 
 /*-------------------------------------
+// タイトルメニューの状態
+-------------------------------------*/
+enum class TitleMenuState
+{
+	None = -1
+	, GameStart
+	, GameQuit
+	, Max
+};
+
+/*-------------------------------------
 /* タイトル画面クラス
 -------------------------------------*/
 class Title : public UI
@@ -29,7 +40,43 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Title; } 
 
+	void UpdateTitleSprite(float deltaTime);
+	void UpdateBackground(float deltaTime);
+	void UpdateMenu(float deltaTime);
+
 private:
+
+	// ゲームを開始する
+	class SpriteRendererComponent* menu_game_start_;
+
+	// ゲームを終了する
+	class SpriteRendererComponent* menu_game_quit_;
+
+	// カーソル
+	class SpriteRendererComponent* menu_cursor_;
+
+	// 説明
+	class SpriteRendererComponent* go_next_;
+
+	// タイトル
+	class SpriteRendererComponent* title_;
+
+	// 背景
+	class SpriteRendererComponent* bg_;
+
+	// 選択音
+	class AudioComponent*		   bgm_title_;
+
+	// 選択音
+	class AudioComponent*		   se_select_;
+
+	// タイトルメニューの状態ステート
+	TitleMenuState select_state_;
+	TitleMenuState select_state_old_;
+
+	// 画面サイズ　
+	float screen_width_;
+	float screen_height_;
 };
 
 #endif //TITLE_H_

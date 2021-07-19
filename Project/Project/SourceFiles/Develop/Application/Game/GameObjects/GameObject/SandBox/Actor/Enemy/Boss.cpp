@@ -68,6 +68,7 @@ bool Boss::Init(void)
 	// ボスの移動コンポーネントを生成
 	enemy_move_ = NEW BossMoveComponent(this);
 
+	// メッシュの生成
 	{
 		// ボスのメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
@@ -85,6 +86,15 @@ bool Boss::Init(void)
 		// 敵の状態を初期化
 		enemy_ai_->SetEnemyState(init_boss_state);
 		enemy_move_->SetEnemyState(init_boss_state);
+	}
+
+	// 武器の生成
+	{
+		for (int i = 0; i < MAX_WEAPON_COUNT; i++)
+		{
+			blaster_[i] = nullptr;
+			blaster_[i] = NEW BlasterWeaponComponent(this);
+		}
 	}
 
 	// 衝突判定関係
@@ -159,6 +169,48 @@ void Boss::UpdateGameObject(float deltaTime)
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
 	}
+
+	//　武器コンポーネントの更新
+	{
+		D3DXVECTOR3 pos;
+
+		// 角度を三分割
+		const float degree = 360.f / 3.f;
+
+		// 半径
+		const float radius = 5.0f;
+
+		for (int i = 0; i < MAX_WEAPON_COUNT; i ++)
+		{
+			// 角度をradian に変換
+			const float radian = Math::ToRadian(degree * i);
+			pos.x = cosf(radian) * radius;
+			pos.y = 1.0f;
+			pos.z = sinf(radian) * radius;
+
+			// 座標の計算
+			blaster_[i]->SetTranslation(pos);
+
+			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_B))
+			{
+				blaster_[i]->EnemyAimShotFire();
+			}
+		}
+	}
+
+	//D3DXVECTOR3 origin = { 0.f, 0.f, 0.f };
+
+	//auto blaster_pos = *blaster_[0]->GetOwner()->GetTransform()->GetPosition();
+
+
+	//auto vector = origin - blaster_pos;
+
+	//ImGui::Begin("vec");
+	//ImGui::Text("posX:%f", vector.x);
+	//ImGui::Text("posY:%f", vector.y);
+	//ImGui::Text("posZ:%f", vector.z);
+	//ImGui::End();
+
 
 	/*
 	*			←		EnemyState		←

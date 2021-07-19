@@ -9,6 +9,10 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "Fade.h"
+#include "../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../../Game.h"
+
+#include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -16,9 +20,7 @@
 Fade::Fade(class Game* game)
 	: UI(game)
 {
-	//UIオブジェクトを生成したら、
-	//メンバ変数state_がClosingになるまで表示され続ける。
-	//サブクラスは生成と削除に関する処理を記述することでUIの操作をすること
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -26,6 +28,7 @@ Fade::Fade(class Game* game)
 -----------------------------------------------------------------------------*/
 Fade::~Fade(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -33,6 +36,9 @@ Fade::~Fade(void)
 -----------------------------------------------------------------------------*/
 bool Fade::Init(void)
 {
+	// フェードの生成
+	fade_ = NEW SpriteRendererComponent(this, 300);
+	fade_->SetVertexColor(0, 0, 0);
 	return true;
 }
 
@@ -56,6 +62,22 @@ void Fade::InputGameObject(void)
 void Fade::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	float screen_width  = game_->GetGraphics()->GetScreenSize().x_;
+	float screen_height = game_->GetGraphics()->GetScreenSize().y_;
+
+	// フェードの画面サイズの設定
+	fade_->SetScaleX(screen_width);
+	fade_->SetScaleY(screen_height);
+	
+	static int fade_value = 0;
+
+	ImGui::Begin("Fade");
+	ImGui::SliderInt("##fade", &fade_value, 0, 255);
+	ImGui::End();
+
+	// フェードの値を設定
+	fade_->SetVertexColor(0, 0, 0, fade_value);
 }
 
 /*=============================================================================

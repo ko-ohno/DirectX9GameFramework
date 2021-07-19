@@ -19,8 +19,17 @@ enum class TextureType
 	, Sample
 	, Prototype
 	, Blank
+	, GoNext
+	, Title
+	, Result
+	, Pause
+	, Resume
+	, ScreenBG
+	, GameStart
+	, GameQuit
 	, ScoreFontOrigin_0
 	, ScoreFontOrigin_1
+	, ScoreDoublePoint
 	, FarReticle
 	, NearReticle
 	, Planet
