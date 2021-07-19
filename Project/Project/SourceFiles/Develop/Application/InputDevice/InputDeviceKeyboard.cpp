@@ -17,6 +17,8 @@ LPDIRECTINPUTDEVICE8 InputDeviceKeyboard::lpdinput_device_keyboard_;
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 InputDeviceKeyboard::InputDeviceKeyboard()
+	: max_repeat_frame_count_(0)
+	, repeat_input_time_(0.f)
 {
 	this->Init();
 }
@@ -105,6 +107,12 @@ void InputDeviceKeyboard::Update(void)
 {
 	BYTE key_state[NUM_KEY_MAX];
 
+	// リピートの最大入力時間の更新
+	{
+		// 1秒 * n倍をフレーム数として登録する
+		max_repeat_frame_count_ = static_cast<int>(static_cast<float>(MAX_FPS) * repeat_input_time_);
+	}
+
 	// デバイスからデータを取得
 	if (SUCCEEDED(lpdinput_device_keyboard_->GetDeviceState(sizeof(key_state), key_state)))
 	{
@@ -117,12 +125,12 @@ void InputDeviceKeyboard::Update(void)
 			// キーリピート情報を生成
 			if (key_state[key_count])
 			{
-				if (key_state_repeat_count_[key_count] < LIMIT_COUNT_REPEAT)
+				if (key_state_repeat_count_[key_count] < max_repeat_frame_count_)
 				{
 					key_state_repeat_count_[key_count]++;
 					
 					// キーを押し始めた最初のフレーム、または一定時間経過したらキーリピート情報ON
-					if ((key_state_repeat_count_[key_count] == 1 )||( key_state_repeat_count_[key_count] >= LIMIT_COUNT_REPEAT))
+					if (/*(key_state_repeat_count_[key_count] == 1 )||*/( key_state_repeat_count_[key_count] >= max_repeat_frame_count_))
 					{
 						key_state_repeat_[key_count] = key_state[key_count];
 					}

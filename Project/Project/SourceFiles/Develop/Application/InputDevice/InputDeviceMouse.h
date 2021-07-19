@@ -36,6 +36,9 @@ public:
 
 	class Vector2 GetMCursorPos(void) const;
 
+	// 入力時間の設定
+	void SetRepeatInputTime(float inputSeconds) { repeat_input_time_ = inputSeconds; }
+
 private:
 	void Init(void);
 	void Uninit(void);
@@ -43,8 +46,17 @@ private:
 	void UpdateMouseState(const HWND &wndHandle);
 
 private:
-	static constexpr int LIMIT_COUNT_REPEAT = 20;
+	// マウスのボタンの数
 	static constexpr int NUM_MB_MAX = 4;
+
+	// 最大FPS数
+	static constexpr int MAX_FPS = 60;
+
+	// 最大リピートフレーム数 
+	int max_repeat_frame_count_;
+
+	// 入力時間
+	float repeat_input_time_;
 
 	//デバイス入力用
 	static LPDIRECTINPUTDEVICE8	lpdinput_device_mouse_;		// 入力デバイス(マウス)へのポインタ

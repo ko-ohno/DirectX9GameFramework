@@ -14,8 +14,10 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 InputDeviceXInput::InputDeviceXInput(void)
+	: max_repeat_frame_count_(0)
+	, repeat_input_time_(0.f)
 {
-	Init();
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -77,6 +79,12 @@ HRESULT InputDeviceXInput::UpdateGamepadEntity(void)
 -----------------------------------------------------------------------------*/
 void InputDeviceXInput::GamepadIdleState(void)
 {
+	// リピートの最大入力時間の更新
+	{
+		// 1秒 * n倍をフレーム数として登録する
+		max_repeat_frame_count_ = static_cast<int>(static_cast<float>(MAX_FPS) * repeat_input_time_);
+	}
+
 	for (int gamepad_count = 0; gamepad_count < MAX_GAMEPAD_CONNECTION; gamepad_count++)
 	{
 		if (xinput_gamepad_[gamepad_count].is_pad_conected_ == false)
@@ -114,12 +122,12 @@ void InputDeviceXInput::GamepadIdleState(void)
 			//リピートの情報生成
 			if (xib_state)
 			{
-				if (xib_state_repeat_count_[gamepad_count] < LIMIT_COUNT_REPEAT)
+				if (xib_state_repeat_count_[gamepad_count] < max_repeat_frame_count_)
 				{
 					xib_state_repeat_count_[gamepad_count]++;
 
 					// ボタンを押し始めた最初のフレーム、または一定時間経過したらリピート情報ON
-					if ((xib_state_repeat_count_[gamepad_count] == 1) || (xib_state_repeat_count_[gamepad_count] >= LIMIT_COUNT_REPEAT))
+					if (/*(xib_state_repeat_count_[gamepad_count] == 1) ||*/ (xib_state_repeat_count_[gamepad_count] >= max_repeat_frame_count_))
 					{
 						xib_state_repeat_ [gamepad_count] = xib_state;
 					}

@@ -36,11 +36,24 @@ public:
 	bool GetKeyboardRepeat(int nKey);
 	bool GetKeyboardRelease(int nKey);
 
-private:
-	static constexpr int LIMIT_COUNT_REPEAT = 20;
-	static constexpr int NUM_KEY_MAX = 256;			//キーの最大上限数
+	// 入力時間の設定
+	void SetRepeatInputTime(float inputSeconds) { repeat_input_time_ = inputSeconds; }
 
-	static LPDIRECTINPUTDEVICE8	lpdinput_device_keyboard_;	// 入力デバイス(キーボード)へのポインタ
+private:
+	// キーの最大上限数
+	static constexpr int NUM_KEY_MAX = 256;
+
+	// 最大FPS数
+	static constexpr int MAX_FPS = 60;
+
+	// 最大リピートフレーム数 
+	int max_repeat_frame_count_;
+
+	// 入力時間
+	float repeat_input_time_;
+
+	// 入力デバイス(キーボード)へのポインタ
+	static LPDIRECTINPUTDEVICE8	lpdinput_device_keyboard_;	
 
 	BYTE key_state_[NUM_KEY_MAX];				// キーボードの入力情報ワーク
 	BYTE key_state_trigger_[NUM_KEY_MAX];		// キーボードのトリガー情報ワーク

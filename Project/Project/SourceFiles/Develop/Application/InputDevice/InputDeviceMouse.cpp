@@ -20,6 +20,8 @@ POINT					InputDeviceMouse::mouse_cursor_pos_;
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 InputDeviceMouse::InputDeviceMouse(void)
+	: max_repeat_frame_count_(0)
+	, repeat_input_time_(0.f)
 {
 	this->Init();
 }
@@ -99,6 +101,12 @@ void InputDeviceMouse::UpdateMouseState(const HWND &wndHandle)
 	GetCursorPos(&mouse_cursor_pos_);
 	ScreenToClient(wndHandle, &mouse_cursor_pos_);
 
+	// リピートの最大入力時間の更新
+	{
+		// 1秒 * n倍をフレーム数として登録する
+		max_repeat_frame_count_ = static_cast<int>(static_cast<float>(MAX_FPS) * repeat_input_time_);
+	}
+
 	//入力判定で0x80が使われているのは
 	//取得したデバイスでボタンが押されているときに1バイトの最上位ビットが1となっている
 
@@ -127,11 +135,11 @@ void InputDeviceMouse::UpdateMouseState(const HWND &wndHandle)
 			//リピート
 			if (mb_state_[mb_count])
 			{
-				if (mb_state_repeat_count_[mb_count] < LIMIT_COUNT_REPEAT)
+				if (mb_state_repeat_count_[mb_count] < max_repeat_frame_count_)
 				{
 					mb_state_repeat_count_[mb_count]++;
 
-					if((mb_state_repeat_count_[mb_count] == 1) || (mb_state_repeat_count_[mb_count] >= LIMIT_COUNT_REPEAT))
+					if(/*(mb_state_repeat_count_[mb_count] == 1) ||*/ (mb_state_repeat_count_[mb_count] >= max_repeat_frame_count_))
 					{
 						mb_state_repeat_[mb_count] = mb_state_[mb_count];
 					}

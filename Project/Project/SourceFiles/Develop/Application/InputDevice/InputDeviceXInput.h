@@ -84,6 +84,9 @@ public:
 	bool GetXIBRelease(int padIndex, XInputButton xibIndex);
 	bool GetXIBRepeat (int padIndex, XInputButton xibIndex);
 
+	// 入力時間の設定
+	void SetRepeatInputTime(float inputSeconds) { repeat_input_time_ = inputSeconds; }
+
 private:
 	HRESULT UpdateGamepadEntity(void);
 	void GamepadIdleState(void);
@@ -100,15 +103,23 @@ private:
 	static constexpr int  MAX_GAMEPAD_CONNECTION = 4;
 	XinputController xinput_gamepad_[MAX_GAMEPAD_CONNECTION];
 
+	// スティックのデッドゾーン
 	static constexpr WORD INPUT_DEADZONE = 7864;
-	static constexpr int  LIMIT_COUNT_REPEAT = 20;
+
+	// 最大FPS数
+	static constexpr int MAX_FPS = 60;
+
+	// 最大リピートフレーム数 
+	int max_repeat_frame_count_;
+
+	// 入力時間
+	float repeat_input_time_;
 
 	WORD xib_state_press_  [MAX_GAMEPAD_CONNECTION];
 	WORD xib_state_trigger_[MAX_GAMEPAD_CONNECTION];
 	WORD xib_state_release_[MAX_GAMEPAD_CONNECTION];
 	WORD xib_state_repeat_ [MAX_GAMEPAD_CONNECTION];
 	int  xib_state_repeat_count_[MAX_GAMEPAD_CONNECTION]; // リピートのカウンタ
-
 };
 
 
