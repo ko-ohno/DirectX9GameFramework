@@ -37,7 +37,7 @@
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
 
-#include "GameObjects/GameObject/SandBox/Bullet/ChargeBullet.h"
+#include "GameObjects/GameObject/SandBox/ChargeBullet.h"
 
 // UIÉåÉCÉÑÅ[
 #include "GameObjects/GameObject/UI/HUD.h"
