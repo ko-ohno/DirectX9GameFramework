@@ -62,6 +62,7 @@ bool InputCheck::KeyTrigger(int dikKeynum)
 bool InputCheck::KeyRepeat(int dikKeynum, float inputSeconds)
 {
 	if (input_device_ == nullptr) { return false; }
+	if (InputCheck::KeyPress(dikKeynum) == false) { return false; }
 	input_device_->GetDeviceInstanceKeyboard()->SetRepeatInputTime(inputSeconds);
 	return input_device_->GetDeviceInstanceKeyboard()->GetKeyboardRepeat(dikKeynum);
 }
@@ -99,6 +100,7 @@ bool InputCheck::MButtonTrigger(MibNum mibNum)
 bool InputCheck::MButtonRepeat(MibNum mibNum, float inputSeconds)
 {
 	if (input_device_ == nullptr) { return false; }
+	if (InputCheck::MButtonPress(mibNum) == false) { return false; }
 	input_device_->GetDeviceInstanceMouse()->SetRepeatInputTime(inputSeconds);
 	return input_device_->GetDeviceInstanceMouse()->GetMBRepeat((int)mibNum);
 }
@@ -145,6 +147,7 @@ bool InputCheck::XInputTrigger(PadIndex padIndex, XInputButton xibIndex)
 bool InputCheck::XInputRepeat(PadIndex padIndex, XInputButton xibIndex, float inputSeconds)
 {
 	if (input_device_ == nullptr) { return false; }
+	if (InputCheck::XInputPress(padIndex, xibIndex) == false) { return false; }
 	input_device_->GetDeviceInstanceXInput()->SetRepeatInputTime(inputSeconds);
 	return input_device_->GetDeviceInstanceXInput()->GetXIBRepeat((int)padIndex, xibIndex);
 }
