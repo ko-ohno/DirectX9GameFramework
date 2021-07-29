@@ -1,12 +1,12 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BlasterComponent.h]  光線銃武器コンポーネント
+/*	[EnemyBlasterWeaponComponent.h]  コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：光線銃武器コンポーネント
+/*	説明：コンポーネント
 =============================================================================*/
-#ifndef BLASTER_WEAPON_COMPONENT_H_
-#define	BLASTER_WEAPON_COMPONENT_H_
+#ifndef ENEMY_BLASTER_WEAPON_COMPONENT_H_
+#define	ENEMY_BLASTER_WEAPON_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../WeaponComponent.h"
@@ -17,13 +17,13 @@
 
 
 /*-------------------------------------
-/* 光線銃武器コンポーネント
+/* 敵の武器コンポーネント
 -------------------------------------*/
-class BlasterWeaponComponent : public WeaponComponent
+class EnemyBlasterWeaponComponent : public WeaponComponent
 {
 public:
-	BlasterWeaponComponent(class GameObject* owner, int updateOrder = 100);
-	~BlasterWeaponComponent(void);
+	EnemyBlasterWeaponComponent(class GameObject* owner, int updateOrder = 100);
+	~EnemyBlasterWeaponComponent(void);
 
 private:
 	bool Init(void) override;
@@ -33,10 +33,17 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
-	virtual TypeID GetComponentType() const override { return TypeID::BlasterComponent; };
+	virtual TypeID GetComponentType() const override { return TypeID::EnemyBlasterWeaponComponent; };
+
+	// 敵のターゲットを見つける処理
+	class Actor* FindPlayerGameObject(void);
 
 	// 攻撃
 	void Fire(void);
+
+private:
+	// プレイヤーのゲームオブジェクトの取得
+	class Actor* player_object_;
 
 protected:
 	// 銃の発射エフェクト
@@ -46,7 +53,7 @@ protected:
 	class SphereGizmoRendererComponent* sphere_gizmo_;
 };
 
-#endif //BLASTER_WEAPON_COMPONENT_H_
+#endif //COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

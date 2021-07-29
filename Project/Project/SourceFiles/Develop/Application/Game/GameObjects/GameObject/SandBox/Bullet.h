@@ -27,6 +27,8 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	virtual TypeID GetType(void) const { return TypeID::Bullet; }
+
 	// プレイヤーの姿勢を合成
 	void CombinePlayerTransform(void);
 
@@ -54,7 +56,7 @@ private:
 	class FFPMeshRendererComponent*		bullet_mesh_;
 	class SphereColliderComponent*		sphere_collider_;
 	class SphereGizmoRendererComponent* sphere_collider_gizmo_;
-
+ 
 	// 弾丸を生成したフレームか
 	bool is_bullet_create_frame_;
 

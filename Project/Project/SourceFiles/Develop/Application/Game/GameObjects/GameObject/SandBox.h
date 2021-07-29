@@ -27,7 +27,7 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Actor; }
+	virtual TypeID GetType(void) const { return TypeID::SandBox; }
 
 protected:
 };

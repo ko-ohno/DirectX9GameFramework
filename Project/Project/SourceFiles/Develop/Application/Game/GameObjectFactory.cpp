@@ -109,7 +109,7 @@ bool GameObjectFactory::StartUp(void)
 		this->AddGameObject(NEW Player(game_));
 		//this->AddGameObject(NEW Boss(game_));
 
-		this->AddGameObject(NEW ChargeBullet(game_));
+		//this->AddGameObject(NEW ChargeBullet(game_));
 
 
 		// UIレイヤーのオブジェクト作成

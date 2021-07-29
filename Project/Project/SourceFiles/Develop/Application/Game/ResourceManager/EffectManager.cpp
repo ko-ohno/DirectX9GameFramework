@@ -78,7 +78,12 @@ bool EffectManager::StartUp(void)
 	{
 		//this->LoadEffect(EffectType::AfterBurner);
 
-
+		// チャージ弾のエフェクトの読み込み
+		this->LoadEffect(EffectType::ChargeBulletState1Charge);
+		this->LoadEffect(EffectType::ChargeBulletState2Hold);
+		this->LoadEffect(EffectType::ChargeBulletState3Fire);
+		this->LoadEffect(EffectType::ChargeBulletState4Bullet);
+		this->LoadEffect(EffectType::ChargeBulletState5Explosion);
 	}
 	return true;
 }

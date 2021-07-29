@@ -1,4 +1,4 @@
- /*=============================================================================
+/*=============================================================================
 /*-----------------------------------------------------------------------------
 /*	[Player.h] プレイヤーゲームオブジェクト
 /*	Author：Kousuke,Ohno.
@@ -29,30 +29,37 @@ public:
 	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
+	void UpdateWeapon(float deltaTime);
+	void UpdatePirticleEffect(float deltaTime);
+
+private:
 	// 移動コンポーネント
-	class PlayerMoveComponent*		  player_move_;
+	class PlayerMoveComponent*			 player_move_;
 
 	//
 	// 描画コンポーネント
 	//
 
-	class EffectRendererComponent*    effect_after_burner_;
+	class EffectRendererComponent*		 effect_after_burner_;
 
 	// レティクル
 
-	class BillboardRendererComponent* far_reticle_;
-	class BillboardRendererComponent* near_reticle_;
-	class BillboardRendererComponent* lockon_reticle_;
+	class BillboardRendererComponent*	 far_reticle_;
+	class BillboardRendererComponent*	 near_reticle_;
+	class BillboardRendererComponent*	 lockon_reticle_;
 	
 	// 武器コンポーネント
 
-	class BlasterWeaponComponent*	  left_blaster_;
-	class BlasterWeaponComponent*	  right_blaster_;
+	class BlasterWeaponComponent*		 left_blaster_;
+	class BlasterWeaponComponent*		 right_blaster_;
+	class ChargeBlasterWeaponComponent*	 charge_blaster_;
 
 	// ロックオン用衝突判定コンポーネント
 
-	class OBBColliderComponent*		  lockon_collider_;
-	class BoxGizmoRendererComponent*  lockon_gizmo_;
+	class OBBColliderComponent*			 lockon_collider_;
+	class BoxGizmoRendererComponent*	 lockon_gizmo_;
+
+	bool is_blaster_fire_;
 };
 
 #endif //PLAYER_H_

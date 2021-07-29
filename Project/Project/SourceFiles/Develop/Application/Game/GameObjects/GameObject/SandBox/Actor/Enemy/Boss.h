@@ -36,7 +36,7 @@ private:
 	// Å‘å•Ší”
 	static constexpr int MAX_WEAPON_COUNT = 3;
 	
-	class BlasterWeaponComponent* blaster_[MAX_WEAPON_COUNT];
+	class EnemyBlasterWeaponComponent* enemy_blaster_[MAX_WEAPON_COUNT];
 };
 
 #endif //BOSS_H_

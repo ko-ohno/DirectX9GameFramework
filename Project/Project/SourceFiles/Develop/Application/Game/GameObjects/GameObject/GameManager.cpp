@@ -97,10 +97,10 @@ void GameManager::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_X))
-	{
-		game_->SetGameState(Game::GameState::Paused);
-	}
+	//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_X))
+	//{
+	//	game_->SetGameState(Game::GameState::Paused);
+	//}
 
 }
 

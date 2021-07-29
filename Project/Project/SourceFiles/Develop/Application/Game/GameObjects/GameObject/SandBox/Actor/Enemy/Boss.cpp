@@ -27,7 +27,8 @@
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
 #include "../../../../Component/ColliderComponent/OBBColliderComponent.h"
 
-#include "../../../../Component/WeaponComponent/BlasterWeaponComponent.h"
+// 敵の武器コンポーネント
+#include "../../../../Component/WeaponComponent/EnemyBlasterWeaponComponent.h"
 
 // 入力チェック
 #include "../../../../../Input/InputCheck.h"
@@ -92,8 +93,8 @@ bool Boss::Init(void)
 	{
 		for (int i = 0; i < MAX_WEAPON_COUNT; i++)
 		{
-			blaster_[i] = nullptr;
-			blaster_[i] = NEW BlasterWeaponComponent(this);
+			enemy_blaster_[i] = nullptr;
+			enemy_blaster_[i] = NEW EnemyBlasterWeaponComponent(this);
 		}
 	}
 
@@ -189,11 +190,11 @@ void Boss::UpdateGameObject(float deltaTime)
 			pos.z = sinf(radian) * radius;
 
 			// 座標の計算
-			blaster_[i]->SetTranslation(pos);
+			enemy_blaster_[i]->SetTranslation(pos);
 
 			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_B))
 			{
-				blaster_[i]->EnemyAimShotFire();
+				enemy_blaster_[i]->Fire();
 			}
 		}
 	}

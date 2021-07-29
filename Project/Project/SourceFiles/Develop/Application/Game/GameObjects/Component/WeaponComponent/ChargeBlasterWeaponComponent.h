@@ -1,15 +1,16 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[BlasterComponent.h]  光線銃武器コンポーネント
+/*	[ChargeBlasterWeaponComponent.h]  光線銃武器コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
 /*	説明：光線銃武器コンポーネント
 =============================================================================*/
-#ifndef BLASTER_WEAPON_COMPONENT_H_
-#define	BLASTER_WEAPON_COMPONENT_H_
+#ifndef CHARGE_BLASTER_WEAPON_COMPONENT_H_
+#define	CHARGE_BLASTER_WEAPON_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../WeaponComponent.h"
+#include "../../GameObject/SandBox/ChargeBullet.h"
 
 /*--- 構造体定義 ---*/
 
@@ -19,11 +20,11 @@
 /*-------------------------------------
 /* 光線銃武器コンポーネント
 -------------------------------------*/
-class BlasterWeaponComponent : public WeaponComponent
+class ChargeBlasterWeaponComponent : public WeaponComponent
 {
 public:
-	BlasterWeaponComponent(class GameObject* owner, int updateOrder = 100);
-	~BlasterWeaponComponent(void);
+	ChargeBlasterWeaponComponent(class GameObject* owner, int updateOrder = 100);
+	~ChargeBlasterWeaponComponent(void);
 
 private:
 	bool Init(void) override;
@@ -35,15 +36,39 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::BlasterComponent; };
 
-	// 攻撃
+	// チャージ弾の作成
+	void CreateChargeBullet(void);
+
+	// チャージ弾の発射
 	void Fire(void);
 
-protected:
-	// 銃の発射エフェクト
-	class EffectRendererComponent*		muzzle_flash_;
+	// ロックオンをしているか
+	void IsSetLockon(bool isLockon) { is_lockon_ = isLockon; }
 
+	// チャージ弾のインスタンスを確認
+	bool IsCheckChargeBulletInstance(void);
+
+	// レティクルのインスタンスを
+	void SetLockonReticle(class BillboardRendererComponent* lockonReticle) { lockon_reticle_ = lockonReticle; }
+
+	// チャージ弾の状態の設定
+	ChargeBulletState GetChargeBulletState(void);
+	void SetChargeBulletState(ChargeBulletState chargeBulletState);
+
+private:
+	bool								is_lockon_;
+
+	class ChargeBullet*					charge_bullet_;
+
+
+	D3DXVECTOR3 comp_position_;
+
+protected:
 	// このコンポーネントの位置を示すgizmo
 	class SphereGizmoRendererComponent* sphere_gizmo_;
+
+	// ロックオンのレティクル
+	class BillboardRendererComponent*	lockon_reticle_;
 };
 
 #endif //BLASTER_WEAPON_COMPONENT_H_

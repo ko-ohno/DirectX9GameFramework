@@ -13,9 +13,7 @@
 #include "../../Component/ColliderComponent/SphereColliderComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 
-
 #include "../../../../ImGui/ImGuiManager.h"
-
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -141,7 +139,7 @@ void Bullet::UpdateGameObject(float deltaTime)
 			D3DXMATRIX rotation_matrix_;
 			D3DXMatrixIdentity(&rotation_matrix_);
 			memcpy(rotation_matrix_.m[0], &right_vector_, sizeof(D3DXVECTOR3));
-			memcpy(rotation_matrix_.m[1], &up_vector_, sizeof(D3DXVECTOR3));
+			memcpy(rotation_matrix_.m[1], &up_vector_,	  sizeof(D3DXVECTOR3));
 			memcpy(rotation_matrix_.m[2], &front_vector_, sizeof(D3DXVECTOR3));
 
 			this->transform_component_->SetRotationMatrix(rotation_matrix_);

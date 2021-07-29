@@ -74,7 +74,8 @@ public:
 		// 武器コンポーネント
 		, WeaponComponent
 		, BlasterComponent
-		, ChargeShotBlasterComponent
+		, EnemyBlasterWeaponComponent
+		, ChargeBlasterWeaponComponent
 		
 		//コンポーネントの最大値
 		, Max

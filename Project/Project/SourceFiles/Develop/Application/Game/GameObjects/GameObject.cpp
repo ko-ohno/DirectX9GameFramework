@@ -29,10 +29,15 @@ const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	, "Result"
 	, "Title"
 
-	// アクター
+	// サンドボックス
+	, "SandBox"
+	, "Bullet"
+	, "ChargeBullet"
 	, "Actor"
 	, "Player"
 	, "Enemy"
+	, "WeakEnemy"
+	, "StrongEnemy"
 	, "Boss"
 
 	// 背景
@@ -135,7 +140,6 @@ void GameObject::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void GameObject::Update(float deltaTime)
 {
-
 	if (state_ == State::Active)
 	{
 		if (this->GetRendererLayerType() == RendererLayerType::None)

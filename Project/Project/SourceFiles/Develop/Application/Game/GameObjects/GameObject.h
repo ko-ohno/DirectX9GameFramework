@@ -40,13 +40,17 @@ public:
 		, Result
 		, Title
 
-		// アクター
+		// サンドボックス
+		, SandBox
+		, Bullet
+		, ChargeBullet
 		, Actor
 		, Player
 		, Enemy
 		, WeakEnemy
 		, StrongEnemy
 		, Boss
+
 
 		// 背景
 		, BackGround

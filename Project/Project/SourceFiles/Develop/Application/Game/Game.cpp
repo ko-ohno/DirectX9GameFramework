@@ -32,7 +32,8 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Game::Game(void)
-	: updating_game_objects_(false)
+	: input_game_objects_(false)
+	, updating_game_objects_(false)
 	, game_state_(GameState::None)
 	, dx9_graphics_(nullptr)
 	, renderer_(nullptr)
@@ -294,10 +295,12 @@ void Game::ShutDown(void)
 void Game::Input(void)
 {
 	//ゲームオブジェクトの入力処理
+	input_game_objects_ = true;
 	for (auto game_object : game_objects_)
 	{
 		game_object->Input();
 	}
+	input_game_objects_ = false;
 }
 
 /*-----------------------------------------------------------------------------
@@ -348,7 +351,8 @@ void Game::GenerateOutput(void)
 void Game::AddGameObject(GameObject* gameObject)
 {
 	// ゲームオブジェクトの更新中かで登録先を変更
-	if (updating_game_objects_)
+	if (updating_game_objects_ == true
+		|| input_game_objects_ == true)
 	{
 		pending_game_objects_.emplace_back(gameObject);//待機コンテナ
 	}

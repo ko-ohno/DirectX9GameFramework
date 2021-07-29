@@ -83,6 +83,9 @@ private:
 	//現在のゲームの状態
 	GameState game_state_;
 
+	//各オブジェクトが入力中かどうか？
+	bool input_game_objects_;
+
 	//各オブジェクトが更新中かどうか？
 	bool updating_game_objects_;
 

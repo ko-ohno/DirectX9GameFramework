@@ -177,12 +177,14 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\EnemyBlasterWeaponComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\StrongEnemyAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\StrongEnemyMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\WeakEnemyMoveComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteDigitRendererComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeBlasterWeaponComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\BossAIComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.h" />
@@ -313,12 +315,14 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\EnemyBlasterWeaponComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\StrongEnemyAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\WeakEnemyAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\StrongEnemyMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\WeakEnemyMoveComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\RendererComponent\SpriteDigitRendererComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\ChargeBlasterWeaponComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\ActorManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\AIComponent\EnemyAIComponent\BossAIComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\MoveComponent\EnemyMoveComponent\BossMoveComponent.cpp" />

@@ -9,6 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Player.h"
+#include "../ChargeBullet.h"
 
 // 描画コンポーネント
 #include "../../../Component/RendererComponent/FFPMeshRendererComponent.h"
@@ -17,6 +18,7 @@
 
 // 武器コンポーネント
 #include "../../../Component/WeaponComponent/BlasterWeaponComponent.h"
+#include "../../../Component/WeaponComponent/ChargeBlasterWeaponComponent.h"
 
 // 移動コンポーネント
 #include "../../../Component/MoveComponent/PlayerMoveComponent.h"
@@ -46,6 +48,8 @@ Player::Player(Game* game)
 	, lockon_reticle_(nullptr)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
+	, charge_blaster_(nullptr)
+	, is_blaster_fire_(false)
 {
 	this->Init();
 }
@@ -103,6 +107,7 @@ bool Player::Init(void)
 				// レティクルの性質の調整
 				near_reticle_->SetScale(1.4f);
 				near_reticle_->SetTranslationZ(9.f);
+				//near_reticle_->GetPosition();
 			}
 
 			//　ロックオンのレティクル
@@ -126,6 +131,9 @@ bool Player::Init(void)
 
 		// 右の光線銃
 		right_blaster_ = NEW BlasterWeaponComponent(this);
+
+		// チャージ弾用の光線銃
+		charge_blaster_ = NEW ChargeBlasterWeaponComponent(this);
 	}
 
 	//　衝突判定コンポーネント
@@ -155,6 +163,7 @@ bool Player::Init(void)
 			lockon_gizmo_->SetScaleZ(lockon_langth_);
 		}
 	}
+
 	return true;
 }
 
@@ -170,6 +179,35 @@ void Player::Uninit(void)
 -----------------------------------------------------------------------------*/
 void Player::InputGameObject(void)
 {
+	// チャージ弾の武器コンポーネントの確認
+	if(charge_blaster_ == nullptr)
+	{
+		assert(!"Player::InputGameObject()：チャージ弾の武器コンポーネントが、nullptrでした！");
+	}
+
+	// 弾を発射するか
+	is_blaster_fire_ = InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A);
+
+	// ボタンを長押ししたら
+	if (charge_blaster_->IsCheckChargeBulletInstance() == false)
+	{
+		if (InputCheck::XInputRepeat(PadIndex::Pad1, XInputButton::XIB_A, 2.f))
+		{
+			charge_blaster_->CreateChargeBullet();
+		}
+	}
+
+	if (charge_blaster_->IsCheckChargeBulletInstance() == true)
+	{
+		// ボタンを離したら
+		if (charge_blaster_->GetChargeBulletState() == ChargeBulletState::Hold)
+		{
+			if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A) == false)
+			{
+				charge_blaster_->Fire();
+			}
+		}
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -177,23 +215,17 @@ void Player::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Player::UpdateGameObject(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
-	// エフェクトの位置を調整
-	effect_after_burner_->SetTranslation(0.f, 0.1f, -1.1f);
-
-
-	// 武器の位置を調整
+	// チャージ弾の武器コンポーネントの確認
+	if (charge_blaster_ == nullptr)
 	{
-		left_blaster_->SetTranslation(-1.5f, 0.1f, 1.0f);
-		right_blaster_->SetTranslation(1.5f, 0.1f, 1.0f);
+		assert(!"Player::UpdateWeapon():チャージ弾の武器コンポーネントが、nullptrでした！");
 	}
 
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
-	{
-		left_blaster_->BulletFire();
-		right_blaster_->BulletFire();
-	}
+	// 武器の更新処理
+	this->UpdateWeapon(deltaTime);
+
+	// エフェクトの更新処理
+	this->UpdatePirticleEffect(deltaTime);
 
 	ImGui::Begin("PlayerTransform");
 	ImGui::Text("Yaw:%f", transform_component_->GetAngleYaw());
@@ -206,6 +238,42 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("PosZ:%f", pos.z);
 
 	ImGui::End();
+}
+
+/*-----------------------------------------------------------------------------
+/* 武器の更新処理
+-----------------------------------------------------------------------------*/
+void Player::UpdateWeapon(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 武器の位置を調整
+	{
+		left_blaster_->SetTranslation(-1.5f, 0.1f, 1.0f);
+		right_blaster_->SetTranslation(1.5f, 0.1f, 1.0f);
+		charge_blaster_->SetTranslation(0.f, 0.1f, 3.0f);
+	}
+
+	// 弾の発射
+	if (is_blaster_fire_)
+	{
+		left_blaster_->Fire();
+		right_blaster_->Fire();
+		is_blaster_fire_ = false;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* エフェクトの更新処理
+-----------------------------------------------------------------------------*/
+void Player::UpdatePirticleEffect(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// エフェクトの位置を調整
+	{
+		effect_after_burner_->SetTranslation(0.f, 0.1f, -1.1f);
+	}
 }
 
 /*=============================================================================

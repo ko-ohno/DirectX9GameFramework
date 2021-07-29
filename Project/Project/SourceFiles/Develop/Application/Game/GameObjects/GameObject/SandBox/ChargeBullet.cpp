@@ -12,12 +12,10 @@
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../Component/ColliderComponent/SphereColliderComponent.h"
-
+#include "../../../../Math.h"
 #include "../../../Input/InputCheck.h"
 
 #include "../../../../ImGui/ImGuiManager.h"
-
-
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -28,6 +26,19 @@ ChargeBullet::ChargeBullet(Game* game)
 	, sphere_collider_gizmo_(nullptr)
 	, charge_bullet_state_(ChargeBulletState::None)
 	, charge_bullet_state_old_(ChargeBulletState::None)
+	, is_fire_(false)
+	, is_hit_(false)
+	, is_lockon_(false)
+	, is_next_state_(false)
+	, parent_front_vector_(0.f, 0.f, 1.f)
+	, move_speed_(15.f)
+	, position_(0.f, 0.f, -100.f)
+	, src_position_(0.f, 0.f, 0.f)
+	, dst_position_(0.f, 0.f, 0.f)
+	, lerp_execute_time_(0.f)
+	, kill_timer_(2.f)
+	, alive_time_(0.f)
+	, state_time_(0.f)
 {
 	this->Init();
 }
@@ -62,13 +73,13 @@ bool ChargeBullet::Init(void)
 
 	// 弾丸の生成
 	{
-
 		for (int i = 0; i < MAX_CHARGE_BULLET_STATE; i++)
 		{
+			effect_[i] = nullptr;
 			effect_[i] = NEW EffectRendererComponent(this);
 			effect_[i]->SetEffect(effect_type_[i]);
 			effect_[i]->SetScale(0.5f);
-			effect_[i]->SetTranslationX(-4.f + (i*2));
+			effect_[i]->SetTranslationY(-100.f);
 		}
 	}
 
@@ -79,18 +90,16 @@ bool ChargeBullet::Init(void)
 		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
 		sphere_collider_->SetRadius(scale);
+		sphere_collider_->SetTranslationY(-100.f);
 
 		// ギズモの描画コンポーネント
 		sphere_collider_gizmo_ = NEW SphereGizmoRendererComponent(this);
 		sphere_collider_gizmo_->SetScale(scale);
+		sphere_collider_gizmo_->SetTranslationY(-100.f);
+		//sphere_collider_gizmo_->IsSetDrawable(false);
 	}
 
-	//effect_[0]->Play();
-	effect_[1]->Play();
-	//effect_[2]->Play();
-	effect_[3]->Play();
-	//effect_[4]->Play();
-
+	// チャージ弾の起動
 	{
 		charge_bullet_state_ = ChargeBulletState::Charge;
 	}
@@ -109,14 +118,6 @@ void ChargeBullet::Uninit(void)
 -----------------------------------------------------------------------------*/
 void ChargeBullet::InputGameObject(void)
 {
-	//if ()
-	//{
-	//	charge_bullet_state_ = ChargeBulletState::Charge;
-	//}
-	//else
-	//{
-	//	charge_bullet_state_ = ChargeBulletState::Hold;
-	//}
 }
 
 /*-----------------------------------------------------------------------------
@@ -124,129 +125,242 @@ void ChargeBullet::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void ChargeBullet::UpdateGameObject(float deltaTime)
 {
-	static float time = 0.f;
-	static float time_X = 0.f;
-
-
-	ImGui::Begin("KeyRepeat");
-	ImGui::Text("A:%s", InputCheck::XInputRepeat(PadIndex::Pad1, XInputButton::XIB_A, 3.f) ? "true" : "false");
-
-	ImGui::Text("X:%s", InputCheck::XInputRepeat(PadIndex::Pad1, XInputButton::XIB_Y, 8.f) ? "true" : "false");
-
-
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A))
+	if ((charge_bullet_state_ == ChargeBulletState::Fire) && (is_fire_ == false))
 	{
-		time += deltaTime;
+		// プレイヤーの前ベクトルへ移動する
+		if (game_object_parent_ == nullptr)
+		{
+			assert(!"ChargeBullet::UpdateChargeBullet():このゲームオブジェクトの所有者が不明です！");
+		}
+
+		// 発射していることを証明
+		is_fire_ = true;
+
+		// 親のゲームオブジェクトの前ベクトルを取得
+		parent_front_vector_ = *game_object_parent_->GetTransform()->GetFrontVector();
+
+		// 発射座標を記録
+		src_position_ = position_;
 	}
 
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_Y))
+	if (charge_bullet_state_ == ChargeBulletState::Bullet)
 	{
-		time_X += deltaTime;
+		// 生存時間の計算
+		alive_time_ += deltaTime;
+
+		//// 生存時間が制限時間を超えたら
+		if (alive_time_ >= kill_timer_)
+		{
+			this->SetChargeBulletState(ChargeBulletState::End);
+			alive_time_ = 0.f;
+		}
 	}
 
-	ImGui::Text("%f", time);
-	ImGui::Text("%f", time_X);
+	// 移動の更新
+	this->UpdateMovement(deltaTime);
 
-	ImGui::End();
 	// チャージ弾の更新
-	this->UpdateChargeBullet(deltaTime);
+	this->UpdateChargeBulletState(deltaTime);
 
-	// ステートが切り替わった時だけ再生されるように
-	if (charge_bullet_state_ != charge_bullet_state_old_)
-	{
-		this->UpdateChargeBulletState(charge_bullet_state_);
-	}
+	// Particleエフェクトの更新
+	this->UpdateParticleEffect();
+
+	// 衝突判定の更新
+	this->UpdateColilision(charge_bullet_state_);
 
 	// 1フレーム前の情報を更新
 	charge_bullet_state_old_ = charge_bullet_state_;
 }
 
 /*-----------------------------------------------------------------------------
-/* チャージ弾の状態の更新処理
+/* チャージ弾の移動の更新処理
 -----------------------------------------------------------------------------*/
-void ChargeBullet::UpdateChargeBullet(float deltaTime)
+void ChargeBullet::UpdateMovement(float deltaTime)
 {
-	static float t = 0;
-
-	t += deltaTime;
-
-	if (t >= 3.f)
+	if (is_lockon_ == true)
 	{
+		// 移動
+		lerp_execute_time_ += deltaTime;
 
+		// ロックオンした相手まで飛んでいく
+		const Vector3 src_pos(src_position_);
+		const Vector3 dst_pos(dst_position_);
 
-		effect_[0]->Play();
-		//effect_[1]->Play();
-		effect_[2]->Play();
-		//effect_[3]->Play();
-		effect_[4]->Play();
+		// LerpとEasingで座標の補間
+		auto bullet_pos = Vector3::Vector3lerp(src_pos, dst_pos, Easing::Linear(lerp_execute_time_));
 
-		t = 0;
+		position_ = { bullet_pos.x_, bullet_pos.y_, bullet_pos.z_ };
 	}
-
-	switch (charge_bullet_state_)
+	else
 	{
-	case ChargeBulletState::Charge:
-		break;
-
-	case ChargeBulletState::Hold:
-		break;
-
-	case ChargeBulletState::Fire:
-		break;
-	
-	case ChargeBulletState::Bullet:
-		break;
-	
-	case ChargeBulletState::Explosion:
-		break;
-	
-	default:
-		assert(!"ChargeBullet::UpdateChargeBullet():チャージ弾のゲームオブジェクトが不正な処理を起こしています！");
-		break;
-	}
-
-
-
-	// チャージ弾の位置を更新
-	for (int i = 0; i < MAX_CHARGE_BULLET_STATE; i++)
-	{
-		effect_[i]->SetTranslation(0.f, 0.f, 0.f);
+		// プレイヤーの前ベクトルへ移動
+		position_ += (parent_front_vector_ * move_speed_) * deltaTime;
 	}
 }
 
 /*-----------------------------------------------------------------------------
 /* チャージ弾の状態の更新処理
 -----------------------------------------------------------------------------*/
-void ChargeBullet::UpdateChargeBulletState(ChargeBulletState chargeBulletState)
+void ChargeBullet::UpdateChargeBulletState(float deltaTime)
+{
+	const float MAX_STATE_TIME_CHARGE		= 3.0f;
+	const float MAX_STATE_TIME_FIRE			= 1.0f;
+	const float MAX_STATE_TIME_EXPLOSION	= 1.5f;
+
+	// チャージ弾の生存時間
+	state_time_ += deltaTime;
+
+	if (is_next_state_)
+	{
+		charge_bullet_state_ = ChargeBulletState::Hold;
+		is_next_state_ = false;
+	}
+
+	ImGui::Begin("BulletState");
+
+	switch (charge_bullet_state_)
+	{
+	case ChargeBulletState::Charge:
+		ImGui::Text("Charge"); // ボタンを長押ししている間
+		if (state_time_ >= MAX_STATE_TIME_CHARGE)
+		{
+			is_next_state_ = true;
+			state_time_ = 0;
+		}
+		break;
+
+	case ChargeBulletState::Hold:
+		ImGui::Text("Hold");
+		state_time_ = 0;
+		break;
+
+	case ChargeBulletState::Fire:
+		ImGui::Text("Fire");
+		if (state_time_ >= MAX_STATE_TIME_FIRE)
+		{
+			charge_bullet_state_ = ChargeBulletState::Bullet;
+			state_time_ = 0;
+		}
+		break;
+	
+	case ChargeBulletState::Bullet:
+		ImGui::Text("Bullet");
+		if (is_hit_)
+		{
+			charge_bullet_state_ = ChargeBulletState::Explosion;
+			state_time_ = 0;
+		}
+		break;
+	
+	case ChargeBulletState::Explosion:
+		ImGui::Text("Explosion");
+		if (state_time_ >= MAX_STATE_TIME_EXPLOSION)
+		{
+			charge_bullet_state_ = ChargeBulletState::End;
+			state_time_ = 0;
+		}
+		break;
+
+	case ChargeBulletState::End:
+		ImGui::Text("End");
+		break;
+
+	default:
+		assert(!"ChargeBullet::UpdateChargeBullet():チャージ弾のゲームオブジェクトが不正な処理を起こしています！");
+		break;
+	}
+
+	ImGui::End();
+	
+}
+
+/*-----------------------------------------------------------------------------
+/* エフェクトの更新処理
+-----------------------------------------------------------------------------*/
+void ChargeBullet::UpdateParticleEffect(void)
+{
+	// ステートが切り替わった瞬間だけ再生されるように
+	if (charge_bullet_state_ != charge_bullet_state_old_)
+	{
+		this->UpdateParticleEffectPlayState(charge_bullet_state_);
+	}
+
+	// エフェクトの位置を更新
+	for (int i = 0; i < MAX_CHARGE_BULLET_STATE; i++)
+	{
+		effect_[i]->SetTranslation(position_);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* エフェクトの再生状況の更新処理
+-----------------------------------------------------------------------------*/
+void ChargeBullet::UpdateParticleEffectPlayState(ChargeBulletState chargeBulletState)
 {
 	switch (chargeBulletState)
 	{
 	case ChargeBulletState::Charge:
-		effect_[static_cast<int>(ChargeBulletState::Charge)]->Play();
+		effect_[static_cast<int>(ChargeBulletState::Charge)]->Play();	// エフェクト再生：チャージを開始するエフェクト
 		break;
 
 	case ChargeBulletState::Hold:
-		effect_[static_cast<int>(ChargeBulletState::Hold)]->Play();
+		effect_[static_cast<int>(ChargeBulletState::Hold)]->Play();		// エフェクト再生：チャージを続けるエフェクト
 		break;
 
 	case ChargeBulletState::Fire:
-		effect_[static_cast<int>(ChargeBulletState::Hold)]->Stop();		// 持続再生するエフェクトの停止命令
-		effect_[static_cast<int>(ChargeBulletState::Fire)]->Play();
-		break;
-
-	case ChargeBulletState::Bullet:
-		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Play();
+		effect_[static_cast<int>(ChargeBulletState::Hold)]->Stop();		// エフェクト停止：チャージを続けるエフェクト
+		effect_[static_cast<int>(ChargeBulletState::Fire)]->Play();		// エフェクト再生：チャージ弾の発射エフェクト
+		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Play();	// エフェクト再生：チャージ弾のエフェクト
 		break;
 
 	case ChargeBulletState::Explosion:
-		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Stop();	// 持続再生するエフェクトの停止命令
-		effect_[static_cast<int>(ChargeBulletState::Explosion)]->Play();
+		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Stop();	// エフェクト停止：チャージ弾のエフェクト
+		effect_[static_cast<int>(ChargeBulletState::Explosion)]->Play();// エフェクト再生：爆発のエフェクト
 		break;
 
 	default:
-		assert(!"ChargeBullet::UpdateGameObject():チャージ弾のゲームオブジェクトが不正な処理を起こしています！");
 		break;
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 衝突判定の更新
+-----------------------------------------------------------------------------*/
+void ChargeBullet::UpdateColilision(ChargeBulletState chargeBulletState)
+{
+	const float colider_scale_ = 1.f;
+
+	switch (chargeBulletState)
+	{
+	case ChargeBulletState::Bullet:
+		// 弾の判定の大きさは1倍
+		sphere_collider_->SetRadius(colider_scale_);
+		sphere_collider_gizmo_->SetScale(colider_scale_);
+		break;
+
+	case ChargeBulletState::Explosion:
+		// 爆発したら判定の大きさを4倍に設定
+		sphere_collider_->SetRadius(colider_scale_ * 4.f);
+		sphere_collider_gizmo_->SetScale(colider_scale_ * 4.f);
+		break;
+
+	default:
+		break;
+	}
+
+	// 衝突判定の位置の更新
+	{
+		sphere_collider_gizmo_->SetTranslation(position_);
+		sphere_collider_->SetTranslation(position_);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 弾の発射
+-----------------------------------------------------------------------------*/
+void ChargeBullet::Fire(void)
+{
+	charge_bullet_state_ = ChargeBulletState::Fire;
 }
 
 /*=============================================================================
