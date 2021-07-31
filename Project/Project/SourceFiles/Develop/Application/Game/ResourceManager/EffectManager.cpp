@@ -30,6 +30,7 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "ChargeBulletState4Bullet"
 	, "ChargeBulletState5Explosion"
 
+	, "BlueLaser"
 	, "AfterBurner"
 };
 
@@ -132,6 +133,9 @@ bool EffectManager::Init(void)
 			unmap_effect_path_list_[EffectType::ChargeBulletState3Fire]		 = "ChargeBullet/cb_state_3_fire.efk";
 			unmap_effect_path_list_[EffectType::ChargeBulletState4Bullet]	 = "ChargeBullet/cb_state_4_bullet.efk";
 			unmap_effect_path_list_[EffectType::ChargeBulletState5Explosion] = "ChargeBullet/cb_state_5_explosion.efk";
+
+			// 赤いレーザーのエフェクト
+			unmap_effect_path_list_[EffectType::RedLaser]	 = "Laser/RedLaser.efk";
 
 			//アフターバーナーのエフェクト
 			unmap_effect_path_list_[EffectType::AfterBurner] = "AfterBurner/after_burner.efk";

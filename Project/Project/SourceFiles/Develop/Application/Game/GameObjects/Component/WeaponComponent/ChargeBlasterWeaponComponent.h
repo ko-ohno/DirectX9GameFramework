@@ -57,18 +57,19 @@ public:
 
 private:
 	bool								is_lockon_;
+	bool								is_fire_;
 
 	class ChargeBullet*					charge_bullet_;
 
-
-	D3DXVECTOR3 comp_position_;
-
 protected:
-	// このコンポーネントの位置を示すgizmo
-	class SphereGizmoRendererComponent* sphere_gizmo_;
+	// 銃の発射エフェクト
+	class EffectRendererComponent*		muzzle_flash_;
 
 	// ロックオンのレティクル
 	class BillboardRendererComponent*	lockon_reticle_;
+	
+	// このコンポーネントの位置を示すgizmo
+	class SphereGizmoRendererComponent* sphere_gizmo_;
 };
 
 #endif //BLASTER_WEAPON_COMPONENT_H_

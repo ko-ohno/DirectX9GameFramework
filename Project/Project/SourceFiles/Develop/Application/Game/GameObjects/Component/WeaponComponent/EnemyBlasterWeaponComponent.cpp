@@ -22,6 +22,7 @@
 -----------------------------------------------------------------------------*/
 EnemyBlasterWeaponComponent::EnemyBlasterWeaponComponent(GameObject* owner, int updateOrder)
 	: WeaponComponent(owner, updateOrder)
+	, player_object_(nullptr)
 	, muzzle_flash_(nullptr)
 	, sphere_gizmo_(nullptr)
 {

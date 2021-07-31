@@ -14,7 +14,8 @@
 #include "../../Component/ColliderComponent/SphereColliderComponent.h"
 #include "../../../../Math.h"
 #include "../../../Input/InputCheck.h"
-
+#include "../SandBox/Actor/Enemy.h"
+#include "../../../SandBoxManager/EnemieManager.h"
 #include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
@@ -61,9 +62,8 @@ bool ChargeBullet::Init(void)
 		// エフェクト番号の登録
 		effect_type_[0] = EffectType::ChargeBulletState1Charge;
 		effect_type_[1] = EffectType::ChargeBulletState2Hold;
-		effect_type_[2] = EffectType::ChargeBulletState3Fire;
-		effect_type_[3] = EffectType::ChargeBulletState4Bullet;
-		effect_type_[4] = EffectType::ChargeBulletState5Explosion;
+		effect_type_[2] = EffectType::ChargeBulletState4Bullet;
+		effect_type_[3] = EffectType::ChargeBulletState5Explosion;
 
 		for (int i = 0; i < MAX_CHARGE_BULLET_STATE; i++)
 		{
@@ -145,6 +145,9 @@ void ChargeBullet::UpdateGameObject(float deltaTime)
 
 	if (charge_bullet_state_ == ChargeBulletState::Bullet)
 	{
+		// 移動の更新
+		this->UpdateMovement(deltaTime);
+
 		// 生存時間の計算
 		alive_time_ += deltaTime;
 
@@ -155,9 +158,6 @@ void ChargeBullet::UpdateGameObject(float deltaTime)
 			alive_time_ = 0.f;
 		}
 	}
-
-	// 移動の更新
-	this->UpdateMovement(deltaTime);
 
 	// チャージ弾の更新
 	this->UpdateChargeBulletState(deltaTime);
@@ -204,7 +204,7 @@ void ChargeBullet::UpdateMovement(float deltaTime)
 void ChargeBullet::UpdateChargeBulletState(float deltaTime)
 {
 	const float MAX_STATE_TIME_CHARGE		= 3.0f;
-	const float MAX_STATE_TIME_FIRE			= 1.0f;
+	const float MAX_STATE_TIME_FIRE			= 0.05f;
 	const float MAX_STATE_TIME_EXPLOSION	= 1.5f;
 
 	// チャージ弾の生存時間
@@ -297,25 +297,29 @@ void ChargeBullet::UpdateParticleEffect(void)
 -----------------------------------------------------------------------------*/
 void ChargeBullet::UpdateParticleEffectPlayState(ChargeBulletState chargeBulletState)
 {
+	const int EFFECT_CHARGE		= 0;
+	const int EFFECT_HOLD		= 1;
+	const int EFFECT_BULLET		= 2;
+	const int EFFECT_EXPLOSION	= 3;
+
 	switch (chargeBulletState)
 	{
 	case ChargeBulletState::Charge:
-		effect_[static_cast<int>(ChargeBulletState::Charge)]->Play();	// エフェクト再生：チャージを開始するエフェクト
+		effect_[EFFECT_CHARGE]->Play();		// エフェクト再生：チャージを開始するエフェクト
 		break;
 
 	case ChargeBulletState::Hold:
-		effect_[static_cast<int>(ChargeBulletState::Hold)]->Play();		// エフェクト再生：チャージを続けるエフェクト
+		effect_[EFFECT_HOLD]->Play();		// エフェクト再生：チャージを続けるエフェクト
 		break;
 
 	case ChargeBulletState::Fire:
-		effect_[static_cast<int>(ChargeBulletState::Hold)]->Stop();		// エフェクト停止：チャージを続けるエフェクト
-		effect_[static_cast<int>(ChargeBulletState::Fire)]->Play();		// エフェクト再生：チャージ弾の発射エフェクト
-		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Play();	// エフェクト再生：チャージ弾のエフェクト
+		effect_[EFFECT_HOLD]->Stop();		// エフェクト停止：チャージを続けるエフェクト
+		effect_[EFFECT_BULLET]->Play();		// エフェクト再生：チャージ弾のエフェクト
 		break;
 
 	case ChargeBulletState::Explosion:
-		effect_[static_cast<int>(ChargeBulletState::Bullet)]->Stop();	// エフェクト停止：チャージ弾のエフェクト
-		effect_[static_cast<int>(ChargeBulletState::Explosion)]->Play();// エフェクト再生：爆発のエフェクト
+		effect_[EFFECT_BULLET]->Stop();		// エフェクト停止：チャージ弾のエフェクト
+		effect_[EFFECT_EXPLOSION]->Play();	// エフェクト再生：爆発のエフェクト
 		break;
 
 	default:

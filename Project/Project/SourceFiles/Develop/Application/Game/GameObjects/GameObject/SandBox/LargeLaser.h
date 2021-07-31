@@ -1,46 +1,37 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Boss.h] ボスゲームオブジェクト
+/*	[LargeLaser.h] 大型レーザーゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明： ボスゲームオブジェクト
+/*	説明：大型レーザーゲームオブジェクト
 =============================================================================*/
-#ifndef BOSS_H_
-#define	BOSS_H_
+#ifndef LARGE_LASER_H_
+#define	LARGE_LASER_H_
 
 /*--- インクルードファイル ---*/
-#include "../Enemy.h"
+#include "../SandBox.h"
 
 /*-------------------------------------
-/*  敵ゲームオブジェクト
+/* 大型レーザーゲームオブジェクト
 -------------------------------------*/
-class Boss : public Enemy
+class LargeLaser : public SandBox
 {
 public:
-	Boss(class Game* game);
-	~Boss(void);
+	LargeLaser(class Game* game);
+	~LargeLaser(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
 
+	//GameObjectの関数overrideして、自身の挙動として定義する
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Boss; }
-
 private:
-	static constexpr float ATTACK_VALUE_BODY_PRESS		= 10.f;
-	static constexpr float ATTACK_VALUE_SHOOT			=  5.f;
-	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
-
-	// 最大武器数
-	static constexpr int MAX_WEAPON_COUNT = 3;
-	
-	class EnemyBlasterWeaponComponent* enemy_blaster_[MAX_WEAPON_COUNT];
-	class LaserCannonWeaponComponent*  laser_cannon_;
 };
 
-#endif //BOSS_H_
+
+#endif //LARGE_LASER_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

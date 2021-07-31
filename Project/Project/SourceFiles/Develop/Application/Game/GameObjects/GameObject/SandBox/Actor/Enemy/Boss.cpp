@@ -29,6 +29,7 @@
 
 // 敵の武器コンポーネント
 #include "../../../../Component/WeaponComponent/EnemyBlasterWeaponComponent.h"
+#include "../../../../Component/WeaponComponent/LaserCannonWeaponComponent.h"
 
 // 入力チェック
 #include "../../../../../Input/InputCheck.h"
@@ -46,6 +47,7 @@
 -----------------------------------------------------------------------------*/
 Boss::Boss(Game* game)
 	: Enemy(game)
+	, laser_cannon_(nullptr)
 {
 	this->Init();
 }
@@ -96,7 +98,11 @@ bool Boss::Init(void)
 			enemy_blaster_[i] = nullptr;
 			enemy_blaster_[i] = NEW EnemyBlasterWeaponComponent(this);
 		}
+	
+		laser_cannon_ = NEW LaserCannonWeaponComponent(this);
+		laser_cannon_->SetTranslationY(-0.5f);
 	}
+
 
 	// 衝突判定関係
 	{

@@ -107,7 +107,7 @@ bool GameObjectFactory::StartUp(void)
 
 		// サンドボックスレイヤーのオブジェクト作成
 		this->AddGameObject(NEW Player(game_));
-		//this->AddGameObject(NEW Boss(game_));
+		this->AddGameObject(NEW Boss(game_));
 
 		//this->AddGameObject(NEW ChargeBullet(game_));
 

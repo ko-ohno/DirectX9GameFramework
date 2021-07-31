@@ -26,6 +26,7 @@
 ChargeBlasterWeaponComponent::ChargeBlasterWeaponComponent(GameObject* owner, int updateOrder)
 	: WeaponComponent(owner, updateOrder)
 	, is_lockon_(false)
+	, is_fire_(false)
 	, charge_bullet_(nullptr)
 	, sphere_gizmo_(nullptr)
 {
@@ -45,6 +46,11 @@ ChargeBlasterWeaponComponent::~ChargeBlasterWeaponComponent(void)
 -----------------------------------------------------------------------------*/
 bool ChargeBlasterWeaponComponent::Init(void)
 {
+	// 銃の発射光の生成
+	muzzle_flash_ = NEW EffectRendererComponent(owner_);
+	muzzle_flash_->SetEffect(EffectType::ChargeBulletState3Fire);
+	muzzle_flash_->SetScale(0.5f);
+
 	// ギズモの生成
 	{
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
@@ -101,10 +107,21 @@ void ChargeBlasterWeaponComponent::Update(float deltaTime)
 			charge_bullet_->SetTranslation(translation_matrix._41, translation_matrix._42, translation_matrix._43);
 		}
 
+		if (charge_bullet_->GetChargeBulletState() == ChargeBulletState::Fire)
+		{
+			if (is_fire_ == false)
+			{	
+				// エフェクト再生を更新
+				muzzle_flash_->Play();
+				is_fire_ = true;
+			}
+		}
+
 		// チャージ弾の状態を確認
 		if (charge_bullet_->GetChargeBulletState() == ChargeBulletState::End)
 		{
 			SAFE_DELETE_(charge_bullet_);
+			is_fire_ = false;
 		}
 	}
 

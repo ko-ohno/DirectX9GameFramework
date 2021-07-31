@@ -52,6 +52,7 @@ enum class EffectType
 	, ChargeBulletState4Bullet
 	, ChargeBulletState5Explosion
 
+	, RedLaser
 	, AfterBurner
 	, Max
 };

@@ -85,7 +85,7 @@ public:
 
 private:
 	// チャージ弾の最大ステート数
-	static constexpr int MAX_CHARGE_BULLET_STATE = 5;
+	static constexpr int MAX_CHARGE_BULLET_STATE = 4;
 
 	// それぞれのエフェクト番号の登録先
 	enum class EffectType effect_type_[MAX_CHARGE_BULLET_STATE];
