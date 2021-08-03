@@ -41,6 +41,10 @@ public:
 	virtual TypeID GetComponentType() const override { return TypeID::BossAIComponent; };
 
 private:
+	static constexpr int MAX_STATE_ARRAY = 3;
+	EnemyState enemy_state_array_[MAX_STATE_ARRAY];
+
+private:
 	class BossStateMachine* boss_state_machine_;
 };
 

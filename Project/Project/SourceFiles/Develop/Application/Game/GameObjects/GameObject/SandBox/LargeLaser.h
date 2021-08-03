@@ -27,7 +27,17 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	// épê®Çê›íË
+	void SetTransfrom(class TransformComponent* transfrom) { owner_transform_ = transfrom; }
+
 private:
+	class TransformComponent*		 owner_transform_;
+
+private:
+	class EffectRendererComponent*	 large_laser_;
+
+	class OBBColliderComponent*		 obb_collider_;
+	class BoxGizmoRendererComponent* box_gizmo_;
 };
 
 

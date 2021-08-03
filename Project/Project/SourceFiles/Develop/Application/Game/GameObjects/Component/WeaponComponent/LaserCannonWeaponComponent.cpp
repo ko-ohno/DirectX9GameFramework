@@ -20,8 +20,8 @@
 -----------------------------------------------------------------------------*/
 LaserCannonWeaponComponent::LaserCannonWeaponComponent(GameObject* owner, int updateOrder)
 	: WeaponComponent(owner, updateOrder)
+	, enemy_motion_state_(EnemyMotionState::None)
 	, large_laser_(nullptr)
-	, test_effect_(nullptr)
 	, sphere_gizmo_(nullptr)
 {
 	this->Init();
@@ -40,16 +40,7 @@ LaserCannonWeaponComponent::~LaserCannonWeaponComponent(void)
 -----------------------------------------------------------------------------*/
 bool LaserCannonWeaponComponent::Init(void)
 {
-	test_effect_ = NEW EffectRendererComponent(owner_);
-	test_effect_->SetEffect(EffectType::RedLaser);
-
-	D3DXMATRIX rot_mat;
-	D3DXMatrixIdentity(&rot_mat);
-	D3DXMatrixRotationX(&rot_mat, Math::ToRadian(90.f));
-	test_effect_->SetRotationMatrix(rot_mat);
-	test_effect_->Play();
-
-
+	// 武器の位置を表示するギズモ
 	{
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
 		sphere_gizmo_->SetScale(2.f);
@@ -79,14 +70,26 @@ void LaserCannonWeaponComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	if (large_laser_ != nullptr)
+	{
+		if (enemy_motion_state_ == EnemyMotionState::Complete)
+		{
+			SAFE_DELETE_(large_laser_);
+		}
+	}
+}
 
-
-	/*if (large_laser_ == nullptr)
+/*-----------------------------------------------------------------------------
+/*　レーザーの発射処理
+-----------------------------------------------------------------------------*/
+void LaserCannonWeaponComponent::Shoot(void)
+{
+	if (large_laser_ == nullptr)
 	{
 		auto game = owner_->GetGame();
 		large_laser_ = NEW LargeLaser(game);
-
-	}*/
+		large_laser_->SetTransfrom(owner_transform_);
+	}
 }
 
 /*=============================================================================

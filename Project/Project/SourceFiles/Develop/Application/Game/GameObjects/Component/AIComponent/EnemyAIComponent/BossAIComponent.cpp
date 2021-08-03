@@ -36,6 +36,15 @@ BossAIComponent::~BossAIComponent(void)
 -----------------------------------------------------------------------------*/
 bool BossAIComponent::Init(void)
 {
+	std::vector<EnemyState> state;
+	std::list<EnemyState> state_;
+
+
+	enemy_state_array_[0] = EnemyState::BodyPress;
+	enemy_state_array_[1] = EnemyState::Shooting;
+	enemy_state_array_[2] = EnemyState::LaserCannon;
+
+
 	return true;
 }
 
@@ -166,6 +175,12 @@ void BossAIComponent::EnemyStateController(void)
 	{
 		this->SetEnemyState(EnemyState::LaserCannon);
 	}
+
+
+
+
+
+
 }
 
 /*-----------------------------------------------------------------------------

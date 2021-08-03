@@ -84,6 +84,7 @@ void PlayerMoveComponent::Update(float deltaTime)
 
 	// ã‰º¶‰E‚ÌˆÚ“®ˆ—
 	D3DXVECTOR3 front_vector = *owner_transform_->GetFrontVector();
+	const float default_move_value = 0.04f;
 	{
 		// ã‰º‚ÌˆÚ“®ˆ—
 		{
@@ -91,13 +92,13 @@ void PlayerMoveComponent::Update(float deltaTime)
 			if (is_move_top_)
 			{
 				owner_transform_->SetRotationPitch(-30.f);
-				owner_transform_->AddTranslationY(move_value_y * deltaTime);
+				owner_transform_->AddTranslationY((move_value_y * deltaTime) + default_move_value);
 			}
 
 			if (is_move_bottom_)
 			{
 				owner_transform_->SetRotationPitch(30.f);
-				owner_transform_->AddTranslationY(-move_value_y * deltaTime);
+				owner_transform_->AddTranslationY((-move_value_y * deltaTime) - default_move_value);
 			}
 		}
 		
@@ -108,14 +109,14 @@ void PlayerMoveComponent::Update(float deltaTime)
 			{
 				owner_transform_->SetRotationYaw(30.f);
 				owner_transform_->SetRotationRoll(-15.f);
-				owner_transform_->AddTranslationX(move_value_x * deltaTime);
+				owner_transform_->AddTranslationX((move_value_x * deltaTime) + default_move_value);;
 			}
 
 			if (is_move_left_)
 			{
 				owner_transform_->SetRotationYaw(-30.f);
 				owner_transform_->SetRotationRoll(15.f);
-				owner_transform_->AddTranslationX(-move_value_x * deltaTime);
+				owner_transform_->AddTranslationX((-move_value_x * deltaTime) - default_move_value);;
 			}
 		}
 
@@ -150,12 +151,12 @@ void PlayerMoveComponent::Update(float deltaTime)
 		{
 			if (position.y >=  y_axis_sandbox_length)
 			{
-				owner_transform_->SetTranslation(*owner_transform_->GetOldPosition());
+				owner_transform_->SetTranslationY(owner_transform_->GetOldPosition()->y);
 			}
 
 			if (position.y <= -y_axis_sandbox_length)
 			{
-				owner_transform_->SetTranslation(*owner_transform_->GetOldPosition());
+				owner_transform_->SetTranslationY(owner_transform_->GetOldPosition()->y);
 			}
 		}
 
@@ -163,12 +164,12 @@ void PlayerMoveComponent::Update(float deltaTime)
 		{
 			if (position.x >= x_axis_sandbox_length)
 			{
-				owner_transform_->SetTranslation(*owner_transform_->GetOldPosition());
+				owner_transform_->SetTranslationX(owner_transform_->GetOldPosition()->x);
 			}
 
 			if (position.x <= -x_axis_sandbox_length)
 			{
-				owner_transform_->SetTranslation(*owner_transform_->GetOldPosition());
+				owner_transform_->SetTranslationX(owner_transform_->GetOldPosition()->x);
 			}
 		}
 	}

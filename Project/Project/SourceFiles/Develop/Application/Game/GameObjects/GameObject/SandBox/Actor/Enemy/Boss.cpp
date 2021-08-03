@@ -47,6 +47,11 @@
 -----------------------------------------------------------------------------*/
 Boss::Boss(Game* game)
 	: Enemy(game)
+	, enemy_state_old_(EnemyState::None)
+	, motion_state_old_(EnemyMotionState::None)
+	, is_fire_(false)
+	, blaster_index_(0)
+	, switch_time_(0.f)
 	, laser_cannon_(nullptr)
 {
 	this->Init();
@@ -177,48 +182,6 @@ void Boss::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
 	}
 
-	//　武器コンポーネントの更新
-	{
-		D3DXVECTOR3 pos;
-
-		// 角度を三分割
-		const float degree = 360.f / 3.f;
-
-		// 半径
-		const float radius = 5.0f;
-
-		for (int i = 0; i < MAX_WEAPON_COUNT; i ++)
-		{
-			// 角度をradian に変換
-			const float radian = Math::ToRadian(degree * i);
-			pos.x = cosf(radian) * radius;
-			pos.y = 1.0f;
-			pos.z = sinf(radian) * radius;
-
-			// 座標の計算
-			enemy_blaster_[i]->SetTranslation(pos);
-
-			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_B))
-			{
-				enemy_blaster_[i]->Fire();
-			}
-		}
-	}
-
-	//D3DXVECTOR3 origin = { 0.f, 0.f, 0.f };
-
-	//auto blaster_pos = *blaster_[0]->GetOwner()->GetTransform()->GetPosition();
-
-
-	//auto vector = origin - blaster_pos;
-
-	//ImGui::Begin("vec");
-	//ImGui::Text("posX:%f", vector.x);
-	//ImGui::Text("posY:%f", vector.y);
-	//ImGui::Text("posZ:%f", vector.z);
-	//ImGui::End();
-
-
 	/*
 	*			←		EnemyState		←
 	* 
@@ -266,6 +229,97 @@ void Boss::UpdateGameObject(float deltaTime)
 		break;
 	}
 
+	//　武器コンポーネントの更新
+	{
+		this->UpdateBlaster(deltaTime, ai_state, move_motion_state);
+
+		// レーザー砲の更新
+		this->UpdateLaserCannon(ai_state, move_motion_state);
+	}
+
+	// 1フレーム前の情報を更新
+	enemy_state_old_ = ai_state;
+	motion_state_old_ = move_motion_state;
+}
+
+/*-----------------------------------------------------------------------------
+/* 光線銃の更新処理
+-----------------------------------------------------------------------------*/
+void Boss::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMotionState motionState)
+{
+	// 座標の更新
+	{
+		// それぞれの座標の一時保管先
+		D3DXVECTOR3 pos;
+
+		// 角度を三分割
+		const float degree = 360.f / 3.f;
+
+		// 半径
+		const float radius = 5.0f;
+
+		for (int i = 0; i < MAX_WEAPON_COUNT; i++)
+		{
+			// 角度をradian に変換
+			const float radian = Math::ToRadian(degree * i);
+			pos.x = cosf(radian) * radius;
+			pos.y = 1.0f;
+			pos.z = sinf(radian) * radius;
+
+			// 座標の計算
+			enemy_blaster_[i]->SetTranslation(pos);
+		}
+	}
+
+	// 攻撃を行うかの判定
+	if (enemyState != EnemyState::Shooting) { return; }
+	if (motionState != EnemyMotionState::Attack) { return; }
+
+	if (blaster_index_ >= MAX_WEAPON_COUNT)
+	{
+		blaster_index_ = 0;
+	}
+
+	// 切り替わり時間を計算
+	switch_time_ += deltaTime;
+
+	if (switch_time_ >= 0.3f)
+	{
+		switch_time_ = 0.f;
+		is_fire_ = true;
+	}
+
+	if (is_fire_ == true)
+	{
+		enemy_blaster_[blaster_index_]->Fire();
+		blaster_index_++;
+		is_fire_ = false;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* レーザー砲の更新処理
+-----------------------------------------------------------------------------*/
+void Boss::UpdateLaserCannon(EnemyState enemyState, EnemyMotionState motionState)
+{
+	if (enemyState != EnemyState::LaserCannon) { return; }
+
+	// ボスのモーション状態を通知
+	laser_cannon_->SetEnemyMotionState(motionState);
+
+	// ステートが切り替わった瞬間とる
+	if (enemy_state_old_ != enemyState)
+	{
+		is_fire_ = true;
+	}
+
+	if ((is_fire_ == true)
+		&& (motionState == EnemyMotionState::Relay))
+	{
+		// レーザーを砲の発射
+		laser_cannon_->Shoot();
+		is_fire_ = false;
+	}
 }
 
 /*=============================================================================

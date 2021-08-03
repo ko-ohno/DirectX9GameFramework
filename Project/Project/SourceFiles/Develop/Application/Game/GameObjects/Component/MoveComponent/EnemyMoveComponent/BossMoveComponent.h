@@ -59,8 +59,8 @@ private:
 	//
 
 	const D3DXVECTOR3 wait_position_				  = {   0.f,   0.f + offset_height_, 13.f };
-	const D3DXVECTOR3 shoot_position_				  = {   0.f,   2.f + offset_height_, 20.f };
-	const D3DXVECTOR3 body_press_startup_position_	  = {   0.f,   2.f + offset_height_, 16.f };
+	const D3DXVECTOR3 shoot_position_				  = {   0.f,   3.f + offset_height_, 20.f };
+	const D3DXVECTOR3 body_press_startup_position_	  = {   0.f,   3.f + offset_height_, 16.f };
 	const D3DXVECTOR3 body_press_position_			  = {   0.f,   0.f + offset_height_,  3.f };
 
 	// åªç›ç¿ïW

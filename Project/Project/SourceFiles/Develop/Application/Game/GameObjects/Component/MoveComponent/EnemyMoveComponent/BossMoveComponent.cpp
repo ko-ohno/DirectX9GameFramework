@@ -355,10 +355,11 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 	}
 
 	//アニメーションの時間
+	const float MAX_START_UP_TIME = 1.f;
+	const float MAX_RELAY_TIME = 2.f;
 	const float MAX_STATE_TIME = 7.f;
 	const float MAX_EXE_TIME = 1.f;
 	execute_time_ += deltaTime;
-
 
 	switch (enemy_motion_state_)
 	{
@@ -376,7 +377,23 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 					, Easing::SineIn(execute_time_));
 
 		//状態の遷移
-		if (execute_time_ >= MAX_EXE_TIME)
+		if (execute_time_ >= MAX_START_UP_TIME)
+		{
+			execute_time_ = 0.f;
+			enemy_motion_state_ = EnemyMotionState::Relay;
+		}
+		break;
+
+	case EnemyMotionState::Relay:
+		// 回転の更新
+		owner_transform_->SetSlerpSpeed(5.0f);
+
+		// プレイヤーの位置に合わせて角度を調整する
+		owner_transform_->SetSlerpSpeed(5.f);
+		owner_transform_->SetRotation(90.f, pitch_, 90.f);
+		owner_transform_->AddRotationPitch(4);
+
+		if (execute_time_ >= MAX_RELAY_TIME)
 		{
 			execute_time_ = 0.f;
 			enemy_motion_state_ = EnemyMotionState::Attack;
@@ -442,9 +459,14 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		//エフェクトの再生
 
 	}
+	static float angle = 45.f;
+
 
 	//アニメーションの時間
-	const float MAX_STATE_TIME = 7.f;
+	const float MAX_STATE_TIME	= 1.f;
+	const float MAX_ATTACK_TIME = 7.f;
+	const float MAX_RELAY_TIME	= 1.f;
+
 	execute_time_ += deltaTime;
 
 	switch (enemy_motion_state_)
@@ -463,7 +485,22 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 
 
 		// 回転の更新
-		if (execute_time_ >= 1.f)
+		if (execute_time_ >= MAX_STATE_TIME)
+		{
+			execute_time_ = 0.f;
+			enemy_motion_state_ = EnemyMotionState::Relay;
+		}
+		break;
+
+	case EnemyMotionState::Relay:
+		// 回転の更新
+		owner_transform_->SetSlerpSpeed(3.0f);
+
+		// プレイヤーの位置に合わせて角度を調整する
+		owner_transform_->SetSlerpSpeed(5.f);
+		owner_transform_->SetRotation(45, 90, 0);
+
+		if (execute_time_ >= MAX_RELAY_TIME)
 		{
 			execute_time_ = 0.f;
 			enemy_motion_state_ = EnemyMotionState::Attack;
@@ -476,10 +513,11 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 
 		// プレイヤーの位置に合わせて角度を調整する
 		owner_transform_->SetRotation(yaw_, 90, 0);
-		owner_transform_->SetRotationYaw(45);
+		yaw_ = Math::Lerp(45.f, -45.f, Easing::CubicInOut(execute_time_ / 7.f));
+		owner_transform_->SetRotationYaw(yaw_);
 
 		// 回転の更新
-		if (execute_time_ >= MAX_STATE_TIME)
+		if (execute_time_ >= MAX_ATTACK_TIME)
 		{
 			execute_time_ = 0.f;
 			enemy_motion_state_ = EnemyMotionState::Complete;

@@ -11,6 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../WeaponComponent.h"
 #include "../../GameObject/SandBox/Actor/Enemy.h"
+#include "../MoveComponent/EnemyMoveComponent.h"
 
 /*-------------------------------------
 /* レーザー砲武器コンポーネント
@@ -31,13 +32,18 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::LaserCannonWeaponComponent; };
 
+	void Shoot(void);
+
+	void SetEnemyMotionState(EnemyMotionState motionState) { enemy_motion_state_ = motionState; }
+
 private:
+	// 敵のステートを取得
+	EnemyMotionState					enemy_motion_state_;
+
+	// レーザーのゲームオブジェクト
 	class LargeLaser*					large_laser_;
 
 private:
-	// 銃の発射エフェクト
-	class EffectRendererComponent*		test_effect_;
-
 	// このコンポーネントの位置を示すgizmo
 	class SphereGizmoRendererComponent* sphere_gizmo_;
 };
