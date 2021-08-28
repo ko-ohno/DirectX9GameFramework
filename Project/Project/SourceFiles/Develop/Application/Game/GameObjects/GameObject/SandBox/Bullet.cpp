@@ -102,7 +102,7 @@ void Bullet::UpdateGameObject(float deltaTime)
 	}
 
 	// Žp¨‚Ì‰ñ“]‚ð‹…–Ê•âŠÔ‚ð‚µ‚È‚¢(í‚É•âŠÔ‚ÌŠ®—¹Ï‚Ý‚É)
-	this->transform_component_->IsSetExecuteSlerp(false);
+	this->transform_component_->IsSetExecuteSlerpRotation(false);
 
 	if (game_object_parent_ != nullptr)
 	{

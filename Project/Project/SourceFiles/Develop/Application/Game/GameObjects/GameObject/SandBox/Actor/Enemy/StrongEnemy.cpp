@@ -27,6 +27,9 @@
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
 #include "../../../../Component/ColliderComponent/OBBColliderComponent.h"
 
+// 敵の武器コンポーネント
+#include "../../../../Component/WeaponComponent/EnemyBlasterWeaponComponent.h"
+
 // 入力チェック
 #include "../../../../../Input/InputCheck.h"
 
@@ -43,6 +46,7 @@
 -----------------------------------------------------------------------------*/
 StrongEnemy::StrongEnemy(Game* game)
 	: Enemy(game)
+	, enemy_blaster_(nullptr)
 {
 	this->Init();
 }
@@ -69,31 +73,39 @@ bool StrongEnemy::Init(void)
 	{
 		// ボスのメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
-		actor_mesh_->SetMesh(XFileMeshType::EnemyWeak);
+		actor_mesh_->SetMesh(XFileMeshType::EnemyStrong);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 
 		// 生成座標を調整
-		this->transform_component_->SetTranslationZ(15.f);
+		this->transform_component_->SetTranslationX(3.f);
+
+		// 生成座標を調整
+		this->transform_component_->SetTranslationZ(8.f);
 	}
 
 	// ボスの状態を初期化
 	{
-		auto init_StrongEnemy_state = EnemyState::Enter;
+		auto init_StrongEnemy_state = EnemyState::Idle;
 
 		// 敵の状態を初期化
 		enemy_ai_->SetEnemyState(init_StrongEnemy_state);
 		enemy_move_->SetEnemyState(init_StrongEnemy_state);
 	}
 
+	// 武器の生成
+	{
+		enemy_blaster_ = NEW EnemyBlasterWeaponComponent(this);
+	}
+
 	// 衝突判定関係
 	{
 		// 衝突判定の高さ　オフセット座標
-		const float collider_height_pos = 3.f;
+		const float collider_height_pos = 0.f;
 
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 6.f;
+			const float sphere_radius_size = 3.f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -112,7 +124,7 @@ bool StrongEnemy::Init(void)
 			const float box_height_size = 1.5f;
 
 			// 箱の水平軸の大きさ
-			const float box_size = 16.f;
+			const float box_size = 3.f;
 
 			// 衝突判定
 			obb_collider_ = NEW OBBColliderComponent(this);
@@ -123,6 +135,7 @@ bool StrongEnemy::Init(void)
 
 			// ギズモ
 			box_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			box_gizmo_->SetVertexColor(0, 255, 255, 128);
 			box_gizmo_->SetTranslationY(collider_height_pos);
 			box_gizmo_->AddScaleX(box_size);
 			box_gizmo_->AddScaleY(box_height_size);
@@ -153,7 +166,7 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	// AIコンポーネントにボスのHPを通知する
+	// AIコンポーネントに自身のHPを通知する
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
 	}
@@ -182,30 +195,26 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
-	//　自身のAIのステートから攻撃力を更新する
-	//switch (ai_state)
-	//{
-		//case EnemyState::BodyPress:
-		//	attack_ = ATTACK_VALUE_BODY_PRESS;
-		//	break;
+	// 自身のAIのステートから攻撃力を更新する
+	switch (ai_state)
+	{
+	case EnemyState::Idle:
+		attack_ = 0.f;
+		break;
 
-		//case EnemyState::Shooting:
-		//	attack_ = ATTACK_VALUE_SHOOT;
-		//	break;
+	case EnemyState::Shooting:
+		attack_ = ATTACK_VALUE_SHOOT;
+		break;
 
-		//case EnemyState::LaserCannon:
-		//	attack_ = ATTACK_VALUE_LASER_CANNON;
-		//	break;
+	case EnemyState::Destroy:
+		attack_ = 0.f;
+		break;
 
-		//case EnemyState::Destroy:
-		//	attack_ = 0.f;
-		//	break;
+	default:
+		attack_ = 10.f;
+		break;
+	}
 
-		//default:
-		//	break;
-		//}
-
-	//}
 }
 /*=============================================================================
 /*		End of File

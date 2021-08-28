@@ -283,7 +283,8 @@ void Boss::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMotionStat
 	// Ø‚è‘Ö‚í‚èŽžŠÔ‚ðŒvŽZ
 	switch_time_ += deltaTime;
 
-	if (switch_time_ >= 0.3f)
+	const float SWITCH_TIME_LIMIT = 0.3f;
+	if (switch_time_ >= SWITCH_TIME_LIMIT)
 	{
 		switch_time_ = 0.f;
 		is_fire_ = true;

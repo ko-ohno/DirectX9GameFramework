@@ -82,7 +82,7 @@ void MeshTest::UpdateGameObject(float deltaTime)
 	ImGui::Text("transform_deg_:%f", transform_component_->GetAngleYaw());
 	ImGui::End();
 
-	transform_component_->IsSetExecuteSlerp(true);
+	transform_component_->IsSetExecuteSlerpRotation(true);
 	this->transform_component_->SetRotationYaw(test_rot);
 
 }

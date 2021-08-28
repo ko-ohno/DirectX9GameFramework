@@ -51,9 +51,9 @@ bool HUD::Init(void)
 {
 	// ’l‚Ì‰Šú‰»
 	{
-		health_value_ = 1;
-		distance_value_ = 100;
-		score_value_ = 0;
+		health_value_ = 1.f;
+		distance_value_ = 99;
+		score_value_ = 999;
 	}
 
 	//float screen_width  = game_->GetGraphics()->GetScreenSize().x_;
@@ -138,7 +138,7 @@ void HUD::UpdateGameObject(float deltaTime)
 {
 	ImGui::Begin("HUD");
 	ImGui::SliderFloat("##health_value", &health_value_, 0, 1.f);
-	ImGui::SliderInt("##distance_value", &distance_value_, 0, 100);
+	ImGui::SliderInt("##distance_value", &distance_value_, 0, 99);
 	ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
 	ImGui::End();
 

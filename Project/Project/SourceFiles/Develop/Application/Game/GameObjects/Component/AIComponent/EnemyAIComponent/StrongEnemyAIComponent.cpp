@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[StrongEnemyAIComponent.cpp] ボスAIコンポーネント
+/*	[StrongEnemyAIComponent.cpp] 強い敵のAIコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ボスAIコンポーネント
+/*	説明：強い敵のAIコンポーネント
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
@@ -18,7 +18,7 @@
 -----------------------------------------------------------------------------*/
 StrongEnemyAIComponent::StrongEnemyAIComponent(GameObject* owner, int updateOrder)
 	: EnemyAIComponent(owner, updateOrder)
-	, boss_state_machine_(nullptr)
+	, strong_enemy_state_machine_(nullptr)
 {
 	this->Init();
 }
@@ -45,7 +45,7 @@ bool StrongEnemyAIComponent::Init(void)
 void StrongEnemyAIComponent::Uninit(void)
 {
 	// ステートマシンを削除
-	SAFE_DELETE_(boss_state_machine_);
+	SAFE_DELETE_(strong_enemy_state_machine_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -63,83 +63,229 @@ void StrongEnemyAIComponent::Update(float deltaTime)
 	UNREFERENCED_PARAMETER(deltaTime);
 
 	// 敵のステートを操作する
-	//this->EnemyStateController();
-	//
-	//ImGui::Begin("boss_ai_state");
+	this->EnemyStateController();
+	
+	ImGui::Begin("strong_enemy_ai_state");
+	{
+		switch (enemy_state_)
+		{
+		case EnemyState::Idle:
+			ImGui::Text("idle");
+			break;
 
-	//{
-	//	switch (enemy_state_)
-	//	{
-	//	case EnemyState::Wait:
-	//		ImGui::Text("wait");
-	//		this->ChangeState(NEW BossStateWait());
-	//		break;
+		case EnemyState::MoveStraight:
+			ImGui::Text("move_straight");
+			break;
 
-	//	case EnemyState::Enter:
-	//		ImGui::Text("enter");
-	//		this->ChangeState(NEW BossStateEnter());
-	//		break;
+		case EnemyState::MoveStraightWaitOneTime:
+			ImGui::Text("move_straight_wait_one_time");
+			break;
 
-	//	case EnemyState::BodyPress:
-	//		ImGui::Text("body_press");
-	//		this->ChangeState(NEW BossStateBodyPress());
-	//		break;
+		case EnemyState::MoveStraightWaitUpDown:
+			ImGui::Text("move_straight_wait_up_down");
+			break;
 
-	//	case EnemyState::Shooting:
-	//		ImGui::Text("shooting");
-	//		this->ChangeState(NEW BossStateShooting());
-	//		break;
+		case EnemyState::MoveRoundVertical:
+			ImGui::Text("move_round_vertical");
+			break;
 
-	//	case EnemyState::LaserCannon:
-	//		ImGui::Text("laser_cannon");
-	//		this->ChangeState(NEW BossStateLaserCannon());
-	//		break;
+		case EnemyState::MoveRoundHorizontal:
+			ImGui::Text("move_round_horizontal");
+			break;
 
-	//	case EnemyState::Destroy:
-	//		break;
+		case EnemyState::MoveLoopUpDown:
+			ImGui::Text("move_loop_up_down");
+			break;
 
-	//	default:
-	//		assert(!"StrongEnemyAIComponent::Update()：ボスがAIが不正な状態です！");
-	//		break;
-	//	}
-	//}
-	//ImGui::End();
+		case EnemyState::MoveLoopLeftRight:
+			ImGui::Text("move_loop_left_right");
+			break;
 
-	//switch (enemy_state_)
-	//{
-	//case EnemyState::Wait:
-	//	this->ChangeState(NEW BossStateWait());
-	//	break;
+		case EnemyState::MoveShowOneTime:
+			ImGui::Text("move_show_one_time");
+			break;
 
-	//case EnemyState::Enter:
-	//	this->ChangeState(NEW BossStateEnter());
-	//	break;
+		case EnemyState::Destroy:
+			ImGui::Text("destroy");
+			break;
 
-	//case EnemyState::BodyPress:
-	//	this->ChangeState(NEW BossStateBodyPress());
-	//	break;
+		default:
+			assert(!"StrongEnemyAIComponent::Update()：ボスがAIが不正な状態です！");
+			break;
+		}
+	}
+	ImGui::End();
 
-	//case EnemyState::Shooting:
-	//	this->ChangeState(NEW BossStateShooting());
-	//	break;
+	switch (enemy_state_)
+	{
+	case EnemyState::Idle:
+		this->ChangeState(NEW StrongEnemyStateIdle());
+		break;
 
-	//case EnemyState::LaserCannon:
-	//	this->ChangeState(NEW BossStateLaserCannon());
-	//	break;
+	case EnemyState::MoveStraight:
+		this->ChangeState(NEW StrongEnemyStateMoveStraight());
+		break;
 
-	//case EnemyState::Destroy:
-	//	break;
+	case EnemyState::MoveStraightWaitOneTime:
+		this->ChangeState(NEW StrongEnemyStateMoveStraightWaitOneTime());
+		break;
 
-	//default:
-	//	assert(!"StrongEnemyAIComponent::Update()：ボスがAIが不正な状態です！");
-	//	break;
-	//}
+	case EnemyState::MoveStraightWaitUpDown:
+		this->ChangeState(NEW StrongEnemyStateMoveStraightWaitUpDown());
+		break;
 
-	// このAIのステートマシンがnullptrか？
-	//if (boss_state_machine_ != nullptr)
-	//{
-	//	boss_state_machine_->Update(this, deltaTime);
-	//}
+	case EnemyState::MoveRoundVertical:
+		this->ChangeState(NEW StrongEnemyStateMoveRoundVertical());
+		break;
+
+	case EnemyState::MoveRoundHorizontal:
+		this->ChangeState(NEW StrongEnemyStateMoveRoundHorizontal());
+		break;
+
+	case EnemyState::MoveLoopUpDown:
+		this->ChangeState(NEW StrongEnemyStateMoveLoopUpDown());
+		break;
+
+	case EnemyState::MoveLoopLeftRight:
+		this->ChangeState(NEW StrongEnemyStateMoveLoopLeftRight());
+		break;
+
+	case EnemyState::MoveShowOneTime:
+		this->ChangeState(NEW StrongEnemyStateMoveShowOneTime());
+		break;
+
+	case EnemyState::Destroy:
+		break;	
+
+	default:
+		assert(!"StrongEnemyAIComponent::Update()：ボスがAIが不正な状態です！");
+		break;
+	}
+
+	//このAIのステートマシンがnullptrか？
+	if (strong_enemy_state_machine_ != nullptr)
+	{
+		strong_enemy_state_machine_->Update(this, deltaTime);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　ステートの制御処理
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::EnemyStateController(void)
+{
+	const bool is_controll = true;
+	if (is_controll)
+	{
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_LEFT_SHOULDER))
+		{
+			this->SetEnemyState(EnemyState::Idle);
+		}
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_Y))
+		{
+			this->SetEnemyState(EnemyState::MoveStraight);
+			//this->SetEnemyState(EnemyState::MoveStraightWaitOneTime);
+			//this->SetEnemyState(EnemyState::MoveLoopUpDown);
+			//this->SetEnemyState(EnemyState::MoveLoopLeftRight);
+			//this->SetEnemyState(EnemyState::MoveRoundHorizontal);
+			//this->SetEnemyState(EnemyState::MoveRoundVertical);
+			//this->SetEnemyState(EnemyState::MoveShowOneTime);
+			//this->SetEnemyState(EnemyState::MoveSShapedCurve);
+		}
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_RIGHT_SHOULDER))
+		{
+			this->SetEnemyState(EnemyState::Shooting);
+		}
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵のステートマシンの変更
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::ChangeState(StrongEnemyStateMachine* strongEnemyStateMachine)
+{
+	if (strong_enemy_state_machine_ != nullptr)
+		delete strong_enemy_state_machine_;
+
+	strong_enemy_state_machine_ = strongEnemyStateMachine;
+
+	if (strong_enemy_state_machine_ != nullptr)
+		strong_enemy_state_machine_->Init();
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::Idle(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveStraight(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveStraightWaitOneTime(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveStraightWaitUpDown(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveRoundVertical(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveRoundHorizontal(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveLoopUpDown(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveLoopLeftRight(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyAIComponent::MoveShowOneTime(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

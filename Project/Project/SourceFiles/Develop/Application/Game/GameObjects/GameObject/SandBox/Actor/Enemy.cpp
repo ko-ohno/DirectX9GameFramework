@@ -18,6 +18,14 @@ Enemy::Enemy(Game* game)
 	: Actor(game)
 	, enemy_ai_(nullptr)
 	, enemy_move_(nullptr)
+	, position_start_(0.f, 0.f, 0.f)
+	, angle_yaw_(0.f)
+	, angle_pitch_(0.f)
+	, angle_roll_(0.f)
+	, move_vector_length_(1.f)
+	, move_action_magnitude_(1.f)
+	, max_execute_time_(1.f)
+
 {
 	// マネージャのリストにアドレスを追加
 	game->GetEnemieManager()->AddEnemyGameObjectAddress(this);

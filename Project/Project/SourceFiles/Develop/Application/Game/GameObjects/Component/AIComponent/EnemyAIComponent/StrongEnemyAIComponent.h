@@ -1,18 +1,18 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[StrongEnemyAIComponent.h]  ボスAIコンポーネント
+/*	[StrongEnemyAIComponent.h]  強い敵のAIコンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ボスAIコンポーネント
+/*	説明：強い敵のAIコンポーネント
 =============================================================================*/
-#ifndef BOSS_AI_COMPONENT_H_
-#define	BOSS_AI_COMPONENT_H_
+#ifndef STRONG_ENEMY_AI_COMPONENT_H_
+#define	STRONG_ENEMY_AI_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../EnemyAIComponent.h"
 
 /*-------------------------------------------
-/* ボスAIコンポーネント：ステートマシン作成
+/* 強い敵のAIコンポーネント：ステートマシン作成
 -------------------------------------------*/
 class StrongEnemyAIComponent : public EnemyAIComponent
 {
@@ -30,28 +30,33 @@ public:
 
 	void EnemyStateController(void);
 
-	void ChangeState(class BossStateMachine* bossStateMachine);
+	void ChangeState(class StrongEnemyStateMachine* strongEnemyStateMachine);
 
-	void Wait(float deltaTime);
-	void Enter(float deltaTime);
-	void BodyPress(float deltaTime);
-	void Shoot(float deltaTime);
-	void LaserCannon(float deltaTime);
+	void Idle(float deltaTime);
+	void MoveStraight(float deltaTime);
+	void MoveStraightWaitOneTime(float deltaTime);
+	void MoveStraightWaitUpDown(float deltaTime);
+
+	void MoveRoundVertical(float deltaTime);
+	void MoveRoundHorizontal(float deltaTime);
+	void MoveLoopUpDown(float deltaTime);
+	void MoveLoopLeftRight(float deltaTime);
+	void MoveShowOneTime(float deltaTime);
 
 	virtual TypeID GetComponentType() const override { return TypeID::StrongEnemyAIComponent; };
 
 private:
-	class BossStateMachine* boss_state_machine_;
+	class StrongEnemyStateMachine* strong_enemy_state_machine_;
 };
 
 /*-------------------------------------
 /* ボスのステートマシンを定義
 -------------------------------------*/
-class BossStateMachine
+class StrongEnemyStateMachine
 {
 public:
-	BossStateMachine(void) {}
-	virtual ~BossStateMachine(void) {}
+	StrongEnemyStateMachine(void) {}
+	virtual ~StrongEnemyStateMachine(void) {}
 
 	virtual void Init(void) = 0;
 	virtual void Uninit(void) = 0;
@@ -59,14 +64,14 @@ public:
 };
 
 /*-------------------------------------
-/* ボスの待機行動クラス
+/* 強い敵の待機行動クラス
 -------------------------------------*/
-class BossStateEnter : public BossStateMachine
+class StrongEnemyStateIdle : public StrongEnemyStateMachine
 {
 public:
-	BossStateEnter(void)
+	StrongEnemyStateIdle(void)
 	{}
-	~BossStateEnter(void) override
+	~StrongEnemyStateIdle(void) override
 	{}
 
 	void Init(void) override
@@ -75,70 +80,21 @@ public:
 	{}
 	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->Enter(deltaTime);
-	}
-
-private:
-};
-
-
-/*-------------------------------------
-/* ボスの待機行動クラス
--------------------------------------*/
-class BossStateWait : public BossStateMachine
-{
-public:
-	BossStateWait(void)
-	{}
-	~BossStateWait(void) override
-	{}
-
-	void Init(void) override
-	{}
-	void Uninit(void) override
-	{}
-	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
-	{
-		stateMachineOwner->Wait(deltaTime);
-	}
-
-private:
-};
-
-
-
-/*-------------------------------------
-/* ボスの体当たり攻撃クラス
--------------------------------------*/
-class BossStateBodyPress : public BossStateMachine
-{
-public:
-	BossStateBodyPress(void)
-	{}
-	~BossStateBodyPress(void) override
-	{}
-
-	void Init(void) override
-	{}
-	void Uninit(void) override
-	{}
-	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
-	{
-		stateMachineOwner->BodyPress(deltaTime);
+		stateMachineOwner->Idle(deltaTime);
 	}
 
 private:
 };
 
 /*-------------------------------------
-/* ボスの銃撃行動クラス
+/* 強い敵の直線移動クラス
 -------------------------------------*/
-class BossStateShooting : public BossStateMachine
+class StrongEnemyStateMoveStraight : public StrongEnemyStateMachine
 {
 public:
-	BossStateShooting(void)
+	StrongEnemyStateMoveStraight(void)
 	{}
-	~BossStateShooting(void) override
+	~StrongEnemyStateMoveStraight(void) override
 	{}
 
 	void Init(void) override
@@ -147,20 +103,44 @@ public:
 	{}
 	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->Shoot(deltaTime);
+		stateMachineOwner->MoveStraight(deltaTime);
 	}
+
+private:
+};
+
+/*----------------------------------------------
+/* 強い敵の直線移動：一時待機：直線移動クラス
+----------------------------------------------*/
+class StrongEnemyStateMoveStraightWaitOneTime : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveStraightWaitOneTime(void)
+	{}
+	~StrongEnemyStateMoveStraightWaitOneTime(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveStraightWaitOneTime(deltaTime);
+	}
+
 private:
 };
 
 /*-------------------------------------
-/* レーザー砲攻撃高度クラス
+/* 強い敵の直線移動：複数回一時待機
 -------------------------------------*/
-class BossStateLaserCannon : public BossStateMachine
+class StrongEnemyStateMoveStraightWaitUpDown : public StrongEnemyStateMachine
 {
 public:
-	BossStateLaserCannon(void)
+	StrongEnemyStateMoveStraightWaitUpDown(void)
 	{}
-	~BossStateLaserCannon(void) override
+	~StrongEnemyStateMoveStraightWaitUpDown(void) override
 	{}
 
 	void Init(void) override
@@ -169,13 +149,128 @@ public:
 	{}
 	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->LaserCannon(deltaTime);
+		stateMachineOwner->MoveStraightWaitUpDown(deltaTime);
 	}
 
 private:
 };
 
-#endif //BOSS_AI_COMPONENT_H_
+/*-------------------------------------
+/* 強い敵が垂直に半円を描く移動クラス
+-------------------------------------*/
+class StrongEnemyStateMoveRoundVertical : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveRoundVertical(void)
+	{}
+	~StrongEnemyStateMoveRoundVertical(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveRoundVertical(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 強い敵が水平に半円を描く移動クラス
+-------------------------------------*/
+class StrongEnemyStateMoveRoundHorizontal : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveRoundHorizontal(void)
+	{}
+	~StrongEnemyStateMoveRoundHorizontal(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveRoundHorizontal(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 強い敵の上下移動クラス
+-------------------------------------*/
+class StrongEnemyStateMoveLoopUpDown : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveLoopUpDown(void)
+	{}
+	~StrongEnemyStateMoveLoopUpDown(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveLoopUpDown(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 強い敵の左右ループ移動クラス
+-------------------------------------*/
+class StrongEnemyStateMoveLoopLeftRight : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveLoopLeftRight(void)
+	{}
+	~StrongEnemyStateMoveLoopLeftRight(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveLoopLeftRight(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 画面の端からの顔出し移動クラス
+-------------------------------------*/
+class StrongEnemyStateMoveShowOneTime : public StrongEnemyStateMachine
+{
+public:
+	StrongEnemyStateMoveShowOneTime(void)
+	{}
+	~StrongEnemyStateMoveShowOneTime(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class StrongEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveShowOneTime(deltaTime);
+	}
+
+private:
+};
+
+#endif //STRONG_ENEMY_AI_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

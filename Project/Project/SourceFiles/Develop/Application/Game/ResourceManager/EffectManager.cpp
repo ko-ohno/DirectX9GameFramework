@@ -30,6 +30,10 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "ChargeBulletState4Bullet"
 	, "ChargeBulletState5Explosion"
 
+	, "EnemyActionGuide_Red"
+	, "EnemyActionGuide_Orange"
+	, "EnemyActionGuide_Yellow"
+
 	, "BlueLaser"
 	, "AfterBurner"
 };
@@ -79,12 +83,21 @@ bool EffectManager::StartUp(void)
 	{
 		//this->LoadEffect(EffectType::AfterBurner);
 
+		this->LoadEffect(EffectType::MuzzluFrashBlue);
+		this->LoadEffect(EffectType::MuzzluFrashOrange);
+
 		// チャージ弾のエフェクトの読み込み
 		this->LoadEffect(EffectType::ChargeBulletState1Charge);
 		this->LoadEffect(EffectType::ChargeBulletState2Hold);
 		this->LoadEffect(EffectType::ChargeBulletState3Fire);
 		this->LoadEffect(EffectType::ChargeBulletState4Bullet);
 		this->LoadEffect(EffectType::ChargeBulletState5Explosion);
+
+		this->LoadEffect(EffectType::EnemyActionGuide_Red);
+		this->LoadEffect(EffectType::EnemyActionGuide_Orange);
+		this->LoadEffect(EffectType::EnemyActionGuide_Yellow);
+
+		this->LoadEffect(EffectType::RedLaser);
 	}
 	return true;
 }
@@ -133,6 +146,11 @@ bool EffectManager::Init(void)
 			unmap_effect_path_list_[EffectType::ChargeBulletState3Fire]		 = "ChargeBullet/cb_state_3_fire.efk";
 			unmap_effect_path_list_[EffectType::ChargeBulletState4Bullet]	 = "ChargeBullet/cb_state_4_bullet.efk";
 			unmap_effect_path_list_[EffectType::ChargeBulletState5Explosion] = "ChargeBullet/cb_state_5_explosion.efk";
+
+			// 敵の行動のガイド(導き)のエフェクト
+			unmap_effect_path_list_[EffectType::EnemyActionGuide_Red]	 = "EnemyActionGuide/EnemyActionGuide_Red.efk";
+			unmap_effect_path_list_[EffectType::EnemyActionGuide_Orange] = "EnemyActionGuide/EnemyActionGuide_Orange.efk";
+			unmap_effect_path_list_[EffectType::EnemyActionGuide_Yellow] = "EnemyActionGuide/EnemyActionGuide_Yellow.efk";
 
 			// 赤いレーザーのエフェクト
 			unmap_effect_path_list_[EffectType::RedLaser]	 = "Laser/RedLaser.efk";

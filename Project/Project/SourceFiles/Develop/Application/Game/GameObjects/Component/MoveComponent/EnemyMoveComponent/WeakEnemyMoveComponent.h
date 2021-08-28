@@ -30,18 +30,21 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::WeakEnemyMoveComponent; };
 
+	//
+	// 弱い敵の実際の挙動を設定
+	//
+
+	virtual void MoveActionIdle(float deltaTime) override;					// 待機行動
+	virtual void MoveActionStraight(float deltaTime) override;				// 直線移動
+	virtual void MoveActionStraightWaitOneTime(float deltaTime) override;	// 直線移動一回待つ
+	virtual void MoveActionStraightWaitUpDown(float deltaTime) override;	// 直線移動して一回待つ
+	virtual void MoveActionRoundVertical(float deltaTime) override;			// 垂直に半円を描く：｜
+	virtual void MoveActionRoundHorizontal(float deltaTime) override;		// 水平に半円を描く：─
+	virtual void MoveActionLoopUpDown(float deltaTime) override;			// 上下行動をループ
+	virtual void MoveActionLoopLeftRight(float deltaTime) override;			// 左右行動をループ
+	virtual void MoveActionShowOneTime(float deltaTime) override;			// 一度だけ、ひょっこり顔出しする 
+
 private:
-
-	// 現在座標
-	D3DXVECTOR3 position_;
-
-	// 回転角度
-	float yaw_;
-	float pitch_;
-	float roll_;
-
-	// 実行時間
-	float execute_time_;
 };
 
 #endif //BOSS_MOVE_COMPONENT_H_

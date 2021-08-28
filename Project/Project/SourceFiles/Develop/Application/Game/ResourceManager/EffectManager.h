@@ -52,6 +52,10 @@ enum class EffectType
 	, ChargeBulletState4Bullet
 	, ChargeBulletState5Explosion
 
+	, EnemyActionGuide_Red
+	, EnemyActionGuide_Orange
+	, EnemyActionGuide_Yellow
+
 	, RedLaser
 	, AfterBurner
 	, Max

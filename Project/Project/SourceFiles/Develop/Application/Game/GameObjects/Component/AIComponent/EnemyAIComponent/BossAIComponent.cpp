@@ -13,11 +13,26 @@
 #include "../../../../Input/InputCheck.h"
 #include "../../../../../ImGui/ImGuiManager.h"
 
+
+// 配列のインデックス名
+enum class EnemyStateArrayIndex
+{
+	None = -1
+	, BodyPress
+	, Shooting
+	, LaserCannon
+
+	, Max
+};
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 BossAIComponent::BossAIComponent(GameObject* owner, int updateOrder)
 	: EnemyAIComponent(owner, updateOrder)
+	, state_exe_time_(0.f)
+	, array_index_(0)
+	, is_state_change_(false)
 	, boss_state_machine_(nullptr)
 {
 	this->Init();
@@ -36,15 +51,12 @@ BossAIComponent::~BossAIComponent(void)
 -----------------------------------------------------------------------------*/
 bool BossAIComponent::Init(void)
 {
-	std::vector<EnemyState> state;
-	std::list<EnemyState> state_;
-
-
-	enemy_state_array_[0] = EnemyState::BodyPress;
-	enemy_state_array_[1] = EnemyState::Shooting;
-	enemy_state_array_[2] = EnemyState::LaserCannon;
-
-
+	// ステートの登録
+	{
+		enemy_state_array_[static_cast<int>(EnemyStateArrayIndex::BodyPress)]   = EnemyState::BodyPress;
+		enemy_state_array_[static_cast<int>(EnemyStateArrayIndex::Shooting)]	= EnemyState::Shooting;
+		enemy_state_array_[static_cast<int>(EnemyStateArrayIndex::LaserCannon)] = EnemyState::LaserCannon;
+	}
 	return true;
 }
 
@@ -69,17 +81,15 @@ void BossAIComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void BossAIComponent::Update(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
 	// 敵のステートを操作する
-	this->EnemyStateController();
+	this->EnemyStateController(deltaTime);
 	
 	ImGui::Begin("boss_ai_state");
 
 	{
 		switch (enemy_state_)
 		{
-		case EnemyState::Wait:
+		case EnemyState::Idle:
 			ImGui::Text("wait");
 			break;
 
@@ -111,8 +121,8 @@ void BossAIComponent::Update(float deltaTime)
 
 	switch (enemy_state_)
 	{
-	case EnemyState::Wait:
-		this->ChangeState(NEW BossStateWait());
+	case EnemyState::Idle:
+		this->ChangeState(NEW BossStateIdle());
 		break;
 
 	case EnemyState::Enter:
@@ -147,46 +157,71 @@ void BossAIComponent::Update(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/*　更新処理
+/*　ステートの制御処理
 -----------------------------------------------------------------------------*/
-void BossAIComponent::EnemyStateController(void)
+void BossAIComponent::EnemyStateController(float deltaTime)
 {
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_Y))
+	const bool is_controll = false;
+	if (is_controll)
 	{
-		this->SetEnemyState(EnemyState::Enter);
-	}
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_Y))
+		{
+			this->SetEnemyState(EnemyState::Enter);
+		}
 
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_LEFT_SHOULDER))
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_LEFT_SHOULDER))
+		{
+			this->SetEnemyState(EnemyState::Idle);
+		}
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_LEFT_TRIGGER))
+		{
+			this->SetEnemyState(EnemyState::BodyPress);
+		}
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_RIGHT_SHOULDER))
+		{
+			this->SetEnemyState(EnemyState::Shooting);
+		}
+
+		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_RIGHT_TRIGGER))
+		{
+			this->SetEnemyState(EnemyState::LaserCannon);
+		}
+	}
+	else
 	{
-		this->SetEnemyState(EnemyState::Wait);
+		state_exe_time_ += deltaTime;
+
+		if ((this->GetEnemyState() == EnemyState::Idle)
+			&& (is_state_change_ == false))
+		{
+			array_index_ += 1;
+			is_state_change_ = true;
+		}
+
+		const float MAX_WAIT_TIME = 3.f;
+		if (is_state_change_ == true)
+		{
+			if (state_exe_time_ >= MAX_WAIT_TIME)
+			{
+				this->SetEnemyState(enemy_state_array_[array_index_]);
+				is_state_change_ = false;
+				state_exe_time_ = 0.f;
+			}
+		}
+
+		if (array_index_ >= MAX_STATE_ARRAY_SIZE)
+		{
+			array_index_ = 0;
+		}
 	}
-
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_LEFT_TRIGGER))
-	{
-		this->SetEnemyState(EnemyState::BodyPress);
-	}
-
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_RIGHT_SHOULDER))
-	{
-		this->SetEnemyState(EnemyState::Shooting);
-	}
-
-	if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_RIGHT_TRIGGER))
-	{
-		this->SetEnemyState(EnemyState::LaserCannon);
-	}
-
-
-
-
-
-
 }
 
 /*-----------------------------------------------------------------------------
 /*　ボスのステートマシンの変更
 -----------------------------------------------------------------------------*/
-void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
+void BossAIComponent::ChangeState(BossEnemyStateMachine* bossStateMachine)
 {
 	if (boss_state_machine_ != nullptr)
 		delete boss_state_machine_;
@@ -200,7 +235,7 @@ void BossAIComponent::ChangeState(BossStateMachine* bossStateMachine)
 /*-----------------------------------------------------------------------------
 /*　ボスの待機行動
 -----------------------------------------------------------------------------*/
-void BossAIComponent::Wait(float deltaTime)
+void BossAIComponent::Idle(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 }
@@ -214,7 +249,7 @@ void BossAIComponent::Enter(float deltaTime)
 
 	if (motion_state_ == EnemyMotionState::End)
 	{
-		enemy_state_ = EnemyState::Wait;
+		enemy_state_ = EnemyState::Idle;
 	}
 }
 
@@ -227,7 +262,7 @@ void BossAIComponent::BodyPress(float deltaTime)
 
 	if (motion_state_ == EnemyMotionState::End)
 	{
-		enemy_state_ = EnemyState::Wait;
+		enemy_state_ = EnemyState::Idle;
 	}
 }
 
@@ -240,7 +275,7 @@ void BossAIComponent::Shoot(float deltaTime)
 
 	if (motion_state_ == EnemyMotionState::End)
 	{
-		enemy_state_ = EnemyState::Wait;
+		enemy_state_ = EnemyState::Idle;
 	}
 }
 
@@ -253,7 +288,7 @@ void BossAIComponent::LaserCannon(float deltaTime)
 
 	if (motion_state_ == EnemyMotionState::End)
 	{
-		enemy_state_ = EnemyState::Wait;
+		enemy_state_ = EnemyState::Idle;
 	}
 }
 

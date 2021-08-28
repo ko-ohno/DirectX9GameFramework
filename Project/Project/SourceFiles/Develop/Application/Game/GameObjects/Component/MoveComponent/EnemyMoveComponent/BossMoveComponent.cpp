@@ -21,11 +21,6 @@
 -----------------------------------------------------------------------------*/
 BossMoveComponent::BossMoveComponent(GameObject* owner, int updateOrder)
 	: EnemyMoveComponent(owner, updateOrder)
-	, position_(0.f, 0.f, 0.f)
-	, yaw_(0.f)
-	, pitch_(0.f)
-	, roll_(0.f)
-	, execute_time_(0.f)
 {
 	this->Init();
 }
@@ -70,9 +65,9 @@ void BossMoveComponent::Update(float deltaTime)
 	pitch_ = owner_transform_->GetAnglePitch();
 	roll_  = owner_transform_->GetAngleRoll();
 
-	// 線形球面保管を行うフラグをONに
+	// 回転の補間を行うフラグをONに
 	{
-		owner_transform_->IsSetExecuteSlerp(true);
+		owner_transform_->IsSetExecuteSlerpRotation(true);
 	}
 
 	// 自身の状態を表記
@@ -84,8 +79,8 @@ void BossMoveComponent::Update(float deltaTime)
 			ImGui::Text("enter");
 			break;
 
-		case EnemyState::Wait:
-			ImGui::Text("wait");
+		case EnemyState::Idle:
+			ImGui::Text("idle");
 			break;
 
 		case EnemyState::BodyPress:
@@ -110,8 +105,8 @@ void BossMoveComponent::Update(float deltaTime)
 		this->MoveActionEnter(deltaTime);
 		break;
 	
-	case EnemyState::Wait:
-		this->MoveActionWait(deltaTime);
+	case EnemyState::Idle:
+		this->MoveActionIdle(deltaTime);
 		break;
 
 	case EnemyState::BodyPress:
@@ -149,7 +144,7 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 	if (enemy_state_ != enemy_state_old_)
 	{
 		//攻撃状態の初期化
-		enemy_motion_state_ = EnemyMotionState::FromRight;
+		enemy_motion_state_ = EnemyMotionState::MoveState_0;
 		execute_time_ = 0.f;
 	}
 
@@ -159,41 +154,41 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 
 	switch (enemy_motion_state_)
 	{
-	case EnemyMotionState::FromRight:
+	case EnemyMotionState::MoveState_0:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &enter_from_right_wait_position_
-					, &enter_from_left_wait_position_
+					, &enter_from_right_idle_position_
+					, &enter_from_left_idle_position_
 					, Easing::SineInOut(execute_time_, MAX_EXE_TIME));
 
 		// モーションの実行時間が最大を超えたら
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_motion_state_ = EnemyMotionState::FromLeft;
+			enemy_motion_state_ = EnemyMotionState::MoveState_1;
 		}
 		break;
 
-	case EnemyMotionState::FromLeft:
+	case EnemyMotionState::MoveState_1:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &enter_from_left_wait_position_
-					, &enter_from_right_wait_position_
+					, &enter_from_left_idle_position_
+					, &enter_from_right_idle_position_
 					, Easing::SineInOut(execute_time_, MAX_EXE_TIME));
 
 		// モーションの実行時間が最大を超えたら
 		if (execute_time_ >= MAX_EXE_TIME)
 		{
 			execute_time_ = 0.f;
-			enemy_motion_state_ = EnemyMotionState::FromUnder;
+			enemy_motion_state_ = EnemyMotionState::MoveState_2;
 		}
 		break;
 
-	case EnemyMotionState::FromUnder:
+	case EnemyMotionState::MoveState_2:
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &enter_from_under_wait_position_
-					, &wait_position_
+					, &enter_from_under_idle_position_
+					, &idle_position_
 					, Easing::SineInOut(execute_time_, MAX_EXE_TIME));
 
 		// モーションの実行時間が最大を超えたら
@@ -213,7 +208,7 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		break;
 
 	default:
-		assert("不正なアニメーション遷移！！");
+		assert(!"BossMoveComponent::MoveActionEnter()：不正なモーションの状態！");
 		break;
 	}
 
@@ -223,7 +218,7 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 /*-----------------------------------------------------------------------------
 /*　ボスの待機行動
 -----------------------------------------------------------------------------*/
-void BossMoveComponent::MoveActionWait(float deltaTime)
+void BossMoveComponent::MoveActionIdle(float deltaTime)
 {
 	// 回転の更新
 	owner_transform_->SetSlerpSpeed(5.f);
@@ -269,7 +264,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 	case EnemyMotionState::StartUp:	//いったん下がって
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &wait_position_
+					, &idle_position_
 					, &body_press_startup_position_
 					, Easing::SineIn(execute_time_));
 
@@ -289,7 +284,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &body_press_startup_position_
-					, &wait_position_
+					, &idle_position_
 					, Easing::SineIn(execute_time_));
 
 		// モーションの実行時間が最大を超えたら
@@ -304,7 +299,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &wait_position_
+					, &idle_position_
 					, &body_press_position_
 					, Easing::SineIn(execute_time_));
 
@@ -321,7 +316,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &body_press_position_
-					, &wait_position_
+					, &idle_position_
 					, Easing::SineIn(execute_time_));
 
 		// モーションの実行時間が最大を超えたら
@@ -333,7 +328,7 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		break;
 
 	default:
-		assert("ボスが不正な攻撃状態！！");
+		assert(!"BossMoveComponent::MoveActionBodyPress()：不正なモーションの状態！");
 		break;
 	}
 
@@ -372,7 +367,7 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &wait_position_
+					, &idle_position_
 					, &shoot_position_
 					, Easing::SineIn(execute_time_));
 
@@ -424,7 +419,7 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &shoot_position_
-					, &wait_position_
+					, &idle_position_
 					, Easing::SineIn(execute_time_));
 
 		//状態の遷移
@@ -436,7 +431,7 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 		break;
 
 	default:
-		assert("ボスの不正な攻撃状態！！");
+		assert(!"BossMoveComponent::MoveActionShoot()：不正なモーションの状態！");
 		break;
 	}
 
@@ -479,7 +474,7 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 
 		// 座標の補間
 		D3DXVec3Lerp(&position_
-					, &wait_position_
+					, &idle_position_
 					, &shoot_position_
 					, Easing::SineIn(execute_time_));
 
@@ -533,7 +528,7 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		// 座標の補間
 		D3DXVec3Lerp(&position_
 					, &shoot_position_
-					, &wait_position_
+					, &idle_position_
 					, Easing::SineIn(execute_time_));
 
 		// 回転の更新
@@ -545,7 +540,7 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 		break;
 
 	default:
-		assert("ボスの不正な攻撃状態！！");
+		assert(!"BossMoveComponent::MoveActionLaserCannon()：不正なモーションの状態！");
 		break;
 	}
 

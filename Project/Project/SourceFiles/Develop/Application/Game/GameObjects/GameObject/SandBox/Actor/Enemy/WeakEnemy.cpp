@@ -70,15 +70,20 @@ bool WeakEnemy::Init(void)
 		// ボスのメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyWeak);
+		actor_mesh_->SetScale(0.5f);
+		actor_mesh_->SetTranslationY(-0.5f);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 
 		// 生成座標を調整
-		this->transform_component_->SetTranslationZ(15.f);
+		this->transform_component_->SetTranslationX(-3.f);
+
+		this->transform_component_->SetTranslationZ( 8.f);
 	}
 
 	// ボスの状態を初期化
 	{
-		auto init_WeakEnemy_state = EnemyState::Enter;
+		auto init_WeakEnemy_state = EnemyState::Idle;
+		init_WeakEnemy_state = EnemyState::MoveStraightWaitUpDown;
 
 		// 敵の状態を初期化
 		enemy_ai_->SetEnemyState(init_WeakEnemy_state);
@@ -88,12 +93,12 @@ bool WeakEnemy::Init(void)
 	// 衝突判定関係
 	{
 		// 衝突判定の高さ　オフセット座標
-		const float collider_height_pos = 3.f;
+		float collider_height_pos = 0.f;
 
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 6.f;
+			const float sphere_radius_size = 3.f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -106,13 +111,16 @@ bool WeakEnemy::Init(void)
 			sphere_gizmo_->SetScale(sphere_radius_size);
 		}
 
+		// 衝突判定の高さ　オフセット座標
+		collider_height_pos = 0.f;
+
 		// 箱
 		{
 			// 箱の高さ
-			const float box_height_size = 1.5f;
+			const float box_height_size = 1.f;
 
 			// 箱の水平軸の大きさ
-			const float box_size = 16.f;
+			const float box_size = 3.f;
 
 			// 衝突判定
 			obb_collider_ = NEW OBBColliderComponent(this);
@@ -123,6 +131,7 @@ bool WeakEnemy::Init(void)
 
 			// ギズモ
 			box_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			box_gizmo_->SetVertexColor(0, 255, 255, 128);
 			box_gizmo_->SetTranslationY(collider_height_pos);
 			box_gizmo_->AddScaleX(box_size);
 			box_gizmo_->AddScaleY(box_height_size);
@@ -153,7 +162,7 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	// AIコンポーネントにボスのHPを通知する
+	// AIコンポーネントに自身のHPを通知する
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
 	}
@@ -182,29 +191,257 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
+	if (false)
+	{
+		//
+		// 本番環境スペース:値の伝達
+		//
+
+		// 始点座標の設定
+		enemy_move_->SetStartPosition(position_start_);
+
+		// 向きベクトルの設定
+		enemy_move_->SetRotationMoveDirection(angle_yaw_, angle_pitch_, angle_roll_);
+
+		// 移動ベクトルの長さを設定
+		enemy_move_->SetMoveVectorLength(move_vector_length_);
+
+		// 移動アクションの深さを設定
+		enemy_move_->SetMoveActionMagnitude(move_action_magnitude_);
+
+		// 最大の実行時間
+		enemy_move_->SetMaxExecuteTime(max_execute_time_);
+	}
+	else
+	{
+		//
+		// 実験スペース
+		//
+
+		switch (ai_state)
+		{
+		case EnemyState::MoveStraight:
+			this->TestMoveStraight();
+			break;
+
+		case EnemyState::MoveStraightWaitOneTime:
+			this->TestMoveStraightWaitOneTime();
+			break;
+
+		case EnemyState::MoveStraightWaitUpDown:
+			this->TestMoveStraightWaitUpDown();
+			break;
+
+		case EnemyState::MoveRoundVertical:
+			this->TestMoveRoundVertical();
+			break;
+
+		case EnemyState::MoveRoundHorizontal:
+			this->TestMoveRoundHorizontal();
+			break;
+
+		case EnemyState::MoveLoopUpDown:
+			this->TestMoveLoopUpDown();
+			break;
+
+		case EnemyState::MoveLoopLeftRight:
+			this->TestMoveLoopLeftRight();
+			break;
+
+		case EnemyState::MoveShowOneTime:
+			this->TestMoveShowOneTime();
+			break;
+
+		case EnemyState::Destroy:
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	//　自身のAIのステートから攻撃力を更新する
-	//switch (ai_state)
-	//{
-	//case EnemyState::BodyPress:
-	//	attack_ = ATTACK_VALUE_BODY_PRESS;
-	//	break;
+	switch (ai_state)
+	{
+	case EnemyState::Idle:
+		attack_ = 0.f;
+		break;
 
-	//case EnemyState::Shooting:
-	//	attack_ = ATTACK_VALUE_SHOOT;
-	//	break;
+	case EnemyState::Shooting:
+		attack_ = 0.f;
+		break;
 
-	//case EnemyState::LaserCannon:
-	//	attack_ = ATTACK_VALUE_LASER_CANNON;
-	//	break;
+	case EnemyState::Destroy:
+		attack_ = 0.f;
+		break;
 
-	//case EnemyState::Destroy:
-	//	attack_ = 0.f;
-	//	break;
+	default:
+		attack_ = 10.f;
+		break;
+	}
+}
 
-	//default:
-	//	break;
-	//}
+/*-----------------------------------------------------------------------------
+/* 直線移動処理
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveStraight() 
+{		
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(30.f);
+	enemy_move_->SetStartPositionZ(10.f);
 
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(-90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(60.f);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 直線移動して一度待つ
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveStraightWaitOneTime()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(30.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(-90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(60.f);
+
+	enemy_move_->SetMoveActionMagnitude(move_action_magnitude_);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 垂直に半円を描く行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveRoundVertical()
+{
+	// 始点座標の設定
+	//enemy_move_->SetStartPositionX(10.f);
+	enemy_move_->SetStartPositionY( 5.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionPitch(90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(10.f);
+
+	enemy_move_->SetMoveActionMagnitude(10.f);
+
+	enemy_move_->SetMaxExecuteTime(2.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 水平に半円を描く行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveRoundHorizontal()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(5.f);
+	//enemy_move_->SetStartPositionY(5.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(90);
+	//enemy_move_->SetRotationMoveDirectionPitch(90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(-10.f);
+
+	enemy_move_->SetMoveActionMagnitude(5.f);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 上下ループ移動行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveLoopUpDown()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(-30.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(90);
+	//enemy_move_->SetRotationMoveDirectionPitch(90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(60.f);
+
+	enemy_move_->SetMoveActionMagnitude(5.f);
+
+	enemy_move_->SetMaxExecuteTime(8.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 左右ループ移動行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveLoopLeftRight()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionY( 5.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	//enemy_move_->SetRotationMoveDirectionYaw(90);
+	enemy_move_->SetRotationMoveDirectionPitch(90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(10.f);
+
+	enemy_move_->SetMoveActionMagnitude(10.f);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* 画面端から顔出し行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveShowOneTime()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(30.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(-90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(60.f);
+
+	enemy_move_->SetMoveActionMagnitude(move_action_magnitude_);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
+/* S字カーブ移動行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveStraightWaitUpDown()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(15.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(-90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(30.f);
+
+	enemy_move_->SetMoveActionMagnitude(10.f);
+
+	enemy_move_->SetMaxExecuteTime(10.f);
 }
 
 /*=============================================================================

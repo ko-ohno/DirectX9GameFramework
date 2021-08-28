@@ -5,8 +5,8 @@
 /*-----------------------------------------------------------------------------
 /*	説明：ボスAIコンポーネント
 =============================================================================*/
-#ifndef BOSS_AI_COMPONENT_H_
-#define	BOSS_AI_COMPONENT_H_
+#ifndef WEAK_ENEMY_AI_COMPONENT_H_
+#define	WEAK_ENEMY_AI_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../EnemyAIComponent.h"
@@ -30,28 +30,33 @@ public:
 
 	void EnemyStateController(void);
 
-	void ChangeState(class BossStateMachine* bossStateMachine);
+	void ChangeState(class WeakEnemyStateMachine* weakEnemyStateMachine);
 
-	void Wait(float deltaTime);
-	void Enter(float deltaTime);
-	void BodyPress(float deltaTime);
-	void Shoot(float deltaTime);
-	void LaserCannon(float deltaTime);
+	void Idle(float deltaTime) override;
+	void MoveStraight(float deltaTime) override;
+	void MoveStraightWaitOneTime(float deltaTime) override;
+	void MoveStraightWaitUpDown(float deltaTime) override;
+	void MoveRoundVertical(float deltaTime) override;
+	void MoveRoundHorizontal(float deltaTime) override;
+	void MoveLoopUpDown(float deltaTime) override;
+	void MoveLoopLeftRight(float deltaTime) override;
+	void MoveShowOneTime(float deltaTime) override;
+	void MoveSShapedCurve(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::WeakEnemyAIComponent; };
 
 private:
-	class BossStateMachine* boss_state_machine_;
+	class WeakEnemyStateMachine* weak_enemy_state_machine_;
 };
 
 /*-------------------------------------
 /* ボスのステートマシンを定義
 -------------------------------------*/
-class BossStateMachine
+class WeakEnemyStateMachine
 {
 public:
-	BossStateMachine(void) {}
-	virtual ~BossStateMachine(void) {}
+	WeakEnemyStateMachine(void) {}
+	virtual ~WeakEnemyStateMachine(void) {}
 
 	virtual void Init(void) = 0;
 	virtual void Uninit(void) = 0;
@@ -59,14 +64,14 @@ public:
 };
 
 /*-------------------------------------
-/* ボスの待機行動クラス
+/* 弱い敵の待機行動クラス
 -------------------------------------*/
-class BossStateEnter : public BossStateMachine
+class WeakEnemyStateIdle : public WeakEnemyStateMachine
 {
 public:
-	BossStateEnter(void)
+	WeakEnemyStateIdle(void)
 	{}
-	~BossStateEnter(void) override
+	~WeakEnemyStateIdle(void) override
 	{}
 
 	void Init(void) override
@@ -75,70 +80,21 @@ public:
 	{}
 	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->Enter(deltaTime);
-	}
-
-private:
-};
-
-
-/*-------------------------------------
-/* ボスの待機行動クラス
--------------------------------------*/
-class BossStateWait : public BossStateMachine
-{
-public:
-	BossStateWait(void)
-	{}
-	~BossStateWait(void) override
-	{}
-
-	void Init(void) override
-	{}
-	void Uninit(void) override
-	{}
-	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
-	{
-		stateMachineOwner->Wait(deltaTime);
-	}
-
-private:
-};
-
-
-
-/*-------------------------------------
-/* ボスの体当たり攻撃クラス
--------------------------------------*/
-class BossStateBodyPress : public BossStateMachine
-{
-public:
-	BossStateBodyPress(void)
-	{}
-	~BossStateBodyPress(void) override
-	{}
-
-	void Init(void) override
-	{}
-	void Uninit(void) override
-	{}
-	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
-	{
-		stateMachineOwner->BodyPress(deltaTime);
+		stateMachineOwner->Idle(deltaTime);
 	}
 
 private:
 };
 
 /*-------------------------------------
-/* ボスの銃撃行動クラス
+/* 弱い敵の直線移動クラス
 -------------------------------------*/
-class BossStateShooting : public BossStateMachine
+class WeakEnemyStateMoveStraight : public WeakEnemyStateMachine
 {
 public:
-	BossStateShooting(void)
+	WeakEnemyStateMoveStraight(void)
 	{}
-	~BossStateShooting(void) override
+	~WeakEnemyStateMoveStraight(void) override
 	{}
 
 	void Init(void) override
@@ -147,20 +103,21 @@ public:
 	{}
 	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->Shoot(deltaTime);
+		stateMachineOwner->MoveStraight(deltaTime);
 	}
+
 private:
 };
 
 /*-------------------------------------
-/* レーザー砲攻撃高度クラス
+/* 弱い敵の直線移動クラス
 -------------------------------------*/
-class BossStateLaserCannon : public BossStateMachine
+class WeakEnemyStateMoveStraightWaitOneTime : public WeakEnemyStateMachine
 {
 public:
-	BossStateLaserCannon(void)
+	WeakEnemyStateMoveStraightWaitOneTime(void)
 	{}
-	~BossStateLaserCannon(void) override
+	~WeakEnemyStateMoveStraightWaitOneTime(void) override
 	{}
 
 	void Init(void) override
@@ -169,15 +126,151 @@ public:
 	{}
 	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->LaserCannon(deltaTime);
+		stateMachineOwner->MoveStraightWaitOneTime(deltaTime);
 	}
 
 private:
 };
 
+/*-------------------------------------
+/* 弱い敵が垂直に半円を描く移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveRoundVertical : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveRoundVertical(void)
+	{}
+	~WeakEnemyStateMoveRoundVertical(void) override
+	{}
 
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveRoundVertical(deltaTime);
+	}
 
-#endif //BOSS_AI_COMPONENT_H_
+private:
+};
+
+/*-------------------------------------
+/* 弱い敵が水平に半円を描く移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveRoundHorizontal : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveRoundHorizontal(void)
+	{}
+	~WeakEnemyStateMoveRoundHorizontal(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveRoundHorizontal(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 弱い敵の上下移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveLoopUpDown : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveLoopUpDown(void)
+	{}
+	~WeakEnemyStateMoveLoopUpDown(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveLoopUpDown(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 弱い敵の左右ループ移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveLoopLeftRight : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveLoopLeftRight(void)
+	{}
+	~WeakEnemyStateMoveLoopLeftRight(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveLoopLeftRight(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* 画面の端からの顔出し移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveShowOneTime : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveShowOneTime(void)
+	{}
+	~WeakEnemyStateMoveShowOneTime(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveShowOneTime(deltaTime);
+	}
+
+private:
+};
+
+/*-------------------------------------
+/* S字カーブ移動クラス
+-------------------------------------*/
+class WeakEnemyStateMoveStraightWaitUpDown : public WeakEnemyStateMachine
+{
+public:
+	WeakEnemyStateMoveStraightWaitUpDown(void)
+	{}
+	~WeakEnemyStateMoveStraightWaitUpDown(void) override
+	{}
+
+	void Init(void) override
+	{}
+	void Uninit(void) override
+	{}
+	void Update(class WeakEnemyAIComponent* stateMachineOwner, float deltaTime)  override
+	{
+		stateMachineOwner->MoveSShapedCurve(deltaTime);
+	}
+
+private:
+};
+
+#endif //WEAK_ENEMY_AI_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

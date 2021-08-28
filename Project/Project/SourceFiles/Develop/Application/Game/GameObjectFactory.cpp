@@ -36,6 +36,9 @@
 #include "GameObjects/GameObject/SandBox/Actor/Player.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
 #include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/WeakEnemy.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/StrongEnemy.h"
+
 
 #include "GameObjects/GameObject/SandBox/ChargeBullet.h"
 
@@ -107,10 +110,11 @@ bool GameObjectFactory::StartUp(void)
 
 		// サンドボックスレイヤーのオブジェクト作成
 		this->AddGameObject(NEW Player(game_));
-		this->AddGameObject(NEW Boss(game_));
+		//this->AddGameObject(NEW Boss(game_));
+		this->AddGameObject(NEW WeakEnemy(game_));
+		this->AddGameObject(NEW StrongEnemy(game_));
 
 		//this->AddGameObject(NEW ChargeBullet(game_));
-
 
 		// UIレイヤーのオブジェクト作成
 		this->AddGameObject(NEW Fade(game_));

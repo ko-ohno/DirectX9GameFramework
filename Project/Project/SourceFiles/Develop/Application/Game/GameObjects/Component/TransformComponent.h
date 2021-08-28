@@ -100,7 +100,7 @@ public:
 	// ‰ñ“]î•ñ‚Ìİ’è
 	//
 
-	inline void IsSetExecuteSlerp(bool isExecuteSlerp) { is_execute_slerp_ = isExecuteSlerp; }
+	inline void IsSetExecuteSlerpRotation(bool isExecuteSlerp) { is_execute_slerp_ = isExecuteSlerp; }
 	inline void SetSlerpSpeed(float slerpSpeed) { slerp_spped_ = slerpSpeed; }
 
 	inline void SetRotation(float degreeYaw, float degreePitch, float degreeRoll)

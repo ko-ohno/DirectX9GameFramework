@@ -20,11 +20,6 @@
 -----------------------------------------------------------------------------*/
 StrongEnemyMoveComponent::StrongEnemyMoveComponent(GameObject* owner, int updateOrder)
 	: EnemyMoveComponent(owner, updateOrder)
-	, position_(0.f, 0.f, 0.f)
-	, yaw_(0.f)
-	, pitch_(0.f)
-	, roll_(0.f)
-	, execute_time_(0.f)
 {
 	this->Init();
 }
@@ -66,76 +61,323 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	// 各回転値の取得
-	yaw_ = owner_transform_->GetAngleYaw();
-	pitch_ = owner_transform_->GetAnglePitch();
-	roll_ = owner_transform_->GetAngleRoll();
+	// 自機の各回転値の取得
+	yaw_	= owner_transform_->GetAngleYaw();
+	pitch_	= owner_transform_->GetAnglePitch();
+	roll_	= owner_transform_->GetAngleRoll();
 
-	// 線形球面保管を行うフラグをONに
+	// 回転の補間を行うフラグをONに
 	{
-		owner_transform_->IsSetExecuteSlerp(true);
+		owner_transform_->IsSetExecuteSlerpRotation(true);
 	}
 
 	// 自身の状態を表記
-	ImGui::Begin("boss_move_state");
+	ImGui::Begin("strong_enemy_move_state");
 	{
 		switch (enemy_state_)
 		{
-		case EnemyState::Enter:
-			ImGui::Text("enter");
+		case EnemyState::Idle:
+			ImGui::Text("idle");
 			break;
 
-		case EnemyState::Wait:
-			ImGui::Text("wait");
+		case EnemyState::MoveStraight:
+			ImGui::Text("move_straight");
 			break;
 
-		case EnemyState::BodyPress:
-			ImGui::Text("body_press");
+		case EnemyState::MoveStraightWaitOneTime:
+			ImGui::Text("move_straight_wait_one_time");
 			break;
 
-		case EnemyState::Shooting:
-			ImGui::Text("shooting");
+		case EnemyState::MoveStraightWaitUpDown:
+			ImGui::Text("move_straight_wait_up_down");
 			break;
 
-		case EnemyState::LaserCannon:
-			ImGui::Text("laser_cannon");
+		case EnemyState::MoveRoundVertical:
+			ImGui::Text("move_round_vertical");
+			break;
+
+		case EnemyState::MoveRoundHorizontal:
+			ImGui::Text("move_round_horizontal");
+			break;
+
+		case EnemyState::MoveLoopUpDown:
+			ImGui::Text("move_loop_up_down");
+			break;
+
+		case EnemyState::MoveLoopLeftRight:
+			ImGui::Text("move_loop_left_right");
+			break;
+
+		case EnemyState::MoveShowOneTime:
+			ImGui::Text("move_show_one_time");
+			break;
+
+		case EnemyState::Destroy:
+			ImGui::Text("destroy");
+			break;
+
+		default:
+			assert(!"StrongEnemyMoveComponent::Update()：強い敵が不正な行動ステートにあります！");
 			break;
 		}
 	}
 	ImGui::End();
 
-	//// 敵の状態更新
-	//switch (enemy_state_)
-	//{
-	//case EnemyState::Enter:
-	//	this->MoveActionEnter(deltaTime);
-	//	break;
-	//
-	//case EnemyState::Wait:
-	//	this->MoveActionWait(deltaTime);
-	//	break;
+	// 敵の状態更新
+	switch (enemy_state_)
+	{	
+	case EnemyState::Idle:
+		this->MoveActionIdle(deltaTime);
+		break;
 
-	//case EnemyState::BodyPress:
-	//	this->MoveActionBodyPress(deltaTime);
-	//	break;
+	case EnemyState::MoveStraight:
+		this->MoveActionStraight(deltaTime);
+		break;
 
-	//case EnemyState::Shooting:
-	//	this->MoveActionShoot(deltaTime);
-	//	break;
-	//
-	//case EnemyState::LaserCannon:
-	//	this->MoveActionLaserCannon(deltaTime);
-	//	break;
+	case EnemyState::MoveStraightWaitOneTime:
+		this->MoveActionStraightWaitOneTime(deltaTime);
+		break;
 
-	//default:
-	//	assert(!"StrongEnemyMoveComponent::Update()：ボスが不正な行動ステートにあります！");
-	//	break;
-	//}
+	case EnemyState::MoveStraightWaitUpDown:
+		this->MoveActionStraightWaitUpDown(deltaTime);
+		break;
+
+	case EnemyState::MoveRoundVertical:
+		this->MoveActionRoundVertical(deltaTime);
+		break;
+
+	case EnemyState::MoveRoundHorizontal:
+		this->MoveActionRoundHorizontal(deltaTime);
+		break;
+
+	case EnemyState::MoveLoopUpDown:
+		this->MoveActionLoopUpDown(deltaTime);
+		break;
+
+	case EnemyState::MoveLoopLeftRight:
+		this->MoveActionLoopLeftRight(deltaTime);
+		break;
+
+	case EnemyState::MoveShowOneTime:
+		this->MoveActionShowOneTime(deltaTime);
+		break;
+
+	case EnemyState::Destroy:
+		break;
+
+	default:
+		assert(!"StrongEnemyMoveComponent::Update()：強い敵が不正な行動ステートにあります！");
+		break;
+	}
 
 	//ボスのステートの更新
 	enemy_state_old_ = enemy_state_;
 }
 
+/*-----------------------------------------------------------------------------
+/*　強い敵の待機行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionIdle(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionStraight(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionStraightWaitOneTime(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
+{
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionRoundHorizontal(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionShowOneTime(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　強い敵の移動行動
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionSShapedCurve(float deltaTime)
+{
+	// 回転の更新
+	owner_transform_->SetSlerpSpeed(5.f);
+	owner_transform_->SetRotation(yaw_, 0, 0);
+	owner_transform_->AddRotationYaw(4);
+
+	// アニメーションの時間
+	const float MAX_STATE_TIME = 2.f;
+	execute_time_ += deltaTime;
+
+	// モーションの実行時間が最大を超えたら
+	if (execute_time_ >= MAX_STATE_TIME)
+	{
+		execute_time_ = 0.f;
+		enemy_motion_state_ = EnemyMotionState::StartUp;
+	}
+}
 
 /*=============================================================================
 /*		End of File

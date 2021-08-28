@@ -28,6 +28,15 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::WeakEnemy; }
 
+	void TestMoveStraight();
+	void TestMoveStraightWaitOneTime();
+	void TestMoveRoundVertical();
+	void TestMoveRoundHorizontal();
+	void TestMoveLoopUpDown();
+	void TestMoveLoopLeftRight();
+	void TestMoveShowOneTime();
+	void TestMoveStraightWaitUpDown();
+
 private:
 };
 

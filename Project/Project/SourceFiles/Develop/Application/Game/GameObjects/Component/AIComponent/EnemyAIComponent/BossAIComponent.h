@@ -28,34 +28,42 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
-	void EnemyStateController(void);
+	void EnemyStateController(float deltaTime);
 
-	void ChangeState(class BossStateMachine* bossStateMachine);
+	void ChangeState(class BossEnemyStateMachine* bossStateMachine);
 
-	void Wait(float deltaTime);
-	void Enter(float deltaTime);
-	void BodyPress(float deltaTime);
-	void Shoot(float deltaTime);
-	void LaserCannon(float deltaTime);
+	void Idle(float deltaTime) override;
+	void Enter(float deltaTime) override;
+	void BodyPress(float deltaTime) override;
+	void Shoot(float deltaTime) override;
+	void LaserCannon(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::BossAIComponent; };
 
 private:
-	static constexpr int MAX_STATE_ARRAY = 3;
-	EnemyState enemy_state_array_[MAX_STATE_ARRAY];
+	// 最大のステートの数
+	static constexpr int MAX_STATE_ARRAY_SIZE = 3;
+
+	// 敵の状態の行動順の配列
+	EnemyState enemy_state_array_[MAX_STATE_ARRAY_SIZE];
+	int		   array_index_;
+	bool	   is_state_change_;
+
+	// ステートの実行時間
+	float	   state_exe_time_;
 
 private:
-	class BossStateMachine* boss_state_machine_;
+	class BossEnemyStateMachine* boss_state_machine_;
 };
 
 /*-------------------------------------
 /* ボスのステートマシンを定義
 -------------------------------------*/
-class BossStateMachine
+class BossEnemyStateMachine
 {
 public:
-	BossStateMachine(void) {}
-	virtual ~BossStateMachine(void) {}
+	BossEnemyStateMachine(void) {}
+	virtual ~BossEnemyStateMachine(void) {}
 
 	virtual void Init(void) = 0;
 	virtual void Uninit(void) = 0;
@@ -65,7 +73,7 @@ public:
 /*-------------------------------------
 /* ボスの待機行動クラス
 -------------------------------------*/
-class BossStateEnter : public BossStateMachine
+class BossStateEnter : public BossEnemyStateMachine
 {
 public:
 	BossStateEnter(void)
@@ -89,12 +97,12 @@ private:
 /*-------------------------------------
 /* ボスの待機行動クラス
 -------------------------------------*/
-class BossStateWait : public BossStateMachine
+class BossStateIdle : public BossEnemyStateMachine
 {
 public:
-	BossStateWait(void)
+	BossStateIdle(void)
 	{}
-	~BossStateWait(void) override
+	~BossStateIdle(void) override
 	{}
 
 	void Init(void) override
@@ -103,7 +111,7 @@ public:
 	{}
 	void Update(class BossAIComponent* stateMachineOwner, float deltaTime)  override
 	{
-		stateMachineOwner->Wait(deltaTime);
+		stateMachineOwner->Idle(deltaTime);
 	}
 
 private:
@@ -114,7 +122,7 @@ private:
 /*-------------------------------------
 /* ボスの体当たり攻撃クラス
 -------------------------------------*/
-class BossStateBodyPress : public BossStateMachine
+class BossStateBodyPress : public BossEnemyStateMachine
 {
 public:
 	BossStateBodyPress(void)
@@ -137,7 +145,7 @@ private:
 /*-------------------------------------
 /* ボスの銃撃行動クラス
 -------------------------------------*/
-class BossStateShooting : public BossStateMachine
+class BossStateShooting : public BossEnemyStateMachine
 {
 public:
 	BossStateShooting(void)
@@ -159,7 +167,7 @@ private:
 /*-------------------------------------
 /* レーザー砲攻撃高度クラス
 -------------------------------------*/
-class BossStateLaserCannon : public BossStateMachine
+class BossStateLaserCannon : public BossEnemyStateMachine
 {
 public:
 	BossStateLaserCannon(void)

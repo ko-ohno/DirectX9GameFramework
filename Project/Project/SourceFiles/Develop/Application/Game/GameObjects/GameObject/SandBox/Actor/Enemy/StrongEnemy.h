@@ -5,8 +5,8 @@
 /*-----------------------------------------------------------------------------
 /*	説明： 弱い敵のゲームオブジェクト
 =============================================================================*/
-#ifndef WEAK_ENEMY_H_
-#define	WEAK_ENEMY_H_
+#ifndef STRONG_ENEMY_H_
+#define	STRONG_ENEMY_H_
 
 /*--- インクルードファイル ---*/
 #include "../Enemy.h"
@@ -29,9 +29,13 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::StrongEnemy; }
 
 private:
+	static constexpr float ATTACK_VALUE_SHOOT		= 5.f;
+
+	// 敵の武器コンポーネント
+	class EnemyBlasterWeaponComponent* enemy_blaster_;
 };
 
-#endif //StrongEnemy_H_
+#endif //STRONG_ENEMY_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/
