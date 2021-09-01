@@ -83,7 +83,7 @@ bool WeakEnemy::Init(void)
 	// ボスの状態を初期化
 	{
 		auto init_WeakEnemy_state = EnemyState::Idle;
-		init_WeakEnemy_state = EnemyState::MoveStraightWaitUpDown;
+		init_WeakEnemy_state = EnemyState::MoveLoopLeftRight;
 
 		// 敵の状態を初期化
 		enemy_ai_->SetEnemyState(init_WeakEnemy_state);
@@ -320,6 +320,26 @@ void WeakEnemy::TestMoveStraightWaitOneTime()
 }
 
 /*-----------------------------------------------------------------------------
+/* S字カーブ移動行動
+-----------------------------------------------------------------------------*/
+void WeakEnemy::TestMoveStraightWaitUpDown()
+{
+	// 始点座標の設定
+	enemy_move_->SetStartPositionX(15.f);
+	enemy_move_->SetStartPositionZ(10.f);
+
+	// 向きベクトルの設定
+	enemy_move_->SetRotationMoveDirectionYaw(-90);
+
+	// 移動ベクトルの長さを設定
+	enemy_move_->SetMoveVectorLength(30.f);
+
+	enemy_move_->SetMoveActionMagnitude(10.f);
+
+	enemy_move_->SetMaxExecuteTime(6.f);
+}
+
+/*-----------------------------------------------------------------------------
 /* 垂直に半円を描く行動
 -----------------------------------------------------------------------------*/
 void WeakEnemy::TestMoveRoundVertical()
@@ -422,26 +442,6 @@ void WeakEnemy::TestMoveShowOneTime()
 	enemy_move_->SetMoveActionMagnitude(move_action_magnitude_);
 
 	enemy_move_->SetMaxExecuteTime(6.f);
-}
-
-/*-----------------------------------------------------------------------------
-/* S字カーブ移動行動
------------------------------------------------------------------------------*/
-void WeakEnemy::TestMoveStraightWaitUpDown()
-{
-	// 始点座標の設定
-	enemy_move_->SetStartPositionX(15.f);
-	enemy_move_->SetStartPositionZ(10.f);
-
-	// 向きベクトルの設定
-	enemy_move_->SetRotationMoveDirectionYaw(-90);
-
-	// 移動ベクトルの長さを設定
-	enemy_move_->SetMoveVectorLength(30.f);
-
-	enemy_move_->SetMoveActionMagnitude(10.f);
-
-	enemy_move_->SetMaxExecuteTime(10.f);
 }
 
 /*=============================================================================

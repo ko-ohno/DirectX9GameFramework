@@ -478,9 +478,6 @@
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentHeader.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentSource.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

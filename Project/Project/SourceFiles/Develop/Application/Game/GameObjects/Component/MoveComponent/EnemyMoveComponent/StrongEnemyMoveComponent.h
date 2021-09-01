@@ -44,7 +44,6 @@ public:
 	void MoveActionLoopUpDown(float deltaTime) override;			// 上下行動をループ
 	void MoveActionLoopLeftRight(float deltaTime) override;			// 左右行動をループ
 	void MoveActionShowOneTime(float deltaTime) override;			// 一度だけ、ひょっこり顔出しする 
-	void MoveActionSShapedCurve(float deltaTime) override;			// S字カーブ移動
 
 private:
 };

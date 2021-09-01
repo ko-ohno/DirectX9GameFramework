@@ -151,6 +151,10 @@ protected:
 	// 1フレーム前の始点座標
 	D3DXVECTOR3 position_start_old_;
 
+	// Y軸座標の一時保管先
+	float		position_y_start_	//　始点座標
+			  , position_y_finish_;	//　終点座標
+
 	// 自機の回転角度
 	float		angle_yaw_;
 	float		angle_pitch_;

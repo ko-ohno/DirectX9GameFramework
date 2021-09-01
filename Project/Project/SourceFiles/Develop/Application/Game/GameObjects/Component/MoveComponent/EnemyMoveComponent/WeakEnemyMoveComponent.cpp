@@ -133,6 +133,7 @@ void WeakEnemyMoveComponent::Update(float deltaTime)
 
 	// 実行時間
 	ImGui::Text("move_exe_time:%f",execute_time_);
+	ImGui::Text("Easing:%f", Easing::SineInOut(execute_time_, (max_execute_time_ * (1.f / 6.f))));
 
 	// 自分のモーションの状態
 	ImGui::Text("motion_state:");
@@ -219,17 +220,14 @@ void WeakEnemyMoveComponent::Update(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 待機行動
+/* 弱い敵の待機行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionIdle(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
 	// 回転の更新
 	owner_transform_->SetSlerpSpeed(5.f);
 	owner_transform_->SetRotation(yaw_, 0, 0);
 	owner_transform_->AddRotationYaw(4);
-
 
 	// アニメーションの時間
 	const float MAX_STATE_TIME = 2.f;
@@ -244,7 +242,7 @@ void WeakEnemyMoveComponent::MoveActionIdle(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 直線移動行動
+/* 弱い敵の直線移動行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionStraight(float deltaTime)
 {
@@ -302,7 +300,7 @@ void WeakEnemyMoveComponent::MoveActionStraight(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 直線移動して一回待つ行動
+/* 弱い敵の直線移動して一回待つ行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionStraightWaitOneTime(float deltaTime)
 {
@@ -388,7 +386,7 @@ void WeakEnemyMoveComponent::MoveActionStraightWaitOneTime(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 直線移動して上下運動と複数回待つ行動
+/* 弱い敵の直線移動して上下運動と複数回待つ行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 {
@@ -417,124 +415,137 @@ void WeakEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 
 	// X・Z軸上は、通常どおり移動
 	{
-		position_.x = Math::Lerp(position_start_.x, position_finish_.x, Easing::SineInOut(execute_time_, max_execute_time_));
 		position_.z = Math::Lerp(position_start_.z, position_finish_.z, Easing::SineInOut(execute_time_, max_execute_time_));
 	}
 
-	// 各ステートの時間を分割した倍率
-	const float max_state_div_value = 0.083f; // 1を12分割
-	
-	//　補間中のy軸座標
-	float axis_y_lerping_position = 0.f;
+	static bool	is_finish_position  = false;	// 終点座標に到達しているか？
+	const int	max_state_loop_count = 6;		// ステートを最大で繰り返した数
+	const float max_state_div_value = 0.166f;	// 1を6分割
 
 	// 実際の挙動を定義
 	switch (enemy_motion_state_)
 	{
 	case EnemyMotionState::StartUp:
-
-		position_.y = Math::Lerp(position_start_.y 
-								, position_finish_.y + move_action_magnitude_
-								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value) * 0.5f));
-
-
-		// 条件を満たしたら次のモーションステートへ
-		if (execute_time_ >= ((max_execute_time_ * max_state_div_value) * 0.5f))
+		// 登場
 		{
-			enemy_motion_state_ = EnemyMotionState::MoveState_2;
-			execute_time_ = 0.f;
+			position_.x = Math::Lerp(position_start_.x
+									, position_finish_.x
+									, Easing::Linear(execute_time_, max_execute_time_));
+
+			position_.y = Math::Lerp(position_start_.y
+									, position_finish_.y
+									, Easing::Linear(execute_time_, max_execute_time_));
+
+			// 条件を満たしたら次のモーションステートへ
+			if (execute_time_ >= (max_execute_time_ * 0.5f))
+			{
+				// 始点座標の計算
+				position_y_start_ = position_.y;
+
+				// 終点座標の計算
+				position_y_finish_ = Math::Lerp(position_y_start_
+											   , position_y_start_ + move_action_magnitude_ * -1.f
+											   , 1.f);
+
+				// 次のステートへ
+				enemy_motion_state_ = EnemyMotionState::MoveState_1;
+				execute_time_ = 0.f;
+			}
 		}
 		break;
 
 	case EnemyMotionState::MoveState_1:
-		// 上昇
-		position_.y = Math::Lerp(position_start_.y + move_action_magnitude_ 
-								, position_finish_.y + move_action_magnitude_ * -1.f
-								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
-
-		// 終了ステートへ
-		if (execute_time_ >= max_execute_time_)
+		// Y軸の終点へ
 		{
-			enemy_motion_state_ = EnemyMotionState::End;
-			break;
-		}
+			position_.y = Math::Lerp(position_y_start_
+									, position_y_finish_
+									, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
-		// 条件を満たしたら次のモーションステートへ
-		if (execute_time_ >= (max_execute_time_ * (max_state_div_value * state_loop_count_)))
-		{
-			enemy_motion_state_ = EnemyMotionState::MoveState_2;
-			state_loop_count_++;
+			// 条件を満たしたら終了ステートへ
+			if (state_loop_count_ >= max_state_loop_count)
+			{
+				execute_time_ = (max_execute_time_ * 0.5f);
+				enemy_motion_state_ = EnemyMotionState::End;
+				break;
+			}
+
+			// 待機モーションへ
+			if (execute_time_ >= (max_execute_time_ * max_state_div_value))
+			{
+				is_finish_position = true;
+				execute_time_ = 0.f;
+				enemy_motion_state_ = EnemyMotionState::MoveState_3;
+				break;
+			}
 		}
 		break;
 
 	case EnemyMotionState::MoveState_2:
-		// 下降
-		position_.y = Math::Lerp(position_start_.y + move_action_magnitude_
-								, position_finish_.y + move_action_magnitude_ * -1.f
-								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
-
-
-		// 終了ステートへ
-		if (execute_time_ >= max_execute_time_)
+		// Y軸の始点へ
 		{
-			enemy_motion_state_ = EnemyMotionState::End;
-			break;
-		}
+			position_.y = Math::Lerp(position_y_finish_
+									, position_y_start_
+									, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
-		// 条件を満たしたら次のモーションステートへ
-		if (execute_time_ >= (max_execute_time_ * (max_state_div_value * state_loop_count_)))
-		{
-			enemy_motion_state_ = EnemyMotionState::MoveState_1;
-			state_loop_count_++;
+
+			// 条件を満たしたら終了ステートへ
+			if (state_loop_count_ >= max_state_loop_count)
+			{
+				execute_time_ = (max_execute_time_ * 0.5f);
+				enemy_motion_state_ = EnemyMotionState::End;
+				break;
+			}
+
+			// 待機モーションへ
+			if (execute_time_ >= (max_execute_time_ * max_state_div_value))
+			{
+				is_finish_position = false;
+				execute_time_ = 0.f;
+				enemy_motion_state_ = EnemyMotionState::MoveState_3;
+				break;
+			}
 		}
 		break;
 
 	case EnemyMotionState::MoveState_3:
 		//待機
 
-
-		//
-		// 上の時と下の時で一時停止と条件分岐をはさむ
-		//
-
-		// 上だった場合
+		if (execute_time_ >= (max_execute_time_ * max_state_div_value))
 		{
-			axis_y_lerping_position = Math::Lerp(position_start_.y + move_action_magnitude_
-												, position_finish_.y + move_action_magnitude_ * -1.f
-												, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
-	
-			if (position_.y >= axis_y_lerping_position)
+			// ステートのループ数へ加算
+			state_loop_count_++;
+
+			if (is_finish_position)
 			{
-				axis_y_lerping_position = axis_y_lerping_position;
-			} 
-		}
-	
-
-		//　下だった場合
-		{
-			axis_y_lerping_position = Math::Lerp(position_start_.y + move_action_magnitude_
-												, position_finish_.y + move_action_magnitude_ * -1.f
-												, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
-
-
-
-			if (position_.y <= axis_y_lerping_position)
-			{
-				axis_y_lerping_position = axis_y_lerping_position;
+				enemy_motion_state_ = EnemyMotionState::MoveState_2; // 始点座標へ
+				execute_time_ = 0.f;
+				break;
 			}
-		}
-		// 条件を満たしたら次のモーションステートへ
-		if (execute_time_ >= (max_execute_time_ * ((max_state_div_value * 2.f) * state_loop_count_)))
-		{
-			enemy_motion_state_ = EnemyMotionState::MoveState_1;
+			else
+			{
+				enemy_motion_state_ = EnemyMotionState::MoveState_1; // 終点座標へ
+				execute_time_ = 0.f;
+				break;
+			}
 		}
 		break;
 
 	case EnemyMotionState::End:
-		enemy_motion_state_ = EnemyMotionState::StartUp; // 最初に戻る
-		execute_time_ = 0.f;
-		state_loop_count_ = 0;
-		break;
+		// 退場
+		{
+			position_.x = Math::Lerp(position_start_.x
+									, position_finish_.x
+									, Easing::Linear(execute_time_, max_execute_time_));
 
+			// 条件を満たしたら次のモーションステートへ
+			if (execute_time_ >= max_execute_time_)
+			{
+				enemy_motion_state_ = EnemyMotionState::StartUp; // 最初に戻る
+				execute_time_ = 0.f;
+				state_loop_count_ = 0;
+			}
+		}
+		break;
 
 	default:
 		assert(!"EnemyMoveComponent::MoveActionStraightWaitUpDown()：不正なモーションの状態！");
@@ -546,7 +557,7 @@ void WeakEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 垂直に半円を描く移動行動
+/* 弱い敵の垂直に半円を描く移動行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
 {
@@ -603,7 +614,7 @@ void WeakEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
 		// 座標を補間
 		position_.x = Math::Lerp(position_finish_.x 
 								, position_finish_.x + move_action_magnitude_
-								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5)));
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_))
@@ -627,7 +638,7 @@ void WeakEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 水平に半円を描く移動行動
+/* 弱い敵の水平に半円を描く移動行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionRoundHorizontal(float deltaTime)
 {
@@ -704,7 +715,7 @@ void WeakEnemyMoveComponent::MoveActionRoundHorizontal(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 上下ループ移動行動
+/* 弱い敵の上下運動ループ行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
 {
@@ -816,7 +827,7 @@ void WeakEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 左右ループ移動行動
+/* 弱い敵の左右運動ループ行動
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
 {
@@ -928,7 +939,7 @@ void WeakEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
-/* 画面の端からひょっこり顔をだす
+/* 弱い敵の画面の端からひょっこり顔をだす
 -----------------------------------------------------------------------------*/
 void WeakEnemyMoveComponent::MoveActionShowOneTime(float deltaTime)
 {

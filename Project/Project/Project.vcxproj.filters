@@ -847,7 +847,4 @@
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentSource.txt" />
     <Text Include="CommentTemplate\Cpp\_Cpp_ComponentHeader.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
 </Project>
