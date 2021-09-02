@@ -158,7 +158,7 @@ void StrongEnemyAIComponent::Update(float deltaTime)
 		break;	
 
 	default:
-		assert(!"StrongEnemyAIComponent::Update()：ボスがAIが不正な状態です！");
+		assert(!"StrongEnemyAIComponent::Update()：強い敵のAIが不正な状態です！");
 		break;
 	}
 
