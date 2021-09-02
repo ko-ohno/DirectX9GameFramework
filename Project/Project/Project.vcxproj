@@ -177,6 +177,10 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\LargeLaser.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\LaserCannonWeaponComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\EnemyBlasterWeaponComponent.h" />
@@ -317,6 +321,10 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\LargeLaser.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\LaserCannonWeaponComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\WeaponComponent\EnemyBlasterWeaponComponent.cpp" />

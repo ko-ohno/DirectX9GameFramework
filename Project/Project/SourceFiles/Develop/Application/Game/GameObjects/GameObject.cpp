@@ -228,6 +228,29 @@ void GameObject::RemoveComponent(Component* component)
 	}
 }
 
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの追加
+-----------------------------------------------------------------------------*/
+void GameObject::AddParameterComponent(ParameterComponent* component)
+{
+	components_.emplace_back(component);
+}
+
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの削除
+-----------------------------------------------------------------------------*/
+void GameObject::RemoveParameterComponent(ParameterComponent* component)
+{
+	auto iter = std::find(components_.begin()
+						 , components_.end()
+						 , component);	//探す対象
+
+	if (iter != components_.end())
+	{
+		components_.erase(iter);
+	}
+}
+
 /*=============================================================================
 /*		End of File
 =============================================================================*/

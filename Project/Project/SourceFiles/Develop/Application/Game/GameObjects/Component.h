@@ -24,8 +24,14 @@ public:
 	enum class TypeID
 	{
 		None = -1
-		//ベースクラス
+		// ベースクラス
 		, Component
+
+		// 値コンポーネント
+		, ParameterComponent
+		, IntParameterComponent
+		, FloatParameterComponent
+		, BoolParameterComponent
 
 		// AI
 		, AIComponent

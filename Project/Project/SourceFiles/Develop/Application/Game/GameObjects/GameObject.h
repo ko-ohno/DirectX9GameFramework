@@ -108,6 +108,10 @@ public:
 	void AddComponent(class Component* component);
 	void RemoveComponent(class Component* component);
 
+	// 値コンポーネントの操作
+	void AddParameterComponent(class ParameterComponent* component);
+	void RemoveParameterComponent(class ParameterComponent* component);
+
 	//
 	// ゲームオブジェクトの所有者の取得
 	//
@@ -138,6 +142,9 @@ public:
 	//ゲームオブジェクトのコンポーネントのコンテナを取得
 	const std::vector<class Component*>& GetComponents() const { return components_; }
 
+	//ゲームオブジェクトのコンポーネントのコンテナを取得
+	const std::vector<class ParameterComponent*>& GetParameterComponents() const { return parameter_components_; }
+
 	//ゲームオブジェクトのIDの取得
 	virtual TypeID GetType(void) const { return TypeID::GameObject; } //後でoverrideできるように
 
@@ -162,6 +169,9 @@ protected:
 
 	// 所有コンポーネント
 	std::vector<class Component*>	components_;
+
+	// 値コンポーネント
+	std::vector<class ParameterComponent*>	parameter_components_;
 };
 
 #endif //GAME_OBJECT_H_
