@@ -233,7 +233,7 @@ void GameObject::RemoveComponent(Component* component)
 -----------------------------------------------------------------------------*/
 void GameObject::AddParameterComponent(ParameterComponent* component)
 {
-	components_.emplace_back(component);
+	parameter_components_.emplace_back(component);
 }
 
 /*-----------------------------------------------------------------------------
@@ -241,14 +241,31 @@ void GameObject::AddParameterComponent(ParameterComponent* component)
 -----------------------------------------------------------------------------*/
 void GameObject::RemoveParameterComponent(ParameterComponent* component)
 {
-	auto iter = std::find(components_.begin()
-						 , components_.end()
+	auto iter = std::find(parameter_components_.begin()
+						 , parameter_components_.end()
 						 , component);	//探す対象
 
-	if (iter != components_.end())
+	if (iter != parameter_components_.end())
 	{
-		components_.erase(iter);
+		parameter_components_.erase(iter);
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの検索処理
+-----------------------------------------------------------------------------*/
+GameObject* GameObject::FindGameObject(TypeID findTypeID)
+{
+	auto game_objects = game_->GetGameObjects();
+	for (auto game_object : game_objects)
+	{
+		auto game_object_type = game_object->GetType();
+		if (game_object_type == findTypeID)
+		{
+			return game_object;
+		}
+	}
+	return nullptr;
 }
 
 /*=============================================================================

@@ -15,9 +15,7 @@
 -----------------------------------------------------------------------------*/
 IntParameterComponent::IntParameterComponent(GameObject* owner, int updateOrder)
 	: ParameterComponent(owner, updateOrder)
-	, value_(0)
 {
-
 }
 
 /*-----------------------------------------------------------------------------

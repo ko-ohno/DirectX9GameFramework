@@ -17,6 +17,7 @@
 ParameterComponent::ParameterComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
 	, parameter_type_(ParameterType::None)
+	, value_(0.0)
 {
 	//ゲームオブジェクトのリストへ値コンポーネントの追加
 	owner->AddParameterComponent(this);

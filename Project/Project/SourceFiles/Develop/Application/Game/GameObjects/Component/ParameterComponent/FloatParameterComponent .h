@@ -5,8 +5,8 @@
 /*-----------------------------------------------------------------------------
 /*	説明：Float型値コンポーネント
 =============================================================================*/
-#ifndef INT_PARAMETER_COMPONENT_H_
-#define	INT_PARAMETER_COMPONENT_H_
+#ifndef FLOAT_PARAMETER_COMPONENT_H_
+#define	FLOAT_PARAMETER_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../ParameterComponent.h"
@@ -31,15 +31,10 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::FloatParameterComponent; };
 
-	// floatの設定
-	float GetFloat(void) { return value_; }
-	void SetFloat(float value) { value_ = value; }
-
 private:
-	float value_;
 };
 
-#endif //INT_PARAMETER_COMPONENT_H_
+#endif //FLOAT_PARAMETER_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

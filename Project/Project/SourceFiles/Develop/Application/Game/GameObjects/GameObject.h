@@ -11,6 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "Component/RendererComponent.h"
+#include "Component/ParameterComponent.h"
 
 /*--- 構造体定義 ---*/
 
@@ -135,6 +136,9 @@ public:
 
 	void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 	RendererLayerType GetRendererLayerType(void) { return renderer_layer_type_; }
+
+	// ゲームオブジェクトの検索処理
+	class GameObject* FindGameObject(TypeID findTypeID);
 
 	//ゲームオブジェクトの姿勢情報の取得
 	class TransformComponent* GetTransform(void) const { return transform_component_; }

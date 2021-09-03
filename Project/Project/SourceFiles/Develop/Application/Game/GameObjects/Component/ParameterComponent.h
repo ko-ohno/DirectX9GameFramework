@@ -44,12 +44,38 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::ParameterComponent; };
 
+	// 値の型
 	ParameterType GetParameterType() const { return parameter_type_; };
 	void SetParameterType(ParameterType parameter) { parameter_type_ = parameter; };
+
+	// Intの設定
+	int GetInt(void) { return static_cast<int>(value_); }
+	void SetInt(int value) { value_ = static_cast<double>(value); }
+
+	// floatの設定
+	float GetFloat(void) { return static_cast<float>(value_); }
+	void SetFloat(float value) { value_ = static_cast<double>(value); }
+
+	// boolの設定
+	bool GetBool(void)
+	{
+		if (value_)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	void SetBool(bool isValue) { value_ = static_cast<double>(isValue); }
 
 protected:
 	// パラメータの種類
 	ParameterType	parameter_type_;
+
+	// 値
+	double value_;
 };
 
 #endif //PARAMETER_COMPONENT_H_

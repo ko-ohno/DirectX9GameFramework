@@ -30,12 +30,7 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::IntParameterComponent; };
 
-	// IntÇÃê›íË
-	int GetInt(void) { return value_; }
-	void SetInt(int value) { value_ = value; }
-
 private:
-	int value_;
 };
 
 #endif //INT_PARAMETER_COMPONENT_H_

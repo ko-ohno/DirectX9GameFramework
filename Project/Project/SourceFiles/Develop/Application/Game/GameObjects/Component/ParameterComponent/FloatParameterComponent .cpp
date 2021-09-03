@@ -15,9 +15,7 @@
 -----------------------------------------------------------------------------*/
 FloatParameterComponent ::FloatParameterComponent (GameObject* owner, int updateOrder)
 	: ParameterComponent(owner, updateOrder)
-	, value_(0.f)
 {
-
 }
 
 /*-----------------------------------------------------------------------------

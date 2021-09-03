@@ -30,12 +30,7 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::BoolParameterComponent; };
 
-	// boolÇÃê›íË
-	bool GetBool(void) { return is_value_; }
-	void SetBool(bool isValue) { is_value_ = isValue; }
-
 private:
-	bool is_value_;
 };
 
 #endif //BOOL_PARAMETER_COMPONENT_H_
