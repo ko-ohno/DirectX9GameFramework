@@ -22,6 +22,7 @@
 -----------------------------------------------------------------------------*/
 HUD::HUD(class Game* game)
 	: UI(game)
+	, game_manager_(nullptr)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
@@ -51,9 +52,9 @@ bool HUD::Init(void)
 {
 	// 値の初期化
 	{
-		health_value_ = 1.f;
-		distance_value_ = 99;
-		score_value_ = 999;
+		health_value_	= 1.f;
+		distance_value_ = 0;
+		score_value_	= 0;
 	}
 
 	//float screen_width  = game_->GetGraphics()->GetScreenSize().x_;
@@ -63,11 +64,11 @@ bool HUD::Init(void)
 	{
 		// 体力の表示
 		{
-			health_bar_ = NEW SpriteRendererComponent(this, 300);
+			health_bar_ = NEW SpriteRendererComponent(this, 240);
 			health_bar_->SetTexture(TextureType::Blank);
 			health_bar_->SetVertexColor(0, 255, 0, 255); // 緑
 
-			health_bar_blank_ = NEW SpriteRendererComponent(this, 250);
+			health_bar_blank_ = NEW SpriteRendererComponent(this, 230);
 			health_bar_blank_->SetTexture(TextureType::Blank);
 			health_bar_blank_->SetVertexColor(0, 0, 0, 255); // 黒
 
@@ -138,9 +139,16 @@ void HUD::UpdateGameObject(float deltaTime)
 {
 	ImGui::Begin("HUD");
 	ImGui::SliderFloat("##health_value", &health_value_, 0, 1.f);
-	ImGui::SliderInt("##distance_value", &distance_value_, 0, 99);
-	ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
 	ImGui::End();
+
+	// ゲームマネージャを探す
+	if (game_manager_ == nullptr)
+	{
+		game_manager_ = this->FindGameObject(TypeID::GameManager);
+	}
+
+	// HUDの値を更新
+	this->UpdateHUDValue(deltaTime);
 
 	// 体力ゲージHUD
 	this->UpdateHealthBarHUD(deltaTime);
@@ -150,6 +158,32 @@ void HUD::UpdateGameObject(float deltaTime)
 
 	// スコアHUD
 	this->UpdateScoreHUD(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/* HUDの値の更新処理
+-----------------------------------------------------------------------------*/
+void HUD::UpdateHUDValue(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (game_manager_ == nullptr) { return; }
+
+	// 値の更新
+	auto parameter_compnents = game_manager_->GetParameterComponents();
+	for (auto parameter_compnent : parameter_compnents)
+	{
+		auto parameter_type = parameter_compnent->GetParameterType();
+		if (parameter_type == ParameterType::Progress)
+		{
+			distance_value_ = parameter_compnent->GetInt();
+		}
+
+		if (parameter_type == ParameterType::Score)
+		{
+			score_value_ = parameter_compnent->GetInt();
+		}
+	}
 }
 
 /*-----------------------------------------------------------------------------

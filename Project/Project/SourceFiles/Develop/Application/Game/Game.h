@@ -45,8 +45,10 @@ public:
 	void Update(float deltaTime);
 	void GenerateOutput(void);
 
-	//ゲームステートの更新
+	//ゲームの状態の設定
 	void SetGameState(GameState gameState) { game_state_ = gameState; }
+	GameState GetGameState(void) { return game_state_; }
+
 
 public:
 	//ゲームオブジェクトの追加と削除
@@ -76,7 +78,7 @@ public:
 	class EnemieManager*    GetEnemieManager(void) { return enemie_manager_; }
 
 private:
-	//各更新処理
+	//各ゲームオブジェクトの更新処理
 	void UpdateGameObjects(float deltaTime);
 
 private:

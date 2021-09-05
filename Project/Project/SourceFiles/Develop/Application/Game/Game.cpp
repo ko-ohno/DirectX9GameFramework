@@ -310,15 +310,12 @@ void Game::Update(float deltaTime)
 {
 	ImGui::ShowFPS(deltaTime);
 
-
 	switch (game_state_)
 	{
 	case Game::GameState::Title:
 		break;
 
 	case Game::GameState::Gameplay:
-		//ゲームオブジェクトの総更新
-		this->UpdateGameObjects(deltaTime);
 		break;
 
 	case Game::GameState::Result:
@@ -334,6 +331,9 @@ void Game::Update(float deltaTime)
 		assert(!"ゲームの不正な状態遷移を検知！");
 		break;
 	}
+
+	//ゲームオブジェクトの総更新
+	this->UpdateGameObjects(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------
@@ -389,24 +389,6 @@ void Game::RemoveGameObject(GameObject* gameObject)
 }
 
 /*-----------------------------------------------------------------------------
-/* ゲームオブジェクトの検索処理
------------------------------------------------------------------------------*/
-//GameObject* Game::FindGameObject(TypeID gameObjectTypeID)
-//{
-//	for (auto game_object : game_objects_)
-//	{
-//		auto game_object_type_id = game_object->GetType();
-//
-//		if (game_object_type_id == gameObjectTypeID)
-//		{
-//			return game_object;
-//		}
-//	}
-//	assert(!"gameObjectTypeIDは、ゲームオブジェクトのリストに一致するものがありませんでした！");
-//	return nullptr;
-//}
-
-/*-----------------------------------------------------------------------------
 /* ゲームオブジェクトの総更新処理
 -----------------------------------------------------------------------------*/
 void Game::UpdateGameObjects(float deltaTime)
@@ -420,12 +402,27 @@ void Game::UpdateGameObjects(float deltaTime)
 		updating_game_objects_ = true;
 		for (auto game_object : game_objects_)
 		{
-			game_object->Update(deltaTime);
+			if (game_state_ == GameState::Paused)
+			{
+				// ポーズメニューのゲームオブジェクトだけを更新する
+				auto game_object_type = game_object->GetType();
+				if (game_object_type == GameObject::TypeID::PauseMenu)
+				{
+					game_object->Update(deltaTime);
+				}
+			}
+			else
+			{
+				game_object->Update(deltaTime);
+			}
 		}
 		updating_game_objects_ = false;
 
 		//エフェクトマネージャの一括更新処理
-		effect_manager_->GetEffekseerManager()->Update();
+		if (game_state_ != GameState::Paused)
+		{
+			effect_manager_->GetEffekseerManager()->Update();
+		}
 
 		//エフェクトマネージャの更新終了
 		//effect_manager_->GetEffekseerManager()->EndUpdate();

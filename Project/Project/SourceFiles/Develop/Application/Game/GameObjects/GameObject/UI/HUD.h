@@ -29,6 +29,9 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::HUD; }
 
+	// HUDの値を更新
+	void UpdateHUDValue(float deltaTime);
+
 	// 体力
 	void UpdateHealthBarHUD(float deltaTime);
 	
@@ -37,6 +40,10 @@ public:
 
 	//　ゴールまでの距離
 	void UpdateScoreHUD(float deltaTime);
+
+
+private:
+	class GameObject* game_manager_;
 
 private:
 	// 体力ゲージ
