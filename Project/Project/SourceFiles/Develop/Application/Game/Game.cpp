@@ -410,6 +410,12 @@ void Game::UpdateGameObjects(float deltaTime)
 				{
 					game_object->Update(deltaTime);
 				}
+
+				// フェードも更新する
+				if (game_object_type == GameObject::TypeID::Fade)
+				{
+					game_object->Update(deltaTime);
+				}
 			}
 			else
 			{
