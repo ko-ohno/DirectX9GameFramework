@@ -15,11 +15,17 @@
 #include "../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
 #include "../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
 
+// 値コンポーネント
+#include "../Component/ParameterComponent/IntParameterComponent.h"
+#include "../Component/ParameterComponent/FloatParameterComponent .h"
+
 // 音声コンポーネント
 #include "../Component/AudioComponent.h"
 
+#include "../../../ImGui/ImGuiManager.h"
 
 #include "../../Input/InputCheck.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -30,6 +36,10 @@ GameManager::GameManager(Game* game)
 	, player_sandbox_gizmo_(nullptr)
 	, effect_space_dust_(nullptr)
 	, bgm_(nullptr)
+	, progress_param_(nullptr)
+	, progress_value_(0)
+	, score_param_(nullptr)
+	, score_value_(0)
 {
 	// 描画レイヤーを指定
 	this->renderer_layer_type_ = RendererLayerType::Game;
@@ -73,6 +83,14 @@ bool GameManager::Init(void)
 	bgm_->SetAudioVolume(0.1f);
 	//bgm_->PlayLoop();
 
+	// 値の作成
+	{
+		progress_param_ = NEW IntParameterComponent(this);
+		progress_param_->SetParameterType(ParameterType::Progress);
+
+		score_param_ = NEW IntParameterComponent(this);
+		score_param_->SetParameterType(ParameterType::Score);
+	}
 	return true;
 }
 
@@ -97,11 +115,24 @@ void GameManager::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	ImGui::Begin("HUD");
+	ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
+	ImGui::End();
+
+	// 値の更新
+	{
+		// ゲームの進行度の値の更新
+		progress_param_->SetInt(progress_value_);
+
+		// スコアの値の更新
+		score_param_->SetInt(score_value_);
+	}
+
+	// 場面切り替えのテスト
 	//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_X))
 	//{
 	//	game_->SetGameState(Game::GameState::Paused);
 	//}
-
 }
 
 /*=============================================================================

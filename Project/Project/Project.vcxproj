@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemySpawner.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.h" />
@@ -281,6 +282,10 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\Texture.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SceneState\SceneGame.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SceneState\SceneResult.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\ISceneState.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SceneState\SceneTitle.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.h" />
@@ -321,6 +326,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemySpawner.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.cpp" />
@@ -425,6 +431,9 @@
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\Texture.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Resource\XFileMesh.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\EnemieManager.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SceneState\SceneGame.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SceneState\SceneResult.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SceneState\SceneTitle.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\BillboardShader.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\Shader\DissolveShader.cpp" />

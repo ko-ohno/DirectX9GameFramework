@@ -97,7 +97,6 @@ bool GameObjectFactory::StartUp(void)
 	}
 	else
 	{
-
 		// ƒJƒƒ‰
 		this->AddGameObject(NEW GameCamera(game_));
 

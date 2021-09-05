@@ -10,12 +10,9 @@
 
 /*--- インクルードファイル ---*/
 
-/*-------------------------------------
-/* 構造体
--------------------------------------*/
 
 /*-------------------------------------
-/* クラス
+/* ゲームクラス
 -------------------------------------*/
 class Game
 {
@@ -49,6 +46,10 @@ public:
 	void SetGameState(GameState gameState) { game_state_ = gameState; }
 	GameState GetGameState(void) { return game_state_; }
 
+	// 場面の切り替え
+	void SetSceneState(class ISceneState* sceneState);
+
+	// シャットダウンをするか？
 	bool IsShutdown(void) { return is_shutdown_; }
 
 public:
@@ -79,6 +80,9 @@ public:
 	class EnemieManager*    GetEnemieManager(void) { return enemie_manager_; }
 
 private:
+	//各ゲームオブジェクトの入力処理
+	void InputGameObjects(void);
+
 	//各ゲームオブジェクトの更新処理
 	void UpdateGameObjects(float deltaTime);
 
@@ -100,25 +104,29 @@ private:
 	std::vector<class GameObject*>  game_objects_;
 
 private:
-	class GameObjectFactory* game_object_fuctory_;
-	class DX9Graphics*		 dx9_graphics_;
-	class Renderer*			 renderer_;
+	// ゲームの場面遷移のポインタ
+	static class ISceneState* scene_state_;
+
+private:
+	class GameObjectFactory*  game_object_fuctory_;
+	class DX9Graphics*		  dx9_graphics_;
+	class Renderer*			  renderer_;
 
 	// リソースの管理者
 
-	class ShaderManager*	 shader_manager_;
-	class TextureManager*	 texture_manager_;
-	class MeshManager*		 mesh_manager_;
-	class LightManager*		 light_manager_;
-	class EffectManager*	 effect_manager_;
-	class SoundManager*		 sound_manager_;
-	class ColliderManager*	 collider_manager_;
-	class SaveDataManager*	 save_data_manager_;
+	class ShaderManager*	  shader_manager_;
+	class TextureManager*	  texture_manager_;
+	class MeshManager*		  mesh_manager_;
+	class LightManager*		  light_manager_;
+	class EffectManager*	  effect_manager_;
+	class SoundManager*		  sound_manager_;
+	class ColliderManager*	  collider_manager_;
+	class SaveDataManager*	  save_data_manager_;
 
 	// サンドボックスの管理者
 
-	class ActorManager*	 actor_manager_;
-	class EnemieManager* enemie_manager_;
+	class ActorManager*		  actor_manager_;
+	class EnemieManager*	  enemie_manager_;
 
 };
 

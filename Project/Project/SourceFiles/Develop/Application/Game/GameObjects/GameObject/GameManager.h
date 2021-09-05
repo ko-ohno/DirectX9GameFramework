@@ -41,6 +41,13 @@ private:
 
 	// BGMÇÃçƒê∂
 	class AudioComponent*			  bgm_;
+
+private:
+	class IntParameterComponent*	  progress_param_;
+	int								  progress_value_;
+
+	class IntParameterComponent*	  score_param_;
+	int								  score_value_;
 };
 
 #endif //GAME_MANAGER_H_

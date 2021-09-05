@@ -9,6 +9,10 @@
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
 #include "Game.h"
+#include "ISceneState.h"
+#include "SceneState/SceneTitle.h"
+#include "SceneState/SceneGame.h"
+#include "SceneState/SceneResult.h"
 #include "Renderer.h"
 
 #include "ResourceManager/ShaderManager.h"
@@ -28,6 +32,9 @@
 
 #include "../ImGui/ImGuiManager.h"
 
+// 静的変数のプロトタイプ宣言
+ISceneState* Game::scene_state_ = nullptr;
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -36,6 +43,7 @@ Game::Game(void)
 	, input_game_objects_(false)
 	, updating_game_objects_(false)
 	, game_state_(GameState::None)
+	, game_object_fuctory_(nullptr)
 	, dx9_graphics_(nullptr)
 	, renderer_(nullptr)
 
@@ -51,7 +59,6 @@ Game::Game(void)
 	, actor_manager_(nullptr)
 	, enemie_manager_(nullptr)
 
-	, game_object_fuctory_(nullptr)
 {
 	pending_game_objects_.clear();
 	game_objects_.clear();
@@ -200,6 +207,11 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		assert(!"Game::StartUp()：ゲームオブジェクトのファクトリの起動に失敗しました。");
 		return false;
 	}
+
+	// 場面の初期化
+	{
+		this->SetSceneState(NEW SceneTitle(this));
+	}
 	return true;
 }
 
@@ -295,13 +307,14 @@ void Game::ShutDown(void)
 -----------------------------------------------------------------------------*/
 void Game::Input(void)
 {
-	//ゲームオブジェクトの入力処理
-	input_game_objects_ = true;
-	for (auto game_object : game_objects_)
+	// 場面ごとの入力処理
+	if (scene_state_ != nullptr)
 	{
-		game_object->Input();
+		scene_state_->Input();
 	}
-	input_game_objects_ = false;
+
+	// ゲームオブジェクトの入力処理
+	this->InputGameObjects();
 }
 
 /*-----------------------------------------------------------------------------
@@ -311,6 +324,12 @@ void Game::Update(float deltaTime)
 {
 	// FPSの表示
 	ImGui::ShowFPS(deltaTime);
+
+	// 場面ごとの入力処理
+	if (scene_state_ != nullptr)
+	{
+		scene_state_->Update(deltaTime);
+	}
 
 	//ゲームオブジェクトの総更新
 	this->UpdateGameObjects(deltaTime);
@@ -329,6 +348,20 @@ void Game::GenerateOutput(void)
 {
 	//レンダラーによる描画処理
 	renderer_->Draw();
+}
+
+/*-----------------------------------------------------------------------------
+/* 場面の切り替え処理
+-----------------------------------------------------------------------------*/
+void Game::SetSceneState(ISceneState* sceneState)
+{
+	if (scene_state_ != nullptr)
+		scene_state_->Uninit();
+
+	scene_state_ = sceneState;
+
+	if (scene_state_ != nullptr)
+		scene_state_->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -372,6 +405,20 @@ void Game::RemoveGameObject(GameObject* gameObject)
 		std::iter_swap(iter, game_objects_.end() - 1);
 		game_objects_.pop_back();
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* ゲームオブジェクトの総入力処理
+-----------------------------------------------------------------------------*/
+void Game::InputGameObjects(void)
+{
+	//ゲームオブジェクトの入力処理
+	input_game_objects_ = true;
+	for (auto game_object : game_objects_)
+	{
+		game_object->Input();
+	}
+	input_game_objects_ = false;
 }
 
 /*-----------------------------------------------------------------------------
