@@ -188,12 +188,12 @@ void SplashScreenManager::Update(float deltaTime)
 					ImGui::SameLine();
 					if (ImGui::Button("START", ImVec2(200.f, 20.f)))
 					{
-						is_loop_break_ = true; //Applicationのウィンドウ生成命令を発行
+						is_loop_break_ = true; // Applicationのウィンドウ生成命令を発行
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("QUIT", ImVec2(200.f, 20.f)))
 					{
-						is_shutdown_  = true;	//プログラムの停止命令を発行
+						is_shutdown_  = true;  // プログラムの停止命令を発行
 					}
 				}
 				ImGui::EndGroup();

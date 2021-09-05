@@ -35,6 +35,7 @@ ApplicationManager::ApplicationManager(const WindowStyle& windowStyle)
 	, window_style_(WindowStyle())
 	, screen_scaler_(0.0f)
 	, game_(nullptr)
+	, is_shutdown_(false)
 {
 	app_window_	   = app_window_->Create();
 	window_handle_ = app_window_->CreateNewWindow(windowStyle, true);
@@ -169,8 +170,14 @@ void ApplicationManager::Update(float deltaTime)
 	imgui_manager_->UpdateBegin();
 
 	game_->Update(deltaTime);
-
+	
 	imgui_manager_->UpdateEnd();
+
+	// ゲームを終了するか？
+	if (game_->IsShutdown())
+	{
+		this->is_shutdown_ = true;
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -185,6 +192,14 @@ void ApplicationManager::GenerateOutput(void)
 	imgui_manager_->ImGuiRender();
 
 	dx9_graphics_->RenderingEnd();
+}
+
+/*-----------------------------------------------------------------------------
+/* シャットダウンをするか
+-----------------------------------------------------------------------------*/
+bool ApplicationManager::IsShutDown(void)
+{
+	return is_shutdown_;
 }
 
 /*=============================================================================

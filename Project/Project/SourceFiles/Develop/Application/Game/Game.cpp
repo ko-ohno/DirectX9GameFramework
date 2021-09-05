@@ -32,7 +32,8 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Game::Game(void)
-	: input_game_objects_(false)
+	: is_shutdown_(false)
+	, input_game_objects_(false)
 	, updating_game_objects_(false)
 	, game_state_(GameState::None)
 	, dx9_graphics_(nullptr)
@@ -308,32 +309,17 @@ void Game::Input(void)
 -----------------------------------------------------------------------------*/
 void Game::Update(float deltaTime)
 {
+	// FPSの表示
 	ImGui::ShowFPS(deltaTime);
-
-	switch (game_state_)
-	{
-	case Game::GameState::Title:
-		break;
-
-	case Game::GameState::Gameplay:
-		break;
-
-	case Game::GameState::Result:
-		break;
-
-	case Game::GameState::Paused:
-		break;
-
-	case Game::GameState::Quit:
-		break;
-
-	default:
-		assert(!"ゲームの不正な状態遷移を検知！");
-		break;
-	}
 
 	//ゲームオブジェクトの総更新
 	this->UpdateGameObjects(deltaTime);
+
+	// ゲームを終了する
+	if (game_state_ == Game::GameState::Quit)
+	{
+		is_shutdown_ = true;
+	}
 }
 
 /*-----------------------------------------------------------------------------

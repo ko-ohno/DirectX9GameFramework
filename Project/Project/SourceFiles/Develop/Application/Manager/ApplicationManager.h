@@ -31,12 +31,12 @@ public:
 	void Update(float deltaTime) override;
 	void GenerateOutput(void) override;
 
+	bool IsShutDown(void) override;
+
 	// Application‘¤‚Í override ‚µ‚È‚¢
 	// class Vector2* GetSelectedAspectRatio(void) override;
 	// float GetScreenScaler(void) override;
 	// bool IsLoopBreak(void) override;
-	// bool IsShutDown(void) override;
-
 
 private:
 	HWND					window_handle_;
@@ -49,6 +49,7 @@ private:
 
 	//ƒQ[ƒ€—p‚ÌŠÂ‹«
 	class Game*				game_;
+	bool					is_shutdown_;
 };
 
 #endif //APPLICATION_MANAGER_H_

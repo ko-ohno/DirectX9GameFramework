@@ -49,6 +49,7 @@ public:
 	void SetGameState(GameState gameState) { game_state_ = gameState; }
 	GameState GetGameState(void) { return game_state_; }
 
+	bool IsShutdown(void) { return is_shutdown_; }
 
 public:
 	//ゲームオブジェクトの追加と削除
@@ -84,6 +85,9 @@ private:
 private:
 	//現在のゲームの状態
 	GameState game_state_;
+
+	// ゲームを終了するか？
+	bool is_shutdown_;
 
 	//各オブジェクトが入力中かどうか？
 	bool input_game_objects_;
