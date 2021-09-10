@@ -26,7 +26,7 @@ Camera::Camera(class Game* game)
 {
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
-	camera_component_ = NEW CameraComponent(this);
+	this->Init();
 
 	game_->GetRenderer()->AddCameraGameObjectAddress(this);
 }
@@ -36,7 +36,7 @@ Camera::Camera(class Game* game)
 -----------------------------------------------------------------------------*/
 Camera::~Camera(void)
 {
-	game_->GetRenderer()->AddCameraGameObjectAddress(this);
+	game_->GetRenderer()->RemoveCameraGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -44,6 +44,13 @@ Camera::~Camera(void)
 -----------------------------------------------------------------------------*/
 bool Camera::Init(void)
 {
+	camera_component_ = NEW CameraComponent(this);
+
+	// ƒJƒƒ‰À•W‚Ì‰Šú‰»
+	{
+		camera_component_->SetLookAtTranslation(0.f, 0.f, 1.f);
+		camera_component_->SetCameraTranslation(0.f, 0.f, 0.f);
+	}
 	return true;
 }
 

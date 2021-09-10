@@ -27,7 +27,7 @@ public:
 	bool StartUp(void);
 	void ShutDown(void);
 
-	void Update(void);
+	void Update(float deltaTime);
 	void Draw(void);
 
 private:

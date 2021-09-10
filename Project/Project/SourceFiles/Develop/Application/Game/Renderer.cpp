@@ -22,6 +22,8 @@
 #include "Shader/StdMeshShader.h"
 #include "Shader/SkinMeshShader.h"
 
+#include "../ImGui/ImGuiManager.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -112,9 +114,13 @@ void Renderer::ShutDown(void)
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void Renderer::Update(void)
+void Renderer::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 
+	ImGui::Begin("CameraCount");
+	ImGui::Text("%d", camera_game_objects_.size());
+	ImGui::End();
 }
 
 /*-----------------------------------------------------------------------------
@@ -125,7 +131,7 @@ void Renderer::Draw(void)
 	//レンダラーコンポーネントの描画
 	int now_draw_layer_order = 0;
 	int camera_counter_ = 0;
-	
+
 	//描画レイヤー分繰り返す
 	for (now_draw_layer_order
 		;   now_draw_layer_order < static_cast<int>(RendererLayerType::Max)
@@ -134,6 +140,12 @@ void Renderer::Draw(void)
 		//カメラのインスタンス数だけ描画する
 		for (auto camera_game_object : camera_game_objects_)
 		{
+			auto camera_game_object_state = camera_game_object->GetGameObjectState();
+			if (camera_game_object_state == GameObject::State::Dead)
+			{
+				continue;
+			}
+
 			//レンダラーコンポーネントのソート
 			const bool is_camera_moved = camera_game_object->IsGetCameraMoved();
 			if (is_camera_moved == true)
