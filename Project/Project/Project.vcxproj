@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\LoadingScreen.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemySpawner.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .h" />
@@ -326,6 +327,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\LoadingScreen.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemySpawner.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent .cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent .cpp" />
