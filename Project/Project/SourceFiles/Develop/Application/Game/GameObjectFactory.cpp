@@ -49,6 +49,8 @@
 #include "GameObjects/GameObject/UI/Title.h"
 #include "GameObjects/GameObject/UI/Result.h"
 #include "GameObjects/GameObject/UI/PauseMenu.h"
+#include "GameObjects/GameObject/UI/LoadingScreen.h"
+
 
 
 /*-----------------------------------------------------------------------------
@@ -97,32 +99,37 @@ bool GameObjectFactory::StartUp(void)
 	}
 	else
 	{
-		// カメラ
-		this->AddGameObject(NEW GameCamera(game_));
+		// 通常カメラ
+		//this->AddGameObject(NEW Camera(game_));
+
+		// ゲームカメラ
+		//this->AddGameObject(NEW GameCamera(game_));
+
+		// フェード
+		this->AddGameObject(NEW Fade(game_));
 
 		//ゲーム管理ゲームオブジェクト
-		this->AddGameObject(NEW GameManager(game_));
+		//this->AddGameObject(NEW GameManager(game_));
 
 		// 背景レイヤーのオブジェクト作成
-		this->AddGameObject(NEW SkyBox(game_));
-		this->AddGameObject(NEW Planet(game_));
+		//this->AddGameObject(NEW SkyBox(game_));
+		//this->AddGameObject(NEW Planet(game_));
 
 		// サンドボックスレイヤーのオブジェクト作成
-		this->AddGameObject(NEW Player(game_));
+		//this->AddGameObject(NEW Player(game_));
 		//this->AddGameObject(NEW Boss(game_));
-		this->AddGameObject(NEW WeakEnemy(game_));
-		this->AddGameObject(NEW StrongEnemy(game_));
+		//this->AddGameObject(NEW WeakEnemy(game_));
+		//this->AddGameObject(NEW StrongEnemy(game_));
 
 		//this->AddGameObject(NEW ChargeBullet(game_));
 
 		// UIレイヤーのオブジェクト作成
-		this->AddGameObject(NEW Fade(game_));
-		this->AddGameObject(NEW HUD(game_));
+		//this->AddGameObject(NEW HUD(game_));
 
 		//this->AddGameObject(NEW Title(game_));
 		//this->AddGameObject(NEW Result(game_));
 		//this->AddGameObject(NEW PauseMenu(game_));
-
+		this->AddGameObject(NEW LoadingScreen(game_));
 		 
 	}
 	return true;

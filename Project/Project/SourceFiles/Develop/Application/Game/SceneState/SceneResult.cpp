@@ -9,6 +9,17 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "SceneResult.h"
+#include "SceneTitle.h"
+#include "../GameObjects/GameObject.h"
+
+// カメラ
+#include "../GameObjects/GameObject/Camera.h"
+
+// タイトル画面
+#include "../GameObjects/GameObject/UI/Result.h"
+
+// 入力
+#include "../Input/InputCheck.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -16,6 +27,7 @@
 SceneResult::SceneResult(Game* game)
 	: ISceneState(game)
 {
+	// Game::SetSceneState()で終了化されるため、ここでSceneResult::Init()は呼ばない。
 }
 
 /*-----------------------------------------------------------------------------
@@ -23,6 +35,7 @@ SceneResult::SceneResult(Game* game)
 -----------------------------------------------------------------------------*/
 SceneResult::~SceneResult(void)
 {
+	// Game::SetSceneState()で終了化されるため、ここでSceneResult::Uninit()は呼ばない。
 }
 
 /*-----------------------------------------------------------------------------
@@ -30,6 +43,17 @@ SceneResult::~SceneResult(void)
 -----------------------------------------------------------------------------*/
 bool SceneResult::Init(void)
 {
+	// リザルト場面のゲームオブジェクトの生成
+	{
+		// ゲームのステートを設定
+		game_->SetGameState(Game::GameState::Result);
+
+		// ゲームカメラ
+		NEW Camera(game_);
+
+		// リザルト画面
+		NEW Result(game_);
+	}
 	return true;
 }
 
@@ -38,6 +62,20 @@ bool SceneResult::Init(void)
 -----------------------------------------------------------------------------*/
 void SceneResult::Uninit(void)
 {
+	// ゲームオブジェクトの総終了化
+	auto game_objects = game_->GetGameObjects();
+	for (auto game_object : game_objects)
+	{
+		// ゲームオブジェクトの種類を取得
+		auto game_object_type = game_object->GetType();
+
+		// フェードのゲームオブジェクトのみ破棄しない
+		if (game_object_type == GameObject::TypeID::Fade)
+		{
+			continue;
+		}
+		game_object->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -53,10 +91,19 @@ void SceneResult::Input(void)
 void SceneResult::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (InputCheck::KeyTrigger(DIK_SPACE))
+	{
+		this->ChangeScene();
+	}
 }
 
+/*-----------------------------------------------------------------------------
+/* シーンの切り替え処理
+-----------------------------------------------------------------------------*/
 void SceneResult::ChangeScene(void)
 {
+	game_->SetSceneState(NEW SceneTitle(game_));
 }
 
 /*=============================================================================

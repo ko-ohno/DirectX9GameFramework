@@ -24,7 +24,8 @@ Title::Title(class Game* game)
 	, menu_cursor_(nullptr)
 	, title_(nullptr)
 	, bg_(nullptr)
-	, select_state_(TitleMenuState::GameStart)
+	, select_state_(TitleMenuState::None)
+	, select_state_old_(TitleMenuState::None)
 	, screen_width_(0)
 	, screen_height_(0)
 {
@@ -86,6 +87,9 @@ bool Title::Init(void)
 		bgm_title_->SetSound(SoundType::JetPenguin);
 		bgm_title_->PlayLoop();
 	}
+
+	// メニューの初期化
+	select_state_old_ = select_state_ = TitleMenuState::GameStart;
 
 	return true;
 }
@@ -252,12 +256,6 @@ void Title::UpdateMenu(float deltaTime)
 		// 描画座標の更新
 		menu_cursor_->SetTranslationX(menu_game_start_->GetPosition()->x);
 		menu_cursor_->SetTranslationY(menu_game_start_->GetPosition()->y);
-
-		if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
-		{
-			// ゲーム開始
-			game_->SetGameState(Game::GameState::Gameplay);
-		}
 		break;
 
 	case TitleMenuState::GameQuit:
@@ -269,12 +267,6 @@ void Title::UpdateMenu(float deltaTime)
 		// 描画座標の更新
 		menu_cursor_->SetTranslationX(menu_game_quit_->GetPosition()->x);
 		menu_cursor_->SetTranslationY(menu_game_quit_->GetPosition()->y);
-
-		if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
-		{
-			// ゲーム終了
-			game_->SetGameState(Game::GameState::Quit);
-		}
 		break;
 
 	default:

@@ -210,7 +210,8 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 
 	// 場面の初期化
 	{
-		this->SetSceneState(NEW SceneTitle(this));
+		//this->SetSceneState(NEW SceneTitle(this));
+		this->SetSceneState(NEW SceneGame(this));
 	}
 	return true;
 }
@@ -224,6 +225,15 @@ void Game::ShutDown(void)
 	while (!game_objects_.empty())
 	{
 		delete game_objects_.back();
+	}
+
+	// シーンの破棄
+	{
+		if (scene_state_ != nullptr)
+		{
+			scene_state_->Uninit();
+		}
+		SAFE_DELETE_(scene_state_);
 	}
 
 	//ゲームオブジェクトのファクトリの破棄
@@ -334,6 +344,8 @@ void Game::Update(float deltaTime)
 	//ゲームオブジェクトの総更新
 	this->UpdateGameObjects(deltaTime);
 
+	renderer_->Update(deltaTime);
+
 	// ゲームを終了する
 	if (game_state_ == Game::GameState::Quit)
 	{
@@ -358,6 +370,10 @@ void Game::SetSceneState(ISceneState* sceneState)
 	if (scene_state_ != nullptr)
 		scene_state_->Uninit();
 
+	// 古い状態を破棄
+	delete scene_state_;
+
+	// 新しい状態へ移行
 	scene_state_ = sceneState;
 
 	if (scene_state_ != nullptr)

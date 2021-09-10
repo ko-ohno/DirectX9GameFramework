@@ -44,6 +44,9 @@ public:
 	void UpdateBackground(float deltaTime);
 	void UpdateMenu(float deltaTime);
 
+	// タイトルメニューの状態を取得
+	TitleMenuState GetTitleMenuState(void) { return select_state_; }
+
 private:
 
 	// ゲームを開始する

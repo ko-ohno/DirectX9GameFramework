@@ -25,9 +25,11 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
+	// ƒV[ƒ“‚ÌØ‚è‘Ö‚¦ˆ—
 	void ChangeScene(void) override;
 
 private:
+	class Title* title_;
 };
 
 
