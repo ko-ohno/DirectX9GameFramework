@@ -14,6 +14,18 @@
 /*-------------------------------------
 /* フェードゲームオブジェクト
 -------------------------------------*/
+enum class FadeState
+{
+	None = -1
+	, Idle		// 待機
+	, FadeOut	// 画面を暗く
+	, FadeIn	// 画面を明るく
+	, Max
+};
+
+/*-------------------------------------
+/* フェードゲームオブジェクト
+-------------------------------------*/
 class Fade : public UI
 {
 public:
@@ -29,8 +41,29 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Fade; }
 
+	// フェードの状態を更新
+	void UpdateFadeState(void);
+
+	// 画面を暗転
+	void FadeOut(float deltaTime);
+
+	// 画面を明転
+	void FadeIn(float deltaTime);
+
 private:
-	class SpriteRendererComponent* fade_;
+	class SpriteRendererComponent* fade_;	// フェード用のスプライト
+
+	enum class FadeState   fade_state_;		// フェードの状態
+
+private:
+	bool				   is_execute_fade_;
+	bool				   is_fade_completed;
+
+	static constexpr int   MAX_FADE_ALPHA_VALUE_ = 255;
+	float				   fade_alpha_;
+
+	static constexpr float MAX_EXECUTE_TIME_ = 1.f;
+	float				   execute_time_;
 };
 
 #endif //Fade_H_
