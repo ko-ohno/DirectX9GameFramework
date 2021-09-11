@@ -8,7 +8,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "BoolParameterComponent .h"
+#include "BoolParameterComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

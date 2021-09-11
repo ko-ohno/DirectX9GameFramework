@@ -12,7 +12,7 @@
 #include "../UI.h"
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* フェードのステート
 -------------------------------------*/
 enum class FadeState
 {
@@ -24,7 +24,7 @@ enum class FadeState
 };
 
 /*-------------------------------------
-/* フェードゲームオブジェクト
+/* フェード画面クラス
 -------------------------------------*/
 class Fade : public UI
 {
@@ -51,13 +51,21 @@ public:
 	void FadeIn(float deltaTime);
 
 private:
-	class SpriteRendererComponent* fade_;	// フェード用のスプライト
+	// フェード用のスプライト
+	class SpriteRendererComponent* fade_;	
 
-	enum class FadeState   fade_state_;		// フェードの状態
+	// 値コンポーネント：フェードを実行するか？
+	class BoolParameterComponent*  parameter_is_fade_execute_;
+
+	// 値コンポーネント：フェードを完了したか？
+	class BoolParameterComponent*  parameter_is_fade_completed_;
+
+	// フェードの状態
+	enum class FadeState		   fade_state_;		
 
 private:
-	bool				   is_execute_fade_;
-	bool				   is_fade_completed;
+	bool				   is_fade_execute_;
+	bool				   is_fade_completed_;
 
 	static constexpr int   MAX_FADE_ALPHA_VALUE_ = 255;
 	float				   fade_alpha_;

@@ -12,8 +12,13 @@
 #include "../../Component/RendererComponent/SpriteRendererComponent.h"
 #include "../../../Game.h"
 
+// 値コンポーネント
+#include "../../Component/ParameterComponent/BoolParameterComponent.h"
+
+// 入力
 #include "../../../Input/InputCheck.h"
 
+// ImGui
 #include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
@@ -22,9 +27,9 @@
 Fade::Fade(class Game* game)
 	: UI(game)
 	, fade_(nullptr)
+	, parameter_is_fade_execute_(nullptr)
+	, parameter_is_fade_completed_(nullptr)
 	, fade_state_(FadeState::None)
-	, is_execute_fade_(false)
-	, is_fade_completed(false)
 	, fade_alpha_(0.f)
 	, execute_time_(0.f)
 {
@@ -48,9 +53,20 @@ bool Fade::Init(void)
 	fade_ = NEW SpriteRendererComponent(this, 300);
 	fade_->SetVertexColor(0, 0, 0);
 
+	// 値コンポーネントの生成
+	{
+		// フェードを実行するか？
+		parameter_is_fade_execute_ = NEW BoolParameterComponent(this);
+		parameter_is_fade_execute_->SetParameterType(ParameterType::IsFadeExecute);
+  
+		// フェードが完了したか？
+		parameter_is_fade_completed_ = NEW BoolParameterComponent(this);
+		parameter_is_fade_completed_->SetParameterType(ParameterType::IsFadeCompleted);
+	}
+
 	// 値の初期化
 	{
-		fade_state_		= FadeState::Idle;
+		fade_state_	= FadeState::Idle;
 	}
 	return true;
 }
@@ -74,8 +90,22 @@ void Fade::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Fade::UpdateGameObject(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
+	// 値コンポーネントのnullチェック
+	{
+		if (parameter_is_fade_execute_ == nullptr)
+		{
+			assert(!"Fade::UpdateGameObject():値コンポーネント:parameter_is_fade_execute_ が”nullptr”でした。");
+			return;
+		}
+	
+		if (parameter_is_fade_completed_ == nullptr)
+		{
+			assert(!"Fade::UpdateGameObject():値コンポーネント:parameter_is_fade_completed_ が、nullptrでした。");
+			return;
+		}
+	}
 
+	// 画面サイズの取得
 	const float screen_width  = game_->GetGraphics()->GetScreenSize().x_;
 	const float screen_height = game_->GetGraphics()->GetScreenSize().y_;
 
@@ -84,26 +114,37 @@ void Fade::UpdateGameObject(float deltaTime)
 	fade_->SetScaleY(screen_height);
 	
 	// フェードの開始命令を発行
-	if (InputCheck::KeyTrigger(DIK_P))
+	const bool is_execute_fade = parameter_is_fade_execute_->GetBool();
+	if (is_execute_fade == true)
 	{
-		is_execute_fade_ = true;
-		is_fade_completed = false;
+		// フェードが実行状態を初期化
+		parameter_is_fade_execute_->SetBool(false);
+
+		// フェードが未完了の状態を通知
+		parameter_is_fade_completed_->SetBool(false);
+
+		// フェードの実行時間を初期化
 		execute_time_ = 0.f;
 	}
 
 	// フェードの最大実行時間に到達したら
 	if (execute_time_ >= (MAX_EXECUTE_TIME_ - 0.01f))
 	{
-		fade_state_ = FadeState::Idle;	// ステートを待機状態へ移行
-		is_execute_fade_ = false;		// フェードの実行状態を終了
-		is_fade_completed = true;		// フェード完了
+		if (fade_state_ == FadeState::FadeOut)
+		{
+			// フェードが完了したことを通知
+			parameter_is_fade_completed_->SetBool(true);
+		}
+
+		// ステートを待機状態へ移行
+		fade_state_ = FadeState::Idle;
 	}
 
 	// 実際の挙動を定義
 	switch (fade_state_)
 	{
 	case FadeState::Idle:
-		if (is_execute_fade_ == true)	// フェードを実行するか?
+		if (is_execute_fade == true)	// フェードを実行するか?
 		{
 			// フェードのステート更新処理
 			this->UpdateFadeState();

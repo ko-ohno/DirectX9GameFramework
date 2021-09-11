@@ -36,6 +36,7 @@ public:
 		// UI
 		, UI
 		, Fade
+		, LoadingScreen
 		, HUD
 		, PauseMenu
 		, Result

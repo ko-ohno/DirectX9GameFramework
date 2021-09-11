@@ -17,11 +17,20 @@
 enum class ParameterType
 {
 	None = -1
-	, HP			// 体力
-	, Attack		// 攻撃
-	, Deffence		// 防御
-	, Progress		// 進行度
-	, Score			// スコア
+	, HP				// 体力
+	, Attack			// 攻撃
+	, Deffence			// 防御
+	, Progress			// 進行度
+	, Score				// スコア
+
+	, IsSceneChanged		// 場面切り替えを行うか？
+
+	// フェード画面
+	, IsFadeExecute			// フェードを実行するか？
+	, IsFadeCompleted		// フェードが完了したか？
+
+	// ロード画面
+	, IsShowGameScreen		// ロード画面：ゲーム画面の表示をするか？
 	, Max
 };
 

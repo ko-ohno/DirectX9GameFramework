@@ -108,6 +108,9 @@ bool GameObjectFactory::StartUp(void)
 		// フェード
 		this->AddGameObject(NEW Fade(game_));
 
+		// 読み込み画面
+		this->AddGameObject(NEW LoadingScreen(game_));
+
 		//ゲーム管理ゲームオブジェクト
 		//this->AddGameObject(NEW GameManager(game_));
 
@@ -128,9 +131,7 @@ bool GameObjectFactory::StartUp(void)
 
 		//this->AddGameObject(NEW Title(game_));
 		//this->AddGameObject(NEW Result(game_));
-		//this->AddGameObject(NEW PauseMenu(game_));
-		this->AddGameObject(NEW LoadingScreen(game_));
-		 
+		//this->AddGameObject(NEW PauseMenu(game_));		 
 	}
 	return true;
 }

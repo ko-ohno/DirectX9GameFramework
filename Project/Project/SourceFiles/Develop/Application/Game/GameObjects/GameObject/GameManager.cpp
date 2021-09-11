@@ -17,7 +17,7 @@
 
 // 値コンポーネント
 #include "../Component/ParameterComponent/IntParameterComponent.h"
-#include "../Component/ParameterComponent/FloatParameterComponent .h"
+#include "../Component/ParameterComponent/FloatParameterComponent.h"
 
 // 音声コンポーネント
 #include "../Component/AudioComponent.h"

@@ -210,8 +210,8 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 
 	// 場面の初期化
 	{
-		//this->SetSceneState(NEW SceneTitle(this));
-		this->SetSceneState(NEW SceneGame(this));
+		this->SetSceneState(NEW SceneTitle(this));
+		//this->SetSceneState(NEW SceneGame(this));
 	}
 	return true;
 }
@@ -451,23 +451,50 @@ void Game::UpdateGameObjects(float deltaTime)
 		updating_game_objects_ = true;
 		for (auto game_object : game_objects_)
 		{
-			if (game_state_ == GameState::Paused)
-			{
-				// ポーズメニューのゲームオブジェクトだけを更新する
-				auto game_object_type = game_object->GetType();
-				if (game_object_type == GameObject::TypeID::PauseMenu)
-				{
-					game_object->Update(deltaTime);
-				}
+			// ゲームオブジェクトの型を調べる
+			auto game_object_type = game_object->GetType();
 
-				// フェードも更新する
-				if (game_object_type == GameObject::TypeID::Fade)
+			// ポーズ中かを調べる
+			const bool is_game_state_paused = (game_state_ == GameState::Paused);
+			if (is_game_state_paused)
+			{
+				// ゲームオブジェクトがフェードとポーズメニューだったら更新する
+				const bool is_update_pause_menu = (game_object_type == GameObject::TypeID::PauseMenu);
+				const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
+
+				if (is_update_pause_menu || is_update_fade)
 				{
 					game_object->Update(deltaTime);
 				}
 			}
 			else
 			{
+				//bool is_show_game_
+
+				//// ロード画面ゲームオブジェクトかを調べる
+				//const bool is_game_object_loading_screen = (game_object_type == GameObject::TypeID::LoadingScreen);
+				//if (is_game_object_loading_screen)
+				//{
+				//	// ゲームオブジェクトの値コンポーネントを調べる
+				//	auto parameter_components = game_object->GetParameterComponents();
+				//	for (auto parameter_component : parameter_components)
+				//	{
+				//		// 値コンポーネントの型を調べる
+				//		auto parameter_component_type = parameter_component->GetParameterType();
+
+				//		// 値コンポーネントがゲーム画面
+				//		const bool is_show_game_screen = (parameter_component_type == ParameterType::IsShowGameScreen);
+				//		if (is_show_game_screen)
+				//		{				
+				//			// 値コンポーネントのbool値を調べる
+				//			parameter_component->GetBool();
+
+				//		}
+				//	}
+		
+
+				//	game_object->Update(deltaTime);
+				//}
 				game_object->Update(deltaTime);
 			}
 		}

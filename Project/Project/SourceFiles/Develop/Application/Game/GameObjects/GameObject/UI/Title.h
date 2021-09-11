@@ -44,6 +44,8 @@ public:
 	void UpdateBackground(float deltaTime);
 	void UpdateMenu(float deltaTime);
 
+	//void Set
+
 	// タイトルメニューの状態を取得
 	TitleMenuState GetTitleMenuState(void) { return select_state_; }
 

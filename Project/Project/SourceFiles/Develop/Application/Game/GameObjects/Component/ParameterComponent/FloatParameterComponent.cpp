@@ -8,7 +8,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "FloatParameterComponent .h"
+#include "FloatParameterComponent.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
