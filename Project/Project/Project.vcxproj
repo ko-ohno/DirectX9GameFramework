@@ -177,8 +177,15 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_1.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_3.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_4.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_5.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_6.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\LoadingScreen.h" />
-    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemySpawner.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactory.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.h" />
@@ -327,8 +334,14 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_1.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_3.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_4.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_5.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_6.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\LoadingScreen.cpp" />
-    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemySpawner.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactory.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\BoolParameterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\FloatParameterComponent.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\Component\ParameterComponent\IntParameterComponent.cpp" />
