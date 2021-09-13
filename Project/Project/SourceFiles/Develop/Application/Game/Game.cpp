@@ -210,8 +210,17 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 
 	// 場面の初期化
 	{
-		this->SetSceneState(NEW SceneTitle(this));
-		//this->SetSceneState(NEW SceneGame(this));
+		// タイトル画面として初期化
+		//this->SetGameState(GameState::Title);
+		//this->SetSceneState(NEW SceneTitle(this));
+
+		// ゲーム画面として初期化
+		this->SetGameState(GameState::Gameplay);
+		this->SetSceneState(NEW SceneGame(this));
+
+		// ゲーム画面として初期化
+		//this->SetGameState(GameState::Result);
+		//this->SetSceneState(NEW SceneResult(this));
 	}
 	return true;
 }
@@ -345,12 +354,6 @@ void Game::Update(float deltaTime)
 	this->UpdateGameObjects(deltaTime);
 
 	renderer_->Update(deltaTime);
-
-	// ゲームを終了する
-	if (game_state_ == Game::GameState::Quit)
-	{
-		is_shutdown_ = true;
-	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -454,18 +457,74 @@ void Game::UpdateGameObjects(float deltaTime)
 			// ゲームオブジェクトの型を調べる
 			auto game_object_type = game_object->GetType();
 
+			switch (game_state_)
+			{
+			case Game::GameState::Title:
+				{
+					// 通常通りゲームオブジェクト総を更新する
+					game_object->Update(deltaTime);
+				}
+				break;
+
+			case Game::GameState::Gameplay:
+				{
+					// 通常通りゲームオブジェクト総を更新する
+					game_object->Update(deltaTime);
+				}
+				break;
+
+			case Game::GameState::Result:
+				{
+					// 通常通りゲームオブジェクト総を更新する
+					game_object->Update(deltaTime);
+				}
+				break;
+
+			case Game::GameState::Paused:
+				{
+					const bool is_update_pause_menu = (game_object_type == GameObject::TypeID::PauseMenu);
+					const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
+					const bool is_update_loading	= (game_object_type == GameObject::TypeID::LoadingScreen);
+
+					// ゲームオブジェクトがフェードとポーズメニューとロード画面だったら更新する
+					if (is_update_pause_menu 
+						|| is_update_fade
+						|| is_update_loading)
+					{
+						game_object->Update(deltaTime);
+					}
+				}
+				break;
+
+			case Game::GameState::Loading:
+				{
+					const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
+					const bool is_update_loading	= (game_object_type == GameObject::TypeID::LoadingScreen);
+
+					// ゲームオブジェクトがフェードとポーズメニューとロード画面だったら更新する
+					if (is_update_fade || is_update_loading)
+					{
+						game_object->Update(deltaTime);
+					}
+				}
+				break;
+
+			case Game::GameState::Quit:
+				{
+					// ゲームをシャットダウンする
+					is_shutdown_ = true;
+				}
+				break;
+
+			default:
+				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
+				break;
+			}
+
 			// ポーズ中かを調べる
 			const bool is_game_state_paused = (game_state_ == GameState::Paused);
 			if (is_game_state_paused)
 			{
-				// ゲームオブジェクトがフェードとポーズメニューだったら更新する
-				const bool is_update_pause_menu = (game_object_type == GameObject::TypeID::PauseMenu);
-				const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
-
-				if (is_update_pause_menu || is_update_fade)
-				{
-					game_object->Update(deltaTime);
-				}
 			}
 			else
 			{
@@ -495,7 +554,6 @@ void Game::UpdateGameObjects(float deltaTime)
 
 				//	game_object->Update(deltaTime);
 				//}
-				game_object->Update(deltaTime);
 			}
 		}
 		updating_game_objects_ = false;

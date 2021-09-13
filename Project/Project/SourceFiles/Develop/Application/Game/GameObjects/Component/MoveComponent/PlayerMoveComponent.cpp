@@ -48,6 +48,8 @@ bool PlayerMoveComponent::Init(void)
 		player_sandbox_->SetDirLength(3.f, AxisType::Y);
 	}
 
+	//owner_transform_->SetTranslationZ(-30.f);
+
 	return true;
 }
 

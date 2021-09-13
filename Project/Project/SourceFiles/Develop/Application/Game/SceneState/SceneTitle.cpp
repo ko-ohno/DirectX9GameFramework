@@ -51,7 +51,7 @@ SceneTitle::~SceneTitle(void)
 bool SceneTitle::Init(void)
 {
 	// ゲームのステートを設定
-	game_->SetGameState(Game::GameState::Title);
+	//game_->SetGameState(Game::GameState::Title);
 
 	//
 	// 既存のゲームオブジェクトから値コンポーネントの取得
@@ -172,14 +172,28 @@ void SceneTitle::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	const bool is_show_game_screen = parameter_is_show_game_screen_->GetBool();
+	if (is_show_game_screen)
+	{
+		// ゲームの状態をタイトル画面の状態として設定
+		game_->SetGameState(Game::GameState::Title);
+	}
+
 	auto title_menu_state = title_->GetTitleMenuState();
 	switch (title_menu_state)
 	{
 	case TitleMenuState::GameStart:
-		//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
-		if (InputCheck::KeyTrigger(DIK_SPACE))
+		if (this->is_scene_change_tirgger_ == false)
 		{
-			this->is_input_scene_changed_ = true;
+			//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
+			if (InputCheck::KeyTrigger(DIK_SPACE))
+			{
+				// 場面切り替えのトリガーをONにして入力を無効化
+				is_scene_change_tirgger_ = true;
+
+				// 場面切り替えを申請
+				this->is_need_scene_changed_ = true;
+			}
 		}
 		break;
 
@@ -197,20 +211,23 @@ void SceneTitle::Update(float deltaTime)
 	}
 
 	// 切り替わる瞬間のみを取得
-	if (this->is_input_scene_changed_ == true)
+	if (this->is_need_scene_changed_)
 	{
 		// 値コンポーネントにフェードを実行することを通知
 		parameter_is_fade_execute_->SetBool(true);
 	
 		// 元に戻す
-		this->is_input_scene_changed_ = false;
+		this->is_need_scene_changed_ = false;
 	}
 
 	// フェードゲームオブジェクトがフェードを完了したかを取得
 	const bool is_scene_changed = parameter_is_scene_changed->GetBool();
 	if (is_scene_changed)
 	{
-		// ゲーム開始
+		// ゲームの状態をロード画面の状態として設定
+		game_->SetGameState(Game::GameState::Loading);
+
+		// ゲーム場面へ
 		this->ChangeScene();
 	}
 }

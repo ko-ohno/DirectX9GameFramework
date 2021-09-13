@@ -51,6 +51,7 @@ bool Fade::Init(void)
 {
 	// フェード用スプライトの生成
 	fade_ = NEW SpriteRendererComponent(this, 300);
+	fade_->SetRendererLayerType(RendererLayerType::Fade);
 	fade_->SetVertexColor(0, 0, 0);
 
 	// 値コンポーネントの生成

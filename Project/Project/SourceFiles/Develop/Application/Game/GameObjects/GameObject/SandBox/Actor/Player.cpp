@@ -87,7 +87,7 @@ bool Player::Init(void)
 		{
 			// 遠くのレティクル
 			{
-				far_reticle_ = NEW BillboardRendererComponent(this);
+				far_reticle_ = NEW BillboardRendererComponent(this, 290);
 				far_reticle_->SetTexture(TextureType::FarReticle);
 				far_reticle_->SetVertexColor(0, 255, 0, 255);
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
@@ -99,7 +99,7 @@ bool Player::Init(void)
 
 			//　手前のレティクル
 			{
-				near_reticle_ = NEW BillboardRendererComponent(this);
+				near_reticle_ = NEW BillboardRendererComponent(this, 290);
 				near_reticle_->SetTexture(TextureType::NearReticle);
 				near_reticle_->SetVertexColor(0, 255, 0, 255);
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
@@ -112,7 +112,7 @@ bool Player::Init(void)
 
 			//　ロックオンのレティクル
 			{
-				lockon_reticle_ = NEW BillboardRendererComponent(this);
+				lockon_reticle_ = NEW BillboardRendererComponent(this, 290);
 				lockon_reticle_->SetTexture(TextureType::NearReticle);
 				lockon_reticle_->SetVertexColor(0, 255, 0, 255);
 				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
@@ -163,7 +163,6 @@ bool Player::Init(void)
 			lockon_gizmo_->SetScaleZ(lockon_langth_);
 		}
 	}
-
 	return true;
 }
 

@@ -44,7 +44,7 @@ SceneResult::~SceneResult(void)
 bool SceneResult::Init(void)
 {
 	// ゲームのステートを設定
-	game_->SetGameState(Game::GameState::Result);
+	//game_->SetGameState(Game::GameState::Result);
 
 	//
 	// 既存のゲームオブジェクトから値コンポーネントの取得
@@ -159,26 +159,43 @@ void SceneResult::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
-	if (InputCheck::KeyTrigger(DIK_SPACE))
+	const bool is_show_game_screen = parameter_is_show_game_screen_->GetBool();
+	if (is_show_game_screen)
 	{
-		is_input_scene_changed_ = true;
+		// ゲームの状態をタイトル画面の状態として設定
+		game_->SetGameState(Game::GameState::Result);
+	}
+
+	if (is_scene_change_tirgger_ == false)
+	{
+		if (InputCheck::KeyTrigger(DIK_SPACE))
+		{
+			// 場面切り替えのトリガーをONにして入力を無効化
+			is_scene_change_tirgger_ = true;
+
+			// 場面切り替えを申請
+			this->is_need_scene_changed_ = true;
+		}
 	}
 
 	// 切り替わる瞬間のみを取得
-	if (this->is_input_scene_changed_ == true)
+	if (this->is_need_scene_changed_ == true)
 	{
 		// 値コンポーネントにフェードを実行することを通知
 		parameter_is_fade_execute_->SetBool(true);
 
 		// 元に戻す
-		this->is_input_scene_changed_ = false;
+		this->is_need_scene_changed_ = false;
 	}
 
 	// フェードゲームオブジェクトがフェードを完了したかを取得
 	const bool is_scene_changed = parameter_is_scene_changed->GetBool();
 	if (is_scene_changed)
 	{
-		// ゲーム開始
+		// ゲームの状態をロード画面の状態として設定
+		game_->SetGameState(Game::GameState::Loading);
+
+		// タイトル場面へ
 		this->ChangeScene();
 	}
 }

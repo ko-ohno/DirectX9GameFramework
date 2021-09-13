@@ -24,6 +24,8 @@ Title::Title(class Game* game)
 	, menu_cursor_(nullptr)
 	, title_(nullptr)
 	, bg_(nullptr)
+	, bgm_title_(nullptr)
+	, se_select_(nullptr)
 	, select_state_(TitleMenuState::None)
 	, select_state_old_(TitleMenuState::None)
 	, screen_width_(0)
@@ -76,18 +78,6 @@ bool Title::Init(void)
 		go_next_->SetTexture(TextureType::GoNext);
 	}
 
-	// 音声コンポーネントの生成
-	{
-		// SEの生成
-		se_select_ = NEW AudioComponent(this);
-		se_select_->SetSound(SoundType::SelectSound);
-
-		// BGMの生成
-		bgm_title_ = NEW AudioComponent(this);
-		bgm_title_->SetSound(SoundType::JetPenguin);
-		bgm_title_->PlayLoop();
-	}
-
 	// メニューの初期化
 	select_state_old_ = select_state_ = TitleMenuState::GameStart;
 
@@ -128,6 +118,25 @@ void Title::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 音声コンポーネントの生成
+	{
+		// SEの生成
+		if (se_select_ == nullptr)
+		{
+			se_select_ = NEW AudioComponent(this);
+			se_select_->SetSound(SoundType::SelectSound);
+		}
+	
+		// BGMの生成
+		if (bgm_title_ == nullptr)
+		{
+			// BGMの生成
+			bgm_title_ = NEW AudioComponent(this);
+			bgm_title_->SetSound(SoundType::JetPenguin);
+			bgm_title_->PlayLoop();
+		}
+	}
+
 	// 画面サイズの取得
 	screen_width_  = game_->GetGraphics()->GetScreenSize().x_;
 	screen_height_ = game_->GetGraphics()->GetScreenSize().y_;
@@ -144,7 +153,10 @@ void Title::UpdateGameObject(float deltaTime)
 	// 入力された情報が1フレーム前と違ったら
 	if (select_state_ != select_state_old_)
 	{
-		se_select_->Play();
+		if (se_select_ != nullptr)
+		{
+			se_select_->Play();
+		}
 	}
 	
 	// 1フレーム前の情報を更新

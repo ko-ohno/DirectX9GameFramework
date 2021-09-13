@@ -22,7 +22,8 @@ public:
 		, parameter_is_fade_execute_(nullptr)
 		, parameter_is_scene_changed(nullptr)
 		, parameter_is_show_game_screen_(nullptr)
-		, is_input_scene_changed_(false)
+		, is_scene_change_tirgger_(false)
+		, is_need_scene_changed_(false)
 	{}
 	virtual ~ISceneState(void) {}
 
@@ -45,8 +46,11 @@ protected:
 	// 値コンポーネント：ゲーム画面を表示するか？
 	class ParameterComponent* parameter_is_show_game_screen_;
 
+	// 場面切り替えのトリガー
+	bool					  is_scene_change_tirgger_;
+
 	// 場面の切り替えするか？
-	bool					  is_input_scene_changed_; 
+	bool					  is_need_scene_changed_;
 };
 
 

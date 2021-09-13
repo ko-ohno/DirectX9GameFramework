@@ -315,16 +315,19 @@ void LoadingScreen::UpdateProgressBarSecondHalf(float deltaTime)
 		execute_time_ += deltaTime;
 		if (execute_time_ >= MAX_EXECUTE_TIME_)
 		{
-			execute_time_ = MAX_EXECUTE_TIME_;
+			// 実行時間を初期化
 			execute_time_ = 0.f;
+
+			// 読み込みの待ち時間を初期化
 			wait_time_ = 0.f;
 
-
+			// 読み込みのステートを初期化
 			loading_state_ = LoadingState::Idle;
 
 			// ロード画面を表示しない
 			is_show_loading_screen_ = false;
 
+			// フェードインを実行するように要請
 			parameter_is_fade_execute_->SetBool(true);
 
 			// ゲーム画面を表示する情報を通知
