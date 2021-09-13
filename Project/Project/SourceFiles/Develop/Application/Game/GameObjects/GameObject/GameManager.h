@@ -30,6 +30,10 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameManager; }
 
 private:
+	// エネミーのファクトリ
+	class EnemyFactory*				  enemy_factory_;
+
+private:
 	// サイズの基準のギズモを作成
 	class GridGizmoRendererComponent* grid_gizmo_;
 

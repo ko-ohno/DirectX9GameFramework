@@ -23,6 +23,7 @@ public:
 
 	bool Init(void) override;
 	void Uninit(void) override;
+	void Update(float deltaTime) override;
 
 private:
 };

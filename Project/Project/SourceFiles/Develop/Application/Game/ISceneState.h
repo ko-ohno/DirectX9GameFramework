@@ -35,7 +35,7 @@ public:
 	virtual void ChangeScene(void) = 0;
 
 protected:
-	class Game*			 game_;
+	class Game*				  game_;
 
 	// 値コンポーネント：フェードを実行するか？
 	class ParameterComponent* parameter_is_fade_execute_;

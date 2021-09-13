@@ -10,6 +10,10 @@
 #include "../../../../StdAfx.h"
 #include "GameManager.h"
 
+// 敵の生成ファクトリ
+#include "../../EnemyFactory.h"
+#include "../../EnemyFactoryState.h"
+
 // 描画コンポーネント
 #include "../Component/RendererComponent/EffectRendererComponent.h"
 #include "../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
@@ -32,6 +36,7 @@
 -----------------------------------------------------------------------------*/
 GameManager::GameManager(Game* game)
 	: GameObject(game)
+	, enemy_factory_(nullptr)
 	, grid_gizmo_(nullptr)
 	, player_sandbox_gizmo_(nullptr)
 	, effect_space_dust_(nullptr)
@@ -61,6 +66,9 @@ GameManager::~GameManager(void)
 -----------------------------------------------------------------------------*/
 bool GameManager::Init(void)
 {
+	// エネミーのファクトリを生成
+	enemy_factory_ = NEW EnemyFactory(game_);
+
 	// ギズモコンポーネント
 	{
 		// グリッドの表示
@@ -99,6 +107,7 @@ bool GameManager::Init(void)
 -----------------------------------------------------------------------------*/
 void GameManager::Uninit(void)
 {
+	SAFE_DELETE_(enemy_factory_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -106,6 +115,11 @@ void GameManager::Uninit(void)
 -----------------------------------------------------------------------------*/
 void GameManager::InputGameObject(void)
 {
+	// エネミーのファクトリの入力処理
+	if (enemy_factory_ != nullptr)
+	{
+		enemy_factory_->Input();
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -114,6 +128,12 @@ void GameManager::InputGameObject(void)
 void GameManager::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// エネミーのファクトリの更新処理
+	if (enemy_factory_ != nullptr)
+	{
+		enemy_factory_->Update(deltaTime);
+	}
 
 	ImGui::Begin("HUD");
 	ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
@@ -127,12 +147,6 @@ void GameManager::UpdateGameObject(float deltaTime)
 		// スコアの値の更新
 		score_param_->SetInt(score_value_);
 	}
-
-	// 場面切り替えのテスト
-	//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_X))
-	//{
-	//	game_->SetGameState(Game::GameState::Paused);
-	//}
 }
 
 /*=============================================================================

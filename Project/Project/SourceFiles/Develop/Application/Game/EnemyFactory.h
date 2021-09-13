@@ -24,8 +24,14 @@ public:
 	void Input(void);
 	void Update(float deltaTime);
 
+	// ファクトリの状態切り替え処理
+	void ChangeFactoryState(class EnemyFactoryState* factory_state_);
+
 private:
-	class Game* game_;
+	class Game*				 game_;
+
+	// エネミーのファクトリの状態クラス
+	class EnemyFactoryState* enemy_factory_state_;
 };
 
 #endif //ENEMY_FACTORY_H_
