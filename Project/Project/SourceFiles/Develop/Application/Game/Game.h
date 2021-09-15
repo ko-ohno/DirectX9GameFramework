@@ -79,6 +79,7 @@ public:
 
 	class ActorManager*	    GetActorManager(void) { return actor_manager_; }
 	class EnemieManager*    GetEnemieManager(void) { return enemie_manager_; }
+	class BulletManager*	GetBulletManager(void) { return bullet_manager_; }
 
 private:
 	//各ゲームオブジェクトの入力処理
@@ -128,7 +129,7 @@ private:
 
 	class ActorManager*		  actor_manager_;
 	class EnemieManager*	  enemie_manager_;
-
+	class BulletManager*	  bullet_manager_;
 };
 
 #endif //GAME_H_

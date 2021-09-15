@@ -37,7 +37,7 @@ Actor::Actor(Game* game)
 -----------------------------------------------------------------------------*/
 Actor::~Actor(void)
 {
-	// アクターマネージャにインスタンスのアドレスを追加
+	// アクターマネージャのインスタンスのアドレスを削除
 	game_->GetActorManager()->RemoveActorGameObjectAddress(this);
 }
 

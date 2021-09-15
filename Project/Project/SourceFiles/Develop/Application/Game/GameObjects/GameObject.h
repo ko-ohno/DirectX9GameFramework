@@ -83,6 +83,7 @@ public:
 		None = -1
 		, Active	//活動するゲームオブジェクトか？
 		, Paused	//停止するゲームオブジェクトか？
+		, Destroy	//破壊されたゲームオブジェクトか？
 		, Dead		//破棄するゲームオブジェクトか？
 
 		, MAX		//状態の最大値
@@ -147,7 +148,7 @@ public:
 	//ゲームオブジェクトのコンポーネントのコンテナを取得
 	const std::vector<class Component*>& GetComponents() const { return components_; }
 
-	//ゲームオブジェクトのコンポーネントのコンテナを取得
+	//ゲームオブジェクトの値コンポーネントのコンテナを取得
 	const std::vector<class ParameterComponent*>& GetParameterComponents() const { return parameter_components_; }
 
 	//ゲームオブジェクトのIDの取得

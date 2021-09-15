@@ -26,6 +26,7 @@
 
 #include "SandBoxManager/ActorManager.h"
 #include "SandBoxManager/EnemieManager.h"
+#include "SandBoxManager/BulletManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
@@ -188,6 +189,15 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			assert(!"Game::StartUp()：エネミーマネージャの起動に失敗しました。");
 			return false;
 		}
+
+		//バレットのマネージャの起動
+		bullet_manager_ = bullet_manager_->Create(this);
+		const bool bullet_manager_init = bullet_manager_->StartUp();
+		if (bullet_manager_init == false)
+		{
+			assert(!"Game::StartUp()：バレットマネージャの起動に失敗しました。");
+			return false;
+		}
 	}
 
 	//レンダラーの起動
@@ -261,6 +271,9 @@ void Game::ShutDown(void)
 		enemie_manager_->Shutdown();
 		SAFE_DELETE_(enemie_manager_);
 
+		//バレットマネージャの破棄
+		bullet_manager_->Shutdown();
+		SAFE_DELETE_(bullet_manager_);
 	}
 
 	// リソースの各マネージャーの破棄
@@ -445,12 +458,12 @@ void Game::InputGameObjects(void)
 -----------------------------------------------------------------------------*/
 void Game::UpdateGameObjects(float deltaTime)
 {
-	//ゲームオブジェクトとエフェクトの総更新処理
+	// ゲームオブジェクトとエフェクトの総更新処理
 	{
-		//エフェクトマネージャの更新開始
+		// エフェクトマネージャの更新開始
 		//effect_manager_->GetEffekseerManager()->BeginUpdate();
 
-		//すべてのゲームオブジェクトの更新
+		// すべてのゲームオブジェクトの更新
 		updating_game_objects_ = true;
 		for (auto game_object : game_objects_)
 		{
@@ -520,55 +533,20 @@ void Game::UpdateGameObjects(float deltaTime)
 				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
 				break;
 			}
-
-			// ポーズ中かを調べる
-			const bool is_game_state_paused = (game_state_ == GameState::Paused);
-			if (is_game_state_paused)
-			{
-			}
-			else
-			{
-				//bool is_show_game_
-
-				//// ロード画面ゲームオブジェクトかを調べる
-				//const bool is_game_object_loading_screen = (game_object_type == GameObject::TypeID::LoadingScreen);
-				//if (is_game_object_loading_screen)
-				//{
-				//	// ゲームオブジェクトの値コンポーネントを調べる
-				//	auto parameter_components = game_object->GetParameterComponents();
-				//	for (auto parameter_component : parameter_components)
-				//	{
-				//		// 値コンポーネントの型を調べる
-				//		auto parameter_component_type = parameter_component->GetParameterType();
-
-				//		// 値コンポーネントがゲーム画面
-				//		const bool is_show_game_screen = (parameter_component_type == ParameterType::IsShowGameScreen);
-				//		if (is_show_game_screen)
-				//		{				
-				//			// 値コンポーネントのbool値を調べる
-				//			parameter_component->GetBool();
-
-				//		}
-				//	}
-		
-
-				//	game_object->Update(deltaTime);
-				//}
-			}
 		}
 		updating_game_objects_ = false;
 
-		//エフェクトマネージャの一括更新処理
+		// エフェクトマネージャの一括更新処理
 		if (game_state_ != GameState::Paused)
 		{
 			effect_manager_->GetEffekseerManager()->Update();
 		}
 
-		//エフェクトマネージャの更新終了
-		//effect_manager_->GetEffekseerManager()->EndUpdate();
+		// エフェクトマネージャの更新終了
+		// effect_manager_->GetEffekseerManager()->EndUpdate();
 	}
 
-	//待機リストのゲームオブジェクトの操作
+	// 待機リストのゲームオブジェクトの操作
 	for (auto pending_game_object : pending_game_objects_)
 	{
 		pending_game_object->Update(deltaTime);
@@ -576,11 +554,13 @@ void Game::UpdateGameObjects(float deltaTime)
 	}
 	pending_game_objects_.clear();
 
-	//ゲームオブジェクトが破棄の状態かチェック
+	// ゲームオブジェクトが破壊される状態かをチェック
 	std::vector<class GameObject*> dead_game_objects;
 	for (auto game_object : game_objects_)
 	{
-		if (game_object->GetGameObjectState() == GameObject::State::Dead)
+		auto game_object_state = game_object->GetGameObjectState();
+		if ((game_object_state == GameObject::State::Destroy) 
+			|| (game_object_state == GameObject::State::Dead))
 		{
 			dead_game_objects.emplace_back(game_object);
 		}

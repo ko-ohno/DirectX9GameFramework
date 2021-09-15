@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\BulletManager.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_1.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.h" />
@@ -334,6 +335,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\BulletManager.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_1.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_3.cpp" />

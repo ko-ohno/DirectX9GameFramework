@@ -100,12 +100,22 @@ void Title::Uninit(void)
 -----------------------------------------------------------------------------*/
 void Title::InputGameObject(void)
 {
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP))
+	// ƒ[ƒh’†‚¾‚Á‚½‚ç“ü—Í‚ðŽó‚¯•t‚¯‚È‚¢
+	auto game_state = game_->GetGameState();
+	if (game_state == Game::GameState::Loading) { return; }
+	
+	const float InputDeadZone = 0.1f;
+
+	const bool is_up = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ >= InputDeadZone)
+						|| InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP));
+	if (is_up)
 	{
 		select_state_ = TitleMenuState::GameStart;
 	}
 
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN))
+	const bool is_down = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ <= -InputDeadZone)
+						  || InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN));
+	if (is_down)
 	{
 		select_state_ = TitleMenuState::GameQuit;
 	}

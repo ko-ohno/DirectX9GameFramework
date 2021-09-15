@@ -155,6 +155,11 @@ void WeakEnemyAIComponent::Update(float deltaTime)
 		break;
 
 	case EnemyState::Destroy:
+		owner_->SetGameObjectState(GameObject::State::Destroy);
+		break;
+
+	case EnemyState::End:
+		owner_->SetGameObjectState(GameObject::State::Dead);
 		break;
 
 	default:

@@ -29,6 +29,9 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Bullet; }
 
+	// Õ“Ë”»’è‚Ìæ“¾
+	class SphereColliderComponent* GetSphereCollider(void) { return sphere_collider_; }
+
 	// ƒvƒŒƒCƒ„[‚Ìp¨‚ğ‡¬
 	void CombinePlayerTransform(void);
 

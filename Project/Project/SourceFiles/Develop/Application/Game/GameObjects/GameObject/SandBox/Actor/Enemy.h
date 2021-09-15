@@ -33,6 +33,7 @@ enum class EnemyState
 	, MoveShowOneTime			// 画面の端から顔出し
 
 	, Destroy			// 撃破された状態
+	, End				// 役目を終えた状態
 
 	, Max
 };
@@ -53,6 +54,12 @@ public:
 	virtual void UpdateGameObject(float deltaTime) override;
 
 	virtual TypeID GetType(void) const { return TypeID::Enemy; }
+
+	//
+	// 自身の状態の設定
+	//
+
+	void SetEnemyState(EnemyState enemyState);
 
 	//
 	// 移動座標の設定

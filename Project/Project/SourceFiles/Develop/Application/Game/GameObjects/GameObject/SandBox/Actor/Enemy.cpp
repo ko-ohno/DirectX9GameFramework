@@ -9,6 +9,8 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Enemy.h"
+#include "../../../Component/AIComponent/EnemyAIComponent.h"
+#include "../../../Component/MoveComponent/EnemyMoveComponent.h"
 #include "../../../../SandBoxManager/EnemieManager.h"
 
 /*-----------------------------------------------------------------------------
@@ -25,7 +27,6 @@ Enemy::Enemy(Game* game)
 	, move_vector_length_(1.f)
 	, move_action_magnitude_(1.f)
 	, max_execute_time_(1.f)
-
 {
 	// マネージャのリストにアドレスを追加
 	game->GetEnemieManager()->AddEnemyGameObjectAddress(this);
@@ -68,6 +69,18 @@ void Enemy::InputGameObject(void)
 void Enemy::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/* 自身の状態の設定
+-----------------------------------------------------------------------------*/
+void Enemy::SetEnemyState(EnemyState enemyState)
+{
+	if (enemy_ai_ == nullptr) { return; }
+	if (enemy_move_ == nullptr) { return; }
+
+	enemy_ai_->SetEnemyState(enemyState);
+	enemy_move_->SetEnemyState(enemyState);
 }
 
 /*=============================================================================

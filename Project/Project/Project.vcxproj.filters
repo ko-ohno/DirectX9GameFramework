@@ -480,6 +480,9 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\SandBoxManager\BulletManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp">
@@ -915,6 +918,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\SandBoxManager\BulletManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

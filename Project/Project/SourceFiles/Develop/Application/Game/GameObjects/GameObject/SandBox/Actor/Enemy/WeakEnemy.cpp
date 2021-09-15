@@ -9,6 +9,9 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../../StdAfx.h"
 #include "WeakEnemy.h"
+#include "../../Bullet.h"
+#include "../../../../../SandBoxManager/BulletManager.h"
+#include "../../../../../CheckCollision.h"
 
 // 移動コンポーネント
 #include "../../../../Component/MoveComponent/EnemyMoveComponent/WeakEnemyMoveComponent.h"
@@ -34,10 +37,6 @@
 #include "../../../../../../ImGui/ImGuiManager.h"
 
 
-#include "../../../../../Game.h"
-#include "../../../../../SandBoxManager/ActorManager.h"
-
-
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -60,14 +59,14 @@ WeakEnemy::~WeakEnemy(void)
 -----------------------------------------------------------------------------*/
 bool WeakEnemy::Init(void)
 {
-	// ボスのAIを生成 
+	// 弱い敵のAIを生成 
 	enemy_ai_ = NEW WeakEnemyAIComponent(this);
 
-	// ボスの移動コンポーネントを生成
+	// 弱い敵の移動コンポーネントを生成
 	enemy_move_ = NEW WeakEnemyMoveComponent(this);
 
 	{
-		// ボスのメッシュ生成
+		// 弱い敵のメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyWeak);
 		actor_mesh_->SetScale(0.5f);
@@ -75,15 +74,15 @@ bool WeakEnemy::Init(void)
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 
 		// 生成座標を調整
-		this->transform_component_->SetTranslationX(-3.f);
-
-		this->transform_component_->SetTranslationZ( 8.f);
+		//this->transform_component_->SetTranslationX(-3.f);
+		this->transform_component_->SetTranslationY(-100.f);
+		//this->transform_component_->SetTranslationZ( 8.f);
 	}
 
-	// ボスの状態を初期化
+	// 弱い敵の状態を初期化
 	{
 		auto init_WeakEnemy_state = EnemyState::Idle;
-		init_WeakEnemy_state = EnemyState::MoveLoopLeftRight;
+		//init_WeakEnemy_state = EnemyState::MoveLoopLeftRight;
 
 		// 敵の状態を初期化
 		enemy_ai_->SetEnemyState(init_WeakEnemy_state);
@@ -138,6 +137,9 @@ bool WeakEnemy::Init(void)
 			box_gizmo_->AddScaleZ(box_size);
 		}
 	}
+
+
+
 	return true;
 }
 
@@ -161,6 +163,18 @@ void WeakEnemy::InputGameObject(void)
 void WeakEnemy::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 衝突判定の座標を更新
+	{
+		// 座標を取得
+		auto enemy_position = *this->transform_component_->GetPosition();
+
+		// 球の衝突判定
+		this->sphere_collider_->SetTranslation(enemy_position);
+
+		// OBBの衝突判定
+		this->obb_collider_->SetTranslation(enemy_position);
+	}
 
 	// AIコンポーネントに自身のHPを通知する
 	{
@@ -191,7 +205,7 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
-	if (false)
+	if (true)
 	{
 		//
 		// 本番環境スペース:値の伝達
@@ -260,24 +274,59 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 		}
 	}
 
+	// WeakEnemyは必要なし
 	//　自身のAIのステートから攻撃力を更新する
-	switch (ai_state)
+	//switch (ai_state)
+	//{
+	//case EnemyState::Idle:
+	//	attack_ = 0.f;
+	//	break;
+
+	//case EnemyState::Shooting:
+	//	attack_ = 0.f;
+	//	break;
+
+	//case EnemyState::Destroy:
+	//	attack_ = 0.f;
+	//	break;
+
+	//default:
+	//	attack_ = 10.f;
+	//	break;
+	//}
+	
+	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+	for (auto bullet : bullets)
 	{
-	case EnemyState::Idle:
-		attack_ = 0.f;
-		break;
+		// Bulletの所有者がPlayerかを調べる
+		auto bullet_game_object = bullet->GetParentGameObject();
+		if (bullet_game_object->GetType() != GameObject::TypeID::Player)
+		{
+			continue;
+		}
 
-	case EnemyState::Shooting:
-		attack_ = 0.f;
-		break;
+		// プレイヤーのバレットの衝突判定を取得
+		auto components = bullet->GetComponents();
+		for (auto component : components)
+		{
+			auto component_type = component->GetComponentType();
+			if (component_type == Component::TypeID::SphereColliderComponent)
+			{
+				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+				{
+					// エネミーが破壊される
+					this->SetGameObjectState(State::Destroy);
 
-	case EnemyState::Destroy:
-		attack_ = 0.f;
-		break;
+					// 衝突したバレットを破棄する
+					bullet->SetGameObjectState(State::Dead);
+				}
+			}
+		}
+	}
 
-	default:
-		attack_ = 10.f;
-		break;
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// スコアへ加算する
 	}
 }
 

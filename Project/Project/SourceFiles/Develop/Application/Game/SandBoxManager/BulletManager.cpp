@@ -1,6 +1,6 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[ActorManager.cpp] アクター管理クラス
+/*	[BulletManager.cpp] アクター管理クラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
 /*	説明：アクター管理クラス
@@ -8,12 +8,12 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
-#include "ActorManager.h"
+#include "BulletManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-ActorManager::ActorManager(Game* game)
+BulletManager::BulletManager(Game* game)
 	: game_(game)
 {
 }
@@ -21,28 +21,28 @@ ActorManager::ActorManager(Game* game)
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-ActorManager::~ActorManager(void)
+BulletManager::~BulletManager(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* ファクトリメソッド
 -----------------------------------------------------------------------------*/
-ActorManager* ActorManager::Create(Game* game)
+BulletManager* BulletManager::Create(Game* game)
 {
-	return NEW ActorManager(game);
+	return NEW BulletManager(game);
 }
 
 /*-----------------------------------------------------------------------------
 /* 起動処理
 -----------------------------------------------------------------------------*/
-bool ActorManager::StartUp(void)
+bool BulletManager::StartUp(void)
 {
 	//自身の初期化
-	const bool actor_manager_init = this->Init();
-	if (actor_manager_init == false)
+	const bool bullet_manager_init = this->Init();
+	if (bullet_manager_init == false)
 	{
-		assert(!"ActorManager::StartUp()：アクターーマネージャの初期化に失敗しました。");
+		assert(!"BulletManager::StartUp()：バレットマネージャの初期化に失敗しました。");
 		return false;
 	}
 	return true;
@@ -51,7 +51,7 @@ bool ActorManager::StartUp(void)
 /*-----------------------------------------------------------------------------
 /* 停止処理
 -----------------------------------------------------------------------------*/
-void ActorManager::Shutdown(void)
+void BulletManager::Shutdown(void)
 {
 	this->Uninit();
 }
@@ -59,11 +59,11 @@ void ActorManager::Shutdown(void)
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool ActorManager::Init(void)
+bool BulletManager::Init(void)
 {
 	//自身の初期化
 	{
-		actor_list_.clear();
+		bullet_list_.clear();
 	}
 	return true;
 }
@@ -71,52 +71,52 @@ bool ActorManager::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void ActorManager::Uninit(void)
+void BulletManager::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* アクターゲームオブジェクトのアドレスの追加処理
 -----------------------------------------------------------------------------*/
-void ActorManager::AddActorGameObjectAddress(Actor* actor)
+void BulletManager::AddBulletGameObjectAddress(Bullet* bullet)
 {
-	actor_list_.emplace_back(actor);
+	bullet_list_.emplace_back(bullet);
 }
 
 /*-----------------------------------------------------------------------------
 /* アクターゲームオブジェクトのアドレスの削除処理
 -----------------------------------------------------------------------------*/
-void ActorManager::RemoveActorGameObjectAddress(Actor* actor)
+void BulletManager::RemoveBulletGameObjectAddress(Bullet* bullet)
 {
-	auto iter = std::find(actor_list_.begin() //範囲0～
-						 , actor_list_.end()  //範囲最大まで
-						 , actor);			   //探す対象
+	auto iter = std::find(bullet_list_.begin()	//範囲0～
+						 , bullet_list_.end()	//範囲最大まで
+						 , bullet);				//探す対象
 
-	if (iter != actor_list_.end())
+	if (iter != bullet_list_.end())
 	{
-		actor_list_.erase(iter);
+		bullet_list_.erase(iter);
 	}
 }
 
 /*-----------------------------------------------------------------------------
 /* アクターゲームオブジェクトのアドレスを検索処理
 -----------------------------------------------------------------------------*/
-Actor* ActorManager::FindActorGameObjectAddress(Actor* actor)
+Bullet* BulletManager::FindBulletGameObjectAddress(Bullet* bullet)
 {
-	auto iter = std::find(actor_list_.begin() //範囲0～
-						 , actor_list_.end()  //範囲最大まで
-						 , actor);			   //探す対象
+	auto iter = std::find(bullet_list_.begin()	//範囲0～
+						 , bullet_list_.end()	//範囲最大まで
+						 , bullet);				//探す対象
 
 	// 見つかった場合
-	if (iter != actor_list_.end())
+	if (iter != bullet_list_.end())
 	{
 		// コンテナの中のインデックスを取得
-		const int iter_index = std::distance(actor_list_.begin(), iter);
-		return actor_list_.at(iter_index);
+		const int iter_index = std::distance(bullet_list_.begin(), iter);
+		return bullet_list_.at(iter_index);
 	}
 
 	// 見つからなかった場合
-	assert(!"ActorManager::FindActorGameObjectAddress():アクターが見つかりませんでした！");
+	assert(!"BulletManager::FindBulletGameObjectAddress():バレットが見つかりませんでした！");
 	return nullptr;
 }
 

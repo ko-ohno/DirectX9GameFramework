@@ -185,8 +185,7 @@ void SceneTitle::Update(float deltaTime)
 	case TitleMenuState::GameStart:
 		if (this->is_scene_change_tirgger_ == false)
 		{
-			//if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
-			if (InputCheck::KeyTrigger(DIK_SPACE))
+			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
 			{
 				// ê–ÊØ‚è‘Ö‚¦‚ÌƒgƒŠƒK[‚ğON‚É‚µ‚Ä“ü—Í‚ğ–³Œø‰»
 				is_scene_change_tirgger_ = true;

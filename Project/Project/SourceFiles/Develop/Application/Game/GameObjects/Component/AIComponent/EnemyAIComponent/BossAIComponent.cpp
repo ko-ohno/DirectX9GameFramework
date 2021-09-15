@@ -142,6 +142,7 @@ void BossAIComponent::Update(float deltaTime)
 		break;
 
 	case EnemyState::Destroy:
+		owner_->SetGameObjectState(GameObject::State::Destroy);
 		break;
 
 	default:
