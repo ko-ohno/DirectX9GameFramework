@@ -30,7 +30,26 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Planet; }
 
 private:
-	class BillboardRendererComponent* planet_billboard_;
+	// 値コンポーネント取得用ゲームマネージャーへのポインタ
+	class GameObject*					game_manager_;
+
+private:
+	class BillboardRendererComponent*	planet_billboard_;
+
+	// 惑星の最大の大きさ
+	static constexpr float MAX_PLANET_SCALE = 99;
+
+	// 惑星の大きさ
+	float planet_scale_;
+
+	// 惑星の最大の大きさ
+	static constexpr float MAX_PLANET_OFFSET_HEIGHT = -30;
+
+	// 惑星のオフセット座標の高さ
+	float planet_offset_height_;
+
+	// ゲームの進行度
+	int game_progress_value_;
 };
 
 #endif //PLANET_H_
