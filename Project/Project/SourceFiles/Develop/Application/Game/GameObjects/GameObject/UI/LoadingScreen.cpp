@@ -57,13 +57,10 @@ bool LoadingScreen::Init(void)
 	// 通信する既存のゲームオブジェクトから値コンポーネントの取得
 	// 
 
-// ゲームオブジェクトのリストを取得
+	// ゲームオブジェクトのリストを取得
 	auto game_objects = game_->GetGameObjects();
 	for (auto game_object : game_objects)
 	{
-		//　ゲームオブジェクトが所有する値コンポーネントのリストを取得
-		auto parameter_components = game_object->GetParameterComponents();
-
 		// ゲームオブジェクトの型を調べる
 		auto game_object_type = game_object->GetType();
 
@@ -72,6 +69,9 @@ bool LoadingScreen::Init(void)
 			// フェード画面ゲームオブジェクトから値コンポーネントのポインタを取得
 			if (game_object_type == GameObject::TypeID::Fade)
 			{
+				//　ゲームオブジェクトが所有する値コンポーネントのリストを取得
+				auto parameter_components = game_object->GetParameterComponents();
+
 				// ゲームオブジェクトが所有する値コンポーネントを調べる
 				for (auto parameter_component : parameter_components)
 				{
@@ -87,6 +87,7 @@ bool LoadingScreen::Init(void)
 						this->parameter_is_fade_completed_ = parameter_component;
 					}
 				}
+				break;
 			}
 		}
 	}

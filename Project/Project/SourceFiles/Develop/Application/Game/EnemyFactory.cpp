@@ -18,6 +18,7 @@
 #include "EnemyFactoryState/EnemyFactoryState_4.h"
 #include "EnemyFactoryState/EnemyFactoryState_5.h"
 #include "EnemyFactoryState/EnemyFactoryState_6.h"
+#include "EnemyFactoryState/EnemyFactoryState_Last.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ

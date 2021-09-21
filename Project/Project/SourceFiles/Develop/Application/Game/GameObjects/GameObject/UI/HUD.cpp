@@ -26,7 +26,9 @@ HUD::HUD(class Game* game)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
-	, health_value_(0)
+	, hp_value_(0)
+	, max_hp_value_(0)
+	, hp_rate_(0.f)
 	, meter_center_bg_(nullptr)
 	, meter_left_bg_(nullptr)
 	, meter_right_bg_(nullptr)
@@ -52,7 +54,6 @@ bool HUD::Init(void)
 {
 	// 値の初期化
 	{
-		health_value_	= 1.f;
 		distance_value_ = 0;
 		score_value_	= 0;
 	}
@@ -137,15 +138,14 @@ void HUD::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void HUD::UpdateGameObject(float deltaTime)
 {
-	ImGui::Begin("HUD");
-	ImGui::SliderFloat("##health_value", &health_value_, 0, 1.f);
-	ImGui::End();
-
 	// ゲームマネージャを探す
 	if (game_manager_ == nullptr)
 	{
 		game_manager_ = this->FindGameObject(TypeID::GameManager);
 	}
+
+	// 体力ゲージに対する割合を計算
+	hp_rate_ = (1.f / max_hp_value_) * hp_value_;
 
 	// HUDの値を更新
 	this->UpdateHUDValue(deltaTime);
@@ -173,12 +173,28 @@ void HUD::UpdateHUDValue(float deltaTime)
 	auto parameter_compnents = game_manager_->GetParameterComponents();
 	for (auto parameter_compnent : parameter_compnents)
 	{
+		// 値コンポーネントの型を調べる
 		auto parameter_type = parameter_compnent->GetParameterType();
-		if (parameter_type == ParameterType::Progress)
+
+		// プレイヤーの最大HPの取得
+		if (parameter_type == ParameterType::MaxHP)
+		{
+			max_hp_value_ = parameter_compnent->GetInt();
+		}
+
+		// プレイヤーのHPの取得
+		if (parameter_type == ParameterType::HP)
+		{
+			hp_value_ = parameter_compnent->GetInt();
+		}
+
+		// ゲームの進行度
+		if (parameter_type == ParameterType::GameProgress)
 		{
 			distance_value_ = parameter_compnent->GetInt();
 		}
 
+		// スコアの値
 		if (parameter_type == ParameterType::Score)
 		{
 			score_value_ = parameter_compnent->GetInt();
@@ -204,25 +220,25 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		const float warning_value	= (1.f / 3.f) * 2.f;
 		const float danger_value	= (1.f / 3.f);
 
-		if (health_value_ >= warning_value)
+		if (hp_rate_ >= warning_value)
 		{
 			health_bar_->SetVertexColor(  0, 255, 0);
 		}
 
-		if (health_value_ <= warning_value)
+		if (hp_rate_ <= warning_value)
 		{
 			health_bar_->SetVertexColor(255, 255, 0);
 		}
 
-		if (health_value_ <= danger_value)
+		if (hp_rate_ <= danger_value)
 		{
 			health_bar_->SetVertexColor(255,   0, 0);
 		}
 
-		const float width = 500.f * health_value_;
+		const float width = 500.f * hp_rate_;
 		const float height = 60.f;
 
-		const float health_bar_width = health_bar_->GetScale()->x;
+		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
 		health_bar_->SetScaleX(width);
@@ -237,7 +253,7 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		const float width = 500.f;
 		const float height = 60.f;
 
-		const float health_bar_width = health_bar_blank_->GetScale()->x;
+		//const float health_bar_width = health_bar_blank_->GetScale()->x;
 		const float health_bar_height = health_bar_blank_->GetScale()->y;
 
 		health_bar_blank_->SetScaleX(width);
@@ -252,7 +268,7 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		const float width = 510.f;
 		const float height = 70.f;
 
-		const float health_bar_width = health_bar_bg_->GetScale()->x;
+		//const float health_bar_width = health_bar_bg_->GetScale()->x;
 		const float health_bar_height = health_bar_bg_->GetScale()->y;
 
 		health_bar_bg_->SetScaleX(width);

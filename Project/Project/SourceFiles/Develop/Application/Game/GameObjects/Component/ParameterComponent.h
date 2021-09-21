@@ -18,9 +18,10 @@ enum class ParameterType
 {
 	None = -1
 	, HP				// 体力
+	, MaxHP				// 最大体力		
 	, Attack			// 攻撃
 	, Deffence			// 防御
-	, Progress			// 進行度
+	, GameProgress			// 進行度
 	, Score				// スコア
 
 	, IsSceneChanged		// 場面切り替えを行うか？

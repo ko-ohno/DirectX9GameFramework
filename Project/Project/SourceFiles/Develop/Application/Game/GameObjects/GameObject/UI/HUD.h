@@ -43,29 +43,35 @@ public:
 
 
 private:
-	class GameObject* game_manager_;
+	// 値コンポーネント取得用ゲームマネージャーへのポインタ
+	class GameObject*					game_manager_;
 
 private:
 	// 体力ゲージ
-	class SpriteRendererComponent* health_bar_;
-	class SpriteRendererComponent* health_bar_blank_;
-	class SpriteRendererComponent* health_bar_bg_;
+	class SpriteRendererComponent*		health_bar_;
+	class SpriteRendererComponent*		health_bar_blank_;
+	class SpriteRendererComponent*		health_bar_bg_;
+
+	// 最大の体力値
+	int		max_hp_value_;
 
 	// 体力値
-	float health_value_;
+	int		hp_value_;
+
+	// 現在のHPの割合
+	float	hp_rate_;
 
 private:
 	// ゴールまでの距離のHUD
-	class SpriteRendererComponent* meter_center_bg_;
-	class SpriteRendererComponent* meter_left_bg_;
-	class SpriteRendererComponent* meter_right_bg_;
+	class SpriteRendererComponent*		meter_center_bg_;
+	class SpriteRendererComponent*		meter_left_bg_;
+	class SpriteRendererComponent*		meter_right_bg_;
 
 	// 数字桁の表示
 	class SpriteDigitRendererComponent* distance_digit_;
 
 	// ゴールまでの距離の値
 	int distance_value_;
-
 
 private:
 	// 数字桁の表示

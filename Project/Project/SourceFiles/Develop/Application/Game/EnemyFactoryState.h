@@ -22,8 +22,8 @@ public:
 	EnemyFactoryState(class Game* game)
 		: game_(game)
 		, execute_time_(0.f)
-		, is_spawn(false)
-		, spawn_count(0)
+		, is_spawn_(false)
+		, spawn_count_(0)
 	{}
 	virtual ~EnemyFactoryState(void) {}
 
@@ -47,10 +47,10 @@ protected:
 	float execute_time_;
 
 	// ê∂ê¨Ç∑ÇÈÇ©ÅH
-	bool is_spawn;
+	bool is_spawn_;
 
 	// ê∂ê¨ÇµÇΩÇ©ÅH
-	int  spawn_count;
+	int  spawn_count_;
 };
 
 

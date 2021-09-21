@@ -29,7 +29,13 @@ public:
 	TypeID GetType(void) const override { return TypeID::Player; }
 
 private:
+	// 値コンポーネントの更新
+	void UpdateParameter(float deltaTime);
+
+	// 武器の更新
 	void UpdateWeapon(float deltaTime);
+
+	// エフェクトの更新
 	void UpdatePirticleEffect(float deltaTime);
 
 private:
@@ -59,6 +65,19 @@ private:
 	class OBBColliderComponent*			 lockon_collider_;
 	class BoxGizmoRendererComponent*	 lockon_gizmo_;
 
+	//
+	// 値コンポーネントの更新
+	//
+
+	// プレイヤーの最大HPの値コンポーネント
+	class IntParameterComponent*		max_hp_param_;
+	//int								max_hp_value_;	//Actorクラスで設定済み
+
+	// プレイヤーのHPの値コンポーネント
+	class IntParameterComponent*		hp_param_;
+	//int								hp_value_;		//Actorクラスで設定済み
+
+	// 光線銃を発射するか 
 	bool is_blaster_fire_;
 };
 

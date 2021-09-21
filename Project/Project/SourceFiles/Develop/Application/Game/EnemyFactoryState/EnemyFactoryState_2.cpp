@@ -49,13 +49,13 @@ void EnemyFactoryState_2::Update(float deltaTime)
 	// 開始座標を同じにして生成時間をずらす
 	//
 
-	if (spawn_count >= MAX_SPAWN_COUNT_) { return; }
+	if (spawn_count_ >= MAX_SPAWN_COUNT_) { return; }
 
 	// エネミーを生成するための情報を初期化
 	class WeakEnemy* enemy = nullptr;
 
 	// 生成するフラグを初期化
-	is_spawn = false;
+	is_spawn_ = false;
 
 	// 移動ベクトルの差分
 	const float move_vector_diff = 4.f;
@@ -72,17 +72,17 @@ void EnemyFactoryState_2::Update(float deltaTime)
 	const float move_action_magnitude = 20.f;
 
 	// エネミーを生成する差分の時間を求める
-	const float spawn_time = (SPAWN_DIFF_TIME_ * spawn_count);
+	const float spawn_time = (SPAWN_DIFF_TIME_ * spawn_count_);
 
 	// 実行時間を計算
 	execute_time_ += deltaTime;
 
 	// エネミーの生成を行うか？
-	const bool is_execute_spawn = ((execute_time_ >= spawn_time) && (is_spawn == false));
+	const bool is_execute_spawn = ((execute_time_ >= spawn_time) && (is_spawn_ == false));
 	if (is_execute_spawn)
 	{
 		// 生成数が半分以下だったら
-		if (!(spawn_count >= HALF_SPAWN_COUNT_))
+		if (!(spawn_count_ >= HALF_SPAWN_COUNT_))
 		{
 			// 生成
 			enemy = NEW WeakEnemy(game_);
@@ -130,10 +130,10 @@ void EnemyFactoryState_2::Update(float deltaTime)
 		}
 
 		// 生成カウントを加算
-		spawn_count++;
+		spawn_count_++;
 
 		// 生成したことを記憶
-		is_spawn = true;
+		is_spawn_ = true;
 	}
 }
 

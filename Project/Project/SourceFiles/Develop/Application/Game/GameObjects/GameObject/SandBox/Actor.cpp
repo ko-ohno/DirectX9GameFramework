@@ -16,10 +16,10 @@
 -----------------------------------------------------------------------------*/
 Actor::Actor(Game* game)
 	: SandBox(game)
-	, max_hit_point_(10.f)
-	, hit_point_(10.f)
-	, max_attack_(3.f)
-	, attack_(3.f)
+	, max_hit_point_(0.f)
+	, hit_point_(0.f)
+	, max_attack_(0.f)
+	, attack_(0.f)
 	, actor_mesh_(nullptr)
 	, sphere_collider_(nullptr)
 	, sphere_gizmo_(nullptr)
@@ -27,6 +27,9 @@ Actor::Actor(Game* game)
 	, box_gizmo_(nullptr)
 {
 	renderer_layer_type_ = RendererLayerType::Game;
+
+	// 初期化
+	this->Init();
 
 	// アクターマネージャにインスタンスのアドレスを追加
 	game_->GetActorManager()->AddActorGameObjectAddress(this);
@@ -37,6 +40,9 @@ Actor::Actor(Game* game)
 -----------------------------------------------------------------------------*/
 Actor::~Actor(void)
 {
+	// 終了化
+	this->Uninit();
+
 	// アクターマネージャのインスタンスのアドレスを削除
 	game_->GetActorManager()->RemoveActorGameObjectAddress(this);
 }
@@ -46,6 +52,13 @@ Actor::~Actor(void)
 -----------------------------------------------------------------------------*/
 bool Actor::Init(void)
 {
+	// ステータスの初期化
+	{
+		max_hit_point_  = 100.f;
+		hit_point_		= 100.f;
+		max_attack_		= 1.f;
+		attack_			= 1.f;
+	}
 	return true;
 }
 
