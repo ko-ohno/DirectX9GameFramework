@@ -53,10 +53,10 @@ private:
 	class SpriteRendererComponent*		health_bar_bg_;
 
 	// Å‘å‚Ì‘Ì—Í’l
-	int		max_hp_value_;
+	float	max_hp_value_;
 
 	// ‘Ì—Í’l
-	int		hp_value_;
+	float	hp_value_;
 
 	// Œ»İ‚ÌHP‚ÌŠ„‡
 	float	hp_rate_;

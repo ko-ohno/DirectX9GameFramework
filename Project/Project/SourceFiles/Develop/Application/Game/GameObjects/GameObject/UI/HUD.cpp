@@ -26,8 +26,8 @@ HUD::HUD(class Game* game)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
-	, hp_value_(0)
-	, max_hp_value_(0)
+	, hp_value_(0.f)
+	, max_hp_value_(0.f)
 	, hp_rate_(0.f)
 	, meter_center_bg_(nullptr)
 	, meter_left_bg_(nullptr)
@@ -179,13 +179,13 @@ void HUD::UpdateHUDValue(float deltaTime)
 		// プレイヤーの最大HPの取得
 		if (parameter_type == ParameterType::MaxHP)
 		{
-			max_hp_value_ = parameter_compnent->GetInt();
+			max_hp_value_ = parameter_compnent->GetFloat();
 		}
 
 		// プレイヤーのHPの取得
 		if (parameter_type == ParameterType::HP)
 		{
-			hp_value_ = parameter_compnent->GetInt();
+			hp_value_ = parameter_compnent->GetFloat();
 		}
 
 		// ゲームの進行度

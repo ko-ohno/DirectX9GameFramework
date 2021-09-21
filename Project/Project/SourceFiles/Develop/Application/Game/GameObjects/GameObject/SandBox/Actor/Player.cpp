@@ -13,6 +13,7 @@
 
 // 値コンポーネント
 #include "../../../Component/ParameterComponent/IntParameterComponent.h"
+#include "../../../Component/ParameterComponent/FloatParameterComponent.h"
 
 // 描画コンポーネント
 #include "../../../Component/RendererComponent/FFPMeshRendererComponent.h"
@@ -173,14 +174,14 @@ bool Player::Init(void)
 	// 値コンポーネントの作成
 	{
 		// 最大HP
-		max_hp_param_ = NEW IntParameterComponent(this);
+		max_hp_param_ = NEW FloatParameterComponent(this);
 		max_hp_param_->SetParameterType(ParameterType::MaxHP);
-		max_hp_param_->SetInt(max_hit_point_);
+		max_hp_param_->SetFloat(max_hit_point_);
 
 		// HP
-		hp_param_ = NEW IntParameterComponent(this);
+		hp_param_ = NEW FloatParameterComponent(this);
 		hp_param_->SetParameterType(ParameterType::HP);
-		hp_param_->SetInt(hit_point_);
+		hp_param_->SetFloat(hit_point_);
 	}
 	return true;
 }
@@ -284,10 +285,10 @@ void Player::UpdateParameter(float deltaTime)
 	}
 
 	// 最大HPの更新
-	max_hp_param_->SetInt(max_hit_point_);
+	max_hp_param_->SetFloat(max_hit_point_);
 
 	// 現在のHPの更新
-	hp_param_->SetInt(hit_point_);
+	hp_param_->SetFloat(hit_point_);
 }
 
 /*-----------------------------------------------------------------------------

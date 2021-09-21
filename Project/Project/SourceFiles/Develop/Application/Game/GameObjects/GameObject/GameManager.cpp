@@ -52,9 +52,9 @@ GameManager::GameManager(Game* game)
 	, effect_space_dust_(nullptr)
 	, bgm_(nullptr)
 	, player_max_hp_param_(nullptr)
-	, player_max_hp_value_(0)
+	, player_max_hp_value_(0.f)
 	, player_hp_param_(nullptr)
-	, player_hp_value_(0)
+	, player_hp_value_(0.f)
 	, progress_param_(nullptr)
 	, progress_value_(0)
 	, score_param_(nullptr)
@@ -111,11 +111,11 @@ bool GameManager::Init(void)
 	// 値コンポーネントの生成
 	{
 		// プレイヤーの最大HP
-		player_max_hp_param_ = NEW IntParameterComponent(this);
+		player_max_hp_param_ = NEW FloatParameterComponent(this);
 		player_max_hp_param_->SetParameterType(ParameterType::MaxHP);
 
 		// プレイヤーのHP
-		player_hp_param_ = NEW IntParameterComponent(this);
+		player_hp_param_ = NEW FloatParameterComponent(this);
 		player_hp_param_->SetParameterType(ParameterType::HP);
 
 		// ゲームの進行度
@@ -273,14 +273,14 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		// プレイヤーの最大HP値の更新
 		if (parameter_component_type == ParameterType::MaxHP)
 		{
-			player_max_hp_value_ = parameter_component->GetInt();
-			player_max_hp_param_->SetInt(player_hp_value_);
+			player_max_hp_value_ = parameter_component->GetFloat();
+			player_max_hp_param_->SetInt(player_max_hp_value_);
 		}
 
 		// プレイヤーのHP値の更新
 		if (parameter_component_type == ParameterType::HP)
 		{
-			player_hp_value_ = parameter_component->GetInt();
+			player_hp_value_ = parameter_component->GetFloat();
 			player_hp_param_->SetInt(player_hp_value_);
 		}
 	}

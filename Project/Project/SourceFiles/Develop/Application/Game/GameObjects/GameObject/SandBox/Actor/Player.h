@@ -70,11 +70,11 @@ private:
 	//
 
 	// プレイヤーの最大HPの値コンポーネント
-	class IntParameterComponent*		max_hp_param_;
+	class FloatParameterComponent*		max_hp_param_;
 	//int								max_hp_value_;	//Actorクラスで設定済み
 
 	// プレイヤーのHPの値コンポーネント
-	class IntParameterComponent*		hp_param_;
+	class FloatParameterComponent*		hp_param_;
 	//int								hp_value_;		//Actorクラスで設定済み
 
 	// 光線銃を発射するか 

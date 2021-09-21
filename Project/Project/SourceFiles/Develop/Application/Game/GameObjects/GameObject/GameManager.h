@@ -56,12 +56,12 @@ private:
 
 private:
 	// プレイヤーの最大HPの値コンポーネント
-	class IntParameterComponent*	  player_max_hp_param_;
-	int								  player_max_hp_value_;
+	class FloatParameterComponent*	  player_max_hp_param_;
+	float							  player_max_hp_value_;
 
 	// プレイヤーのHPの値コンポーネント
-	class IntParameterComponent*	  player_hp_param_;
-	int								  player_hp_value_;
+	class FloatParameterComponent*	  player_hp_param_;
+	float							  player_hp_value_;
 
 	// ゲームの進行度の値コンポーネント
 	class IntParameterComponent*	  progress_param_;
