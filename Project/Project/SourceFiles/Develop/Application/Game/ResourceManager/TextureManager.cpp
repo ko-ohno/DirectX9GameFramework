@@ -29,6 +29,8 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	, "ScoreDoublePoint"
 	, "FarReticle"
 	, "NearReticle"
+	, "Exclamation"
+	, "WeakPoint"
 	, "Planet"
 };
 
@@ -105,15 +107,16 @@ bool TextureManager::Init(void)
 		unmap_texture_path_list_[TextureType::Pause]			  = "Pause.png";
 		unmap_texture_path_list_[TextureType::Resume]			  = "resume.png";
 		unmap_texture_path_list_[TextureType::ScreenBG]			  = "bg_space.png";
-		unmap_texture_path_list_[TextureType::GameStart] = "GameStart.png";
-		unmap_texture_path_list_[TextureType::GameQuit]  = "quit.png";
+		unmap_texture_path_list_[TextureType::GameStart]		  = "GameStart.png";
+		unmap_texture_path_list_[TextureType::GameQuit]			  = "quit.png";
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0]  = "score_font_origin_0.png";
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1]  = "score_font_origin_1.png";
 		unmap_texture_path_list_[TextureType::ScoreDoublePoint]   = "double.png";
 		unmap_texture_path_list_[TextureType::FarReticle]		  = "ReticleFar.png";
 		unmap_texture_path_list_[TextureType::NearReticle]		  = "ReticleNear.png";
+		unmap_texture_path_list_[TextureType::Exclamation]		  = "exclamation.png";
+		unmap_texture_path_list_[TextureType::WeakPoint]		  = "weak_point_text.png";
 		unmap_texture_path_list_[TextureType::Planet]			  = "Planet.png";
-
 	}
 	return true;
 }

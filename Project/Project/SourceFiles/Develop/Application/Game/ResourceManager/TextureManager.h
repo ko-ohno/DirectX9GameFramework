@@ -32,6 +32,8 @@ enum class TextureType
 	, ScoreDoublePoint
 	, FarReticle
 	, NearReticle
+	, Exclamation
+	, WeakPoint
 	, Planet
 	, Max
 };

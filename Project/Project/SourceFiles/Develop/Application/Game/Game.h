@@ -24,6 +24,7 @@ public:
 		, Gameplay
 		, Result
 		, Paused
+		, GameOver
 		, Loading
 		, Quit
 
