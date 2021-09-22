@@ -260,6 +260,11 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("PosZ:%f", pos.z);
 
 	ImGui::End();
+
+
+
+	// 1フレーム前の情報を更新
+	hit_point_old_ = hit_point_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -267,6 +272,8 @@ void Player::UpdateGameObject(float deltaTime)
 -----------------------------------------------------------------------------*/
 void Player::UpdateParameter(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	const bool is_nullptr_max_hp_param	= (max_hp_param_ == nullptr);
 	const bool is_nullptr_hp_param		= (hp_param_ == nullptr);
 

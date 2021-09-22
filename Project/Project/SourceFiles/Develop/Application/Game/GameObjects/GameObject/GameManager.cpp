@@ -51,6 +51,8 @@ GameManager::GameManager(Game* game)
 	, player_sandbox_gizmo_(nullptr)
 	, effect_space_dust_(nullptr)
 	, bgm_(nullptr)
+	, bgm_volume_(0.f)
+	, is_bgm_change_(false)
 	, player_max_hp_param_(nullptr)
 	, player_max_hp_value_(0.f)
 	, player_hp_param_(nullptr)
@@ -103,9 +105,11 @@ bool GameManager::Init(void)
 	effect_space_dust_->Play();	//再生開始 
 
 	// BGMを設定
+	bgm_volume_ = MAX_BGM_VOLUME_;
+
 	bgm_ = NEW AudioComponent(this);
 	bgm_->SetSound(SoundType::WonderLand);
-	bgm_->SetAudioVolume(0.3f);
+	bgm_->SetAudioVolume(bgm_volume_);
 	bgm_->PlayLoop();
 
 	// 値コンポーネントの生成
@@ -134,8 +138,8 @@ bool GameManager::Init(void)
 
 	// ボスだけの生成処理
 	{
-		game_left_time_ = 0.f;
-		spawn_count_ = 6;
+		//game_left_time_ = 0.f;
+		//spawn_count_ = 6;
 	}
 	
 	return true;
@@ -168,6 +172,12 @@ void GameManager::UpdateGameObject(float deltaTime)
 {
 	// 値コンポーネントの更新
 	this->UpdateParameterComponent(deltaTime);
+
+	// BGMの切り替え処理
+	if (is_bgm_change_ == true)
+	{
+		this->UpdateBGM(deltaTime);
+	}
 
 	const int MAX_SPAWN_COUNT = 7;
 	if (spawn_count_ >= MAX_SPAWN_COUNT) { return; }
@@ -204,9 +214,10 @@ void GameManager::UpdateGameObject(float deltaTime)
 				case 3:
 					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_4(game_));
 
-					// エフェクトの切り替え
+					// 現在のエフェクトの停止
 					effect_space_dust_->Stop();
 
+					// エフェクトの切り替え
 					effect_space_dust_->SetEffect(EffectType::SpaceDustBlue);
 					effect_space_dust_->Play();
 					break;
@@ -227,9 +238,13 @@ void GameManager::UpdateGameObject(float deltaTime)
 			{
 				enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
 
-				// エフェクトの切り替え
+				// BGMの切り替えを有効に
+				is_bgm_change_ = true;
+
+				// 現在のエフェクトの停止
 				effect_space_dust_->Stop();
 
+				// エフェクトの切り替え
 				effect_space_dust_->SetEffect(EffectType::SpaceDustRed);
 				effect_space_dust_->Play();
 			}
@@ -274,14 +289,14 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		if (parameter_component_type == ParameterType::MaxHP)
 		{
 			player_max_hp_value_ = parameter_component->GetFloat();
-			player_max_hp_param_->SetInt(player_max_hp_value_);
+			player_max_hp_param_->SetFloat(player_max_hp_value_);
 		}
 
 		// プレイヤーのHP値の更新
 		if (parameter_component_type == ParameterType::HP)
 		{
 			player_hp_value_ = parameter_component->GetFloat();
-			player_hp_param_->SetInt(player_hp_value_);
+			player_hp_param_->SetFloat(player_hp_value_);
 		}
 	}
 
@@ -299,13 +314,38 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 	}
 
 
-	ImGui::Begin("HUD");
-	ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
-	ImGui::End();
+	//ImGui::Begin("HUD");
+	//ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
+	//ImGui::End();
 
 	// スコアの値の更新
 	{
+		score_value_ = score_param_->GetInt();
 		score_param_->SetInt(score_value_);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* BGMの更新処理
+-----------------------------------------------------------------------------*/
+void GameManager::UpdateBGM(float deltaTime)
+{
+	// 音量を小さく
+	bgm_volume_ -= deltaTime;
+	bgm_->SetAudioVolume(bgm_volume_);
+
+	// BGMの切り替え
+	if (bgm_volume_ <= 0.f)
+	{
+		// 現在のBGMを停止
+		bgm_->Stop();
+
+		// BGMの切り替えと再生
+		bgm_->SetSound(SoundType::JetPenguin_2nd);
+		bgm_->SetAudioVolume(MAX_BGM_VOLUME_);
+		bgm_->PlayLoop();
+
+		is_bgm_change_ = false;
 	}
 }
 

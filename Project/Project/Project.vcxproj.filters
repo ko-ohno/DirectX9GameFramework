@@ -486,6 +486,9 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\External\ImGui\include\imgui.cpp">
@@ -927,6 +930,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Title.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

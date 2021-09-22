@@ -185,7 +185,7 @@ void SceneTitle::Update(float deltaTime)
 	case TitleMenuState::GameStart:
 		if (this->is_scene_change_tirgger_ == false)
 		{
-			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
+			if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A) || InputCheck::KeyTrigger(DIK_SPACE))
 			{
 				// 場面切り替えのトリガーをONにして入力を無効化
 				is_scene_change_tirgger_ = true;
@@ -229,6 +229,14 @@ void SceneTitle::Update(float deltaTime)
 		// ゲーム場面へ
 		this->ChangeScene();
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* BGMの更新処理
+-----------------------------------------------------------------------------*/
+void SceneTitle::UpdateBGM(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------

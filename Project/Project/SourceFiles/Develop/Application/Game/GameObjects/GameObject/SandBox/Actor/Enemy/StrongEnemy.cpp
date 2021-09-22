@@ -9,6 +9,9 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../../StdAfx.h"
 #include "StrongEnemy.h"
+#include "../../Bullet.h"
+#include "../../../../../SandBoxManager/BulletManager.h"
+#include "../../../../../CheckCollision.h"
 
 // 移動コンポーネント
 #include "../../../../Component/MoveComponent/EnemyMoveComponent/StrongEnemyMoveComponent.h"
@@ -215,6 +218,41 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 		break;
 	}
 
+
+	// 衝突判定の設定
+	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+	for (auto bullet : bullets)
+	{
+		// Bulletの所有者がPlayerかを調べる
+		auto bullet_game_object = bullet->GetParentGameObject();
+		if (bullet_game_object->GetType() != GameObject::TypeID::Player)
+		{
+			continue;
+		}
+
+		// プレイヤーのバレットの衝突判定を取得
+		auto components = bullet->GetComponents();
+		for (auto component : components)
+		{
+			auto component_type = component->GetComponentType();
+			if (component_type == Component::TypeID::SphereColliderComponent)
+			{
+				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+				{
+					// エネミーが破壊される
+					this->SetGameObjectState(State::Destroy);
+
+					// 衝突したバレットを破棄する
+					bullet->SetGameObjectState(State::Dead);
+				}
+			}
+		}
+	}
+
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// スコアへ加算する
+	}
 }
 /*=============================================================================
 /*		End of File

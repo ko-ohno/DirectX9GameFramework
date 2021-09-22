@@ -43,6 +43,9 @@ private:
 	// レーザーのゲームオブジェクト
 	class LargeLaser*					large_laser_;
 
+	// レーザーを発射するか
+	bool								is_fire_;
+
 private:
 	// このコンポーネントの位置を示すgizmo
 	class SphereGizmoRendererComponent* sphere_gizmo_;

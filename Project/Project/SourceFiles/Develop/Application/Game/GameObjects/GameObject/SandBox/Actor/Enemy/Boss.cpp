@@ -84,6 +84,7 @@ bool Boss::Init(void)
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 
 		// 生成座標を調整
+		this->transform_component_->SetTranslationY(-100.f);
 		this->transform_component_->SetTranslationZ(15.f);
 	}
 

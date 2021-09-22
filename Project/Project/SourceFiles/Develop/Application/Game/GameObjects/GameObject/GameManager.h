@@ -32,6 +32,8 @@ public:
 	// 値コンポーネントの更新処理
 	void UpdateParameterComponent(float deltaTime);
 
+	// BGMの更新処理
+	void UpdateBGM(float deltaTime);
 
 private:
 	// エネミーのファクトリ
@@ -53,6 +55,13 @@ private:
 	// BGMの再生
 	class AudioComponent*			  bgm_;
 
+	static constexpr float			  MAX_BGM_VOLUME_ = 0.3f;
+
+	// BGMの音量
+	float							  bgm_volume_;
+
+	// BGMのフェードアウトを行うか？
+	bool							  is_bgm_change_;
 
 private:
 	// プレイヤーの最大HPの値コンポーネント

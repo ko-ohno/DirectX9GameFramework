@@ -559,8 +559,7 @@ void Game::UpdateGameObjects(float deltaTime)
 	for (auto game_object : game_objects_)
 	{
 		auto game_object_state = game_object->GetGameObjectState();
-		if ((game_object_state == GameObject::State::Destroy) 
-			|| (game_object_state == GameObject::State::Dead))
+		if (game_object_state == GameObject::State::Dead)
 		{
 			dead_game_objects.emplace_back(game_object);
 		}

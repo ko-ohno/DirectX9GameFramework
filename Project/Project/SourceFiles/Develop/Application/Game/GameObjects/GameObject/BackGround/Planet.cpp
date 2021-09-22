@@ -20,7 +20,7 @@ Planet::Planet(Game* game)
 	, game_manager_(nullptr)
 	, planet_scale_(0.f)
 	, planet_offset_height_(0.f)
-	, game_progress_value_(0.f)
+	, game_progress_value_(0)
 {	
 	this->Init();
 }

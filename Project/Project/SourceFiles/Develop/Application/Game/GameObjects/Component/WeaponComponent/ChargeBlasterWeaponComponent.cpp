@@ -120,7 +120,7 @@ void ChargeBlasterWeaponComponent::Update(float deltaTime)
 		// チャージ弾の状態を確認
 		if (charge_bullet_->GetChargeBulletState() == ChargeBulletState::End)
 		{
-			SAFE_DELETE_(charge_bullet_);
+			charge_bullet_->SetGameObjectState(GameObject::State::Dead);
 			is_fire_ = false;
 		}
 	}

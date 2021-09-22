@@ -27,6 +27,7 @@
 
 // UIレイヤー
 #include "../GameObjects/GameObject/UI/HUD.h"
+#include "../GameObjects/GameObject/UI/BossHUD.h"
 
 // 入力
 #include "../Input/InputCheck.h"
@@ -133,6 +134,7 @@ bool SceneGame::Init(void)
 
 		// UIレイヤーのオブジェクト作成
 		NEW HUD(game_);
+		NEW BossHUD(game_);
 	}
 	return true;
 }

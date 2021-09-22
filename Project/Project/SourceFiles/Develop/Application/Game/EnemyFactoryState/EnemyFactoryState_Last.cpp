@@ -47,6 +47,7 @@ void EnemyFactoryState_Last::Uninit(void)
 -----------------------------------------------------------------------------*/
 void EnemyFactoryState_Last::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

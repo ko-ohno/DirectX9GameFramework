@@ -61,6 +61,9 @@ void WeakEnemyMoveComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 破棄状態なら更新しない
+	if (owner_->GetGameObjectState() == GameObject::State::Destroy) { return; }
+
 	// 自機の各回転値の取得
 	yaw_   = owner_transform_->GetAngleYaw();
 	pitch_ = owner_transform_->GetAnglePitch();

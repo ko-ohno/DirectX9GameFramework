@@ -140,7 +140,7 @@ void GameObject::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void GameObject::Update(float deltaTime)
 {
-	if (state_ == State::Active)
+	if (state_ == State::Active || state_ == State::Destroy)
 	{
 		if (this->GetRendererLayerType() == RendererLayerType::None)
 		{

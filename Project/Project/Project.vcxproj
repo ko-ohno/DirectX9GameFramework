@@ -177,6 +177,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_Last.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.h" />
@@ -336,6 +337,7 @@
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Actor\Enemy\WeakEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_Last.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\Fade.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\HUD.cpp" />

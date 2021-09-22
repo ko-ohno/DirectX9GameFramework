@@ -49,12 +49,25 @@ protected:
 	// パラメータ
 
 	float max_hit_point_;
-	float hit_point_;
+	float hit_point_
+		, hit_point_old_;
 	float max_attack_;
 	float attack_;
 
+	// 破壊するか
+	bool  is_destroy_;
+
+	// 破棄までの時間
+	float destroy_interval_time_;
+
+	// ゲームマネージャへのポインタ
+	class GameObject*					game_manager_;
+
 	// エネミーのメッシュ
 	class FFPMeshRendererComponent*		actor_mesh_;
+
+	// 爆発のエフェクト
+	class EffectRendererComponent*		explosion_effect_;
 
 	// 衝突判定
 	class SphereColliderComponent*		sphere_collider_;

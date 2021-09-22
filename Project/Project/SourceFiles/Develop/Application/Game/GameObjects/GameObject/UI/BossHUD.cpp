@@ -1,91 +1,95 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Actor.cpp] アクターゲームオブジェクト
+/*	[BossHUD.cpp] ボスのHUDクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：アクターゲームオブジェクト
+/*	説明：ボスのHUDクラス
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "Actor.h"
-#include "../../../SandBoxManager/ActorManager.h"
+#include "BossHUD.h"
+
+// 描画コンポーネント
+#include "../../Component/RendererComponent/SpriteRendererComponent.h"
+#include "../../Component/RendererComponent/BillboardRendererComponent.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-Actor::Actor(Game* game)
-	: SandBox(game)
-	, max_hit_point_(0.f)
-	, hit_point_(0.f)
-	, hit_point_old_(0.f)
-	, max_attack_(0.f)
-	, attack_(0.f)
-	, is_destroy_(false)
-	, destroy_interval_time_(0.f)
-	, game_manager_(nullptr)
-	, actor_mesh_(nullptr)
-	, explosion_effect_(nullptr)
-	, sphere_collider_(nullptr)
-	, sphere_gizmo_(nullptr)
-	, obb_collider_(nullptr)
-	, box_gizmo_(nullptr)
+BossHUD::BossHUD(Game* game)
+	: UI(game)
+	, health_bar_(nullptr)
+	, health_bar_blank_(nullptr)
+	, health_bar_bg_(nullptr)
+	, hp_value_(0.f)
+	, max_hp_value_(0.f)
+	, hp_rate_(0.f)
 {
-	renderer_layer_type_ = RendererLayerType::Game;
-
-	// 初期化
 	this->Init();
-
-	// アクターマネージャにインスタンスのアドレスを追加
-	game_->GetActorManager()->AddActorGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-Actor::~Actor(void)
+BossHUD::~BossHUD(void)
 {
-	// 終了化
-	this->Uninit();
-
-	// アクターマネージャのインスタンスのアドレスを削除
-	game_->GetActorManager()->RemoveActorGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool Actor::Init(void)
+bool BossHUD::Init(void)
 {
-	// ステータスの初期化
+	// 値の初期化
 	{
-		max_hit_point_  = 100.f;
-		hit_point_		= 100.f;
-		hit_point_old_  = hit_point_;
-		max_attack_		= 1.f;
-		attack_			= 1.f;
+		hp_value_		= 100;
+		max_hp_value_	= 100;
 	}
+
+	// 体力の表示
+	{
+		health_bar_ = NEW SpriteRendererComponent(this, 240);
+		health_bar_->SetTexture(TextureType::Blank);
+		health_bar_->SetVertexColor(0, 255, 0, 255); // 緑
+
+		health_bar_blank_ = NEW SpriteRendererComponent(this, 230);
+		health_bar_blank_->SetTexture(TextureType::Blank);
+		health_bar_blank_->SetVertexColor(0, 0, 0, 255); // 黒
+
+		health_bar_bg_ = NEW SpriteRendererComponent(this);
+		health_bar_bg_->SetTexture(TextureType::Blank);
+		health_bar_bg_->SetVertexColor(0, 255, 255, 128); // 水色
+	}
+
+	// 警報の表示
+	{
+
+	}
+
+
 	return true;
 }
 
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void Actor::Uninit(void)
+void BossHUD::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void Actor::InputGameObject(void)
+void BossHUD::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void Actor::UpdateGameObject(float deltaTime)
+void BossHUD::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 }

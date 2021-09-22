@@ -22,6 +22,9 @@
 // メッシュコンポーネント
 #include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 
+// メッシュコンポーネント
+#include "../../../../Component/RendererComponent/EffectRendererComponent.h"
+
 // 球の衝突判定
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../../../Component/ColliderComponent/SphereColliderComponent.h"
@@ -77,6 +80,21 @@ bool WeakEnemy::Init(void)
 		//this->transform_component_->SetTranslationX(-3.f);
 		this->transform_component_->SetTranslationY(-100.f);
 		//this->transform_component_->SetTranslationZ( 8.f);
+	}
+
+	// 爆発エフェクトの生成
+	{
+		explosion_effect_ = NEW EffectRendererComponent(this);
+		explosion_effect_->SetEffect(EffectType::ExplosionActor);
+	}
+
+	// ゲームマネージャへのポインタの取得
+	{
+		game_manager_ = this->FindGameObject(GameObject::TypeID::GameManager);
+		if (game_manager_ == nullptr)
+		{
+			assert(!"WeakEnemy::Init()：ゲームマネージャへのポインタが取得できませんでした");
+		}
 	}
 
 	// 弱い敵の状態を初期化
@@ -137,8 +155,6 @@ bool WeakEnemy::Init(void)
 			box_gizmo_->AddScaleZ(box_size);
 		}
 	}
-
-
 
 	return true;
 }
@@ -294,39 +310,80 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 	//	attack_ = 10.f;
 	//	break;
 	//}
-	
-	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
-	for (auto bullet : bullets)
+
+	// 自身を破壊されたら
+	if (this->GetGameObjectState() == State::Destroy)
 	{
-		// Bulletの所有者がPlayerかを調べる
-		auto bullet_game_object = bullet->GetParentGameObject();
-		if (bullet_game_object->GetType() != GameObject::TypeID::Player)
+		// 破壊状態での初期化を行う
+		if (is_destroy_ == false)
 		{
-			continue;
-		}
+			// 爆発エフェクトを再生
+			explosion_effect_->Play();
 
-		// プレイヤーのバレットの衝突判定を取得
-		auto components = bullet->GetComponents();
-		for (auto component : components)
-		{
-			auto component_type = component->GetComponentType();
-			if (component_type == Component::TypeID::SphereColliderComponent)
+			// スコアへ加算する
+			auto parameter_components = game_manager_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
 			{
-				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+				// スコアへの値コンポーネントへのポインタを取得
+				auto parameter_component_type = parameter_component->GetParameterType();
+				if (parameter_component_type == ParameterType::Score)
 				{
-					// エネミーが破壊される
-					this->SetGameObjectState(State::Destroy);
+					parameter_component->AddInt(10);
+					break;
+				}
+			}
 
-					// 衝突したバレットを破棄する
-					bullet->SetGameObjectState(State::Dead);
+			actor_mesh_->IsSetDrawable(false);
+			sphere_gizmo_->IsSetDrawable(false);
+
+			// 破壊状態での初期化を行う
+			is_destroy_ = true;
+		}
+		
+		// 破壊までの時間
+		destroy_interval_time_ += deltaTime;
+
+		// 自身を破棄する
+		const float MAX_DESTROY_INTERVAL_TIME = 1.f;
+		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
+		{
+			// ゲームオブジェクトを破棄
+			this->SetGameObjectState(State::Dead);
+		}
+		return;
+	}
+
+	// 衝突判定
+	{	
+		auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+		for (auto bullet : bullets)
+		{
+			// Bulletの所有者がPlayerかを調べる
+			auto bullet_game_object = bullet->GetParentGameObject();
+			if (bullet_game_object->GetType() != GameObject::TypeID::Player)
+			{
+				continue;
+			}
+
+			// プレイヤーのバレットの衝突判定を取得
+			auto components = bullet->GetComponents();
+			for (auto component : components)
+			{
+				auto component_type = component->GetComponentType();
+				if (component_type == Component::TypeID::SphereColliderComponent)
+				{
+					if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+					{
+						// エネミーが破壊される
+						this->SetGameObjectState(State::Destroy);
+
+						// 衝突したバレットを破棄する
+						bullet->SetGameObjectState(State::Dead);
+						break;
+					}
 				}
 			}
 		}
-	}
-
-	if (this->GetGameObjectState() == State::Destroy)
-	{
-		// スコアへ加算する
 	}
 }
 

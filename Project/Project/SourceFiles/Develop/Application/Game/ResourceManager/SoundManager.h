@@ -31,8 +31,6 @@ enum class SoundType
 	, DamageBoss		// ボスにダメージ
 	, DamagePlayer		// プレイヤーにダメージ
 	, DangerAlert		// 危険通知
-	, LargeLaser		// 巨大レーザー
-
 
 	, Max
 };

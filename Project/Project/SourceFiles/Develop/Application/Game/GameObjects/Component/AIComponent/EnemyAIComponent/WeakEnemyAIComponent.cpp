@@ -241,6 +241,9 @@ void WeakEnemyAIComponent::MoveStraight(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -254,6 +257,9 @@ void WeakEnemyAIComponent::MoveStraightWaitOneTime(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -267,6 +273,9 @@ void WeakEnemyAIComponent::MoveStraightWaitUpDown(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -280,6 +289,9 @@ void WeakEnemyAIComponent::MoveRoundVertical(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -289,10 +301,12 @@ void WeakEnemyAIComponent::MoveRoundVertical(float deltaTime)
 void WeakEnemyAIComponent::MoveRoundHorizontal(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -306,6 +320,9 @@ void WeakEnemyAIComponent::MoveLoopUpDown(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -319,6 +336,9 @@ void WeakEnemyAIComponent::MoveLoopLeftRight(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -332,6 +352,9 @@ void WeakEnemyAIComponent::MoveShowOneTime(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 
@@ -345,6 +368,9 @@ void WeakEnemyAIComponent::MoveSShapedCurve(float deltaTime)
 	if (motion_state_ == EnemyMotionState::End)
 	{
 		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		owner_->SetGameObjectState(GameObject::State::Dead);
 	}
 }
 

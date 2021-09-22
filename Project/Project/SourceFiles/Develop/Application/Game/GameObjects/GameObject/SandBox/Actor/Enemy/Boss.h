@@ -40,8 +40,8 @@ private:
 	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
 
 	// 自身のステート情報
-	EnemyState			enemy_state_old_;
-	EnemyMotionState	motion_state_old_;
+	enum class EnemyState		enemy_state_old_;
+	enum class EnemyMotionState	motion_state_old_;
 
 	// 最大武器数
 	static constexpr int MAX_WEAPON_COUNT = 3;

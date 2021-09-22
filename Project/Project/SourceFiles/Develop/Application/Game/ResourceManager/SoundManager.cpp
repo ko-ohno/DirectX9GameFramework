@@ -25,7 +25,6 @@ const char* SoundManager::SoundTypeNames[static_cast<int>(SoundType::Max)] = {
 	, "DamageBoss"		// ボスにダメージ
 	, "DamagePlayer"	// プレイヤーにダメージ
 	, "DangerAlert"		// 危険通知
-	, "LargeLaser"		// 巨大レーザー
 
 };
 
@@ -78,7 +77,6 @@ bool SoundManager::StartUp(void)
 		this->LoadSound(SoundType::DamageBoss);
 		this->LoadSound(SoundType::DamagePlayer);
 		this->LoadSound(SoundType::DangerAlert);
-		this->LoadSound(SoundType::LargeLaser);
 	}
 	return true;
 }
@@ -117,8 +115,6 @@ bool SoundManager::Init(void)
 		unmap_sound_path_list_[SoundType::DamageBoss]		= "SE/damage_boss.wav";
 		unmap_sound_path_list_[SoundType::DamagePlayer]		= "SE/damage_player.wav";
 		unmap_sound_path_list_[SoundType::DangerAlert]		= "SE/danger_alert.wav";
-		unmap_sound_path_list_[SoundType::LargeLaser]		= "SE/large_laser.wav";
-
 	}
 
 	HRESULT hr;

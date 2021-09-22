@@ -22,6 +22,7 @@ LaserCannonWeaponComponent::LaserCannonWeaponComponent(GameObject* owner, int up
 	: WeaponComponent(owner, updateOrder)
 	, enemy_motion_state_(EnemyMotionState::None)
 	, large_laser_(nullptr)
+	, is_fire_(false)
 	, sphere_gizmo_(nullptr)
 {
 	this->Init();
@@ -74,7 +75,11 @@ void LaserCannonWeaponComponent::Update(float deltaTime)
 	{
 		if (enemy_motion_state_ == EnemyMotionState::Complete)
 		{
-			SAFE_DELETE_(large_laser_);
+			//　発射したかのフラグを初期化
+			is_fire_ = false;
+
+			//　役目を終えたゲームオブジェクトとする
+			large_laser_->SetGameObjectState(GameObject::State::Dead);
 		}
 	}
 }
@@ -84,11 +89,16 @@ void LaserCannonWeaponComponent::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void LaserCannonWeaponComponent::Shoot(void)
 {
-	if (large_laser_ == nullptr)
+	// レーザーを発射していないか
+	if (is_fire_ == false)
 	{
+		// レーザーを生成
 		auto game = owner_->GetGame();
 		large_laser_ = NEW LargeLaser(game);
 		large_laser_->SetTransfrom(owner_transform_);
+
+		// 発射したことを記憶
+		is_fire_ = true;
 	}
 }
 

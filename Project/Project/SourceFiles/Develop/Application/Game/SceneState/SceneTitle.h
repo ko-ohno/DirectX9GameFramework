@@ -25,6 +25,9 @@ public:
 	void Input(void) override;
 	void Update(float deltaTime) override;
 
+	// BGMの更新処理
+	void UpdateBGM(float deltaTime);
+
 	// シーンの切り替え処理
 	void ChangeScene(void) override;
 

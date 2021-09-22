@@ -207,6 +207,9 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 		}
 		break;
 
+	case EnemyMotionState::End:
+		break;
+
 	default:
 		assert(!"BossMoveComponent::MoveActionEnter()：不正なモーションの状態！");
 		break;
@@ -327,6 +330,9 @@ void BossMoveComponent::MoveActionBodyPress(float deltaTime)
 		}
 		break;
 
+	case EnemyMotionState::End:
+		break;
+
 	default:
 		assert(!"BossMoveComponent::MoveActionBodyPress()：不正なモーションの状態！");
 		break;
@@ -428,6 +434,9 @@ void BossMoveComponent::MoveActionShoot(float deltaTime)
 			execute_time_ = 0.f;
 			enemy_motion_state_ = EnemyMotionState::End;
 		}
+		break;
+
+	case EnemyMotionState::End:
 		break;
 
 	default:
@@ -537,6 +546,9 @@ void BossMoveComponent::MoveActionLaserCannon(float deltaTime)
 			execute_time_ = 0.f;
 			enemy_motion_state_ = EnemyMotionState::End;
 		}
+		break;
+
+	case EnemyMotionState::End:
 		break;
 
 	default:

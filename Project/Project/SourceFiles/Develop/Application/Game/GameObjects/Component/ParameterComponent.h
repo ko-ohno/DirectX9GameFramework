@@ -61,10 +61,14 @@ public:
 	// Int‚Ìİ’è
 	int GetInt(void) { return static_cast<int>(value_); }
 	void SetInt(int value) { value_ = static_cast<double>(value); }
+	void AddInt(int value) { value_ += static_cast<double>(value); }
+
 
 	// float‚Ìİ’è
 	float GetFloat(void) { return static_cast<float>(value_); }
 	void SetFloat(float value) { value_ = static_cast<double>(value); }
+	void AddFloat(float value) { value_ += static_cast<double>(value); }
+
 
 	// bool‚Ìİ’è
 	bool GetBool(void)
