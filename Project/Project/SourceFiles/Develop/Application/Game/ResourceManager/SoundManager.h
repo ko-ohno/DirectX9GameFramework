@@ -23,10 +23,16 @@ enum class SoundType
 	// BGM
 	, WonderLand
 	, JetPenguin
+	, JetPenguin_2nd
 	, Kemono
 
 	// SE
-	, SelectSound
+	, SelectSound		// 選択
+	, DamageBoss		// ボスにダメージ
+	, DamagePlayer		// プレイヤーにダメージ
+	, DangerAlert		// 危険通知
+	, LargeLaser		// 巨大レーザー
+
 
 	, Max
 };

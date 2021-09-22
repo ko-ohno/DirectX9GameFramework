@@ -17,9 +17,16 @@ const char* SoundManager::SoundTypeNames[static_cast<int>(SoundType::Max)] = {
 	"Sample"
 	, "WonderLand"
 	, "JetPenguin"
+	, "JetPenguin_2nd"
 	, "Kemono"
 
 	, "SelectSound"
+
+	, "DamageBoss"		// ボスにダメージ
+	, "DamagePlayer"	// プレイヤーにダメージ
+	, "DangerAlert"		// 危険通知
+	, "LargeLaser"		// 巨大レーザー
+
 };
 
 /*-----------------------------------------------------------------------------
@@ -64,6 +71,14 @@ bool SoundManager::StartUp(void)
 	{
 		//this->LoadSound(SoundType::Sample);
 
+		// BGMの読み込み
+		this->LoadSound(SoundType::JetPenguin_2nd);
+
+		// SEの読み込み
+		this->LoadSound(SoundType::DamageBoss);
+		this->LoadSound(SoundType::DamagePlayer);
+		this->LoadSound(SoundType::DangerAlert);
+		this->LoadSound(SoundType::LargeLaser);
 	}
 	return true;
 }
@@ -89,15 +104,20 @@ bool SoundManager::Init(void)
 	{
 		// BGM
 		//unmap_sound_path_list_[SoundType::Sample] = "BGM/samaple.wav";
-		unmap_sound_path_list_[SoundType::Sample]		= "BGM/GameOver.wav";
-		unmap_sound_path_list_[SoundType::WonderLand]	= "BGM/wonderland.wav"; 
-		unmap_sound_path_list_[SoundType::JetPenguin]   = "BGM/penguin.wav";
-		unmap_sound_path_list_[SoundType::Kemono]		= "BGM/kemono.wav";
+		unmap_sound_path_list_[SoundType::Sample]			= "BGM/GameOver.wav";
+		unmap_sound_path_list_[SoundType::WonderLand]		= "BGM/wonderland.wav"; 
+		unmap_sound_path_list_[SoundType::JetPenguin]		= "BGM/penguin.wav";
+		unmap_sound_path_list_[SoundType::JetPenguin_2nd]	= "BGM/penguin2nd.wav";
+		unmap_sound_path_list_[SoundType::Kemono]			= "BGM/kemono.wav";
 
 
 		// SE
 		//unmap_sound_path_list_[SoundType::Sample] = "SE/samaple.wav";
-		unmap_sound_path_list_[SoundType::SelectSound] = "SE/select_sound.wav";
+		unmap_sound_path_list_[SoundType::SelectSound]		= "SE/select_sound.wav";
+		unmap_sound_path_list_[SoundType::DamageBoss]		= "SE/damage_boss.wav";
+		unmap_sound_path_list_[SoundType::DamagePlayer]		= "SE/damage_player.wav";
+		unmap_sound_path_list_[SoundType::DangerAlert]		= "SE/danger_alert.wav";
+		unmap_sound_path_list_[SoundType::LargeLaser]		= "SE/large_laser.wav";
 
 	}
 

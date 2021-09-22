@@ -34,6 +34,8 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "EnemyActionGuide_Orange"
 	, "EnemyActionGuide_Yellow"
 
+	, "ExplosionActor"
+
 	, "BlueLaser"
 	, "AfterBurner"
 };
@@ -97,6 +99,13 @@ bool EffectManager::StartUp(void)
 		this->LoadEffect(EffectType::EnemyActionGuide_Orange);
 		this->LoadEffect(EffectType::EnemyActionGuide_Yellow);
 
+		// アクターの爆発エフェクト
+		this->LoadEffect(EffectType::ExplosionActor);
+
+		// 宇宙ゴミのエフェクト
+		this->LoadEffect(EffectType::SpaceDustRed);
+		
+		// 大型レーザーのエフェクト
 		this->LoadEffect(EffectType::RedLaser);
 	}
 	return true;
@@ -151,6 +160,9 @@ bool EffectManager::Init(void)
 			unmap_effect_path_list_[EffectType::EnemyActionGuide_Red]	 = "EnemyActionGuide/EnemyActionGuide_Red.efk";
 			unmap_effect_path_list_[EffectType::EnemyActionGuide_Orange] = "EnemyActionGuide/EnemyActionGuide_Orange.efk";
 			unmap_effect_path_list_[EffectType::EnemyActionGuide_Yellow] = "EnemyActionGuide/EnemyActionGuide_Yellow.efk";
+
+			// アクターの爆発エフェクト
+			unmap_effect_path_list_[EffectType::ExplosionActor] = "Explosion/ActorExplosion/actor_explosion.efk";
 
 			// 赤いレーザーのエフェクト
 			unmap_effect_path_list_[EffectType::RedLaser]	 = "Laser/RedLaser.efk";

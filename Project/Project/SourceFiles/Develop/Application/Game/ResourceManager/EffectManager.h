@@ -56,6 +56,8 @@ enum class EffectType
 	, EnemyActionGuide_Orange
 	, EnemyActionGuide_Yellow
 
+	, ExplosionActor
+
 	, RedLaser
 	, AfterBurner
 	, Max
