@@ -10,6 +10,11 @@
 #include "../../../../../../StdAfx.h"
 #include "Player.h"
 #include "../ChargeBullet.h"
+#include "../../../../CheckCollision.h"
+#include "Enemy.h"
+#include "../../../../SandBoxManager/EnemieManager.h"
+#include "../Bullet.h"
+#include "../../../../SandBoxManager/BulletManager.h"
 
 // 値コンポーネント
 #include "../../../Component/ParameterComponent/IntParameterComponent.h"
@@ -57,6 +62,9 @@ Player::Player(Game* game)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
 	, is_blaster_fire_(false)
+	, is_attack_hit_(false)
+	, damage_recieved_interval_time(0.f)
+	, boss_(nullptr)
 {
 	this->Init();
 }
@@ -145,29 +153,45 @@ bool Player::Init(void)
 
 	//　衝突判定コンポーネント
 	{
+		// OBBの大きさ
+		const float sphere_radius_scale = 1.f;
+
 		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
+		sphere_collider_->SetRadius(sphere_radius_scale);
+
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(this);
+		sphere_gizmo_->SetScale(sphere_radius_scale);
 		sphere_gizmo_->SetVertexColor(255, 255, 0, 255);
+
+
+		// OBBの大きさ
+		const float box_scale = 0.5f;
 
 		// OBBの衝突判定
 		obb_collider_ = NEW OBBColliderComponent(this);
+		obb_collider_->SetDirLength(box_scale, AxisType::X);
+		obb_collider_->SetDirLength(box_scale, AxisType::Y);
+		obb_collider_->SetDirLength(box_scale, AxisType::Z);
+
 		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
+		box_gizmo_->SetScale(box_scale * 2.f);
 
 		// ロックオンの箱の衝突判定
 		{
-			const float lockon_langth_ = 20.f;
+			const float lockon_langth = 10.f;
+			const float lockon_scale = 0.5f;
 
 			lockon_collider_ = NEW OBBColliderComponent(this);
-			lockon_collider_->SetDirLength(1.1f, AxisType::X);
-			lockon_collider_->SetDirLength(1.1f, AxisType::Y);
-			lockon_collider_->SetDirLength(lockon_langth_, AxisType::Z);
+			lockon_collider_->SetDirLength(lockon_scale, AxisType::X);
+			lockon_collider_->SetDirLength(lockon_scale, AxisType::Y);
+			lockon_collider_->SetDirLength(lockon_langth, AxisType::Z);
 
 			lockon_gizmo_ = NEW BoxGizmoRendererComponent(this);
 			lockon_gizmo_->SetVertexColor(0, 255, 255, 128);
-			lockon_gizmo_->SetScaleX(1.1f);
-			lockon_gizmo_->SetScaleY(1.1f);
-			lockon_gizmo_->SetScaleZ(lockon_langth_);
+			lockon_gizmo_->SetScaleX(lockon_scale * 2.f);
+			lockon_gizmo_->SetScaleY(lockon_scale * 2.f);
+			lockon_gizmo_->SetScaleZ(lockon_langth * 2.f);
 		}
 	}
 
@@ -234,6 +258,26 @@ void Player::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Player::UpdateGameObject(float deltaTime)
 {
+	// 衝突判定の座標を更新
+	{
+		// 座標を取得
+		auto player_position = *this->transform_component_->GetPosition();
+
+		// 球の衝突判定座標を更新
+		this->sphere_collider_->SetTranslation(player_position);
+
+		// OBBの衝突判定座標を更新
+		this->obb_collider_->SetTranslation(player_position);
+
+		// 自身の姿勢をOBBに反映
+		auto rotate_matrix = *transform_component_->GetRotationMatrix();
+		this->obb_collider_->SetDirElement(rotate_matrix);
+
+		// ロックオンのOBBに姿勢を反映
+		this->lockon_collider_->SetTranslation(player_position);
+		this->lockon_collider_->SetDirElement(rotate_matrix);
+	}
+
 	// チャージ弾の武器コンポーネントの確認
 	if (charge_blaster_ == nullptr)
 	{
@@ -258,13 +302,90 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("PosX:%f", pos.x);
 	ImGui::Text("PosY:%f", pos.y);
 	ImGui::Text("PosZ:%f", pos.z);
-
 	ImGui::End();
-
-
 
 	// 1フレーム前の情報を更新
 	hit_point_old_ = hit_point_;
+
+	if (InputCheck::KeyTrigger(DIK_O))
+	{
+		hit_point_ = 100.f;
+	}
+
+	// 衝突判定
+	{
+		// プレイヤーへのポインタを取得
+		if (boss_ == nullptr)
+		{
+			auto enemie_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
+			for (auto enemy : enemie_list)
+			{
+				// プレイヤーじゃなかったらスキップ
+				auto actor_type = enemy->GetType();
+				if (actor_type != GameObject::TypeID::Boss) { continue; }
+
+				// プレイヤーへのポインタを取得
+				boss_ = enemy;
+			}
+		}
+
+		// ボスが生成されていたら
+		if (boss_ != nullptr)
+		{
+			{
+				Vector3 length(*boss_->GetTransform()->GetPosition());
+
+				float len = length.Distance(pos);
+
+				ImGui::Begin("boss_distance");
+				ImGui::Text("Yaw:%f",  len);
+				ImGui::End();
+			}
+
+			// バレットの衝突判定
+			auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+			for (auto bullet : bullets)
+			{
+				// Bulletの所有者がPlayerかを調べる
+				auto bullet_owner_game_object = bullet->GetParentGameObject();
+
+				if (bullet_owner_game_object == nullptr) { return; }
+
+				// バレットの所有者を調べる
+				const bool is_weak_enemy_shoot_bullet	= (bullet_owner_game_object->GetType() == GameObject::TypeID::WeakEnemy);
+				const bool is_strong_enemy_shoot_bullet	= (bullet_owner_game_object->GetType() == GameObject::TypeID::StrongEnemy);
+				const bool is_boss_shoot_bullet			= (bullet_owner_game_object->GetType() == GameObject::TypeID::Boss);
+				if (is_weak_enemy_shoot_bullet || is_strong_enemy_shoot_bullet || is_boss_shoot_bullet)
+				{
+					// エネミーのバレットの衝突判定を取得
+					auto components = bullet->GetComponents();
+					for (auto component : components)
+					{
+						auto component_type = component->GetComponentType();
+						if (component_type == Component::TypeID::SphereColliderComponent)
+						{
+							if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+							{
+								// ダメージをを受ける
+								hit_point_ += -10.f;
+
+								// 衝突したバレットを破棄する
+								bullet->SetGameObjectState(State::Dead);
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			// OBBの衝突判定
+			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
+			{
+				// ダメージをを受ける
+				hit_point_ += -10.f;
+			}
+		}
+	}
 }
 
 /*-----------------------------------------------------------------------------

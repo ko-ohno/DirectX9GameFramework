@@ -130,16 +130,13 @@ bool GameManager::Init(void)
 		score_param_->SetParameterType(ParameterType::Score);
 	}
 
-	//enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
-
-
 	// ゲームの残り時間
 	game_left_time_ = MAX_SPAWN_TIME_;
 
 	// ボスだけの生成処理
 	{
-		//game_left_time_ = 0.f;
-		//spawn_count_ = 6;
+		game_left_time_ = 0.f;
+		spawn_count_ = 6;
 	}
 	
 	return true;

@@ -79,6 +79,21 @@ private:
 
 	// 光線銃を発射するか 
 	bool is_blaster_fire_;
+
+private:
+	//
+	// プレイヤーへの衝突判定
+	//
+
+	// ボスと衝突したか？
+	bool			is_attack_hit_;
+
+	// ボスへのダメージを与えるインターバルの時間
+	float			damage_recieved_interval_time;
+
+	// ボスへのポインタ
+	class Enemy*	boss_;
+
 };
 
 #endif //PLAYER_H_

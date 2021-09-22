@@ -223,6 +223,19 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 -----------------------------------------------------------------------------*/
 void BossMoveComponent::MoveActionIdle(float deltaTime)
 {
+	//static float z = 15.f;
+	//static float yaw = 0.f;
+	//ImGui::Begin("boss_controll");
+	//ImGui::Text("pos_z:%f", z);
+	//ImGui::SliderFloat("##pos", &z, 0.f, 15.f);
+	//ImGui::Text("yaw:%f", yaw);
+	//ImGui::SliderFloat("##yaw", &yaw, 0.f, 360.f);
+	//ImGui::End();
+
+	//owner_transform_->SetTranslationZ(z);
+	//owner_transform_->SetRotation(yaw, 0, 0);
+
+
 	// ‰ñ“]‚ÌXV
 	owner_transform_->SetSlerpSpeed(5.f);
 	owner_transform_->SetRotation(yaw_, 0, 0);

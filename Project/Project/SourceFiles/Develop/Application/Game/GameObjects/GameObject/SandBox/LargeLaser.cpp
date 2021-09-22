@@ -56,19 +56,22 @@ bool LargeLaser::Init(void)
 
 	// 衝突判定の作成
 	{
-		const float laser_length_ = 50.f;
-		const float laser_scale_  = 3.f;
+		// レーザーの判定の長さ
+		const float laser_length = 30.f;
+
+		// レーザーの判定の各縮率
+		const float laser_scale  = 1.5f;
 
 		obb_collider_ = NEW OBBColliderComponent(this);
-		obb_collider_->SetDirLength(laser_scale_, AxisType::X);
-		obb_collider_->SetDirLength(laser_length_, AxisType::Y);
-		obb_collider_->SetDirLength(laser_scale_, AxisType::Z);
+		obb_collider_->SetDirLength(laser_scale, AxisType::X);
+		obb_collider_->SetDirLength(laser_length, AxisType::Y);
+		obb_collider_->SetDirLength(laser_scale, AxisType::Z);
 
 		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
 		box_gizmo_->SetVertexColor(0, 255, 255, 128);
-		box_gizmo_->SetScaleX(laser_scale_);
-		box_gizmo_->SetScaleY(laser_length_);
-		box_gizmo_->SetScaleZ(laser_scale_);
+		box_gizmo_->SetScaleX(laser_scale * 2.f);
+		box_gizmo_->SetScaleY(laser_length * 2.f);
+		box_gizmo_->SetScaleZ(laser_scale * 2.f);
 	}
 	return true;
 }

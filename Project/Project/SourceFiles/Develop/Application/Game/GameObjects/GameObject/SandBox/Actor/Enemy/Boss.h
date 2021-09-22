@@ -35,6 +35,10 @@ public:
 	void UpdateLaserCannon(enum class EnemyState enemyState, enum class EnemyMotionState motionState);
 
 private:
+	// 衝突判定の高さ、オフセット座標
+	static constexpr float COLLIDER_OFFSET_HEIGHT_POS = 3.f;
+
+private:
 	static constexpr float ATTACK_VALUE_BODY_PRESS		= 10.f;
 	static constexpr float ATTACK_VALUE_SHOOT			=  5.f;
 	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
