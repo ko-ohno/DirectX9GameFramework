@@ -9,7 +9,7 @@
 #define	CHARGE_BULLET_H_
 
 /*--- インクルードファイル ---*/
-#include "../SandBox.h"
+#include "../Bullet.h"
 
 /*-------------------------------------
 /* チャージ弾のステート
@@ -31,7 +31,7 @@ enum class ChargeBulletState
 /*-------------------------------------
 /* チャージ弾のゲームオブジェクト
 -------------------------------------*/
-class ChargeBullet : public SandBox
+class ChargeBullet : public Bullet
 {
 public:
 	ChargeBullet(class Game* game);
@@ -92,10 +92,6 @@ private:
 
 	// それぞれのエフェクトの配列
 	class EffectRendererComponent* effect_[MAX_CHARGE_BULLET_STATE];	
-
-	// 衝突判定
-	class SphereColliderComponent*		sphere_collider_;
-	class SphereGizmoRendererComponent* sphere_collider_gizmo_;
 
 	// チャージ弾のステート
 	ChargeBulletState charge_bullet_state_;

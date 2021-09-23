@@ -144,11 +144,11 @@ bool Boss::Init(void)
 			obb_collider_->SetDirLength(box_size, AxisType::Z);
 
 			// ƒMƒYƒ‚
-			box_gizmo_ = NEW BoxGizmoRendererComponent(this);
-			box_gizmo_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
-			box_gizmo_->AddScaleX(box_size * 2.f);
-			box_gizmo_->AddScaleY(box_height_size * 2.f);
-			box_gizmo_->AddScaleZ(box_size * 2.f);
+			obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			obb_collider_gizmo_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
+			obb_collider_gizmo_->AddScaleX(box_size * 2.f);
+			obb_collider_gizmo_->AddScaleY(box_height_size * 2.f);
+			obb_collider_gizmo_->AddScaleZ(box_size * 2.f);
 		}
 	}
 	return true;

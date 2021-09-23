@@ -7,24 +7,22 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
+#include "../../../../../../StdAfx.h"
 #include "ChargeBullet.h"
-#include "../../Component/RendererComponent/EffectRendererComponent.h"
-#include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
-#include "../../Component/ColliderComponent/SphereColliderComponent.h"
-#include "../../../../Math.h"
-#include "../../../Input/InputCheck.h"
-#include "../SandBox/Actor/Enemy.h"
-#include "../../../SandBoxManager/EnemieManager.h"
-#include "../../../../ImGui/ImGuiManager.h"
+#include "../../../Component/RendererComponent/EffectRendererComponent.h"
+#include "../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
+#include "../../../Component/ColliderComponent/SphereColliderComponent.h"
+#include "../../../../../Math.h"
+#include "../../../../Input/InputCheck.h"
+#include "../../SandBox/Actor/Enemy.h"
+#include "../../../../SandBoxManager/EnemieManager.h"
+#include "../../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 ChargeBullet::ChargeBullet(Game* game)
-	: SandBox(game)
-	, sphere_collider_(nullptr)
-	, sphere_collider_gizmo_(nullptr)
+	: Bullet(game)
 	, charge_bullet_state_(ChargeBulletState::None)
 	, charge_bullet_state_old_(ChargeBulletState::None)
 	, is_fire_(false)

@@ -7,11 +7,11 @@
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
-#include "../../../../../StdAfx.h"
+#include "../../../../../../StdAfx.h"
 #include "LargeLaser.h"
-#include "../../Component/RendererComponent/EffectRendererComponent.h"
-#include "../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
-#include "../../Component/ColliderComponent/OBBColliderComponent.h"
+#include "../../../Component/RendererComponent/EffectRendererComponent.h"
+#include "../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
+#include "../../../Component/ColliderComponent/OBBColliderComponent.h"
 
 
 
@@ -19,11 +19,9 @@
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 LargeLaser::LargeLaser(Game* game)
-	: SandBox(game)
+	: Bullet(game)
 	, owner_transform_(nullptr)
 	, large_laser_(nullptr)
-	, obb_collider_(nullptr)
-	, box_gizmo_(nullptr)
 {
 	this->Init();
 }
@@ -67,11 +65,11 @@ bool LargeLaser::Init(void)
 		obb_collider_->SetDirLength(laser_length, AxisType::Y);
 		obb_collider_->SetDirLength(laser_scale, AxisType::Z);
 
-		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
-		box_gizmo_->SetVertexColor(0, 255, 255, 128);
-		box_gizmo_->SetScaleX(laser_scale * 2.f);
-		box_gizmo_->SetScaleY(laser_length * 2.f);
-		box_gizmo_->SetScaleZ(laser_scale * 2.f);
+		obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
+		obb_collider_gizmo_->SetVertexColor(0, 255, 255, 128);
+		obb_collider_gizmo_->SetScaleX(laser_scale * 2.f);
+		obb_collider_gizmo_->SetScaleY(laser_length * 2.f);
+		obb_collider_gizmo_->SetScaleZ(laser_scale * 2.f);
 	}
 	return true;
 }

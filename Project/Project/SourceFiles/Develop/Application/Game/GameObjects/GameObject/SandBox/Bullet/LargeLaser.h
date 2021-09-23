@@ -9,12 +9,12 @@
 #define	LARGE_LASER_H_
 
 /*--- インクルードファイル ---*/
-#include "../SandBox.h"
+#include "../Bullet.h"
 
 /*-------------------------------------
 /* 大型レーザーゲームオブジェクト
 -------------------------------------*/
-class LargeLaser : public SandBox
+class LargeLaser : public Bullet
 {
 public:
 	LargeLaser(class Game* game);
@@ -27,6 +27,8 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	virtual TypeID GetType(void) const { return TypeID::LargeLaser; }
+
 	// 姿勢を設定
 	void SetTransfrom(class TransformComponent* transfrom) { owner_transform_ = transfrom; }
 
@@ -36,10 +38,6 @@ private:
 private:
 	// レーザーのエフェクト
 	class EffectRendererComponent*	 large_laser_;
-
-	// 衝突判定
-	class OBBColliderComponent*		 obb_collider_;
-	class BoxGizmoRendererComponent* box_gizmo_;
 };
 
 

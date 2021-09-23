@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../WeaponComponent.h"
-#include "../../GameObject/SandBox/ChargeBullet.h"
+#include "../../GameObject/SandBox/Bullet/ChargeBullet.h"
 
 /*--- 構造体定義 ---*/
 

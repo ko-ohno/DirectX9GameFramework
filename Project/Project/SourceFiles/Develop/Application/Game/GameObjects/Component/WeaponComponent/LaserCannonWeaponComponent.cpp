@@ -11,7 +11,7 @@
 #include "LaserCannonWeaponComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../GameObject/SandBox/Actor/Enemy.h"
-#include "../../GameObject/SandBox/LargeLaser.h"
+#include "../../GameObject/SandBox/Bullet/LargeLaser.h"
 
 #include "../RendererComponent/EffectRendererComponent.h"
 

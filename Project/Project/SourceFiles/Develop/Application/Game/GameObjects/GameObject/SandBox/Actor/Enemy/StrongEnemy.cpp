@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../../StdAfx.h"
 #include "StrongEnemy.h"
-#include "../../Bullet.h"
+#include "../../Bullet/NormalBullet.h"
 #include "../../../../../SandBoxManager/BulletManager.h"
 #include "../../../../../CheckCollision.h"
 
@@ -137,12 +137,12 @@ bool StrongEnemy::Init(void)
 			obb_collider_->SetDirLength(box_size, AxisType::Z);
 
 			// ギズモ
-			box_gizmo_ = NEW BoxGizmoRendererComponent(this);
-			box_gizmo_->SetVertexColor(0, 255, 255, 128);
-			box_gizmo_->SetTranslationY(collider_height_pos);
-			box_gizmo_->AddScaleX(box_size);
-			box_gizmo_->AddScaleY(box_height_size);
-			box_gizmo_->AddScaleZ(box_size);
+			obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
+			obb_collider_gizmo_->SetVertexColor(0, 255, 255, 128);
+			obb_collider_gizmo_->SetTranslationY(collider_height_pos);
+			obb_collider_gizmo_->AddScaleX(box_size);
+			obb_collider_gizmo_->AddScaleY(box_height_size);
+			obb_collider_gizmo_->AddScaleZ(box_size);
 		}
 	}
 	return true;

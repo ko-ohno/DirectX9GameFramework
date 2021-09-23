@@ -12,7 +12,7 @@
 #include "../../GameObject.h"
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
-#include "../../GameObject/SandBox/Bullet.h"
+#include "../../GameObject/SandBox/Bullet/NormalBullet.h"
 #include "../../../Game.h"
 
 /*-----------------------------------------------------------------------------
@@ -112,7 +112,7 @@ void BlasterWeaponComponent::Fire(void)
 	// ’eŠÛ‚Ì¶¬
 	{
 		auto game = owner_->GetGame();
-		auto bullet = NEW Bullet(game);
+		auto bullet = NEW NormalBullet(game);
 		bullet->SetParentGameObject(owner_);
 		bullet->SetCreatePosition(translation_matrix._41, translation_matrix._42, translation_matrix._43);
 	}

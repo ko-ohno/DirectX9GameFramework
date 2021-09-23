@@ -44,8 +44,10 @@ public:
 
 		// サンドボックス
 		, SandBox
+		, IBullet // バレットのインターフェース
 		, Bullet
 		, ChargeBullet
+		, LargeLaser
 		, Actor
 		, Player
 		, Enemy

@@ -73,7 +73,7 @@ protected:
 	class SphereColliderComponent*		sphere_collider_;
 	class SphereGizmoRendererComponent* sphere_gizmo_;
 	class OBBColliderComponent*			obb_collider_;
-	class BoxGizmoRendererComponent*	box_gizmo_;
+	class BoxGizmoRendererComponent*	obb_collider_gizmo_;
 };
 
 #endif //ACTOR_H_

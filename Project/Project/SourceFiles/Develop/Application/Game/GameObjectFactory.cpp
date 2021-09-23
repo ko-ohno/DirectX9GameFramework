@@ -40,7 +40,7 @@
 #include "GameObjects/GameObject/SandBox/Actor/Enemy/StrongEnemy.h"
 
 
-#include "GameObjects/GameObject/SandBox/ChargeBullet.h"
+#include "GameObjects/GameObject/SandBox/Bullet/ChargeBullet.h"
 
 // UIÉåÉCÉÑÅ[
 #include "GameObjects/GameObject/UI/HUD.h"

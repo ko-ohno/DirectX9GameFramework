@@ -9,11 +9,11 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../../StdAfx.h"
 #include "Player.h"
-#include "../ChargeBullet.h"
+#include "../Bullet/ChargeBullet.h"
 #include "../../../../CheckCollision.h"
 #include "Enemy.h"
 #include "../../../../SandBoxManager/EnemieManager.h"
-#include "../Bullet.h"
+#include "../Bullet/NormalBullet.h"
 #include "../../../../SandBoxManager/BulletManager.h"
 
 // 値コンポーネント
@@ -174,8 +174,8 @@ bool Player::Init(void)
 		obb_collider_->SetDirLength(box_scale, AxisType::Y);
 		obb_collider_->SetDirLength(box_scale, AxisType::Z);
 
-		box_gizmo_ = NEW BoxGizmoRendererComponent(this);
-		box_gizmo_->SetScale(box_scale * 2.f);
+		obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
+		obb_collider_gizmo_->SetScale(box_scale * 2.f);
 
 		// ロックオンの箱の衝突判定
 		{
@@ -314,17 +314,17 @@ void Player::UpdateGameObject(float deltaTime)
 
 	// 衝突判定
 	{
-		// プレイヤーへのポインタを取得
+		// ボスへのポインタを取得
 		if (boss_ == nullptr)
 		{
 			auto enemie_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
 			for (auto enemy : enemie_list)
 			{
-				// プレイヤーじゃなかったらスキップ
+				// ボスじゃなかったらスキップ
 				auto actor_type = enemy->GetType();
 				if (actor_type != GameObject::TypeID::Boss) { continue; }
 
-				// プレイヤーへのポインタを取得
+				// ボスへのポインタを取得
 				boss_ = enemy;
 			}
 		}
@@ -332,16 +332,6 @@ void Player::UpdateGameObject(float deltaTime)
 		// ボスが生成されていたら
 		if (boss_ != nullptr)
 		{
-			{
-				Vector3 length(*boss_->GetTransform()->GetPosition());
-
-				float len = length.Distance(pos);
-
-				ImGui::Begin("boss_distance");
-				ImGui::Text("Yaw:%f",  len);
-				ImGui::End();
-			}
-
 			// バレットの衝突判定
 			auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
 			for (auto bullet : bullets)
@@ -378,12 +368,20 @@ void Player::UpdateGameObject(float deltaTime)
 				}
 			}
 
-			// OBBの衝突判定
+			// ボスの体当たりの衝突判定
 			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
 			{
 				// ダメージをを受ける
 				hit_point_ += -10.f;
 			}
+
+			// ボスの大型レーザーの衝突判定
+			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
+			{
+				// ダメージをを受ける
+				hit_point_ += -10.f;
+			}
+
 		}
 	}
 }

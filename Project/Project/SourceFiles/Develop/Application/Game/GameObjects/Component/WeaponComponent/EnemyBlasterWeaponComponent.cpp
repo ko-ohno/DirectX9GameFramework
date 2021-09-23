@@ -12,7 +12,7 @@
 #include "../../GameObject.h"
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
-#include "../../GameObject/SandBox/Bullet.h"
+#include "../../GameObject/SandBox/Bullet/NormalBullet.h"
 #include "../../../Game.h"
 #include "../../GameObject/SandBox/Actor.h"
 #include "../../../SandBoxManager/ActorManager.h"
@@ -163,7 +163,7 @@ void EnemyBlasterWeaponComponent::Fire(void)
 
 	// ’eŠÛ‚Ì¶¬ 
 	{
-		auto bullet = NEW Bullet(owner_->GetGame());
+		auto bullet = NEW NormalBullet(owner_->GetGame());
 		bullet->SetParentGameObject(owner_);
 		bullet->SetFrontVector(front_vector);
 		bullet->SetCreatePosition(translation_matrix._41, translation_matrix._42, translation_matrix._43);

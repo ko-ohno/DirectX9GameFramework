@@ -29,7 +29,7 @@ Actor::Actor(Game* game)
 	, sphere_collider_(nullptr)
 	, sphere_gizmo_(nullptr)
 	, obb_collider_(nullptr)
-	, box_gizmo_(nullptr)
+	, obb_collider_gizmo_(nullptr)
 {
 	renderer_layer_type_ = RendererLayerType::Game;
 

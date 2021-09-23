@@ -13,7 +13,7 @@
 #include "../../Component/RendererComponent/BillboardRendererComponent.h"
 #include "../../Component/RendererComponent/EffectRendererComponent.h"
 #include "../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
-#include "../../GameObject/SandBox/ChargeBullet.h"
+#include "../../GameObject/SandBox/Bullet/ChargeBullet.h"
 #include "../../../Game.h"
 #include "../../GameObject/SandBox/Actor.h"
 #include "../../../SandBoxManager/ActorManager.h"
