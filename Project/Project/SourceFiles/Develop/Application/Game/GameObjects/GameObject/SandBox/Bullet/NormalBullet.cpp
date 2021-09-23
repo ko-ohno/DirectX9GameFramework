@@ -54,7 +54,7 @@ bool NormalBullet::Init(void)
 		bullet_mesh_->SetMesh(XFileMeshType::BlueBullet);
 
 		// ƒXƒP[ƒ‹‚ğ‰Šú‰»
-		const float scale = 1.f;
+		const float scale = 0.5f;
 
 		// ’eŠÛ‚ÌÕ“Ë”»’è‚Ì’Ç‰Á
 		sphere_collider_ = NEW SphereColliderComponent(this);

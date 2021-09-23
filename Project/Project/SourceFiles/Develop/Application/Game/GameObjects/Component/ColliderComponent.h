@@ -26,6 +26,8 @@ public:
 	ColliderComponent(class GameObject* owner, int updateOrder = 100);
 	~ColliderComponent(void);
 
+	virtual void Update(float deltaTime) override;
+
 	virtual TypeID GetComponentType() const override { return TypeID::ColliderComponent; };
 
 private:

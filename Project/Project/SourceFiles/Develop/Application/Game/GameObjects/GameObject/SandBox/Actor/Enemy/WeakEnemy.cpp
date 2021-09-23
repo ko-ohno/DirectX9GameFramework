@@ -178,22 +178,6 @@ void WeakEnemy::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void WeakEnemy::UpdateGameObject(float deltaTime)
 {
-	// 衝突判定の座標を更新
-	{
-		// 座標を取得
-		auto enemy_position = *this->transform_component_->GetPosition();
-
-		// 球の衝突判定座標を更新
-		this->sphere_collider_->SetTranslation(enemy_position);
-
-		// OBBの衝突判定座標を更新
-		this->obb_collider_->SetTranslation(enemy_position);
-
-		// 自身の姿勢をOBBに反映
-		auto rotate_matrix = *transform_component_->GetRotationMatrix();
-		this->obb_collider_->SetDirElement(rotate_matrix);
-	}
-
 	// AIコンポーネントに自身のHPを通知する
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());

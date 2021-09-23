@@ -162,7 +162,7 @@ void BossAIComponent::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void BossAIComponent::EnemyStateController(float deltaTime)
 {
-	const bool is_controll = false;
+	const bool is_controll = true;
 	if (is_controll)
 	{
 		if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_Y))

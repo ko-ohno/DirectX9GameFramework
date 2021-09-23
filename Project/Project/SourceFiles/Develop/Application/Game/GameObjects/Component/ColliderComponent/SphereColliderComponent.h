@@ -24,6 +24,8 @@ public:
 	SphereColliderComponent(class GameObject* owner, int updateOrder = 100);
 	~SphereColliderComponent(void);
 
+	virtual void Update(float deltaTime) override;
+
 	virtual TypeID GetComponentType() const override { return TypeID::SphereColliderComponent; };
 
 	//

@@ -154,7 +154,7 @@ bool Player::Init(void)
 	//　衝突判定コンポーネント
 	{
 		// OBBの大きさ
-		const float sphere_radius_scale = 1.f;
+		const float sphere_radius_scale = 0.5f;
 
 		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
@@ -258,26 +258,6 @@ void Player::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Player::UpdateGameObject(float deltaTime)
 {
-	// 衝突判定の座標を更新
-	{
-		// 座標を取得
-		auto player_position = *this->transform_component_->GetPosition();
-
-		// 球の衝突判定座標を更新
-		this->sphere_collider_->SetTranslation(player_position);
-
-		// OBBの衝突判定座標を更新
-		this->obb_collider_->SetTranslation(player_position);
-
-		// 自身の姿勢をOBBに反映
-		auto rotate_matrix = *transform_component_->GetRotationMatrix();
-		this->obb_collider_->SetDirElement(rotate_matrix);
-
-		// ロックオンのOBBに姿勢を反映
-		this->lockon_collider_->SetTranslation(player_position);
-		this->lockon_collider_->SetDirElement(rotate_matrix);
-	}
-
 	// チャージ弾の武器コンポーネントの確認
 	if (charge_blaster_ == nullptr)
 	{
@@ -339,7 +319,7 @@ void Player::UpdateGameObject(float deltaTime)
 				// Bulletの所有者がPlayerかを調べる
 				auto bullet_owner_game_object = bullet->GetParentGameObject();
 
-				if (bullet_owner_game_object == nullptr) { return; }
+				if (bullet_owner_game_object == nullptr) { continue; }
 
 				// バレットの所有者を調べる
 				const bool is_weak_enemy_shoot_bullet	= (bullet_owner_game_object->GetType() == GameObject::TypeID::WeakEnemy);
@@ -348,22 +328,14 @@ void Player::UpdateGameObject(float deltaTime)
 				if (is_weak_enemy_shoot_bullet || is_strong_enemy_shoot_bullet || is_boss_shoot_bullet)
 				{
 					// エネミーのバレットの衝突判定を取得
-					auto components = bullet->GetComponents();
-					for (auto component : components)
+					if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
 					{
-						auto component_type = component->GetComponentType();
-						if (component_type == Component::TypeID::SphereColliderComponent)
-						{
-							if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
-							{
-								// ダメージをを受ける
-								hit_point_ += -10.f;
+						// ダメージをを受ける
+						hit_point_ += -10.f;
 
-								// 衝突したバレットを破棄する
-								bullet->SetGameObjectState(State::Dead);
-								break;
-							}
-						}
+						// 衝突したバレットを破棄する
+						bullet->SetGameObjectState(State::Dead);
+						break;
 					}
 				}
 			}
@@ -376,12 +348,31 @@ void Player::UpdateGameObject(float deltaTime)
 			}
 
 			// ボスの大型レーザーの衝突判定
-			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
 			{
-				// ダメージをを受ける
-				hit_point_ += -10.f;
-			}
+				class Bullet* large_laser = nullptr;
 
+				for (auto bullet : bullets)
+				{
+					// バレットの所有者を調べる
+					const bool is_bullet_large_laser = (bullet->GetType() == GameObject::TypeID::LargeLaser);
+					if (is_bullet_large_laser)
+					{
+						// 巨大レーザーを取得
+						large_laser = bullet;
+						break;
+					}
+				}
+
+				// ボスの大型レーザーの衝突判定
+				if (large_laser != nullptr)
+				{
+					if (CheckCollision::ObbVSObb(this->GetOBBCollider(), large_laser->GetOBBCollider()))
+					{
+						// ダメージをを受ける
+						hit_point_ += -10.f;
+					}
+				}
+			}
 		}
 	}
 }

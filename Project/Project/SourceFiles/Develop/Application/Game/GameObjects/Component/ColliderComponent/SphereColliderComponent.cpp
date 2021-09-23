@@ -9,6 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
 #include "SphereColliderComponent.h"
+#include "../../GameObject.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -25,6 +26,17 @@ SphereColliderComponent::SphereColliderComponent(GameObject* owner, int updateOr
 -----------------------------------------------------------------------------*/
 SphereColliderComponent::~SphereColliderComponent(void)
 {
+}
+
+/*-----------------------------------------------------------------------------
+/* 更新処理
+-----------------------------------------------------------------------------*/
+void SphereColliderComponent::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 衝突判定の位置情報の更新
+	position_ = *owner_->GetTransform()->GetPosition();
 }
 
 /*=============================================================================

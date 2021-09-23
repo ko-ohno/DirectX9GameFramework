@@ -30,12 +30,12 @@ ChargeBullet::ChargeBullet(Game* game)
 	, is_lockon_(false)
 	, is_next_state_(false)
 	, parent_front_vector_(0.f, 0.f, 1.f)
-	, move_speed_(15.f)
-	, position_(0.f, 0.f, -100.f)
+	, move_speed_(0.f)
+	, position_(0.f, 0.f, 0.f)
 	, src_position_(0.f, 0.f, 0.f)
 	, dst_position_(0.f, 0.f, 0.f)
 	, lerp_execute_time_(0.f)
-	, kill_timer_(2.f)
+	, kill_timer_(0.f)
 	, alive_time_(0.f)
 	, state_time_(0.f)
 {
@@ -55,6 +55,11 @@ ChargeBullet::~ChargeBullet(void)
 -----------------------------------------------------------------------------*/
 bool ChargeBullet::Init(void)
 {
+	// 値の設定
+	move_speed_ = 15.f;
+	kill_timer_ = 2.f;
+
+
 	// 配列の初期化
 	{
 		// エフェクト番号の登録
@@ -69,6 +74,8 @@ bool ChargeBullet::Init(void)
 		}
 	}
 
+	const float init_axis_y_pos = -100.f;
+
 	// 弾丸の生成
 	{
 		for (int i = 0; i < MAX_CHARGE_BULLET_STATE; i++)
@@ -77,7 +84,7 @@ bool ChargeBullet::Init(void)
 			effect_[i] = NEW EffectRendererComponent(this);
 			effect_[i]->SetEffect(effect_type_[i]);
 			effect_[i]->SetScale(0.5f);
-			effect_[i]->SetTranslationY(-100.f);
+			effect_[i]->SetTranslationY(init_axis_y_pos);
 		}
 	}
 
@@ -88,12 +95,12 @@ bool ChargeBullet::Init(void)
 		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
 		sphere_collider_->SetRadius(scale);
-		sphere_collider_->SetTranslationY(-100.f);
+		sphere_collider_->SetTranslationY(init_axis_y_pos);
 
 		// ギズモの描画コンポーネント
 		sphere_collider_gizmo_ = NEW SphereGizmoRendererComponent(this);
 		sphere_collider_gizmo_->SetScale(scale);
-		sphere_collider_gizmo_->SetTranslationY(-100.f);
+		sphere_collider_gizmo_->SetTranslationY(init_axis_y_pos);
 		//sphere_collider_gizmo_->IsSetDrawable(false);
 	}
 
@@ -348,12 +355,6 @@ void ChargeBullet::UpdateColilision(ChargeBulletState chargeBulletState)
 
 	default:
 		break;
-	}
-
-	// 衝突判定の位置の更新
-	{
-		sphere_collider_gizmo_->SetTranslation(position_);
-		sphere_collider_->SetTranslation(position_);
 	}
 }
 

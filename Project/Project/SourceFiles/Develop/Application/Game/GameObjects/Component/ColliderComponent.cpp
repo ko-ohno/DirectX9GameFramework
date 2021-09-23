@@ -30,6 +30,14 @@ ColliderComponent::~ColliderComponent(void)
 	owner_->GetGame()->GetColliderManager()->RemoveColliderComponentAddress(this);
 }
 
+/*-----------------------------------------------------------------------------
+/* çXêVèàóù
+-----------------------------------------------------------------------------*/
+void ColliderComponent::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
 /*=============================================================================
 /*		End of File
 =============================================================================*/

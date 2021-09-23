@@ -115,7 +115,7 @@ bool Boss::Init(void)
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 6.f;
+			const float sphere_radius_size = 3.f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -173,26 +173,6 @@ void Boss::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Boss::UpdateGameObject(float deltaTime)
 {
-	// 衝突判定の座標を更新
-	{
-		// 座標を取得
-		auto enemy_position = *this->transform_component_->GetPosition();
-
-		// 衝突判定の高さ、オフセット座標
-		enemy_position.y = enemy_position.y + COLLIDER_OFFSET_HEIGHT_POS;
-
-		// 球の衝突判定座標を更新
-		this->sphere_collider_->SetTranslation(enemy_position);
-
-		// OBBの衝突判定座標を更新
-		this->obb_collider_->SetTranslation(enemy_position);
-
-		// 自身の姿勢をOBBに反映
-		auto rotate_matrix = *transform_component_->GetRotationMatrix();
-		this->obb_collider_->SetDirElement(rotate_matrix);
-	}
-
-
 	// AIコンポーネントにボスのHPを通知する
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
