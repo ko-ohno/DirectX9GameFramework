@@ -27,7 +27,7 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::IBullet; }
+	virtual TypeID GetType(void) const { return TypeID::Bullet; }
 
 	// ‹…‚ÌÕ“Ë”»’è‚Ìæ“¾
 	class SphereColliderComponent*	GetSphereCollider(void) { return sphere_collider_; }

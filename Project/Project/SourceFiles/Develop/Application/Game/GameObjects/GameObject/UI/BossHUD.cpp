@@ -219,7 +219,7 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		health_bar_blank_->SetScaleX(width);
 		health_bar_blank_->SetScaleY(height);
 
-		health_bar_blank_->SetTranslationX(screen_width * 0.5);
+		health_bar_blank_->SetTranslationX(screen_width * 0.5f);
 		health_bar_blank_->SetTranslationY((health_bar_height * 0.5f) + offset_padding);
 	}
 
@@ -263,15 +263,14 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 	}
 
 	// 点滅の時の色
-	float alert_color = 0.f;
+	int alert_color = 0;
 
 	// 背景を点滅させる
 	{	
-
 		// アラートの局所の実行時間の計算
 		alert_time_ += (deltaTime * 2.f);
 		{
-			alert_color = Math::Lerp(255.f, 128.f, alert_time_);
+			alert_color = static_cast<int>(Math::Lerp(255.f, 128.f, alert_time_));
 			if (alert_time_ >= 1.f)
 			{
 				alert_time_ = 0.f;
@@ -313,15 +312,14 @@ void BossHUD::UpdateHorizontalAlertHUD(float deltaTime)
 	}
 
 	// 点滅の時の色
-	float alert_color = 0.f;
+	int alert_color = 0;
 
 	// 背景を点滅させる
 	{
-
 		// アラートの局所の実行時間の計算
 		alert_time_ += (deltaTime * 2.f);
 		{
-			alert_color = Math::Lerp(255.f, 128.f, alert_time_);
+			alert_color = static_cast<int>(Math::Lerp(255.f, 128.f, alert_time_));
 			if (alert_time_ >= 1.f)
 			{
 				alert_time_ = 0.f;

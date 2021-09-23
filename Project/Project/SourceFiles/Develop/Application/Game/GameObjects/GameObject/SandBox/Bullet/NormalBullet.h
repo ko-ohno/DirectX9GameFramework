@@ -27,7 +27,7 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::Bullet; }
+	virtual TypeID GetType(void) const { return TypeID::NormalBullet; }
 
 	// ƒvƒŒƒCƒ„[‚Ìp¨‚ğ‡¬
 	void CombinePlayerTransform(void);

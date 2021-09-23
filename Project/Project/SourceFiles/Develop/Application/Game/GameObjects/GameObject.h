@@ -38,14 +38,16 @@ public:
 		, Fade
 		, LoadingScreen
 		, HUD
+		, BossHUD
+		, GameOver
 		, PauseMenu
 		, Result
 		, Title
 
 		// サンドボックス
 		, SandBox
-		, IBullet // バレットのインターフェース
-		, Bullet
+		, Bullet // バレットのインターフェース
+		, NormalBullet
 		, ChargeBullet
 		, LargeLaser
 		, Actor

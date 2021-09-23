@@ -27,6 +27,8 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
+	virtual TypeID GetType(void) const { return TypeID::BossHUD; }
+
 	// ‘Ì—Í
 	void UpdateHealthBarHUD(float deltaTime);
 
