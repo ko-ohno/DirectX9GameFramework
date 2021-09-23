@@ -175,7 +175,7 @@ bool Player::Init(void)
 		obb_collider_->SetDirLength(box_scale, AxisType::Z);
 
 		obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
-		obb_collider_gizmo_->SetScale(box_scale * 2.f);
+		obb_collider_gizmo_->SetScale(box_scale);
 
 		// ƒƒbƒNƒIƒ“‚Ì” ‚ÌÕ“Ë”»’è
 		{
@@ -189,9 +189,9 @@ bool Player::Init(void)
 
 			lockon_gizmo_ = NEW BoxGizmoRendererComponent(this);
 			lockon_gizmo_->SetVertexColor(0, 255, 255, 128);
-			lockon_gizmo_->SetScaleX(lockon_scale * 2.f);
-			lockon_gizmo_->SetScaleY(lockon_scale * 2.f);
-			lockon_gizmo_->SetScaleZ(lockon_langth * 2.f);
+			lockon_gizmo_->SetScaleX(lockon_scale);
+			lockon_gizmo_->SetScaleY(lockon_scale);
+			lockon_gizmo_->SetScaleZ(lockon_langth);
 		}
 	}
 

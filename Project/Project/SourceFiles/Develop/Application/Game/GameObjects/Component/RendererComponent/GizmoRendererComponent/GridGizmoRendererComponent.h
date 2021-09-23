@@ -25,14 +25,14 @@ public:
 	GridGizmoRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~GridGizmoRendererComponent(void);
 
-private:
+public:
 	bool Init(void) override;
 	void Uninit(void) override;
 	void Draw(class Shader* shader, class Camera* camera) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::GridGizmoRendererComponent; };
 
-public:
+private:
 	bool CreateVertexBuffer(void);
 
 private:

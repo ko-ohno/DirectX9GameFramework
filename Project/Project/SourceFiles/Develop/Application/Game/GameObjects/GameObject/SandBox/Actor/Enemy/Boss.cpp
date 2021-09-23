@@ -146,9 +146,9 @@ bool Boss::Init(void)
 			// ƒMƒYƒ‚
 			obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
 			obb_collider_gizmo_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
-			obb_collider_gizmo_->AddScaleX(box_size * 2.f);
-			obb_collider_gizmo_->AddScaleY(box_height_size * 2.f);
-			obb_collider_gizmo_->AddScaleZ(box_size * 2.f);
+			obb_collider_gizmo_->SetScaleX(box_size);
+			obb_collider_gizmo_->SetScaleY(box_height_size);
+			obb_collider_gizmo_->SetScaleZ(box_size);
 		}
 	}
 	return true;

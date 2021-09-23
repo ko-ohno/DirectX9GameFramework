@@ -223,33 +223,38 @@ void BossMoveComponent::MoveActionEnter(float deltaTime)
 -----------------------------------------------------------------------------*/
 void BossMoveComponent::MoveActionIdle(float deltaTime)
 {
-	//static float z = 15.f;
-	//static float yaw = 0.f;
-	//ImGui::Begin("boss_controll");
-	//ImGui::Text("pos_z:%f", z);
-	//ImGui::SliderFloat("##pos", &z, 0.f, 15.f);
-	//ImGui::Text("yaw:%f", yaw);
-	//ImGui::SliderFloat("##yaw", &yaw, 0.f, 360.f);
-	//ImGui::End();
-
-	//owner_transform_->SetTranslationZ(z);
-	//owner_transform_->SetRotation(yaw, 0, 0);
-
-
-	// 回転の更新
-	owner_transform_->SetSlerpSpeed(5.f);
-	owner_transform_->SetRotation(yaw_, 0, 0);
-	owner_transform_->AddRotationYaw(4);
-
-	// アニメーションの時間
-	const float MAX_STATE_TIME = 2.f;
-	execute_time_ += deltaTime;
-
-	// モーションの実行時間が最大を超えたら
-	if (execute_time_ >= MAX_STATE_TIME)
+	const bool is_collider_test = false;
+	if (is_collider_test)
 	{
-		execute_time_ = 0.f;
-		enemy_motion_state_ = EnemyMotionState::StartUp;
+		static float z = 15.f;
+		static float yaw = 0.f;
+		ImGui::Begin("boss_controll");
+		ImGui::Text("pos_z:%f", z);
+		ImGui::SliderFloat("##pos", &z, 0.f, 15.f);
+		ImGui::Text("yaw:%f", yaw);
+		ImGui::SliderFloat("##yaw", &yaw, 0.f, 360.f);
+		ImGui::End();
+
+		owner_transform_->SetTranslationZ(z);
+		owner_transform_->SetRotation(yaw, 0, 0);
+	}
+	else
+	{
+		// 回転の更新
+		owner_transform_->SetSlerpSpeed(5.f);
+		owner_transform_->SetRotation(yaw_, 0, 0);
+		owner_transform_->AddRotationYaw(4);
+
+		// アニメーションの時間
+		const float MAX_STATE_TIME = 2.f;
+		execute_time_ += deltaTime;
+
+		// モーションの実行時間が最大を超えたら
+		if (execute_time_ >= MAX_STATE_TIME)
+		{
+			execute_time_ = 0.f;
+			enemy_motion_state_ = EnemyMotionState::StartUp;
+		}
 	}
 }
 

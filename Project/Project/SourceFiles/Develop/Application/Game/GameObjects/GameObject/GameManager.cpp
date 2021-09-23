@@ -95,8 +95,8 @@ bool GameManager::Init(void)
 
 		// プレイヤーのサンドボックスを表示
 		player_sandbox_gizmo_ = NEW BoxGizmoRendererComponent(this);
-		player_sandbox_gizmo_->SetScaleX(11.0f);
-		player_sandbox_gizmo_->SetScaleY(7.0f);
+		player_sandbox_gizmo_->SetScaleX(5.5f);
+		player_sandbox_gizmo_->SetScaleY(3.5f);
 	}
 
 	// 宇宙のチリのエフェクトを表示

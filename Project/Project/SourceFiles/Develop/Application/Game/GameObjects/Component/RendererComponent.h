@@ -73,34 +73,34 @@ public:
 
 	//ïΩçsà⁄ìÆê¨ï™ÇÃëÄçÏ
 
-	inline void SetTranslation(float posX, float posY, float posZ = 0.f) { position_ = { posX, posY, posZ }; }
-	inline void SetTranslation(const D3DXVECTOR3& position) { position_ = position; }
-	inline void SetTranslationX(float posX) { position_.x = posX; }
-	inline void SetTranslationY(float posY) { position_.y = posY; }
-	inline void SetTranslationZ(float posZ) { position_.z = posZ; }
+	virtual inline void SetTranslation(float posX, float posY, float posZ = 0.f) { position_ = { posX, posY, posZ }; }
+	virtual inline void SetTranslation(const D3DXVECTOR3& position) { position_ = position; }
+	virtual inline void SetTranslationX(float posX) { position_.x = posX; }
+	virtual inline void SetTranslationY(float posY) { position_.y = posY; }
+	virtual inline void SetTranslationZ(float posZ) { position_.z = posZ; }
 
-	inline void AddTranslation(float addValueX, float addValueY, float addValueZ = 0.f) { position_ += { addValueX, addValueY, addValueZ }; }
-	inline void AddTranslation(const D3DXVECTOR3& addValue) { position_ += addValue; }
-	inline void AddTranslationX(float addValueX) { position_.x = addValueX; }
-	inline void AddTranslationY(float addValueY) { position_.y = addValueY; }
-	inline void AddTranslationZ(float addValueZ) { position_.z = addValueZ; }
+	virtual inline void AddTranslation(float addValueX, float addValueY, float addValueZ = 0.f) { position_ += { addValueX, addValueY, addValueZ }; }
+	virtual inline void AddTranslation(const D3DXVECTOR3& addValue) { position_ += addValue; }
+	virtual inline void AddTranslationX(float addValueX) { position_.x = addValueX; }
+	virtual inline void AddTranslationY(float addValueY) { position_.y = addValueY; }
+	virtual inline void AddTranslationZ(float addValueZ) { position_.z = addValueZ; }
 
 	inline D3DXVECTOR3* GetPosition(void) { return &position_; }
 
 	//ägèkê¨ï™ÇÃëÄçÏ
 
-	inline void SetScale(float scaleValue) { scale_ = { scaleValue, scaleValue, scaleValue }; }
-	inline void SetScale(float scaleX, float scaleY, float scaleZ = 1.f) { scale_ = { scaleX, scaleY, scaleZ }; }
-	inline void SetScale(const D3DXVECTOR3& scale) { scale_ = scale; }
-	inline void SetScaleX(float scaleX) { scale_.x = scaleX; }
-	inline void SetScaleY(float scaleY) { scale_.y = scaleY; }
-	inline void SetScaleZ(float scaleZ) { scale_.z = scaleZ; }
+	virtual inline void SetScale(float scaleValue) { scale_ = { scaleValue, scaleValue, scaleValue }; }
+	virtual inline void SetScale(float scaleX, float scaleY, float scaleZ = 1.f) { scale_ = { scaleX, scaleY, scaleZ }; }
+	virtual inline void SetScale(const D3DXVECTOR3& scale) { scale_ = scale; }
+	virtual inline void SetScaleX(float scaleX) { scale_.x = scaleX; }
+	virtual inline void SetScaleY(float scaleY) { scale_.y = scaleY; }
+	virtual inline void SetScaleZ(float scaleZ) { scale_.z = scaleZ; }
 
-	inline void AddScale(float addValueX, float addValueY, float addValueZ = 0.f) { scale_ += { addValueX, addValueY, addValueZ }; }
-	inline void AddScale(const D3DXVECTOR3& addValue) { scale_ += addValue; }
-	inline void AddScaleX(float addValueX) { scale_.x = addValueX; }
-	inline void AddScaleY(float addValueY) { scale_.y = addValueY; }
-	inline void AddScaleZ(float addValueZ) { scale_.z = addValueZ; }
+	virtual inline void AddScale(float addValueX, float addValueY, float addValueZ = 0.f) { scale_ += { addValueX, addValueY, addValueZ }; }
+	virtual inline void AddScale(const D3DXVECTOR3& addValue) { scale_ += addValue; }
+	virtual inline void AddScaleX(float addValueX) { scale_.x = addValueX; }
+	virtual inline void AddScaleY(float addValueY) { scale_.y = addValueY; }
+	virtual inline void AddScaleZ(float addValueZ) { scale_.z = addValueZ; }
 
 	inline D3DXVECTOR3* GetScale(void) { return &scale_; }
 

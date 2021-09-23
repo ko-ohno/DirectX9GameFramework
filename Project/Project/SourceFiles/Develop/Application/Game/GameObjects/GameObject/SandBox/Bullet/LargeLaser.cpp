@@ -67,9 +67,9 @@ bool LargeLaser::Init(void)
 
 		obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
 		obb_collider_gizmo_->SetVertexColor(0, 255, 255, 128);
-		obb_collider_gizmo_->SetScaleX(laser_scale * 2.f);
-		obb_collider_gizmo_->SetScaleY(laser_length * 2.f);
-		obb_collider_gizmo_->SetScaleZ(laser_scale * 2.f);
+		obb_collider_gizmo_->SetScaleX(laser_scale);
+		obb_collider_gizmo_->SetScaleY(laser_length);
+		obb_collider_gizmo_->SetScaleZ(laser_scale);
 	}
 	return true;
 }
