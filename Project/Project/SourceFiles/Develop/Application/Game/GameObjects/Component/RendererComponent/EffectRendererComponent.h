@@ -20,8 +20,11 @@ public:
 	EffectRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~EffectRendererComponent(void);
 
+private:
 	bool Init(void) override;
 	void Uninit(void) override;
+
+public:
 	void Update(float deltaTime) override;
 	void Draw(class Shader* shader, class Camera* camera) override;
 

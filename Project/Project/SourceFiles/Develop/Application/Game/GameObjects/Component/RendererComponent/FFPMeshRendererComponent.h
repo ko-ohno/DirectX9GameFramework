@@ -20,9 +20,11 @@ public:
 	FFPMeshRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~FFPMeshRendererComponent(void);
 
+private:
 	bool Init(void) override;
 	void Uninit(void) override;
 
+public:
 	void Draw(class Shader* shader, class Camera* camera) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::FFPMeshRendererComponent; };

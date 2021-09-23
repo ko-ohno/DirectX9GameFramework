@@ -38,6 +38,9 @@ private:
 	// エフェクトの更新
 	void UpdatePirticleEffect(float deltaTime);
 
+	// 衝突判定の更新
+	void UpdateCollision(float deltaTime);
+
 private:
 	// 移動コンポーネント
 	class PlayerMoveComponent*			 player_move_;
@@ -78,21 +81,24 @@ private:
 	//int								hp_value_;		//Actorクラスで設定済み
 
 	// 光線銃を発射するか 
-	bool is_blaster_fire_;
+	bool								is_blaster_fire_;
 
 private:
 	//
 	// プレイヤーへの衝突判定
 	//
 
-	// ボスと衝突したか？
-	bool			is_attack_hit_;
+	// プレイヤーに敵の攻撃がヒットしたか？
+	bool					is_received_damage_;
+
+	// 
+	static constexpr float	MAX_DAMAGE_RECIEVE_INTERVAL_TIME_ = 3.f;
 
 	// ボスへのダメージを与えるインターバルの時間
-	float			damage_recieved_interval_time;
+	float					damage_recieve_interval_time_;
 
 	// ボスへのポインタ
-	class Enemy*	boss_;
+	class Enemy*			boss_;
 
 };
 

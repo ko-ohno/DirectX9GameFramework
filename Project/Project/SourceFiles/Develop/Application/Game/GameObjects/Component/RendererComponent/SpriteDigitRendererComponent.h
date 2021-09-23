@@ -21,9 +21,12 @@ class SpriteDigitRendererComponent : public RendererComponent
 public:
 	SpriteDigitRendererComponent(class GameObject* owner, int drawOrder = 200);
 	~SpriteDigitRendererComponent(void);
-
+	
+private:
 	bool Init(void) override;
 	void Uninit(void) override;
+
+public:
 	void Update(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::SpriteDigitRendererComponent; };

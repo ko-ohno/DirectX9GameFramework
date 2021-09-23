@@ -25,9 +25,11 @@ public:
 	BillboardRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~BillboardRendererComponent(void);
 
+private:
 	bool Init(void);
 	void Uninit(void);
 
+public:
 	void Draw(class Shader* shader, class Camera* camera) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::BillboardRendererComponent; };

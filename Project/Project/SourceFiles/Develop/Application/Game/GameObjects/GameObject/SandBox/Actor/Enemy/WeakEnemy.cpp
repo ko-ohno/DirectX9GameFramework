@@ -62,6 +62,15 @@ WeakEnemy::~WeakEnemy(void)
 -----------------------------------------------------------------------------*/
 bool WeakEnemy::Init(void)
 {
+	// 生成座標を初期化
+	{
+		this->transform_component_->SetTranslationY(-100.f);
+
+		// テスト用生成座標
+		//this->transform_component_->SetTranslationX(-3.f);
+		//this->transform_component_->SetTranslationZ(8.f);
+	}
+
 	// 弱い敵のAIを生成 
 	enemy_ai_ = NEW WeakEnemyAIComponent(this);
 
@@ -75,11 +84,6 @@ bool WeakEnemy::Init(void)
 		actor_mesh_->SetScale(0.5f);
 		actor_mesh_->SetTranslationY(-0.5f);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
-
-		// 生成座標を調整
-		//this->transform_component_->SetTranslationX(-3.f);
-		this->transform_component_->SetTranslationY(-100.f);
-		//this->transform_component_->SetTranslationZ( 8.f);
 	}
 
 	// 爆発エフェクトの生成
@@ -115,7 +119,7 @@ bool WeakEnemy::Init(void)
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 3.f;
+			const float sphere_radius_size = 0.5f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);

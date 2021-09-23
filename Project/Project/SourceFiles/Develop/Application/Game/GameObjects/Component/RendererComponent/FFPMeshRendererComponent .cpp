@@ -63,13 +63,13 @@ void FFPMeshRendererComponent::Draw(Shader* shader, Camera* camera)
 	UNREFERENCED_PARAMETER(shader);
 	UNREFERENCED_PARAMETER(camera);
 
-	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
-
 	//メッシュ情報の確認
 	if (xfile_mesh_ == nullptr)
 	{
 		assert(!"FFPMeshRendererComponent::Draw():メッシュ情報が設定されていません！");
 	}
+
+	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
 
 	lpd3d_device->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 

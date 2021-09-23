@@ -70,6 +70,14 @@ Boss::~Boss(void)
 -----------------------------------------------------------------------------*/
 bool Boss::Init(void)
 {
+	// 生成座標を初期化
+	{
+		this->transform_component_->SetTranslationY(-100.f);
+
+		// テスト用生成座標
+		//this->transform_component_->SetTranslationZ(15.f);
+	}
+
 	// ボスのAIを生成 
 	enemy_ai_ = NEW BossAIComponent(this);
 
@@ -82,10 +90,6 @@ bool Boss::Init(void)
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyBoss);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
-
-		// 生成座標を調整
-		this->transform_component_->SetTranslationY(-100.f);
-		this->transform_component_->SetTranslationZ(15.f);
 	}
 
 	// ボスの状態を初期化
