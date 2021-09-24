@@ -77,8 +77,18 @@ bool WeakEnemy::Init(void)
 	// 弱い敵の移動コンポーネントを生成
 	enemy_move_ = NEW WeakEnemyMoveComponent(this);
 
+	// 生成座標を初期化
 	{
-		// 弱い敵のメッシュ生成
+		this->transform_component_->SetTranslationY(-100.f);
+		this->enemy_move_->SetStartPositionY(-100.f);
+
+		// テスト用生成座標
+		//this->transform_component_->SetTranslationX(-3.f);
+		//this->transform_component_->SetTranslationZ(8.f);
+	}
+
+	// 弱い敵のメッシュ生成
+	{
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyWeak);
 		actor_mesh_->SetScale(0.5f);

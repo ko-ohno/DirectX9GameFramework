@@ -92,11 +92,13 @@ bool GameManager::Init(void)
 	{
 		// グリッドの表示
 		grid_gizmo_ = NEW GridGizmoRendererComponent(this);
+		grid_gizmo_->IsSetDrawable(false);
 
 		// プレイヤーのサンドボックスを表示
 		player_sandbox_gizmo_ = NEW BoxGizmoRendererComponent(this);
 		player_sandbox_gizmo_->SetScaleX(5.5f);
 		player_sandbox_gizmo_->SetScaleY(3.5f);
+		player_sandbox_gizmo_->IsSetDrawable(false);
 	}
 
 	// 宇宙のチリのエフェクトを表示

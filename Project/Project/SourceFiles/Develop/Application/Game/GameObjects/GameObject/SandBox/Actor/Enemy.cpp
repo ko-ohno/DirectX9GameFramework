@@ -83,6 +83,17 @@ void Enemy::SetEnemyState(EnemyState enemyState)
 	enemy_move_->SetEnemyState(enemyState);
 }
 
+/*-----------------------------------------------------------------------------
+/* Ž©g‚Ìó‘Ô‚ÌŽæ“¾
+-----------------------------------------------------------------------------*/
+EnemyState Enemy::GetEnemyState(void)
+{
+	if (enemy_ai_ == nullptr) { return EnemyState::None; }
+	if (enemy_move_ == nullptr) { return EnemyState::None;; }
+
+	return enemy_ai_->GetEnemyState();
+}
+
 /*=============================================================================
 /*		End of File
 =============================================================================*/

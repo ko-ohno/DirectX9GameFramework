@@ -49,8 +49,7 @@ protected:
 	// ƒpƒ‰ƒ[ƒ^
 
 	float max_hit_point_;
-	float hit_point_
-		, hit_point_old_;
+	float hit_point_;
 	float max_attack_;
 	float attack_;
 

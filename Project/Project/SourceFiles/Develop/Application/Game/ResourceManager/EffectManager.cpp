@@ -36,6 +36,8 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 
 	, "ExplosionActor"
 
+	, "HitEffect"
+
 	, "BlueLaser"
 	, "AfterBurner"
 };
@@ -164,6 +166,9 @@ bool EffectManager::Init(void)
 			// アクターの爆発エフェクト
 			unmap_effect_path_list_[EffectType::ExplosionActor] = "Explosion/ActorExplosion/actor_explosion.efk";
 
+			// 攻撃が当たった時のエフェクト
+			unmap_effect_path_list_[EffectType::HitEffect] = "HitEffect/hit_effect.efk";
+
 			// 赤いレーザーのエフェクト
 			unmap_effect_path_list_[EffectType::RedLaser]	 = "Laser/RedLaser.efk";
 
@@ -171,8 +176,6 @@ bool EffectManager::Init(void)
 			unmap_effect_path_list_[EffectType::AfterBurner] = "AfterBurner/after_burner.efk";
 		}
 	}
-
-
 	
 	// COMコンポーネントは、ApplicationManager::Init()で初期化済み
 	{

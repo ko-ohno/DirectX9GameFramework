@@ -82,8 +82,18 @@ bool StrongEnemy::Init(void)
 	// ボスの移動コンポーネントを生成
 	enemy_move_ = NEW StrongEnemyMoveComponent(this);
 
+	// 生成座標を初期化
 	{
-		// ボスのメッシュ生成
+		this->transform_component_->SetTranslationY(-100.f);
+		this->enemy_move_->SetStartPositionY(-100.f);
+
+		// テスト用生成座標
+		//this->transform_component_->SetTranslationX(3.f);
+		//this->transform_component_->SetTranslationZ(8.f);
+	}
+
+	// ボスのメッシュ生成
+	{
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyStrong);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする

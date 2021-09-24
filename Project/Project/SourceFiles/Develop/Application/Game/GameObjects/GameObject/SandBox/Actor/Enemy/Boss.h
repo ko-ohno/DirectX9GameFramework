@@ -34,6 +34,9 @@ public:
 	// レーザー砲の更新
 	void UpdateLaserCannon(enum class EnemyState enemyState, enum class EnemyMotionState motionState);
 
+	// 衝突判定の更新
+	void UpdateCollision(float deltaTime);
+
 private:
 	// 衝突判定の高さ、オフセット座標
 	static constexpr float COLLIDER_OFFSET_HEIGHT_POS = 3.f;
@@ -44,16 +47,19 @@ private:
 	static constexpr float ATTACK_VALUE_LASER_CANNON	= 10.f;
 
 	// 自身のステート情報
-	enum class EnemyState		enemy_state_old_;
-	enum class EnemyMotionState	motion_state_old_;
+	enum class EnemyState				enemy_state_old_;
+	enum class EnemyMotionState			motion_state_old_;
+
+	//　射撃行動通知エフェクト
+	class EffectRendererComponent*		effect_enemy_action_shoot_;
 
 	// 最大武器数
-	static constexpr int MAX_WEAPON_COUNT = 3;
+	static constexpr int				MAX_WEAPON_COUNT = 3;
 
 	// 武器の発射用
-	bool	is_fire_;
-	int		blaster_index_;
-	float	switch_time_;
+	bool								is_fire_;
+	int									blaster_index_;
+	float								switch_time_;
 	
 	class EnemyBlasterWeaponComponent* enemy_blaster_[MAX_WEAPON_COUNT];
 	class LaserCannonWeaponComponent*  laser_cannon_;

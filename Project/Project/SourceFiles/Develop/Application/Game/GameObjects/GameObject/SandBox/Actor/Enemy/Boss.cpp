@@ -16,8 +16,9 @@
 // ボスAIコンポーネント
 #include "../../../../Component/AIComponent/EnemyAIComponent/BossAIComponent.h"
 
-// メッシュコンポーネント
+// 描画コンポーネント
 #include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
+#include "../../../../Component/RendererComponent/EffectRendererComponent.h"
 
 // 球の衝突判定
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
@@ -39,7 +40,11 @@
 
 
 #include "../../../../../Game.h"
+#include "../../Bullet/NormalBullet.h"
 #include "../../../../../SandBoxManager/ActorManager.h"
+#include "../../../../../SandBoxManager/BulletManager.h"
+#include "../../../../../CheckCollision.h"
+
 
 
 /*-----------------------------------------------------------------------------
@@ -49,6 +54,7 @@ Boss::Boss(Game* game)
 	: Enemy(game)
 	, enemy_state_old_(EnemyState::None)
 	, motion_state_old_(EnemyMotionState::None)
+	, effect_enemy_action_shoot_(nullptr)
 	, is_fire_(false)
 	, blaster_index_(0)
 	, switch_time_(0.f)
@@ -84,12 +90,28 @@ bool Boss::Init(void)
 	// ボスの移動コンポーネントを生成
 	enemy_move_ = NEW BossMoveComponent(this);
 
+	// 生成座標を初期化
+	{
+		this->transform_component_->SetTranslationY(-100.f);
+		this->enemy_move_->SetStartPositionY(-100.f);
+
+		// テスト用生成座標
+		//this->transform_component_->SetTranslationZ(15.f);
+	}
+
 	// メッシュの生成
 	{
 		// ボスのメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyBoss);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
+	}
+
+	// エフェクトの生成
+	{
+		effect_enemy_action_shoot_ = NEW EffectRendererComponent(this);
+		effect_enemy_action_shoot_->SetEffect(EffectType::EnemyActionGuide_Red);
+		effect_enemy_action_shoot_->SetTranslationY(3.f);
 	}
 
 	// ボスの状態を初期化
@@ -206,6 +228,15 @@ void Boss::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
+	// 射撃行動に入ることを通知する
+	if (ai_state == EnemyState::Shooting)
+	{
+		if (ai_state != enemy_state_old_)
+		{
+			effect_enemy_action_shoot_->Play();
+		}
+	}
+
 	//　自身のAIのステートから攻撃力を更新する
 	switch (ai_state)
 	{
@@ -237,10 +268,14 @@ void Boss::UpdateGameObject(float deltaTime)
 		this->UpdateLaserCannon(ai_state, move_motion_state);
 	}
 
+	// 衝突判定の更新
+	this->UpdateCollision(deltaTime);
+
 	// 1フレーム前の情報を更新
 	enemy_state_old_ = ai_state;
 	motion_state_old_ = move_motion_state;
 }
+
 
 /*-----------------------------------------------------------------------------
 /* 光線銃の更新処理
@@ -320,6 +355,52 @@ void Boss::UpdateLaserCannon(EnemyState enemyState, EnemyMotionState motionState
 		// レーザーを砲の発射
 		laser_cannon_->Shoot();
 		is_fire_ = false;
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 衝突判定の更新処理
+-----------------------------------------------------------------------------*/
+void Boss::UpdateCollision(float deltaTime)
+{
+	if (InputCheck::KeyTrigger(DIK_I))
+	{
+		hit_point_ = 100.f;
+	}
+
+	// バレットの衝突判定
+	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+	for (auto bullet : bullets)
+	{
+		// Bulletの所有者がPlayerかを調べる
+		auto bullet_owner_game_object = bullet->GetParentGameObject();
+
+		if (bullet_owner_game_object == nullptr) { continue; }
+
+		// バレットの所有者を調べる
+		const bool is_player_shoot_bullet = (bullet_owner_game_object->GetType() == GameObject::TypeID::Player);
+		if (is_player_shoot_bullet)
+		{
+			// エネミーのバレットの衝突判定を取得
+			if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+			{
+				// ダメージを受けた時のエフェクトを再生
+
+				// ダメージを受けたSEを再生
+
+				// ダメージをを受ける
+				hit_point_ += -10.f;
+
+				// 衝突したバレットを破棄する
+				bullet->SetGameObjectState(State::Dead);
+
+				// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
+				//damage_recieve_interval_time_ = 0.f;
+				//is_received_damage_ = false;
+				break;
+
+			}
+		}
 	}
 }
 

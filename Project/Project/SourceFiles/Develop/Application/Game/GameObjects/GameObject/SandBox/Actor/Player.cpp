@@ -56,12 +56,14 @@ Player::Player(Game* game)
 	: Actor(game)
 	, player_move_(nullptr)
 	, effect_after_burner_(nullptr)
+	, effect_enemy_attack_hit_(nullptr)
 	, near_reticle_(nullptr)
 	, far_reticle_(nullptr)
 	, lockon_reticle_(nullptr)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
 	, charge_blaster_(nullptr)
+	, enemy_attack_hit_se_(nullptr)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
 	, is_blaster_fire_(false)
@@ -96,10 +98,17 @@ bool Player::Init(void)
 		actor_mesh_->SetEnableLighting(true);
 		actor_mesh_->SetScale(0.5f);
 
-		// アフターバーナーの表示
-		effect_after_burner_ = NEW EffectRendererComponent(this);
-		effect_after_burner_->SetEffect(EffectType::AfterBurner);
-		effect_after_burner_->Play();
+		// エフェクトコンポーネント
+		{
+			// アフターバーナーの表示
+			effect_after_burner_ = NEW EffectRendererComponent(this);
+			effect_after_burner_->SetEffect(EffectType::AfterBurner);
+			effect_after_burner_->Play();
+
+			// アフターバーナーの表示
+			effect_enemy_attack_hit_ = NEW EffectRendererComponent(this);
+			effect_enemy_attack_hit_->SetEffect(EffectType::HitEffect);
+		}
 
 		// レティクルの設定
 		{
@@ -125,7 +134,6 @@ bool Player::Init(void)
 				// レティクルの性質の調整
 				near_reticle_->SetScale(1.4f);
 				near_reticle_->SetTranslationZ(9.f);
-				//near_reticle_->GetPosition();
 			}
 
 			//　ロックオンのレティクル
@@ -140,6 +148,13 @@ bool Player::Init(void)
 				lockon_reticle_->SetTranslationZ(9.f);
 			}
 		}
+	}
+
+	// 音声コンポーネント
+	{
+		enemy_attack_hit_se_ = NEW AudioComponent(this);
+		enemy_attack_hit_se_->SetSound(SoundType::DamagePlayer);
+		enemy_attack_hit_se_->SetAudioVolume(1.f);
 	}
 
 	// 武器コンポーネント
@@ -289,9 +304,6 @@ void Player::UpdateGameObject(float deltaTime)
 
 	// 当たり判定の更新
 	this->UpdateCollision(deltaTime);
-
-	// 1フレーム前の情報を更新
-	hit_point_old_ = hit_point_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -372,6 +384,23 @@ void Player::UpdateCollision(float deltaTime)
 		hit_point_ = 100.f;
 	}
 
+	// 次にプレイヤーがダメージを受けるまでの時間を計算
+	if (damage_recieve_interval_time_ >= MAX_DAMAGE_RECIEVE_INTERVAL_TIME_)
+	{
+		// 数値を正規化
+		damage_recieve_interval_time_ = MAX_DAMAGE_RECIEVE_INTERVAL_TIME_;
+
+		// ダメージを受けられるように
+		is_received_damage_ = true;
+	}
+	else
+	{
+		damage_recieve_interval_time_ += deltaTime;
+	}
+
+	// ダメージを受け付けるか？
+	if (is_received_damage_ == false) { return; }
+
 	// 衝突判定
 	{
 		// ボスへのポインタを取得
@@ -387,26 +416,6 @@ void Player::UpdateCollision(float deltaTime)
 				// ボスへのポインタを取得
 				boss_ = enemy;
 			}
-		}
-
-		if (is_received_damage_)
-		{
-
-		}
-
-		// ダメージを受ける感覚の計算
-		damage_recieve_interval_time_ += deltaTime;
-		if (damage_recieve_interval_time_ >= MAX_DAMAGE_RECIEVE_INTERVAL_TIME_)
-		{
-			damage_recieve_interval_time_ = MAX_DAMAGE_RECIEVE_INTERVAL_TIME_;
-
-
-			// ダメージを受ける
-		}
-
-		if (is_received_damage_ == false)
-		{
-
 		}
 
 		// ボスが生成されていたら
@@ -430,12 +439,23 @@ void Player::UpdateCollision(float deltaTime)
 					// エネミーのバレットの衝突判定を取得
 					if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
 					{
+						// ダメージを受けた時のエフェクトを再生
+						effect_enemy_attack_hit_->Play();
+
+						// ダメージを受けたSEを再生
+						enemy_attack_hit_se_->Play();
+
 						// ダメージをを受ける
 						hit_point_ += -10.f;
 
 						// 衝突したバレットを破棄する
 						bullet->SetGameObjectState(State::Dead);
+	
+						// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
+						damage_recieve_interval_time_ = 0.f;
+						is_received_damage_ = false;
 						break;
+
 					}
 				}
 			}
@@ -443,8 +463,18 @@ void Player::UpdateCollision(float deltaTime)
 			// ボスの体当たりの衝突判定
 			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
 			{
+				// ダメージを受けた時のエフェクトを再生
+				effect_enemy_attack_hit_->Play();
+
+				// ダメージを受けたSEを再生
+				enemy_attack_hit_se_->Play();
+
 				// ダメージをを受ける
 				hit_point_ += -10.f;
+
+				// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
+				damage_recieve_interval_time_ = 0.f;
+				is_received_damage_ = false;
 			}
 
 			// ボスの大型レーザーの衝突判定
@@ -468,8 +498,18 @@ void Player::UpdateCollision(float deltaTime)
 				{
 					if (CheckCollision::ObbVSObb(this->GetOBBCollider(), large_laser->GetOBBCollider()))
 					{
+						// ダメージを受けた時のエフェクトを再生
+						effect_enemy_attack_hit_->Play();
+
+						// ダメージを受けたSEを再生
+						enemy_attack_hit_se_->Play();
+
 						// ダメージをを受ける
 						hit_point_ += -10.f;
+
+						// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
+						damage_recieve_interval_time_ = 0.f;
+						is_received_damage_ = false;
 					}
 				}
 			}

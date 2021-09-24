@@ -29,6 +29,9 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::BossHUD; }
 
+	// HUDの値を更新
+	void UpdateHUDValue(float deltaTime);
+
 	// 体力
 	void UpdateHealthBarHUD(float deltaTime);
 
@@ -47,6 +50,7 @@ private:
 
 	// エネミーの状態
 	enum class EnemyState			boss_state_;
+	enum class EnemyState			boss_state_old_;
 
 private:
 	// ボスの体力ゲージ
@@ -72,9 +76,12 @@ private:
 	//	ボスの攻撃アラート
 	//
 
-	static constexpr float			  MAX_ALERT_TIME = 3.f;
+	static constexpr float			  MAX_ALERT_TIME = 2.5f;
 
-	// アラートを実行するか
+	// アラートを発生させているか
+	bool							  is_execute_alert_;
+
+	// アラートを発生させているか
 	bool							  is_alert_;
 
 	// アラートの全体の実行時間

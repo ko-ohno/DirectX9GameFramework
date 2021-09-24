@@ -58,6 +58,8 @@ enum class EffectType
 
 	, ExplosionActor
 
+	, HitEffect
+
 	, RedLaser
 	, AfterBurner
 	, Max

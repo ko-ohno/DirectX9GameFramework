@@ -60,6 +60,7 @@ public:
 	//
 
 	void SetEnemyState(EnemyState enemyState);
+	EnemyState GetEnemyState(void);
 
 	//
 	// ˆÚ“®À•W‚Ìİ’è

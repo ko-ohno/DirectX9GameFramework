@@ -12,6 +12,7 @@
 #include "../../../Game.h"
 #include "../../../../DX9Graphics.h"
 #include "../SandBox/Actor/Enemy.h"
+#include "../../../SandBoxManager/EnemieManager.h"
 
 // 描画コンポーネント
 #include "../../Component/RendererComponent/SpriteRendererComponent.h"
@@ -19,6 +20,9 @@
 
 // 音声コンポーネント
 #include "../../Component/AudioComponent.h"
+
+#include "../../../../ImGui/ImGuiManager.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -35,6 +39,7 @@ BossHUD::BossHUD(Game* game)
 	, max_hp_value_(0.f)
 	, hp_rate_(0.f)
 	, weak_point_(nullptr)
+	, is_execute_alert_(false)
 	, is_alert_(false)
 	, alert_execute_time_(0.f)
 	, alert_time_(0.f)
@@ -49,6 +54,7 @@ BossHUD::BossHUD(Game* game)
 -----------------------------------------------------------------------------*/
 BossHUD::~BossHUD(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -68,17 +74,14 @@ bool BossHUD::Init(void)
 		health_bar_ = NEW SpriteRendererComponent(this, 240);
 		health_bar_->SetTexture(TextureType::Blank);
 		health_bar_->SetVertexColor(0, 255, 0, 255); // 緑
-		health_bar_->IsSetDrawingPositionToCenter(true);
 
 		health_bar_blank_ = NEW SpriteRendererComponent(this, 230);
 		health_bar_blank_->SetTexture(TextureType::Blank);
 		health_bar_blank_->SetVertexColor(0, 0, 0, 255); // 黒
-		health_bar_blank_->IsSetDrawingPositionToCenter(true);
 
 		health_bar_bg_ = NEW SpriteRendererComponent(this);
 		health_bar_bg_->SetTexture(TextureType::Blank);
 		health_bar_bg_->SetVertexColor(255, 128, 128, 128); // 赤色
-		health_bar_bg_->IsSetDrawingPositionToCenter(true);
 	}
 
 	// 弱点の表示
@@ -95,10 +98,12 @@ bool BossHUD::Init(void)
 		alert_exclamation_ = NEW BillboardRendererComponent(this);
 		alert_exclamation_->SetTexture(TextureType::Exclamation);
 		alert_exclamation_->SetScale(2.f);
+		alert_exclamation_->IsSetDrawable(false);
 
 		// 背景
 		alert_bg_ = NEW BillboardRendererComponent(this);
 		alert_bg_->SetTexture(TextureType::Blank);
+		alert_bg_->IsSetDrawable(false);
 	}
 
 	// 音声コンポーネントの生成
@@ -106,9 +111,6 @@ bool BossHUD::Init(void)
 		alert_se_ = NEW AudioComponent(this);
 		alert_se_->SetSound(SoundType::DangerAlert);
 	}
-
-	boss_state_ = EnemyState::BodyPress;
-
 	return true;
 }
 
@@ -131,35 +133,90 @@ void BossHUD::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void BossHUD::UpdateGameObject(float deltaTime)
 {
+	// ゲームマネージャを探す
+	if (game_manager_ == nullptr)
+	{
+		game_manager_ = this->FindGameObject(TypeID::GameManager);
+	}
+
+	// ボスへのポインタ取得
+	if (boss_ == nullptr)
+	{
+		auto enemy_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
+		for(auto enemy : enemy_list)
+		{
+			auto enemy_type = enemy->GetType();
+			if (enemy_type == GameObject::TypeID::Boss)
+			{
+				boss_ = enemy;
+			}
+		}
+	}
+
+	// HUDの値を更新
+	this->UpdateHUDValue(deltaTime);
+
 	// 体力バーの更新
 	this->UpdateHealthBarHUD(deltaTime);
 
-	// アラートのステート
+	// ボスの状態を取得
+	if (boss_ != nullptr)
 	{
-		switch (boss_state_)
+		boss_state_ = boss_->GetEnemyState();
+	}
+
+	// アラートのステートの更新
+	{
+		if (boss_state_ != boss_state_old_)
 		{
-		case EnemyState::Idle:
-			break;
-		
-		case EnemyState::BodyPress:
-			// 水平攻撃アラートの更新
-			this->UpdateHorizontalAlertHUD(deltaTime);
-			break;
-	
-		case EnemyState::Shooting:
-			// 射撃攻撃アラートの更新
-			this->UpdateAlertShootHUD(deltaTime);
-			break;
-	
-		case EnemyState::LaserCannon:
-			// 水平攻撃アラートの更新
-			this->UpdateHorizontalAlertHUD(deltaTime);
-			break;
-	
-		default:
-			break;
+			is_execute_alert_ = true;
 		}
-	} 
+
+		if (is_execute_alert_)
+		{
+			switch (boss_state_)
+			{
+			case EnemyState::Idle:
+				break;
+		
+			case EnemyState::BodyPress:
+				// 水平攻撃アラートの更新
+				this->UpdateHorizontalAlertHUD(deltaTime);
+				break;
+	
+			case EnemyState::Shooting:
+				// 射撃攻撃アラートの更新
+				this->UpdateAlertShootHUD(deltaTime);
+				break;
+	
+			case EnemyState::LaserCannon:
+				// 水平攻撃アラートの更新
+				this->UpdateHorizontalAlertHUD(deltaTime);
+				break;
+	
+			default:
+				break;
+			}
+		}
+	}
+
+	// 1フレーム前の情報を更新
+	boss_state_old_ = boss_state_;
+}
+
+/*-----------------------------------------------------------------------------
+/* HUDの値の更新処理
+-----------------------------------------------------------------------------*/
+void BossHUD::UpdateHUDValue(float deltaTime)
+{
+	auto a = boss_->GetHitPoint();
+
+	//hp_rate_ = (1.f / 100.f) * a;
+
+	ImGui::Begin("hp_rate");
+	ImGui::SliderFloat("##hp_rate", &hp_rate_, 0.f, 1.f);
+	ImGui::End();
+
 }
 
 /*-----------------------------------------------------------------------------
@@ -201,11 +258,12 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
+		health_bar_->IsSetDrawingPositionToCenter(true);
 		health_bar_->SetScaleX(width);
 		health_bar_->SetScaleY(height);
 
-		health_bar_->SetTranslationX(screen_width * 0.5f);
-		health_bar_->SetTranslationY((health_bar_height * 0.5f) + offset_padding);
+		health_bar_->SetTranslationX((screen_width * 0.5f) - (width * 0.5f));
+		health_bar_->SetTranslationY(offset_padding);
 	}
 
 	//　体力ゲージの空白部分
@@ -257,7 +315,10 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 
 	if (alert_execute_time_ >= MAX_ALERT_TIME)
 	{
-		boss_state_ = EnemyState::Idle;
+		// アラートを実行しない状態へ
+		is_execute_alert_ = false;
+
+		// アラートを停止
 		alert_execute_time_ = 0.f;
 		is_alert_ = false;
 	}
@@ -279,12 +340,12 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 	}
 
 	// ビックリマークの設定
-	alert_exclamation_->IsSetDrawable(is_alert_);
+	alert_exclamation_->IsSetDrawable(false);
 
 	// 背景の設定
-	alert_bg_->IsSetDrawable(is_alert_);
-	alert_bg_->SetScaleX(12.f);
-	alert_bg_->SetScaleY(8.f);
+	alert_bg_->IsSetDrawable(false);
+	alert_bg_->SetScaleX(2.f);
+	alert_bg_->SetScaleY(2.f);
 	alert_bg_->SetVertexColor(255, alert_color, alert_color, 128);
 }
 
@@ -306,7 +367,10 @@ void BossHUD::UpdateHorizontalAlertHUD(float deltaTime)
 
 	if (alert_execute_time_ >= MAX_ALERT_TIME)
 	{
-		boss_state_ = EnemyState::Idle;
+		// アラートを実行しない状態へ
+		is_execute_alert_ = false;
+
+		// アラートを停止
 		alert_execute_time_ = 0.f;
 		is_alert_ = false;
 	}
@@ -333,7 +397,7 @@ void BossHUD::UpdateHorizontalAlertHUD(float deltaTime)
 	// 背景の設定
 	alert_bg_->IsSetDrawable(is_alert_);
 	alert_bg_->SetScaleX(12.f);
-	alert_bg_->SetScaleY(2.f);
+	alert_bg_->SetScaleY(3.f);
 	alert_bg_->SetVertexColor(255, alert_color, alert_color, 128);
 }
 

@@ -18,7 +18,6 @@ Actor::Actor(Game* game)
 	: SandBox(game)
 	, max_hit_point_(0.f)
 	, hit_point_(0.f)
-	, hit_point_old_(0.f)
 	, max_attack_(0.f)
 	, attack_(0.f)
 	, is_destroy_(false)
@@ -60,10 +59,9 @@ bool Actor::Init(void)
 	// ステータスの初期化
 	{
 		max_hit_point_  = 100.f;
-		hit_point_		= 100.f;
-		hit_point_old_  = hit_point_;
+		hit_point_		= max_hit_point_;
 		max_attack_		= 1.f;
-		attack_			= 1.f;
+		attack_			= max_attack_;
 	}
 	return true;
 }

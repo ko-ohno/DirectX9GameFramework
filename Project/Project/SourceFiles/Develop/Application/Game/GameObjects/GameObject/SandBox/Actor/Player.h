@@ -50,6 +50,7 @@ private:
 	//
 
 	class EffectRendererComponent*		 effect_after_burner_;
+	class EffectRendererComponent*		 effect_enemy_attack_hit_;
 
 	// レティクル
 
@@ -67,6 +68,12 @@ private:
 
 	class OBBColliderComponent*			 lockon_collider_;
 	class BoxGizmoRendererComponent*	 lockon_gizmo_;
+
+	//
+	// 音声コンポーネント
+	//
+
+	class AudioComponent*				 enemy_attack_hit_se_;
 
 	//
 	// 値コンポーネントの更新
@@ -91,8 +98,8 @@ private:
 	// プレイヤーに敵の攻撃がヒットしたか？
 	bool					is_received_damage_;
 
-	// 
-	static constexpr float	MAX_DAMAGE_RECIEVE_INTERVAL_TIME_ = 3.f;
+	// 次にプレイヤーがダメージを受けるまでの時間
+	static constexpr float	MAX_DAMAGE_RECIEVE_INTERVAL_TIME_ = 2.f;
 
 	// ボスへのダメージを与えるインターバルの時間
 	float					damage_recieve_interval_time_;
