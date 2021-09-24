@@ -78,10 +78,12 @@ bool BossHUD::Init(void)
 		health_bar_blank_ = NEW SpriteRendererComponent(this, 230);
 		health_bar_blank_->SetTexture(TextureType::Blank);
 		health_bar_blank_->SetVertexColor(0, 0, 0, 255); // •
+		health_bar_blank_->IsSetDrawingPositionToCenter(true);
 
 		health_bar_bg_ = NEW SpriteRendererComponent(this);
 		health_bar_bg_->SetTexture(TextureType::Blank);
 		health_bar_bg_->SetVertexColor(255, 128, 128, 128); // ÔF
+		health_bar_bg_->IsSetDrawingPositionToCenter(true);
 	}
 
 	// Žã“_‚Ì•\Ž¦
@@ -211,11 +213,7 @@ void BossHUD::UpdateHUDValue(float deltaTime)
 {
 	auto a = boss_->GetHitPoint();
 
-	//hp_rate_ = (1.f / 100.f) * a;
-
-	ImGui::Begin("hp_rate");
-	ImGui::SliderFloat("##hp_rate", &hp_rate_, 0.f, 1.f);
-	ImGui::End();
+	hp_rate_ = (1.f / 100.f) * a;
 
 }
 
@@ -252,14 +250,16 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 			health_bar_->SetVertexColor(255, 0, 0);
 		}
 
-		const float width = 500.f * hp_rate_;
+		const float width = 500.f;
 		const float height = 60.f;
+
+		// ŽÀÛ‚ÌHP‚Ì•
+		const float true_width = width * hp_rate_;
 
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
-		health_bar_->IsSetDrawingPositionToCenter(true);
-		health_bar_->SetScaleX(width);
+		health_bar_->SetScaleX(true_width);
 		health_bar_->SetScaleY(height);
 
 		health_bar_->SetTranslationX((screen_width * 0.5f) - (width * 0.5f));

@@ -235,13 +235,16 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 			health_bar_->SetVertexColor(255,   0, 0);
 		}
 
-		const float width = 500.f * hp_rate_;
+		const float width  = 500.f;
 		const float height = 60.f;
+
+		// ŽÀÛ‚ÌHP‚Ì•
+		const float true_width = width * hp_rate_;
 
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
-		health_bar_->SetScaleX(width);
+		health_bar_->SetScaleX(true_width);
 		health_bar_->SetScaleY(height);
 
 		health_bar_->SetTranslationX(offset_padding);
