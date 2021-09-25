@@ -16,8 +16,6 @@
 -----------------------------------------------------------------------------*/
 OBBColliderComponent::OBBColliderComponent(GameObject* owner, int updateOrder)
 	: ColliderComponent(owner, updateOrder)
-	, position_(0.f, 0.f, 0.f)
-	, offset_position_(0.f, 0.f, 0.f)
 	, axis_element_{
 		{ 1.f, 0.f, 0.f}
 		, { 0.f, 1.f, 0.f}

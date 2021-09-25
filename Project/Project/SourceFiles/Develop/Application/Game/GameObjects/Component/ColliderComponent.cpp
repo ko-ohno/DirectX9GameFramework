@@ -18,6 +18,8 @@
 -----------------------------------------------------------------------------*/
 ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
+	, position_(0.f, 0.f, 0.f)
+	, offset_position_(0.f, 0.f, 0.f)
 {
 	owner_->GetGame()->GetColliderManager()->AddColliderComponentAddress(this);
 }

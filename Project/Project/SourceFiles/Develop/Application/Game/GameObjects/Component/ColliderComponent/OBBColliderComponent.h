@@ -30,8 +30,6 @@ class OBBColliderComponent : public ColliderComponent
 {
 public:
 	static constexpr int MAX_AXIS_ELEMENT = static_cast<int>(AxisType::Max);
-	Vector3 position_
-		  , offset_position_;
 	Vector3	axis_element_[MAX_AXIS_ELEMENT];
 	float	axis_length_[MAX_AXIS_ELEMENT];
 
@@ -42,15 +40,6 @@ public:
 	virtual void Update(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::OBBColliderComponent; };
-
-	inline void SetTranslation(Vector3& position) { offset_position_ = position; }
-	inline void SetTranslation(D3DXVECTOR3& position) { offset_position_ = position; }
-	inline void SetTranslation(float posX, float posY, float posZ) { offset_position_ = { posX, posY, posZ }; }
-	inline void SetTranslationX(float posX) { offset_position_.x_ = posX; }
-	inline void SetTranslationY(float posY) { offset_position_.y_ = posY; }
-	inline void SetTranslationZ(float posZ) { offset_position_.z_ = posZ; }
-
-	inline Vector3* GetPosition(void) { return &position_; }
 
 	inline Vector3* GetDirElement(AxisType axisType) { return &axis_element_[(int)axisType]; }
 

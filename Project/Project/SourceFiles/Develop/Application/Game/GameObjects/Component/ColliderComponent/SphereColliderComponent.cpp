@@ -16,7 +16,6 @@
 -----------------------------------------------------------------------------*/
 SphereColliderComponent::SphereColliderComponent(GameObject* owner, int updateOrder)
 	: ColliderComponent(owner, updateOrder)
-	, position_(0.f, 0.f, 0.f)
 	, radius_(0.5f)
 {
 }
@@ -35,8 +34,14 @@ void SphereColliderComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// このコンポーネントの所有者の座標を取得
+	Vector3 owner_position = *owner_->GetTransform()->GetPosition();
+
 	// 衝突判定の位置情報の更新
-	position_ = *owner_->GetTransform()->GetPosition();
+	position_ = offset_position_ + owner_position;
+
+	int a = 0;
+
 }
 
 /*=============================================================================
