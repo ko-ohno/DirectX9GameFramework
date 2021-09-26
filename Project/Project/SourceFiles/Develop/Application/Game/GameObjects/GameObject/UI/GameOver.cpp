@@ -38,7 +38,7 @@ GameOver::~GameOver(void)
 -----------------------------------------------------------------------------*/
 bool GameOver::Init(void)
 {
-	const float draw_order = 250;
+	const int draw_order = 250;
 
 	// 画面タイトルの表示
 	{
@@ -96,8 +96,8 @@ void GameOver::UpdateGameObject(float deltaTime)
 	// ゲーム画面タイトルの設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		const float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
+		const float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		game_over_->SetScaleX(texture_width * 2.f);
@@ -113,20 +113,20 @@ void GameOver::UpdateGameObject(float deltaTime)
 	// 背景の設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		//const float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
+		//const float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		bg_->SetScaleX(screen_width_);
 		bg_->SetScaleY(screen_height_);
-		bg_->SetVertexColor(0, 0, 0, (128 * Easing::SineOut(screen_animation_time_)));
+		bg_->SetVertexColor(0, 0, 0, static_cast<int>(128 * Easing::SineOut(screen_animation_time_)));
 	}
 
 	// 説明の設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		const float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
+		const float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		text_go_to_next_->SetScaleX(texture_width);
@@ -135,7 +135,7 @@ void GameOver::UpdateGameObject(float deltaTime)
 		// 描画座標の更新
 		text_go_to_next_->SetTranslationX(screen_width_ - texture_width);
 		text_go_to_next_->SetTranslationY(screen_height_ - texture_height);
-		text_go_to_next_->SetVertexColor(255, 255, 255, (255 * Easing::SineOut(screen_animation_time_)));
+		text_go_to_next_->SetVertexColor(255, 255, 255, static_cast<int>(255 * Easing::SineOut(screen_animation_time_)));
 	}
 }
 

@@ -38,7 +38,7 @@ GameClear::~GameClear(void)
 -----------------------------------------------------------------------------*/
 bool GameClear::Init(void)
 {
-	const float draw_order = 250;
+	const int draw_order = 250;
 
 	// 画面タイトルの表示
 	{
@@ -116,16 +116,16 @@ void GameClear::UpdateGameObject(float deltaTime)
 		game_clear_->SetTranslationY(draw_pos_y);
 	}
 
-	// 背景の表示
+	// 背景の設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_clear_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_clear_->GetTextureImageInfo()->Width);
+		//const float texture_height = static_cast<float>(game_clear_->GetTextureImageInfo()->Height);
+		//const float texture_width = static_cast<float>(game_clear_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		bg_->SetScaleX(screen_width_);
 		bg_->SetScaleY(screen_height_);
-		bg_->SetVertexColor(0, 0, 0, (128 * Easing::SineOut(screen_animation_time_)));
+		bg_->SetVertexColor(0, 0, 0, static_cast<int>(128 * Easing::SineOut(screen_animation_time_)));
 	}
 
 	// 説明の設定
@@ -141,7 +141,7 @@ void GameClear::UpdateGameObject(float deltaTime)
 		// 描画座標の更新
 		text_go_to_next_->SetTranslationX(screen_width_ - texture_width);
 		text_go_to_next_->SetTranslationY(screen_height_ - texture_height);
-		text_go_to_next_->SetVertexColor(255, 255, 255, (255 * Easing::SineOut(screen_animation_time_)));
+		text_go_to_next_->SetVertexColor(255, 255, 255, static_cast<int>(255 * Easing::SineOut(screen_animation_time_)));
 	}
 }
 
