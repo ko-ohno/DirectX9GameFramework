@@ -27,6 +27,8 @@ enum class TextureType
 	, ScreenBG
 	, GameStart
 	, GameQuit
+	, GameOver
+	, GameClear
 	, ScoreFontOrigin_0
 	, ScoreFontOrigin_1
 	, ScoreDoublePoint

@@ -24,6 +24,8 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	, "ScreenBG"
 	, "GameStart"
 	, "GameQuit"
+	, "GameOver"
+	, "GameClear" 
 	, "ScoreFontOrigin_0"
 	, "ScoreFontOrigin_1"
 	, "ScoreDoublePoint"
@@ -109,6 +111,8 @@ bool TextureManager::Init(void)
 		unmap_texture_path_list_[TextureType::ScreenBG]			  = "bg_space.png";
 		unmap_texture_path_list_[TextureType::GameStart]		  = "GameStart.png";
 		unmap_texture_path_list_[TextureType::GameQuit]			  = "quit.png";
+		unmap_texture_path_list_[TextureType::GameOver]			  = "GameOver.png";
+		unmap_texture_path_list_[TextureType::GameClear]		  = "GameClear.png";
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0]  = "score_font_origin_0.png";
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1]  = "score_font_origin_1.png";
 		unmap_texture_path_list_[TextureType::ScoreDoublePoint]   = "double.png";

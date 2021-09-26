@@ -1,23 +1,23 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[GameOver.cpp] ゲームオブジェクト
+/*	[GameClear.cpp] ゲームクリア画面ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ゲームオブジェクト
+/*	説明：ゲームクリア画面ゲームオブジェクト
 =============================================================================*/
 
 /*--- インクルードファイル ---*/
 #include "../../../../../StdAfx.h"
-#include "GameOver.h"
+#include "GameClear.h"
 #include "../../Component/RendererComponent/SpriteRendererComponent.h"
 
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
-GameOver::GameOver(Game* game)
+GameClear::GameClear(Game* game)
 	: UI(game)
-	, game_over_(nullptr)
+	, game_clear_(nullptr)
 	, bg_(nullptr)
 	, text_go_to_next_(nullptr)
 	, screen_animation_time_(0.f)
@@ -28,7 +28,7 @@ GameOver::GameOver(Game* game)
 /*-----------------------------------------------------------------------------
 /* デストラクタ
 -----------------------------------------------------------------------------*/
-GameOver::~GameOver(void)
+GameClear::~GameClear(void)
 {
 	this->Uninit();
 }
@@ -36,14 +36,14 @@ GameOver::~GameOver(void)
 /*-----------------------------------------------------------------------------
 /* 初期化処理
 -----------------------------------------------------------------------------*/
-bool GameOver::Init(void)
+bool GameClear::Init(void)
 {
 	const float draw_order = 250;
 
 	// 画面タイトルの表示
 	{
-		game_over_ = NEW SpriteRendererComponent(this, draw_order+10);
-		game_over_->SetTexture(TextureType::GameOver);
+		game_clear_ = NEW SpriteRendererComponent(this, draw_order+10);
+		game_clear_->SetTexture(TextureType::GameClear);
 	}
 
 	// 背景の表示
@@ -64,27 +64,27 @@ bool GameOver::Init(void)
 /*-----------------------------------------------------------------------------
 /* 終了化処理
 -----------------------------------------------------------------------------*/
-void GameOver::Uninit(void)
+void GameClear::Uninit(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 入力処理
 -----------------------------------------------------------------------------*/
-void GameOver::InputGameObject(void)
+void GameClear::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void GameOver::UpdateGameObject(float deltaTime)
+void GameClear::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
 	// 画面サイズの取得
 	const float screen_width_ = game_->GetGraphics()->GetScreenSize().x_;
-	const float screen_height_ = game_->GetGraphics()->GetScreenSize().y_;
+	const float screen_height_ = game_->GetGraphics()->GetScreenSize().y_;	
 
 	// 画面アニメーションの時間の計算
 	screen_animation_time_ += deltaTime;
@@ -96,25 +96,31 @@ void GameOver::UpdateGameObject(float deltaTime)
 	// ゲーム画面タイトルの設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		float texture_height = static_cast<float>(game_clear_->GetTextureImageInfo()->Height);
+		float texture_width = static_cast<float>(game_clear_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
-		game_over_->SetScaleX(texture_width * 2.f);
-		game_over_->SetScaleY(texture_height * 2.f);
+		game_clear_->SetScaleX(texture_width * 2.f);
+		game_clear_->SetScaleY(texture_height * 2.f);
+
 
 		// 描画座標の更新
-		const float draw_pos_y = Math::Lerp(screen_height_ + (screen_height_ * 0.5f), (screen_height_ / 3.f), Easing::SineOut(screen_animation_time_));
-		game_over_->IsSetDrawingPositionToCenter(true);
-		game_over_->SetTranslationX(screen_width_ / 2.f);
-		game_over_->SetTranslationY(draw_pos_y);
+		screen_animation_time_ += deltaTime;
+		if (screen_animation_time_ >= MAX_SCREEN_ANIMATION_TIME_)
+		{
+			screen_animation_time_ = MAX_SCREEN_ANIMATION_TIME_;
+		}
+		const float draw_pos_y = Math::Lerp(-(screen_height_ * 0.5f), (screen_height_ / 3.f), Easing::SineOut(screen_animation_time_));
+		game_clear_->IsSetDrawingPositionToCenter(true);
+		game_clear_->SetTranslationX(screen_width_ / 2.f);
+		game_clear_->SetTranslationY(draw_pos_y);
 	}
 
-	// 背景の設定
+	// 背景の表示
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		float texture_height = static_cast<float>(game_clear_->GetTextureImageInfo()->Height);
+		float texture_width = static_cast<float>(game_clear_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		bg_->SetScaleX(screen_width_);
@@ -125,8 +131,8 @@ void GameOver::UpdateGameObject(float deltaTime)
 	// 説明の設定
 	{
 		// テクスチャのサイズを取得
-		float texture_height = static_cast<float>(game_over_->GetTextureImageInfo()->Height);
-		float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
+		float texture_height = static_cast<float>(game_clear_->GetTextureImageInfo()->Height);
+		float texture_width = static_cast<float>(game_clear_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
 		text_go_to_next_->SetScaleX(texture_width);

@@ -40,6 +40,7 @@ public:
 		, HUD
 		, BossHUD
 		, GameOver
+		, GameClear
 		, PauseMenu
 		, Result
 		, Title

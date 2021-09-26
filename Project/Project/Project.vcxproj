@@ -178,6 +178,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.h" />
+    <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\GameClear.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\GameOver.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.h" />
     <ClInclude Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_Last.h" />
@@ -340,6 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\SandBox\Bullet.cpp" />
+    <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\GameClear.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\GameOver.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\GameObjects\GameObject\UI\BossHUD.cpp" />
     <ClCompile Include="SourceFiles\Develop\Application\Game\EnemyFactoryState\EnemyFactoryState_Last.cpp" />

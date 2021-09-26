@@ -1,24 +1,24 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[GameOver.h] ゲームオーバー画面クラス
+/*	[GameClear.h] ゲームクリア画面ゲームオブジェクト
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：ゲームオーバー画面クラス
+/*	説明：ゲームクリア画面ゲームオブジェクト
 =============================================================================*/
-#ifndef GAME_OVER_H_
-#define	GAME_OVER_H_
+#ifndef GAME_CLEAR_H_
+#define	GAME_CLEAR_H_
 
 /*--- インクルードファイル ---*/
 #include "../UI.h"
 
 /*-------------------------------------
-/* ゲームオーバー画面クラス
+/* ゲームクリア画面クラス
 -------------------------------------*/
-class GameOver : public UI
+class GameClear : public UI
 {
 public:
-	GameOver(class Game* game);
-	~GameOver(void);
+	GameClear(class Game* game);
+	~GameClear(void);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化
@@ -27,11 +27,11 @@ public:
 	virtual void InputGameObject(void) override;
 	virtual void UpdateGameObject(float deltaTime) override;
 
-	virtual TypeID GetType(void) const { return TypeID::GameOver; }
+	virtual TypeID GetType(void) const { return TypeID::GameClear; }
 
 private:
 	// ポーズの表題
-	class SpriteRendererComponent* game_over_;
+	class SpriteRendererComponent* game_clear_;
 
 	// ゲームオーバー画面の半透明な背景
 	class SpriteRendererComponent* bg_;
@@ -45,7 +45,7 @@ private:
 	float						   screen_animation_time_;
 };
 
-#endif //GAME_OVER_H_
+#endif //GAME_CLEAR_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/
