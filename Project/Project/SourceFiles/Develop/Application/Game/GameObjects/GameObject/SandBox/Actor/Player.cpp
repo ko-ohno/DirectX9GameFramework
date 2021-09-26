@@ -16,10 +16,6 @@
 #include "../Bullet/NormalBullet.h"
 #include "../../../../SandBoxManager/BulletManager.h"
 
-// 値コンポーネント
-#include "../../../Component/ParameterComponent/IntParameterComponent.h"
-#include "../../../Component/ParameterComponent/FloatParameterComponent.h"
-
 // 描画コンポーネント
 #include "../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 #include "../../../Component/RendererComponent/EffectRendererComponent.h"
@@ -43,7 +39,10 @@
 #include "../../../Component/RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
 #include "../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 
-// 入力コンポーネント 
+// 値コンポーネント
+#include "../../../Component/ParameterComponent/FloatParameterComponent.h"
+
+// 入力チェック
 #include "../../../../Input/InputCheck.h"
 
 // ImGUI
@@ -63,7 +62,7 @@ Player::Player(Game* game)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
 	, charge_blaster_(nullptr)
-	, enemy_attack_hit_se_(nullptr)
+	, player_damege_sound_effect_(nullptr)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
 	, is_blaster_fire_(false)
@@ -152,9 +151,9 @@ bool Player::Init(void)
 
 	// 音声コンポーネント
 	{
-		enemy_attack_hit_se_ = NEW AudioComponent(this);
-		enemy_attack_hit_se_->SetSound(SoundType::DamagePlayer);
-		enemy_attack_hit_se_->SetAudioVolume(1.f);
+		player_damege_sound_effect_ = NEW AudioComponent(this);
+		player_damege_sound_effect_->SetSound(SoundType::DamagePlayer);
+		player_damege_sound_effect_->SetAudioVolume(1.f);
 	}
 
 	// 武器コンポーネント
@@ -384,6 +383,12 @@ void Player::UpdateCollision(float deltaTime)
 		hit_point_ = 100.f;
 	}
 
+	// 下限の設定
+	if (hit_point_ <= 0.f)
+	{
+		hit_point_ = 0.f;
+	}
+
 	// 次にプレイヤーがダメージを受けるまでの時間を計算
 	if (damage_recieve_interval_time_ >= MAX_DAMAGE_RECIEVE_INTERVAL_TIME_)
 	{
@@ -443,7 +448,7 @@ void Player::UpdateCollision(float deltaTime)
 						effect_enemy_attack_hit_->Play();
 
 						// ダメージを受けたSEを再生
-						enemy_attack_hit_se_->Play();
+						player_damege_sound_effect_->Play();
 
 						// ダメージをを受ける
 						hit_point_ += -10.f;
@@ -467,7 +472,7 @@ void Player::UpdateCollision(float deltaTime)
 				effect_enemy_attack_hit_->Play();
 
 				// ダメージを受けたSEを再生
-				enemy_attack_hit_se_->Play();
+				player_damege_sound_effect_->Play();
 
 				// ダメージをを受ける
 				hit_point_ += -10.f;
@@ -502,7 +507,7 @@ void Player::UpdateCollision(float deltaTime)
 						effect_enemy_attack_hit_->Play();
 
 						// ダメージを受けたSEを再生
-						enemy_attack_hit_se_->Play();
+						player_damege_sound_effect_->Play();
 
 						// ダメージをを受ける
 						hit_point_ += -10.f;

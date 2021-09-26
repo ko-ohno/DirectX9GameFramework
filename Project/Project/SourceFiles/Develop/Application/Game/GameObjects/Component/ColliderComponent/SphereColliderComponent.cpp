@@ -39,9 +39,6 @@ void SphereColliderComponent::Update(float deltaTime)
 
 	// Õ“Ë”»’è‚ÌˆÊ’uî•ñ‚ÌXV
 	position_ = offset_position_ + owner_position;
-
-	int a = 0;
-
 }
 
 /*=============================================================================

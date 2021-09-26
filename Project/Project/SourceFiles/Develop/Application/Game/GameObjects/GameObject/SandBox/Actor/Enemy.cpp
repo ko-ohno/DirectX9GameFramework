@@ -89,9 +89,18 @@ void Enemy::SetEnemyState(EnemyState enemyState)
 EnemyState Enemy::GetEnemyState(void)
 {
 	if (enemy_ai_ == nullptr) { return EnemyState::None; }
-	if (enemy_move_ == nullptr) { return EnemyState::None;; }
 
 	return enemy_ai_->GetEnemyState();
+}
+
+/*-----------------------------------------------------------------------------
+/* Ž©g‚Ìƒ‚[ƒVƒ‡ƒ“ó‘Ô‚ÌŽæ“¾
+-----------------------------------------------------------------------------*/
+EnemyMotionState Enemy::GetEnemyMotionState(void)
+{
+	if (enemy_move_ == nullptr) { return EnemyMotionState::None; }
+
+	return enemy_move_->GetMotionState();
 }
 
 /*=============================================================================

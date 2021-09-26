@@ -39,6 +39,9 @@
 
 #include "../../Input/InputCheck.h"
 
+#include "../GameObject/UI/GameOver.h"
+#include "../GameObject/UI/GameClear.h"
+
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
@@ -47,6 +50,7 @@ GameManager::GameManager(Game* game)
 	: GameObject(game)
 	, enemy_factory_(nullptr)
 	, player_(nullptr)
+	, boss_(nullptr)
 	, grid_gizmo_(nullptr)
 	, player_sandbox_gizmo_(nullptr)
 	, effect_space_dust_(nullptr)
@@ -61,6 +65,10 @@ GameManager::GameManager(Game* game)
 	, progress_value_(0)
 	, score_param_(nullptr)
 	, score_value_(0)
+	, boss_max_hp_param_(nullptr)
+	, boss_max_hp_value_(0.f)
+	, boss_hp_param_(nullptr)
+	, boss_hp_value_(0.f)
 	, is_enemy_spawn_(false)
 	, spawn_count_(0)
 	, game_left_time_(0.f)
@@ -116,20 +124,34 @@ bool GameManager::Init(void)
 
 	// 値コンポーネントの生成
 	{
-		// プレイヤーの最大HP
-		player_max_hp_param_ = NEW FloatParameterComponent(this);
-		player_max_hp_param_->SetParameterType(ParameterType::MaxHP);
+		// プレイヤー
+		{
+			// プレイヤーの最大HP
+			player_max_hp_param_ = NEW FloatParameterComponent(this);
+			player_max_hp_param_->SetParameterType(ParameterType::MaxHP);
 
-		// プレイヤーのHP
-		player_hp_param_ = NEW FloatParameterComponent(this);
-		player_hp_param_->SetParameterType(ParameterType::HP);
+			// プレイヤーのHP
+			player_hp_param_ = NEW FloatParameterComponent(this);
+			player_hp_param_->SetParameterType(ParameterType::HP);
 
-		// ゲームの進行度
-		progress_param_ = NEW IntParameterComponent(this);
-		progress_param_->SetParameterType(ParameterType::GameProgress);
-		// ゲームのスコア
-		score_param_ = NEW IntParameterComponent(this);
-		score_param_->SetParameterType(ParameterType::Score);
+			// ゲームの進行度
+			progress_param_ = NEW IntParameterComponent(this);
+			progress_param_->SetParameterType(ParameterType::GameProgress);
+			// ゲームのスコア
+			score_param_ = NEW IntParameterComponent(this);
+			score_param_->SetParameterType(ParameterType::Score);
+		}
+	
+		// ボス
+		{
+			// ボスの最大HP
+			boss_max_hp_param_ = NEW FloatParameterComponent(this);
+			boss_max_hp_param_->SetParameterType(ParameterType::BossMaxHP);
+
+			// ボスのHP
+			boss_hp_param_ = NEW FloatParameterComponent(this);
+			boss_hp_param_->SetParameterType(ParameterType::BossHP);
+		}
 	}
 
 	// ゲームの残り時間
@@ -141,6 +163,10 @@ bool GameManager::Init(void)
 		spawn_count_ = 6;
 	}
 	
+	NEW GameOver(game_);
+
+	//NEW GameClear(game_);
+
 	return true;
 }
 
@@ -264,38 +290,71 @@ void GameManager::UpdateGameObject(float deltaTime)
 -----------------------------------------------------------------------------*/
 void GameManager::UpdateParameterComponent(float deltaTime)
 {
-	// 最大HPへのポインタは、取得済みか？
-	if (player_ == nullptr)
+	// プレイヤーへのポインタの取得
 	{
-		player_ = this->FindGameObject(GameObject::TypeID::Player);
-	}
-
-	// nullチェック
-	if (player_ == nullptr)
-	{
-		assert(!"GameManager::UpdateParameterComponent:プレイヤーへのポインタが”nullptr”でした");
-		return;
-	}
-
-	//　プレイヤーの値コンポーネントを検索
-	auto parameter_components = player_->GetParameterComponents();
-	for (auto parameter_component : parameter_components)
-	{
-		// 値コンポーネントの型を調べる
-		auto parameter_component_type = parameter_component->GetParameterType();
-
-		// プレイヤーの最大HP値の更新
-		if (parameter_component_type == ParameterType::MaxHP)
+		// プレイヤーへのポインタは、未取得か？
+		if (player_ == nullptr)
 		{
-			player_max_hp_value_ = parameter_component->GetFloat();
-			player_max_hp_param_->SetFloat(player_max_hp_value_);
+			player_ = this->FindGameObject(GameObject::TypeID::Player);
 		}
 
-		// プレイヤーのHP値の更新
-		if (parameter_component_type == ParameterType::HP)
+		if (boss_ != nullptr)
 		{
-			player_hp_value_ = parameter_component->GetFloat();
-			player_hp_param_->SetFloat(player_hp_value_);
+			//　プレイヤーの値コンポーネントを検索
+			auto parameter_components = player_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
+			{
+				// 値コンポーネントの型を調べる
+				auto parameter_component_type = parameter_component->GetParameterType();
+
+				// プレイヤーの最大HP値の更新
+				if (parameter_component_type == ParameterType::MaxHP)
+				{
+					player_max_hp_value_ = parameter_component->GetFloat();
+					player_max_hp_param_->SetFloat(player_max_hp_value_);
+				}
+
+				// プレイヤーのHP値の更新
+				if (parameter_component_type == ParameterType::HP)
+				{
+					player_hp_value_ = parameter_component->GetFloat();
+					player_hp_param_->SetFloat(player_hp_value_);
+				}
+			}
+		}
+	}
+
+	// ボスへのポインタの取得
+	{
+		// ボスへのポインタは、未取得か？
+		if (boss_ == nullptr)
+		{
+			boss_ = this->FindGameObject(GameObject::TypeID::Boss);
+		}
+
+		if (boss_ != nullptr)
+		{
+			//　ボスの値コンポーネントを検索
+			auto parameter_components = boss_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
+			{
+				// 値コンポーネントの型を調べる
+				auto parameter_component_type = parameter_component->GetParameterType();
+
+				// ボスへの最大HP値の更新
+				if (parameter_component_type == ParameterType::BossMaxHP)
+				{
+					boss_max_hp_value_ = parameter_component->GetFloat();
+					boss_max_hp_param_->SetFloat(boss_max_hp_value_);
+				}
+
+				// ボスのHP値の更新
+				if (parameter_component_type == ParameterType::BossHP)
+				{
+					boss_hp_value_ = parameter_component->GetFloat();
+					boss_hp_param_->SetFloat(boss_hp_value_);
+				}
+			}
 		}
 	}
 
@@ -311,11 +370,6 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		progress_value_ = static_cast<int>(game_left_time_);
 		progress_param_->SetInt(progress_value_);
 	}
-
-
-	//ImGui::Begin("HUD");
-	//ImGui::SliderInt("##score_value_", &score_value_, 0, 999);
-	//ImGui::End();
 
 	// スコアの値の更新
 	{

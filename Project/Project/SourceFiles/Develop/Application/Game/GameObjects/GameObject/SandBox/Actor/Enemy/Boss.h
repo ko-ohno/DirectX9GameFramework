@@ -28,6 +28,9 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Boss; }
 
+	// 値コンポーネントの更新
+	void UpdateParameter(float deltaTime);
+
 	// 光線銃の更新
 	void UpdateBlaster(float deltaTime, enum class EnemyState enemyState, enum class EnemyMotionState motionState);
 
@@ -52,6 +55,26 @@ private:
 
 	//　射撃行動通知エフェクト
 	class EffectRendererComponent*		effect_enemy_action_shoot_;
+
+	//
+	// 音声コンポーネント
+	//
+
+	class AudioComponent*				enemy_damage_sound_effect_;
+
+	//
+	// 値コンポーネント
+	//
+
+	// プレイヤーの最大HPの値コンポーネント
+	class FloatParameterComponent*		max_hp_param_;
+	//int								max_hp_value_;	//Actorクラスで設定済み
+
+	// プレイヤーのHPの値コンポーネント
+	class FloatParameterComponent*		hp_param_;
+	//int								hp_value_;		//Actorクラスで設定済み
+
+private:
 
 	// 最大武器数
 	static constexpr int				MAX_WEAPON_COUNT = 3;

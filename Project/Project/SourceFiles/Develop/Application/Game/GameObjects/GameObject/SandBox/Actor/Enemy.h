@@ -62,6 +62,9 @@ public:
 	void SetEnemyState(EnemyState enemyState);
 	EnemyState GetEnemyState(void);
 
+	// “®‚«‚Ìó‘Ô‚ğæ“¾
+	enum class EnemyMotionState GetEnemyMotionState(void);
+	
 	//
 	// ˆÚ“®À•W‚Ìİ’è
 	//

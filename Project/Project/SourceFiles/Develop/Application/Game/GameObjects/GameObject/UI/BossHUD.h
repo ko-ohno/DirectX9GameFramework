@@ -36,6 +36,9 @@ public:
 	void UpdateHealthBarHUD(float deltaTime);
 
 	// 射撃のアラートHUD
+	void UpdateWeakPointHUD(float deltaTime);
+
+	// 射撃のアラートHUD
 	void UpdateAlertShootHUD(float deltaTime);
 
 	// 巨大レーザーと体当たり攻撃のアラートのHUD
@@ -51,6 +54,9 @@ private:
 	// エネミーの状態
 	enum class EnemyState			boss_state_;
 	enum class EnemyState			boss_state_old_;
+
+	// ボスの動きの状態
+	enum class EnemyMotionState		boss_motion_state_;
 
 private:
 	// ボスの体力ゲージ
@@ -69,14 +75,18 @@ private:
 
 private:
 	// ボスの弱点表示
-	class BillboardRendererComponent* weak_point_;
+	class BillboardRendererComponent* weak_point_hud_;
+
+	static constexpr float			  MAX_HUD_ANIMATION_TIME_ = 1.f;
+
+	float							  hud_animation_time_;
 
 private:
 	//
 	//	ボスの攻撃アラート
 	//
 
-	static constexpr float			  MAX_ALERT_TIME = 2.5f;
+	static constexpr float			  MAX_ALERT_TIME_ = 2.5f;
 
 	// アラートを発生させているか
 	bool							  is_execute_alert_;

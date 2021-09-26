@@ -14,6 +14,9 @@
 #include "../SandBox/Actor/Enemy.h"
 #include "../../../SandBoxManager/EnemieManager.h"
 
+// 移動コンポーネント
+#include "../../Component/MoveComponent/EnemyMoveComponent.h"
+
 // 描画コンポーネント
 #include "../../Component/RendererComponent/SpriteRendererComponent.h"
 #include "../../Component/RendererComponent/BillboardRendererComponent.h"
@@ -35,10 +38,11 @@ BossHUD::BossHUD(Game* game)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
-	, hp_value_(0.f)
 	, max_hp_value_(0.f)
+	, hp_value_(0.f)
 	, hp_rate_(0.f)
-	, weak_point_(nullptr)
+	, weak_point_hud_(nullptr)
+	, hud_animation_time_(0.f)
 	, is_execute_alert_(false)
 	, is_alert_(false)
 	, alert_execute_time_(0.f)
@@ -88,10 +92,11 @@ bool BossHUD::Init(void)
 
 	// 弱点の表示
 	{
-		weak_point_ = NEW BillboardRendererComponent(this);
-		weak_point_->SetTexture(TextureType::WeakPoint);
-		weak_point_->SetScale(2.f);
-		weak_point_->IsSetDrawable(false);
+		weak_point_hud_ = NEW BillboardRendererComponent(this);
+		weak_point_hud_->SetTexture(TextureType::WeakPoint);
+		weak_point_hud_->SetScale(3.f);
+		weak_point_hud_->SetTranslationY(-100.f);	// 生成座標の初期化
+		weak_point_hud_->IsSetDrawable(false);
 	}
 
 	// アラート用コンポーネントの生成
@@ -141,6 +146,9 @@ void BossHUD::UpdateGameObject(float deltaTime)
 		game_manager_ = this->FindGameObject(TypeID::GameManager);
 	}
 
+	// 体力ゲージに対する割合を計算
+	hp_rate_ = (1.f / max_hp_value_) * hp_value_;
+
 	// ボスへのポインタ取得
 	if (boss_ == nullptr)
 	{
@@ -155,17 +163,21 @@ void BossHUD::UpdateGameObject(float deltaTime)
 		}
 	}
 
+	// ボスの状態を取得
+	if (boss_ != nullptr)
+	{
+		boss_state_			= boss_->GetEnemyState();
+		boss_motion_state_	= boss_->GetEnemyMotionState();
+	}
+
 	// HUDの値を更新
 	this->UpdateHUDValue(deltaTime);
 
 	// 体力バーの更新
 	this->UpdateHealthBarHUD(deltaTime);
 
-	// ボスの状態を取得
-	if (boss_ != nullptr)
-	{
-		boss_state_ = boss_->GetEnemyState();
-	}
+	// 弱点の表示の更新
+	this->UpdateWeakPointHUD(deltaTime);
 
 	// アラートのステートの更新
 	{
@@ -179,6 +191,7 @@ void BossHUD::UpdateGameObject(float deltaTime)
 			switch (boss_state_)
 			{
 			case EnemyState::Idle:
+				this->weak_point_hud_->IsSetDrawable(false);
 				break;
 		
 			case EnemyState::BodyPress:
@@ -211,10 +224,29 @@ void BossHUD::UpdateGameObject(float deltaTime)
 -----------------------------------------------------------------------------*/
 void BossHUD::UpdateHUDValue(float deltaTime)
 {
-	auto a = boss_->GetHitPoint();
+	UNREFERENCED_PARAMETER(deltaTime);
 
-	hp_rate_ = (1.f / 100.f) * a;
+	if (game_manager_ == nullptr) { return; }
 
+	// 値の更新
+	auto parameter_compnents = game_manager_->GetParameterComponents();
+	for (auto parameter_compnent : parameter_compnents)
+	{
+		// 値コンポーネントの型を調べる
+		auto parameter_type = parameter_compnent->GetParameterType();
+
+		// プレイヤーの最大HPの取得
+		if (parameter_type == ParameterType::BossMaxHP)
+		{
+			max_hp_value_ = parameter_compnent->GetFloat();
+		}
+
+		// プレイヤーのHPの取得
+		if (parameter_type == ParameterType::BossHP)
+		{
+			hp_value_ = parameter_compnent->GetFloat();
+		}
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -298,6 +330,72 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 }
 
 /*-----------------------------------------------------------------------------
+/* ボスの弱点のHUDの更新処理
+-----------------------------------------------------------------------------*/
+void BossHUD::UpdateWeakPointHUD(float deltaTime)
+{
+	if (boss_ == nullptr) { return; }
+
+	const bool is_weakpoint_ready = ((boss_state_ == EnemyState::LaserCannon) || (boss_state_ == EnemyState::Shooting));
+	const bool is_weakpoint_show  = ((boss_motion_state_ == EnemyMotionState::Attack) && is_weakpoint_ready);
+
+	if (is_weakpoint_ready == false)
+	{
+		weak_point_hud_->SetTranslationY(-100.f);
+		hud_animation_time_  = 0.f;
+		return;
+	}
+
+	// ボスの姿勢情報を取得
+	D3DXMATRIX boss_matrix = *boss_->GetTransform()->GetWorldMatrix();
+
+	// HUDを表示する姿勢情報の作成
+	D3DXMATRIX weak_point_hud_matrix;
+	D3DXMatrixIdentity(&weak_point_hud_matrix);
+
+	// オフセット座標を、HUDを表示する姿勢情報に作成
+	D3DXVECTOR3 offset_hud_position = { 0.f, 0.f, 0.f };
+
+	// 線形補間でHUDをアニメーション
+	offset_hud_position.y = Math::Lerp(-100.f, 0.f, Easing::SineIn(hud_animation_time_));
+	{
+		weak_point_hud_matrix._41 = offset_hud_position.x;
+		weak_point_hud_matrix._42 = offset_hud_position.y;
+		weak_point_hud_matrix._43 = offset_hud_position.z;
+	}
+
+	// 姿勢情報の計算
+	weak_point_hud_matrix = weak_point_hud_matrix * boss_matrix;
+
+	// 生成した姿勢情報の座標をオフセット座標として設定
+	offset_hud_position.x = weak_point_hud_matrix._41;
+	offset_hud_position.y = weak_point_hud_matrix._42;
+	offset_hud_position.z = weak_point_hud_matrix._43;
+
+
+	// 弱点を表示するか
+	if (is_weakpoint_show)
+	{
+		//　アニメーションの時間を計算
+		hud_animation_time_ += deltaTime;
+		if (hud_animation_time_ >= MAX_HUD_ANIMATION_TIME_)
+		{
+			hud_animation_time_ = MAX_HUD_ANIMATION_TIME_;
+		}
+
+		// HUDを平行移動させる
+		weak_point_hud_->SetTranslation(offset_hud_position);
+		weak_point_hud_->IsSetDrawable(true);
+	}
+	else
+	{
+		// アニメーションをしない
+		hud_animation_time_ = 0.f;
+		weak_point_hud_->IsSetDrawable(false);
+	}
+}
+
+/*-----------------------------------------------------------------------------
 /* 射撃のアラートHUDの更新処理
 -----------------------------------------------------------------------------*/
 void BossHUD::UpdateAlertShootHUD(float deltaTime)
@@ -313,7 +411,7 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 	// アラートの全体の実行時間の計算
 	alert_execute_time_ += deltaTime;
 
-	if (alert_execute_time_ >= MAX_ALERT_TIME)
+	if (alert_execute_time_ >= MAX_ALERT_TIME_)
 	{
 		// アラートを実行しない状態へ
 		is_execute_alert_ = false;
@@ -328,11 +426,13 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 
 	// 背景を点滅させる
 	{	
+		const float MAX_COLOR_ANIMATION_TIME = 1.f;
+
 		// アラートの局所の実行時間の計算
 		alert_time_ += (deltaTime * 2.f);
 		{
 			alert_color = static_cast<int>(Math::Lerp(255.f, 128.f, alert_time_));
-			if (alert_time_ >= 1.f)
+			if (alert_time_ >= MAX_COLOR_ANIMATION_TIME)
 			{
 				alert_time_ = 0.f;
 			}
@@ -365,7 +465,7 @@ void BossHUD::UpdateHorizontalAlertHUD(float deltaTime)
 	// アラートの全体の実行時間の計算
 	alert_execute_time_ += deltaTime;
 
-	if (alert_execute_time_ >= MAX_ALERT_TIME)
+	if (alert_execute_time_ >= MAX_ALERT_TIME_)
 	{
 		// アラートを実行しない状態へ
 		is_execute_alert_ = false;
@@ -380,11 +480,13 @@ void BossHUD::UpdateHorizontalAlertHUD(float deltaTime)
 
 	// 背景を点滅させる
 	{
+		const float MAX_COLOR_ANIMATION_TIME = 1.f;
+
 		// アラートの局所の実行時間の計算
 		alert_time_ += (deltaTime * 2.f);
 		{
 			alert_color = static_cast<int>(Math::Lerp(255.f, 128.f, alert_time_));
-			if (alert_time_ >= 1.f)
+			if (alert_time_ >= MAX_COLOR_ANIMATION_TIME)
 			{
 				alert_time_ = 0.f;
 			}

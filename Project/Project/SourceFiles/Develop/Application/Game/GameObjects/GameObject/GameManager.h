@@ -42,6 +42,9 @@ private:
 	// プレイヤーへのポインタ
 	class GameObject*				  player_;
 
+	// ボスへのポインタ
+	class GameObject*				  boss_;
+
 private:  
 	// サイズの基準のギズモを作成
 	class GridGizmoRendererComponent* grid_gizmo_;
@@ -79,6 +82,15 @@ private:
 	// ゲームスコアの値コンポーネント
 	class IntParameterComponent*	  score_param_;
 	int								  score_value_;
+
+private:
+	// ボスの最大HPの値コンポーネント
+	class FloatParameterComponent*	  boss_max_hp_param_;
+	float							  boss_max_hp_value_;
+
+	// ボスHPの値コンポーネント
+	class FloatParameterComponent*	  boss_hp_param_;
+	float							  boss_hp_value_;
 
 private:
 	// 最大生成時間

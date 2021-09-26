@@ -73,10 +73,10 @@ private:
 	// 音声コンポーネント
 	//
 
-	class AudioComponent*				 enemy_attack_hit_se_;
+	class AudioComponent*				 player_damege_sound_effect_;
 
 	//
-	// 値コンポーネントの更新
+	// 値コンポーネント
 	//
 
 	// プレイヤーの最大HPの値コンポーネント
@@ -87,6 +87,7 @@ private:
 	class FloatParameterComponent*		hp_param_;
 	//int								hp_value_;		//Actorクラスで設定済み
 
+private:
 	// 光線銃を発射するか 
 	bool								is_blaster_fire_;
 

@@ -20,6 +20,9 @@
 #include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 #include "../../../../Component/RendererComponent/EffectRendererComponent.h"
 
+// 音声コンポーネント
+#include "../../../../Component/AudioComponent.h"
+
 // 球の衝突判定
 #include "../../../../Component/RendererComponent/GizmoRendererComponent/SphereGizmoRendererComponent.h"
 #include "../../../../Component/ColliderComponent/SphereColliderComponent.h"
@@ -31,6 +34,9 @@
 // 敵の武器コンポーネント
 #include "../../../../Component/WeaponComponent/EnemyBlasterWeaponComponent.h"
 #include "../../../../Component/WeaponComponent/LaserCannonWeaponComponent.h"
+
+// 値コンポーネント
+#include "../../../../Component/ParameterComponent/FloatParameterComponent.h"
 
 // 入力チェック
 #include "../../../../../Input/InputCheck.h"
@@ -55,6 +61,9 @@ Boss::Boss(Game* game)
 	, enemy_state_old_(EnemyState::None)
 	, motion_state_old_(EnemyMotionState::None)
 	, effect_enemy_action_shoot_(nullptr)
+	, enemy_damage_sound_effect_(nullptr)
+	, max_hp_param_(nullptr)
+	, hp_param_(nullptr)
 	, is_fire_(false)
 	, blaster_index_(0)
 	, switch_time_(0.f)
@@ -104,6 +113,7 @@ bool Boss::Init(void)
 		// ボスのメッシュ生成
 		actor_mesh_ = NEW FFPMeshRendererComponent(this);
 		actor_mesh_->SetMesh(XFileMeshType::EnemyBoss);
+		//actor_mesh_->IsSetDrawable(false);
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 	}
 
@@ -112,6 +122,13 @@ bool Boss::Init(void)
 		effect_enemy_action_shoot_ = NEW EffectRendererComponent(this);
 		effect_enemy_action_shoot_->SetEffect(EffectType::EnemyActionGuide_Red);
 		effect_enemy_action_shoot_->SetTranslationY(3.f);
+	}
+
+	// 音声コンポーネントの生成
+	{
+		enemy_damage_sound_effect_ = NEW AudioComponent(this);
+		enemy_damage_sound_effect_->SetSound(SoundType::DamageBoss);
+		enemy_damage_sound_effect_->SetAudioVolume(1.f);
 	}
 
 	// ボスの状態を初期化
@@ -152,6 +169,7 @@ bool Boss::Init(void)
 			sphere_gizmo_ = NEW SphereGizmoRendererComponent(this);
 			sphere_gizmo_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
 			sphere_gizmo_->SetScale(sphere_radius_size);
+			//sphere_gizmo_->IsSetDrawable(false);
 		}
 
 		// 箱
@@ -175,7 +193,21 @@ bool Boss::Init(void)
 			obb_collider_gizmo_->SetScaleX(box_size);
 			obb_collider_gizmo_->SetScaleY(box_height_size);
 			obb_collider_gizmo_->SetScaleZ(box_size);
+			//obb_collider_gizmo_->IsSetDrawable(false);
 		}
+	}
+
+	// 値コンポーネントの作成
+	{
+		// 最大HP
+		max_hp_param_ = NEW FloatParameterComponent(this);
+		max_hp_param_->SetParameterType(ParameterType::BossMaxHP);
+		max_hp_param_->SetFloat(max_hit_point_);
+
+		// HP
+		hp_param_ = NEW FloatParameterComponent(this);
+		hp_param_->SetParameterType(ParameterType::BossHP);
+		hp_param_->SetFloat(hit_point_);
 	}
 	return true;
 }
@@ -260,7 +292,10 @@ void Boss::UpdateGameObject(float deltaTime)
 		break;
 	}
 
-	//　武器コンポーネントの更新
+	// 値コンポーネントの更新
+	this->UpdateParameter(deltaTime);
+
+	// 武器コンポーネントの更新
 	{
 		this->UpdateBlaster(deltaTime, ai_state, move_motion_state);
 
@@ -276,6 +311,36 @@ void Boss::UpdateGameObject(float deltaTime)
 	motion_state_old_ = move_motion_state;
 }
 
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの更新処理
+-----------------------------------------------------------------------------*/
+void Boss::UpdateParameter(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+
+	const bool is_nullptr_max_hp_param = (max_hp_param_ == nullptr);
+	const bool is_nullptr_hp_param = (hp_param_ == nullptr);
+
+	// 最大HPの値コンポーネントのnullチェック
+	if (is_nullptr_max_hp_param)
+	{
+		assert(!"Boss::UpdateParameter():値コンポーネント:max_hp_param_ が”nullptr”でした");
+		return;
+	}
+
+	// HPの値コンポーネントのnullチェック
+	if (is_nullptr_hp_param)
+	{
+		assert(!"Boss::UpdateParameter():値コンポーネント:hp_param_ が”nullptr”でした");
+		return;
+	}
+
+	// 最大HPの更新
+	max_hp_param_->SetFloat(max_hit_point_);
+
+	// 現在のHPの更新
+	hp_param_->SetFloat(hit_point_);
+}
 
 /*-----------------------------------------------------------------------------
 /* 光線銃の更新処理
@@ -363,10 +428,27 @@ void Boss::UpdateLaserCannon(EnemyState enemyState, EnemyMotionState motionState
 -----------------------------------------------------------------------------*/
 void Boss::UpdateCollision(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	if (InputCheck::KeyTrigger(DIK_I))
 	{
 		hit_point_ = 100.f;
 	}
+
+	// 下限の設定
+	if (hit_point_ <= 0.f)
+	{
+		hit_point_ = 0.f;
+	}
+
+	auto boss_state_ = this->enemy_ai_->GetEnemyState();
+	auto boss_motion_state_ = this->enemy_move_->GetMotionState();
+
+	const bool is_weakpoint_ready = ((boss_state_ == EnemyState::LaserCannon) || (boss_state_ == EnemyState::Shooting));
+	const bool is_weakpoint_enable = ((boss_motion_state_ == EnemyMotionState::Attack) && is_weakpoint_ready);
+
+	// 弱点が有効ではなかった場合
+	if (is_weakpoint_enable == false) { return; }
 
 	// バレットの衝突判定
 	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
@@ -387,9 +469,10 @@ void Boss::UpdateCollision(float deltaTime)
 				// ダメージを受けた時のエフェクトを再生
 
 				// ダメージを受けたSEを再生
+				enemy_damage_sound_effect_->Play();
 
 				// ダメージをを受ける
-				hit_point_ += -10.f;
+				hit_point_ += -5.f;
 
 				// 衝突したバレットを破棄する
 				bullet->SetGameObjectState(State::Dead);
