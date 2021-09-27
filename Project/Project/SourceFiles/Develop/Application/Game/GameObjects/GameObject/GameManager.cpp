@@ -224,85 +224,87 @@ void GameManager::UpdateGameObject(float deltaTime)
 		this->UpdateBGM(deltaTime);
 	}
 
-	const int MAX_SPAWN_COUNT = 7;
-	if (spawn_count_ >= MAX_SPAWN_COUNT) { return; }
+	//// 敵のウェーブの生成
+	//{
+	//	const int MAX_SPAWN_COUNT = 7;
+	//	if (spawn_count_ >= MAX_SPAWN_COUNT) { return; }
 
-	// エネミーのファクトリの更新処理
-	if (enemy_factory_ != nullptr)
-	{
-		// 生成するフラグを初期化
-		is_enemy_spawn_ = false;
+	//	// エネミーのファクトリの更新処理
+	//	if (enemy_factory_ != nullptr)
+	//	{
+	//		// 生成するフラグを初期化
+	//		is_enemy_spawn_ = false;
 
-		// エネミーを生成する差分の時間を求める
-		const float spawn_time = MAX_SPAWN_TIME_ - (SPAWN_DIFF_TIME_ * spawn_count_);
+	//		// エネミーを生成する差分の時間を求める
+	//		const float spawn_time = MAX_SPAWN_TIME_ - (SPAWN_DIFF_TIME_ * spawn_count_);
 
-		// エネミーの生成を行うか？
-		const bool is_execute_spawn = ((game_left_time_ <= spawn_time) && (is_enemy_spawn_ == false));
-		if (is_execute_spawn)
-		{
-			if (game_left_time_ >= 0.1f)
-			{
-				switch (spawn_count_)
-				{
-				case 0:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_1(game_));
-					break;
+	//		// エネミーの生成を行うか？
+	//		const bool is_execute_spawn = ((game_left_time_ <= spawn_time) && (is_enemy_spawn_ == false));
+	//		if (is_execute_spawn)
+	//		{
+	//			if (game_left_time_ >= 0.1f)
+	//			{
+	//				switch (spawn_count_)
+	//				{
+	//				case 0:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_1(game_));
+	//					break;
 
-				case 1:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_2(game_));
-					break;
+	//				case 1:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_2(game_));
+	//					break;
 
-				case 2:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_3(game_));
-					break;
+	//				case 2:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_3(game_));
+	//					break;
 
-				case 3:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_4(game_));
+	//				case 3:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_4(game_));
 
-					// 現在のエフェクトの停止
-					effect_space_dust_->Stop();
+	//					// 現在のエフェクトの停止
+	//					effect_space_dust_->Stop();
 
-					// エフェクトの切り替え
-					effect_space_dust_->SetEffect(EffectType::SpaceDustBlue);
-					effect_space_dust_->Play();
-					break;
+	//					// エフェクトの切り替え
+	//					effect_space_dust_->SetEffect(EffectType::SpaceDustBlue);
+	//					effect_space_dust_->Play();
+	//					break;
 
-				case 4:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_5(game_));
-					break;
+	//				case 4:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_5(game_));
+	//					break;
 
-				case 5:
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_6(game_));
-					break;
+	//				case 5:
+	//					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_6(game_));
+	//					break;
 
-				default:
-					break;
-				}
-			}
-			else
-			{
-				enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
+	//				default:
+	//					break;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
 
-				// BGMの切り替えを有効に
-				is_bgm_change_ = true;
+	//				// BGMの切り替えを有効に
+	//				is_bgm_change_ = true;
 
-				// 現在のエフェクトの停止
-				effect_space_dust_->Stop();
+	//				// 現在のエフェクトの停止
+	//				effect_space_dust_->Stop();
 
-				// エフェクトの切り替え
-				effect_space_dust_->SetEffect(EffectType::SpaceDustRed);
-				effect_space_dust_->Play();
-			}
+	//				// エフェクトの切り替え
+	//				effect_space_dust_->SetEffect(EffectType::SpaceDustRed);
+	//				effect_space_dust_->Play();
+	//			}
 
-			// 生成カウントを加算
-			spawn_count_++;
+	//			// 生成カウントを加算
+	//			spawn_count_++;
 
-			// 生成したことを記憶
-			is_enemy_spawn_ = true;
-		}
-
-		enemy_factory_->Update(deltaTime);
-	}
+	//			// 生成したことを記憶
+	//			is_enemy_spawn_ = true;
+	//		}
+	//		enemy_factory_->Update(deltaTime);
+	//	}
+	//}
 }
 
 /*-----------------------------------------------------------------------------

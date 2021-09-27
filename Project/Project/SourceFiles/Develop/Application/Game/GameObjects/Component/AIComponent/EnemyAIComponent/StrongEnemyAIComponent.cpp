@@ -235,6 +235,14 @@ void StrongEnemyAIComponent::Idle(float deltaTime)
 void StrongEnemyAIComponent::MoveStraight(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -243,6 +251,14 @@ void StrongEnemyAIComponent::MoveStraight(float deltaTime)
 void StrongEnemyAIComponent::MoveStraightWaitOneTime(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -251,6 +267,14 @@ void StrongEnemyAIComponent::MoveStraightWaitOneTime(float deltaTime)
 void StrongEnemyAIComponent::MoveStraightWaitUpDown(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -259,6 +283,14 @@ void StrongEnemyAIComponent::MoveStraightWaitUpDown(float deltaTime)
 void StrongEnemyAIComponent::MoveRoundVertical(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -267,6 +299,13 @@ void StrongEnemyAIComponent::MoveRoundVertical(float deltaTime)
 void StrongEnemyAIComponent::MoveRoundHorizontal(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -275,6 +314,14 @@ void StrongEnemyAIComponent::MoveRoundHorizontal(float deltaTime)
 void StrongEnemyAIComponent::MoveLoopUpDown(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -283,6 +330,14 @@ void StrongEnemyAIComponent::MoveLoopUpDown(float deltaTime)
 void StrongEnemyAIComponent::MoveLoopLeftRight(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -291,6 +346,14 @@ void StrongEnemyAIComponent::MoveLoopLeftRight(float deltaTime)
 void StrongEnemyAIComponent::MoveShowOneTime(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	if (motion_state_ == EnemyMotionState::End)
+	{
+		//enemy_state_ = EnemyState::Idle;
+
+		// ゲームオブジェクトの状態を終了状態へ移行
+		//owner_->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*=============================================================================

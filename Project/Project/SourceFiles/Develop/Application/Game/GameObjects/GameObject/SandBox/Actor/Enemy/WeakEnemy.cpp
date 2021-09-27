@@ -70,12 +70,12 @@ bool WeakEnemy::Init(void)
 
 	// 生成座標を初期化
 	{
-		this->transform_component_->SetTranslationY(-100.f);
-		this->enemy_move_->SetStartPositionY(-100.f);
+		//this->transform_component_->SetTranslationY(-100.f);
+		//this->enemy_move_->SetStartPositionY(-100.f);
 
 		// テスト用生成座標
-		//this->transform_component_->SetTranslationX(-3.f);
-		//this->transform_component_->SetTranslationZ(8.f);
+		this->transform_component_->SetTranslationX(-3.f);
+		this->transform_component_->SetTranslationZ(8.f);
 	}
 
 	// 弱い敵のメッシュ生成
@@ -104,12 +104,11 @@ bool WeakEnemy::Init(void)
 
 	// 弱い敵の状態を初期化
 	{
-		auto init_WeakEnemy_state = EnemyState::Idle;
-		//init_WeakEnemy_state = EnemyState::MoveLoopLeftRight;
+		auto init_weak_wnemy_state = EnemyState::MoveStraight;
 
 		// 敵の状態を初期化
-		enemy_ai_->SetEnemyState(init_WeakEnemy_state);
-		enemy_move_->SetEnemyState(init_WeakEnemy_state);
+		enemy_ai_->SetEnemyState(init_weak_wnemy_state);
+		enemy_move_->SetEnemyState(init_weak_wnemy_state);
 	}
 
 	// 衝突判定関係
@@ -212,7 +211,7 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
-	if (true)
+	if (false)
 	{
 		//
 		// 本番環境スペース:値の伝達

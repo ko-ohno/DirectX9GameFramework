@@ -61,6 +61,9 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 破棄状態なら更新しない
+	if (owner_->GetGameObjectState() == GameObject::State::Destroy) { return; }
+
 	// 自機の各回転値の取得
 	yaw_	= owner_transform_->GetAngleYaw();
 	pitch_	= owner_transform_->GetAnglePitch();
@@ -69,6 +72,11 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 	// 回転の補間を行うフラグをONに
 	{
 		owner_transform_->IsSetExecuteSlerpRotation(true);
+	}
+
+	// 始点座標から、補間する終点座標の計算
+	{
+		this->ComputeLerpPosition();
 	}
 
 	// 自身の状態を表記
@@ -230,9 +238,9 @@ void StrongEnemyMoveComponent::MoveActionStraight(float deltaTime)
 	case EnemyMotionState::MoveState_0:
 		// 座標を補間
 		D3DXVec3Lerp(&position_												// 現在座標
-			, &position_start_										// 始点座標
-			, &position_finish_										// 終点座標
-			, Easing::Linear(execute_time_, max_execute_time_));	// 補間の仕方
+					, &position_start_										// 始点座標
+					, &position_finish_										// 終点座標
+					, Easing::Linear(execute_time_, max_execute_time_));	// 補間の仕方
 
 		if (execute_time_ >= max_execute_time_)
 		{
@@ -288,9 +296,9 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitOneTime(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 座標を補間
 		D3DXVec3Lerp(&position_
-			, &position_start_
-			, &position_finish_
-			, Easing::SineInOut(execute_time_, max_execute_time_));
+					, &position_start_
+					, &position_finish_
+					, Easing::SineInOut(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * 0.5f))
@@ -313,9 +321,9 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitOneTime(float deltaTime)
 	case EnemyMotionState::MoveState_1:
 		// 座標を補間
 		D3DXVec3Lerp(&position_
-			, &position_start_
-			, &position_finish_
-			, Easing::SineInOut(execute_time_, max_execute_time_));
+					, &position_start_
+					, &position_finish_
+					, Easing::SineInOut(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -384,12 +392,12 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 		// 登場
 	{
 		position_.x = Math::Lerp(position_start_.x
-			, position_finish_.x
-			, Easing::Linear(execute_time_, max_execute_time_));
+								, position_finish_.x
+								, Easing::Linear(execute_time_, max_execute_time_));
 
 		position_.y = Math::Lerp(position_start_.y
-			, position_finish_.y
-			, Easing::Linear(execute_time_, max_execute_time_));
+								, position_finish_.y
+								, Easing::Linear(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * 0.5f))
@@ -399,8 +407,8 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 
 			// 終点座標の計算
 			position_y_finish_ = Math::Lerp(position_y_start_
-				, position_y_start_ + move_action_magnitude_ * -1.f
-				, 1.f);
+										   , position_y_start_ + move_action_magnitude_ * -1.f
+										   , 1.f);
 
 			// 次のステートへ
 			enemy_motion_state_ = EnemyMotionState::MoveState_1;
@@ -413,8 +421,8 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 		// Y軸の終点へ
 	{
 		position_.y = Math::Lerp(position_y_start_
-			, position_y_finish_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_y_finish_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら終了ステートへ
 		if (state_loop_count_ >= max_state_loop_count)
@@ -439,8 +447,8 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 		// Y軸の始点へ
 	{
 		position_.y = Math::Lerp(position_y_finish_
-			, position_y_start_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_y_start_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 
 		// 条件を満たしたら終了ステートへ
@@ -489,8 +497,8 @@ void StrongEnemyMoveComponent::MoveActionStraightWaitUpDown(float deltaTime)
 		// 退場
 	{
 		position_.x = Math::Lerp(position_start_.x
-			, position_finish_.x
-			, Easing::Linear(execute_time_, max_execute_time_));
+								, position_finish_.x
+								, Easing::Linear(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -553,8 +561,8 @@ void StrongEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 座標を補間
 		position_.x = Math::Lerp(position_start_.x
-			, position_finish_.x + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
+								, position_finish_.x + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * 0.5f))
@@ -568,8 +576,8 @@ void StrongEnemyMoveComponent::MoveActionRoundVertical(float deltaTime)
 
 		// 座標を補間
 		position_.x = Math::Lerp(position_finish_.x
-			, position_finish_.x + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
+								, position_finish_.x + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_))
@@ -632,8 +640,8 @@ void StrongEnemyMoveComponent::MoveActionRoundHorizontal(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 座標を補間
 		position_.y = Math::Lerp(position_finish_.y
-			, position_finish_.y + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
+								, position_finish_.y + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * 0.5f))
@@ -645,8 +653,8 @@ void StrongEnemyMoveComponent::MoveActionRoundHorizontal(float deltaTime)
 	case EnemyMotionState::MoveState_0:
 		// 座標を補間
 		position_.y = Math::Lerp(position_finish_.y
-			, position_finish_.y + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
+								, position_finish_.y + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * 0.5f)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_))
@@ -712,8 +720,8 @@ void StrongEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 導入 
 		position_.y = Math::Lerp(position_start_.y
-			, position_finish_.y + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.y + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * (max_state_div_value * state_loop_count_)))
@@ -725,8 +733,8 @@ void StrongEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
 	case EnemyMotionState::MoveState_0:
 		// 上昇
 		position_.y = Math::Lerp(position_finish_.y + move_action_magnitude_ * -1.f
-			, position_finish_.y + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.y + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら終了ステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -748,8 +756,8 @@ void StrongEnemyMoveComponent::MoveActionLoopUpDown(float deltaTime)
 	case EnemyMotionState::MoveState_1:
 		// 下降
 		position_.y = Math::Lerp((position_finish_.y + move_action_magnitude_) * -1.f
-			, position_finish_.y + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.y + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら終了ステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -824,8 +832,8 @@ void StrongEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 導入 
 		position_.x = Math::Lerp(position_start_.x
-			, position_finish_.x + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.x + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * (max_state_div_value * state_loop_count_)))
@@ -837,8 +845,8 @@ void StrongEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
 	case EnemyMotionState::MoveState_0:
 		// 左へ
 		position_.x = Math::Lerp((position_finish_.x + move_action_magnitude_) * -1.f
-			, position_finish_.x + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.x + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら終了ステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -860,8 +868,8 @@ void StrongEnemyMoveComponent::MoveActionLoopLeftRight(float deltaTime)
 	case EnemyMotionState::MoveState_1:
 		// 右へ
 		position_.x = Math::Lerp((position_finish_.x + move_action_magnitude_) * -1.f
-			, position_finish_.x + move_action_magnitude_
-			, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
+								, position_finish_.x + move_action_magnitude_
+								, Easing::SineInOut(execute_time_, (max_execute_time_ * max_state_div_value)));
 
 		// 条件を満たしたら終了ステートへ
 		if (execute_time_ >= max_execute_time_)
@@ -927,9 +935,9 @@ void StrongEnemyMoveComponent::MoveActionShowOneTime(float deltaTime)
 	case EnemyMotionState::StartUp:
 		// 座標を補間
 		D3DXVec3Lerp(&position_
-			, &position_start_
-			, &position_finish_
-			, Easing::SineInOut(execute_time_, max_execute_time_));
+					, &position_start_
+					, &position_finish_
+					, Easing::SineInOut(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= (max_execute_time_ * 0.5f))
@@ -952,9 +960,9 @@ void StrongEnemyMoveComponent::MoveActionShowOneTime(float deltaTime)
 	case EnemyMotionState::MoveState_1:
 		// 座標を補間
 		D3DXVec3Lerp(&position_
-			, &position_finish_
-			, &position_start_
-			, Easing::SineInOut(execute_time_, max_execute_time_));
+					, &position_finish_
+					, &position_start_
+					, Easing::SineInOut(execute_time_, max_execute_time_));
 
 		// 条件を満たしたら次のモーションステートへ
 		if (execute_time_ >= max_execute_time_)

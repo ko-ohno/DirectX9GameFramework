@@ -41,7 +41,6 @@ public:
 	void MoveLoopUpDown(float deltaTime) override;
 	void MoveLoopLeftRight(float deltaTime) override;
 	void MoveShowOneTime(float deltaTime) override;
-	void MoveSShapedCurve(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::WeakEnemyAIComponent; };
 

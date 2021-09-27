@@ -82,8 +82,8 @@ bool StrongEnemy::Init(void)
 		//this->enemy_move_->SetStartPositionY(-100.f);
 
 		// テスト用生成座標
-		this->transform_component_->SetTranslationX(3.f);
-		this->transform_component_->SetTranslationZ(8.f);
+		//this->transform_component_->SetTranslationX(3.f);
+		//this->transform_component_->SetTranslationZ(8.f);
 	}
 
 	// 強い敵のメッシュ生成
@@ -110,11 +110,11 @@ bool StrongEnemy::Init(void)
 
 	// 強い敵の状態を初期化
 	{
-		auto init_StrongEnemy_state = EnemyState::Idle;
+		auto init_strong_enemy_state = EnemyState::MoveStraight;
 
 		// 敵の状態を初期化
-		enemy_ai_->SetEnemyState(init_StrongEnemy_state);
-		enemy_move_->SetEnemyState(init_StrongEnemy_state);
+		enemy_ai_->SetEnemyState(init_strong_enemy_state);
+		enemy_move_->SetEnemyState(init_strong_enemy_state);
 	}
 
 	// 武器の生成
