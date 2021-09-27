@@ -61,6 +61,7 @@ Boss::Boss(Game* game)
 	, enemy_state_old_(EnemyState::None)
 	, motion_state_old_(EnemyMotionState::None)
 	, effect_enemy_action_shoot_(nullptr)
+	, effect_player_attack_hit_(nullptr)
 	, enemy_damage_sound_effect_(nullptr)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
@@ -85,14 +86,6 @@ Boss::~Boss(void)
 -----------------------------------------------------------------------------*/
 bool Boss::Init(void)
 {
-	// 生成座標を初期化
-	{
-		this->transform_component_->SetTranslationY(-100.f);
-
-		// テスト用生成座標
-		//this->transform_component_->SetTranslationZ(15.f);
-	}
-
 	// ボスのAIを生成 
 	enemy_ai_ = NEW BossAIComponent(this);
 
@@ -117,11 +110,16 @@ bool Boss::Init(void)
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 	}
 
-	// エフェクトの生成
+	// エフェクトkコンポーネントの生成
 	{
 		effect_enemy_action_shoot_ = NEW EffectRendererComponent(this);
 		effect_enemy_action_shoot_->SetEffect(EffectType::EnemyActionGuide_Red);
 		effect_enemy_action_shoot_->SetTranslationY(3.f);
+
+
+		effect_player_attack_hit_ = NEW EffectRendererComponent(this);
+		effect_player_attack_hit_->SetEffect(EffectType::HitEffect);
+		effect_player_attack_hit_->SetTranslationY(3.f);
 	}
 
 	// 音声コンポーネントの生成
@@ -435,7 +433,7 @@ void Boss::UpdateCollision(float deltaTime)
 		hit_point_ = 100.f;
 	}
 
-	// 下限の設定
+	// HPの下限を設定
 	if (hit_point_ <= 0.f)
 	{
 		hit_point_ = 0.f;
@@ -467,6 +465,7 @@ void Boss::UpdateCollision(float deltaTime)
 			if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
 			{
 				// ダメージを受けた時のエフェクトを再生
+				effect_player_attack_hit_->Play();
 
 				// ダメージを受けたSEを再生
 				enemy_damage_sound_effect_->Play();
@@ -476,12 +475,7 @@ void Boss::UpdateCollision(float deltaTime)
 
 				// 衝突したバレットを破棄する
 				bullet->SetGameObjectState(State::Dead);
-
-				// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
-				//damage_recieve_interval_time_ = 0.f;
-				//is_received_damage_ = false;
 				break;
-
 			}
 		}
 	}

@@ -38,7 +38,7 @@ GameClear::~GameClear(void)
 -----------------------------------------------------------------------------*/
 bool GameClear::Init(void)
 {
-	const int draw_order = 250;
+	const int draw_order = 400;
 
 	// 画面タイトルの表示
 	{

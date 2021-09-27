@@ -126,8 +126,6 @@ void Title::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Title::UpdateGameObject(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
 	// 音声コンポーネントの生成
 	{
 		// SEの生成

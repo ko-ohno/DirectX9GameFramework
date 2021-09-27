@@ -46,6 +46,7 @@ bool LaserCannonWeaponComponent::Init(void)
 		sphere_gizmo_ = NEW SphereGizmoRendererComponent(owner_);
 		sphere_gizmo_->SetScale(2.f);
 		sphere_gizmo_->SetVertexColor(0, 128, 255);
+		//sphere_gizmo_->IsSetDrawable(false);
 	}
 	return true;
 }

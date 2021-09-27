@@ -36,6 +36,10 @@ public:
 	void UpdateBGM(float deltaTime);
 
 private:
+	// 場面切り替えを行うか？
+	bool							  is_secen_change_;
+
+private:
 	// エネミーのファクトリ
 	class EnemyFactory*				  enemy_factory_;
 

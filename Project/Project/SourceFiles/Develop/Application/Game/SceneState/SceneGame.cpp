@@ -32,6 +32,11 @@
 // 入力
 #include "../Input/InputCheck.h"
 
+#include "../GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
+#include "../GameObjects/GameObject/SandBox/Actor/Enemy/WeakEnemy.h"
+#include "../GameObjects/GameObject/SandBox/Actor/Enemy/StrongEnemy.h"
+
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
@@ -131,6 +136,10 @@ bool SceneGame::Init(void)
 
 		// サンドボックスレイヤーのオブジェクト作成
 		NEW Player(game_);
+
+		// 敵の生成
+		//NEW WeakEnemy(game_);
+		NEW StrongEnemy(game_);
 
 		// UIレイヤーのオブジェクト作成
 		NEW HUD(game_);

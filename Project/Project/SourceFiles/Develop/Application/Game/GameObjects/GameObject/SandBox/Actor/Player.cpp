@@ -383,7 +383,7 @@ void Player::UpdateCollision(float deltaTime)
 		hit_point_ = 100.f;
 	}
 
-	// ‰ºŒÀ‚Ìİ’è
+	// HP‚Ì‰ºŒÀ‚ğİ’è
 	if (hit_point_ <= 0.f)
 	{
 		hit_point_ = 0.f;

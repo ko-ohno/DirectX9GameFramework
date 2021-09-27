@@ -53,8 +53,11 @@ private:
 	enum class EnemyState				enemy_state_old_;
 	enum class EnemyMotionState			motion_state_old_;
 
-	//　射撃行動通知エフェクト
+	//
+	// エフェクトコンポーネント
+	//
 	class EffectRendererComponent*		effect_enemy_action_shoot_;
+	class EffectRendererComponent*		effect_player_attack_hit_;
 
 	//
 	// 音声コンポーネント

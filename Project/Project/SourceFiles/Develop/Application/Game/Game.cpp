@@ -224,7 +224,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		//this->SetGameState(GameState::Title);
 		//this->SetSceneState(NEW SceneTitle(this));
 
-		// ƒQ[ƒ€‰æ–Ê‚Æ‚µ‚Ä‰Šú‰»
+		//// ƒQ[ƒ€‰æ–Ê‚Æ‚µ‚Ä‰Šú‰»
 		this->SetGameState(GameState::Gameplay);
 		this->SetSceneState(NEW SceneGame(this));
 

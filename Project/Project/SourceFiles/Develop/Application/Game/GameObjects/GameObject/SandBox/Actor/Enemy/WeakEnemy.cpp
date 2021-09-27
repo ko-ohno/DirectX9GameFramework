@@ -22,7 +22,7 @@
 // メッシュコンポーネント
 #include "../../../../Component/RendererComponent/FFPMeshRendererComponent.h"
 
-// メッシュコンポーネント
+// エフェクトコンポーネント
 #include "../../../../Component/RendererComponent/EffectRendererComponent.h"
 
 // 球の衝突判定
@@ -62,15 +62,6 @@ WeakEnemy::~WeakEnemy(void)
 -----------------------------------------------------------------------------*/
 bool WeakEnemy::Init(void)
 {
-	// 生成座標を初期化
-	{
-		this->transform_component_->SetTranslationY(-100.f);
-
-		// テスト用生成座標
-		//this->transform_component_->SetTranslationX(-3.f);
-		//this->transform_component_->SetTranslationZ(8.f);
-	}
-
 	// 弱い敵のAIを生成 
 	enemy_ai_ = NEW WeakEnemyAIComponent(this);
 
@@ -129,7 +120,7 @@ bool WeakEnemy::Init(void)
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 0.5f;
+			const float sphere_radius_size = 1.5f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -151,7 +142,7 @@ bool WeakEnemy::Init(void)
 			const float box_height_size = 1.f;
 
 			// 箱の水平軸の大きさ
-			const float box_scale = 1.f;
+			const float box_scale = 1.5f;
 
 			// 衝突判定
 			obb_collider_ = NEW OBBColliderComponent(this);

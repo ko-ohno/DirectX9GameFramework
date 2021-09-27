@@ -48,6 +48,7 @@
 -----------------------------------------------------------------------------*/
 GameManager::GameManager(Game* game)
 	: GameObject(game)
+	, is_secen_change_(false)
 	, enemy_factory_(nullptr)
 	, player_(nullptr)
 	, boss_(nullptr)
@@ -93,6 +94,12 @@ GameManager::~GameManager(void)
 -----------------------------------------------------------------------------*/
 bool GameManager::Init(void)
 {
+	// 値を初期化
+	{
+		player_hp_value_ = 1.f;
+		boss_hp_value_ = 1.f;
+	}
+
 	// エネミーのファクトリを生成
 	enemy_factory_ = NEW EnemyFactory(game_);
 
@@ -159,14 +166,9 @@ bool GameManager::Init(void)
 
 	// ボスだけの生成処理
 	{
-		game_left_time_ = 0.f;
-		spawn_count_ = 6;
+		//game_left_time_ = 0.f;
+		//spawn_count_ = 6;
 	}
-	
-	NEW GameOver(game_);
-
-	//NEW GameClear(game_);
-
 	return true;
 }
 
@@ -197,6 +199,24 @@ void GameManager::UpdateGameObject(float deltaTime)
 {
 	// 値コンポーネントの更新
 	this->UpdateParameterComponent(deltaTime);
+
+	// 場面切り替えを行うか？	 
+	if (is_secen_change_ == false)
+	{
+		const bool is_player_dead = (player_hp_value_ <= 0.01f);
+		if (is_player_dead)
+		{
+			NEW GameOver(game_);
+			is_secen_change_ = true;
+		}
+
+		const bool is_boss_dead = (boss_hp_value_ <= 0.01f);
+		if (is_boss_dead)
+		{
+			NEW GameClear(game_);
+			is_secen_change_ = true;
+		}
+	}
 
 	// BGMの切り替え処理
 	if (is_bgm_change_ == true)
