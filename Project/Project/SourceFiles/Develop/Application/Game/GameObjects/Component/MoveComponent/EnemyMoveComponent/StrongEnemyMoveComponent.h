@@ -36,6 +36,7 @@ public:
 	//
 
 	void MoveActionIdle(float deltaTime) override;					// 待機行動
+	void MoveActionShoot(float deltaTime) override;					// 射撃行動
 	void MoveActionStraight(float deltaTime) override;				// まっすぐ進む
 	void MoveActionStraightWaitOneTime(float deltaTime) override;	// まっすぐ進んで一回待つ
 	void MoveActionStraightWaitUpDown(float deltaTime) override;	// まっすぐ進んで一回待つ

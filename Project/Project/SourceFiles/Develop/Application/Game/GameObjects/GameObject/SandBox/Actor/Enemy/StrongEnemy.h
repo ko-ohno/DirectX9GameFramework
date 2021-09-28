@@ -28,6 +28,12 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::StrongEnemy; }
 
+	// 光線銃の更新
+	void UpdateBlaster(float deltaTime, enum class EnemyState enemyState, enum class EnemyMotionState motionState);
+
+	// 衝突判定の更新
+	void UpdateCollision(float deltaTime);
+
 	void TestMoveStraight();
 	void TestMoveStraightWaitOneTime();
 	void TestMoveRoundVertical();
@@ -38,10 +44,20 @@ public:
 	void TestMoveStraightWaitUpDown();
 
 private:
-	static constexpr float ATTACK_VALUE_SHOOT		= 5.f;
+	//
+	// エフェクトコンポーネント
+	//
+	class EffectRendererComponent*		effect_enemy_action_shoot_;
+
+private:
+	static constexpr float				ATTACK_VALUE_SHOOT		= 5.f;
 
 	// 敵の武器コンポーネント
-	class EnemyBlasterWeaponComponent* enemy_blaster_;
+	class EnemyBlasterWeaponComponent*	enemy_blaster_;
+
+	// 武器の発射用
+	bool								is_ready_;
+	bool								is_fire_;
 };
 
 #endif //STRONG_ENEMY_H_

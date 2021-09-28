@@ -100,6 +100,9 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::EnemyMoveComponent; };
 
+	// ÀsŠÔ‚Ìæ“¾
+	float GetExecuteTime(void) { return execute_time_; }
+
 	//
 	// “G‚ÌÀÛ‚Ì‹““®‚ğİ’è
 	//

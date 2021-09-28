@@ -52,7 +52,10 @@
 -----------------------------------------------------------------------------*/
 StrongEnemy::StrongEnemy(Game* game)
 	: Enemy(game)
+	, effect_enemy_action_shoot_(nullptr)
 	, enemy_blaster_(nullptr)
+	, is_ready_(false)
+	, is_fire_(false)
 {
 	this->Init();
 }
@@ -78,8 +81,8 @@ bool StrongEnemy::Init(void)
 
 	// 生成座標を初期化
 	{
-		//this->transform_component_->SetTranslationY(-100.f);
-		//this->enemy_move_->SetStartPositionY(-100.f);
+		this->transform_component_->SetTranslationY(-100.f);
+		this->enemy_move_->SetStartPositionY(-100.f);
 
 		// テスト用生成座標
 		//this->transform_component_->SetTranslationX(3.f);
@@ -93,8 +96,14 @@ bool StrongEnemy::Init(void)
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 	}
 
-	// 爆発エフェクトの生成
+	// エフェクトコンポーネントの生成
 	{
+		// 射撃行動の通知
+		effect_enemy_action_shoot_ = NEW EffectRendererComponent(this);
+		effect_enemy_action_shoot_->SetEffect(EffectType::EnemyActionGuide_Red);
+		effect_enemy_action_shoot_->SetScale(0.5f);
+
+		// 爆発エフェクト
 		explosion_effect_ = NEW EffectRendererComponent(this);
 		explosion_effect_->SetEffect(EffectType::ExplosionActor);
 	}
@@ -130,7 +139,7 @@ bool StrongEnemy::Init(void)
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 1.5f;
+			const float sphere_radius_size = 2.f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -189,6 +198,9 @@ void StrongEnemy::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void StrongEnemy::UpdateGameObject(float deltaTime)
 {
+	auto a = effect_enemy_action_shoot_->GetPosition();
+
+
 	UNREFERENCED_PARAMETER(deltaTime);
 
 	// AIコンポーネントに自身のHPを通知する
@@ -240,7 +252,7 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 		break;
 	}
 
-	if (false)
+	if (true)
 	{
 		//
 		// 本番環境スペース:値の伝達
@@ -266,6 +278,8 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 		//
 		// 実験スペース
 		//
+
+		//max_execute_time_ = 6.f;
 
 		switch (ai_state)
 		{
@@ -309,6 +323,56 @@ void StrongEnemy::UpdateGameObject(float deltaTime)
 		}
 	}
 
+	// 武器コンポーネントの更新
+	this->UpdateBlaster(deltaTime, ai_state, move_motion_state);
+
+	// 衝突判定の更新
+	this->UpdateCollision(deltaTime);
+}
+
+/*-----------------------------------------------------------------------------
+/* 武器コンポーネントの更新処理
+-----------------------------------------------------------------------------*/
+void StrongEnemy::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMotionState motionState)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+	UNREFERENCED_PARAMETER(enemyState);
+	UNREFERENCED_PARAMETER(motionState);
+
+	// 武器の位置を調整
+	{
+		enemy_blaster_->SetTranslation(0.f, -1.f, 0.f);
+	}
+	
+	// 実行時間の計算
+	float execute_time = enemy_move_->GetExecuteTime();
+
+	// 通知エフェクトの再生
+	if (execute_time >= (max_execute_time_ * 0.4f))
+	{
+		if (is_ready_ == false)
+		{
+			effect_enemy_action_shoot_->Play();
+			is_ready_ = true;
+		}
+	}
+
+	// 武器の発射
+	if ((is_fire_ == false) )
+	{
+		if (execute_time >= (max_execute_time_ * 0.6f))
+		{
+			enemy_blaster_->Fire();
+			is_fire_ = true;
+		}
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 衝突判定の更新処理
+-----------------------------------------------------------------------------*/
+void StrongEnemy::UpdateCollision(float deltaTime)
+{
 	// 自身を破壊されたら
 	if (this->GetGameObjectState() == State::Destroy)
 	{

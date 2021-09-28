@@ -52,7 +52,7 @@ void EnemyFactoryState_4::Update(float deltaTime)
 	if (spawn_count_ >= MAX_SPAWN_COUNT_) { return; }
 
 	// エネミーを生成するための情報を初期化
-	class WeakEnemy* enemy = nullptr;
+	class Enemy* enemy = nullptr;
 
 	// 生成するフラグを初期化
 	is_spawn_ = false;
@@ -84,16 +84,25 @@ void EnemyFactoryState_4::Update(float deltaTime)
 		// 生成数が半分以下だったら
 		if (!(spawn_count_ >= HALF_SPAWN_COUNT_))
 		{
-			// 生成
-			enemy = NEW WeakEnemy(game_);
+			// 生成数が2で割った余剰の数が１のとき
+			if ((spawn_count_%2) == 1)
+			{
+				// 生成
+				enemy = NEW StrongEnemy(game_);
+			}
+			else
+			{
+				// 生成
+				enemy = NEW WeakEnemy(game_);
+			}
 
 			// 行動ステートを設定
 			enemy->SetEnemyState(EnemyState::MoveRoundVertical);
 
 			// 開始座標
 			enemy->SetStartPosition(-start_position_x
-								   , start_position_y
-								   , start_position_z);
+									, start_position_y
+									, start_position_z);
 
 			// 最大行動時間
 			enemy->SetMaxExecuteTime(10.f);
@@ -107,8 +116,17 @@ void EnemyFactoryState_4::Update(float deltaTime)
 		}
 		else
 		{
-			// 生成
-			enemy = NEW WeakEnemy(game_);
+			// 生成数が2で割った余剰の数が１のとき
+			if ((spawn_count_ % 2) == 1)
+			{
+				// 生成
+				enemy = NEW StrongEnemy(game_);
+			}
+			else
+			{
+				// 生成
+				enemy = NEW WeakEnemy(game_);
+			}
 
 			// 行動ステートを設定
 			enemy->SetEnemyState(EnemyState::MoveRoundVertical);

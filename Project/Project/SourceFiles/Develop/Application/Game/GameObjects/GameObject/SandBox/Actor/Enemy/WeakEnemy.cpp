@@ -70,12 +70,12 @@ bool WeakEnemy::Init(void)
 
 	// 生成座標を初期化
 	{
-		//this->transform_component_->SetTranslationY(-100.f);
-		//this->enemy_move_->SetStartPositionY(-100.f);
+		this->transform_component_->SetTranslationY(-100.f);
+		this->enemy_move_->SetStartPositionY(-100.f);
 
 		// テスト用生成座標
-		this->transform_component_->SetTranslationX(-3.f);
-		this->transform_component_->SetTranslationZ(8.f);
+		//this->transform_component_->SetTranslationX(-3.f);
+		//this->transform_component_->SetTranslationZ(8.f);
 	}
 
 	// 弱い敵のメッシュ生成
@@ -119,7 +119,7 @@ bool WeakEnemy::Init(void)
 		// 球
 		{
 			// 球の半径
-			const float sphere_radius_size = 1.5f;
+			const float sphere_radius_size = 2.f;
 
 			// 衝突判定
 			sphere_collider_ = NEW SphereColliderComponent(this);
@@ -211,7 +211,7 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 		enemy_ai_->SetMotionState(move_motion_state);
 	}
 
-	if (false)
+	if (true)
 	{
 		//
 		// 本番環境スペース:値の伝達

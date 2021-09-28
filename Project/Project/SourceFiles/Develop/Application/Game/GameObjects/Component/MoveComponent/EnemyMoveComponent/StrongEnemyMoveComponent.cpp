@@ -88,6 +88,10 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 			ImGui::Text("idle");
 			break;
 
+		case EnemyState::Shooting:
+			ImGui::Text("shooting");
+			break;
+
 		case EnemyState::MoveStraight:
 			ImGui::Text("move_straight");
 			break;
@@ -136,6 +140,10 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 	{	
 	case EnemyState::Idle:
 		this->MoveActionIdle(deltaTime);
+		break;
+
+	case EnemyState::Shooting:
+		this->MoveActionShoot(deltaTime);
 		break;
 
 	case EnemyState::MoveStraight:
@@ -202,6 +210,14 @@ void StrongEnemyMoveComponent::MoveActionIdle(float deltaTime)
 		execute_time_ = 0.f;
 		enemy_motion_state_ = EnemyMotionState::StartUp;
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* ã≠Ç¢ìGÇÃéÀåÇçsìÆ
+-----------------------------------------------------------------------------*/
+void StrongEnemyMoveComponent::MoveActionShoot(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------

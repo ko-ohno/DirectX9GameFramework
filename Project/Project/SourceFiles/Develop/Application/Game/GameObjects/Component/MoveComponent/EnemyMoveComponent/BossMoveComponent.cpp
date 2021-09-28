@@ -94,6 +94,9 @@ void BossMoveComponent::Update(float deltaTime)
 		case EnemyState::LaserCannon:
 			ImGui::Text("laser_cannon");
 			break;
+
+		default:
+			break;
 		}
 	}
 	ImGui::End();
