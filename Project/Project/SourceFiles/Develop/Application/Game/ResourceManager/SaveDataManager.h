@@ -27,35 +27,49 @@ enum class ScoreRank
 enum class ScoreRankLimits
 {
 	None = -1
-	, S = 4000
-	, A = 3000
-	, B = 2000
-	, C = 1000
-	, D =  500
+	, S = 400
+	, A = 300
+	, B = 200
+	, C = 100
+	, D =  50
 	, Max
 };
 
-// セーブデータクラス　
+/*-------------------------------------
+/* セーブデータクラス
+-------------------------------------*/
 class SaveData
 {
 public:
 	SaveData(void)
-		: score_(0)
+		: is_new_data_(false)
+		, score_(0)
+		, score_rank_(ScoreRank::None)
+	{}
+
+	SaveData(int score)
+		: is_new_data_(false)
+		, score_(score)
 		, score_rank_(ScoreRank::None)
 	{}
 
 	SaveData(int score, ScoreRank socreRank)
-		: score_(score)
+		: is_new_data_(false)
+		, score_(score)
 		, score_rank_(socreRank)
 	{}
 
 	SaveData(SaveData& data)
-		: score_(data.score_)
+		: is_new_data_(false)
+		, score_(data.score_)
 		, score_rank_(data.score_rank_)
 	{}
 
 	~SaveData(void)
 	{}
+
+	inline bool IsGetNewData(void) const { return is_new_data_; }
+	inline void IsSetNewData(bool newData) { is_new_data_ = newData; }
 
 	inline int GetScore(void) const { return score_; }
 	inline void SetScore(int score) { score_ = score; }
@@ -64,6 +78,7 @@ public:
 	inline void SetScoreRank(ScoreRank scoreRank) { score_rank_ = scoreRank; }
 
 private:
+	bool	  is_new_data_;
 	int		  score_;
 	ScoreRank score_rank_;
 };
@@ -105,8 +120,9 @@ public:
 	char ConvertToChar(ScoreRank scoreRank);
 
 	// セーブデータの処理
-	void CreateSaveData(int score);
 	void AddSaveData(class SaveData* data);
+	void AddNewSaveData(int score);
+	void AddNewSaveData(class SaveData* data);
 	void RemoveSaveData(class SaveData* data);
 	void SortBySaveData(void);
 

@@ -458,42 +458,59 @@ char SaveDataManager::ConvertToChar(ScoreRank scoreRank)
 /*-----------------------------------------------------------------------------
 /* セーブデータの作成処理
 -----------------------------------------------------------------------------*/
-void SaveDataManager::CreateSaveData(int score)
+void SaveDataManager::AddNewSaveData(SaveData* data)
 {
-    //セーブデータのパラメータ
+    //　新しいデータか？
+    const bool is_new_date = data->IsGetNewData();
+    if (is_new_date == false)
+    {
+        data->IsSetNewData(true);
+    }
+
+    // スコアランクのパラメータ
     ScoreRank score_rank = ScoreRank::None;
 
-    // ランクのスコア上限ランク
-    int score_rank_limits[static_cast<int>(ScoreRankLimits::Max)] =
-    {
-        static_cast<int>(ScoreRankLimits::D),
-        static_cast<int>(ScoreRankLimits::C),
-        static_cast<int>(ScoreRankLimits::B),
-        static_cast<int>(ScoreRankLimits::A),
-        static_cast<int>(ScoreRankLimits::S)
-    };
+    // スコアの取得
+    auto score = data->GetScore();
 
-    // スコアランク配列
-    ScoreRank score_rank_list[static_cast<int>(ScoreRank::Max)] =
+    // スコアのランクの設定
     {
-        ScoreRank::D,
-        ScoreRank::C,
-        ScoreRank::B,
-        ScoreRank::A,
-        ScoreRank::S
-    };
 
-    // スコアのランクを計算
-    for (int i = 0; i < MAX_SAVE_DATA_COUNT; i++)
-    {
-        if (score <= static_cast<int>(score_rank_limits[i]))
+        // ランクのスコア上限ランク
+        int score_rank_limits[static_cast<int>(ScoreRankLimits::Max)] =
         {
-            score_rank = score_rank_list[i];
+            static_cast<int>(ScoreRankLimits::S),
+            static_cast<int>(ScoreRankLimits::A),
+            static_cast<int>(ScoreRankLimits::B),
+            static_cast<int>(ScoreRankLimits::C),
+            static_cast<int>(ScoreRankLimits::D)
+        };
+
+        // スコアランク配列
+        ScoreRank score_rank_list[static_cast<int>(ScoreRank::Max)] =
+        {
+            ScoreRank::S,
+            ScoreRank::A,
+            ScoreRank::B,
+            ScoreRank::C,
+            ScoreRank::D
+        };
+
+        // スコアのランクを計算
+        for (int i = 0; i < MAX_SAVE_DATA_COUNT; i++)
+        {
+            if (score <= static_cast<int>(score_rank_limits[i]))
+            {
+                score_rank = score_rank_list[i]; // なぜかSに
+            }
         }
     }
 
+    // スコアランクの更新
+    data->SetScoreRank(score_rank);
+
     // セーブデータの追加処理
-    this->AddSaveData(NEW SaveData(score, score_rank));
+    this->AddSaveData(data);
 }
 
 /*-----------------------------------------------------------------------------
@@ -510,12 +527,21 @@ void SaveDataManager::AddSaveData(SaveData* data)
         iter != save_data_list_.end();
         ++iter)
     {
+        //　スコアが大きかったら
         if (score > (*iter)->GetScore())
         {
             break;
         }
+
+        // スコアが同じだったら
+        if (score == (*iter)->GetScore())
+        {
+            break;
+        }
     }
-    save_data_list_.insert(iter, data);	//挿入
+
+    //データの挿入
+    save_data_list_.insert(iter, data);	
 }
 
 /*-----------------------------------------------------------------------------
