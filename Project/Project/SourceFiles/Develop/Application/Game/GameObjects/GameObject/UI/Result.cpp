@@ -12,6 +12,7 @@
 #include "../../Component/RendererComponent/SpriteRendererComponent.h"
 #include "../../Component/RendererComponent/SpriteDigitRendererComponent.h"
 #include "../../Component/AudioComponent.h"
+#include "../../../ResourceManager/SaveDataManager.h"
 #include "../../../Input/InputCheck.h"
 
 /*-----------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Result::Result(class Game* game)
 	, result_state_old_(ResultMenuState::None)
 	, screen_width_(0)
 	, screen_height_(0)
+	, hud_animation_time_(0.f)
 {
 	this->Init();
 }
@@ -46,6 +48,18 @@ bool Result::Init(void)
 {
 	// 状態を初期化
 	result_state_old_ = result_state_ = ResultMenuState::Wait;
+
+	// セーブデータマネージャへのポインタを取得
+	auto save_data_manager = game_->GetSaveDataManager();
+
+	// セーブデータのリストの取得
+	auto save_data_list = save_data_manager->GetSaveDataList();
+
+	// 末尾の余分なセーブデータの削除
+	if (save_data_list.size() > MAX_SCORE_DATA)
+	{
+		save_data_manager->RemoveSaveData(save_data_list.back());
+	}
 
 	// リザルト画面のデータを作成
 	{
@@ -67,18 +81,28 @@ bool Result::Init(void)
 		{
 			ranking_bg_[i] = nullptr;
 			ranking_double_point_[i] = nullptr;
+			ranking_new_[i] = nullptr;
 			ranking_num_[i] = nullptr;
 			ranking_score_digit_[i] = nullptr;
 
+			// 背景の生成
 			ranking_bg_[i] = NEW SpriteRendererComponent(this);
 			ranking_bg_[i]->SetTexture(TextureType::Blank);
 			ranking_bg_[i]->SetVertexColor(0, 255, 255, 128);
 			ranking_bg_[i]->IsSetDrawingPositionToCenter(true);
 
+			// ダブルコロンのスプライト生成
 			ranking_double_point_[i] = NEW SpriteRendererComponent(this);
 			ranking_double_point_[i]->SetTexture(TextureType::ScoreDoublePoint);
 			ranking_double_point_[i]->IsSetDrawingPositionToCenter(true);
 
+			// NEWのスプライト生成(新しい点数データかの明示)
+			ranking_new_[i] = NEW SpriteRendererComponent(this, 250);
+			ranking_new_[i]->SetTexture(TextureType::New);
+			ranking_new_[i]->SetVertexColor(230, 180, 34);		// 金色に
+			ranking_new_[i]->IsSetDrawingPositionToCenter(true);
+
+			// ランキングの順位
 			ranking_num_[i] = NEW SpriteDigitRendererComponent(this);
 			ranking_num_[i]->SetTexture(TextureType::ScoreFontOrigin_0);
 			ranking_num_[i]->IsSetDrawingPositionToCenter(true);
@@ -88,15 +112,15 @@ bool Result::Init(void)
 			switch (i)
 			{
 			case 0:
-				ranking_num_[i]->SetVertexColor(230, 180, 34);
+				ranking_num_[i]->SetVertexColor(230, 180, 34);	// 金色に
 				break;
 
 			case 1:
-				ranking_num_[i]->SetVertexColor(212, 212, 212);
+				ranking_num_[i]->SetVertexColor(212, 212, 212); // 銀色に
 				break;
 
 			case 2:
-				ranking_num_[i]->SetVertexColor(179,  140, 93);
+				ranking_num_[i]->SetVertexColor(179,  140, 93);	// 銅色に
 				break;
 
 			default:
@@ -108,7 +132,9 @@ bool Result::Init(void)
 			ranking_score_digit_[i]->IsSetDrawingPositionToCenter(true);
 			ranking_score_digit_[i]->SetDrawableDigitLength(3);
 			ranking_score_digit_[i]->SetOffestWidth(30);
-			ranking_score_digit_[i]->SetIntData(0);
+
+			// 点数の設定
+			ranking_score_digit_[i]->SetIntData(save_data_list.at(i)->GetScore());
 		}
 	}
 
@@ -256,36 +282,77 @@ void Result::UpdateRankingData(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// セーブデータのリストを取得
+	auto save_data_list = game_->GetSaveDataManager()->GetSaveDataList();
+
 	// テクスチャのサイズを取得
-	float texture_width  = static_cast<float>(ranking_score_digit_[0]->GetFontWidth());
-	float texture_height = static_cast<float>(ranking_score_digit_[0]->GetFontHeight());
+	float digit_texture_width  = static_cast<float>(ranking_score_digit_[0]->GetFontWidth());
+	float digit_texture_height = static_cast<float>(ranking_score_digit_[0]->GetFontHeight());
 
 	for (int i = 0; i < MAX_SCORE_DATA; i++)
 	{
-		// ランキングの背景を描画
+		// ランキングの背景を更新
 		{
 			ranking_bg_[i]->SetScaleX(screen_width_ / 2.f);
-			ranking_bg_[i]->SetScaleY(texture_height);
+			ranking_bg_[i]->SetScaleY(digit_texture_height);
 
 			ranking_bg_[i]->SetTranslationX(screen_width_ / 2.f);
-			ranking_bg_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+			ranking_bg_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
 		}
 	
-		// ランキングの順位を描画
+		// ランキングの順位を更新
 		{
 			ranking_num_[i]->SetTranslationX(screen_width_ / 3.5f);
-			ranking_num_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+			ranking_num_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
 
-			ranking_double_point_[i]->SetTranslationX(ranking_num_[i]->GetPosition()->x + texture_width);
+			ranking_double_point_[i]->SetTranslationX(ranking_num_[i]->GetPosition()->x + digit_texture_width);
 			ranking_double_point_[i]->SetTranslationY(ranking_num_[i]->GetPosition()->y);
 		}
 
-		// ランキングのスコアを描画
+		// ランキングの新しいデータかを表示する
+		{
+			if (save_data_list.at(i)->IsGetNewData())
+			{
+				ranking_new_[i]->IsSetDrawable(true);
+			}
+			else
+			{
+				ranking_new_[i]->IsSetDrawable(false);
+			}
+
+			float new_texture_width = static_cast<float>(ranking_new_[0]->GetTextureImageInfo()->Width);
+			float new_texture_height = static_cast<float>(ranking_new_[0]->GetTextureImageInfo()->Height);
+
+
+			// HUDアニメーションの時間を計算
+			hud_animation_time_ += deltaTime;
+			if (hud_animation_time_ >= MAX_HUD_ANIMATION_TIME_)
+			{
+				hud_animation_time_ = 0.f;
+			}
+
+			// hudのカラーアニメーション(白色から金色への)
+			float red	= Math::Lerp(255, 230, hud_animation_time_);
+			float green = Math::Lerp(255, 180, hud_animation_time_);
+			float blue	= Math::Lerp(255,  34, hud_animation_time_);
+
+			// 色の更新
+			ranking_new_[i]->SetVertexColor(red, green, blue);
+
+			// ポリゴンの大きさをテクスチャサイズに
+			ranking_new_[i]->SetScaleX(new_texture_width * 2.f);
+			ranking_new_[i]->SetScaleY(new_texture_height * 2.f);
+
+			ranking_new_[i]->SetTranslationX(screen_width_ * 0.65f);
+			ranking_new_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
+		}
+
+		// ランキングのスコアを更新
 		{
 			auto digit_width = ranking_score_digit_[0]->GetMaxDrawableDigitWidth();
 
 			ranking_score_digit_[i]->SetTranslationX((screen_width_ / 2.f) - ((digit_width / 3.f) * 2.f));			
-			ranking_score_digit_[i]->SetTranslationY((screen_height_ / 4.f) + ((texture_height * 1.5f) * i));
+			ranking_score_digit_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
 		}
 	}
 }

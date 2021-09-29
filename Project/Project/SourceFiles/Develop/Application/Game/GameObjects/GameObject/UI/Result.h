@@ -49,10 +49,11 @@ private:
 	static constexpr int MAX_SCORE_DATA = 5;
 
 	// ランキングデータ
-	class SpriteRendererComponent*		ranking_bg_[MAX_SCORE_DATA];
-	class SpriteRendererComponent*		ranking_double_point_[MAX_SCORE_DATA];
-	class SpriteDigitRendererComponent*	ranking_num_[MAX_SCORE_DATA];
-	class SpriteDigitRendererComponent* ranking_score_digit_[MAX_SCORE_DATA];
+	class SpriteRendererComponent*		ranking_bg_[MAX_SCORE_DATA];			// ランキングの背景
+	class SpriteRendererComponent*		ranking_double_point_[MAX_SCORE_DATA];	// ダブルコロン
+	class SpriteRendererComponent*		ranking_new_[MAX_SCORE_DATA];			// 新しいランキングのデータか？
+	class SpriteDigitRendererComponent*	ranking_num_[MAX_SCORE_DATA];			// 順位の数字
+	class SpriteDigitRendererComponent* ranking_score_digit_[MAX_SCORE_DATA];	// 点数
 
 	// 説明
 	class SpriteRendererComponent* go_next_;
@@ -76,6 +77,10 @@ private:
 	// 画面サイズ　
 	float screen_width_;
 	float screen_height_;
+
+private:
+	static constexpr float MAX_HUD_ANIMATION_TIME_ = 1.f;
+	float hud_animation_time_;
 };
 
 #endif //RESULT_H_
