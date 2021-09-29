@@ -66,7 +66,7 @@ protected:
 	class FFPMeshRendererComponent*		actor_mesh_;
 
 	// 爆発のエフェクト
-	class EffectRendererComponent*		explosion_effect_;
+	class EffectRendererComponent*		effect_explosion_;
 
 	// 衝突判定
 	class SphereColliderComponent*		sphere_collider_;

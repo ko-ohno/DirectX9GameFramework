@@ -96,7 +96,8 @@ void LaserCannonWeaponComponent::Shoot(void)
 		// レーザーを生成
 		auto game = owner_->GetGame();
 		large_laser_ = NEW LargeLaser(game);
-		large_laser_->SetTransfrom(owner_transform_);
+		large_laser_->SetParentGameObject(owner_);
+		large_laser_->SetOwnerTransfrom(owner_transform_);
 
 		// 発射したことを記憶
 		is_fire_ = true;

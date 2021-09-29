@@ -54,7 +54,7 @@ bool NormalBullet::Init(void)
 		bullet_mesh_->SetMesh(XFileMeshType::BlueBullet);
 
 		// スケールを初期化
-		const float scale = 1.0f;
+		const float scale = 0.5f;
 
 		// 弾丸の衝突判定の追加
 		sphere_collider_ = NEW SphereColliderComponent(this);
@@ -91,6 +91,14 @@ void NormalBullet::UpdateGameObject(float deltaTime)
 	if (game_object_parent_ == nullptr)
 	{
 		assert(!"Bullet::UpdateGameObject()：バレットの所有者が不明です！");
+	}
+
+	//所有者が不明だった場合
+	const bool is_owner_type_unkown = (parent_game_object_type_ == GameObject::TypeID::None);
+	if (is_owner_type_unkown)
+	{
+		// 親ゲームオブジェクトの種類を記憶
+		parent_game_object_type_ = this->GetParentGameObject()->GetType();
 	}
 
 	// 所有者がプレイヤーだった場合

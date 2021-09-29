@@ -130,6 +130,14 @@ void ChargeBullet::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void ChargeBullet::UpdateGameObject(float deltaTime)
 {
+	//所有者が不明だった場合
+	const bool is_owner_type_unkown = (parent_game_object_type_ == GameObject::TypeID::None);
+	if (is_owner_type_unkown)
+	{
+		// 親ゲームオブジェクトの種類を記憶
+		parent_game_object_type_ = this->GetParentGameObject()->GetType();
+	}
+
 	if ((charge_bullet_state_ == ChargeBulletState::Fire) && (is_fire_ == false))
 	{
 		// プレイヤーの前ベクトルへ移動する

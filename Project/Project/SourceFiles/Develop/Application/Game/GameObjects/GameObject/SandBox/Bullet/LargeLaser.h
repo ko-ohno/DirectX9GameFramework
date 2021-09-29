@@ -30,7 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::LargeLaser; }
 
 	// épê®Çê›íË
-	void SetTransfrom(class TransformComponent* transfrom) { owner_transform_ = transfrom; }
+	void SetOwnerTransfrom(class TransformComponent* transfrom) { owner_transform_ = transfrom; }
 
 private:
 	class TransformComponent*		 owner_transform_;

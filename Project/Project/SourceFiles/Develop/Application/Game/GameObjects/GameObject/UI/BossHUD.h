@@ -48,15 +48,14 @@ private:
 	// 値コンポーネント取得用ゲームマネージャーへのポインタ
 	class GameObject*				game_manager_;
 
-	// ボスへのポインタ
-	class Enemy*					boss_;
-
 	// エネミーの状態
 	enum class EnemyState			boss_state_;
 	enum class EnemyState			boss_state_old_;
 
 	// ボスの動きの状態
 	enum class EnemyMotionState		boss_motion_state_;
+
+	float							delete_time_;
 
 private:
 	// ボスの体力ゲージ

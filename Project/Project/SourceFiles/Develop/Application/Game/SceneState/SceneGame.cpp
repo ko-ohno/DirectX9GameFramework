@@ -139,7 +139,7 @@ bool SceneGame::Init(void)
 
 		// 敵の生成
 		//NEW WeakEnemy(game_);
-		NEW StrongEnemy(game_);
+		//NEW StrongEnemy(game_);
 
 		// UIレイヤーのオブジェクト作成
 		NEW HUD(game_);

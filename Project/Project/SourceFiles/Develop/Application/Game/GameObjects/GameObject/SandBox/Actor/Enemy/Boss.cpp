@@ -110,16 +110,22 @@ bool Boss::Init(void)
 		actor_mesh_->SetEnableLighting(true);			// ライティングを有効にする
 	}
 
-	// エフェクトkコンポーネントの生成
+	// エフェクトコンポーネントの生成
 	{
+		// 射撃行動通知エフェクト
 		effect_enemy_action_shoot_ = NEW EffectRendererComponent(this);
 		effect_enemy_action_shoot_->SetEffect(EffectType::EnemyActionGuide_Red);
 		effect_enemy_action_shoot_->SetTranslationY(3.f);
 
-
+		// ヒットエフェクト
 		effect_player_attack_hit_ = NEW EffectRendererComponent(this);
 		effect_player_attack_hit_->SetEffect(EffectType::HitEffect);
 		effect_player_attack_hit_->SetTranslationY(3.f);
+
+		// 爆発エフェクト
+		effect_explosion_ = NEW EffectRendererComponent(this);
+		effect_explosion_->SetEffect(EffectType::ExplosionBoss);
+		effect_explosion_->SetTranslationY(3.f);
 	}
 
 	// 音声コンポーネントの生成
@@ -127,6 +133,15 @@ bool Boss::Init(void)
 		enemy_damage_sound_effect_ = NEW AudioComponent(this);
 		enemy_damage_sound_effect_->SetSound(SoundType::DamageBoss);
 		enemy_damage_sound_effect_->SetAudioVolume(1.f);
+	}
+
+	// ゲームマネージャへのポインタの取得
+	{
+		game_manager_ = this->FindGameObject(GameObject::TypeID::GameManager);
+		if (game_manager_ == nullptr)
+		{
+			assert(!"StrongEnemy::Init()：ゲームマネージャへのポインタが取得できませんでした");
+		}
 	}
 
 	// ボスの状態を初期化
@@ -229,6 +244,54 @@ void Boss::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Boss::UpdateGameObject(float deltaTime)
 {
+	// 自身を破壊されたら
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// 破壊状態での初期化を行う
+		if (is_destroy_ == false)
+		{
+			// 破壊される状態として記憶を行う
+			is_destroy_ = true;
+
+			// 爆発エフェクトを再生
+			effect_explosion_->Play();
+
+			// スコアへ加算する
+			auto parameter_components = game_manager_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
+			{
+				// スコアへの値コンポーネントへのポインタを取得
+				auto parameter_component_type = parameter_component->GetParameterType();
+				if (parameter_component_type == ParameterType::Score)
+				{
+					parameter_component->AddInt(100);
+					break;
+				}
+			}
+
+			sphere_gizmo_->IsSetDrawable(false);
+		}
+
+		// 破壊までの時間
+		destroy_interval_time_ += deltaTime;
+
+		// 自身を破棄する
+		const float MAX_DESTROY_INTERVAL_TIME = 6.f;
+
+		// メッシュの描画を無効に
+		if (destroy_interval_time_ >= (MAX_DESTROY_INTERVAL_TIME * 0.6f))
+		{
+			actor_mesh_->IsSetDrawable(false);
+		}
+
+		// 自身を破棄
+		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
+		{
+			this->SetGameObjectState(State::Dead);
+		}
+		return;
+	}
+
 	// AIコンポーネントにボスのHPを通知する
 	{
 		enemy_ai_->SetHitPoint(this->GetHitPoint());
@@ -436,6 +499,8 @@ void Boss::UpdateCollision(float deltaTime)
 	// HPの下限を設定
 	if (hit_point_ <= 0.f)
 	{
+		// エネミーが破壊される状態へ
+		this->SetGameObjectState(State::Destroy);
 		hit_point_ = 0.f;
 	}
 
@@ -471,7 +536,8 @@ void Boss::UpdateCollision(float deltaTime)
 				enemy_damage_sound_effect_->Play();
 
 				// ダメージをを受ける
-				hit_point_ += -5.f;
+				const float DAMAGE = -5.f;
+				hit_point_ += DAMAGE;
 
 				// 衝突したバレットを破棄する
 				bullet->SetGameObjectState(State::Dead);

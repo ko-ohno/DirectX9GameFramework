@@ -99,6 +99,25 @@ void LargeLaser::InputGameObject(void)
 void LargeLaser::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+	
+	//所有者が不明だった場合
+	const bool is_owner_type_unkown = (parent_game_object_type_ == GameObject::TypeID::None);
+	if (is_owner_type_unkown)
+	{
+		// 親ゲームオブジェクトの種類を記憶
+		parent_game_object_type_ = this->GetParentGameObject()->GetType();
+	}
+
+	const bool is_owner_destroy = (this->GetParentGameObject()->GetGameObjectState() == GameObject::State::Destroy);
+	if (is_owner_destroy)
+	{
+		// 地震を破棄
+		this->SetGameObjectState(GameObject::State::Dead);
+
+		// エフェクトの再生を停止
+		large_laser_->Stop();
+		return;
+	}
 
 	// 所有者の姿勢を通知する
 	transform_component_ = owner_transform_;

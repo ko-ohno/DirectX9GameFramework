@@ -33,7 +33,6 @@
 BossHUD::BossHUD(Game* game)
 	: UI(game)
 	, game_manager_(nullptr)
-	, boss_(nullptr)
 	, boss_state_(EnemyState::None)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
@@ -149,8 +148,11 @@ void BossHUD::UpdateGameObject(float deltaTime)
 	// 体力ゲージに対する割合を計算
 	hp_rate_ = (1.f / max_hp_value_) * hp_value_;
 
+	// ボスへのポインタ
+	class Enemy* boss = nullptr;
+
 	// ボスへのポインタ取得
-	if (boss_ == nullptr)
+	if (boss == nullptr)
 	{
 		auto enemy_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
 		for(auto enemy : enemy_list)
@@ -158,16 +160,22 @@ void BossHUD::UpdateGameObject(float deltaTime)
 			auto enemy_type = enemy->GetType();
 			if (enemy_type == GameObject::TypeID::Boss)
 			{
-				boss_ = enemy;
+				boss = enemy;
 			}
 		}
 	}
 
-	// ボスの状態を取得
-	if (boss_ != nullptr)
+	// ボスへのポインタを取得してもnullptrだった場合
+	if (boss == nullptr)
 	{
-		boss_state_			= boss_->GetEnemyState();
-		boss_motion_state_	= boss_->GetEnemyMotionState();
+		this->SetGameObjectState(GameObject::State::Dead);
+	}
+
+	// ボスの状態を取得
+	if (boss != nullptr)
+	{
+		boss_state_			= boss->GetEnemyState();
+		boss_motion_state_	= boss->GetEnemyMotionState();
 	}
 
 	// HUDの値を更新
@@ -334,7 +342,25 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 -----------------------------------------------------------------------------*/
 void BossHUD::UpdateWeakPointHUD(float deltaTime)
 {
-	if (boss_ == nullptr) { return; }
+	// ボスへのポインタ
+	class Enemy* boss = nullptr;
+
+	// ボスへのポインタ取得
+	if (boss == nullptr)
+	{
+		auto enemy_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
+		for (auto enemy : enemy_list)
+		{
+			auto enemy_type = enemy->GetType();
+			if (enemy_type == GameObject::TypeID::Boss)
+			{
+				boss = enemy;
+			}
+		}
+	}
+
+
+	if (boss == nullptr) { return; }
 
 	const bool is_weakpoint_ready = ((boss_state_ == EnemyState::LaserCannon) || (boss_state_ == EnemyState::Shooting));
 	const bool is_weakpoint_show  = ((boss_motion_state_ == EnemyMotionState::Attack) && is_weakpoint_ready);
@@ -347,7 +373,7 @@ void BossHUD::UpdateWeakPointHUD(float deltaTime)
 	}
 
 	// ボスの姿勢情報を取得
-	D3DXMATRIX boss_matrix = *boss_->GetTransform()->GetWorldMatrix();
+	D3DXMATRIX boss_matrix = *boss->GetTransform()->GetWorldMatrix();
 
 	// HUDを表示する姿勢情報の作成
 	D3DXMATRIX weak_point_hud_matrix;
@@ -404,7 +430,7 @@ void BossHUD::UpdateAlertShootHUD(float deltaTime)
 	if (is_alert_ == false)
 	{
 		// 音声の再生
-		alert_se_->Play();
+		//alert_se_->Play();
 		is_alert_ = true;
 	}
 

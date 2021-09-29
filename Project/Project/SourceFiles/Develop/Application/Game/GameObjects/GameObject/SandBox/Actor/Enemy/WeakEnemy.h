@@ -28,6 +28,9 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::WeakEnemy; }
 
+	// Õ“Ë”»’è‚ÌXV
+	void UpdateCollision(float deltaTime);
+
 	void TestMoveStraight();
 	void TestMoveStraightWaitOneTime();
 	void TestMoveRoundVertical();

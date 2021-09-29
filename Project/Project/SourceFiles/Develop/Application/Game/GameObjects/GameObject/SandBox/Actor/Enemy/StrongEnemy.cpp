@@ -104,8 +104,8 @@ bool StrongEnemy::Init(void)
 		effect_enemy_action_shoot_->SetScale(0.5f);
 
 		// 爆発エフェクト
-		explosion_effect_ = NEW EffectRendererComponent(this);
-		explosion_effect_->SetEffect(EffectType::ExplosionActor);
+		effect_explosion_ = NEW EffectRendererComponent(this);
+		effect_explosion_->SetEffect(EffectType::ExplosionActor);
 	}
 
 	// ゲームマネージャへのポインタの取得
@@ -198,10 +198,47 @@ void StrongEnemy::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void StrongEnemy::UpdateGameObject(float deltaTime)
 {
-	auto a = effect_enemy_action_shoot_->GetPosition();
+	// 自身を破壊されたら
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// 破壊状態での初期化を行う
+		if (is_destroy_ == false)
+		{
+			// 破壊される状態として記憶を行う
+			is_destroy_ = true;
 
+			// 爆発エフェクトを再生
+			effect_explosion_->Play();
 
-	UNREFERENCED_PARAMETER(deltaTime);
+			// スコアへ加算する
+			auto parameter_components = game_manager_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
+			{
+				// スコアへの値コンポーネントへのポインタを取得
+				auto parameter_component_type = parameter_component->GetParameterType();
+				if (parameter_component_type == ParameterType::Score)
+				{
+					parameter_component->AddInt(20);
+					break;
+				}
+			}
+
+			actor_mesh_->IsSetDrawable(false);
+			sphere_gizmo_->IsSetDrawable(false);
+		}
+
+		// 破壊までの時間
+		destroy_interval_time_ += deltaTime;
+
+		// 自身を破棄する
+		const float MAX_DESTROY_INTERVAL_TIME = 1.f;
+		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
+		{
+			// ゲームオブジェクトを破棄
+			this->SetGameObjectState(State::Dead);
+		}
+		return;
+	}
 
 	// AIコンポーネントに自身のHPを通知する
 	{
@@ -373,76 +410,31 @@ void StrongEnemy::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMot
 -----------------------------------------------------------------------------*/
 void StrongEnemy::UpdateCollision(float deltaTime)
 {
-	// 自身を破壊されたら
-	if (this->GetGameObjectState() == State::Destroy)
+	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+	for (auto bullet : bullets)
 	{
-		// 破壊状態での初期化を行う
-		if (is_destroy_ == false)
+		// Bulletの所有者がPlayerかを調べる
+		auto bullet_game_object = bullet->GetParentGameObject();
+		if (bullet_game_object->GetType() != GameObject::TypeID::Player)
 		{
-			// 爆発エフェクトを再生
-			explosion_effect_->Play();
+			continue;
+		}
 
-			// スコアへ加算する
-			auto parameter_components = game_manager_->GetParameterComponents();
-			for (auto parameter_component : parameter_components)
+		// プレイヤーのバレットの衝突判定を取得
+		auto components = bullet->GetComponents();
+		for (auto component : components)
+		{
+			auto component_type = component->GetComponentType();
+			if (component_type == Component::TypeID::SphereColliderComponent)
 			{
-				// スコアへの値コンポーネントへのポインタを取得
-				auto parameter_component_type = parameter_component->GetParameterType();
-				if (parameter_component_type == ParameterType::Score)
+				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
 				{
-					parameter_component->AddInt(10);
+					// エネミーが破壊される
+					this->SetGameObjectState(State::Destroy);
+
+					// 衝突したバレットを破棄する
+					bullet->SetGameObjectState(State::Dead);
 					break;
-				}
-			}
-
-			actor_mesh_->IsSetDrawable(false);
-			sphere_gizmo_->IsSetDrawable(false);
-
-			// 破壊状態での初期化を行う
-			is_destroy_ = true;
-		}
-
-		// 破壊までの時間
-		destroy_interval_time_ += deltaTime;
-
-		// 自身を破棄する
-		const float MAX_DESTROY_INTERVAL_TIME = 1.f;
-		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
-		{
-			// ゲームオブジェクトを破棄
-			this->SetGameObjectState(State::Dead);
-		}
-		return;
-	}
-
-	// 衝突判定
-	{
-		auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
-		for (auto bullet : bullets)
-		{
-			// Bulletの所有者がPlayerかを調べる
-			auto bullet_game_object = bullet->GetParentGameObject();
-			if (bullet_game_object->GetType() != GameObject::TypeID::Player)
-			{
-				continue;
-			}
-
-			// プレイヤーのバレットの衝突判定を取得
-			auto components = bullet->GetComponents();
-			for (auto component : components)
-			{
-				auto component_type = component->GetComponentType();
-				if (component_type == Component::TypeID::SphereColliderComponent)
-				{
-					if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
-					{
-						// エネミーが破壊される
-						this->SetGameObjectState(State::Destroy);
-
-						// 衝突したバレットを破棄する
-						bullet->SetGameObjectState(State::Dead);
-						break;
-					}
 				}
 			}
 		}

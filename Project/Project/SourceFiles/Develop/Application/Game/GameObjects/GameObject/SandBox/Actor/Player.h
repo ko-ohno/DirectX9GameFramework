@@ -104,10 +104,6 @@ private:
 
 	// ボスへのダメージを与えるインターバルの時間
 	float					damage_recieve_interval_time_;
-
-	// ボスへのポインタ
-	class Enemy*			boss_;
-
 };
 
 #endif //PLAYER_H_

@@ -16,6 +16,7 @@
 -----------------------------------------------------------------------------*/
 Bullet::Bullet(Game* game)
 	: SandBox(game)
+	, parent_game_object_type_(TypeID::None)
 	, sphere_collider_(nullptr)
 	, sphere_collider_gizmo_(nullptr)
 	, obb_collider_(nullptr)

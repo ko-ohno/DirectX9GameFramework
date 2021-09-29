@@ -68,7 +68,6 @@ Player::Player(Game* game)
 	, is_blaster_fire_(false)
 	, is_received_damage_(false)
 	, damage_recieve_interval_time_(0.f)
-	, boss_(nullptr)
 {
 	this->Init();
 }
@@ -408,8 +407,10 @@ void Player::UpdateCollision(float deltaTime)
 
 	// 衝突判定
 	{
+		class Enemy* boss = nullptr;
+
 		// ボスへのポインタを取得
-		if (boss_ == nullptr)
+		if (boss == nullptr)
 		{
 			auto enemie_list = game_->GetEnemieManager()->GetEnemyGameObjectList();
 			for (auto enemy : enemie_list)
@@ -419,54 +420,75 @@ void Player::UpdateCollision(float deltaTime)
 				if (actor_type != GameObject::TypeID::Boss) { continue; }
 
 				// ボスへのポインタを取得
-				boss_ = enemy;
+				boss = enemy;
+			}
+		}
+
+		// ダメージの値
+		float damege_value = 5.f;
+		if (boss != nullptr)
+		{
+			damege_value = boss->GetAttack();
+		}
+		
+		// バレットの衝突判定
+		auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
+		for (auto bullet : bullets)
+		{
+			// Bulletの所有者がPlayerかを調べる
+			auto bullet_owner_game_object = bullet->GetParentGameObject();
+
+			// 親が存在しないバレットか？
+			const bool is_owner_object_nullptr = (bullet_owner_game_object == nullptr);
+			if (is_owner_object_nullptr)
+			{
+				continue;
+			}
+
+			// 親が破壊されたバレットか？
+			const bool is_owner_destroy = (bullet_owner_game_object->GetGameObjectState() == GameObject::State::Destroy);
+			if (is_owner_destroy)
+			{
+				continue;
+			}
+
+			// バレットの所有者を調べる
+			const bool is_weak_enemy_shoot_bullet	= (bullet->GetParentType() == GameObject::TypeID::WeakEnemy);
+			const bool is_strong_enemy_shoot_bullet = (bullet->GetParentType() == GameObject::TypeID::StrongEnemy);
+			const bool is_bossshoot_bullet			= (bullet->GetParentType() == GameObject::TypeID::Boss);
+			if (is_weak_enemy_shoot_bullet || is_strong_enemy_shoot_bullet || is_bossshoot_bullet)
+			{
+				// エネミーのバレットの衝突判定を取得
+				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+				{
+					// ダメージを受けた時のエフェクトを再生
+					effect_enemy_attack_hit_->Play();
+
+					// ダメージを受けたSEを再生
+					player_damege_sound_effect_->Play();
+
+					// ダメージを受ける
+					hit_point_ -= damege_value;
+
+					// 衝突したバレットを破棄する
+					bullet->SetGameObjectState(State::Dead);
+	
+					// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
+					damage_recieve_interval_time_ = 0.f;
+					is_received_damage_ = false;
+					break;
+
+				}
 			}
 		}
 
 		// ボスが生成されていたら
-		if (boss_ != nullptr)
+		if (boss != nullptr)
 		{
-			// バレットの衝突判定
-			auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
-			for (auto bullet : bullets)
-			{
-				// Bulletの所有者がPlayerかを調べる
-				auto bullet_owner_game_object = bullet->GetParentGameObject();
-
-				if (bullet_owner_game_object == nullptr) { continue; }
-
-				// バレットの所有者を調べる
-				const bool is_weak_enemy_shoot_bullet = (bullet_owner_game_object->GetType() == GameObject::TypeID::WeakEnemy);
-				const bool is_strong_enemy_shoot_bullet = (bullet_owner_game_object->GetType() == GameObject::TypeID::StrongEnemy);
-				const bool is_boss_shoot_bullet = (bullet_owner_game_object->GetType() == GameObject::TypeID::Boss);
-				if (is_weak_enemy_shoot_bullet || is_strong_enemy_shoot_bullet || is_boss_shoot_bullet)
-				{
-					// エネミーのバレットの衝突判定を取得
-					if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
-					{
-						// ダメージを受けた時のエフェクトを再生
-						effect_enemy_attack_hit_->Play();
-
-						// ダメージを受けたSEを再生
-						player_damege_sound_effect_->Play();
-
-						// ダメージをを受ける
-						hit_point_ += -10.f;
-
-						// 衝突したバレットを破棄する
-						bullet->SetGameObjectState(State::Dead);
-	
-						// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
-						damage_recieve_interval_time_ = 0.f;
-						is_received_damage_ = false;
-						break;
-
-					}
-				}
-			}
+			if (boss->GetGameObjectState() == GameObject::State::Destroy) { return; }
 
 			// ボスの体当たりの衝突判定
-			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss_->GetOBBCollider()))
+			if (CheckCollision::ObbVSObb(this->GetOBBCollider(), boss->GetOBBCollider()))
 			{
 				// ダメージを受けた時のエフェクトを再生
 				effect_enemy_attack_hit_->Play();
@@ -475,7 +497,7 @@ void Player::UpdateCollision(float deltaTime)
 				player_damege_sound_effect_->Play();
 
 				// ダメージをを受ける
-				hit_point_ += -10.f;
+				hit_point_ -= damege_value;
 
 				// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
 				damage_recieve_interval_time_ = 0.f;
@@ -488,7 +510,7 @@ void Player::UpdateCollision(float deltaTime)
 
 				for (auto bullet : bullets)
 				{
-					// バレットの所有者を調べる
+					// バレットの種類を調べる
 					const bool is_bullet_large_laser = (bullet->GetType() == GameObject::TypeID::LargeLaser);
 					if (is_bullet_large_laser)
 					{
@@ -501,6 +523,8 @@ void Player::UpdateCollision(float deltaTime)
 				// ボスの大型レーザーの衝突判定
 				if (large_laser != nullptr)
 				{
+					if (large_laser->GetGameObjectState() == GameObject::State::Destroy) { return; }
+
 					if (CheckCollision::ObbVSObb(this->GetOBBCollider(), large_laser->GetOBBCollider()))
 					{
 						// ダメージを受けた時のエフェクトを再生
@@ -510,7 +534,7 @@ void Player::UpdateCollision(float deltaTime)
 						player_damege_sound_effect_->Play();
 
 						// ダメージをを受ける
-						hit_point_ += -10.f;
+						hit_point_ -= damege_value;
 
 						// 次にプレイヤーがダメージを受けるまでの時間と状態を初期化
 						damage_recieve_interval_time_ = 0.f;

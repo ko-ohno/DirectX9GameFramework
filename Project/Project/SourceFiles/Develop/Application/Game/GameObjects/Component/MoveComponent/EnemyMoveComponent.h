@@ -18,10 +18,10 @@
 enum class EnemyMotionState
 {
 	None = -1
+	, Idle			// 待機状態
 	, StartUp		// 攻撃の立ち上がり
 	, Relay			// 攻撃への移行状態
 	, Attack		// 実際の攻撃状態
-	, Wait			// 一時停止
 	, MoveState_0	// 移動ステート_0
 	, MoveState_1	// 移動ステート_1
 	, MoveState_2	// 移動ステート_2

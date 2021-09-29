@@ -92,8 +92,8 @@ bool BillboardRendererComponent::Init(void)
 -----------------------------------------------------------------------------*/
 void BillboardRendererComponent::Uninit(void)
 {
-	SAFE_RELEASE_(vertex_buffer_);
-	SAFE_RELEASE_(index_buffer_);
+	//SAFE_RELEASE_(vertex_buffer_);
+	//SAFE_RELEASE_(index_buffer_);
 }
 
 /*-----------------------------------------------------------------------------

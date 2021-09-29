@@ -119,7 +119,7 @@ void SaveDataTest::UpdateGameObject(float deltaTime)
 		}
 	}
 
-	//リロード
+	// ソート
 	{
 		ImGui::Text("SaveData:");
 		ImGui::SameLine();

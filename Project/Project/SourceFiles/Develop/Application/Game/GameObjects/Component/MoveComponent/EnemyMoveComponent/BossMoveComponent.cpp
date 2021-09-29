@@ -70,6 +70,16 @@ void BossMoveComponent::Update(float deltaTime)
 		owner_transform_->IsSetExecuteSlerpRotation(true);
 	}
 
+	// 破壊あれた状態になったら？
+	const bool is_owner_destroy = (owner_->GetGameObjectState() == GameObject::State::Destroy);
+	if (is_owner_destroy)
+	{
+		//回転の更新
+		owner_transform_->SetSlerpSpeed(5.f);
+		owner_transform_->SetRotation(0.f, 0.f, 0.f);
+		return;
+	}
+
 	// 自身の状態を表記
 	ImGui::Begin("boss_move_state");
 	{
