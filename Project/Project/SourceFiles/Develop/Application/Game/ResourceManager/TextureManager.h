@@ -32,6 +32,7 @@ enum class TextureType
 	, ScoreFontOrigin_0
 	, ScoreFontOrigin_1
 	, ScoreDoublePoint
+	, New
 	, FarReticle
 	, NearReticle
 	, Exclamation

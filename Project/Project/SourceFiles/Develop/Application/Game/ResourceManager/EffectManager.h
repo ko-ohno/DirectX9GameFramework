@@ -57,6 +57,7 @@ enum class EffectType
 	, EnemyActionGuide_Yellow
 
 	, ExplosionActor
+	, ExplosionBoss
 
 	, HitEffect
 

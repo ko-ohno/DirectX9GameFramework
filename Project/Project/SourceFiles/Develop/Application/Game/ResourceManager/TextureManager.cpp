@@ -29,6 +29,7 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	, "ScoreFontOrigin_0"
 	, "ScoreFontOrigin_1"
 	, "ScoreDoublePoint"
+	, "New"
 	, "FarReticle"
 	, "NearReticle"
 	, "Exclamation"
@@ -116,6 +117,7 @@ bool TextureManager::Init(void)
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_0]  = "score_font_origin_0.png";
 		unmap_texture_path_list_[TextureType::ScoreFontOrigin_1]  = "score_font_origin_1.png";
 		unmap_texture_path_list_[TextureType::ScoreDoublePoint]   = "double.png";
+		unmap_texture_path_list_[TextureType::New]				  = "new.png";
 		unmap_texture_path_list_[TextureType::FarReticle]		  = "ReticleFar.png";
 		unmap_texture_path_list_[TextureType::NearReticle]		  = "ReticleNear.png";
 		unmap_texture_path_list_[TextureType::Exclamation]		  = "exclamation.png";

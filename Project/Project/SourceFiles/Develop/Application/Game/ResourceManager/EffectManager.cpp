@@ -35,6 +35,7 @@ const char* EffectManager::EffectTypeNames[static_cast<int>(EffectType::Max)] = 
 	, "EnemyActionGuide_Yellow"
 
 	, "ExplosionActor"
+	, "ExplosionBoss"
 
 	, "HitEffect"
 
@@ -104,6 +105,9 @@ bool EffectManager::StartUp(void)
 		// アクターの爆発エフェクト
 		this->LoadEffect(EffectType::ExplosionActor);
 
+		// ボスの爆発エフェクト
+		this->LoadEffect(EffectType::ExplosionBoss);
+
 		// 宇宙ゴミのエフェクト
 		this->LoadEffect(EffectType::SpaceDustRed);
 		
@@ -165,6 +169,10 @@ bool EffectManager::Init(void)
 
 			// アクターの爆発エフェクト
 			unmap_effect_path_list_[EffectType::ExplosionActor] = "Explosion/ActorExplosion/actor_explosion.efk";
+
+			// ボスの爆発エフェクト
+			unmap_effect_path_list_[EffectType::ExplosionBoss] = "Explosion/BossExplosion/boss_explosion.efk";
+
 
 			// 攻撃が当たった時のエフェクト
 			unmap_effect_path_list_[EffectType::HitEffect] = "HitEffect/hit_effect.efk";
