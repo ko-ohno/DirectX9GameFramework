@@ -517,33 +517,32 @@ void Boss::UpdateCollision(float deltaTime)
 	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
 	for (auto bullet : bullets)
 	{
-		// Bulletの所有者がPlayerかを調べる
-		auto bullet_owner_game_object = bullet->GetParentGameObject();
+		// Bulletの親オブジェクトがPlayerかを調べる
+		auto bullet_parent_game_object_type = bullet->GetParentType();
 
-		if (bullet_owner_game_object == nullptr) { continue; }
-
-		// バレットの所有者を調べる
-		const bool is_player_shoot_bullet = (bullet_owner_game_object->GetType() == GameObject::TypeID::Player);
-		if (is_player_shoot_bullet)
+		if (bullet_parent_game_object_type != GameObject::TypeID::Player)
 		{
-			// エネミーのバレットの衝突判定を取得
-			if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
-			{
-				// ダメージを受けた時のエフェクトを再生
-				effect_player_attack_hit_->Play();
-
-				// ダメージを受けたSEを再生
-				enemy_damage_sound_effect_->Play();
-
-				// ダメージをを受ける
-				const float DAMAGE = -5.f;
-				hit_point_ += DAMAGE;
-
-				// 衝突したバレットを破棄する
-				bullet->SetGameObjectState(State::Dead);
-				break;
-			}
+			continue;
 		}
+
+		// エネミーのバレットの衝突判定を取得
+		if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
+		{
+			// ダメージを受けた時のエフェクトを再生
+			effect_player_attack_hit_->Play();
+
+			// ダメージを受けたSEを再生
+			enemy_damage_sound_effect_->Play();
+
+			// ダメージをを受ける
+			const float DAMAGE = -5.f;
+			hit_point_ += DAMAGE;
+
+			// 衝突したバレットを破棄する
+			bullet->SetGameObjectState(State::Dead);
+			break;
+		}
+
 	}
 }
 

@@ -397,7 +397,7 @@ void StrongEnemy::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMot
 	// •Ší‚Ì”­ŽË
 	if ((is_fire_ == false) )
 	{
-		if (execute_time >= (max_execute_time_ * 0.6f))
+		if (execute_time >= (max_execute_time_ * 0.5f))
 		{
 			enemy_blaster_->Fire();
 			is_fire_ = true;
@@ -414,8 +414,8 @@ void StrongEnemy::UpdateCollision(float deltaTime)
 	for (auto bullet : bullets)
 	{
 		// Bullet‚ÌŠ—LŽÒ‚ªPlayer‚©‚ð’²‚×‚é
-		auto bullet_game_object = bullet->GetParentGameObject();
-		if (bullet_game_object->GetType() != GameObject::TypeID::Player)
+		auto bullet_parent_game_object_type = bullet->GetParentType();
+		if (bullet_parent_game_object_type != GameObject::TypeID::Player)
 		{
 			continue;
 		}
