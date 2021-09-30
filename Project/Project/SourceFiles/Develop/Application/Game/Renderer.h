@@ -81,6 +81,8 @@ private:
 	//カメラ現在座標が、１フレーム前と違う場合、ソートをする
 	Vector3 now_camera_pos_; 
 	Vector3 old_camera_pos_; 	
+
+	bool is_added_renderer_component_;
 };	
 
 #endif //RENDERER_H_

@@ -148,7 +148,8 @@ void Renderer::Draw(void)
 
 			//レンダラーコンポーネントのソート
 			const bool is_camera_moved = camera_game_object->IsGetCameraMoved();
-			if (is_camera_moved == true)
+			if (is_camera_moved
+				|| is_added_renderer_component_)
 			{
 				D3DXVECTOR3 camera_position;
 				D3DXMATRIX  view_matrix = *camera_game_object->GetViewMatrix();
@@ -212,6 +213,9 @@ void Renderer::Draw(void)
 
 		}
 	}
+
+	// レンダラーコンポーネントが追加が完了したことを通知
+	is_added_renderer_component_ = false;
 }
 
 /*-----------------------------------------------------------------------------
@@ -251,6 +255,9 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 -----------------------------------------------------------------------------*/
 void Renderer::AddRendererComponentAddress(RendererComponent* rendererComponent)
 {
+	// レンダラーコンポーネントのが追加されたことを通知
+	is_added_renderer_component_ = true;
+
 	//描画優先順位
 	RendererLayerType my_layer_type = rendererComponent->GetRendererLayerType();
 	int				  my_draw_order = rendererComponent->GetDrawOrder();
