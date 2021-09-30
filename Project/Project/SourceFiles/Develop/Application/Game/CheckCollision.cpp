@@ -26,6 +26,10 @@ D3DXVECTOR3* CheckCollision::ConvertDirectXVec3(Vector3* vec3)
 -----------------------------------------------------------------------------*/
 bool CheckCollision::CircleVSCircle(CircleColliderComponent* circleA, CircleColliderComponent* circleB)
 {
+    //　nullptrのコンポーネントと衝突判定を行わないように
+    if (circleA == nullptr) { return false; }
+    if (circleB == nullptr) { return false; }
+
     const bool is_circleA_error = (circleA->GetComponentType() != Component::TypeID::CircleColliderComponent);
     const bool is_circleB_error = (circleB->GetComponentType() != Component::TypeID::CircleColliderComponent);
     {
@@ -60,6 +64,10 @@ bool CheckCollision::CircleVSCircle(CircleColliderComponent* circleA, CircleColl
 -----------------------------------------------------------------------------*/
 bool CheckCollision::RectangleVSRectangle(RectangleColliderComponent* rectA, RectangleColliderComponent* rectB)
 {
+    //　nullptrのコンポーネントと衝突判定を行わないように
+    if (rectA == nullptr) { return false; }
+    if (rectB == nullptr) { return false; }
+
     const bool is_rectA_error = (rectA->GetComponentType() != Component::TypeID::RectangleColliderComponent);
     const bool is_rectB_error = (rectB->GetComponentType() != Component::TypeID::RectangleColliderComponent);
     {
@@ -101,6 +109,10 @@ bool CheckCollision::RectangleVSRectangle(RectangleColliderComponent* rectA, Rec
 -----------------------------------------------------------------------------*/
 bool CheckCollision::SphereVSSpghre(SphereColliderComponent* sphereA, SphereColliderComponent* sphereB)
 {
+    //　nullptrのコンポーネントと衝突判定を行わないように
+    if (sphereA == nullptr) { return false; }
+    if (sphereB == nullptr) { return false; }
+
     const bool is_sphereA_error = (sphereA->GetComponentType() != Component::TypeID::SphereColliderComponent);
     const bool is_sphereB_error = (sphereB->GetComponentType() != Component::TypeID::SphereColliderComponent);
     {
@@ -136,6 +148,10 @@ bool CheckCollision::SphereVSSpghre(SphereColliderComponent* sphereA, SphereColl
 -----------------------------------------------------------------------------*/
 bool CheckCollision::ObbVSObb(OBBColliderComponent* obbA, OBBColliderComponent* obbB)
 {
+    //　nullptrのコンポーネントと衝突判定を行わないように
+    if (obbA == nullptr) { return false; }
+    if (obbB == nullptr) { return false; }
+
     const bool is_obbA_error = (obbA->GetComponentType() != Component::TypeID::OBBColliderComponent);
     const bool is_obbB_error = (obbB->GetComponentType() != Component::TypeID::OBBColliderComponent);
     {
