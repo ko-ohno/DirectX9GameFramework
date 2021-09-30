@@ -39,6 +39,9 @@ private:
 	// 場面切り替えを行うか？
 	bool							  is_secen_change_;
 
+	// ボスのHUDを生成するか？
+	bool							  is_create_boss_hud_;
+
 private:
 	// エネミーのファクトリ
 	class EnemyFactory*				  enemy_factory_;

@@ -12,6 +12,7 @@
 #include "../../../Game.h"
 #include "../../../../DX9Graphics.h"
 #include "../SandBox/Actor/Enemy.h"
+#include "../../../SandBoxManager/ActorManager.h"
 #include "../../../SandBoxManager/EnemieManager.h"
 
 // 移動コンポーネント
@@ -37,9 +38,10 @@ BossHUD::BossHUD(Game* game)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
-	, max_hp_value_(0.f)
-	, hp_value_(0.f)
-	, hp_rate_(0.f)
+	, max_boss_hp_value_(0.f)
+	, boss_hp_value_(0.f)
+	, boss_hp_rate_(0.f)
+	, player_hp_value_(0.f)
 	, weak_point_hud_(nullptr)
 	, hud_animation_time_(0.f)
 	, is_execute_alert_(false)
@@ -67,9 +69,9 @@ bool BossHUD::Init(void)
 {
 	// 値の初期化
 	{
-		hp_value_		= 100;
-		max_hp_value_	= 100;
-		hp_rate_ = 1.f;
+		boss_hp_value_		= 100;
+		max_boss_hp_value_	= 100;
+		boss_hp_rate_ = 1.f;
 	}
 
 	// 体力の表示
@@ -145,9 +147,6 @@ void BossHUD::UpdateGameObject(float deltaTime)
 		game_manager_ = this->FindGameObject(TypeID::GameManager);
 	}
 
-	// 体力ゲージに対する割合を計算
-	hp_rate_ = (1.f / max_hp_value_) * hp_value_;
-
 	// ボスへのポインタ
 	class Enemy* boss = nullptr;
 
@@ -164,13 +163,7 @@ void BossHUD::UpdateGameObject(float deltaTime)
 			}
 		}
 	}
-
-	// ボスへのポインタを取得してもnullptrだった場合
-	if (boss == nullptr)
-	{
-		this->SetGameObjectState(GameObject::State::Dead);
-	}
-
+	
 	// ボスの状態を取得
 	if (boss != nullptr)
 	{
@@ -223,6 +216,18 @@ void BossHUD::UpdateGameObject(float deltaTime)
 		}
 	}
 
+	// プレイヤーのHPが0だったら
+	if (player_hp_value_ <= 0.f)
+	{
+		this->SetGameObjectState(GameObject::State::Dead);
+	}
+
+	// ボスのHPが0だったら
+	if (boss_hp_value_ <= 0.f)
+	{
+		this->SetGameObjectState(GameObject::State::Dead);
+	}
+
 	// 1フレーム前の情報を更新
 	boss_state_old_ = boss_state_;
 }
@@ -234,6 +239,9 @@ void BossHUD::UpdateHUDValue(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 体力ゲージに対する割合を計算
+	boss_hp_rate_ = (1.f / max_boss_hp_value_) * boss_hp_value_;
+
 	if (game_manager_ == nullptr) { return; }
 
 	// 値の更新
@@ -243,16 +251,22 @@ void BossHUD::UpdateHUDValue(float deltaTime)
 		// 値コンポーネントの型を調べる
 		auto parameter_type = parameter_compnent->GetParameterType();
 
-		// プレイヤーの最大HPの取得
-		if (parameter_type == ParameterType::BossMaxHP)
+		// プレイヤーのHPの取得
+		if (parameter_type == ParameterType::HP)
 		{
-			max_hp_value_ = parameter_compnent->GetFloat();
+			player_hp_value_ = parameter_compnent->GetFloat();
 		}
 
-		// プレイヤーのHPの取得
+		// ボスの最大HPの取得
+		if (parameter_type == ParameterType::BossMaxHP)
+		{
+			max_boss_hp_value_ = parameter_compnent->GetFloat();
+		}
+
+		// ボスのHPの取得
 		if (parameter_type == ParameterType::BossHP)
 		{
-			hp_value_ = parameter_compnent->GetFloat();
+			boss_hp_value_ = parameter_compnent->GetFloat();
 		}
 	}
 }
@@ -275,17 +289,17 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		const float warning_value = (1.f / 3.f) * 2.f;
 		const float danger_value = (1.f / 3.f);
 
-		if (hp_rate_ >= warning_value)
+		if (boss_hp_rate_ >= warning_value)
 		{
 			health_bar_->SetVertexColor(0, 255, 0);
 		}
 
-		if (hp_rate_ <= warning_value)
+		if (boss_hp_rate_ <= warning_value)
 		{
 			health_bar_->SetVertexColor(255, 255, 0);
 		}
 
-		if (hp_rate_ <= danger_value)
+		if (boss_hp_rate_ <= danger_value)
 		{
 			health_bar_->SetVertexColor(255, 0, 0);
 		}
@@ -294,7 +308,7 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		const float height = 60.f;
 
 		// 実際のHPの幅
-		const float true_width = width * hp_rate_;
+		const float true_width = width * boss_hp_rate_;
 
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;

@@ -42,6 +42,7 @@ public:
 	void UpdateScoreHUD(float deltaTime);
 
 
+
 private:
 	// 値コンポーネント取得用ゲームマネージャーへのポインタ
 	class GameObject*					game_manager_;
@@ -52,14 +53,18 @@ private:
 	class SpriteRendererComponent*		health_bar_blank_;
 	class SpriteRendererComponent*		health_bar_bg_;
 
-	// 最大の体力値
-	float	max_hp_value_;
+	// プレイヤーの最大の体力値
+	float	max_player_hp_value_;
 
-	// 体力値
-	float	hp_value_;
+	// プレイヤーの体力値
+	float	player_hp_value_;
 
-	// 現在のHPの割合
-	float	hp_rate_;
+	// プレイヤーの現在のHPの割合
+	float	player_hp_rate_;
+
+private:
+	// ボスの体力値
+	float	boss_hp_value_;
 
 private:
 	// ゴールまでの距離のHUD

@@ -26,9 +26,10 @@ HUD::HUD(class Game* game)
 	, health_bar_(nullptr)
 	, health_bar_blank_(nullptr)
 	, health_bar_bg_(nullptr)
-	, hp_value_(0.f)
-	, max_hp_value_(0.f)
-	, hp_rate_(0.f)
+	, max_player_hp_value_(0.f)
+	, player_hp_value_(0.f)
+	, player_hp_rate_(0.f)
+	, boss_hp_value_(0.f)
 	, meter_center_bg_(nullptr)
 	, meter_left_bg_(nullptr)
 	, meter_right_bg_(nullptr)
@@ -144,9 +145,6 @@ void HUD::UpdateGameObject(float deltaTime)
 		game_manager_ = this->FindGameObject(TypeID::GameManager);
 	}
 
-	// 体力ゲージに対する割合を計算
-	hp_rate_ = (1.f / max_hp_value_) * hp_value_;
-
 	// HUDの値を更新
 	this->UpdateHUDValue(deltaTime);
 
@@ -158,6 +156,18 @@ void HUD::UpdateGameObject(float deltaTime)
 
 	// スコアHUD
 	this->UpdateScoreHUD(deltaTime);
+
+	// プレイヤーのHPが0だったら
+	if (player_hp_value_ <= 0.f)
+	{
+		this->SetGameObjectState(GameObject::State::Dead);
+	}
+
+	// ボスのHPが0だったら
+	if (boss_hp_value_ <= 0.f)
+	{
+		this->SetGameObjectState(GameObject::State::Dead);
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -166,6 +176,9 @@ void HUD::UpdateGameObject(float deltaTime)
 void HUD::UpdateHUDValue(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 体力ゲージに対する割合を計算
+	player_hp_rate_ = (1.f / max_player_hp_value_) * player_hp_value_;
 
 	if (game_manager_ == nullptr) { return; }
 
@@ -179,13 +192,19 @@ void HUD::UpdateHUDValue(float deltaTime)
 		// プレイヤーの最大HPの取得
 		if (parameter_type == ParameterType::MaxHP)
 		{
-			max_hp_value_ = parameter_compnent->GetFloat();
+			max_player_hp_value_ = parameter_compnent->GetFloat();
 		}
 
 		// プレイヤーのHPの取得
 		if (parameter_type == ParameterType::HP)
 		{
-			hp_value_ = parameter_compnent->GetFloat();
+			player_hp_value_ = parameter_compnent->GetFloat();
+		}
+
+		// ボスのHPの取得
+		if (parameter_type == ParameterType::BossHP)
+		{
+			boss_hp_value_ = parameter_compnent->GetFloat();
 		}
 
 		// ゲームの進行度
@@ -220,17 +239,17 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		const float warning_value	= (1.f / 3.f) * 2.f;
 		const float danger_value	= (1.f / 3.f);
 
-		if (hp_rate_ >= warning_value)
+		if (player_hp_rate_ >= warning_value)
 		{
 			health_bar_->SetVertexColor(  0, 255, 0);
 		}
 
-		if (hp_rate_ <= warning_value)
+		if (player_hp_rate_ <= warning_value)
 		{
 			health_bar_->SetVertexColor(255, 255, 0);
 		}
 
-		if (hp_rate_ <= danger_value)
+		if (player_hp_rate_ <= danger_value)
 		{
 			health_bar_->SetVertexColor(255,   0, 0);
 		}
@@ -239,7 +258,7 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		const float height = 60.f;
 
 		// 実際のHPの幅
-		const float true_width = width * hp_rate_;
+		const float true_width = width * player_hp_rate_;
 
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;

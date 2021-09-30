@@ -143,7 +143,6 @@ bool SceneGame::Init(void)
 
 		// UIレイヤーのオブジェクト作成
 		NEW HUD(game_);
-		NEW BossHUD(game_);
 	}
 	return true;
 }

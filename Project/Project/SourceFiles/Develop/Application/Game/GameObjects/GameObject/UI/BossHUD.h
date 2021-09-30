@@ -63,14 +63,17 @@ private:
 	class SpriteRendererComponent*	health_bar_blank_;
 	class SpriteRendererComponent*	health_bar_bg_;
 
-	// 最大の体力値
-	float	max_hp_value_;
+	// ボス最大の体力値
+	float	max_boss_hp_value_;
 
-	// 体力値
-	float	hp_value_;
+	// ボスの体力値
+	float	boss_hp_value_;
 
 	// 現在のHPの割合
-	float	hp_rate_;
+	float	boss_hp_rate_;
+
+	// プレイヤーの体力値
+	float	player_hp_value_;
 
 private:
 	// ボスの弱点表示

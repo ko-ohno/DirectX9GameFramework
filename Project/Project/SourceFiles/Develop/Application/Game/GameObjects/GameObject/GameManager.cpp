@@ -24,6 +24,9 @@
 #include "../../EnemyFactoryState/EnemyFactoryState_6.h"
 #include "../../EnemyFactoryState/EnemyFactoryState_Last.h"
 
+// ボスのHUD
+#include "../GameObject/UI/BossHUD.h"
+
 // 描画コンポーネント
 #include "../Component/RendererComponent/EffectRendererComponent.h"
 #include "../Component/RendererComponent/GizmoRendererComponent/GridGizmoRendererComponent.h"
@@ -50,6 +53,7 @@
 GameManager::GameManager(Game* game)
 	: GameObject(game)
 	, is_secen_change_(false)
+	, is_create_boss_hud_(false)
 	, enemy_factory_(nullptr)
 	, player_(nullptr)
 	, boss_(nullptr)
@@ -230,6 +234,13 @@ void GameManager::UpdateGameObject(float deltaTime)
 		}
 	}
 
+	// ボスのHUDを生成する
+	if (is_create_boss_hud_)
+	{
+		NEW BossHUD(game_);
+		is_create_boss_hud_ = false;
+	}
+
 	// BGMの切り替え処理
 	if (is_bgm_change_ == true)
 	{
@@ -295,10 +306,14 @@ void GameManager::UpdateGameObject(float deltaTime)
 				}
 				else
 				{
+					// ボスの生成
 					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
 
 					// BGMの切り替えを有効に
 					is_bgm_change_ = true;
+
+					// ボスのHUDを生成を有効にする
+					is_create_boss_hud_ = true;
 
 					// 現在のエフェクトの停止
 					effect_space_dust_->Stop();
@@ -330,6 +345,7 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		if (player_ == nullptr)
 		{
 			player_ = this->FindGameObject(GameObject::TypeID::Player);
+			player_hp_param_->SetFloat(boss_hp_value_);
 		}
 
 		if (player_ != nullptr)
@@ -364,6 +380,7 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		if (boss_ == nullptr)
 		{
 			boss_ = this->FindGameObject(GameObject::TypeID::Boss);
+			boss_hp_param_->SetFloat(boss_hp_value_);
 		}
 
 		if (boss_ != nullptr)
