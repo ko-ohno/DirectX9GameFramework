@@ -109,11 +109,13 @@ bool SpriteShader::ShaderCompile(const LPDIRECT3DDEVICE9& lpd3d_device)
 	//シェーダーの初期化
 	bool is_init_shader = false;
 
-#if defined(_DEBUG) || defined(DEBUG) 
 	is_init_shader = this->NewShaderCompile(lpd3d_device);
-#else
-	is_init_shader = this->LoadCompiledShader(lpd3d_device);
-#endif // !DEBUG
+
+//#if defined(_DEBUG) || defined(DEBUG) 
+//	is_init_shader = this->NewShaderCompile(lpd3d_device);
+//#else
+//	is_init_shader = this->LoadCompiledShader(lpd3d_device);
+//#endif // !DEBUG
 
 	if (is_init_shader == false)
 	{

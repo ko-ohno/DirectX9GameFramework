@@ -117,6 +117,7 @@ bool SceneGame::Init(void)
 					{
 						// ƒ|ƒCƒ“ƒ^‚ÌŽæ“¾
 						this->parameter_is_show_game_screen_ = parameter_component;
+						parameter_is_show_game_screen_->SetBool(false);
 					}
 				}
 			}
