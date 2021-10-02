@@ -244,53 +244,6 @@ void Boss::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Boss::UpdateGameObject(float deltaTime)
 {
-	// 自身を破壊されたら
-	if (this->GetGameObjectState() == State::Destroy)
-	{
-		// 破壊状態での初期化を行う
-		if (is_destroy_ == false)
-		{
-			// 破壊される状態として記憶を行う
-			is_destroy_ = true;
-
-			// 爆発エフェクトを再生
-			effect_explosion_->Play();
-
-			// スコアへ加算する
-			auto parameter_components = game_manager_->GetParameterComponents();
-			for (auto parameter_component : parameter_components)
-			{
-				// スコアへの値コンポーネントへのポインタを取得
-				auto parameter_component_type = parameter_component->GetParameterType();
-				if (parameter_component_type == ParameterType::Score)
-				{
-					parameter_component->AddInt(100);
-					break;
-				}
-			}
-
-			sphere_gizmo_->IsSetDrawable(false);
-		}
-
-		// 破壊までの時間
-		destroy_interval_time_ += deltaTime;
-
-		// 自身を破棄する
-		const float MAX_DESTROY_INTERVAL_TIME = 6.f;
-
-		// メッシュの描画を無効に
-		if (destroy_interval_time_ >= (MAX_DESTROY_INTERVAL_TIME * 0.6f))
-		{
-			actor_mesh_->IsSetDrawable(false);
-		}
-
-		// 自身を破棄
-		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
-		{
-			this->SetGameObjectState(State::Dead);
-		}
-		return;
-	}
 
 	// AIコンポーネントにボスのHPを通知する
 	{
@@ -370,6 +323,58 @@ void Boss::UpdateGameObject(float deltaTime)
 	// 1フレーム前の情報を更新
 	enemy_state_old_ = ai_state;
 	motion_state_old_ = move_motion_state;
+
+
+	// 自身を破壊されたら
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// 破壊状態での初期化を行う
+		if (is_destroy_ == false)
+		{
+			// 破壊される状態として記憶を行う
+			is_destroy_ = true;
+
+			// 爆発エフェクトを再生
+			effect_explosion_->Play();
+
+			// スコアへ加算する
+			auto parameter_components = game_manager_->GetParameterComponents();
+			for (auto parameter_component : parameter_components)
+			{
+				// スコアへの値コンポーネントへのポインタを取得
+				auto parameter_component_type = parameter_component->GetParameterType();
+				if (parameter_component_type == ParameterType::Score)
+				{
+					parameter_component->AddInt(100);
+					break;
+				}
+			}
+
+			sphere_gizmo_->IsSetDrawable(false);
+		}
+
+		// 破壊までの時間
+		destroy_interval_time_ += deltaTime;
+
+		// 自身を破棄する
+		const float MAX_DESTROY_INTERVAL_TIME = 6.f;
+
+		// メッシュの描画を無効に
+		if (destroy_interval_time_ >= (MAX_DESTROY_INTERVAL_TIME * 0.6f))
+		{
+			actor_mesh_->IsSetDrawable(false);
+		}
+
+		// 自身を破棄
+		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
+		{
+			// プレイヤーが破壊されたのでゲームオーバーにする
+			game_->SetGameState(Game::GameState::GameFinishScene);
+
+			this->SetGameObjectState(State::Dead);
+		}
+		return;
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -408,6 +413,9 @@ void Boss::UpdateParameter(float deltaTime)
 -----------------------------------------------------------------------------*/
 void Boss::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMotionState motionState)
 {
+	// ゲームの状態が切り替わったら
+	if (this->GetGameObjectState() == GameObject::State::Destroy) { return; }
+
 	// 座標の更新
 	{
 		// それぞれの座標の一時保管先
@@ -518,7 +526,7 @@ void Boss::UpdateCollision(float deltaTime)
 	for (auto bullet : bullets)
 	{
 		// Bulletの親オブジェクトがPlayerかを調べる
-		auto bullet_parent_game_object_type = bullet->GetParentType();
+		auto bullet_parent_game_object_type = bullet->GetParentGameObjectType();
 
 		if (bullet_parent_game_object_type != GameObject::TypeID::Player)
 		{

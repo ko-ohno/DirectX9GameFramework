@@ -19,6 +19,7 @@
 -----------------------------------------------------------------------------*/
 GameCamera::GameCamera(Game* game)
 	: Camera(game)
+	, camera_animation_time_(0.f)
 	, lookat_point_gizmo_(nullptr)
 	, vertical_camera_shake_(0.f)
 	, is_move_top_(true)
@@ -109,10 +110,12 @@ void GameCamera::UpdateGameObject(float deltaTime)
 	}
 	ImGui::End();
 
+	class GameObject* player_ = nullptr;
+
 	if (is_camera_controlling != true)
 	{
 		// このカメラゲームオブジェクトの親のとしてプレイヤーを取得
-		if (game_object_parent_ == nullptr)
+		if (player_ == nullptr)
 		{
 			//ゲームオブジェクトのリストを総検索
 			auto game_objects = game_->GetGameObjects();
@@ -122,25 +125,25 @@ void GameCamera::UpdateGameObject(float deltaTime)
 				auto game_object_id = game_object->GetType();
 				if (game_object_id == TypeID::Player)
 				{
-					game_object_parent_ = game_object;
+					player_ = game_object;
 					break;
 				}
 			}
 		}
 
 		// ゲームのカメラ用にプレイヤー姿勢を取得
-		if (game_object_parent_ != nullptr)
+		if (player_ != nullptr)
 		{
 			// 注視点をプレイヤー座標に設定
-			static D3DXVECTOR3 lookat_position = {0.f, 0.f, 0.f};
-			static D3DXVECTOR3 camera_position = *camera_component_->GetPosition();
+			D3DXVECTOR3 lookat_position = {0.f, 0.f, 0.f};
+			D3DXVECTOR3 camera_position = *camera_component_->GetPosition();
 
 			// 注視点となるプレイヤーの位置情報の取得
-			D3DXVECTOR3 lookat_target = *game_object_parent_->GetTransform()->GetPosition();
+			D3DXVECTOR3 lookat_target = *player_->GetTransform()->GetPosition();
 
 			// 垂直のカメラ揺れを作成
-			static constexpr float camera_shake_range = 0.004f;
-			static constexpr float camera_shake_value = 0.005f * 2;
+			const float camera_shake_range = 0.004f;
+			const float camera_shake_value = 0.005f * 2;
 			{
 				// 条件式の代入により、注視点の上昇と下降のon/offが切り替わる
 				is_value_over_  = (vertical_camera_shake_ >=  camera_shake_range);
@@ -175,15 +178,37 @@ void GameCamera::UpdateGameObject(float deltaTime)
 			ImGui::End();
 
 			// カメラの値を補間するための強度
-			static constexpr float smooth_time = 0.5f;
+			const float smooth_time = 0.5f;
 
-			// 注視点座標を補間
-			lookat_target.x = Math::Lerp(lookat_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
-			lookat_target.y = Math::Lerp(lookat_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
 
-			// カメラ座標を補間
-			camera_position.x = Math::Lerp(camera_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
-			camera_position.y = Math::Lerp(camera_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
+			// ゲームの状態を取得
+			auto game_state = game_->GetGameState();
+			if (game_state == Game::GameState::GameStartScene)
+			{
+				camera_animation_time_ += deltaTime;
+				if (camera_animation_time_ >= MAX_CAMERA_ANIMATION_TIME)
+				{
+					camera_animation_time_ = MAX_CAMERA_ANIMATION_TIME;
+				}
+
+				// 注視点座標を補間
+				lookat_target.x = Math::Lerp(lookat_position.x, lookat_target.x, Easing::QuadOut(camera_animation_time_, MAX_CAMERA_ANIMATION_TIME));
+				lookat_target.y = Math::Lerp(lookat_position.y, lookat_target.y, Easing::QuadOut(camera_animation_time_, MAX_CAMERA_ANIMATION_TIME));
+
+				// カメラ座標を補間
+				camera_position.x = Math::Lerp( 15.f, 0.f, Easing::QuadOut(camera_animation_time_, MAX_CAMERA_ANIMATION_TIME));
+				camera_position.y = Math::Lerp(  0.f, 0.f, Easing::QuadOut(camera_animation_time_, MAX_CAMERA_ANIMATION_TIME));
+			}
+			else
+			{
+				// 注視点座標を補間
+				lookat_target.x = Math::Lerp(lookat_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
+				lookat_target.y = Math::Lerp(lookat_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
+
+				// カメラ座標を補間
+				camera_position.x = Math::Lerp(camera_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
+				camera_position.y = Math::Lerp(camera_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
+			}
 
 			// プレイヤー座標に垂直揺れを加算した座標
 			lookat_target.y = lookat_target.y + vertical_camera_shake_;

@@ -221,12 +221,12 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	// 場面の初期化
 	{
 		// タイトル画面として初期化
-		//this->SetGameState(GameState::Title);
-		//this->SetSceneState(NEW SceneTitle(this));
+		this->SetGameState(GameState::Title);
+		this->SetSceneState(NEW SceneTitle(this));
 
 		// ゲーム画面として初期化
-		this->SetGameState(GameState::Gameplay);
-		this->SetSceneState(NEW SceneGame(this));
+		//this->SetGameState(GameState::Gameplay);
+		//this->SetSceneState(NEW SceneGame(this));
 
 		// ゲーム画面として初期化
 		//this->SetGameState(GameState::Result);
@@ -472,25 +472,9 @@ void Game::UpdateGameObjects(float deltaTime)
 
 			switch (game_state_)
 			{
-			case Game::GameState::Title:
-				{
-					// 通常通りゲームオブジェクト総を更新する
-					game_object->Update(deltaTime);
-				}
-				break;
-
-			case Game::GameState::Gameplay:
-				{
-					// 通常通りゲームオブジェクト総を更新する
-					game_object->Update(deltaTime);
-				}
-				break;
-
-			case Game::GameState::Result:
-				{
-					// 通常通りゲームオブジェクト総を更新する
-					game_object->Update(deltaTime);
-				}
+			case Game::GameState::None:
+			case Game::GameState::MAX:
+				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
 				break;
 
 			case Game::GameState::Paused:
@@ -530,7 +514,8 @@ void Game::UpdateGameObjects(float deltaTime)
 				break;
 
 			default:
-				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
+				// 上記のステート以外のステートではゲームオブジェクトを総更新する
+				game_object->Update(deltaTime);
 				break;
 			}
 		}

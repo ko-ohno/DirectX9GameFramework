@@ -11,6 +11,8 @@
 #include "PlayerMoveComponent.h"
 #include "../ColliderComponent/OBBColliderComponent.h"
 #include "../RendererComponent/GizmoRendererComponent/BoxGizmoRendererComponent.h"
+#include "../../GameObject.h"
+#include "../../GameObject/UI/HUD.h"
 #include "../../../Input/InputCheck.h"
 #include "../../../../ImGui/ImGuiManager.h"
 
@@ -19,6 +21,10 @@
 -----------------------------------------------------------------------------*/
 PlayerMoveComponent::PlayerMoveComponent(GameObject* owner, int updateOrder)
 	: MoveComponent(owner, updateOrder)
+	, position_(0.f, 0.f, 0.f)
+	, position_animation_start_(0.f, 0.f, 0.f)
+	, position_animation_finish_(0.f, 0.f, 0.f)
+	, move_animation_time_(0.f)
 	, is_move_top_(false)
 	, is_move_bottom_(false)
 	, is_move_left_(false)
@@ -76,6 +82,20 @@ void PlayerMoveComponent::Update(float deltaTime)
 	{
 		owner_transform_->IsSetExecuteSlerpRotation(true);
 		owner_transform_->SetSlerpSpeed(1.2f);
+	}
+
+	const bool is_animation_scene = ((owner_->GetGame()->GetGameState() == Game::GameState::GameStartScene)
+									 || (owner_->GetGame()->GetGameState() == Game::GameState::GameFinishScene));
+	if (is_animation_scene)
+	{
+		// アニメーションの場面ｄあった場合の更新処理
+		this->UpdateAnimationScene(deltaTime);
+		return;
+	}
+	else
+	{
+		position_ = *owner_transform_->GetPosition();
+		move_animation_time_ = 0.f;
 	}
 
 	// 入力から移動の状態を更新
@@ -174,6 +194,87 @@ void PlayerMoveComponent::Update(float deltaTime)
 				owner_transform_->SetTranslationX(owner_transform_->GetOldPosition()->x);
 			}
 		}
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/*　移動の状態更新処理
+-----------------------------------------------------------------------------*/
+void PlayerMoveComponent::UpdateAnimationScene(float deltaTime)
+{
+	// 現在のゲームの状況を取得
+	auto game_state = owner_->GetGame()->GetGameState();
+
+	// 現在位置
+	D3DXVECTOR3 pos = { 0.f, 0.f, 0.f };
+
+	// 開始位置情報の設定
+	position_animation_start_ = position_;
+
+	// アニメーションの時間を計算
+	move_animation_time_ += deltaTime;
+
+	// ゲームの状態によってイベントシーンを決定する
+	switch (game_state)
+	{
+	case Game::GameState::GameStartScene:
+		//座標を設定
+		position_animation_start_ = { 0.f, 0.f, -100.f };
+
+		// 座標を線形補間
+		D3DXVec3Lerp(&pos
+					, &position_animation_start_
+					, &position_animation_finish_
+					, Easing::SineIn(move_animation_time_, MAX_ANIMATION_TIME));
+
+		// 姿勢情報の矯正
+		owner_transform_->SetRotation(0.f, 0.f, 0.f);
+
+		// 移動情報の設定
+		owner_transform_->SetTranslation(pos);
+
+		// アニメーションの上限時間を制限とゲームの状態の更新
+		if (move_animation_time_ >= MAX_ANIMATION_TIME)
+		{
+			move_animation_time_ = MAX_ANIMATION_TIME;
+
+			// ゲームの状態の更新
+			owner_->GetGame()->SetGameState(Game::GameState::Gameplay);
+		}
+		break;
+
+	case Game::GameState::GameFinishScene:
+		//座標を設定
+		position_animation_finish_ = { 0.f, 0.f, 100.f };
+
+		// 座標を線形補間
+		D3DXVec3Lerp(&pos
+					, &position_animation_start_
+					, &position_animation_finish_
+					, Easing::SineIn(move_animation_time_, MAX_ANIMATION_TIME));
+
+		// 姿勢情報の矯正
+		owner_transform_->SetRotation(0.f, 0.f, 0.f);
+
+		// 移動情報の設定
+		owner_transform_->SetTranslation(pos);
+
+		// アニメーションの上限時間を制限とゲームの状態の更新
+		if (move_animation_time_ >= MAX_ANIMATION_TIME)
+		{
+			move_animation_time_ = MAX_ANIMATION_TIME;
+
+			// ゲームの状態の更新
+			owner_->GetGame()->SetGameState(Game::GameState::GameClear);
+
+			// プレイヤーを破棄する
+			owner_->SetGameObjectState(GameObject::State::Dead);
+		}
+		break;
+
+	default:
+		assert(!"PlayerMoveComponent::UpdateAnimationScene()：移動アニメーションの状態が不正な状態でした！");
+		break;
 	}
 }
 

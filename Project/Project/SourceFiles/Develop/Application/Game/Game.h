@@ -24,7 +24,9 @@ public:
 		, Gameplay
 		, Result
 		, Paused
-		, EventScene
+		, GameStartScene	// ゲームが始まる時のイベントシーン
+		, GameFinishScene	// ボスを倒した後の　イベントシーン
+		, GameClear
 		, GameOver
 		, Loading
 		, Quit

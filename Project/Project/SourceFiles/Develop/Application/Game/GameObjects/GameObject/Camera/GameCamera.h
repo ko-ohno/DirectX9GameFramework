@@ -30,6 +30,11 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::GameCamera; }
 
 private:
+	static constexpr float MAX_CAMERA_ANIMATION_TIME = 10.f;
+
+	float camera_animation_time_;
+
+private:
 	// íçéãì_ç¿ïWÇÃÉMÉYÉÇ
 	class BoxGizmoRendererComponent* lookat_point_gizmo_;
 

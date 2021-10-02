@@ -29,6 +29,7 @@ public:
 	void ChangeScene(void) override;
 
 private:
+	bool is_show_screen_;
 };
 
 #endif //SCENE_H_

@@ -30,7 +30,7 @@ public:
 	virtual TypeID GetType(void) const { return TypeID::Bullet; }
 
 	// 親ゲームオブジェクトの種類を取得
-	enum class TypeID GetParentType(void) { return parent_game_object_type_; }
+	enum class TypeID GetParentGameObjectType(void) { return parent_game_object_type_; }
 
 	// 球の衝突判定の取得
 	class SphereColliderComponent*	GetSphereCollider(void) { return sphere_collider_; }

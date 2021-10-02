@@ -25,6 +25,7 @@
 #include "../../EnemyFactoryState/EnemyFactoryState_Last.h"
 
 // ボスのHUD
+#include "../GameObject/UI/HUD.h"
 #include "../GameObject/UI/BossHUD.h"
 
 // 描画コンポーネント
@@ -53,6 +54,7 @@
 GameManager::GameManager(Game* game)
 	: GameObject(game)
 	, is_secen_change_(false)
+	, is_create_player_hud_(false)
 	, is_create_boss_hud_(false)
 	, enemy_factory_(nullptr)
 	, player_(nullptr)
@@ -121,18 +123,13 @@ bool GameManager::Init(void)
 		//player_sandbox_gizmo_->IsSetDrawable(false);
 	}
 
-	// 宇宙のチリのエフェクトを表示
-	effect_space_dust_ = NEW EffectRendererComponent(this);
-	effect_space_dust_->SetEffect(EffectType::SpaceDustYellow);
-	effect_space_dust_->Play();	//再生開始 
-
-	// BGMを設定
-	bgm_volume_ = MAX_BGM_VOLUME_;
-
-	bgm_ = NEW AudioComponent(this);
-	bgm_->SetSound(SoundType::WonderLand);
-	bgm_->SetAudioVolume(bgm_volume_);
-	bgm_->PlayLoop();
+	// エフェクトコンポーネント
+	{
+		// 宇宙のチリのエフェクトを表示
+		effect_space_dust_ = NEW EffectRendererComponent(this);
+		effect_space_dust_->SetEffect(EffectType::SpaceDustYellow);
+		effect_space_dust_->Play();	//再生開始 
+	}
 
 	// 値コンポーネントの生成
 	{
@@ -172,10 +169,8 @@ bool GameManager::Init(void)
 
 	// ボスだけの生成処理
 	{
-		game_left_time_ = 0.f;
-		spawn_count_ = 6;
-		//spawn_count_ = 3;
-
+		//game_left_time_ = 0.f;
+		//spawn_count_ = 6;
 	}
 	return true;
 }
@@ -185,13 +180,8 @@ bool GameManager::Init(void)
 -----------------------------------------------------------------------------*/
 void GameManager::Uninit(void)
 {
-	// セーブデータのマネージャへのポインタ
-	auto save_data_manager = game_->GetSaveDataManager();
-
-	// セーブデータへの追加
-	{
-		save_data_manager->AddNewSaveData(NEW SaveData(score_value_));
-	}
+	// bgmの停止
+	bgm_->Stop();
 
 	SAFE_DELETE_(enemy_factory_);
 }
@@ -213,24 +203,62 @@ void GameManager::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void GameManager::UpdateGameObject(float deltaTime)
 {
+	// BGMの生成
+	if (bgm_ == nullptr)
+	{
+		// 音量を設定
+		bgm_volume_ = MAX_BGM_VOLUME_;
+
+		bgm_ = NEW AudioComponent(this);
+		bgm_->SetSound(SoundType::WonderLand);
+		bgm_->SetAudioVolume(bgm_volume_);
+		bgm_->PlayLoop();
+	}
+
 	// 値コンポーネントの更新
 	this->UpdateParameterComponent(deltaTime);
+
+	// イベントの画面だったらなにもしない
+	auto game_state = game_->GetGameState();
+	if (game_state == Game::GameState::GameStartScene) { return; }
 
 	// 場面切り替えを行うか？	 
 	if (is_secen_change_ == false)
 	{
-		const bool is_player_dead = (player_hp_value_ <= 0.01f);
-		if (is_player_dead)
-		{
-			NEW GameOver(game_);
-			is_secen_change_ = true;
-		}
+		// セーブデータのマネージャへのポインタ
+		auto save_data_manager = game_->GetSaveDataManager();
 
-		const bool is_boss_dead = (boss_hp_value_ <= 0.01f);
-		if (is_boss_dead)
+		const bool is_game_state_game_clear_ = (game_state == Game::GameState::GameClear);
+		if (is_game_state_game_clear_)
 		{
 			NEW GameClear(game_);
 			is_secen_change_ = true;
+
+			// 現在のスコアをセーブデータへ追加
+			save_data_manager->AddNewSaveData(NEW SaveData(score_value_));
+		}
+
+		const bool is_game_state_game_over_ = (game_state == Game::GameState::GameOver);
+		if (is_game_state_game_over_)
+		{
+			NEW GameOver(game_);
+			is_secen_change_ = true;
+
+			// 現在のスコアをセーブデータへ追加
+			save_data_manager->AddNewSaveData(NEW SaveData(score_value_));
+		}
+	}
+
+	// プレイヤーのHUDを生成する
+	{
+		bool is_game_state_game_play_ = (game_state == Game::GameState::Gameplay);
+		if (is_game_state_game_play_)
+		{
+			if (is_create_player_hud_ == false)
+			{
+				NEW HUD(game_);
+				is_create_player_hud_ = true;
+			}
 		}
 	}
 
@@ -345,7 +373,7 @@ void GameManager::UpdateParameterComponent(float deltaTime)
 		if (player_ == nullptr)
 		{
 			player_ = this->FindGameObject(GameObject::TypeID::Player);
-			player_hp_param_->SetFloat(boss_hp_value_);
+			player_hp_param_->SetFloat(player_hp_value_);
 		}
 
 		if (player_ != nullptr)

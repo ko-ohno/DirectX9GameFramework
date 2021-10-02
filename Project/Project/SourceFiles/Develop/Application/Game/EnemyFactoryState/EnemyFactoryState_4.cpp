@@ -105,7 +105,7 @@ void EnemyFactoryState_4::Update(float deltaTime)
 									, start_position_z);
 
 			// Å‘ås“®ŽžŠÔ
-			enemy->SetMaxExecuteTime(10.f);
+			enemy->SetMaxExecuteTime(8.f);
 
 			// ˆÚ“®‚·‚éŒü‚«‚Æ‹——£
 			enemy->SetRotationMoveDirection(0.f, 90.f, 0.f);

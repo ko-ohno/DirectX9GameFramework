@@ -351,11 +351,13 @@ void WeakEnemy::UpdateGameObject(float deltaTime)
 -----------------------------------------------------------------------------*/
 void WeakEnemy::UpdateCollision(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	auto bullets = game_->GetBulletManager()->GetBulletGameObjectList();
 	for (auto bullet : bullets)
 	{
 		// Bullet‚Ìe‚ªPlayer‚©‚ð’²‚×‚é
-		auto bullet_parent_game_object_type = bullet->GetParentType();
+		auto bullet_parent_game_object_type = bullet->GetParentGameObjectType();
 		if (bullet_parent_game_object_type != GameObject::TypeID::Player)
 		{
 			continue;

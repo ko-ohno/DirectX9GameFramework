@@ -499,9 +499,10 @@ void SaveDataManager::AddNewSaveData(SaveData* data)
         // スコアのランクを計算
         for (int i = 0; i < MAX_SAVE_DATA_COUNT; i++)
         {
-            if (score <= static_cast<int>(score_rank_limits[i]))
+            if (score >= static_cast<int>(score_rank_limits[i]))
             {
-                score_rank = score_rank_list[i]; // なぜかSに
+                score_rank = score_rank_list[i];
+                break;
             }
         }
     }

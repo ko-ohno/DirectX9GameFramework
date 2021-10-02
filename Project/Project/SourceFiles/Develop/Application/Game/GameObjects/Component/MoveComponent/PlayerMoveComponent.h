@@ -34,7 +34,28 @@ public:
 
 	virtual TypeID GetComponentType() const override { return TypeID::PlayerMoveComponent; };
 
+	// アニメーションの場面だった場合の更新処理
+	void UpdateAnimationScene(float deltaTime);
+
+	// 移動の状態更新処理
 	void UpdateMovementState(class Vector2& padThumb);
+
+private:
+	//　アニメーションの最大実行時間
+	static constexpr float	MAX_ANIMATION_TIME  = 3.f;
+
+	// 現在の位置座標
+	D3DXVECTOR3				position_;
+
+	// アニメーション開始位置座標
+	D3DXVECTOR3				position_animation_start_;
+	
+	// アニメーション終了位置座標
+	D3DXVECTOR3				position_animation_finish_;
+
+	// アニメーションの実行時間
+	float					move_animation_time_;
+
 
 private:
 	// プレイヤーの遊び場

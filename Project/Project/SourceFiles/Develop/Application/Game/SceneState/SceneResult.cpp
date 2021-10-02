@@ -168,7 +168,9 @@ void SceneResult::Update(float deltaTime)
 
 	if (is_scene_change_tirgger_ == false)
 	{
-		if (InputCheck::KeyTrigger(DIK_SPACE))
+		const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
+		const bool is_input_button_A  = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
+		if (is_input_key_space || is_input_button_A)
 		{
 			// ê–ÊØ‚è‘Ö‚¦‚ÌƒgƒŠƒK[‚ğON‚É‚µ‚Ä“ü—Í‚ğ–³Œø‰»
 			is_scene_change_tirgger_ = true;

@@ -42,6 +42,7 @@
 -----------------------------------------------------------------------------*/
 SceneGame::SceneGame(Game* game)
 	: ISceneState(game)
+	, is_show_screen_(false)
 {
 	// Game::SetSceneState()で初期化されるため、ここでSceneGame::Init()は呼ばない。
 }
@@ -122,6 +123,9 @@ bool SceneGame::Init(void)
 		}
 	}
 
+	// ゲームの状態を初期化
+	//game_->SetGameState(Game::GameState::GameStartScene);
+
 	// ゲーム場面のゲームオブジェクトの生成
 	{
 		// ゲームカメラ
@@ -142,7 +146,8 @@ bool SceneGame::Init(void)
 		//NEW StrongEnemy(game_);
 
 		// UIレイヤーのオブジェクト作成
-		NEW HUD(game_);
+		//NEW HUD(game_);
+		//NEW BossHUD(game_);
 	}
 	return true;
 }
@@ -190,21 +195,33 @@ void SceneGame::Update(float deltaTime)
 	UNREFERENCED_PARAMETER(deltaTime);
 
 	const bool is_show_game_screen = parameter_is_show_game_screen_->GetBool();
-	if (is_show_game_screen)
+	if (is_show_game_screen && (is_show_screen_ == false))
 	{
 		// ゲームの状態をタイトル画面の状態として設定
-		game_->SetGameState(Game::GameState::Gameplay);
+		game_->SetGameState(Game::GameState::GameStartScene);
+
+		// ゲームの状態を初期化
+		is_show_screen_ = true;
 	}
 
 	if (is_scene_change_tirgger_ == false)
 	{
-		if (InputCheck::KeyTrigger(DIK_SPACE))
-		{
-			// 場面切り替えのトリガーをONにして入力を無効化
-			is_scene_change_tirgger_ = true;
+		auto game_state = game_->GetGameState();
 
-			// 場面切り替えを申請
-			this->is_need_scene_changed_ = true;
+		const bool is_game_state_game_over_  = (game_state == Game::GameState::GameOver);
+		const bool is_game_state_game_clear_ = (game_state == Game::GameState::GameClear);
+		if (is_game_state_game_over_ || is_game_state_game_clear_)
+		{
+			const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
+			const bool is_input_button_A = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
+			if (is_input_key_space || is_input_button_A)
+			{
+				// 場面切り替えのトリガーをONにして入力を無効化
+				is_scene_change_tirgger_ = true;
+
+				// 場面切り替えを申請
+				this->is_need_scene_changed_ = true;
+			}
 		}
 	}
 	

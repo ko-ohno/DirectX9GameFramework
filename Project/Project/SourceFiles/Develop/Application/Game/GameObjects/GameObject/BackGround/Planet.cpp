@@ -17,10 +17,9 @@
 -----------------------------------------------------------------------------*/
 Planet::Planet(Game* game)
 	: BackGround(game)
-	, game_manager_(nullptr)
-	, planet_scale_(0.f)
-	, planet_offset_height_(0.f)
-	, game_progress_value_(0)
+	, planet_billboard_(nullptr)
+	, planet_scaling_time_(0.f)
+	, planet_offset_time_(0.f)
 {	
 	this->Init();
 }
@@ -37,19 +36,12 @@ Planet::~Planet(void)
 -----------------------------------------------------------------------------*/
 bool Planet::Init(void)
 {
-	// 惑星の大きさを設定
-	planet_scale_ = 50.f;
-
-	// 惑星の高さを設定
-	planet_offset_height_ = -20.f;
-
 	// ビルボードの生成
 	{
 		planet_billboard_ = NEW BillboardRendererComponent(this);
 		planet_billboard_->SetTexture(TextureType::Planet);
 		planet_billboard_->SetTranslationY(-20.f);
 		planet_billboard_->SetTranslationZ(150.f);
-		planet_billboard_->SetScale(planet_scale_);
 	}
 	return true;
 }
@@ -73,58 +65,33 @@ void Planet::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Planet::UpdateGameObject(float deltaTime)
 {
-	UNREFERENCED_PARAMETER(deltaTime);
-
-	// nullptrだったらゲームマネージャーを探す
-	if (game_manager_ == nullptr)
+	// 惑星のY軸の高さを計算
 	{
-		game_manager_ = this->FindGameObject(GameObject::TypeID::GameManager);
-	}
-
-	// 検索した結果が”nullptr”だったらリターン
-	if (game_manager_ == nullptr) { return; }
-
-	//　ゲームマネージャから値コンポーネントを取得
-	auto parameter_components = game_manager_->GetParameterComponents();
-	for (auto parameter_component : parameter_components)
-	{
-		// 値コンポーネントの型を調べる
-		auto parameter_component_type = parameter_component->GetParameterType();
-
-		// ゲームの進行度を取得
-		if (parameter_component_type == ParameterType::GameProgress)
+		planet_offset_time_ += deltaTime;
+		if (planet_offset_time_ >= MAX_PLANET_OFFSET_TIME_)
 		{
-			game_progress_value_ = parameter_component->GetInt();
-			break;
+			planet_offset_time_ = MAX_PLANET_OFFSET_TIME_;
 		}
+
+		// 惑星の高さを設定
+		planet_billboard_->SetTranslationY(Math::Lerp(DEFAULT_PLANET_OFFSET_HEIGHT
+										  , MAX_PLANET_OFFSET_HEIGHT
+										  , Easing::Linear(planet_offset_time_, MAX_PLANET_OFFSET_TIME_)));
 	}
 
-	//　惑星の高さを設定
+	// 惑星の大きさを計算
 	{
-		planet_offset_height_ -= (deltaTime * 0.01f);
-
-		if (planet_offset_height_ <= MAX_PLANET_OFFSET_HEIGHT)
+		planet_scaling_time_ += deltaTime;
+		if (planet_scaling_time_ >= MAX_PLANET_SCALE_TIME_)
 		{
-			planet_offset_height_ = MAX_PLANET_OFFSET_HEIGHT;
+			planet_scaling_time_ = MAX_PLANET_SCALE_TIME_;
 		}
+
+		// 惑星の大きさを設定
+		planet_billboard_->SetScale(Math::Lerp(DEFAULT_PLANET_SIZE_
+											  , MAX_PLANET_SIZE_
+											  , Easing::Linear(planet_scaling_time_, MAX_PLANET_SCALE_TIME_)));
 	}
-
-	// 惑星の大きさを設定
-	{
-		planet_scale_ += (deltaTime * 0.6f);
-
-		if (planet_scale_ >= MAX_PLANET_SCALE)
-		{
-			planet_scale_ = MAX_PLANET_SCALE;
-		}
-	}
-
-	//　惑星の高さを設定
-	planet_billboard_->SetTranslationY(planet_offset_height_);
-
-	// 惑星の大きさを設定
-	planet_billboard_->SetScale(planet_scale_);
-
 }
 
 /*=============================================================================

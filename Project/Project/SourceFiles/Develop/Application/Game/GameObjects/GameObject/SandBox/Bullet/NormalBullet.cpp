@@ -102,7 +102,7 @@ void NormalBullet::UpdateGameObject(float deltaTime)
 	}
 
 	// 所有者がプレイヤーだった場合
-	if (game_object_parent_->GetType() == GameObject::TypeID::Player)
+	if (parent_game_object_type_ == GameObject::TypeID::Player)
 	{
 		this->CombinePlayerTransform();
 	}
@@ -110,9 +110,9 @@ void NormalBullet::UpdateGameObject(float deltaTime)
 	// 姿勢の回転を球面補間をしない(常に補間の完了済みに)
 	this->transform_component_->IsSetExecuteSlerpRotation(false);
 
-	if (game_object_parent_ != nullptr)
+	// バレットの種類を設定
 	{
-		auto game_object_parent_id = game_object_parent_->GetType();
+		auto game_object_parent_id = this->GetParentGameObjectType();
 		if (game_object_parent_id >= TypeID::Enemy)
 		{
 			bullet_mesh_->SetMesh(XFileMeshType::RedBullet);

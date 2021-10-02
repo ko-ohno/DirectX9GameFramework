@@ -40,7 +40,12 @@ private:
 	bool							  is_secen_change_;
 
 	// ボスのHUDを生成するか？
+	bool							  is_create_player_hud_;
+
+	// ボスのHUDを生成するか？
 	bool							  is_create_boss_hud_;
+
+	bool							  is_save_score_;
 
 private:
 	// エネミーのファクトリ

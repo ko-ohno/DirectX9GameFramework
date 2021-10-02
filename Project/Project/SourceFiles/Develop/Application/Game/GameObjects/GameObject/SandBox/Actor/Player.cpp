@@ -103,9 +103,13 @@ bool Player::Init(void)
 			effect_after_burner_->SetEffect(EffectType::AfterBurner);
 			effect_after_burner_->Play();
 
-			// アフターバーナーの表示
+			// ヒットエフェクトの表示
 			effect_enemy_attack_hit_ = NEW EffectRendererComponent(this);
 			effect_enemy_attack_hit_->SetEffect(EffectType::HitEffect);
+
+			// 爆発エフェクト
+			effect_explosion_ = NEW EffectRendererComponent(this);
+			effect_explosion_->SetEffect(EffectType::ExplosionActor);
 		}
 
 		// レティクルの設定
@@ -115,6 +119,7 @@ bool Player::Init(void)
 				far_reticle_ = NEW BillboardRendererComponent(this, 290);
 				far_reticle_->SetTexture(TextureType::FarReticle);
 				far_reticle_->SetVertexColor(0, 255, 0, 255);
+				far_reticle_->IsSetDrawable(false);
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
@@ -127,6 +132,7 @@ bool Player::Init(void)
 				near_reticle_ = NEW BillboardRendererComponent(this, 290);
 				near_reticle_->SetTexture(TextureType::NearReticle);
 				near_reticle_->SetVertexColor(0, 255, 0, 255);
+				near_reticle_->IsSetDrawable(false);
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
@@ -134,11 +140,13 @@ bool Player::Init(void)
 				near_reticle_->SetTranslationZ(9.f);
 			}
 
+
 			//　ロックオンのレティクル
 			{
 				lockon_reticle_ = NEW BillboardRendererComponent(this, 290);
 				lockon_reticle_->SetTexture(TextureType::NearReticle);
 				lockon_reticle_->SetVertexColor(0, 255, 0, 255);
+				lockon_reticle_->IsSetDrawable(false);
 				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
 
 				// レティクルの性質の調整
@@ -291,6 +299,22 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("PosZ:%f", pos.z);
 	ImGui::End();
 
+	//　レティクルを描画するか？
+	bool is_draw_reticle = false;
+
+	auto game_state = game_->GetGameState();
+	if (game_state == Game::GameState::Gameplay)
+	{
+		is_draw_reticle = true;
+	}
+
+	// レティクルの描画するかを設定
+	{
+		far_reticle_->IsSetDrawable(is_draw_reticle);
+		near_reticle_->IsSetDrawable(is_draw_reticle);
+		lockon_reticle_->IsSetDrawable(is_draw_reticle);
+	}
+
 	// 値コンポーネントの更新処理
 	this->UpdateParameter(deltaTime);
 
@@ -302,6 +326,44 @@ void Player::UpdateGameObject(float deltaTime)
 
 	// 当たり判定の更新
 	this->UpdateCollision(deltaTime);
+
+	// HPが0になったら
+	if (hit_point_ <= 0.f)
+	{
+		this->SetGameObjectState(State::Destroy);
+	}
+
+	// 自身を破壊されたら
+	if (this->GetGameObjectState() == State::Destroy)
+	{
+		// 破壊状態での初期化を行う
+		if (is_destroy_ == false)
+		{
+			// 破壊される状態として記憶を行う
+			is_destroy_ = true;
+
+			// 爆発エフェクトを再生
+			effect_explosion_->Play();
+
+			actor_mesh_->IsSetDrawable(false);
+			sphere_gizmo_->IsSetDrawable(false);
+		}
+
+		// 破壊までの時間
+		destroy_interval_time_ += deltaTime;
+
+		// 自身を破棄する
+		const float MAX_DESTROY_INTERVAL_TIME = 1.f;
+		if (destroy_interval_time_ >= MAX_DESTROY_INTERVAL_TIME)
+		{
+			// プレイヤーが破壊されたのでゲームオーバーにする
+			game_->SetGameState(Game::GameState::GameOver);
+
+			// ゲームオブジェクトを破棄
+			this->SetGameObjectState(State::Dead);
+		}
+		return;
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -379,7 +441,7 @@ void Player::UpdateCollision(float deltaTime)
 {
 	if (InputCheck::KeyTrigger(DIK_O))
 	{
-		hit_point_ = 100.f;
+		hit_point_ = 1.f;
 	}
 
 	// HPの下限を設定
@@ -453,9 +515,9 @@ void Player::UpdateCollision(float deltaTime)
 			}
 
 			// バレットの所有者を調べる
-			const bool is_weak_enemy_shoot_bullet	= (bullet->GetParentType() == GameObject::TypeID::WeakEnemy);
-			const bool is_strong_enemy_shoot_bullet = (bullet->GetParentType() == GameObject::TypeID::StrongEnemy);
-			const bool is_bossshoot_bullet			= (bullet->GetParentType() == GameObject::TypeID::Boss);
+			const bool is_weak_enemy_shoot_bullet	= (bullet->GetParentGameObjectType() == GameObject::TypeID::WeakEnemy);
+			const bool is_strong_enemy_shoot_bullet = (bullet->GetParentGameObjectType() == GameObject::TypeID::StrongEnemy);
+			const bool is_bossshoot_bullet			= (bullet->GetParentGameObjectType() == GameObject::TypeID::Boss);
 			if (is_weak_enemy_shoot_bullet || is_strong_enemy_shoot_bullet || is_bossshoot_bullet)
 			{
 				// エネミーのバレットの衝突判定を取得

@@ -56,7 +56,7 @@ bool Result::Init(void)
 	auto save_data_list = save_data_manager->GetSaveDataList();
 
 	// 末尾の余分なセーブデータの削除
-	if (save_data_list.size() > MAX_SCORE_DATA)
+	if (save_data_list.size() >= MAX_SCORE_DATA +1)
 	{
 		save_data_manager->RemoveSaveData(save_data_list.back());
 	}
@@ -137,18 +137,6 @@ bool Result::Init(void)
 			ranking_score_digit_[i]->SetIntData(save_data_list.at(i)->GetScore());
 		}
 	}
-
-	// 音声データの作成
-	{
-		// BGM
-		bgm_result_ = NEW AudioComponent(this);
-		bgm_result_->SetSound(SoundType::Kemono);
-		bgm_result_->PlayLoop();
-		
-		//SE
-		se_ = NEW AudioComponent(this);
-		se_->SetSound(SoundType::SelectSound);
-	}
 	return true;
 }
 
@@ -160,6 +148,16 @@ void Result::Uninit(void)
 	// BGMの停止
 	{
 		bgm_result_->Stop();
+	}
+
+	// セーブデータの状態を更新
+	{
+		auto save_data_list = game_->GetSaveDataManager()->GetSaveDataList();
+		for (auto save_data : save_data_list)
+		{
+			// 新しいデータとしての経歴を削除
+			save_data->IsSetNewData(false);
+		}
 	}
 }
 
@@ -176,6 +174,24 @@ void Result::InputGameObject(void)
 void Result::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// 音声データの生成
+	{
+		// BGMの生成
+		if (bgm_result_ == nullptr)
+		{
+			bgm_result_ = NEW AudioComponent(this);
+			bgm_result_->SetSound(SoundType::Kemono);
+			bgm_result_->PlayLoop();
+		}
+		
+		// SEの生成
+		if (se_ == nullptr)
+		{
+			se_ = NEW AudioComponent(this);
+			se_->SetSound(SoundType::SelectSound);
+		}
+	}
 
 	// 画面サイズの取得
 	screen_width_  = game_->GetGraphics()->GetScreenSize().x_;
@@ -332,9 +348,9 @@ void Result::UpdateRankingData(float deltaTime)
 			}
 
 			// hudのカラーアニメーション(白色から金色への)
-			float red	= Math::Lerp(255, 230, hud_animation_time_);
-			float green = Math::Lerp(255, 180, hud_animation_time_);
-			float blue	= Math::Lerp(255,  34, hud_animation_time_);
+			int red		= static_cast<int>(Math::Lerp(255, 230, hud_animation_time_));
+			int green	= static_cast<int>(Math::Lerp(255, 180, hud_animation_time_));
+			int blue	= static_cast<int>(Math::Lerp(255,  34, hud_animation_time_));
 
 			// 色の更新
 			ranking_new_[i]->SetVertexColor(red, green, blue);

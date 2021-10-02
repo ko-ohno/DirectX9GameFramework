@@ -121,7 +121,6 @@ public:
 
 	// セーブデータの処理
 	void AddSaveData(class SaveData* data);
-	void AddNewSaveData(int score);
 	void AddNewSaveData(class SaveData* data);
 	void RemoveSaveData(class SaveData* data);
 	void SortBySaveData(void);

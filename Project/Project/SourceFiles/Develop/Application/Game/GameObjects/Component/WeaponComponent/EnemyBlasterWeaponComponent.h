@@ -41,10 +41,6 @@ public:
 	// 攻撃
 	void Fire(void);
 
-private:
-	// プレイヤーのゲームオブジェクトの取得
-	class Actor* player_object_;
-
 protected:
 	// 銃の発射エフェクト
 	class EffectRendererComponent*		muzzle_flash_;
