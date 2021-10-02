@@ -354,8 +354,9 @@ void Game::Input(void)
 -----------------------------------------------------------------------------*/
 void Game::Update(float deltaTime)
 {
-	// FPS‚Ì•\¦
-	ImGui::ShowFPS(deltaTime);
+#ifdef DEBUG_MODE_
+	ImGui::ShowFPS(deltaTime); 	// FPS‚Ì•\¦
+#endif
 
 	// ê–Ê‚²‚Æ‚Ì“ü—Íˆ—
 	if (scene_state_ != nullptr)

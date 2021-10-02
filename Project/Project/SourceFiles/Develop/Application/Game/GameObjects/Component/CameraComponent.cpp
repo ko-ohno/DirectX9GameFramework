@@ -118,6 +118,7 @@ void CameraComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::Update(float deltaTime)
 {
+#ifdef DEBUG_MODE_
 	ImGui::Begin("camera");
 	{
 		ImGui::Text("is_camera_moved_:%s", is_camera_moved_ ? "true" : "false");
@@ -178,6 +179,7 @@ void CameraComponent::Update(float deltaTime)
 
 	}
 	ImGui::End();
+#endif
 
 	//視線ベクトルの長さの更新
 	{

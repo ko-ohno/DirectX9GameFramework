@@ -65,6 +65,7 @@ void WeakEnemyAIComponent::Update(float deltaTime)
 	// 敵のステートを操作する
 	this->EnemyStateController();
 	
+#ifdef DEBUG_MODE_
 	ImGui::Begin("week_enemy_ai_state");
 	{
 		switch (enemy_state_)
@@ -115,6 +116,7 @@ void WeakEnemyAIComponent::Update(float deltaTime)
 		}
 	}
 	ImGui::End();
+#endif
 
 	switch (enemy_state_)
 	{

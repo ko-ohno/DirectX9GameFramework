@@ -10,6 +10,16 @@
 
 /*--- インクルードファイル ---*/
 
+//この定義をコメント化するかしないかデバッグモードかどうかを設定する。
+//#define DEBUG_MODE_ 
+
+//テストコード
+#if defined(DEBUG_MODE_)
+	//Enable;
+#else
+	//Disable;
+#endif // defined(DEBUG_MODE_)
+
 
 /*-------------------------------------
 /* ゲームクラス

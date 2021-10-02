@@ -288,6 +288,7 @@ void Player::UpdateGameObject(float deltaTime)
 		assert(!"Player::UpdateWeapon():チャージ弾の武器コンポーネントが、nullptrでした！");
 	}
 
+#ifdef DEBUG_MODE_
 	ImGui::Begin("PlayerTransform");
 	ImGui::Text("Yaw:%f", transform_component_->GetAngleYaw());
 	ImGui::Text("Pitch:%f", transform_component_->GetAnglePitch());
@@ -298,6 +299,7 @@ void Player::UpdateGameObject(float deltaTime)
 	ImGui::Text("PosY:%f", pos.y);
 	ImGui::Text("PosZ:%f", pos.z);
 	ImGui::End();
+#endif
 
 	//　レティクルを描画するか？
 	bool is_draw_reticle = false;

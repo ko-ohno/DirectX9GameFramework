@@ -84,8 +84,8 @@ void BossAIComponent::Update(float deltaTime)
 	// 敵のステートを操作する
 	this->EnemyStateController(deltaTime);
 	
+#ifdef DEBUG_MODE_
 	ImGui::Begin("boss_ai_state");
-
 	{
 		switch (enemy_state_)
 		{
@@ -118,6 +118,7 @@ void BossAIComponent::Update(float deltaTime)
 		}
 	}
 	ImGui::End();
+#endif
 
 	switch (enemy_state_)
 	{

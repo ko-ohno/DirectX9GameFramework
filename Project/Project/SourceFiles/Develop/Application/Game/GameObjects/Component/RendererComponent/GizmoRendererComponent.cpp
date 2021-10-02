@@ -37,6 +37,9 @@ bool GizmoRendererComponent::Init(void)
 	//描画シェーダーの指定
 	this->shader_type_ = ShaderType::Gizmo;
 
+#ifndef DEBUG_MODE_
+	this->IsSetDrawable(false);
+#endif
 	return true;
 }
 

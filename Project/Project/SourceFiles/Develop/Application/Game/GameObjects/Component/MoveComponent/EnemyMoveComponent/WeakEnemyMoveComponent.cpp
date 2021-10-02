@@ -79,6 +79,7 @@ void WeakEnemyMoveComponent::Update(float deltaTime)
 		this->ComputeLerpPosition();
 	}
 
+#ifdef DEBUG_MODE_
 	// 自身の状態を表記
 	ImGui::Begin("week_enemy_move_state");
 	{
@@ -170,6 +171,7 @@ void WeakEnemyMoveComponent::Update(float deltaTime)
 		break;
 	}
 	ImGui::End();
+#endif
 
 	// 敵の状態更新
 	switch (enemy_state_)

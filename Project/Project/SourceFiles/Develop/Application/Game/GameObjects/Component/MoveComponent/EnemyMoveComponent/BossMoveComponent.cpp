@@ -80,6 +80,7 @@ void BossMoveComponent::Update(float deltaTime)
 		return;
 	}
 
+#ifdef DEBUG_MODE_
 	// 自身の状態を表記
 	ImGui::Begin("boss_move_state");
 	{
@@ -110,6 +111,7 @@ void BossMoveComponent::Update(float deltaTime)
 		}
 	}
 	ImGui::End();
+#endif
 
 	// 敵の状態更新
 	switch (enemy_state_)

@@ -79,6 +79,7 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 		this->ComputeLerpPosition();
 	}
 
+#ifdef DEBUG_MODE_
 	// 自身の状態を表記
 	ImGui::Begin("strong_enemy_move_state");
 	{
@@ -134,6 +135,7 @@ void StrongEnemyMoveComponent::Update(float deltaTime)
 		}
 	}
 	ImGui::End();
+#endif
 
 	// 敵の状態更新
 	switch (enemy_state_)

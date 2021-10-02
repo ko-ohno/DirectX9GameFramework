@@ -118,9 +118,11 @@ void Renderer::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+#ifdef DEBUG_MODE_
 	ImGui::Begin("CameraCount");
 	ImGui::Text("%d", camera_game_objects_.size());
 	ImGui::End();
+#endif
 }
 
 /*-----------------------------------------------------------------------------

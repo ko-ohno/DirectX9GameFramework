@@ -83,6 +83,7 @@ void GameCamera::UpdateGameObject(float deltaTime)
 	//カメラを操作するか
 	const bool is_camera_controlling = camera_component_->IsGetCameraControlling();
 
+#ifdef DEBUG_MODE_
 	ImGui::Begin("camera");
 	ImGui::SetNextTreeNodeOpen(true);
 	if (ImGui::TreeNode("CameraControll"))
@@ -109,6 +110,7 @@ void GameCamera::UpdateGameObject(float deltaTime)
 		ImGui::TreePop();
 	}
 	ImGui::End();
+#endif
 
 	class GameObject* player_ = nullptr;
 
@@ -172,10 +174,12 @@ void GameCamera::UpdateGameObject(float deltaTime)
 					}
 				}
 			}
-			
+		
+#ifdef DEBUG_MODE_
 			ImGui::Begin("CameraShake");
 			ImGui::Text("Shake:%f", vertical_camera_shake_);
 			ImGui::End();
+#endif
 
 			// カメラの値を補間するための強度
 			const float smooth_time = 0.5f;

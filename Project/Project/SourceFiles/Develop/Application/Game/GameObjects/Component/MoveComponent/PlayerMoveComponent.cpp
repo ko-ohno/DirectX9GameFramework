@@ -319,6 +319,7 @@ void PlayerMoveComponent::UpdateMovementState(Vector2& padThumb)
 		}
 	}
 
+#ifdef DEBUG_MODE_
 	ImGui::Begin("TestThumb");
 	ImGui::Text("Thumb_X:%f", padThumb.x_);
 	ImGui::Text("Thumb_Y:%f", padThumb.y_);
@@ -327,7 +328,7 @@ void PlayerMoveComponent::UpdateMovementState(Vector2& padThumb)
 	ImGui::Text("Left:%s", is_move_left_ ? "true" : "false");
 	ImGui::Text("Right:%s", is_move_right_ ? "true" : "false");
 	ImGui::End();
-
+#endif
 }
 
 /*=============================================================================
