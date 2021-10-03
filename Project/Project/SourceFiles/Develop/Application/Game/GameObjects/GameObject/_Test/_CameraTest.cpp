@@ -20,6 +20,7 @@
 CameraTest::CameraTest(Game* game)
 	: Camera(game)
 {
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -27,6 +28,7 @@ CameraTest::CameraTest(Game* game)
 -----------------------------------------------------------------------------*/
 CameraTest::~CameraTest(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -34,6 +36,11 @@ CameraTest::~CameraTest(void)
 -----------------------------------------------------------------------------*/
 bool CameraTest::Init(void)
 {
+	// カメラ座標の初期化
+	camera_component_->SetCameraTranslation(0.f, 0.f, -15.f);
+
+	// 注視点座標の初期化
+	camera_component_->SetLookAtTranslation(0.f, 0.f,   0.f);
 	return true;
 }
 

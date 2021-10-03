@@ -59,7 +59,7 @@ Game::Game(void)
 
 	, actor_manager_(nullptr)
 	, enemie_manager_(nullptr)
-
+	, bullet_manager_(nullptr)
 {
 	pending_game_objects_.clear();
 	game_objects_.clear();

@@ -175,7 +175,7 @@ bool Boss::Init(void)
 
 			// Õ“Ë”»’è
 			sphere_collider_ = NEW SphereColliderComponent(this);
-			sphere_collider_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
+			sphere_collider_->SetOffsetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
 			sphere_collider_->SetRadius(sphere_radius_size);
 
 			// ƒMƒYƒ‚
@@ -195,7 +195,7 @@ bool Boss::Init(void)
 
 			// Õ“Ë”»’è
 			obb_collider_ = NEW OBBColliderComponent(this);
-			obb_collider_->SetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
+			obb_collider_->SetOffsetTranslationY(COLLIDER_OFFSET_HEIGHT_POS);
 			obb_collider_->SetDirLength(box_size, AxisType::X);
 			obb_collider_->SetDirLength(box_height_size, AxisType::Y);
 			obb_collider_->SetDirLength(box_size, AxisType::Z);

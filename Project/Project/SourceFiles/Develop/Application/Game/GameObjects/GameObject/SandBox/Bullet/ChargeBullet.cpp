@@ -95,7 +95,7 @@ bool ChargeBullet::Init(void)
 		// 球の衝突判定
 		sphere_collider_ = NEW SphereColliderComponent(this);
 		sphere_collider_->SetRadius(scale);
-		sphere_collider_->SetTranslationY(init_axis_y_pos);
+		sphere_collider_->SetOffsetTranslationY(init_axis_y_pos);
 
 		// ギズモの描画コンポーネント
 		sphere_collider_gizmo_ = NEW SphereGizmoRendererComponent(this);

@@ -164,15 +164,6 @@ void NormalBullet::UpdateGameObject(float deltaTime)
 		this->transform_component_->AddTranslation(move_direction);
 	}
 
-	// 衝突判定の座標を更新
-	{
-		// 座標を取得
-		auto bullet_position = *this->transform_component_->GetPosition();
-
-		// 球の衝突判定
-		this->sphere_collider_->SetTranslation(bullet_position);
-	}
-
 	// 生存時間への加算
 	alive_time_ += deltaTime;
 

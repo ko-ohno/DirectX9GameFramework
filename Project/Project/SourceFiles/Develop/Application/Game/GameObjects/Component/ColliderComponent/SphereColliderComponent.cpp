@@ -38,7 +38,7 @@ void SphereColliderComponent::Update(float deltaTime)
 	Vector3 owner_position = *owner_->GetTransform()->GetPosition();
 
 	// Õ“Ë”»’è‚ÌˆÊ’uî•ñ‚ÌXV
-	position_ = owner_position;
+	position_ = owner_position + offset_position_;
 }
 
 /*=============================================================================

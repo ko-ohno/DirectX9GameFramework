@@ -123,7 +123,7 @@ bool WeakEnemy::Init(void)
 
 			// Õ“Ë”»’è
 			sphere_collider_ = NEW SphereColliderComponent(this);
-			sphere_collider_->SetTranslationY(collider_height_pos);
+			sphere_collider_->SetOffsetTranslationY(collider_height_pos);
 			sphere_collider_->SetRadius(sphere_radius_size);
 
 			// ƒMƒYƒ‚
@@ -145,7 +145,7 @@ bool WeakEnemy::Init(void)
 
 			// Õ“Ë”»’è
 			obb_collider_ = NEW OBBColliderComponent(this);
-			obb_collider_->SetTranslationY(collider_height_pos);
+			obb_collider_->SetOffsetTranslationY(collider_height_pos);
 			obb_collider_->SetDirLength(box_scale, AxisType::X);
 			obb_collider_->SetDirLength(box_height_size, AxisType::Y);
 			obb_collider_->SetDirLength(box_scale, AxisType::Z);

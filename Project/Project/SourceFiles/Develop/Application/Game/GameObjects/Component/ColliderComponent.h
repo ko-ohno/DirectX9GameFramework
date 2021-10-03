@@ -38,12 +38,12 @@ public:
 	// ç¿ïWÇÃê›íË 
 	//
 
-	inline void SetTranslation(Vector3& position) { offset_position_ = position; }
-	inline void SetTranslation(D3DXVECTOR3& position) { offset_position_ = position; }
-	inline void SetTranslation(float posX, float posY, float posZ) { offset_position_ = { posX, posY, posZ }; }
-	inline void SetTranslationX(float posX) { offset_position_.x_ = posX; }
-	inline void SetTranslationY(float posY) { offset_position_.y_ = posY; }
-	inline void SetTranslationZ(float posZ) { offset_position_.z_ = posZ; }
+	inline void SetOffsetTranslation(Vector3& position) { offset_position_ = position; }
+	inline void SetOffsetTranslation(D3DXVECTOR3& position) { offset_position_ = position; }
+	inline void SetOffsetTranslation(float posX, float posY, float posZ) { offset_position_ = { posX, posY, posZ }; }
+	inline void SetOffsetTranslationX(float posX) { offset_position_.x_ = posX; }
+	inline void SetOffsetTranslationY(float posY) { offset_position_.y_ = posY; }
+	inline void SetOffsetTranslationZ(float posZ) { offset_position_.z_ = posZ; }
 
 	// à íuç¿ïWÇÃéÊìæ
 	inline Vector3* GetPosition(void) { return &position_; }
