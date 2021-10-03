@@ -31,6 +31,7 @@ public:
 	{
 		None = -1
 		, Title
+		, BackToTitle
 		, Gameplay
 		, Result
 		, Paused

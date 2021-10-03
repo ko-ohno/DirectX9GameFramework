@@ -10,6 +10,7 @@
 #include "../../../StdAfx.h"
 #include "SceneGame.h"
 #include "SceneResult.h"
+#include "SceneTitle.h"
 #include "../GameObjects/GameObject.h"
 
 // ゲーム管理ゲームオブジェクト
@@ -43,6 +44,7 @@
 SceneGame::SceneGame(Game* game)
 	: ISceneState(game)
 	, is_show_screen_(false)
+	, is_change_title_(false)
 {
 	// Game::SetSceneState()で初期化されるため、ここでSceneGame::Init()は呼ばない。
 }
@@ -206,8 +208,24 @@ void SceneGame::Update(float deltaTime)
 
 	if (is_scene_change_tirgger_ == false)
 	{
+		// ゲームの状態を取得
 		auto game_state = game_->GetGameState();
 
+		// ゲームの状態がタイトルだった場合
+		const bool is_game_state_back_to_title_ = (game_state == Game::GameState::BackToTitle);
+		if (is_game_state_back_to_title_)
+		{
+			// 場面切り替えのトリガーをONにして入力を無効化
+			is_scene_change_tirgger_ = true;
+
+			// 場面切り替えを申請
+			this->is_need_scene_changed_ = true;
+
+			// タイトルへの切り替えを有効に
+			this->is_change_title_ = true;
+		}
+
+		// ゲームの状態がゲームオーバーやゲームクリアだった場合
 		const bool is_game_state_game_over_  = (game_state == Game::GameState::GameOver);
 		const bool is_game_state_game_clear_ = (game_state == Game::GameState::GameClear);
 		if (is_game_state_game_over_ || is_game_state_game_clear_)
@@ -252,7 +270,14 @@ void SceneGame::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void SceneGame::ChangeScene(void)
 {
-	game_->SetSceneState(NEW SceneResult(game_));
+	if (is_change_title_)
+	{
+		game_->SetSceneState(NEW SceneTitle(game_));
+	}
+	else
+	{
+		game_->SetSceneState(NEW SceneResult(game_));
+	}
 }
 
 /*=============================================================================

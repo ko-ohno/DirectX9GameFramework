@@ -30,6 +30,8 @@ public:
 
 private:
 	bool is_show_screen_;
+
+	bool is_change_title_;
 };
 
 #endif //SCENE_H_

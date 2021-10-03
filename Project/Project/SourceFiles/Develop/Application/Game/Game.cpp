@@ -478,6 +478,7 @@ void Game::UpdateGameObjects(float deltaTime)
 				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
 				break;
 
+			case Game::GameState::BackToTitle:
 			case Game::GameState::Paused:
 				{
 					const bool is_update_pause_menu = (game_object_type == GameObject::TypeID::PauseMenu);

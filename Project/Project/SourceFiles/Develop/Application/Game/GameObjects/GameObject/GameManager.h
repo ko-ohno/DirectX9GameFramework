@@ -39,12 +39,16 @@ private:
 	// 場面切り替えを行うか？
 	bool							  is_secen_change_;
 
+	// ポーズ画面を生成するか？
+	bool							  is_create_pause_menu_;
+
 	// ボスのHUDを生成するか？
 	bool							  is_create_player_hud_;
 
 	// ボスのHUDを生成するか？
 	bool							  is_create_boss_hud_;
 
+	// スコアをセーブするか？
 	bool							  is_save_score_;
 
 private:

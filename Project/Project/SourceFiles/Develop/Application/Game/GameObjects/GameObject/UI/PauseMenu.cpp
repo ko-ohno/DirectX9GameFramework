@@ -99,12 +99,18 @@ void PauseMenu::Uninit(void)
 -----------------------------------------------------------------------------*/
 void PauseMenu::InputGameObject(void)
 {
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP))
+	const float InputDeadZone = 0.1f;
+
+	const bool is_up = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ >= InputDeadZone)
+						|| InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP));
+	if (is_up)
 	{
 		pause_select_state_ = PauseMenuSelectState::Resume;
 	}
 
-	if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN))
+	const bool is_down = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ <= -InputDeadZone)
+						  || InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN));
+	if (is_down)
 	{
 		pause_select_state_ = PauseMenuSelectState::Quit;
 	}
@@ -115,6 +121,13 @@ void PauseMenu::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void PauseMenu::UpdateGameObject(float deltaTime)
 {
+	auto game_state = game_->GetGameState();
+	if (game_state != Game::GameState::Paused)
+	{
+		this->SetGameObjectState(GameObject::State::Dead);
+		return;
+	}
+
 	// ポーズメニューの更新
 	this->UpdatePauseMenu(deltaTime);
 
@@ -220,6 +233,7 @@ void PauseMenu::UpdatePauseMenuState(float deltaTime)
 
 		menu_cursor_->SetTranslationX(menu_game_resume_->GetPosition()->x);
 		menu_cursor_->SetTranslationY(menu_game_resume_->GetPosition()->y);
+
 		if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
 		{
 			game_->SetGameState(Game::GameState::Gameplay);
@@ -234,7 +248,7 @@ void PauseMenu::UpdatePauseMenuState(float deltaTime)
 		menu_cursor_->SetTranslationY(menu_game_quit_->GetPosition()->y);
 		if (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A))
 		{
-			game_->SetGameState(Game::GameState::Title);
+			game_->SetGameState(Game::GameState::BackToTitle);
 		}
 		break;
 	

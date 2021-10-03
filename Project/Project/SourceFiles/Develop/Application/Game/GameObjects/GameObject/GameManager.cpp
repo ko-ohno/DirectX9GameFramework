@@ -24,7 +24,8 @@
 #include "../../EnemyFactoryState/EnemyFactoryState_6.h"
 #include "../../EnemyFactoryState/EnemyFactoryState_Last.h"
 
-// ボスのHUD
+// UIレイヤー
+#include "../GameObject/UI/PauseMenu.h"
 #include "../GameObject/UI/HUD.h"
 #include "../GameObject/UI/BossHUD.h"
 
@@ -54,6 +55,7 @@
 GameManager::GameManager(Game* game)
 	: GameObject(game)
 	, is_secen_change_(false)
+	, is_create_pause_menu_(false)
 	, is_create_player_hud_(false)
 	, is_create_boss_hud_(false)
 	, enemy_factory_(nullptr)
@@ -247,20 +249,35 @@ void GameManager::UpdateGameObject(float deltaTime)
 
 	if (game_state != Game::GameState::Gameplay) { return; }
 
+	// ポーズ画面を生成するか？
+	{
+		const bool is_input_trigger = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_START));
+		if (is_input_trigger && (is_create_pause_menu_ == false))
+		{
+			// ポーズメニューの生成
+			NEW PauseMenu(game_);
+
+			// ゲームオブジェクトのステートを変更
+			game_->SetGameState(Game::GameState::Paused);
+
+			// ポーズメニューを作成したことを記憶する
+			is_create_pause_menu_ = true;
+		}
+		else
+		{
+			// １フレーム経過したら作成した記憶を消す
+			is_create_pause_menu_ = false;
+		}
+	}
+
 	// 値コンポーネントの更新
 	this->UpdateParameterComponent(deltaTime);
 
 	// プレイヤーのHUDを生成する
+	if (is_create_player_hud_ == false)
 	{
-		bool is_game_state_game_play_ = (game_state == Game::GameState::Gameplay);
-		if (is_game_state_game_play_)
-		{
-			if (is_create_player_hud_ == false)
-			{
-				NEW HUD(game_);
-				is_create_player_hud_ = true;
-			}
-		}
+		NEW HUD(game_);
+		is_create_player_hud_ = true;
 	}
 
 	// ボスのHUDを生成する

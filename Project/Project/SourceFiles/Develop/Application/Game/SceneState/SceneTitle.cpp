@@ -179,6 +179,9 @@ void SceneTitle::Update(float deltaTime)
 		game_->SetGameState(Game::GameState::Title);
 	}
 
+	auto game_state = game_->GetGameState();
+	if (game_state != Game::GameState::Title) { return; }
+
 	// “ü—Í‚ªs‚í‚ê‚½‚©
 	const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
 	const bool is_input_button_A  = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
