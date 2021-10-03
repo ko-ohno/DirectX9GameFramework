@@ -178,13 +178,16 @@ void Title::UpdateTitleSprite(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 拡縮率の取得
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+	
 	// テクスチャのサイズを取得
 	float texture_width  = static_cast<float>(title_->GetTextureImageInfo()->Width);
 	float texture_height = static_cast<float>(title_->GetTextureImageInfo()->Height);
 
 	// ポリゴンのサイズを更新
-	title_->SetScaleX(texture_width);
-	title_->SetScaleY(texture_height);
+	title_->SetScaleX(texture_width * screen_scaler);
+	title_->SetScaleY(texture_height * screen_scaler);
 
 	// 描画座標の更新
 	title_->IsSetDrawingPositionToCenter(true);
@@ -231,6 +234,9 @@ void Title::UpdateMenu(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 拡縮値の設定
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	float texture_width;
 	float texture_height;
 
@@ -240,8 +246,8 @@ void Title::UpdateMenu(float deltaTime)
 		texture_width  = static_cast<float>(menu_game_start_->GetTextureImageInfo()->Width);
 		texture_height = static_cast<float>(menu_game_start_->GetTextureImageInfo()->Height);
 
-		menu_game_start_->SetScaleX(texture_width);
-		menu_game_start_->SetScaleY(texture_height);
+		menu_game_start_->SetScaleX(texture_width * screen_scaler);
+		menu_game_start_->SetScaleY(texture_height * screen_scaler);
 
 		// 描画座標の更新
 		menu_game_start_->IsSetDrawingPositionToCenter(true);
@@ -255,8 +261,8 @@ void Title::UpdateMenu(float deltaTime)
 		texture_width  = static_cast<float>(menu_game_quit_->GetTextureImageInfo()->Width);
 		texture_height = static_cast<float>(menu_game_quit_->GetTextureImageInfo()->Height);
 
-		menu_game_quit_->SetScaleX(texture_width);
-		menu_game_quit_->SetScaleY(texture_height);
+		menu_game_quit_->SetScaleX(texture_width * screen_scaler);
+		menu_game_quit_->SetScaleY(texture_height * screen_scaler);
 
 		// 描画座標の更新
 		menu_game_quit_->IsSetDrawingPositionToCenter(true);

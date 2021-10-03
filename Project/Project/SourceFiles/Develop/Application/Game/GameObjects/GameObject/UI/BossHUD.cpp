@@ -278,6 +278,9 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	const float screen_width = game_->GetGraphics()->GetScreenSize().x_;
 	const float screen_height = game_->GetGraphics()->GetScreenSize().y_;
 
@@ -313,10 +316,10 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
-		health_bar_->SetScaleX(true_width);
-		health_bar_->SetScaleY(height);
+		health_bar_->SetScaleX(true_width * screen_scaler);
+		health_bar_->SetScaleY(height * screen_scaler);
 
-		health_bar_->SetTranslationX((screen_width * 0.5f) - (width * 0.5f));
+		health_bar_->SetTranslationX((screen_width * 0.5f) - ((width * 0.5f) * screen_scaler));
 		health_bar_->SetTranslationY(offset_padding);
 	}
 
@@ -328,8 +331,8 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_blank_->GetScale()->x;
 		const float health_bar_height = health_bar_blank_->GetScale()->y;
 
-		health_bar_blank_->SetScaleX(width);
-		health_bar_blank_->SetScaleY(height);
+		health_bar_blank_->SetScaleX(width * screen_scaler);
+		health_bar_blank_->SetScaleY(height * screen_scaler);
 
 		health_bar_blank_->SetTranslationX(screen_width * 0.5f);
 		health_bar_blank_->SetTranslationY((health_bar_height * 0.5f) + offset_padding);
@@ -343,8 +346,8 @@ void BossHUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_bg_->GetScale()->x;
 		const float health_bar_height = health_bar_bg_->GetScale()->y;
 
-		health_bar_bg_->SetScaleX(width);
-		health_bar_bg_->SetScaleY(height);
+		health_bar_bg_->SetScaleX(width * screen_scaler);
+		health_bar_bg_->SetScaleY(height * screen_scaler);
 
 		health_bar_bg_->SetTranslationX(screen_width * 0.5f);
 		health_bar_bg_->SetTranslationY((health_bar_height * 0.5f) + offset_padding_bg);

@@ -82,6 +82,9 @@ void GameOver::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 拡縮値の設定
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	// 画面サイズの取得
 	const float screen_width_ = game_->GetGraphics()->GetScreenSize().x_;
 	const float screen_height_ = game_->GetGraphics()->GetScreenSize().y_;
@@ -100,8 +103,8 @@ void GameOver::UpdateGameObject(float deltaTime)
 		const float texture_width = static_cast<float>(game_over_->GetTextureImageInfo()->Width);
 
 		// ポリゴンのサイズを更新
-		game_over_->SetScaleX(texture_width * 2.f);
-		game_over_->SetScaleY(texture_height * 2.f);
+		game_over_->SetScaleX((texture_width * 2.f) * screen_scaler);
+		game_over_->SetScaleY((texture_height * 2.f) * screen_scaler);
 
 		// 描画座標の更新
 		const float draw_pos_y = Math::Lerp(screen_height_ + (screen_height_ * 0.5f), (screen_height_ / 3.f), Easing::SineOut(screen_animation_time_));

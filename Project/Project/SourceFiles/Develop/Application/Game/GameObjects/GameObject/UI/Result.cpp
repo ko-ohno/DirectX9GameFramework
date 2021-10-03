@@ -247,13 +247,16 @@ void Result::UpdateResultSprite(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 画面の拡縮値の取得
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	// テクスチャのサイズを取得
 	float texture_width  = static_cast<float>(result_->GetTextureImageInfo()->Width);
 	float texture_height = static_cast<float>(result_->GetTextureImageInfo()->Height);
 
 	// ポリゴンのサイズを更新
-	result_->SetScaleX(texture_width);
-	result_->SetScaleY(texture_height);
+	result_->SetScaleX(texture_width * screen_scaler);
+	result_->SetScaleY(texture_height * screen_scaler);
 
 	// 描画座標の更新
 	result_->SetTranslationX(screen_width_ / 2.f);
@@ -298,6 +301,9 @@ void Result::UpdateRankingData(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// 画面の拡縮値の取得
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	// セーブデータのリストを取得
 	auto save_data_list = game_->GetSaveDataManager()->GetSaveDataList();
 
@@ -309,8 +315,8 @@ void Result::UpdateRankingData(float deltaTime)
 	{
 		// ランキングの背景を更新
 		{
-			ranking_bg_[i]->SetScaleX(screen_width_ / 2.f);
-			ranking_bg_[i]->SetScaleY(digit_texture_height);
+			ranking_bg_[i]->SetScaleX((screen_width_ / 2.f));
+			ranking_bg_[i]->SetScaleY((digit_texture_height));
 
 			ranking_bg_[i]->SetTranslationX(screen_width_ / 2.f);
 			ranking_bg_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
@@ -318,8 +324,15 @@ void Result::UpdateRankingData(float deltaTime)
 	
 		// ランキングの順位を更新
 		{
+			ranking_num_[i]->SetScaleX(screen_scaler);
+			ranking_num_[i]->SetScaleY(screen_scaler);
+
 			ranking_num_[i]->SetTranslationX(screen_width_ / 3.5f);
 			ranking_num_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
+
+			// ウィンドウサイズに合わせて拡縮
+			ranking_double_point_[i]->SetScaleX((digit_texture_width  * 1.5f) * screen_scaler);
+			ranking_double_point_[i]->SetScaleY((digit_texture_height * 1.5f) * screen_scaler);
 
 			ranking_double_point_[i]->SetTranslationX(ranking_num_[i]->GetPosition()->x + digit_texture_width);
 			ranking_double_point_[i]->SetTranslationY(ranking_num_[i]->GetPosition()->y);
@@ -356,8 +369,8 @@ void Result::UpdateRankingData(float deltaTime)
 			ranking_new_[i]->SetVertexColor(red, green, blue);
 
 			// ポリゴンの大きさをテクスチャサイズに
-			ranking_new_[i]->SetScaleX(new_texture_width * 2.f);
-			ranking_new_[i]->SetScaleY(new_texture_height * 2.f);
+			ranking_new_[i]->SetScaleX((new_texture_width * 2.f) * screen_scaler);
+			ranking_new_[i]->SetScaleY((new_texture_height * 2.f) * screen_scaler);
 
 			ranking_new_[i]->SetTranslationX(screen_width_ * 0.65f);
 			ranking_new_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
@@ -367,8 +380,11 @@ void Result::UpdateRankingData(float deltaTime)
 		{
 			auto digit_width = ranking_score_digit_[0]->GetMaxDrawableDigitWidth();
 
-			ranking_score_digit_[i]->SetTranslationX((screen_width_ / 2.f) - ((digit_width / 3.f) * 2.f));			
-			ranking_score_digit_[i]->SetTranslationY((screen_height_ / 4.f) + ((digit_texture_height * 1.5f) * i));
+			ranking_score_digit_[i]->SetScaleX(screen_scaler);
+			ranking_score_digit_[i]->SetScaleY(screen_scaler);
+
+			ranking_score_digit_[i]->SetTranslationX((screen_width_ / 2.f)  - (((digit_width / 3.f) * 2.f)));
+			ranking_score_digit_[i]->SetTranslationY((screen_height_ / 4.f) + (((digit_texture_height * 1.5f)))  * i);
 		}
 	}
 }

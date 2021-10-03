@@ -228,6 +228,9 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	const float screen_width = game_->GetGraphics()->GetScreenSize().x_;
 	const float screen_height = game_->GetGraphics()->GetScreenSize().y_;
 
@@ -263,8 +266,8 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_->GetScale()->x;
 		const float health_bar_height = health_bar_->GetScale()->y;
 
-		health_bar_->SetScaleX(true_width);
-		health_bar_->SetScaleY(height);
+		health_bar_->SetScaleX(true_width * screen_scaler);
+		health_bar_->SetScaleY(height * screen_scaler);
 
 		health_bar_->SetTranslationX(offset_padding);
 		health_bar_->SetTranslationY(screen_height - (health_bar_height + offset_padding));
@@ -278,8 +281,8 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_blank_->GetScale()->x;
 		const float health_bar_height = health_bar_blank_->GetScale()->y;
 
-		health_bar_blank_->SetScaleX(width);
-		health_bar_blank_->SetScaleY(height);
+		health_bar_blank_->SetScaleX(width * screen_scaler);
+		health_bar_blank_->SetScaleY(height * screen_scaler);
 
 		health_bar_blank_->SetTranslationX(offset_padding);
 		health_bar_blank_->SetTranslationY(screen_height - (health_bar_height + offset_padding));
@@ -293,8 +296,8 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 		//const float health_bar_width = health_bar_bg_->GetScale()->x;
 		const float health_bar_height = health_bar_bg_->GetScale()->y;
 
-		health_bar_bg_->SetScaleX(width);
-		health_bar_bg_->SetScaleY(height);
+		health_bar_bg_->SetScaleX(width * screen_scaler);
+		health_bar_bg_->SetScaleY(height * screen_scaler);
 
 		health_bar_bg_->SetTranslationX(offset_padding_bg);
 		health_bar_bg_->SetTranslationY(screen_height - (health_bar_height + offset_padding_bg));
@@ -307,6 +310,9 @@ void HUD::UpdateHealthBarHUD(float deltaTime)
 void HUD::UpdateGoalMeterHUD(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
 
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
 	const float screen_width = game_->GetGraphics()->GetScreenSize().x_;
@@ -324,8 +330,8 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 			const float draw_pos_x = (screen_width / 2.f);
 			const float draw_pos_y = (screen_height - (polygon_height / 2.f));
 
-			meter_center_bg_->SetScaleX(220.f);
-			meter_center_bg_->SetScaleY(120.f);
+			meter_center_bg_->SetScaleX(220.f * screen_scaler);
+			meter_center_bg_->SetScaleY(120.f * screen_scaler);
 			meter_center_bg_->SetTranslation(draw_pos_x, draw_pos_y);
 		}
 	
@@ -339,8 +345,8 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 			const float draw_pos_x = (screen_width / 2.f) - polygon_width;
 			const float draw_pos_y = (screen_height - (polygon_height / 4.f));
 
-			meter_left_bg_->SetScaleX(120.f);
-			meter_left_bg_->SetScaleY(150.f);
+			meter_left_bg_->SetScaleX(120.f * screen_scaler);
+			meter_left_bg_->SetScaleY(150.f * screen_scaler);
 			meter_left_bg_->SetRotate(45.f);
 			meter_left_bg_->SetTranslationX(draw_pos_x);
 			meter_left_bg_->SetTranslationY(draw_pos_y);
@@ -357,8 +363,8 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 			const float draw_pos_x = (screen_width / 2.f) + polygon_width;
 			const float draw_pos_y = (screen_height - (polygon_height / 4.f));
 
-			meter_right_bg_->SetScaleX(120.f);
-			meter_right_bg_->SetScaleY(150.f);
+			meter_right_bg_->SetScaleX(120.f * screen_scaler);
+			meter_right_bg_->SetScaleY(150.f * screen_scaler);
 			meter_right_bg_->SetRotate(-45.f);
 			meter_right_bg_->SetTranslationX(draw_pos_x);
 			meter_right_bg_->SetTranslationY(draw_pos_y);
@@ -374,6 +380,9 @@ void HUD::UpdateGoalMeterHUD(float deltaTime)
 		const float draw_pos_x = (screen_width / 2) - (distance_digit_->GetMaxDrawableDigitWidth()) - 15;
 		const float draw_pos_y = (screen_height - distance_digit_->GetFontHeight());
 
+		distance_digit_->SetScaleX(screen_scaler);
+		distance_digit_->SetScaleY(screen_scaler);
+
 		distance_digit_->SetTranslationX(draw_pos_x);
 		distance_digit_->SetTranslationY(draw_pos_y);
 	}
@@ -387,6 +396,9 @@ void HUD::UpdateScoreHUD(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
 	const float screen_width = game_->GetGraphics()->GetScreenSize().x_;
 	const float screen_height = game_->GetGraphics()->GetScreenSize().y_;
@@ -399,6 +411,9 @@ void HUD::UpdateScoreHUD(float deltaTime)
 		// •`‰æÀ•W
 		const float draw_pos_x = (screen_width  - distance_digit_->GetMaxDrawableDigitWidth()) - offset_value;
 		const float draw_pos_y = (screen_height - distance_digit_->GetFontHeight());
+
+		score_digit_->SetScaleX(screen_scaler);
+		score_digit_->SetScaleY(screen_scaler);
 
 		score_digit_->SetTranslationX(draw_pos_x);
 		score_digit_->SetTranslationY(draw_pos_y);

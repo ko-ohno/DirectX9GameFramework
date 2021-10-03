@@ -47,7 +47,7 @@ PauseMenu::~PauseMenu(void)
 bool PauseMenu::Init(void)
 {
 	const int all_draw_order = 300;
-	const int bg_offset_draw_order = -50;
+	const int bg_offset_draw_order = -10;
 
 	pause_select_state_old_ = pause_select_state_ = PauseMenuSelectState::Resume;
 
@@ -142,6 +142,9 @@ void PauseMenu::UpdatePauseMenu(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	float screen_width = game_->GetGraphics()->GetScreenSize().x_;
 	float screen_height = game_->GetGraphics()->GetScreenSize().y_;
 
@@ -153,8 +156,8 @@ void PauseMenu::UpdatePauseMenu(float deltaTime)
 		texture_width = static_cast<float>(pause_->GetTextureImageInfo()->Width);
 		texture_height = static_cast<float>(pause_->GetTextureImageInfo()->Height);
 
-		pause_->SetScaleX(texture_width);
-		pause_->SetScaleY(texture_height);
+		pause_->SetScaleX(texture_width * screen_scaler);
+		pause_->SetScaleY(texture_height * screen_scaler);
 
 		pause_->SetTranslationX(screen_width / 2.f);
 		pause_->SetTranslationY(screen_height / 4.f);
@@ -165,8 +168,8 @@ void PauseMenu::UpdatePauseMenu(float deltaTime)
 		texture_width = static_cast<float>(menu_game_resume_->GetTextureImageInfo()->Width);
 		texture_height = static_cast<float>(menu_game_resume_->GetTextureImageInfo()->Height);
 
-		menu_game_resume_->SetScaleX(texture_width);
-		menu_game_resume_->SetScaleY(texture_height);
+		menu_game_resume_->SetScaleX(texture_width * screen_scaler);
+		menu_game_resume_->SetScaleY(texture_height * screen_scaler);
 
 		menu_game_resume_->SetTranslationX(screen_width / 2.f);
 		menu_game_resume_->SetTranslationY((screen_height / 2.f) - (texture_height / 2.f));
@@ -177,8 +180,8 @@ void PauseMenu::UpdatePauseMenu(float deltaTime)
 		texture_width = static_cast<float>(menu_game_quit_->GetTextureImageInfo()->Width);
 		texture_height = static_cast<float>(menu_game_quit_->GetTextureImageInfo()->Height);
 
-		menu_game_quit_->SetScaleX(texture_width);
-		menu_game_quit_->SetScaleY(texture_height);
+		menu_game_quit_->SetScaleX(texture_width * screen_scaler);
+		menu_game_quit_->SetScaleY(texture_height * screen_scaler);
 
 		menu_game_quit_->SetTranslationX(screen_width / 2.f);
 		menu_game_quit_->SetTranslationY((screen_height / 2.f) + (texture_height / 2.f));
@@ -225,11 +228,14 @@ void PauseMenu::UpdatePauseMenuState(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 
+	// Šgk’l‚ÌÝ’è
+	float screen_scaler = game_->GetGraphics()->GetScreenScaler();
+
 	switch (pause_select_state_)
 	{
 	case PauseMenuSelectState::Resume:
-		menu_cursor_->SetScaleX(menu_game_resume_->GetScale()->x);
-		menu_cursor_->SetScaleY(menu_game_resume_->GetScale()->y);
+		menu_cursor_->SetScaleX(menu_game_resume_->GetScale()->x * screen_scaler);
+		menu_cursor_->SetScaleY(menu_game_resume_->GetScale()->y * screen_scaler);
 
 		menu_cursor_->SetTranslationX(menu_game_resume_->GetPosition()->x);
 		menu_cursor_->SetTranslationY(menu_game_resume_->GetPosition()->y);
@@ -241,8 +247,8 @@ void PauseMenu::UpdatePauseMenuState(float deltaTime)
 		break;
 
 	case PauseMenuSelectState::Quit:
-		menu_cursor_->SetScaleX(menu_game_quit_->GetScale()->x);
-		menu_cursor_->SetScaleY(menu_game_quit_->GetScale()->y);
+		menu_cursor_->SetScaleX(menu_game_quit_->GetScale()->x * screen_scaler);
+		menu_cursor_->SetScaleY(menu_game_quit_->GetScale()->y * screen_scaler);
 
 		menu_cursor_->SetTranslationX(menu_game_quit_->GetPosition()->x);
 		menu_cursor_->SetTranslationY(menu_game_quit_->GetPosition()->y);
