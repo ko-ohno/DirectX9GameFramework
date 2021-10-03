@@ -246,6 +246,9 @@ void Player::Uninit(void)
 -----------------------------------------------------------------------------*/
 void Player::InputGameObject(void)
 {
+	auto game_state = game_->GetGameState();
+	if (game_state == Game::GameState::GameStartScene) { return; }
+
 	// チャージ弾の武器コンポーネントの確認
 	if(charge_blaster_ == nullptr)
 	{

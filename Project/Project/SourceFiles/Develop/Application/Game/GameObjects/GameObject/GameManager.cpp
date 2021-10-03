@@ -215,12 +215,8 @@ void GameManager::UpdateGameObject(float deltaTime)
 		bgm_->PlayLoop();
 	}
 
-	// 値コンポーネントの更新
-	this->UpdateParameterComponent(deltaTime);
-
-	// イベントの画面だったらなにもしない
+	// ゲームの状態を取得
 	auto game_state = game_->GetGameState();
-	if (game_state == Game::GameState::GameStartScene) { return; }
 
 	// 場面切り替えを行うか？	 
 	if (is_secen_change_ == false)
@@ -248,6 +244,11 @@ void GameManager::UpdateGameObject(float deltaTime)
 			save_data_manager->AddNewSaveData(NEW SaveData(score_value_));
 		}
 	}
+
+	if (game_state != Game::GameState::Gameplay) { return; }
+
+	// 値コンポーネントの更新
+	this->UpdateParameterComponent(deltaTime);
 
 	// プレイヤーのHUDを生成する
 	{

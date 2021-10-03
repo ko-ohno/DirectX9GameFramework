@@ -177,6 +177,8 @@ void LoadingScreen::UpdateGameObject(float deltaTime)
 		break;
 
 	case LoadingState::SceneChanged:
+		// ƒQ[ƒ€‰æ–Ê‚ð•\Ž¦‚·‚éî•ñ‚ð’Ê’m
+		this->parameter_is_show_game_screen_->SetBool(false);
 		this->parameter_is_scene_changed_->SetBool(true);
 		loading_state_ = LoadingState::SecondHalf;
 		break;
