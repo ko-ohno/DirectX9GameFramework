@@ -100,6 +100,10 @@ private:
 	int drawable_digit_length_;
 
 	// フォントの幅と高さ
+	int max_font_width_;
+	int max_font_height_;
+
+	// フォントの幅と高さ
 	int font_width_;
 	int font_height_;
 

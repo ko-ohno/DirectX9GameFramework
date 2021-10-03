@@ -24,6 +24,8 @@ SpriteDigitRendererComponent::SpriteDigitRendererComponent(class GameObject* own
 	, green_(255)
 	, blue_(255)
 	, alpha_(255)
+	, max_font_width_(0)
+	, max_font_height_(0)
 	, font_width_(0)
 	, font_height_(0)
 	, max_digit_width_(0)
@@ -60,8 +62,8 @@ bool SpriteDigitRendererComponent::Init(void)
 		offset_width_ = 25;
 
 		// 時の幅と高さ
-		font_width_			   =  90;
-		font_height_		   = 100;
+		font_width_ = max_font_width_  =  90;
+		font_height_ = max_font_height_ = 100;
 
 		// 描画する桁数字の長さ
 		drawable_digit_length_ = 8;
@@ -167,6 +169,12 @@ void SpriteDigitRendererComponent::Update(float deltaTime)
 			//桁の余りの計算
 			draw_digit_value = int_data_ % magnification;	//score_をmagnificationのｎ桁で割った余りを代入する。
 			draw_digit_value /= surplus_magnification;		//score_(割った余り)をsurplus_magnificationで割れた数を代入する。
+		}
+
+		// フォントのサイズの更新をする
+		{
+			font_height_ = max_font_height_ * scale_.x;
+			font_width_  = max_font_width_ * scale_.y;
 		}
 
 		// 拡縮率の更新
