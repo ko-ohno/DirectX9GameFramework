@@ -10,7 +10,7 @@
 #include "../../../../../StdAfx.h"
 #include "_MeshTest.h"
 #include "../../Component/RendererComponent/StdMeshRendererComponent.h"
-
+#include "../../Component/RendererComponent/FFPMeshRendererComponent.h"
 #include "../../../../ImGui/ImGuiManager.h"
 
 /*-----------------------------------------------------------------------------
@@ -25,7 +25,7 @@ MeshTest::MeshTest(Game* game)
 	std_mesh_renderer_component_ = NEW StdMeshRendererComponent(this);
 	std_mesh_renderer_component_->SetMesh(XFileMeshType::Box);
 
-	std_mesh_renderer_component_a = NEW StdMeshRendererComponent(this);
+	std_mesh_renderer_component_a = NEW FFPMeshRendererComponent(this);
 	std_mesh_renderer_component_a->SetMesh(XFileMeshType::BlueBullet);
 	std_mesh_renderer_component_a->SetTranslationX(-5.f);
 

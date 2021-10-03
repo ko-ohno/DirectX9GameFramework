@@ -80,18 +80,6 @@ void BillboardTest::UpdateGameObject(float deltaTime)
 
 	billboard_a_->SetTranslationX(3.f);
 	billboard_a_->SetUVAnimation(int(wid - val), int(het - val), wid, het);
-
-
-	static float test_rot = 0.f;
-	ImGui::Begin("billboard_transform_test");
-	ImGui::Text("billboard_transform_test:%f", test_rot);
-	ImGui::SliderFloat("##test_rot_bar", &test_rot, 0.0f, 360.0f);
-	ImGui::Text("transform_deg_:%f", transform_component_->GetAngleYaw());
-	ImGui::End();
-
-	transform_component_->IsSetExecuteSlerpRotation(true);
-	this->transform_component_->SetRotationYaw(test_rot);
-
 }
 
 /*=============================================================================

@@ -146,7 +146,7 @@ void SplashScreenManager::Update(float deltaTime)
 				//コンボボックス
 				{
 					//スプラッシュスクリーン起動直後のコンボボックスの選択値
-					static int combo_item_current = 2;
+					static int combo_item_current = screen_scaler_array_.size() -1;
 
 					//選択中の比率の更新
 					aspect_ratio_size_ = aspect_ratio_size_array_.at(combo_item_current);

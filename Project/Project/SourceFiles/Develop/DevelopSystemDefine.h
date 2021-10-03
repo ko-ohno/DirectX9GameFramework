@@ -10,15 +10,51 @@
 
 /*--- インクルードファイル ---*/
 
-//この定義をコメント化するかしないかで処理を省くように指定する。
+
+
+/*-------------------------------------
+/* 開発中かの設定
+-------------------------------------*/
+// この定義をコメント化するかしないかで、開発の際に無駄な処理を省くように指定する。
 //#define IN_DEVELOPMENT_ 
 
-//テストコード
+// テストコード
 #if defined(IN_DEVELOPMENT_)
 	//Enable;
 #else
 	//Disable;
 #endif // defined(IN_DEVELOPMENT_)
+
+
+
+/*-------------------------------------
+/* デバッグモードかの設定
+-------------------------------------*/
+// この定義をコメント化するかしないかで、デバッグモード(各コンポーネントのImGuiを表示する)かどうかを設定する。
+#define DEBUG_MODE_ 
+
+// テストコード
+#if defined(DEBUG_MODE_)
+	//Enable;
+#else
+	//Disable;
+#endif // defined(DEBUG_MODE_)
+
+
+
+/*-------------------------------------
+/* ImGuiのiniファイルの設定
+-------------------------------------*/
+// この定義をコメント化するかしないかで、ImGuiがIniファイルを生成・読み込みをするかしないかを指定する。
+#define IMGUI_INI_FILE_MODE_ 
+
+//テストコード
+#if defined(IMGUI_INI_FILE_MODE_)
+	//Enable;
+#else
+	//Disable;
+#endif // defined(CREATE_INI_FILE_)
+
 
 
 #endif //DEVELOP_SYSTEM_DEFINE_H_

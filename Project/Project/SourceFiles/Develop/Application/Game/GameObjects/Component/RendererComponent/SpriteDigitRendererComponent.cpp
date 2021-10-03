@@ -173,8 +173,8 @@ void SpriteDigitRendererComponent::Update(float deltaTime)
 
 		// フォントのサイズの更新をする
 		{
-			font_height_ = max_font_height_ * scale_.x;
-			font_width_  = max_font_width_ * scale_.y;
+			font_height_ = static_cast<int>(max_font_height_ * scale_.x);
+			font_width_  = static_cast<int>(max_font_width_ * scale_.y);
 		}
 
 		// 拡縮率の更新

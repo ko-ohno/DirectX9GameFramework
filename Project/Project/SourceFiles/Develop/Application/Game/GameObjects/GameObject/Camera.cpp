@@ -51,6 +51,11 @@ bool Camera::Init(void)
 		camera_component_->SetLookAtTranslation(0.f, 0.f, 1.f);
 		camera_component_->SetCameraTranslation(0.f, 0.f, 0.f);
 	}
+
+	// ƒJƒƒ‰‚Ìó‘Ô‚ğ‰Šú‰»
+#ifdef DEBUG_MODE_
+	camera_component_->IsSetCameraControlling(true); // ƒJƒƒ‰‘€ì‚Ìó‘Ô‚ğ‰Šú‰»
+#endif // DEBUG_MODE_
 	return true;
 }
 

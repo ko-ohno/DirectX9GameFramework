@@ -92,15 +92,15 @@ void SpriteTest::UpdateGameObject(float deltaTime)
 		static float val = 0;
 		val += deltaTime * 100;
 		sprite_->SetUVAnimation(int(wid + val), int(het + val), wid, het);
-		sprite_->SetTranslation(64, 64);
+		sprite_->SetTranslation(64, 64 * 3.f);
 		sprite_->AddRotate(deltaTime * 10);
 	}
 
-	sprite_a_->SetTranslation(100, 200);
+	sprite_a_->SetTranslation(100 * 2.5f, 200);
 	sprite_a_->SetScale(128, 128);
 
 
-	sprite_b_->SetTranslation(150, 200);
+	sprite_b_->SetTranslation(150 * 2.f, 200);
 	sprite_b_->SetScale(128, 128);
 
 

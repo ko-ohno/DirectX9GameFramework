@@ -33,7 +33,7 @@ public:
 private:
 	class StdMeshRendererComponent* std_mesh_renderer_component_;
 
-	class StdMeshRendererComponent* std_mesh_renderer_component_a;
+	class FFPMeshRendererComponent* std_mesh_renderer_component_a;
 	class StdMeshRendererComponent* std_mesh_renderer_component_b;
 	class StdMeshRendererComponent* std_mesh_renderer_component_c;
 
