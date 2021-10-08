@@ -56,18 +56,12 @@ private:
 
 	class BillboardRendererComponent*	 far_reticle_;
 	class BillboardRendererComponent*	 near_reticle_;
-	class BillboardRendererComponent*	 lockon_reticle_;
 	
 	// 武器コンポーネント
 
 	class BlasterWeaponComponent*		 left_blaster_;
 	class BlasterWeaponComponent*		 right_blaster_;
 	class ChargeBlasterWeaponComponent*	 charge_blaster_;
-
-	// ロックオン用衝突判定コンポーネント
-
-	class OBBColliderComponent*			 lockon_collider_;
-	class BoxGizmoRendererComponent*	 lockon_gizmo_;
 
 	//
 	// 音声コンポーネント

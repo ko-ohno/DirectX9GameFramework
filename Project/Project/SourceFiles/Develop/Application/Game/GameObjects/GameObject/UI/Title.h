@@ -63,6 +63,9 @@ private:
 	// 説明
 	class SpriteRendererComponent* go_next_;
 
+	// パッドの説明
+	class SpriteRendererComponent* xinput_text_;
+
 	// タイトル
 	class SpriteRendererComponent* title_;
 

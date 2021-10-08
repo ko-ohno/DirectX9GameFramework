@@ -74,7 +74,11 @@ bool SplashScreenManager::Init(void)
 	//アスペクト比率のリストの作成
 	this->MakeListAspectRatio();
 
+#if FALSE
 	const char* filename = { "Assets/PackageImage/QR_code_to_my_github.png" };
+#else
+	const char* filename = { "Assets/PackageImage/package_icon.png" };
+#endif // TRUE
 	bool is_load_sucess = ImGui::LoadTexture(filename, &texture_, texture_size_);
 	if (!is_load_sucess) { return false; }
 

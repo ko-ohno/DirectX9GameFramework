@@ -17,6 +17,7 @@ const char* TextureManager::TextureTypeNames[static_cast<int>(TextureType::Max)]
 	, "Prototype"
 	, "Blank"
 	, "GoNext"
+	, "XInputText"
 	, "Title"
 	, "Result"
 	, "Pause"
@@ -105,6 +106,7 @@ bool TextureManager::Init(void)
 		unmap_texture_path_list_[TextureType::Prototype]		  = "PrototypingTextures/texture_01.png";
 		unmap_texture_path_list_[TextureType::Blank]			  = "Blank.png";
 		unmap_texture_path_list_[TextureType::GoNext]			  = "go_next.png";
+		unmap_texture_path_list_[TextureType::XInputText]		  = "xinput_text.png";
 		unmap_texture_path_list_[TextureType::Title]			  = "title.png";
 		unmap_texture_path_list_[TextureType::Result]			  = "result.png";
 		unmap_texture_path_list_[TextureType::Pause]			  = "Pause.png";

@@ -184,24 +184,21 @@ void SceneTitle::Update(float deltaTime)
 
 	// 入力が行われたか
 	const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
-	const bool is_input_button_A  = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
+	const bool is_input_button_A  = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A));
 
 	auto title_menu_state = title_->GetTitleMenuState();
 	switch (title_menu_state)
 	{
 	case TitleMenuState::GameStart:
-		if (this->is_scene_change_tirgger_ == false)
+		if (is_input_key_space || is_input_button_A)
 		{
-			if (is_input_key_space || is_input_button_A)
+			if (this->is_scene_change_tirgger_ == false)
 			{
 				// 場面切り替えのトリガーをONにして入力を無効化
 				is_scene_change_tirgger_ = true;
 
 				// 場面切り替えを申請
 				this->is_need_scene_changed_ = true;
-
-				// ゲームの状態をロード画面の状態として設定
-				game_->SetGameState(Game::GameState::Loading);
 			}
 		}
 		break;
@@ -233,6 +230,9 @@ void SceneTitle::Update(float deltaTime)
 	const bool is_scene_changed = parameter_is_scene_changed->GetBool();
 	if (is_scene_changed)
 	{
+		// ゲームの状態をロード画面の状態として設定
+		game_->SetGameState(Game::GameState::Loading);
+
 		// ゲーム場面へ
 		this->ChangeScene();
 	}

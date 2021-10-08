@@ -85,7 +85,7 @@ bool GameObjectFactory::StartUp(void)
 	game_objects_.clear();
 
 	//ゲームオブジェクトの作成と追加
-	const bool isTestMode = true;
+	const bool isTestMode = false;
 	if(isTestMode)
 	{
 		this->AddGameObject(NEW CameraTest(game_));

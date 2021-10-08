@@ -22,9 +22,14 @@ const char* SoundManager::SoundTypeNames[static_cast<int>(SoundType::Max)] = {
 
 	, "SelectSound"
 
-	, "DamageBoss"		// ボスにダメージ
-	, "DamagePlayer"	// プレイヤーにダメージ
-	, "DangerAlert"		// 危険通知
+	, "DamageBoss"				// ボスにダメージ
+	, "DamagePlayer"			// プレイヤーにダメージ
+	, "DangerAlert"				// 危険通知
+	, "LockonAlert"				// ロックオン通知
+	, "ChargeBulletCharge"		// チャージ弾チャージ
+	, "ChargeBulletFire	"		// チャージ弾発射
+	, "ChargeBulletExplosion"	// チャージ弾爆発
+
 
 };
 
@@ -77,6 +82,10 @@ bool SoundManager::StartUp(void)
 		this->LoadSound(SoundType::DamageBoss);
 		this->LoadSound(SoundType::DamagePlayer);
 		this->LoadSound(SoundType::DangerAlert);
+		this->LoadSound(SoundType::LockonAlert);
+		this->LoadSound(SoundType::ChargeBulletCharge);
+		this->LoadSound(SoundType::ChargeBulletFire);
+		this->LoadSound(SoundType::ChargeBulletExplosion);
 	}
 	return true;
 }
@@ -111,10 +120,14 @@ bool SoundManager::Init(void)
 
 		// SE
 		//unmap_sound_path_list_[SoundType::Sample] = "SE/samaple.wav";
-		unmap_sound_path_list_[SoundType::SelectSound]		= "SE/select_sound.wav";
-		unmap_sound_path_list_[SoundType::DamageBoss]		= "SE/damage_boss.wav";
-		unmap_sound_path_list_[SoundType::DamagePlayer]		= "SE/damage_player.wav";
-		unmap_sound_path_list_[SoundType::DangerAlert]		= "SE/danger_alert.wav";
+		unmap_sound_path_list_[SoundType::SelectSound]				= "SE/select_sound.wav";
+		unmap_sound_path_list_[SoundType::DamageBoss]				= "SE/damage_boss.wav";
+		unmap_sound_path_list_[SoundType::DamagePlayer]				= "SE/damage_player.wav";
+		unmap_sound_path_list_[SoundType::DangerAlert]				= "SE/danger_alert.wav";
+		unmap_sound_path_list_[SoundType::LockonAlert]				= "SE/lockon_alert.wav";
+		unmap_sound_path_list_[SoundType::ChargeBulletCharge]		= "SE/charge_bullet_charge.wav";
+		unmap_sound_path_list_[SoundType::ChargeBulletFire]			= "SE/charge_bullet_fire.wav";
+		unmap_sound_path_list_[SoundType::ChargeBulletExplosion]	= "SE/charge_bullet_explosion.wav";
 	}
 
 	HRESULT hr;

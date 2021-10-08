@@ -20,6 +20,7 @@ enum class TextureType
 	, Prototype
 	, Blank
 	, GoNext
+	, XInputText
 	, Title
 	, Result
 	, Pause

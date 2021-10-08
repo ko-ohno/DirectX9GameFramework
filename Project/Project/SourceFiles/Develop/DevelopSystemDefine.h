@@ -31,10 +31,25 @@
 /* デバッグモードかの設定
 -------------------------------------*/
 // この定義をコメント化するかしないかで、デバッグモード(各コンポーネントのImGuiを表示する)かどうかを設定する。
-#define DEBUG_MODE_ 
+//#define DEBUG_MODE_
 
 // テストコード
 #if defined(DEBUG_MODE_)
+	//Enable;
+#else
+	//Disable;
+#endif // defined(DEBUG_MODE_)
+
+
+
+/*-------------------------------------
+/* カメラのデバッグモードの設定
+-------------------------------------*/
+// この定義をコメント化するかしないかで、カメラコンポーネントの操作状況を初期化を設定する。
+//#define CAMERA_DEBUG_MODE_ 
+
+// テストコード
+#if defined(CAMERA_DEBUG_MODE_)
 	//Enable;
 #else
 	//Disable;

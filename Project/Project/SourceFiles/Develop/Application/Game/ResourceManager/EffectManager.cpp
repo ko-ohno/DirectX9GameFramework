@@ -221,7 +221,7 @@ bool EffectManager::Init(void)
 	{	
 			
 		// 最大で出力するスプライトの数
-		const int maximize_render_sprite_count = 2500;
+		const int maximize_render_sprite_count = 3000;
 
 		// 描画用インスタンスの生成
 		renderer_ = EffekseerRendererDX9::Renderer::Create(*DX9Graphics::GetLPD3DDevice(), maximize_render_sprite_count);

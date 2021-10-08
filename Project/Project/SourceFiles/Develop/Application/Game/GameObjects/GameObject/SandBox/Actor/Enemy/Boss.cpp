@@ -65,6 +65,10 @@ Boss::Boss(Game* game)
 	, enemy_damage_sound_effect_(nullptr)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
+	, is_enable_recieved_charge_bullet_damege_(false)
+	, recieved_charge_bullet_total_damege_value_(0.f)
+	, is_enable_recieved_charge_bullet_interval_time_(false)
+	, received_charge_bullet_interval_time_(0.f)
 	, is_fire_(false)
 	, blaster_index_(0)
 	, switch_time_(0.f)
@@ -222,6 +226,9 @@ bool Boss::Init(void)
 		hp_param_->SetParameterType(ParameterType::BossHP);
 		hp_param_->SetFloat(hit_point_);
 	}
+
+	// 球の衝突判定の初期化更新
+	sphere_collider_->Update(0.f);
 	return true;
 }
 
@@ -542,12 +549,62 @@ void Boss::UpdateCollision(float deltaTime)
 			// ダメージを受けたSEを再生
 			enemy_damage_sound_effect_->Play();
 
-			// ダメージをを受ける
+			// ダメージの値
 			const float DAMAGE = -5.f;
-			hit_point_ += DAMAGE;
 
-			// 衝突したバレットを破棄する
-			bullet->SetGameObjectState(State::Dead);
+			auto bullet_type = bullet->GetType();
+			if (bullet_type == GameObject::TypeID::ChargeBullet)
+			{
+				if (is_enable_recieved_charge_bullet_interval_time_ == false)
+				{
+					if (is_enable_recieved_charge_bullet_damege_ == false)
+					{
+						is_enable_recieved_charge_bullet_damege_ = true;
+					}
+					else
+					{
+						// ダメージを受ける
+						hit_point_ += DAMAGE * deltaTime;
+
+						// 受けたダメージの総量を計算
+						recieved_charge_bullet_total_damege_value_ += (DAMAGE * -1.f) * deltaTime;
+
+						// ダメージの総量が最大を超えたら着弾インターバルを有効に
+						if (recieved_charge_bullet_total_damege_value_ >= MAX_RECIEVED_CHARGE_BULLET_TOTAL_DAMEGE_VALUE_)
+						{
+							is_enable_recieved_charge_bullet_interval_time_ = true;
+						}
+
+						// ダメージ受けている間、着弾インターバルの時間を0に設定
+						received_charge_bullet_interval_time_ = 0.f;
+					}
+				}
+				else
+				{
+
+					is_enable_recieved_charge_bullet_damege_ = false;
+
+					// 次のチャージ弾のダメージを受け付けるまでの着弾インターバルを計算
+					received_charge_bullet_interval_time_ += deltaTime;
+					if (received_charge_bullet_interval_time_ >= MAX_RECIEVED_CHARGE_BULLET_INTERVAL_TIME_)
+					{
+						// 着弾インターバル時間が終わったら受けたダメージの総量を0に設定
+						recieved_charge_bullet_total_damege_value_ = 0.f;
+
+						// 着弾インターバルを無効に
+						is_enable_recieved_charge_bullet_interval_time_ = false;
+					}
+				}
+				continue;
+			}
+			else
+			{
+				// ダメージを受ける
+				hit_point_ += DAMAGE;
+
+				// 衝突したバレットを破棄する
+				bullet->SetGameObjectState(State::Dead);
+			}
 			break;
 		}
 

@@ -53,9 +53,9 @@ bool Camera::Init(void)
 	}
 
 	// ƒJƒƒ‰‚Ìó‘Ô‚ğ‰Šú‰»
-#ifdef DEBUG_MODE_
+#ifdef CAMERA_DEBUG_MODE_
 	camera_component_->IsSetCameraControlling(true); // ƒJƒƒ‰‘€ì‚Ìó‘Ô‚ğ‰Šú‰»
-#endif // DEBUG_MODE_
+#endif // CAMERA_DEBUG_MODE_
 	return true;
 }
 

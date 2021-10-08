@@ -174,6 +174,16 @@ bool GameManager::Init(void)
 		//game_left_time_ = 0.f;
 		//spawn_count_ = 6;
 	}
+
+//#ifdef DEBUG_MODE_
+//		NEW WeakEnemy(game_);
+//		NEW StrongEnemy(game_);
+//		NEW Boss(game_);
+//
+//		NEW BossHUD(game_);
+//
+//　game_->SetGameState(Game::GameState::Gameplay);
+//#endif // !DEBUG_MODE_
 	return true;
 }
 
@@ -293,91 +303,91 @@ void GameManager::UpdateGameObject(float deltaTime)
 		this->UpdateBGM(deltaTime);
 	}
 
+#if TRUE
 	// 敵のウェーブの生成
+	const int MAX_SPAWN_COUNT = 7;
+	if (spawn_count_ >= MAX_SPAWN_COUNT) { return; }
+
+	// エネミーのファクトリの更新処理
+	if (enemy_factory_ != nullptr)
 	{
-		const int MAX_SPAWN_COUNT = 7;
-		if (spawn_count_ >= MAX_SPAWN_COUNT) { return; }
+		// 生成するフラグを初期化
+		is_enemy_spawn_ = false;
 
-		// エネミーのファクトリの更新処理
-		if (enemy_factory_ != nullptr)
+		// エネミーを生成する差分の時間を求める
+		const float spawn_time = MAX_SPAWN_TIME_ - (SPAWN_DIFF_TIME_ * spawn_count_);
+
+		// エネミーの生成を行うか？
+		const bool is_execute_spawn = ((game_left_time_ <= spawn_time) && (is_enemy_spawn_ == false));
+		if (is_execute_spawn)
 		{
-			// 生成するフラグを初期化
-			is_enemy_spawn_ = false;
-
-			// エネミーを生成する差分の時間を求める
-			const float spawn_time = MAX_SPAWN_TIME_ - (SPAWN_DIFF_TIME_ * spawn_count_);
-
-			// エネミーの生成を行うか？
-			const bool is_execute_spawn = ((game_left_time_ <= spawn_time) && (is_enemy_spawn_ == false));
-			if (is_execute_spawn)
+			if (game_left_time_ >= 0.1f)
 			{
-				if (game_left_time_ >= 0.1f)
+				switch (spawn_count_)
 				{
-					switch (spawn_count_)
-					{
-					case 0:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_1(game_));
-						break;
+				case 0:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_1(game_));
+					break;
 
-					case 1:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_2(game_));
-						break;
+				case 1:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_2(game_));
+					break;
 
-					case 2:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_3(game_));
-						break;
+				case 2:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_3(game_));
+					break;
 
-					case 3:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_4(game_));
-
-						// 現在のエフェクトの停止
-						effect_space_dust_->Stop();
-
-						// エフェクトの切り替え
-						effect_space_dust_->SetEffect(EffectType::SpaceDustBlue);
-						effect_space_dust_->Play();
-						break;
-
-					case 4:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_5(game_));
-						break;
-
-					case 5:
-						enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_6(game_));
-						break;
-
-					default:
-						break;
-					}
-				}
-				else
-				{
-					// ボスの生成
-					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
-
-					// BGMの切り替えを有効に
-					is_bgm_change_ = true;
-
-					// ボスのHUDを生成を有効にする
-					is_create_boss_hud_ = true;
+				case 3:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_4(game_));
 
 					// 現在のエフェクトの停止
 					effect_space_dust_->Stop();
 
 					// エフェクトの切り替え
-					effect_space_dust_->SetEffect(EffectType::SpaceDustRed);
+					effect_space_dust_->SetEffect(EffectType::SpaceDustBlue);
 					effect_space_dust_->Play();
+					break;
+
+				case 4:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_5(game_));
+					break;
+
+				case 5:
+					enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_6(game_));
+					break;
+
+				default:
+					break;
 				}
-
-				// 生成カウントを加算
-				spawn_count_++;
-
-				// 生成したことを記憶
-				is_enemy_spawn_ = true;
 			}
-			enemy_factory_->Update(deltaTime);
+			else
+			{
+				// ボスの生成
+				enemy_factory_->ChangeFactoryState(NEW EnemyFactoryState_Last(game_));
+
+				// BGMの切り替えを有効に
+				is_bgm_change_ = true;
+
+				// ボスのHUDを生成を有効にする
+				is_create_boss_hud_ = true;
+
+				// 現在のエフェクトの停止
+				effect_space_dust_->Stop();
+
+				// エフェクトの切り替え
+				effect_space_dust_->SetEffect(EffectType::SpaceDustRed);
+				effect_space_dust_->Play();
+			}
+
+			// 生成カウントを加算
+			spawn_count_++;
+
+			// 生成したことを記憶
+			is_enemy_spawn_ = true;
 		}
+		enemy_factory_->Update(deltaTime);
 	}
+#endif
 }
 
 /*-----------------------------------------------------------------------------

@@ -184,7 +184,7 @@ void GameCamera::UpdateGameObject(float deltaTime)
 			// カメラの値を補間するための強度
 			const float smooth_time = 0.5f;
 
-
+#if TRUE
 			// ゲームの状態を取得
 			auto game_state = game_->GetGameState();
 			if (game_state == Game::GameState::GameStartScene)
@@ -213,6 +213,16 @@ void GameCamera::UpdateGameObject(float deltaTime)
 				camera_position.x = Math::Lerp(camera_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
 				camera_position.y = Math::Lerp(camera_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
 			}
+#else
+			// 注視点座標を補間
+			lookat_target.x = Math::Lerp(lookat_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
+			lookat_target.y = Math::Lerp(lookat_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
+
+			// カメラ座標を補間
+			camera_position.x = Math::Lerp(camera_position.x, lookat_target.x, Easing::QuintInOut(smooth_time));
+			camera_position.y = Math::Lerp(camera_position.y, lookat_target.y, Easing::QuintInOut(smooth_time));
+
+#endif
 
 			// プレイヤー座標に垂直揺れを加算した座標
 			lookat_target.y = lookat_target.y + vertical_camera_shake_;

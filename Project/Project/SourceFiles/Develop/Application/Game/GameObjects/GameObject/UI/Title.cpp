@@ -22,6 +22,8 @@ Title::Title(class Game* game)
 	, menu_game_start_(nullptr)
 	, menu_game_quit_(nullptr)
 	, menu_cursor_(nullptr)
+	, go_next_(nullptr)
+	, xinput_text_(nullptr)
 	, title_(nullptr)
 	, bg_(nullptr)
 	, bgm_title_(nullptr)
@@ -76,6 +78,11 @@ bool Title::Init(void)
 		// 説明の表示
 		go_next_ = NEW SpriteRendererComponent(this);
 		go_next_->SetTexture(TextureType::GoNext);
+
+		// パッド説明の表示
+		xinput_text_ = NEW SpriteRendererComponent(this);
+		xinput_text_->SetTexture(TextureType::XInputText);
+
 	}
 
 	// メニューの初期化
@@ -107,14 +114,16 @@ void Title::InputGameObject(void)
 	const float InputDeadZone = 0.1f;
 
 	const bool is_up = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ >= InputDeadZone)
-						|| InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP));
+						|| InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_UP)
+						|| InputCheck::KeyTrigger(DIK_W));
 	if (is_up)
 	{
 		select_state_ = TitleMenuState::GameStart;
 	}
 
 	const bool is_down = ((InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ <= -InputDeadZone)
-						  || InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN));
+						  || InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_DOWN)
+						  || InputCheck::KeyTrigger(DIK_S));
 	if (is_down)
 	{
 		select_state_ = TitleMenuState::GameQuit;
@@ -314,7 +323,21 @@ void Title::UpdateMenu(float deltaTime)
 		go_next_->SetTranslationX(screen_width_ - texture_width);
 		go_next_->SetTranslationY(screen_height_ - texture_height);
 	}
-	
+
+	// ゲームパッドの説明の表示
+	{
+		// テクスチャのサイズを取得
+		texture_width  = static_cast<float>(xinput_text_->GetTextureImageInfo()->Width);
+		texture_height = static_cast<float>(xinput_text_->GetTextureImageInfo()->Height);
+
+		// ポリゴンのサイズを更新
+		xinput_text_->SetScaleX(texture_width);
+		xinput_text_->SetScaleY(texture_height);
+
+		// 描画座標の更新
+		xinput_text_->SetTranslationX(texture_width * 0.25f);
+		xinput_text_->SetTranslationY(screen_height_ - texture_height);
+	}
 }
 
 /*=============================================================================

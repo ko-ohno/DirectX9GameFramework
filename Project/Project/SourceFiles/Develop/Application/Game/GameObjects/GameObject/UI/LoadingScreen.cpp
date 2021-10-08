@@ -156,6 +156,7 @@ void LoadingScreen::UpdateGameObject(float deltaTime)
 
 		// ロード画面の表示
 		is_show_loading_screen_ = true;
+
 	}
 
 	// ロード画面を表示するか？
@@ -165,6 +166,7 @@ void LoadingScreen::UpdateGameObject(float deltaTime)
 	switch (loading_state_)
 	{
 	case LoadingState::Idle:
+		// ロード画面を表示したら読み込み開始
 		loading_state_ = LoadingState::FirstHalf;
 		break;
 

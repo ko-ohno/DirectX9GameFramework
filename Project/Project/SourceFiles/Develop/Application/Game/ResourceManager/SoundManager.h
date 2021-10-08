@@ -27,10 +27,14 @@ enum class SoundType
 	, Kemono
 
 	// SE
-	, SelectSound		// 選択
-	, DamageBoss		// ボスにダメージ
-	, DamagePlayer		// プレイヤーにダメージ
-	, DangerAlert		// 危険通知
+	, SelectSound			// 選択
+	, DamageBoss			// ボスにダメージ
+	, DamagePlayer			// プレイヤーにダメージ
+	, DangerAlert			// 危険通知
+	, LockonAlert			// ロックオン通知
+	, ChargeBulletCharge	// チャージ弾チャージ
+	, ChargeBulletFire		// チャージ弾発射
+	, ChargeBulletExplosion // チャージ弾爆発
 
 	, Max
 };

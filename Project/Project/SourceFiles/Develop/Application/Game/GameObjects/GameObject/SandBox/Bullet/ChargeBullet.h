@@ -49,6 +49,9 @@ public:
 	// チャージ弾の発射
 	void Fire(void);
 
+	// ターゲットの敵へのポインタを設定
+	void SetLockonTargetEnemy(class Enemy* enemy);
+
 private:
 	void UpdateMovement(float deltaTime);
 	void UpdateChargeBulletState(float deltaTime);
@@ -85,13 +88,18 @@ public:
 
 private:
 	// チャージ弾の最大ステート数
-	static constexpr int MAX_CHARGE_BULLET_STATE = 4;
+	static constexpr int MAX_CHARGE_BULLET_STATE_ = 4;
 
 	// それぞれのエフェクト番号の登録先
-	enum class EffectType effect_type_[MAX_CHARGE_BULLET_STATE];
+	enum class EffectType effect_type_[MAX_CHARGE_BULLET_STATE_];
 
 	// それぞれのエフェクトの配列
-	class EffectRendererComponent* effect_[MAX_CHARGE_BULLET_STATE];	
+	class EffectRendererComponent* effect_[MAX_CHARGE_BULLET_STATE_];	
+
+	// 音声コンポーネント
+	class AudioComponent* bullet_charge_se_;
+	class AudioComponent* bullet_fire_se_;
+	class AudioComponent* bullet_explosion_se_;
 
 	// チャージ弾のステート
 	ChargeBulletState charge_bullet_state_;
@@ -112,10 +120,11 @@ private:
 	D3DXVECTOR3 src_position_
 			  , dst_position_;
 
-	float		lerp_execute_time_;		// 補間の実行時間
-	float		kill_timer_;			// 消滅までの制限時間
-	float		alive_time_;			// 生存時間
-	float		state_time_;			// ステートの実行時間
+	static constexpr float	MAX_LERP_EXECUTE_TIME_ = 0.5f;
+	float					lerp_execute_time_;		// 補間の実行時間
+	float					kill_timer_;			// 消滅までの制限時間
+	float					alive_time_;			// 生存時間
+	float					state_time_;			// ステートの実行時間
 
 };
 

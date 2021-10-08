@@ -84,6 +84,7 @@ void PlayerMoveComponent::Update(float deltaTime)
 		owner_transform_->SetSlerpSpeed(1.2f);
 	}
 
+#if TRUE
 	const bool is_animation_scene = ((owner_->GetGame()->GetGameState() == Game::GameState::GameStartScene)
 									 || (owner_->GetGame()->GetGameState() == Game::GameState::GameFinishScene));
 	if (is_animation_scene)
@@ -97,12 +98,19 @@ void PlayerMoveComponent::Update(float deltaTime)
 		position_ = *owner_transform_->GetPosition();
 		move_animation_time_ = 0.f;
 	}
+#endif // !TRUE
 
-	// 入力から移動の状態を更新
+	// パッドの入力から移動の状態を更新
 	Vector2 left_thumb = InputCheck::XInputThumbLeft(PadIndex::Pad1);
 	{
 		this->UpdateMovementState(left_thumb);
 	}
+
+	// キー入力の場合
+	bool is_enable_key_w = InputCheck::KeyPress(DIK_W);
+	bool is_enable_key_s = InputCheck::KeyPress(DIK_S);
+	bool is_enable_key_a = InputCheck::KeyPress(DIK_A);
+	bool is_enable_key_d = InputCheck::KeyPress(DIK_D);
 
 	// 上下左右の移動処理
 	D3DXVECTOR3 front_vector = *owner_transform_->GetFrontVector();
@@ -110,14 +118,24 @@ void PlayerMoveComponent::Update(float deltaTime)
 	{
 		// 上下の移動処理
 		{
+			if (is_enable_key_w)
+			{
+				left_thumb.y_ = 1.f;
+			}
+
+			if (is_enable_key_s)
+			{
+				left_thumb.y_ = -1.f;
+			}
+
 			const float move_value_y = left_thumb.y_ * (front_vector.y * move_speed_);
-			if (is_move_top_)
+			if (is_move_top_ || is_enable_key_w)
 			{
 				owner_transform_->SetRotationPitch(-30.f);
 				owner_transform_->AddTranslationY((move_value_y * deltaTime) + default_move_value);
 			}
 
-			if (is_move_bottom_)
+			if (is_move_bottom_ || is_enable_key_s)
 			{
 				owner_transform_->SetRotationPitch(30.f);
 				owner_transform_->AddTranslationY((-move_value_y * deltaTime) - default_move_value);
@@ -126,32 +144,42 @@ void PlayerMoveComponent::Update(float deltaTime)
 		
 		// 左右の移動処理
 		{
+			if (is_enable_key_w)
+			{
+				left_thumb.x_ = 1.f;
+			}
+
+			if (is_enable_key_s)
+			{
+				left_thumb.x_ = -1.f;
+			}
+
 			const float move_value_x = left_thumb.x_ * (front_vector.x * move_speed_);
-			if (is_move_right_)
+			if (is_move_right_ || is_enable_key_a)
 			{
 				owner_transform_->SetRotationYaw(30.f);
 				owner_transform_->SetRotationRoll(-15.f);
-				owner_transform_->AddTranslationX((move_value_x * deltaTime) + default_move_value);;
+				owner_transform_->AddTranslationX((move_value_x * deltaTime) + default_move_value);
 			}
 
-			if (is_move_left_)
+			if (is_move_left_ || is_enable_key_d)
 			{
 				owner_transform_->SetRotationYaw(-30.f);
 				owner_transform_->SetRotationRoll(15.f);
-				owner_transform_->AddTranslationX((-move_value_x * deltaTime) - default_move_value);;
+				owner_transform_->AddTranslationX((-move_value_x * deltaTime) - default_move_value);
 			}
 		}
 
 		//各回転軸に対してなにもしていない時に姿勢を更新
 		{
-			const bool is_disable_yaw = !(is_move_left_ || is_move_right_);
+			const bool is_disable_yaw = !(is_move_left_ || is_move_right_ || is_enable_key_a || is_enable_key_d);
 			if (is_disable_yaw)
 			{
 				owner_transform_->SetRotationYaw(0.f);
 				owner_transform_->SetRotationRoll(0.f);
 			}
 
-			const bool is_disable_pitch = !(is_move_top_ || is_move_bottom_);
+			const bool is_disable_pitch = !(is_move_top_ || is_move_bottom_ || is_enable_key_w || is_enable_key_s);
 			if (is_disable_pitch)
 			{
 				owner_transform_->SetRotationPitch(0.f);

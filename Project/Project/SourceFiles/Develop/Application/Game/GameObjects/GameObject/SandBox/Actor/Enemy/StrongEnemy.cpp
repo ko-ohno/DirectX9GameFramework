@@ -85,8 +85,9 @@ bool StrongEnemy::Init(void)
 		this->enemy_move_->SetStartPositionY(-100.f);
 
 		// テスト用生成座標
-		//this->transform_component_->SetTranslationX(3.f);
-		//this->transform_component_->SetTranslationZ(8.f);
+		//D3DXVECTOR3 pos = { 3.f, 3.f, 15.f };
+		//this->transform_component_->SetTranslation(pos);
+		//this->enemy_move_->SetStartPosition(pos);
 	}
 
 	// 強い敵のメッシュ生成
@@ -176,6 +177,14 @@ bool StrongEnemy::Init(void)
 			obb_collider_gizmo_->SetScaleZ(box_size);
 		}
 	}
+
+	// 一時的初期化
+	{
+		enemy_ai_->SetEnemyState(EnemyState::Idle);
+	}
+
+	// 球の衝突判定の初期化更新
+	sphere_collider_->Update(0.f);
 	return true;
 }
 
@@ -431,11 +440,21 @@ void StrongEnemy::UpdateCollision(float deltaTime)
 			{
 				if (CheckCollision::SphereVSSpghre(this->GetSphereCollider(), bullet->GetSphereCollider()))
 				{
-					// エネミーが破壊される
-					this->SetGameObjectState(State::Destroy);
+					// チャージ弾かを判定
+					auto bullet_type = bullet->GetType();
+					if (bullet_type == GameObject::TypeID::ChargeBullet)
+					{
+						// チャージ弾の判定で破壊させる
+						break;;
+					}
+					else
+					{
+						// エネミーが破壊される
+						this->SetGameObjectState(State::Destroy);
 
-					// 衝突したバレットを破棄する
-					bullet->SetGameObjectState(State::Dead);
+						// 衝突したバレットを破棄する
+						bullet->SetGameObjectState(State::Dead);
+					}
 					break;
 				}
 			}

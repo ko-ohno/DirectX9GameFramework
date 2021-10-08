@@ -231,7 +231,7 @@ void SceneGame::Update(float deltaTime)
 		if (is_game_state_game_over_ || is_game_state_game_clear_)
 		{
 			const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
-			const bool is_input_button_A = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
+			const bool is_input_button_A = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A));
 			if (is_input_key_space || is_input_button_A)
 			{
 				// ê–ÊØ‚è‘Ö‚¦‚ÌƒgƒŠƒK[‚ğON‚É‚µ‚Ä“ü—Í‚ğ–³Œø‰»

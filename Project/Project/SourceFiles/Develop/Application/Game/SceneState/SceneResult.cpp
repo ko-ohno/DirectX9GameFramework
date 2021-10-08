@@ -166,11 +166,14 @@ void SceneResult::Update(float deltaTime)
 		game_->SetGameState(Game::GameState::Result);
 	}
 
-	if (is_scene_change_tirgger_ == false)
+	auto game_state = game_->GetGameState();
+	if (game_state != Game::GameState::Result) { return; }
+
+	const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
+	const bool is_input_button_A  = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A));
+	if (is_input_key_space || is_input_button_A)
 	{
-		const bool is_input_key_space = (InputCheck::KeyTrigger(DIK_SPACE));
-		const bool is_input_button_A  = (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
-		if (is_input_key_space || is_input_button_A)
+		if (this->is_scene_change_tirgger_ == false)
 		{
 			// ê–ÊØ‚è‘Ö‚¦‚ÌƒgƒŠƒK[‚ğON‚É‚µ‚Ä“ü—Í‚ğ–³Œø‰»
 			is_scene_change_tirgger_ = true;

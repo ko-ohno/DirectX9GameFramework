@@ -221,8 +221,8 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	// 場面の初期化
 	{
 		// タイトル画面として初期化
-		//this->SetGameState(GameState::Title);
-		//this->SetSceneState(NEW SceneTitle(this));
+		this->SetGameState(GameState::Title);
+		this->SetSceneState(NEW SceneTitle(this));
 
 		// ゲーム画面として初期化
 		//this->SetGameState(GameState::Gameplay);

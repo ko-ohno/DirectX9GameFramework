@@ -79,6 +79,25 @@ private:
 	//int								hp_value_;		//Actorクラスで設定済み
 
 private:
+	// チャージバレットのダメージを受け取るか？
+	bool								is_enable_recieved_charge_bullet_damege_;
+
+	// チャージバレットのダメージを受け取るか？
+	bool								is_enable_recieved_charge_bullet_interval_time_;
+
+	// チャージ弾、一発につき受け取れるダメージの値
+	static constexpr float				MAX_RECIEVED_CHARGE_BULLET_TOTAL_DAMEGE_VALUE_ = 20.f;
+
+	// チャージ弾、一発につき現在受け取ったダメージの値
+	float								recieved_charge_bullet_total_damege_value_;
+
+	// チャージ弾、一発につき受け取れるダメージの値
+	static constexpr float				MAX_RECIEVED_CHARGE_BULLET_INTERVAL_TIME_ = 3.f;
+
+	// チャージ弾の弾のダメージ
+	float								received_charge_bullet_interval_time_;
+
+private:
 
 	// 最大武器数
 	static constexpr int				MAX_WEAPON_COUNT = 3;

@@ -58,7 +58,6 @@ Player::Player(Game* game)
 	, effect_enemy_attack_hit_(nullptr)
 	, near_reticle_(nullptr)
 	, far_reticle_(nullptr)
-	, lockon_reticle_(nullptr)
 	, left_blaster_(nullptr)
 	, right_blaster_(nullptr)
 	, charge_blaster_(nullptr)
@@ -119,11 +118,12 @@ bool Player::Init(void)
 				far_reticle_ = NEW BillboardRendererComponent(this, 290);
 				far_reticle_->SetTexture(TextureType::FarReticle);
 				far_reticle_->SetVertexColor(0, 255, 0, 255);
-				far_reticle_->IsSetDrawable(false);
 				far_reticle_->SetRendererLayerType(RendererLayerType::UI);
+				far_reticle_->IsSetDrawable(false);
 
 				// レティクルの性質の調整
-				far_reticle_->SetScale(1.2f);
+				far_reticle_->SetScaleX(1.2f);
+				far_reticle_->SetScaleY(1.2f);
 				far_reticle_->SetTranslationZ(10.f);
 			}
 
@@ -132,26 +132,13 @@ bool Player::Init(void)
 				near_reticle_ = NEW BillboardRendererComponent(this, 290);
 				near_reticle_->SetTexture(TextureType::NearReticle);
 				near_reticle_->SetVertexColor(0, 255, 0, 255);
-				near_reticle_->IsSetDrawable(false);
 				near_reticle_->SetRendererLayerType(RendererLayerType::UI);
+				near_reticle_->IsSetDrawable(false);
 
 				// レティクルの性質の調整
-				near_reticle_->SetScale(1.4f);
+				near_reticle_->SetScaleX(1.4f);
+				near_reticle_->SetScaleY(1.4f);
 				near_reticle_->SetTranslationZ(9.f);
-			}
-
-
-			//　ロックオンのレティクル
-			{
-				lockon_reticle_ = NEW BillboardRendererComponent(this, 290);
-				lockon_reticle_->SetTexture(TextureType::NearReticle);
-				lockon_reticle_->SetVertexColor(0, 255, 0, 255);
-				lockon_reticle_->IsSetDrawable(false);
-				lockon_reticle_->SetRendererLayerType(RendererLayerType::UI);
-
-				// レティクルの性質の調整
-				lockon_reticle_->SetScale(1.4f);
-				lockon_reticle_->SetTranslationZ(9.f);
 			}
 		}
 	}
@@ -200,23 +187,6 @@ bool Player::Init(void)
 
 		obb_collider_gizmo_ = NEW BoxGizmoRendererComponent(this);
 		obb_collider_gizmo_->SetScale(box_scale);
-
-		// ロックオンの箱の衝突判定
-		{
-			const float lockon_langth = 10.f;
-			const float lockon_scale = 0.5f;
-
-			lockon_collider_ = NEW OBBColliderComponent(this);
-			lockon_collider_->SetDirLength(lockon_scale, AxisType::X);
-			lockon_collider_->SetDirLength(lockon_scale, AxisType::Y);
-			lockon_collider_->SetDirLength(lockon_langth, AxisType::Z);
-
-			lockon_gizmo_ = NEW BoxGizmoRendererComponent(this);
-			lockon_gizmo_->SetVertexColor(0, 255, 255, 128);
-			lockon_gizmo_->SetScaleX(lockon_scale);
-			lockon_gizmo_->SetScaleY(lockon_scale);
-			lockon_gizmo_->SetScaleZ(lockon_langth);
-		}
 	}
 
 	// 値コンポーネントの作成
@@ -256,12 +226,12 @@ void Player::InputGameObject(void)
 	}
 
 	// 弾を発射するか
-	is_blaster_fire_ = InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A);
+	is_blaster_fire_ = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A)|| InputCheck::MButtonTrigger(MibNum::MIB_LEFT));
 
 	// ボタンを長押ししたら
 	if (charge_blaster_->IsCheckChargeBulletInstance() == false)
 	{
-		if (InputCheck::XInputRepeat(PadIndex::Pad1, XInputButton::XIB_A, 2.f))
+		if (InputCheck::XInputRepeat(PadIndex::Pad1, XInputButton::XIB_A, 2.f) || InputCheck::MButtonRepeat(MibNum::MIB_LEFT, 2.f))
 		{
 			charge_blaster_->CreateChargeBullet();
 		}
@@ -272,7 +242,7 @@ void Player::InputGameObject(void)
 		// ボタンを離したら
 		if (charge_blaster_->GetChargeBulletState() == ChargeBulletState::Hold)
 		{
-			if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A) == false)
+			if ((InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A) == false)||( InputCheck::MButtonPress(MibNum::MIB_LEFT) == false))
 			{
 				charge_blaster_->Fire();
 			}
@@ -317,7 +287,6 @@ void Player::UpdateGameObject(float deltaTime)
 	{
 		far_reticle_->IsSetDrawable(is_draw_reticle);
 		near_reticle_->IsSetDrawable(is_draw_reticle);
-		lockon_reticle_->IsSetDrawable(is_draw_reticle);
 	}
 
 	// 値コンポーネントの更新処理

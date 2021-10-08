@@ -181,7 +181,7 @@ void StrongEnemyAIComponent::Update(float deltaTime)
 -----------------------------------------------------------------------------*/
 void StrongEnemyAIComponent::EnemyStateController(void)
 {
-	const bool is_controll = true;
+	const bool is_controll = false;
 	if (is_controll)
 	{
 
