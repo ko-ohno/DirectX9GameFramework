@@ -68,7 +68,7 @@ bool CameraComponent::Init(void)
 
 	position_	   = { 0.f, 3.f, -10.f };
 	old_position_ = position_;
-	lookat_position_  = { 0.f, 1.5f,   0.f };
+	lookat_position_  = { 0.f, 3.f, 0.f };
 
 	//
 	//	カメラの姿勢ベクトル
@@ -118,6 +118,7 @@ void CameraComponent::Input(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::Update(float deltaTime)
 {
+#ifdef DEBUG_MODE_
 	ImGui::Begin("camera");
 	{
 		ImGui::Text("is_camera_moved_:%s", is_camera_moved_ ? "true" : "false");
@@ -178,6 +179,7 @@ void CameraComponent::Update(float deltaTime)
 
 	}
 	ImGui::End();
+#endif
 
 	//視線ベクトルの長さの更新
 	{
@@ -308,13 +310,13 @@ void CameraComponent::ComputeCameraMovement(float deltaTime)
 		// 左右移動
 		//
 
-		if (is_move_left)
+		if (is_move_right)
 		{
 			position_		 += (right_vector_ * move_speed_) * deltaTime;
 			lookat_position_ += (right_vector_ * move_speed_) * deltaTime;
 		}
 		
-		if (is_move_right)
+		if (is_move_left)
 		{
 			position_		 -= (right_vector_ * move_speed_) * deltaTime;
 			lookat_position_ -= (right_vector_ * move_speed_) * deltaTime;
@@ -443,6 +445,8 @@ void CameraComponent::ComputeRotationLookatPosition(float deltaTime)
 -----------------------------------------------------------------------------*/
 void CameraComponent::ComputeViewMatrix(void)
 {
+	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
+
 	// ビュー行列作成
 	{
 		//
@@ -456,7 +460,9 @@ void CameraComponent::ComputeViewMatrix(void)
 						  , &position_	 	// 視点
 						  , &lookat_position_	// 注視点
 						  , &up_vector_);	// カメラの頭の向き	
+
 	}
+	lpd3d_device->SetTransform(D3DTS_VIEW, &view_matrix_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -503,6 +509,8 @@ void CameraComponent::ComputeProjection2DMatrix(void)
 -----------------------------------------------------------------------------*/
 void CameraComponent::ComputeProjection3DMatrix(void)
 {
+	auto lpd3d_device = *owner_->GetGame()->GetGraphics()->GetLPD3DDevice();
+
 	// 3Dプロジェクション変換行列作成
 	{
 		D3DXMatrixPerspectiveFovLH(&projection_matrix_3d_												// 3D射影変換行列
@@ -511,6 +519,18 @@ void CameraComponent::ComputeProjection3DMatrix(void)
 								  , static_cast<FLOAT>(1.f)												// ニアクリップ   : カメラの描画領域の
 								  , static_cast<FLOAT>(1000.f));										// ファークリップ : カメラの描画領域の奥までの距離
 	}
+
+	lpd3d_device->SetTransform(D3DTS_PROJECTION, &projection_matrix_3d_);
+}
+
+/*-----------------------------------------------------------------------------
+/*　カメラの姿勢のリセット
+-----------------------------------------------------------------------------*/
+void CameraComponent::SetCameraTransformReset(void)
+{
+	front_vector_ = { 0.f, 0.f, 1.f};
+	up_vector_	  = { 0.f, 1.f, 0.f };
+	right_vector_ = { 1.f, 0.f, 0.f };
 }
 
 /*=============================================================================

@@ -23,6 +23,8 @@ DX9GraphicsRenderer*  DX9Graphics::graphics_renderer_;	//レンダラークラス
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 DX9Graphics::DX9Graphics(void)
+	: screen_size_(0.f, 0.f)
+	, screen_scaler_(1.f)
 {
 	this->Init();
 }

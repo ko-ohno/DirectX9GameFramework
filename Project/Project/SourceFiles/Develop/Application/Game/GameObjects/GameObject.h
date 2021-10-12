@@ -11,6 +11,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "Component/RendererComponent.h"
+#include "Component/ParameterComponent.h"
 
 /*--- 構造体定義 ---*/
 
@@ -26,27 +27,55 @@ public:
 	enum class TypeID
 	{
 		None = -1
-		//自分自身
+		// 自分自身
 		, GameObject
-
-		//アクター(独立した役割を持つゲームオブジェクト)
+		// カメラ
 		, Camera
-		, Enemy
-		, Player
+		, GameCamera
 
-		, TestSprite
-		, TestBillboard
-		, TestMesh
-		, TestEffect
-		, TestAudio
-
-		//UI
+		// UI
 		, UI
-
+		, Fade
+		, LoadingScreen
 		, HUD
+		, BossHUD
+		, GameOver
+		, GameClear
 		, PauseMenu
 		, Result
 		, Title
+
+		// サンドボックス
+		, SandBox
+		, Bullet // バレットのインターフェース
+		, NormalBullet
+		, ChargeBullet
+		, LargeLaser
+		, Actor
+		, Player
+		, Enemy
+		, WeakEnemy
+		, StrongEnemy
+		, Boss
+
+
+		// 背景
+		, BackGround
+		, Planet
+		, SkyBox
+
+		// ゲームマネージャ
+		, GameManager
+
+		// テスト用のゲームオブジェクト
+		, SpriteTest
+		, BillboardTest
+		, MeshTest
+		, EffectTest
+		, AudioTest
+		, ColliderTest
+		, CameraTest
+		, SaveDataTest
 
 		, MAX		//ゲームオブジェクトのIDの最大値
 	};
@@ -59,6 +88,7 @@ public:
 		None = -1
 		, Active	//活動するゲームオブジェクトか？
 		, Paused	//停止するゲームオブジェクトか？
+		, Destroy	//破壊されたゲームオブジェクトか？
 		, Dead		//破棄するゲームオブジェクトか？
 
 		, MAX		//状態の最大値
@@ -86,6 +116,10 @@ public:
 	void AddComponent(class Component* component);
 	void RemoveComponent(class Component* component);
 
+	// 値コンポーネントの操作
+	void AddParameterComponent(class ParameterComponent* component);
+	void RemoveParameterComponent(class ParameterComponent* component);
+
 	//
 	// ゲームオブジェクトの所有者の取得
 	//
@@ -93,19 +127,25 @@ public:
 	class Game* GetGame(void) const { return game_; }
 
 	//
+	// 自身の親のゲームオブジェクトの設定
+	//
+	void SetParentGameObject(class GameObject* parentGameObject) { game_object_parent_ = parentGameObject; };
+	class GameObject* GetParentGameObject(void) { return game_object_parent_; }
+
+	//
 	// ゲームオブジェクトの状態
 	//
 
-	void SetState(State state) { state_ = state; };
-	State GetState(void) { return state_; }
+	void SetGameObjectState(State state) { state_ = state; };
+	State GetGameObjectState(void) { return state_; }
 	
 	//ゲームオブジェクトのレイヤーについて
 
 	void SetRendererLayerType(RendererLayerType rendererLayerType) { renderer_layer_type_ = rendererLayerType; }
 	RendererLayerType GetRendererLayerType(void) { return renderer_layer_type_; }
 
-	//シェーダーのセット
-	void SetShader(class Shader* shader) { shader_ = shader; } 
+	// ゲームオブジェクトの検索処理
+	class GameObject* FindGameObject(TypeID findTypeID);
 
 	//ゲームオブジェクトの姿勢情報の取得
 	class TransformComponent* GetTransform(void) const { return transform_component_; }
@@ -113,30 +153,36 @@ public:
 	//ゲームオブジェクトのコンポーネントのコンテナを取得
 	const std::vector<class Component*>& GetComponents() const { return components_; }
 
+	//ゲームオブジェクトの値コンポーネントのコンテナを取得
+	const std::vector<class ParameterComponent*>& GetParameterComponents() const { return parameter_components_; }
+
 	//ゲームオブジェクトのIDの取得
 	virtual TypeID GetType(void) const { return TypeID::GameObject; } //後でoverrideできるように
 
 protected:
-	//GameObjectの所有者
+	// GameObjectの所有者
 	class Game*						game_;
 
-	//GameObjectの状態
+	// GameObjectの状態
 	State							state_;
+
+	// このGameObjectの親
+	class GameObject*				game_object_parent_;
 
 	//レンダラーのレイヤー型情報　
 	RendererLayerType				renderer_layer_type_;
 
-	//所有するシェーダーオブジェクト
-	class Shader*					shader_;
-
-	//姿勢制御コンポーネント
+	// 姿勢制御コンポーネント
 	class TransformComponent*		transform_component_;
 
-	//姿勢情報を再計算するか
+	// 姿勢情報を再計算するか
 	bool							re_compute_transform_;
 
-	//所有コンポーネント
+	// 所有コンポーネント
 	std::vector<class Component*>	components_;
+
+	// 値コンポーネント
+	std::vector<class ParameterComponent*>	parameter_components_;
 };
 
 #endif //GAME_OBJECT_H_

@@ -12,23 +12,24 @@
 #include "../ColliderComponent.h"
 
 /*-------------------------------------
+/* OBBコライダの各軸
+-------------------------------------*/
+enum class AxisType
+{
+	NONE = -1
+	, X
+	, Y
+	, Z
+	, Max
+};
+
+/*-------------------------------------
 /* OBBコライダコンポーネントクラス
 -------------------------------------*/
 class OBBColliderComponent : public ColliderComponent
 {
 public:
-	enum class AxisType
-	{
-		NONE = -1
-		, X
-		, Y
-		, Z
-		, Max
-	};
-
-public:
 	static constexpr int MAX_AXIS_ELEMENT = static_cast<int>(AxisType::Max);
-	Vector3 position_;
 	Vector3	axis_element_[MAX_AXIS_ELEMENT];
 	float	axis_length_[MAX_AXIS_ELEMENT];
 
@@ -36,13 +37,11 @@ public:
 	OBBColliderComponent(class GameObject* owner, int updateOrder = 100);
 	~OBBColliderComponent(void);
 
+	virtual void Update(float deltaTime) override;
+
 	virtual TypeID GetComponentType() const override { return TypeID::OBBColliderComponent; };
 
-	Vector3* GetPosition(void) { return &position_; }
-	void	 SetPosition(Vector3& position) { position_ = position; }
-	void	 SetPosition(D3DXVECTOR3& position) { position_ = position; }
-
-	Vector3* GetDirElement(AxisType axisType) { return &axis_element_[(int)axisType]; }
+	inline Vector3* GetDirElement(AxisType axisType) { return &axis_element_[(int)axisType]; }
 
 	void SetDirElement(D3DXMATRIX& element)
 	{
@@ -63,8 +62,8 @@ public:
 		axis_element_[(int)axisType] = axisElement;
 	}
 
-	void	 SetDirLength(float axisLength, AxisType axisType) { axis_length_[(int)axisType] = axisLength; }
-	float	 GetDirLength(AxisType axisType) { return axis_length_[(int)axisType]; }
+	inline void	 SetDirLength(float axisLength, AxisType axisType) { axis_length_[(int)axisType] = axisLength; }
+	inline float GetDirLength(AxisType axisType) { return axis_length_[(int)axisType]; }
 
 	// 分離軸に投影された軸成分から投影線分長を算出
 	static float LenSegOnSeparateAxis(D3DXVECTOR3* Sep, D3DXVECTOR3* e1, D3DXVECTOR3* e2, D3DXVECTOR3* e3 = 0)

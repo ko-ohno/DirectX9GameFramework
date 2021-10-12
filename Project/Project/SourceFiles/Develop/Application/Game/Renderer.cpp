@@ -11,7 +11,7 @@
 #include "Renderer.h"
 #include "GameObjects/GameObject/Camera.h"
 #include "GameObjects/Component/RendererComponent.h"
-#include "Manager/EffectManager.h"
+#include "ResourceManager/EffectManager.h"
 
 #include "Shader/DissolveShader.h"
 
@@ -21,6 +21,8 @@
 
 #include "Shader/StdMeshShader.h"
 #include "Shader/SkinMeshShader.h"
+
+#include "../ImGui/ImGuiManager.h"
 
 
 /*-----------------------------------------------------------------------------
@@ -112,9 +114,15 @@ void Renderer::ShutDown(void)
 /*-----------------------------------------------------------------------------
 /* 更新処理
 -----------------------------------------------------------------------------*/
-void Renderer::Update(void)
+void Renderer::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
 
+#ifdef DEBUG_MODE_
+	ImGui::Begin("CameraCount");
+	ImGui::Text("%d", camera_game_objects_.size());
+	ImGui::End();
+#endif
 }
 
 /*-----------------------------------------------------------------------------
@@ -126,9 +134,6 @@ void Renderer::Draw(void)
 	int now_draw_layer_order = 0;
 	int camera_counter_ = 0;
 
-	//一度だけRendererLayerTypeのUIレイヤーとFadeレイヤーを描画するフラグ
-	bool is_2Dlayer_draw_one_time = false;
-	
 	//描画レイヤー分繰り返す
 	for (now_draw_layer_order
 		;   now_draw_layer_order < static_cast<int>(RendererLayerType::Max)
@@ -137,19 +142,16 @@ void Renderer::Draw(void)
 		//カメラのインスタンス数だけ描画する
 		for (auto camera_game_object : camera_game_objects_)
 		{
-		
-			//RendererLayerTypeのUIレイヤーとFadeレイヤーを描画するか？
-			is_2Dlayer_draw_one_time = ((camera_counter_ != 0)
-										&& now_draw_layer_order >= static_cast<int>(RendererLayerType::UI));
-
-			if (is_2Dlayer_draw_one_time)
+			auto camera_game_object_state = camera_game_object->GetGameObjectState();
+			if (camera_game_object_state == GameObject::State::Dead)
 			{
 				continue;
 			}
 
 			//レンダラーコンポーネントのソート
 			const bool is_camera_moved = camera_game_object->IsGetCameraMoved();
-			if (is_camera_moved == true)
+			if (is_camera_moved
+				|| is_added_renderer_component_)
 			{
 				D3DXVECTOR3 camera_position;
 				D3DXMATRIX  view_matrix = *camera_game_object->GetViewMatrix();
@@ -213,6 +215,9 @@ void Renderer::Draw(void)
 
 		}
 	}
+
+	// レンダラーコンポーネントが追加が完了したことを通知
+	is_added_renderer_component_ = false;
 }
 
 /*-----------------------------------------------------------------------------
@@ -223,28 +228,26 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 	//コンポーネントの総描画
 	for (auto renderer_component : renderer_components_)
 	{
-		//レンダラーのレイヤーの情報を取得
-		auto renderer_layer_type = renderer_component->GetRendererLayerType();
-
-		//描画命令中のレイヤーとレンダラーのレイヤーが等しい時描画
-		if (static_cast<int>(renderer_layer_type) == nowDrawLayerOrder)
+		// 描画する描画コンポーネントか？
+		if (renderer_component->IsGetDrawable() == true)
 		{
-			//シェーダーのセット
-			auto shader_type = renderer_component->GetShaderType();
-			if (shader_type == ShaderType::None)
+			//レンダラーのレイヤーの情報を取得
+			auto renderer_layer_type = renderer_component->GetRendererLayerType();
+
+			//描画命令中のレイヤーとレンダラーのレイヤーが等しい時描画
+			if (static_cast<int>(renderer_layer_type) == nowDrawLayerOrder)
 			{
-				assert(!"DrawUpRendererComponents():不正なシェーダーが設定されています。");
+				//シェーダーのセット
+				auto shader_type = renderer_component->GetShaderType();
+				if (shader_type == ShaderType::None)
+				{
+					assert(!"DrawUpRendererComponents():不正なシェーダーが設定されています。");
+				}
+				auto shader = shader_manager_->ShaderDispatch(shader_type); //定数キーからシェーダを取得
+
+				//シェーダを使用したコンポーネントの描画
+				renderer_component->Draw(shader, camera);
 			}
-
-			if (shader_type == ShaderType::Gizmo)
-			{
-				shader_type = shader_type;
-			}
-
-			auto shader = shader_manager_->ShaderDispatch(shader_type); //定数キーからシェーダを取得
-
-			//シェーダを使用したコンポーネントの描画
-			renderer_component->Draw(shader, camera);
 		}
 	}
 }
@@ -254,6 +257,9 @@ void Renderer::DrawUpRendererComponents(Camera* camera, int nowDrawLayerOrder)
 -----------------------------------------------------------------------------*/
 void Renderer::AddRendererComponentAddress(RendererComponent* rendererComponent)
 {
+	// レンダラーコンポーネントのが追加されたことを通知
+	is_added_renderer_component_ = true;
+
 	//描画優先順位
 	RendererLayerType my_layer_type = rendererComponent->GetRendererLayerType();
 	int				  my_draw_order = rendererComponent->GetDrawOrder();

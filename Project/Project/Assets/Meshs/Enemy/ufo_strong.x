@@ -40333,7 +40333,7 @@ Frame Root {
            96.078431;
            0.000000; 0.000000; 0.000000;;
            0.000000; 0.000000; 0.000000;;
-          TextureFilename {"metal-texture-7.jpg";}
+          TextureFilename {"Enemy/metal-texture-7.jpg";}
         }
         Material Material {
            0.241096; 0.398655; 1.000000; 1.000000;;

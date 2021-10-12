@@ -12,21 +12,45 @@
 #include "Game.h"
 #include "GameObjects/GameObject.h"
 
-//テスト用
-#include "GameObjects/GameObject/_SpriteTest.h"
-#include "GameObjects/GameObject/_MeshTest.h"
-#include "GameObjects/GameObject/_BillboardTest.h"
-#include "GameObjects/GameObject/_EffectTest.h"
-#include "GameObjects/GameObject/_AudioTest.h"
-#include "GameObjects/GameObject/_ColliderTest.h"
-#include "GameObjects/GameObject/_SaveDataTest.h"
+//テスト用ゲームオブジェクト
+#include "GameObjects/GameObject/_Test/_CameraTest.h"
+#include "GameObjects/GameObject/_Test/_SpriteTest.h"
+#include "GameObjects/GameObject/_Test/_MeshTest.h"
+#include "GameObjects/GameObject/_Test/_BillboardTest.h"
+#include "GameObjects/GameObject/_Test/_EffectTest.h"
+#include "GameObjects/GameObject/_Test/_AudioTest.h"
+#include "GameObjects/GameObject/_Test/_ColliderTest.h"
+#include "GameObjects/GameObject/_Test/_SaveDataTest.h"
+
+// ゲーム管理ゲームオブジェクト
+#include "GameObjects/GameObject/GameManager.h"
+
+// カメラ
+#include "GameObjects/GameObject/Camera/GameCamera.h"
+
+// 背景レイヤー
+#include "GameObjects/GameObject/BackGround/SkyBox.h"
+#include "GameObjects/GameObject/BackGround/Planet.h"
+
+// サンドボックスレイヤー
+#include "GameObjects/GameObject/SandBox/Actor/Player.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/Boss.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/WeakEnemy.h"
+#include "GameObjects/GameObject/SandBox/Actor/Enemy/StrongEnemy.h"
 
 
+#include "GameObjects/GameObject/SandBox/Bullet/ChargeBullet.h"
 
-//ゲームオブジェクト
-#include "GameObjects/GameObject/Camera.h"
-#include "GameObjects/GameObject/Player.h"
-#include "GameObjects/GameObject/Enemy.h"
+// UIレイヤー
+#include "GameObjects/GameObject/UI/HUD.h"
+#include "GameObjects/GameObject/UI/Fade.h"
+
+#include "GameObjects/GameObject/UI/Title.h"
+#include "GameObjects/GameObject/UI/Result.h"
+#include "GameObjects/GameObject/UI/PauseMenu.h"
+#include "GameObjects/GameObject/UI/LoadingScreen.h"
+
 
 
 /*-----------------------------------------------------------------------------
@@ -61,11 +85,10 @@ bool GameObjectFactory::StartUp(void)
 	game_objects_.clear();
 
 	//ゲームオブジェクトの作成と追加
+	const bool isTestMode = false;
+	if(isTestMode)
 	{
-		this->AddGameObject(NEW Camera(game_));
-		//this->AddGameObject(NEW Player(game_));
-		//this->AddGameObject(NEW Enemy(game_));
-
+		this->AddGameObject(NEW CameraTest(game_));
 		this->AddGameObject(NEW SpriteTest(game_));
 		this->AddGameObject(NEW BillboardTest(game_));
 		this->AddGameObject(NEW MeshTest(game_));
@@ -73,7 +96,42 @@ bool GameObjectFactory::StartUp(void)
 		this->AddGameObject(NEW AudioTest(game_));
 		this->AddGameObject(NEW ColliderTest(game_));
 		this->AddGameObject(NEW SaveDataTest(game_));
+	}
+	else
+	{
+		// 通常カメラ
+		//this->AddGameObject(NEW Camera(game_));
 
+		// ゲームカメラ
+		//this->AddGameObject(NEW GameCamera(game_));
+
+		// フェード
+		this->AddGameObject(NEW Fade(game_));
+
+		// 読み込み画面
+		this->AddGameObject(NEW LoadingScreen(game_));
+
+		//ゲーム管理ゲームオブジェクト
+		//this->AddGameObject(NEW GameManager(game_));
+
+		// 背景レイヤーのオブジェクト作成
+		//this->AddGameObject(NEW SkyBox(game_));
+		//this->AddGameObject(NEW Planet(game_));
+
+		// サンドボックスレイヤーのオブジェクト作成
+		//this->AddGameObject(NEW Player(game_));
+		//this->AddGameObject(NEW Boss(game_));
+		//this->AddGameObject(NEW WeakEnemy(game_));
+		//this->AddGameObject(NEW StrongEnemy(game_));
+
+		//this->AddGameObject(NEW ChargeBullet(game_));
+
+		// UIレイヤーのオブジェクト作成
+		//this->AddGameObject(NEW HUD(game_));
+
+		//this->AddGameObject(NEW Title(game_));
+		//this->AddGameObject(NEW Result(game_));
+		//this->AddGameObject(NEW PauseMenu(game_));		 
 	}
 	return true;
 }
@@ -114,9 +172,11 @@ void GameObjectFactory::AddGameObject(GameObject* gameObject)
 -----------------------------------------------------------------------------*/
 void GameObjectFactory::RemoveGameObjectAll(void)
 {
+	//Game.cppでやっているので削除処理は不要
 	//while (!game_objects_.empty())
 	//{
 	//	delete game_objects_.back();
+	//	game_objects_.pop_back();
 	//}
 }
 

@@ -93,6 +93,12 @@ protected:
 	//ライトの種類
 	enum class LightType light_type_;
 
+	// ライト本体
+	D3DLIGHT9 light_;
+
+	// マテリアルカラー
+	D3DMATERIAL9 d3d_material_;
+
 	//ライト自身の強さ
 	float light_strength_;
 

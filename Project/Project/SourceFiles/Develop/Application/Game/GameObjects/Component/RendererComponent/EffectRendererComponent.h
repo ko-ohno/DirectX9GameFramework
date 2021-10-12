@@ -1,12 +1,12 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[EffectRendererComponent.h]  エフェクトコンポーネント
+/*	[EffectRendererComponent.h]  エフェクト描画コンポーネント
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：エフェクトコンポーネント
+/*	説明：エフェクト描画コンポーネント
 =============================================================================*/
-#ifndef EFFECT_COMPONENT_H_
-#define	EFFECT_COMPONENT_H_
+#ifndef EFFECT_RENDERER_COMPONENT_H_
+#define	EFFECT_RENDERER_COMPONENT_H_
 
 /*--- インクルードファイル ---*/
 #include "../RendererComponent.h"
@@ -20,16 +20,21 @@ public:
 	EffectRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~EffectRendererComponent(void);
 
+private:
 	bool Init(void) override;
 	void Uninit(void) override;
+
+public:
 	void Update(float deltaTime) override;
 	void Draw(class Shader* shader, class Camera* camera) override;
+
+	void SetBaseMatrix(const D3DXMATRIX& d3dxMatrix);
 
 	// エフェクトの設定
 	void SetEffect(EffectType effectTypeID);
 
 	// エフェクト情報の取得
-	class Effect* GetEffect(void);
+	class GameEffect* GetEffect(void);
 
 	virtual TypeID GetComponentType() const override { return TypeID::EffectRendererComponent; };
 
@@ -61,10 +66,13 @@ private:
 	Effekseer::Manager*	 effekseer_manager_;
 
 	// エフェクトのデータ
-	class Effect*		 effect_;
+	class GameEffect*	 effect_;
+
+	// エフェクトのハンドル
+	Effekseer::Handle	 effect_handle_;
 };
 
-#endif //EFFECT_COMPONENT_H_
+#endif //EFFECT_RENDERER_COMPONENT_H_
 /*=============================================================================
 /*		End of File
 =============================================================================*/

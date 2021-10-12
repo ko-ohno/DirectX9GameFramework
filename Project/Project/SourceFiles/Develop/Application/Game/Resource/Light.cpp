@@ -9,16 +9,15 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "Light.h"
-#include "../Manager/LightManager.h"
+#include "../ResourceManager/LightManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Light::Light(LightManager* manager)
+	: light_manager(manager)
+	, light_type_(LightType::None)
 {
-	//マネージャーへライトを追加
-	manager->AddLight(this);
-
 	//自身の初期化
 	this->Init();
 }
@@ -35,6 +34,10 @@ Light::~Light(void)
 -----------------------------------------------------------------------------*/
 bool Light::Init(void)
 {
+	// 初期化
+	ZeroMemory(&light_, sizeof(light_));
+	ZeroMemory(&d3d_material_, sizeof(d3d_material_));
+
 	//ライト自身の力強さ
 	light_strength_	= 1.0f;	
 

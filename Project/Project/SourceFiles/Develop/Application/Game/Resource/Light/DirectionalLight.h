@@ -23,6 +23,7 @@ public:
 
 private:
 	bool Init(void);	//初期化
+	bool InitDirect3DLight(void);
 	void Uninit(void);	//終了化
 
 public:
@@ -35,8 +36,9 @@ public:
 	inline D3DXVECTOR3* SetLightDirection(void) { return &direction_; }
 
 private: 
+
 	//向きベクトル
-	D3DXVECTOR3	direction_;
+	D3DXVECTOR3		direction_;
 };
 
 #endif //DIRECTIONAL_LIGHT_H_

@@ -31,12 +31,12 @@ public:
 	void Update(float deltaTime) override;
 	void GenerateOutput(void) override;
 
+	bool IsShutDown(void) override;
+
 	// Application側は override しない
 	// class Vector2* GetSelectedAspectRatio(void) override;
 	// float GetScreenScaler(void) override;
 	// bool IsLoopBreak(void) override;
-	// bool IsShutDown(void) override;
-
 
 private:
 	HWND					window_handle_;
@@ -49,10 +49,7 @@ private:
 
 	//ゲーム用の環境
 	class Game*				game_;
-
-	//テスト用
-	class SpriteShader*		sprite_shader_;
-	class TestCamera*		test_camera_;
+	bool					is_shutdown_;
 };
 
 #endif //APPLICATION_MANAGER_H_

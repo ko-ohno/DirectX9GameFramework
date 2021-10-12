@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
-#include "../Manager/SoundManager.h"
+#include "../ResourceManager/SoundManager.h"
 
 /*-------------------------------------
 /* サウンドクラス

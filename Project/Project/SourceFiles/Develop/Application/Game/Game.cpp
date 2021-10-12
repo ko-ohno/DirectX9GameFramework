@@ -9,27 +9,42 @@
 /*--- インクルードファイル ---*/
 #include "../../StdAfx.h"
 #include "Game.h"
+#include "ISceneState.h"
+#include "SceneState/SceneTitle.h"
+#include "SceneState/SceneGame.h"
+#include "SceneState/SceneResult.h"
 #include "Renderer.h"
 
-#include "Manager/ShaderManager.h"
-#include "Manager/TextureManager.h"
-#include "Manager/MeshManager.h"
-#include "Manager/EffectManager.h"
-#include "Manager/SoundManager.h"
-#include "Manager/ColliderManager.h"
-#include "Manager/SaveDataManager.h"
+#include "ResourceManager/ShaderManager.h"
+#include "ResourceManager/TextureManager.h"
+#include "ResourceManager/MeshManager.h"
+#include "ResourceManager/EffectManager.h"
+#include "ResourceManager/LightManager.h"
+#include "ResourceManager/SoundManager.h"
+#include "ResourceManager/ColliderManager.h"
+#include "ResourceManager/SaveDataManager.h"
+
+#include "SandBoxManager/ActorManager.h"
+#include "SandBoxManager/EnemieManager.h"
+#include "SandBoxManager/BulletManager.h"
 
 #include "GameObjectFactory.h"
 #include "GameObjects/GameObject.h"
 
 #include "../ImGui/ImGuiManager.h"
 
+// 静的変数のプロトタイプ宣言
+ISceneState* Game::scene_state_ = nullptr;
+
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 Game::Game(void)
-	: updating_game_objects_(false)
+	: is_shutdown_(false)
+	, input_game_objects_(false)
+	, updating_game_objects_(false)
 	, game_state_(GameState::None)
+	, game_object_fuctory_(nullptr)
 	, dx9_graphics_(nullptr)
 	, renderer_(nullptr)
 
@@ -37,11 +52,14 @@ Game::Game(void)
 	, texture_manager_(nullptr)
 	, mesh_manager_(nullptr)
 	, effect_manager_(nullptr)
+	, light_manager_(nullptr)
 	, sound_manager_(nullptr)
 	, collider_manager_(nullptr)
 	, save_data_manager_(nullptr)
 
-	, game_object_fuctory_(nullptr)
+	, actor_manager_(nullptr)
+	, enemie_manager_(nullptr)
+	, bullet_manager_(nullptr)
 {
 	pending_game_objects_.clear();
 	game_objects_.clear();
@@ -77,7 +95,7 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 	//ゲームの状態
 	game_state_ = GameState::Gameplay;
 
-	//マネージャーのファクトリをつくる
+	//リソース用の各マネージャーの起動
 	{
 		//シェーダーマネージャの起動
 		shader_manager_ = shader_manager_->Create(this);
@@ -115,7 +133,16 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 			return false;
 		}
 
-		//エフェクトマネージャの起動
+		//ライトマネージャの起動
+		light_manager_ = light_manager_->Create(this);
+		const bool light_manager_init = light_manager_->StartUp();
+		if (light_manager_init == false)
+		{
+			assert(!"Game::StartUp()：ライトマネージャの起動に失敗しました。");
+			return false;
+		}
+
+		//サウンドマネージャの起動
 		sound_manager_ = sound_manager_->Create(this);
 		const bool sound_manager_init = sound_manager_->StartUp();
 		if (sound_manager_init == false)
@@ -143,6 +170,36 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		}
 	}
 
+	// サンドボックス用のマネージャの起動
+	{
+		//アクターのマネージャの起動
+		actor_manager_ = actor_manager_->Create(this);
+		const bool actor_manager_init = actor_manager_->StartUp();
+		if (actor_manager_init == false)
+		{
+			assert(!"Game::StartUp()：アクターマネージャの起動に失敗しました。");
+			return false;
+		}
+
+		//エネミーのマネージャの起動
+		enemie_manager_ = enemie_manager_->Create(this);
+		const bool enemie_manager_init = enemie_manager_->StartUp();
+		if (enemie_manager_init == false)
+		{
+			assert(!"Game::StartUp()：エネミーマネージャの起動に失敗しました。");
+			return false;
+		}
+
+		//バレットのマネージャの起動
+		bullet_manager_ = bullet_manager_->Create(this);
+		const bool bullet_manager_init = bullet_manager_->StartUp();
+		if (bullet_manager_init == false)
+		{
+			assert(!"Game::StartUp()：バレットマネージャの起動に失敗しました。");
+			return false;
+		}
+	}
+
 	//レンダラーの起動
 	renderer_ = renderer_->Create(this);
 	const bool renderer_init = renderer_->StartUp();
@@ -160,6 +217,21 @@ bool Game::StartUp(class DX9Graphics* dx9Graphics)
 		assert(!"Game::StartUp()：ゲームオブジェクトのファクトリの起動に失敗しました。");
 		return false;
 	}
+
+	// 場面の初期化
+	{
+		// タイトル画面として初期化
+		this->SetGameState(GameState::Title);
+		this->SetSceneState(NEW SceneTitle(this));
+
+		// ゲーム画面として初期化
+		//this->SetGameState(GameState::Gameplay);
+		//this->SetSceneState(NEW SceneGame(this));
+
+		// ゲーム画面として初期化
+		//this->SetGameState(GameState::Result);
+		//this->SetSceneState(NEW SceneResult(this));
+	}
 	return true;
 }
 
@@ -174,14 +246,62 @@ void Game::ShutDown(void)
 		delete game_objects_.back();
 	}
 
+	// シーンの破棄
+	{
+		if (scene_state_ != nullptr)
+		{
+			scene_state_->Uninit();
+		}
+		SAFE_DELETE_(scene_state_);
+	}
+
 	//ゲームオブジェクトのファクトリの破棄
 	{
 		game_object_fuctory_->ShutDown();
 		SAFE_DELETE_(game_object_fuctory_);
 	}
-	
-	//マネージャーのファクトリの使用
+
+	// サンドボックスの各マネージャの破棄
 	{
+		//アクターマネージャの破棄
+		actor_manager_->Shutdown();
+		SAFE_DELETE_(actor_manager_);
+
+		//エネミーマネージャの破棄
+		enemie_manager_->Shutdown();
+		SAFE_DELETE_(enemie_manager_);
+
+		//バレットマネージャの破棄
+		bullet_manager_->Shutdown();
+		SAFE_DELETE_(bullet_manager_);
+	}
+
+	// リソースの各マネージャーの破棄
+	{
+		//セーブデータマネージャの破棄
+		{
+			save_data_manager_->Shutdown();
+			SAFE_DELETE_(save_data_manager_);
+		}
+
+		//サウンドマネージャの破棄
+		{
+			sound_manager_->Shutdown();
+			SAFE_DELETE_(sound_manager_);
+		}
+
+		//コライダマネージャの破棄
+		{
+			collider_manager_->Shutdown();
+			SAFE_DELETE_(collider_manager_);
+		}
+
+		//コライダマネージャの破棄
+		{
+			light_manager_->Shutdown();
+			SAFE_DELETE_(light_manager_);
+		}
+
 		//エフェクトマネージャの破棄
 		{
 			effect_manager_->Shutdown();
@@ -205,26 +325,8 @@ void Game::ShutDown(void)
 			shader_manager_->Shutdown();
 			SAFE_DELETE_(shader_manager_);
 		}
-
-		//サウンドマネージャの破棄
-		{
-			sound_manager_->Shutdown();
-			SAFE_DELETE_(sound_manager_);
-		}
-
-		//コライダマネージャの破棄
-		{
-			collider_manager_->Shutdown();
-			SAFE_DELETE_(collider_manager_);
-		}
-
-		//セーブデータマネージャの破棄
-		{
-			save_data_manager_->Shutdown();
-			SAFE_DELETE_(save_data_manager_);
-		}
 	}
-	 
+
 	//レンダラーの破棄
 	{
 		renderer_->ShutDown();
@@ -237,14 +339,14 @@ void Game::ShutDown(void)
 -----------------------------------------------------------------------------*/
 void Game::Input(void)
 {
-	if (game_state_ == GameState::Gameplay)
+	// 場面ごとの入力処理
+	if (scene_state_ != nullptr)
 	{
-		//ゲームオブジェクトの入力処理
-		for (auto game_object : game_objects_)
-		{
-			game_object->Input();
-		}
+		scene_state_->Input();
 	}
+
+	// ゲームオブジェクトの入力処理
+	this->InputGameObjects();
 }
 
 /*-----------------------------------------------------------------------------
@@ -252,37 +354,20 @@ void Game::Input(void)
 -----------------------------------------------------------------------------*/
 void Game::Update(float deltaTime)
 {
-	ImGui::ShowFramerate(deltaTime);
+#ifdef DEBUG_MODE_
+	ImGui::ShowFPS(deltaTime); 	// FPSの表示
+#endif
 
-
-	if (game_state_ == GameState::Gameplay)
+	// 場面ごとの入力処理
+	if (scene_state_ != nullptr)
 	{
-		//ゲームオブジェクトの更新
-		this->UpdateGameObjects(deltaTime);
+		scene_state_->Update(deltaTime);
 	}
 
+	//ゲームオブジェクトの総更新
+	this->UpdateGameObjects(deltaTime);
 
-	switch (game_state_)
-	{
-	case Game::GameState::Title:
-		break;
-
-	case Game::GameState::Gameplay:
-		break;
-
-	case Game::GameState::Result:
-		break;
-
-	case Game::GameState::Paused:
-		break;
-
-	case Game::GameState::Quit:
-		break;
-
-	default:
-		assert(!"ゲームの不正な状態遷移を検知！");
-		break;
-	}
+	renderer_->Update(deltaTime);
 }
 
 /*-----------------------------------------------------------------------------
@@ -295,12 +380,31 @@ void Game::GenerateOutput(void)
 }
 
 /*-----------------------------------------------------------------------------
+/* 場面の切り替え処理
+-----------------------------------------------------------------------------*/
+void Game::SetSceneState(ISceneState* sceneState)
+{
+	if (scene_state_ != nullptr)
+		scene_state_->Uninit();
+
+	// 古い状態を破棄
+	delete scene_state_;
+
+	// 新しい状態へ移行
+	scene_state_ = sceneState;
+
+	if (scene_state_ != nullptr)
+		scene_state_->Init();
+}
+
+/*-----------------------------------------------------------------------------
 /* ゲームオブジェクトの追加処理
 -----------------------------------------------------------------------------*/
 void Game::AddGameObject(GameObject* gameObject)
 {
 	// ゲームオブジェクトの更新中かで登録先を変更
-	if (updating_game_objects_)
+	if (updating_game_objects_ == true
+		|| input_game_objects_ == true)
 	{
 		pending_game_objects_.emplace_back(gameObject);//待機コンテナ
 	}
@@ -337,46 +441,99 @@ void Game::RemoveGameObject(GameObject* gameObject)
 }
 
 /*-----------------------------------------------------------------------------
-/* ゲームオブジェクトの検索処理
+/* ゲームオブジェクトの総入力処理
 -----------------------------------------------------------------------------*/
-//GameObject* Game::FindGameObject(TypeID gameObjectTypeID)
-//{
-//	for (auto game_object : game_objects_)
-//	{
-//		auto game_object_type_id = game_object->GetType();
-//
-//		if (game_object_type_id == gameObjectTypeID)
-//		{
-//			return game_object;
-//		}
-//	}
-//	assert(!"gameObjectTypeIDは、ゲームオブジェクトのリストに一致するものがありませんでした！");
-//	return nullptr;
-//}
+void Game::InputGameObjects(void)
+{
+	//ゲームオブジェクトの入力処理
+	input_game_objects_ = true;
+	for (auto game_object : game_objects_)
+	{
+		game_object->Input();
+	}
+	input_game_objects_ = false;
+}
 
 /*-----------------------------------------------------------------------------
 /* ゲームオブジェクトの総更新処理
 -----------------------------------------------------------------------------*/
 void Game::UpdateGameObjects(float deltaTime)
 {
-	//ゲームオブジェクトとエフェクトの総更新処理
+	// ゲームオブジェクトとエフェクトの総更新処理
 	{
-		//エフェクトマネージャの更新開始
-		effect_manager_->GetEffekseerManager()->BeginUpdate();
+		// エフェクトマネージャの更新開始
+		//effect_manager_->GetEffekseerManager()->BeginUpdate();
 
-		//すべてのゲームオブジェクトの更新
+		// すべてのゲームオブジェクトの更新
 		updating_game_objects_ = true;
 		for (auto game_object : game_objects_)
 		{
-			game_object->Update(deltaTime);
+			// ゲームオブジェクトの型を調べる
+			auto game_object_type = game_object->GetType();
+
+			switch (game_state_)
+			{
+			case Game::GameState::None:
+			case Game::GameState::MAX:
+				assert(!"Game::UpdateGameObjects：ゲームステートが不正な状態です！");
+				break;
+
+			case Game::GameState::BackToTitle:
+			case Game::GameState::Paused:
+				{
+					const bool is_update_pause_menu = (game_object_type == GameObject::TypeID::PauseMenu);
+					const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
+					const bool is_update_loading	= (game_object_type == GameObject::TypeID::LoadingScreen);
+
+					// ゲームオブジェクトがフェードとポーズメニューとロード画面だったら更新する
+					if (is_update_pause_menu 
+						|| is_update_fade
+						|| is_update_loading)
+					{
+						game_object->Update(deltaTime);
+					}
+				}
+				break;
+
+			case Game::GameState::Loading:
+				{
+					const bool is_update_fade		= (game_object_type == GameObject::TypeID::Fade);
+					const bool is_update_loading	= (game_object_type == GameObject::TypeID::LoadingScreen);
+
+					// ゲームオブジェクトがフェードとポーズメニューとロード画面だったら更新する
+					if (is_update_fade || is_update_loading)
+					{
+						game_object->Update(deltaTime);
+					}
+				}
+				break;
+
+			case Game::GameState::Quit:
+				{
+					// ゲームをシャットダウンする
+					is_shutdown_ = true;
+				}
+				break;
+
+			default:
+				// 上記のステート以外のステートではゲームオブジェクトを総更新する
+				game_object->Update(deltaTime);
+				break;
+			}
 		}
 		updating_game_objects_ = false;
 
-		//エフェクトマネージャの更新終了
-		effect_manager_->GetEffekseerManager()->EndUpdate();
+		// エフェクトマネージャの一括更新処理
+		if (game_state_ != GameState::Paused)
+		{
+			effect_manager_->GetEffekseerManager()->Update();
+		}
+
+		// エフェクトマネージャの更新終了
+		// effect_manager_->GetEffekseerManager()->EndUpdate();
 	}
 
-	//待機リストのゲームオブジェクトの操作
+	// 待機リストのゲームオブジェクトの操作
 	for (auto pending_game_object : pending_game_objects_)
 	{
 		pending_game_object->Update(deltaTime);
@@ -384,11 +541,12 @@ void Game::UpdateGameObjects(float deltaTime)
 	}
 	pending_game_objects_.clear();
 
-	//ゲームオブジェクトが破棄の状態かチェック
+	// ゲームオブジェクトが破壊される状態かをチェック
 	std::vector<class GameObject*> dead_game_objects;
 	for (auto game_object : game_objects_)
 	{
-		if (game_object->GetState() == GameObject::State::Dead)
+		auto game_object_state = game_object->GetGameObjectState();
+		if (game_object_state == GameObject::State::Dead)
 		{
 			dead_game_objects.emplace_back(game_object);
 		}

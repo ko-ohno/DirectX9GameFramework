@@ -23,10 +23,30 @@
 class ColliderComponent : public Component
 {
 public:
+	Vector3 position_;
+	Vector3 offset_position_;
+
+public:
 	ColliderComponent(class GameObject* owner, int updateOrder = 100);
 	~ColliderComponent(void);
 
+	virtual void Update(float deltaTime) override;
+
 	virtual TypeID GetComponentType() const override { return TypeID::ColliderComponent; };
+
+	//
+	// ç¿ïWÇÃê›íË 
+	//
+
+	inline void SetOffsetTranslation(Vector3& position) { offset_position_ = position; }
+	inline void SetOffsetTranslation(D3DXVECTOR3& position) { offset_position_ = position; }
+	inline void SetOffsetTranslation(float posX, float posY, float posZ) { offset_position_ = { posX, posY, posZ }; }
+	inline void SetOffsetTranslationX(float posX) { offset_position_.x_ = posX; }
+	inline void SetOffsetTranslationY(float posY) { offset_position_.y_ = posY; }
+	inline void SetOffsetTranslationZ(float posZ) { offset_position_.z_ = posZ; }
+
+	// à íuç¿ïWÇÃéÊìæ
+	inline Vector3* GetPosition(void) { return &position_; }
 
 private:
 protected:

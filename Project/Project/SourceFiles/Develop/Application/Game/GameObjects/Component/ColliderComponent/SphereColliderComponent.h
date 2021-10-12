@@ -17,12 +17,13 @@
 class SphereColliderComponent : public ColliderComponent
 {
 public:
-	Vector3 position_;
 	float	radius_;
 
 public:
 	SphereColliderComponent(class GameObject* owner, int updateOrder = 100);
 	~SphereColliderComponent(void);
+
+	virtual void Update(float deltaTime) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::SphereColliderComponent; };
 
@@ -30,16 +31,8 @@ public:
 	// îºåaÇÃê›íË
 	//
 
-	void SetRadius(float radius) { radius_ = radius; }
-	float GetRadius(void) { return radius_; };
-
-	//
-	// ç¿ïWÇÃê›íË 
-	//
-
-	void SetPosition(D3DXVECTOR3& position) { position_ = position; }
-	void SetPosition(Vector3& position) { position_ = position; }
-	Vector3* GetPosition(void) { return &position_; }
+	inline void SetRadius(float radius) { radius_ = radius; }
+	inline float GetRadius(void) { return radius_; };
 };
 
 #endif //SPHERE_COLLIDER_COMPONENT_H_

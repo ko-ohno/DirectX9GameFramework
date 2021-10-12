@@ -25,7 +25,7 @@ public:
 	GizmoRendererComponent(class GameObject* owner, int drawOrder = 100);
 	~GizmoRendererComponent(void);
 
-private:
+public:
 	bool Init(void) override;
 	void Uninit(void) override;
 	void Draw(class Shader* shader, class Camera* camera) override;

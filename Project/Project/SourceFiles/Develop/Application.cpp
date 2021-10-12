@@ -42,7 +42,7 @@ Application::~Application(void)
 bool Application::StartUp(const HINSTANCE& hInstance, const int& nShowCmd)
 {
 	bool is_success;
-	app_title_name_ = "ゲームタイトル";
+	app_title_name_ = "イチボッチシューター";
 
 	//アプリケーション用ウィンドウの設定
 	{

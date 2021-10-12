@@ -11,13 +11,15 @@
 #include "ColliderComponent.h"
 #include "../GameObject.h"
 #include "../../Game.h"
-#include "../../Manager/ColliderManager.h"
+#include "../../ResourceManager/ColliderManager.h"
 
 /*-----------------------------------------------------------------------------
 /* コンストラクタ
 -----------------------------------------------------------------------------*/
 ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
 	: Component(owner, updateOrder)
+	, position_(0.f, 0.f, 0.f)
+	, offset_position_(0.f, 0.f, 0.f)
 {
 	owner_->GetGame()->GetColliderManager()->AddColliderComponentAddress(this);
 }
@@ -28,6 +30,14 @@ ColliderComponent::ColliderComponent(GameObject* owner, int updateOrder)
 ColliderComponent::~ColliderComponent(void)
 {
 	owner_->GetGame()->GetColliderManager()->RemoveColliderComponentAddress(this);
+}
+
+/*-----------------------------------------------------------------------------
+/* 更新処理
+-----------------------------------------------------------------------------*/
+void ColliderComponent::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 /*=============================================================================

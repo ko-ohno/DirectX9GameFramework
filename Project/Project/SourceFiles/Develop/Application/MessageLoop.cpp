@@ -118,7 +118,7 @@ void MessageLoop::Run(void)
 				execute_last_time = current_time;
 			}
 		}
-		if ((msg.message == WM_QUIT)|| IsLoopBreak() || IsShutDown()) { break; }
+		if ((msg.message == WM_QUIT) || i_manager_->IsLoopBreak() || i_manager_->IsShutDown()) { break; }
 	}
 
 	timeEndPeriod(1); //•ª‰ğ”\‚ğ‰ğœ

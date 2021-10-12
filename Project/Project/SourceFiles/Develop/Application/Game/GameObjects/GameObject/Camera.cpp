@@ -26,7 +26,7 @@ Camera::Camera(class Game* game)
 {
 	this->renderer_layer_type_ = RendererLayerType::Game;
 
-	camera_component_ = NEW CameraComponent(this);
+	this->Init();
 
 	game_->GetRenderer()->AddCameraGameObjectAddress(this);
 }
@@ -36,15 +36,7 @@ Camera::Camera(class Game* game)
 -----------------------------------------------------------------------------*/
 Camera::~Camera(void)
 {
-	game_->GetRenderer()->AddCameraGameObjectAddress(this);
-}
-
-/*-----------------------------------------------------------------------------
-/* ファクトリメソッド
------------------------------------------------------------------------------*/
-Camera* Camera::Create(class Game* game)
-{
-	return NEW Camera(game);
+	game_->GetRenderer()->RemoveCameraGameObjectAddress(this);
 }
 
 /*-----------------------------------------------------------------------------
@@ -52,6 +44,18 @@ Camera* Camera::Create(class Game* game)
 -----------------------------------------------------------------------------*/
 bool Camera::Init(void)
 {
+	camera_component_ = NEW CameraComponent(this);
+
+	// カメラ座標の初期化
+	{
+		camera_component_->SetLookAtTranslation(0.f, 0.f, 1.f);
+		camera_component_->SetCameraTranslation(0.f, 0.f, 0.f);
+	}
+
+	// カメラの状態を初期化
+#ifdef CAMERA_DEBUG_MODE_
+	camera_component_->IsSetCameraControlling(true); // カメラ操作の状態を初期化
+#endif // CAMERA_DEBUG_MODE_
 	return true;
 }
 
@@ -74,36 +78,7 @@ void Camera::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void Camera::UpdateGameObject(float deltaTime)
 {
-	//camera_component_->SetLookAtTranslationY(3.f);
-	//camera_component_->SetCameraTranslationY(3.f);
-
-
 	UNREFERENCED_PARAMETER(deltaTime);
-
-	//カメラを操作するか
-	const bool is_camera_controlling = camera_component_->IsGetCameraControlling();
-
-	ImGui::Begin("camera");
-	ImGui::SetNextTreeNodeOpen(true);
-	if (ImGui::TreeNode("CameraControll"))
-	{
-		if (is_camera_controlling)
-		{
-			if (ImGui::Button("OFF"))
-			{
-				camera_component_->IsSetCameraControlling(false);
-			}
-		}
-		else
-		{
-			if (ImGui::Button("ON"))
-			{
-				camera_component_->IsSetCameraControlling(true);
-			}
-		}
-		ImGui::TreePop();
-	}
-	ImGui::End();
 }
 
 /*-----------------------------------------------------------------------------

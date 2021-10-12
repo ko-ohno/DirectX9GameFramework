@@ -1,9 +1,9 @@
 /*=============================================================================
 /*-----------------------------------------------------------------------------
-/*	[Camera.h] カメラクラス
+/*	[Camera.h] カメラのゲームオブジェクトのベースクラス
 /*	Author：Kousuke,Ohno.
 /*-----------------------------------------------------------------------------
-/*	説明：カメラクラス
+/*	説明：カメラのゲームオブジェクトのベースクラス
 =============================================================================*/
 #ifndef CAMERA_H_
 #define	CAMERA_H_
@@ -13,20 +13,14 @@
 #include "../GameObject.h"
 #include "../../../Math.h"
 
-/*-------------------------------------
-/* 構造体
--------------------------------------*/
-
-/*-------------------------------------
-/* カメラクラス
--------------------------------------*/
+/*-------------------------------------------
+/* カメラのゲームオブジェクトのベースクラス
+-------------------------------------------*/
 class Camera : public GameObject
 {
 public:
 	Camera(class Game* game);
 	~Camera(void);
-
-	static Camera* Create(class Game* game);
 
 	bool Init(void);
 	void Uninit(void);
@@ -46,14 +40,13 @@ public:
 
 	virtual TypeID GetType(void) const { return TypeID::Camera; }
 
-private:
+protected:
 	class Game* game_;
 
 	class CameraComponent* camera_component_;
 
 	//カメラが動いたか
 	bool is_moved_;
-
 	D3DXVECTOR3 position_
 			  , old_position_;
 };

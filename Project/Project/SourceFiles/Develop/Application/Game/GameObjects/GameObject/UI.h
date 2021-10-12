@@ -12,10 +12,17 @@
 #include "../../../../StdAfx.h"
 #include "../GameObject.h"
 
-/*--- 構造体定義 ---*/
+/*-------------------------------------
+/* UIの状態クラス
+-------------------------------------*/
+enum class UIState
+{
+	None = -1
+	, Active	//活動するUIオブジェクトか？
+	, Closing	//停止するUIオブジェクトか？
 
-/*--- クラスの前方宣言 ---*/
-
+	, MAX		//状態の最大値
+};
 
 /*-------------------------------------
 /* UIのベースクラス
@@ -23,37 +30,35 @@
 class UI : public GameObject
 {
 public:
-	enum class State
-	{
-		None = -1
-		, Active	//活動するUIオブジェクトか？
-		, Closing	//停止するUIオブジェクトか？
-
-		, MAX		//状態の最大値
-	};
-
-public:
 	UI(class Game* game);
 	virtual ~UI(void);
 
-	virtual void Init(void);
-	virtual void Uninit(void);
-	virtual void Input(void);
-	virtual void Update(float deltaTime);
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
 
-	void Close(void) { state_ = State::Closing; }
+	//GameObjectの関数overrideして、自身の挙動として定義する
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
-	void SetState(State state) { state_ = state; };
-	State GetState(void) { return state_; }
+	inline bool IsGetDrawable(void) { return is_drawable_; }
+	inline void IsSetDrawable(bool isDrawable) { is_drawable_ = isDrawable; }
 
+	inline void Close(void) { state_ = UIState::Closing; }
+
+	inline void SetState(UIState state) { state_ = state; };
+	inline UIState GetState(void) { return state_; }
+	 
 	virtual TypeID GetType(void) const { return TypeID::UI; } //後でoverrideできるように
 
 protected:
-	//UIObjectの所有者
+	// UIの所有者
 	class Game* game_;
 
-	//UIの状態
-	State		state_;
+	// 描画をするか
+	bool is_drawable_;
+
+	// UIの状態
+	UIState		state_;
 };
 
 #endif //UI_H_

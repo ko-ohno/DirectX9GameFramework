@@ -10,7 +10,7 @@
 
 struct VS_OUTPUT
 {
-	float4 pos		: POSITION0;
+	float4 pos		: SV_POSITION0;
 	float4 color    : COLOR0;
 };
 

@@ -12,10 +12,6 @@
 #include "../GameObject.h"
 
 /*-------------------------------------
-/* 構造体
--------------------------------------*/
-
-/*-------------------------------------
 /* クラス
 -------------------------------------*/
 class Hoge : public GameObject
@@ -23,8 +19,6 @@ class Hoge : public GameObject
 public:
 	Hoge(class Game* game);
 	~Hoge(void);
-
-	static Hoge* Create(class Game* game);
 
 	bool Init(void);	//初期化
 	void Uninit(void);	//終了化

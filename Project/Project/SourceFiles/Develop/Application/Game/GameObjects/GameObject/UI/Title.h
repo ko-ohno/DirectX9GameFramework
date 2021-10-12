@@ -11,10 +11,16 @@
 /*--- インクルードファイル ---*/
 #include "../UI.h"
 
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
+/*-------------------------------------
+// タイトルメニューの状態
+-------------------------------------*/
+enum class TitleMenuState
+{
+	None = -1
+	, GameStart
+	, GameQuit
+	, Max
+};
 
 /*-------------------------------------
 /* タイトル画面クラス
@@ -25,18 +31,61 @@ public:
 	Title(class Game* game);
 	~Title(void);
 
-	void Init(void);
-	void Uninit(void);
-	void Input(void);
-	void Update(float deltaTime);
-	void Draw(void);
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
+
+	//GameObjectの関数overrideして、自身の挙動として定義する
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 	virtual TypeID GetType(void) const { return TypeID::Title; } 
 
+	void UpdateTitleSprite(float deltaTime);
+	void UpdateBackground(float deltaTime);
+	void UpdateMenu(float deltaTime);
+
+	//void Set
+
+	// タイトルメニューの状態を取得
+	TitleMenuState GetTitleMenuState(void) { return select_state_; }
+
 private:
 
-};
+	// ゲームを開始する
+	class SpriteRendererComponent* menu_game_start_;
 
+	// ゲームを終了する
+	class SpriteRendererComponent* menu_game_quit_;
+
+	// カーソル
+	class SpriteRendererComponent* menu_cursor_;
+
+	// 説明
+	class SpriteRendererComponent* go_next_;
+
+	// パッドの説明
+	class SpriteRendererComponent* xinput_text_;
+
+	// タイトル
+	class SpriteRendererComponent* title_;
+
+	// 背景
+	class SpriteRendererComponent* bg_;
+
+	// 選択音
+	class AudioComponent*		   bgm_title_;
+
+	// 選択音
+	class AudioComponent*		   se_select_;
+
+	// タイトルメニューの状態ステート
+	TitleMenuState select_state_;
+	TitleMenuState select_state_old_;
+
+	// 画面サイズ　
+	float screen_width_;
+	float screen_height_;
+};
 
 #endif //TITLE_H_
 /*=============================================================================

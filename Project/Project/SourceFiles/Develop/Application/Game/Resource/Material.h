@@ -17,11 +17,12 @@
 class Material
 {
 public:
-	Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial);
+	Material(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial);
+	Material(const D3DMATERIAL9& d3dxMaterial);
 	~Material(void);
 
 private:
-	bool Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dxMaterial);
+	bool Init(const LPDIRECT3DDEVICE9& lpd3dDevice, const std::string& filePath, const D3DMATERIAL9& d3dMaterial);
 	void Uninit(void);
 
 public:
@@ -51,6 +52,7 @@ public:
 	void SetLightPower(float lightPower) { light_power_ = lightPower; }
 
 	LPDIRECT3DTEXTURE9* GetTexture(void) { return &lpd3d_texture_; }
+	D3DMATERIAL9* GetD3DMaterial(void) { return &d3d_material_; }
 
 	D3DXVECTOR4* GetDiffuse(void) { return &diffuse_; }
 	D3DXVECTOR4* GetAmbient(void) { return &ambient_; }
@@ -63,8 +65,11 @@ private:
 	bool is_load_completed_;
 
 	//テクスチャ本体
-	LPDIRECT3DTEXTURE9 lpd3d_texture_;
+	LPDIRECT3DTEXTURE9	lpd3d_texture_;
 	
+	//マテリアル
+	D3DMATERIAL9		d3d_material_;
+
 	//
 	// マテリアルの色
 	//

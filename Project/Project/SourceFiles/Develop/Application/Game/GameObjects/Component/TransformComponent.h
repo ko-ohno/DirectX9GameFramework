@@ -100,7 +100,7 @@ public:
 	// âÒì]èÓïÒÇÃê›íË
 	//
 
-	inline bool IsSetExecuteSlerp(bool isExecuteSlerp) { is_execute_slerp_ = isExecuteSlerp; }
+	inline void IsSetExecuteSlerpRotation(bool isExecuteSlerp) { is_execute_slerp_ = isExecuteSlerp; }
 	inline void SetSlerpSpeed(float slerpSpeed) { slerp_spped_ = slerpSpeed; }
 
 	inline void SetRotation(float degreeYaw, float degreePitch, float degreeRoll)
@@ -110,7 +110,7 @@ public:
 		degree_roll_  = degreeRoll;
 	}
 
-	inline void SetRotationYaw(float degreeYaw) { degree_yaw_ = degreeYaw; }
+	inline void SetRotationYaw(float degreeYaw){ degree_yaw_ = degreeYaw; }
 	inline void SetRotationPitch(float degreePitch) { degree_pitch_ = degreePitch; }
 	inline void SetRotationRoll(float degreeRoll) { degree_roll_ = degreeRoll; }
 

@@ -37,13 +37,13 @@ TransformComponent::TransformComponent(GameObject* owner, int updateOrder)
 	, slerp_spped_(1.f)
 	, slerp_runtime_(0.f)
 
-	, quaternion_(D3DXQUATERNION())
-	, direction_quaternion_(D3DXQUATERNION())
+	, quaternion_(0.f, 0.f, 0.f, 0.f)
+	, direction_quaternion_(0.f, 0.f, 0.f, 0.f)
 
 	, rotation_matrix_(D3DXMATRIX())
 	, world_matrix_(D3DXMATRIX())
 {
-
+	this->Init();
 }
 
 /*-----------------------------------------------------------------------------
@@ -51,6 +51,7 @@ TransformComponent::TransformComponent(GameObject* owner, int updateOrder)
 -----------------------------------------------------------------------------*/
 TransformComponent::~TransformComponent(void)
 {
+	this->Uninit();
 }
 
 /*-----------------------------------------------------------------------------
@@ -58,6 +59,10 @@ TransformComponent::~TransformComponent(void)
 -----------------------------------------------------------------------------*/
 bool TransformComponent::Init(void)
 {
+	D3DXQuaternionIdentity(&quaternion_);
+	D3DXQuaternionIdentity(&direction_quaternion_);
+	D3DXMatrixIdentity(&rotation_matrix_);
+	D3DXMatrixIdentity(&world_matrix_);
 	return true;
 }
 
@@ -120,9 +125,9 @@ bool TransformComponent::IsNeedUpdate(void)
 								|| is_old_position_non_matched);
 	if (is_need_update == false)
 	{
-		return true; 
+		return false; 
 	}
-	return false;
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -140,7 +145,7 @@ void TransformComponent::ComputeDirectionVector(void)
 										  , Math::ToRadian(degree_pitch_)
 										  , Math::ToRadian(degree_roll_));
 	}
-
+	 
 	//向き行列と、向きベクトルを作成
 	{
 		//向き行列を作成

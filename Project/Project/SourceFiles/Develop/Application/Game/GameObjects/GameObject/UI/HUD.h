@@ -11,11 +11,6 @@
 /*--- インクルードファイル ---*/
 #include "../UI.h"
 
-/*--- 構造体定義 ---*/
-
-/*--- クラスの前方宣言 ---*/
-
-
 /*-------------------------------------
 /* ゲーム画面のHUDクラス
 -------------------------------------*/
@@ -25,17 +20,71 @@ public:
 	HUD(class Game* game);
 	~HUD(void);
 
-	void Init(void) override;
-	void Uninit(void) override;
-	void Input(void) override;
-	void Update(float deltaTime) override;
+	bool Init(void);	//初期化
+	void Uninit(void);	//終了化
+
+	//GameObjectの関数overrideして、自身の挙動として定義する
+	virtual void InputGameObject(void) override;
+	virtual void UpdateGameObject(float deltaTime) override;
 
 	virtual TypeID GetType(void) const { return TypeID::HUD; }
 
+	// HUDの値を更新
+	void UpdateHUDValue(float deltaTime);
+
+	// 体力
+	void UpdateHealthBarHUD(float deltaTime);
+	
+	//　ゴールまでの距離
+	void UpdateGoalMeterHUD(float deltaTime);
+
+	//　ゴールまでの距離
+	void UpdateScoreHUD(float deltaTime);
+
+
+
 private:
+	// 値コンポーネント取得用ゲームマネージャーへのポインタ
+	class GameObject*					game_manager_;
 
+private:
+	// 体力ゲージ
+	class SpriteRendererComponent*		health_bar_;
+	class SpriteRendererComponent*		health_bar_blank_;
+	class SpriteRendererComponent*		health_bar_bg_;
+
+	// プレイヤーの最大の体力値
+	float	max_player_hp_value_;
+
+	// プレイヤーの体力値
+	float	player_hp_value_;
+
+	// プレイヤーの現在のHPの割合
+	float	player_hp_rate_;
+
+private:
+	// ボスの体力値
+	float	boss_hp_value_;
+
+private:
+	// ゴールまでの距離のHUD
+	class SpriteRendererComponent*		meter_center_bg_;
+	class SpriteRendererComponent*		meter_left_bg_;
+	class SpriteRendererComponent*		meter_right_bg_;
+
+	// 数字桁の表示
+	class SpriteDigitRendererComponent* distance_digit_;
+
+	// ゴールまでの距離の値
+	int distance_value_;
+
+private:
+	// 数字桁の表示
+	class SpriteDigitRendererComponent* score_digit_;
+
+	// ゴールまでの距離の値
+	int score_value_;
 };
-
 
 #endif //HUD_H_
 /*=============================================================================

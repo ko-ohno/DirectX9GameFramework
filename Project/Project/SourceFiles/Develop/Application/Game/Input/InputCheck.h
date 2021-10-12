@@ -53,18 +53,18 @@ public:
 
 	static bool KeyPress(int dikKeynum);
 	static bool KeyTrigger(int dikKeynum);
-	static bool KeyRepeat(int dikKeynum);
+	static bool KeyRepeat(int dikKeynum, float inputSeconds);
 	static bool KeyRelease(int dikKeynum);
 
 	static bool MButtonPress(MibNum mibNum);
 	static bool MButtonTrigger(MibNum mibNum);
-	static bool MButtonRepeat(MibNum mibNum);
+	static bool MButtonRepeat(MibNum mibNum, float inputSeconds);;
 	static bool MButtonRelease(MibNum mibNum);
 	static class Vector2 MouseCursorPos(void);
 
 	static bool XInputPress(PadIndex padIndex, XInputButton xibIndex);
 	static bool XInputTrigger(PadIndex padIndex, XInputButton xibIndex);
-	static bool XInputRepeat(PadIndex padIndex, XInputButton xibIndex);
+	static bool XInputRepeat(PadIndex padIndex, XInputButton xibIndex, float inputSeconds);;
 	static bool XInputRelease(PadIndex padIndex, XInputButton xibIndex);
 	static class Vector2 XInputThumbLeft(PadIndex padIndex);
 	static class Vector2 XInputThumbRight(PadIndex padIndex);

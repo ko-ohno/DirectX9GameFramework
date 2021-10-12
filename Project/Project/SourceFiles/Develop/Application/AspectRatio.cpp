@@ -64,7 +64,7 @@ AspectRatio::AspectRatio(void)
 	//‰æ–ÊƒTƒCƒY‚ÌÅ‘å’l‚ğ“o˜^
 	auto value = std::make_pair("FullScreen("+ full_asepct_ratio_string +")"  ,  Vector2(full_screen_window_size));
 	aspect_ratio_list_.push_back(value);
-
+	screen_scaler_.push_back(1.f);		// ÅŒã‚ÍŒ´¡‘åŠgk’l‚Ì”{—¦‚ğ•Û‘¶
 }
 
 /*-----------------------------------------------------------------------------

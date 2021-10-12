@@ -25,9 +25,11 @@ public:
 	SpriteRendererComponent(class GameObject* owner, int drawOrder = 200);
 	~SpriteRendererComponent(void);
 
+private:
 	bool Init(void) override;
 	void Uninit(void) override;
 
+public:
 	void Draw(class Shader* shader, class Camera* camera) override;
 
 	virtual TypeID GetComponentType() const override { return TypeID::SpriteRendererComponent; };
@@ -67,7 +69,7 @@ public:
 public:
 
 	//•`‰æÀ•W‚ğƒ|ƒŠƒSƒ“‚Ì’†‰›‚Ö
-	inline void SetDrawingPositionToCenter(const bool isOffsetScaleingCenter) { is_offset_scale_ = isOffsetScaleingCenter; }
+	inline void IsSetDrawingPositionToCenter(const bool isOffsetScaleingCenter) { is_offset_scale_ = isOffsetScaleingCenter; }
 
 	//‰ñ“]¬•ª‚Ì‘€ì
 

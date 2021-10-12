@@ -9752,7 +9752,7 @@ Frame Root {
            96.078431;
            0.500000; 0.500000; 0.500000;;
            0.000000; 0.000000; 0.000000;;
-          TextureFilename {"SkyDome-Cloudless-MidMorning.png";}
+          TextureFilename {"SkyDome/SkyDome-Cloudless-MidMorning.png";}
         }
       } // End of sphere material list
     } // End of sphere mesh

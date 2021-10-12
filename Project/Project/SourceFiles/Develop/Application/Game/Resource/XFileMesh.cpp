@@ -9,7 +9,7 @@
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
 #include "XFileMesh.h"
-#include "../Manager/MeshManager.h"
+#include "../ResourceManager/MeshManager.h"
 #include "../Game.h"
 #include "../../DX9Graphics.h"
 #include "../Resource/Texture.h"
@@ -158,7 +158,13 @@ bool XFileMesh::LoadMeshFile(const XFileMeshType meshType)
 
 				// マテリアルの作成
 				this->AddMaterial(NEW Material(lpd3d_device, filepath, lpd3dx_materials[i].MatD3D));
+				{
+					continue;
+				}
 			}
+
+			// マテリアルの作成
+			this->AddMaterial(NEW Material(lpd3dx_materials[i].MatD3D));
 		}
 	}
 	return true;

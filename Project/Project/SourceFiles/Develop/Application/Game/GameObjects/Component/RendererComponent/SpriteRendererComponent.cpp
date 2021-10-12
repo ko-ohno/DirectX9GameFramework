@@ -84,11 +84,10 @@ bool SpriteRendererComponent::Init(void)
 		{
 			return false;
 		}
+	
+		//バッファの初期化
+		this->ComputeVertexBuffer();
 	}
-
-	//バッファの初期化
-	this->ComputeVertexBuffer();
-
 	return true;
 }
 
@@ -97,8 +96,9 @@ bool SpriteRendererComponent::Init(void)
 -----------------------------------------------------------------------------*/
 void SpriteRendererComponent::Uninit(void)
 {
-	SAFE_RELEASE_(vertex_buffer_);
-	SAFE_RELEASE_(index_buffer_);
+	// 静的変数(ポインタじゃ)ないので、解放は必要なし
+	//SAFE_RELEASE_(vertex_buffer_);
+	//SAFE_RELEASE_(index_buffer_);
 }
 
 /*-----------------------------------------------------------------------------
@@ -260,6 +260,8 @@ bool SpriteRendererComponent::CreateIndexBuffer(void)
 -----------------------------------------------------------------------------*/
 void SpriteRendererComponent::ComputeVertexBuffer(void)
 {
+	if (vertex_buffer_ == nullptr) { return; }
+
 	//VRAMへ書き込みを行うためのRAM上での議事アドレス
 	VERTEX_STD* vtx = nullptr;
 

@@ -10,22 +10,53 @@
 #include "../../../StdAfx.h"
 #include "../game.h"
 #include "GameObject.h"
-#include "Component.h"
+#include "Component/TransformComponent.h"
 
 //ゲームオブジェクトのリスト(セーブ用の種別  テキストデータ)
 const char* GameObject::GameObjectTypeNames[static_cast<int>(TypeID::MAX)] = {
 	//自分自身
 	"GameObject"
 
-	//アクター(独立した役割を持つゲームオブジェクト)
+	// カメラ
 	, "Camera"
-	, "Enemy"
-	, "Player"
+	, "GameCamera"
 
-	//テスト
-	, "TestMesh"
-	, "TestSprite"
-	, "TestBillboard"
+	// UI
+	, "UI"
+	, "Fade"
+	, "HUD"
+	, "PauseMenu"
+	, "Result"
+	, "Title"
+
+	// サンドボックス
+	, "SandBox"
+	, "Bullet"
+	, "ChargeBullet"
+	, "Actor"
+	, "Player"
+	, "Enemy"
+	, "WeakEnemy"
+	, "StrongEnemy"
+	, "Boss"
+
+	// 背景
+	, "BackGround"
+	, "Planet"
+	, "SkyBox"
+
+	// ゲームマネージャ
+	, "GameManager"
+
+	// テスト用のゲームオブジェクト
+	, "SpriteTest"
+	, "BillboardTest"
+	, "MeshTest"
+	, "EffectTest"
+	, "AudioTest"
+	, "ColliderTest"
+	, "CameraTest"
+	, "SaveDataTest"
 
 };
 
@@ -38,6 +69,7 @@ GameObject::GameObject(class Game* game)
 	, renderer_layer_type_(RendererLayerType::None)
 	, transform_component_(nullptr)
 	, re_compute_transform_(true)
+	, game_object_parent_(nullptr)
 {
 	//ゲームオブジェクトを管理先へ追加
 	game_->AddGameObject(this);
@@ -61,6 +93,10 @@ GameObject::~GameObject(void)
 -----------------------------------------------------------------------------*/
 bool GameObject::Init(void)
 {
+	//姿勢コンポーネントの作成
+	{
+		transform_component_ = NEW TransformComponent(this);
+	}
 	return true;
 }
 
@@ -104,7 +140,7 @@ void GameObject::InputGameObject(void)
 -----------------------------------------------------------------------------*/
 void GameObject::Update(float deltaTime)
 {
-	if (state_ == State::Active)
+	if (state_ == State::Active || state_ == State::Destroy)
 	{
 		if (this->GetRendererLayerType() == RendererLayerType::None)
 		{
@@ -190,6 +226,46 @@ void GameObject::RemoveComponent(Component* component)
 	{
 		components_.erase(iter);
 	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの追加
+-----------------------------------------------------------------------------*/
+void GameObject::AddParameterComponent(ParameterComponent* component)
+{
+	parameter_components_.emplace_back(component);
+}
+
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの削除
+-----------------------------------------------------------------------------*/
+void GameObject::RemoveParameterComponent(ParameterComponent* component)
+{
+	auto iter = std::find(parameter_components_.begin()
+						 , parameter_components_.end()
+						 , component);	//探す対象
+
+	if (iter != parameter_components_.end())
+	{
+		parameter_components_.erase(iter);
+	}
+}
+
+/*-----------------------------------------------------------------------------
+/* 値コンポーネントの検索処理
+-----------------------------------------------------------------------------*/
+GameObject* GameObject::FindGameObject(TypeID findTypeID)
+{
+	auto game_objects = game_->GetGameObjects();
+	for (auto game_object : game_objects)
+	{
+		auto game_object_type = game_object->GetType();
+		if (game_object_type == findTypeID)
+		{
+			return game_object;
+		}
+	}
+	return nullptr;
 }
 
 /*=============================================================================

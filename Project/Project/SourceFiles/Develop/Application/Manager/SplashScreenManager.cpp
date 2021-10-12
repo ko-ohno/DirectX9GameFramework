@@ -74,7 +74,11 @@ bool SplashScreenManager::Init(void)
 	//アスペクト比率のリストの作成
 	this->MakeListAspectRatio();
 
+#if FALSE
 	const char* filename = { "Assets/PackageImage/QR_code_to_my_github.png" };
+#else
+	const char* filename = { "Assets/PackageImage/package_icon.png" };
+#endif // TRUE
 	bool is_load_sucess = ImGui::LoadTexture(filename, &texture_, texture_size_);
 	if (!is_load_sucess) { return false; }
 
@@ -146,7 +150,7 @@ void SplashScreenManager::Update(float deltaTime)
 				//コンボボックス
 				{
 					//スプラッシュスクリーン起動直後のコンボボックスの選択値
-					static int combo_item_current = 2;
+					static int combo_item_current = screen_scaler_array_.size() -1;
 
 					//選択中の比率の更新
 					aspect_ratio_size_ = aspect_ratio_size_array_.at(combo_item_current);
@@ -188,12 +192,12 @@ void SplashScreenManager::Update(float deltaTime)
 					ImGui::SameLine();
 					if (ImGui::Button("START", ImVec2(200.f, 20.f)))
 					{
-						is_loop_break_ = true; //Applicationのウィンドウ生成命令を発行
+						is_loop_break_ = true; // Applicationのウィンドウ生成命令を発行
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("QUIT", ImVec2(200.f, 20.f)))
 					{
-						is_shutdown_  = true;	//プログラムの停止命令を発行
+						is_shutdown_  = true;  // プログラムの停止命令を発行
 					}
 				}
 				ImGui::EndGroup();

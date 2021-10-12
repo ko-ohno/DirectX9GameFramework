@@ -12,6 +12,7 @@
 #include "../DX9Graphics.h"
 #include "../../../External/ImGui/include/imgui_internal.h"
 #include "../Math.h"
+#include "../../DevelopSystemDefine.h"
 #include "../../DebugCode/DebugFunction.h"
 
 /*-----------------------------------------------------------------------------
@@ -64,11 +65,11 @@ bool ImGuiManager::StartUp(DX9Graphics* dx9Graphics, const HWND& windowHandle)
 	}
 
 	//ビルドの設定によってImGuiの.iniファイルを生成しないようにする　
-#if defined(_DEBUG) || defined(DEBUG)
+#ifdef IMGUI_INI_FILE_MODE_
 	io.IniFilename;				//生成
 #else
 	io.IniFilename = nullptr;	//非生成
-#endif // RELEASE
+#endif // IMGUI_INI_FILE_MODE_
 
 	//ImGuiの色を選択
 	ImGuiManager::SetDefaultColor();
@@ -144,7 +145,7 @@ void ImGuiManager::ImGuiRender(void)
 /*-----------------------------------------------------------------------------
 /* ImGuiのフレームの更新終了ハンドラ
 -----------------------------------------------------------------------------*/
-void ImGui::ShowFramerate(float deltaTime)
+void ImGui::ShowFPS(float deltaTime)
 {
 	ImGuiWindowFlags gui_window_style = (ImGuiWindowFlags_NoMove);
 	static bool is_open = false;

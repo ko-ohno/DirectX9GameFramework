@@ -10,7 +10,7 @@
 
 /*--- インクルードファイル ---*/
 #include "../../../StdAfx.h"
-#include "../Manager/TextureManager.h"
+#include "../ResourceManager/TextureManager.h"
 
 /*-------------------------------------
 /* テクスチャークラス

@@ -16,16 +16,10 @@
 UI::UI(class Game* game)
 	: GameObject(game)
 	, game_(game)
-	, state_(State::Closing)
+	, is_drawable_(false)
+	, state_(UIState::Closing)
 {
-	//RendererTypeInfo::SetRendererLayerType();
-	//RendererTypeInfo::SetRendererType();
-	//RendererTypeInfo::SetShaderType();
-	//	ShaderType::
-
-
-
-	//this->SetRendererTypeInfo(RendererTypeInfo::)
+	this->renderer_layer_type_ = RendererLayerType::UI;
 }
 
 /*-----------------------------------------------------------------------------
@@ -38,8 +32,9 @@ UI::~UI(void)
 /*-----------------------------------------------------------------------------
 /* èâä˙âªèàóù
 -----------------------------------------------------------------------------*/
-void UI::Init(void)
+bool UI::Init(void)
 {
+	return true;
 }
 
 /*-----------------------------------------------------------------------------
@@ -52,14 +47,14 @@ void UI::Uninit(void)
 /*-----------------------------------------------------------------------------
 /* ì¸óÕèàóù
 -----------------------------------------------------------------------------*/
-void UI::Input(void)
+void UI::InputGameObject(void)
 {
 }
 
 /*-----------------------------------------------------------------------------
 /* çXêVèàóù
 -----------------------------------------------------------------------------*/
-void UI::Update(float deltaTime)
+void UI::UpdateGameObject(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 }

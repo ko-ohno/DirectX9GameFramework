@@ -32,8 +32,12 @@ public:
 	bool RenderingBegin(void);
 	void RenderingEnd(void);
 
+	// 画面の各縮率の取得
+	inline float GetScreenScaler(void) { return screen_scaler_; }
+	inline void SetScreenScaler(float screenScaler) { screen_scaler_ = screenScaler; }
+
 	//画面サイズの取得
-	Vector2 GetScreenSize(void) { return screen_size_; }
+	inline Vector2 GetScreenSize(void) { return screen_size_; }
 
 private:
 	void Init(void);
@@ -49,6 +53,7 @@ private:
 
 private:
 	Vector2 screen_size_;
+	float	screen_scaler_;
 };
 
 #endif //DX9GRAPHICS_H_
