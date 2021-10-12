@@ -1,9 +1,0 @@
-<map id="RendererComponent" name="RendererComponent">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,145,121"/>
-<area shape="rect" id="node2" href="$class_component.html" title=" " alt="" coords="198,5,286,32"/>
-<area shape="rect" id="node7" href="$class_transform_component.html" title=" " alt="" coords="169,95,315,121"/>
-<area shape="rect" id="node3" href="$class_game_object.html" title=" " alt="" coords="383,184,477,211"/>
-<area shape="rect" id="node4" href="$class_game.html" title=" " alt="" coords="451,95,508,121"/>
-<area shape="rect" id="node5" href="$class_shader.html" title=" " alt="" coords="532,95,595,121"/>
-<area shape="rect" id="node6" href="$class_shader_manager.html" title=" " alt="" coords="507,5,620,32"/>
-</map>

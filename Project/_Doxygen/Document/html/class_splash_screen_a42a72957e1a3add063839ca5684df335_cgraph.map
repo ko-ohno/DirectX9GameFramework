@@ -1,8 +1,0 @@
-<map id="SplashScreen::StartUp" name="SplashScreen::StartUp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,160,91"/>
-<area shape="rect" id="node2" href="$class_message_loop.html#abffe20ba8aaec465a0b0ae01ff0174e3" title=" " alt="" coords="238,5,387,32"/>
-<area shape="rect" id="node4" href="$namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3" title=" " alt="" coords="208,57,417,98"/>
-<area shape="rect" id="node5" href="$class_message_loop.html#afebdf6635eb2bbff611004cfdcdc311d" title=" " alt="" coords="235,123,390,149"/>
-<area shape="rect" id="node3" href="$class_message_loop.html#a6c5c4b5e9941932bff755887ae2804b8" title=" " alt="" coords="465,5,657,32"/>
-<area shape="rect" id="node6" href="$class_i_manager.html#aaecf6a75d42789bf1bde2e480ba3dc0d" title=" " alt="" coords="511,123,611,149"/>
-</map>

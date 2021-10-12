@@ -1,7 +1,0 @@
-<map id="Game::GetRenderer" name="Game::GetRenderer">
-<area shape="rect" id="node1" title=" " alt="" coords="201,93,340,120"/>
-<area shape="rect" id="node2" href="$class_camera.html#a65f36ad148175f92244c7d150c688b4e" title=" " alt="" coords="19,5,139,32"/>
-<area shape="rect" id="node3" href="$class_renderer_component.html#ab097ede84dfd92bd842eb5a29ec5aa95" title=" " alt="" coords="5,57,153,98"/>
-<area shape="rect" id="node4" href="$class_camera.html#a06211f202c145b3ec8253f96e1e654a6" title=" " alt="" coords="15,123,143,149"/>
-<area shape="rect" id="node5" href="$class_renderer_component.html#af07b51c5dc320999e6603b8b5bedc0c7" title=" " alt="" coords="5,174,153,215"/>
-</map>

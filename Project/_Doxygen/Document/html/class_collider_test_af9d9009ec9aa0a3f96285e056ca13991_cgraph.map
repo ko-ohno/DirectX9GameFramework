@@ -1,7 +1,0 @@
-<map id="ColliderTest::ColliderTest" name="ColliderTest::ColliderTest">
-<area shape="rect" id="node1" title=" " alt="" coords="5,71,172,98"/>
-<area shape="rect" id="node2" href="$class_collider_manager.html#a817db32cf6920222a0b44c87995b248d" title=" " alt="" coords="220,5,407,47"/>
-<area shape="rect" id="node3" href="$class_game.html#a14f8b09aa269b3a9b12cd0f3dd31d816" title=" " alt="" coords="224,71,403,98"/>
-<area shape="rect" id="node4" href="$class_renderer_component.html#ab4e8780e03684e61304d993eb6c58cab" title=" " alt="" coords="239,123,387,164"/>
-<area shape="rect" id="node5" href="$namespace_math.html#a0708162c6af3743ac362dab691428c50" title=" " alt="" coords="455,130,551,157"/>
-</map>

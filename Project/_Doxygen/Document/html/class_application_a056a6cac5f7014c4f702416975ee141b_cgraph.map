@@ -1,9 +1,0 @@
-<map id="Application::StartUp" name="Application::StartUp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,85,144,112"/>
-<area shape="rect" id="node2" href="$class_message_loop.html#abffe20ba8aaec465a0b0ae01ff0174e3" title=" " alt="" coords="239,5,388,32"/>
-<area shape="rect" id="node4" href="$class_win32_a_p_i_window.html#af48f39d95443aa3078f9c4e755a0c537" title=" " alt="" coords="192,56,435,83"/>
-<area shape="rect" id="node5" href="$namespace_debug_function.html#aba73f1bccd5e6e43a37525bbecc2b8f3" title=" " alt="" coords="209,107,418,149"/>
-<area shape="rect" id="node6" href="$class_message_loop.html#afebdf6635eb2bbff611004cfdcdc311d" title=" " alt="" coords="236,173,391,200"/>
-<area shape="rect" id="node3" href="$class_message_loop.html#a6c5c4b5e9941932bff755887ae2804b8" title=" " alt="" coords="483,5,675,32"/>
-<area shape="rect" id="node7" href="$class_i_manager.html#aaecf6a75d42789bf1bde2e480ba3dc0d" title=" " alt="" coords="529,173,629,200"/>
-</map>

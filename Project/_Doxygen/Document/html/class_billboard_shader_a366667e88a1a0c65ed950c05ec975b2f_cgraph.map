@@ -1,8 +1,0 @@
-<map id="BillboardShader::BillboardShader" name="BillboardShader::BillboardShader">
-<area shape="rect" id="node1" title=" " alt="" coords="5,74,176,115"/>
-<area shape="rect" id="node2" href="$class_shader_manager.html#aad4f65dca2079255531dafacfb83f687" title=" " alt="" coords="238,5,415,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a073433e798edb46ed2da577a4c1d9921" title=" " alt="" coords="257,56,396,83"/>
-<area shape="rect" id="node4" href="$class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3" title=" " alt="" coords="224,107,429,133"/>
-<area shape="rect" id="node5" href="$class_billboard_shader.html#a38f0597666c9d15ca5b57c2f5ce532e7" title=" " alt="" coords="257,157,396,184"/>
-<area shape="rect" id="node6" href="$class_billboard_shader.html#a3291313693fa4d6da3ade2a910781fc0" title=" " alt="" coords="477,157,687,184"/>
-</map>

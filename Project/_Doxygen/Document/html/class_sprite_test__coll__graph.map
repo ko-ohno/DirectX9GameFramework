@@ -1,9 +1,0 @@
-<map id="SpriteTest" name="SpriteTest">
-<area shape="rect" id="node1" title=" " alt="" coords="5,273,87,300"/>
-<area shape="rect" id="node2" href="$class_game_object.html" title=" " alt="" coords="108,184,203,211"/>
-<area shape="rect" id="node7" href="$class_component.html" title=" " alt="" coords="111,273,199,300"/>
-<area shape="rect" id="node3" href="$class_game.html" title=" " alt="" coords="88,95,145,121"/>
-<area shape="rect" id="node4" href="$class_shader.html" title=" " alt="" coords="169,95,232,121"/>
-<area shape="rect" id="node5" href="$class_shader_manager.html" title=" " alt="" coords="144,5,257,32"/>
-<area shape="rect" id="node6" href="$class_transform_component.html" title=" " alt="" coords="143,349,288,376"/>
-</map>

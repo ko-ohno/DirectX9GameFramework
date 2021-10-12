@@ -1,4 +1,0 @@
-<map id="CheckCollision::SphereVSSpghre" name="CheckCollision::SphereVSSpghre">
-<area shape="rect" id="node1" title=" " alt="" coords="5,13,221,39"/>
-<area shape="rect" id="node2" href="$class_sphere_collider_component.html#a1e0d185d17f9f4a1b15192c2677186b1" title=" " alt="" coords="269,5,441,47"/>
-</map>

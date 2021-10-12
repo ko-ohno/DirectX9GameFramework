@@ -1,6 +1,0 @@
-<map id="EffectTest::UpdateGameObject" name="EffectTest::UpdateGameObject">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,208,91"/>
-<area shape="rect" id="node2" href="$class_game.html#a808750e65ec7c088fe7d48e3b51c086d" title=" " alt="" coords="260,5,429,32"/>
-<area shape="rect" id="node3" href="$class_effect_manager.html#a7e0f470a1af2c1f4635c8e53d1c65aec" title=" " alt="" coords="256,57,433,98"/>
-<area shape="rect" id="node4" href="$class_renderer_component.html#a87f1ea21ab1500aa58bc2353ffe13455" title=" " alt="" coords="271,122,419,163"/>
-</map>

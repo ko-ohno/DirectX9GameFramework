@@ -1,9 +1,0 @@
-<map id="SpriteShader::ShaderSet" name="SpriteShader::ShaderSet">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,172,133"/>
-<area shape="rect" id="node2" href="$class_shader_manager.html#aad4f65dca2079255531dafacfb83f687" title=" " alt="" coords="235,5,412,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a073433e798edb46ed2da577a4c1d9921" title=" " alt="" coords="254,56,393,83"/>
-<area shape="rect" id="node4" href="$class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3" title=" " alt="" coords="221,107,426,133"/>
-<area shape="rect" id="node5" href="$class_camera.html#a772633b73a4ee7dffb6e67e78a18da47" title=" " alt="" coords="220,157,427,184"/>
-<area shape="rect" id="node7" href="$class_texture.html#ad0bbef1313d63bf38b4458233c35d6c7" title=" " alt="" coords="255,208,392,235"/>
-<area shape="rect" id="node6" href="$class_camera_component.html#a75d60e7ca64beb90b2e8e72728f6ff2b" title=" " alt="" coords="475,150,701,191"/>
-</map>

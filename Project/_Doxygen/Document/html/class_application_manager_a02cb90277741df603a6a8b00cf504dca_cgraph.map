@@ -1,9 +1,0 @@
-<map id="ApplicationManager::Input" name="ApplicationManager::Input">
-<area shape="rect" id="node1" title=" " alt="" coords="5,57,141,98"/>
-<area shape="rect" id="node2" href="$class_game.html#a417aa6f5a8eb9fda0f77ff3838982dca" title=" " alt="" coords="233,5,327,32"/>
-<area shape="rect" id="node3" href="$class_input_check.html#a3f1f146bc9980f50c3446ce34e0a08d1" title=" " alt="" coords="189,57,371,98"/>
-<area shape="rect" id="node4" href="$class_input_device.html#a812bd6ca62a4c8dc5deee6e1f5560e60" title=" " alt="" coords="211,123,349,149"/>
-<area shape="rect" id="node5" href="$class_input_device_mouse.html#a651f8429eeb3ec54d56f2ef722abe5ea" title=" " alt="" coords="419,64,595,91"/>
-<area shape="rect" id="node6" href="$class_input_device_keyboard.html#ab09cb146fc05c27d90184e51ece91f8d" title=" " alt="" coords="435,115,578,157"/>
-<area shape="rect" id="node7" href="$class_input_device_x_input.html#aac9bdfe6ce3ad7a7257548534f730649" title=" " alt="" coords="441,181,572,222"/>
-</map>

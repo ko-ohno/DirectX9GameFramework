@@ -1,6 +1,0 @@
-<map id="SplashScreenManager::Update" name="SplashScreenManager::Update">
-<area shape="rect" id="node1" title=" " alt="" coords="5,49,159,90"/>
-<area shape="rect" id="node2" href="$class_win32_a_p_i_window.html#a39796627c9284577cb6b39182c4c17bc" title=" " alt="" coords="207,5,433,32"/>
-<area shape="rect" id="node3" href="$class_im_gui_manager.html#aa702ecba3f19c6ae5961db98540fbe9b" title=" " alt="" coords="226,56,414,83"/>
-<area shape="rect" id="node4" href="$class_im_gui_manager.html#acd66a565d9d45833af8632edaaa0b939" title=" " alt="" coords="231,107,409,133"/>
-</map>

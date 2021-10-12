@@ -1,9 +1,0 @@
-<map id="AudioComponent::SetSound" name="AudioComponent::SetSound">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,192,83"/>
-<area shape="rect" id="node2" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="252,5,411,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a4393e9c21a28d61d9164e5bccb8451b2" title=" " alt="" coords="245,56,418,83"/>
-<area shape="rect" id="node4" href="$class_sound_manager.html#ad2d85c2ff208a6ba9fdf55454b62bf95" title=" " alt="" coords="240,107,423,133"/>
-<area shape="rect" id="node5" href="$class_sound_manager.html#a469552f59fbceda89f72fa9e63fd56a9" title=" " alt="" coords="471,81,649,108"/>
-<area shape="rect" id="node6" href="$class_sound_manager.html#aea1f3579282c8220a06d5a3d04a1f529" title=" " alt="" coords="471,132,649,159"/>
-<area shape="rect" id="node7" href="$class_sound.html#aea881269a5d7b47d10081ca6d8067967" title=" " alt="" coords="697,132,863,159"/>
-</map>

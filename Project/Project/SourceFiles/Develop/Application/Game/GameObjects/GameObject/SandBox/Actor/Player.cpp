@@ -65,6 +65,7 @@ Player::Player(Game* game)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
 	, is_blaster_fire_(false)
+	, is_enable_key_input_(false)
 	, is_received_damage_(false)
 	, damage_recieve_interval_time_(0.f)
 {
@@ -219,6 +220,43 @@ void Player::InputGameObject(void)
 	auto game_state = game_->GetGameState();
 	if (game_state == Game::GameState::GameStartScene) { return; }
 
+	// パッドの入力だった場合
+	const bool is_input_left_thumb_axis_x	= (InputCheck::XInputThumbLeft(PadIndex::Pad1).x_ >= 0.1f || InputCheck::XInputThumbLeft(PadIndex::Pad1).x_ <= -0.1f);
+	const bool is_input_left_thumb_axis_y	= (InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ >= 0.1f || InputCheck::XInputThumbLeft(PadIndex::Pad1).y_ <= -0.1f);
+	const bool is_input_button_a			= (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A));
+	const bool is_enable_xinput_pad_input = (is_input_left_thumb_axis_x || is_input_left_thumb_axis_y || is_input_button_a);
+
+	if (is_enable_xinput_pad_input)
+	{
+		if (is_enable_key_input_ == true)
+		{
+
+			is_enable_key_input_ = false;
+		}
+	}
+
+	// キーマウス入力だった場合
+	const bool is_input_key_space	= (InputCheck::KeyPress(DIK_SPACE));
+	const bool is_input_key_w		= (InputCheck::KeyPress(DIK_W));
+	const bool is_input_key_s		= (InputCheck::KeyPress(DIK_S));
+	const bool is_input_key_a		= (InputCheck::KeyPress(DIK_A));
+	const bool is_input_key_d		= (InputCheck::KeyPress(DIK_D));
+	const bool is_input_mouce_left  = InputCheck::MButtonPress(MibNum::MIB_LEFT);
+	const bool is_enable_key_mouce_input =	(is_input_key_space 
+											|| is_input_key_w 
+											|| is_input_key_s
+											|| is_input_key_a
+											|| is_input_key_d
+											|| is_input_mouce_left);
+
+	if (is_enable_key_mouce_input)
+	{
+		if (is_enable_key_input_ == false)
+		{
+			is_enable_key_input_ = true;
+		}
+	}
+
 	// チャージ弾の武器コンポーネントの確認
 	if(charge_blaster_ == nullptr)
 	{
@@ -227,6 +265,7 @@ void Player::InputGameObject(void)
 
 	// 弾を発射するか
 	is_blaster_fire_ = (InputCheck::XInputTrigger(PadIndex::Pad1, XInputButton::XIB_A)|| InputCheck::MButtonTrigger(MibNum::MIB_LEFT));
+
 
 	// ボタンを長押ししたら
 	if (charge_blaster_->IsCheckChargeBulletInstance() == false)
@@ -242,9 +281,19 @@ void Player::InputGameObject(void)
 		// ボタンを離したら
 		if (charge_blaster_->GetChargeBulletState() == ChargeBulletState::Hold)
 		{
-			if ((InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A) == false)||( InputCheck::MButtonPress(MibNum::MIB_LEFT) == false))
+			if (is_enable_key_input_ == true)
 			{
-				charge_blaster_->Fire();
+				if (InputCheck::MButtonPress(MibNum::MIB_LEFT) == false)
+				{
+					charge_blaster_->Fire();
+				}
+			}
+			else
+			{
+				if (InputCheck::XInputPress(PadIndex::Pad1, XInputButton::XIB_A) == false)
+				{
+					charge_blaster_->Fire();
+				}
 			}
 		}
 	}

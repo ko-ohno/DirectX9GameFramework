@@ -1,8 +1,0 @@
-<map id="Sound::GetXAudio2SourceVoice" name="Sound::GetXAudio2SourceVoice">
-<area shape="rect" id="node1" title=" " alt="" coords="487,81,696,108"/>
-<area shape="rect" id="node2" href="$class_audio_component.html#a62de301e2aae708edfd73f9c6be1e048" title=" " alt="" coords="270,5,425,32"/>
-<area shape="rect" id="node4" href="$class_audio_component.html#a48a105c1245b9ab7979e3ea86bbc28b4" title=" " alt="" coords="256,56,439,83"/>
-<area shape="rect" id="node5" href="$class_audio_component.html#aa2e67313216a4e6f1e2cb51267a0ef4f" title=" " alt="" coords="269,107,425,133"/>
-<area shape="rect" id="node6" href="$class_audio_component.html#ac9fafdff688c5316ebe794020fa3db5d" title=" " alt="" coords="262,157,433,184"/>
-<area shape="rect" id="node3" href="$class_audio_test.html#aea72700d10c9c572119d4892fee20715" title=" " alt="" coords="5,31,208,57"/>
-</map>

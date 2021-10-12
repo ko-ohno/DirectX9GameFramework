@@ -1,8 +1,0 @@
-<map id="TextureManager::AddTexture" name="TextureManager::AddTexture">
-<area shape="rect" id="node1" title=" " alt="" coords="715,46,904,73"/>
-<area shape="rect" id="node2" href="$class_texture_manager.html#a8394fff3fd6a75e8cf9003f0ca26b307" title=" " alt="" coords="472,46,667,73"/>
-<area shape="rect" id="node3" href="$class_billboard_renderer_component.html#a6cecd97cb181c1d7e950a0c6eede41ef" title=" " alt="" coords="233,5,424,47"/>
-<area shape="rect" id="node5" href="$class_sprite_renderer_component.html#ae8cbb99feffc5a0a69492b76523caf7e" title=" " alt="" coords="241,71,416,112"/>
-<area shape="rect" id="node4" href="$class_billboard_test.html#a5fbb5e574e3be06542b02d982aaaa883" title=" " alt="" coords="5,13,185,39"/>
-<area shape="rect" id="node6" href="$class_sprite_test.html#a419a8ff4f2298c598074ab05599e3578" title=" " alt="" coords="21,78,169,105"/>
-</map>

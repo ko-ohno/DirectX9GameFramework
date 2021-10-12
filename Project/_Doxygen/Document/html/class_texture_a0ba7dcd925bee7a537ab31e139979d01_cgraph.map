@@ -1,8 +1,0 @@
-<map id="Texture::LoadTexture" name="Texture::LoadTexture">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,149,133"/>
-<area shape="rect" id="node2" href="$class_texture_manager.html#aa06224bef458fcfe3110a6bc57461533" title=" " alt="" coords="211,5,389,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a073433e798edb46ed2da577a4c1d9921" title=" " alt="" coords="231,56,369,83"/>
-<area shape="rect" id="node4" href="$class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3" title=" " alt="" coords="197,107,403,133"/>
-<area shape="rect" id="node5" href="$class_texture_manager.html#a1c0955818e987354e1f1e672d4efdb47" title=" " alt="" coords="207,158,393,199"/>
-<area shape="rect" id="node6" href="$class_texture_manager.html#ac397dcffe40f9aaecb136ce65e442d9d" title=" " alt="" coords="207,223,393,265"/>
-</map>

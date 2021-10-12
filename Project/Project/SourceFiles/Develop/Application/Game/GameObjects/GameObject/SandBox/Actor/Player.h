@@ -85,6 +85,9 @@ private:
 	// 光線銃を発射するか 
 	bool								is_blaster_fire_;
 
+	// キー入力を有効にするか
+	bool								is_enable_key_input_;
+
 private:
 	//
 	// プレイヤーへの衝突判定

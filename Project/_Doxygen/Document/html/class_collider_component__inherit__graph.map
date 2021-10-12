@@ -1,9 +1,0 @@
-<map id="ColliderComponent" name="ColliderComponent">
-<area shape="rect" id="node1" title=" " alt="" coords="141,107,272,133"/>
-<area shape="rect" id="node3" href="$class_capsule_collider_component.html" title=" " alt="" coords="325,5,504,32"/>
-<area shape="rect" id="node4" href="$class_circle_collider_component.html" title=" " alt="" coords="333,56,497,83"/>
-<area shape="rect" id="node5" href="$class_o_b_b_collider_component.html" title=" " alt="" coords="335,107,494,133"/>
-<area shape="rect" id="node6" href="$class_rectangle_collider_component.html" title=" " alt="" coords="320,157,509,184"/>
-<area shape="rect" id="node7" href="$class_sphere_collider_component.html" title=" " alt="" coords="329,208,501,235"/>
-<area shape="rect" id="node2" href="$class_component.html" title=" " alt="" coords="5,107,93,133"/>
-</map>

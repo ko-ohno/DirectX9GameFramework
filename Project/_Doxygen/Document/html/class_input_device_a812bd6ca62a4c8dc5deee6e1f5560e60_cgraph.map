@@ -1,6 +1,0 @@
-<map id="InputDevice::Update" name="InputDevice::Update">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,143,91"/>
-<area shape="rect" id="node2" href="$class_input_device_mouse.html#a651f8429eeb3ec54d56f2ef722abe5ea" title=" " alt="" coords="191,5,367,32"/>
-<area shape="rect" id="node3" href="$class_input_device_keyboard.html#ab09cb146fc05c27d90184e51ece91f8d" title=" " alt="" coords="207,57,350,98"/>
-<area shape="rect" id="node4" href="$class_input_device_x_input.html#aac9bdfe6ce3ad7a7257548534f730649" title=" " alt="" coords="213,122,344,163"/>
-</map>

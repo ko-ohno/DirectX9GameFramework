@@ -1,6 +1,0 @@
-<map id="InputCheck::XInputThumbLeft" name="InputCheck::XInputThumbLeft">
-<area shape="rect" id="node1" title=" " alt="" coords="5,78,196,105"/>
-<area shape="rect" id="node2" href="$class_input_device.html#a318e5f6fe57ec81edcc803316449e881" title=" " alt="" coords="244,5,448,47"/>
-<area shape="rect" id="node3" href="$class_input_device_x_input.html#a646a953b143203fc82120d37f7ae0348" title=" " alt="" coords="281,71,411,112"/>
-<area shape="rect" id="node4" href="$class_input_device_x_input.html#a60162065672350893671ada616f15c98" title=" " alt="" coords="281,136,411,177"/>
-</map>

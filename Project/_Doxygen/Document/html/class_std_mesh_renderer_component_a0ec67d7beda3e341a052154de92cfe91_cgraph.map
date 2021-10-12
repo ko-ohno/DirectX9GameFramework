@@ -1,9 +1,0 @@
-<map id="StdMeshRendererComponent::SetMesh" name="StdMeshRendererComponent::SetMesh">
-<area shape="rect" id="node1" title=" " alt="" coords="5,49,197,90"/>
-<area shape="rect" id="node2" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="252,5,411,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a84c8e8f996617349e4f555bcb7a636da" title=" " alt="" coords="247,56,415,83"/>
-<area shape="rect" id="node4" href="$class_mesh_manager.html#aed21c30c9a61f483fb35317fc58dc4a8" title=" " alt="" coords="245,107,417,133"/>
-<area shape="rect" id="node5" href="$class_mesh_manager.html#a79ce5d2400374327b66a6784df7f846d" title=" " alt="" coords="467,81,633,108"/>
-<area shape="rect" id="node6" href="$class_mesh_manager.html#a95d9c7d820b22aae2321fdbf06786f3c" title=" " alt="" coords="465,132,635,159"/>
-<area shape="rect" id="node7" href="$class_x_file_mesh.html#ac92c655eae896dcb55d1548cecbbb16b" title=" " alt="" coords="683,132,865,159"/>
-</map>

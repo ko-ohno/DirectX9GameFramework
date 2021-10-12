@@ -1,6 +1,0 @@
-<map id="Shader::ShaderPassEnd" name="Shader::ShaderPassEnd">
-<area shape="rect" id="node1" title=" " alt="" coords="245,78,411,105"/>
-<area shape="rect" id="node2" href="$class_billboard_renderer_component.html#a8187d08d999e58a369dbd6f6104ce884" title=" " alt="" coords="6,5,197,47"/>
-<area shape="rect" id="node3" href="$class_sprite_renderer_component.html#a6599729fd6b0f2c6aa733250b2cbf44a" title=" " alt="" coords="14,71,189,112"/>
-<area shape="rect" id="node4" href="$class_std_mesh_renderer_component.html#adeb2a34da5e28781682157edb14d1b6f" title=" " alt="" coords="5,136,197,177"/>
-</map>

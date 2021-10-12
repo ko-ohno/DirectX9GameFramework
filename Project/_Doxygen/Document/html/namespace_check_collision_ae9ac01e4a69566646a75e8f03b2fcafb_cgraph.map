@@ -1,9 +1,0 @@
-<map id="CheckCollision::ObbVSObb" name="CheckCollision::ObbVSObb">
-<area shape="rect" id="node1" title=" " alt="" coords="5,177,188,203"/>
-<area shape="rect" id="node2" href="$namespace_check_collision.html#a7d5b653e05fc02c9037fb8175615a2a0" title=" " alt="" coords="236,5,429,47"/>
-<area shape="rect" id="node3" href="$class_o_b_b_collider_component.html#a48e94e90680f9a6122842b9a18d93983" title=" " alt="" coords="253,71,412,112"/>
-<area shape="rect" id="node4" href="$class_o_b_b_collider_component.html#aabb6c8397011096e12ec6ec0ac0344ad" title=" " alt="" coords="253,136,412,177"/>
-<area shape="rect" id="node5" href="$class_o_b_b_collider_component.html#a4b2a0c30b81a99214aecc628ffaa7a2f" title=" " alt="" coords="253,201,412,243"/>
-<area shape="rect" id="node6" href="$class_o_b_b_collider_component.html#a405b62ebd7ab65273614ad7b3531fb10" title=" " alt="" coords="253,267,412,308"/>
-<area shape="rect" id="node7" href="$class_o_b_b_collider_component.html#a6c6a0523de559139c7d86faff331840e" title=" " alt="" coords="248,332,417,373"/>
-</map>

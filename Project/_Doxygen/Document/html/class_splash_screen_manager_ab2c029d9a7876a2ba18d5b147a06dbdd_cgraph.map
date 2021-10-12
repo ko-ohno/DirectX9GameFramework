@@ -1,8 +1,0 @@
-<map id="SplashScreenManager::GenerateOutput" name="SplashScreenManager::GenerateOutput">
-<area shape="rect" id="node1" title=" " alt="" coords="5,49,159,90"/>
-<area shape="rect" id="node2" href="$class_im_gui_manager.html#a74cfcd4b28332a6cec71a865ac37b9c3" title=" " alt="" coords="210,5,399,32"/>
-<area shape="rect" id="node3" href="$class_d_x9_graphics.html#a7972d73bfcf49698b1b98dd1adf6ae2f" title=" " alt="" coords="207,56,403,83"/>
-<area shape="rect" id="node5" href="$class_d_x9_graphics.html#a03bebc30a0cd016385ab8be172dcdec2" title=" " alt="" coords="211,111,398,137"/>
-<area shape="rect" id="node4" href="$class_d_x9_graphics_renderer.html#a31567e5a8801c56c16cf4bbcd8070af4" title=" " alt="" coords="451,45,600,86"/>
-<area shape="rect" id="node6" href="$class_d_x9_graphics_renderer.html#addeda19598293967cbc340dc9fc0a23a" title=" " alt="" coords="451,110,600,151"/>
-</map>

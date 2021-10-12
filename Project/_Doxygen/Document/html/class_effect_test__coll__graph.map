@@ -1,9 +1,0 @@
-<map id="EffectTest" name="EffectTest">
-<area shape="rect" id="node1" title=" " alt="" coords="5,273,85,300"/>
-<area shape="rect" id="node2" href="$class_game_object.html" title=" " alt="" coords="106,184,201,211"/>
-<area shape="rect" id="node7" href="$class_component.html" title=" " alt="" coords="109,273,197,300"/>
-<area shape="rect" id="node3" href="$class_game.html" title=" " alt="" coords="86,95,143,121"/>
-<area shape="rect" id="node4" href="$class_shader.html" title=" " alt="" coords="167,95,230,121"/>
-<area shape="rect" id="node5" href="$class_shader_manager.html" title=" " alt="" coords="142,5,255,32"/>
-<area shape="rect" id="node6" href="$class_transform_component.html" title=" " alt="" coords="141,349,286,376"/>
-</map>

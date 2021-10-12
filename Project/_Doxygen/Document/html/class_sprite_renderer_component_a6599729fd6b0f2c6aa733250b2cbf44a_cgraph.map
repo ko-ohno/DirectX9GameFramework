@@ -1,9 +1,0 @@
-<map id="SpriteRendererComponent::Draw" name="SpriteRendererComponent::Draw">
-<area shape="rect" id="node1" title=" " alt="" coords="5,125,180,166"/>
-<area shape="rect" id="node2" href="$class_game_object.html#a627f26322a15d2b65fe871b236e34c54" title=" " alt="" coords="251,5,410,32"/>
-<area shape="rect" id="node3" href="$class_game.html#a073433e798edb46ed2da577a4c1d9921" title=" " alt="" coords="261,56,400,83"/>
-<area shape="rect" id="node4" href="$class_d_x9_graphics.html#a87d4602aece4a4c84a9ab81f7f2fb4c3" title=" " alt="" coords="228,107,433,133"/>
-<area shape="rect" id="node5" href="$class_shader.html#ad3c43749feec99e588ffdf77a0aa1e5f" title=" " alt="" coords="243,157,418,184"/>
-<area shape="rect" id="node6" href="$class_shader.html#af56f59ec238c3b5f76bffb930519338a" title=" " alt="" coords="248,208,413,235"/>
-<area shape="rect" id="node7" href="$class_shader.html#a10d1c09c956680e40ba7b73dcdb35a12" title=" " alt="" coords="265,259,397,285"/>
-</map>

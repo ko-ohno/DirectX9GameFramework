@@ -1,6 +1,0 @@
-<map id="Game::GetSoundManager" name="Game::GetSoundManager">
-<area shape="rect" id="node1" title=" " alt="" coords="451,31,624,57"/>
-<area shape="rect" id="node2" href="$class_audio_component.html#a702ee3d78dcd477046706520fbca13ee" title=" " alt="" coords="208,5,395,32"/>
-<area shape="rect" id="node4" href="$class_audio_test.html#aea72700d10c9c572119d4892fee20715" title=" " alt="" coords="200,56,403,83"/>
-<area shape="rect" id="node3" href="$class_audio_test.html#afa55df2ca0f7240925867b3e3c0bf06e" title=" " alt="" coords="5,5,152,32"/>
-</map>

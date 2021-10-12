@@ -1,6 +1,0 @@
-<map id="Math::ToRadian" name="Math::ToRadian">
-<area shape="rect" id="node1" title="小数点第１位まで、角度への円周へ変換" alt="" coords="479,46,592,73"/>
-<area shape="rect" id="node2" href="$class_sprite_renderer_component.html#ad1212922edb62d6c137e1d7d4e83d06f" title=" " alt="" coords="256,5,431,47"/>
-<area shape="rect" id="node4" href="$class_sprite_renderer_component.html#a4e2cc5794c551a062f967f395f455e5f" title=" " alt="" coords="256,71,431,112"/>
-<area shape="rect" id="node3" href="$class_sprite_test.html#ad2fe5dd9c8785590822611eb359e87b9" title=" " alt="" coords="5,13,208,39"/>
-</map>

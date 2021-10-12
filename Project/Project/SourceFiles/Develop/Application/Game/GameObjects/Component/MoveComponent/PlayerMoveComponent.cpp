@@ -144,25 +144,25 @@ void PlayerMoveComponent::Update(float deltaTime)
 		
 		// ¶‰E‚ÌˆÚ“®ˆ—
 		{
-			if (is_enable_key_w)
+			if (is_enable_key_d)
 			{
 				left_thumb.x_ = 1.f;
 			}
 
-			if (is_enable_key_s)
+			if (is_enable_key_a)
 			{
 				left_thumb.x_ = -1.f;
 			}
 
 			const float move_value_x = left_thumb.x_ * (front_vector.x * move_speed_);
-			if (is_move_right_ || is_enable_key_a)
+			if (is_move_right_ || is_enable_key_d)
 			{
 				owner_transform_->SetRotationYaw(30.f);
 				owner_transform_->SetRotationRoll(-15.f);
 				owner_transform_->AddTranslationX((move_value_x * deltaTime) + default_move_value);
 			}
 
-			if (is_move_left_ || is_enable_key_d)
+			if (is_move_left_ || is_enable_key_a)
 			{
 				owner_transform_->SetRotationYaw(-30.f);
 				owner_transform_->SetRotationRoll(15.f);
@@ -172,7 +172,7 @@ void PlayerMoveComponent::Update(float deltaTime)
 
 		//Še‰ñ“]Ž²‚É‘Î‚µ‚Ä‚È‚É‚à‚µ‚Ä‚¢‚È‚¢Žž‚ÉŽp¨‚ðXV
 		{
-			const bool is_disable_yaw = !(is_move_left_ || is_move_right_ || is_enable_key_a || is_enable_key_d);
+			const bool is_disable_yaw = !(is_move_left_ || is_move_right_ || is_enable_key_d || is_enable_key_a);
 			if (is_disable_yaw)
 			{
 				owner_transform_->SetRotationYaw(0.f);
