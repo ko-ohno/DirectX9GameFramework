@@ -63,6 +63,8 @@ Boss::Boss(Game* game)
 	, effect_enemy_action_shoot_(nullptr)
 	, effect_player_attack_hit_(nullptr)
 	, enemy_damage_sound_effect_(nullptr)
+	, bodypress_startup_sound_effect_(nullptr)
+	, bodypress_attack_sound_effect_(nullptr)
 	, max_hp_param_(nullptr)
 	, hp_param_(nullptr)
 	, is_enable_recieved_charge_bullet_damege_(false)
@@ -134,9 +136,20 @@ bool Boss::Init(void)
 
 	// 音声コンポーネントの生成
 	{
+		// ボスがダメージを受ける音
 		enemy_damage_sound_effect_ = NEW AudioComponent(this);
 		enemy_damage_sound_effect_->SetSound(SoundType::DamageBoss);
 		enemy_damage_sound_effect_->SetAudioVolume(1.f);
+
+		// ボスが体当たり攻撃に入る時の音
+		bodypress_startup_sound_effect_ = NEW AudioComponent(this);
+		bodypress_startup_sound_effect_->SetSound(SoundType::BodyPressStartUp);
+		bodypress_startup_sound_effect_->SetAudioVolume(1.f);
+
+		// ボスが体当たり攻撃をする時の音
+		bodypress_attack_sound_effect_ = NEW AudioComponent(this);
+		bodypress_attack_sound_effect_->SetSound(SoundType::BodyPressAttack);
+		bodypress_attack_sound_effect_->SetAudioVolume(1.f);
 	}
 
 	// ゲームマネージャへのポインタの取得
@@ -287,6 +300,20 @@ void Boss::UpdateGameObject(float deltaTime)
 		if (ai_state != enemy_state_old_)
 		{
 			effect_enemy_action_shoot_->Play();
+		}
+	}
+
+	// 体当たり攻撃に入ることを通知する
+	if (ai_state == EnemyState::BodyPress)
+	{
+		if (ai_state != enemy_state_old_)
+		{
+			bodypress_startup_sound_effect_->Play();
+		}
+
+		if (move_motion_state == EnemyMotionState::Attack)
+		{
+			bodypress_attack_sound_effect_->Play();
 		}
 	}
 

@@ -54,6 +54,7 @@ StrongEnemy::StrongEnemy(Game* game)
 	: Enemy(game)
 	, effect_enemy_action_shoot_(nullptr)
 	, enemy_blaster_(nullptr)
+	, blaster_execute_time_(0.f)
 	, is_ready_(false)
 	, is_fire_(false)
 {
@@ -391,10 +392,12 @@ void StrongEnemy::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMot
 	}
 	
 	// 実行時間の計算
-	float execute_time = enemy_move_->GetExecuteTime();
+	//float execute_time = enemy_move_->GetExecuteTime();
+
+	blaster_execute_time_ += deltaTime;
 
 	// 通知エフェクトの再生
-	if (execute_time >= (max_execute_time_ * 0.4f))
+	if (blaster_execute_time_ >= (max_execute_time_ * 0.4f))
 	{
 		if (is_ready_ == false)
 		{
@@ -406,7 +409,7 @@ void StrongEnemy::UpdateBlaster(float deltaTime, EnemyState enemyState, EnemyMot
 	// 武器の発射
 	if ((is_fire_ == false) )
 	{
-		if (execute_time >= (max_execute_time_ * 0.5f))
+		if (blaster_execute_time_ >= (max_execute_time_ * 0.5f))
 		{
 			enemy_blaster_->Fire();
 			is_fire_ = true;

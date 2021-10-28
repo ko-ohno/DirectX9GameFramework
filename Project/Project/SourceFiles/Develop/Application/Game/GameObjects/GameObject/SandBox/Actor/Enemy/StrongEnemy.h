@@ -55,6 +55,9 @@ private:
 	// 敵の武器コンポーネント
 	class EnemyBlasterWeaponComponent*	enemy_blaster_;
 
+	// ブラスターを発射するまでの時間
+	float								blaster_execute_time_;
+
 	// 武器の発射用
 	bool								is_ready_;
 	bool								is_fire_;

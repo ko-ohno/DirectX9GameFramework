@@ -64,7 +64,14 @@ private:
 	// 音声コンポーネント
 	//
 
+	// 敵がダメージを受けたサウンドエフェクト
 	class AudioComponent*				enemy_damage_sound_effect_;
+
+	// 体当たりの起動音
+	class AudioComponent*				bodypress_startup_sound_effect_;
+
+	// 体当たりの攻撃音
+	class AudioComponent*				bodypress_attack_sound_effect_;
 
 	//
 	// 値コンポーネント

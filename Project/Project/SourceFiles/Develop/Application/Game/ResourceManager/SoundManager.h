@@ -32,6 +32,8 @@ enum class SoundType
 	, DamagePlayer			// プレイヤーにダメージ
 	, DangerAlert			// 危険通知
 	, LockonAlert			// ロックオン通知
+	, BodyPressAttack		// 体当たり攻撃の音
+	, BodyPressStartUp		// 体当たりの起動音
 	, ChargeBulletCharge	// チャージ弾チャージ
 	, ChargeBulletFire		// チャージ弾発射
 	, ChargeBulletExplosion // チャージ弾爆発
